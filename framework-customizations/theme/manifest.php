@@ -5,7 +5,7 @@
 	}
 
 	$manifest = array();
-	$manifest['id'] = 'bvc';
+	$manifest['id'] = 'fruitfulblanktextdomain';
 
 	$manifest['supported_extensions'] = array(
 		'sidebars'		=> array(),

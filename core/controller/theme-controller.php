@@ -20,7 +20,7 @@ class bvc_theme_controller {
 	public function run() {
 
 		// Translation support
-		load_theme_textdomain( 'bvc', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'fruitfulblanktextdomain', get_template_directory() . '/languages' );
 
 		// Load core classes
 		$this->_dispatch();

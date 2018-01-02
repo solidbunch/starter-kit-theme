@@ -44,8 +44,8 @@ class bvc_backend_controller extends bvc_theme_controller {
 	function add_theme_options_menu( $data ) {
 
 		add_menu_page(
-			esc_html__( 'Website Settings', 'bvc' ),
-			esc_html__( 'Website Settings', 'bvc' ),
+			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
+			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
 			$data['capability'],
 			$data['slug'],
 			$data['content_callback']

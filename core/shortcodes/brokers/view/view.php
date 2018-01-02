@@ -34,7 +34,7 @@
 							<div class="phone"><i class="fa fa-phone-square"></i> <?php echo fw_get_db_post_option( get_the_ID(), 'phone' ); ?></div>
 						</div>
 
-						<a href="mailto:<?php echo fw_get_db_post_option( get_the_ID(), 'email' ); ?>" class="button"><?php esc_html_e( 'GET IN TOUCH', 'bvc'); ?></a>
+						<a href="mailto:<?php echo fw_get_db_post_option( get_the_ID(), 'email' ); ?>" class="button"><?php esc_html_e( 'GET IN TOUCH', 'fruitfulblanktextdomain'); ?></a>
 
 					</div>
 

@@ -76,11 +76,11 @@
 					<?php if( is_page() || is_singular() ): ?>
 						<h1><?php the_title(); ?></h1>
 					<?php elseif( is_404() ): ?>
-						<h1><?php esc_html_e( 'ERROR 404', 'bvc'); ?></h1>
+						<h1><?php esc_html_e( 'ERROR 404', 'fruitfulblanktextdomain'); ?></h1>
 					<?php elseif( is_search() ): ?>
-						<h1><?php esc_html_e( 'SEARCH RESULTS', 'bvc'); ?></h1>
+						<h1><?php esc_html_e( 'SEARCH RESULTS', 'fruitfulblanktextdomain'); ?></h1>
 					<?php elseif( is_home() ): ?>
-						<h1><?php esc_html_e( 'NEWS', 'bvc'); ?></h1>
+						<h1><?php esc_html_e( 'NEWS', 'fruitfulblanktextdomain'); ?></h1>
 					<?php endif; ?>
 				</div>
 			</div>

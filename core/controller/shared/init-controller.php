@@ -52,7 +52,7 @@ class bvc_init_controller extends bvc_theme_controller {
 	 **/
 	function register_menus() {
 		register_nav_menus( array(
-			'header_menu' => esc_html__( 'Header Menu', 'bvc'),
+			'header_menu' => esc_html__( 'Header Menu', 'fruitfulblanktextdomain'),
 		));
 	}
 
@@ -62,7 +62,7 @@ class bvc_init_controller extends bvc_theme_controller {
 	function register_sidebars() {
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Sidebar', 'bvc' ),
+			'name'          => esc_html__( 'Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -71,7 +71,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		));
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #1', 'bvc' ),
+			'name'          => esc_html__( 'Footer widget area #1', 'fruitfulblanktextdomain' ),
 			'id'            => 'footer-1',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -80,7 +80,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		));
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #2', 'bvc' ),
+			'name'          => esc_html__( 'Footer widget area #2', 'fruitfulblanktextdomain' ),
 			'id'            => 'footer-2',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -89,7 +89,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		));
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #3', 'bvc' ),
+			'name'          => esc_html__( 'Footer widget area #3', 'fruitfulblanktextdomain' ),
 			'id'            => 'footer-3',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -98,7 +98,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		));
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #4', 'bvc' ),
+			'name'          => esc_html__( 'Footer widget area #4', 'fruitfulblanktextdomain' ),
 			'id'            => 'footer-4',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -173,7 +173,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		**/
 		register_post_type( 'dslc_testimonials',
 			array(
-				'label'							=> esc_html__( 'Testimonials', 'bvc'),
+				'label'							=> esc_html__( 'Testimonials', 'fruitfulblanktextdomain'),
 				'description'				=> '',
 				'public'						=> false,
 				'show_ui'						=> true,
@@ -198,19 +198,19 @@ class bvc_init_controller extends bvc_theme_controller {
 					'read_post'						=> 'edit_pages',
 				),
 				'labels' => array(
-					'name'								=> esc_html__( 'Testimonials', 'bvc'),
-					'singular_name'				=> esc_html__( 'Testimonial', 'bvc'),
-					'menu_name'						=> esc_html__( 'Testimonials', 'bvc'),
-					'add_new'							=> esc_html__( 'Add Testimonial', 'bvc'),
-					'add_new_item'				=> esc_html__( 'Add New Testimonial', 'bvc'),
-					'all_items'						=> esc_html__( 'All Testimonials', 'bvc'),
-					'edit_item'						=> esc_html__( 'Edit Testimonial', 'bvc'),
-					'new_item'						=> esc_html__( 'New Testimonial', 'bvc'),
-					'view_item'						=> esc_html__( 'View Testimonial', 'bvc'),
-					'search_items'				=> esc_html__( 'Search Testimonials', 'bvc'),
-					'not_found'						=> esc_html__( 'No Testimonials Found', 'bvc'),
-					'not_found_in_trash'	=> esc_html__( 'No Testimonials Found in Trash', 'bvc'),
-					'parent_item_colon'		=> esc_html__( 'Parent Testimonial:', 'bvc') )
+					'name'								=> esc_html__( 'Testimonials', 'fruitfulblanktextdomain'),
+					'singular_name'				=> esc_html__( 'Testimonial', 'fruitfulblanktextdomain'),
+					'menu_name'						=> esc_html__( 'Testimonials', 'fruitfulblanktextdomain'),
+					'add_new'							=> esc_html__( 'Add Testimonial', 'fruitfulblanktextdomain'),
+					'add_new_item'				=> esc_html__( 'Add New Testimonial', 'fruitfulblanktextdomain'),
+					'all_items'						=> esc_html__( 'All Testimonials', 'fruitfulblanktextdomain'),
+					'edit_item'						=> esc_html__( 'Edit Testimonial', 'fruitfulblanktextdomain'),
+					'new_item'						=> esc_html__( 'New Testimonial', 'fruitfulblanktextdomain'),
+					'view_item'						=> esc_html__( 'View Testimonial', 'fruitfulblanktextdomain'),
+					'search_items'				=> esc_html__( 'Search Testimonials', 'fruitfulblanktextdomain'),
+					'not_found'						=> esc_html__( 'No Testimonials Found', 'fruitfulblanktextdomain'),
+					'not_found_in_trash'	=> esc_html__( 'No Testimonials Found in Trash', 'fruitfulblanktextdomain'),
+					'parent_item_colon'		=> esc_html__( 'Parent Testimonial:', 'fruitfulblanktextdomain') )
 			)
 		);
 
@@ -224,22 +224,22 @@ class bvc_init_controller extends bvc_theme_controller {
 				'rewrite' 						=> false,
 				'show_admin_column'		=> true,
 				'labels'							=> array(
-					'name'								=> _x( 'Benefits Categories', 'taxonomy general name', 'bvc' ),
-					'singular_name'				=> _x( 'Benefits Category', 'taxonomy singular name', 'bvc' ),
-					'search_items'				=> esc_html__( 'Search in categories', 'bvc' ),
-					'all_items'						=> esc_html__( 'All Categories', 'bvc' ),
-					'edit_item'						=> esc_html__( 'Edit Category', 'bvc' ),
-					'update_item'					=> esc_html__( 'Update Category', 'bvc' ),
-					'add_new_item'				=> esc_html__( 'Add New Category', 'bvc' ),
-					'new_item_name'				=> esc_html__( 'New Category', 'bvc' ),
-					'menu_name'						=> esc_html__( 'Categories', 'bvc' )
+					'name'								=> _x( 'Benefits Categories', 'taxonomy general name', 'fruitfulblanktextdomain' ),
+					'singular_name'				=> _x( 'Benefits Category', 'taxonomy singular name', 'fruitfulblanktextdomain' ),
+					'search_items'				=> esc_html__( 'Search in categories', 'fruitfulblanktextdomain' ),
+					'all_items'						=> esc_html__( 'All Categories', 'fruitfulblanktextdomain' ),
+					'edit_item'						=> esc_html__( 'Edit Category', 'fruitfulblanktextdomain' ),
+					'update_item'					=> esc_html__( 'Update Category', 'fruitfulblanktextdomain' ),
+					'add_new_item'				=> esc_html__( 'Add New Category', 'fruitfulblanktextdomain' ),
+					'new_item_name'				=> esc_html__( 'New Category', 'fruitfulblanktextdomain' ),
+					'menu_name'						=> esc_html__( 'Categories', 'fruitfulblanktextdomain' )
 				)
 			)
 		);
 
 		register_post_type( 'coins',
 			array(
-				'label'							=> esc_html__( 'Coins', 'bvc'),
+				'label'							=> esc_html__( 'Coins', 'fruitfulblanktextdomain'),
 				'description'				=> '',
 				'public'						=> true,
 				'show_ui'						=> true,
@@ -264,25 +264,25 @@ class bvc_init_controller extends bvc_theme_controller {
 					'read_post'						=> 'edit_pages',
 				),
 				'labels' => array(
-					'name'								=> esc_html__( 'Coins', 'bvc'),
-					'singular_name'				=> esc_html__( 'Coin', 'bvc'),
-					'menu_name'						=> esc_html__( 'Coins', 'bvc'),
-					'add_new'							=> esc_html__( 'Add Coin', 'bvc'),
-					'add_new_item'				=> esc_html__( 'Add New Coin', 'bvc'),
-					'all_items'						=> esc_html__( 'All Coins', 'bvc'),
-					'edit_item'						=> esc_html__( 'Edit Coin', 'bvc'),
-					'new_item'						=> esc_html__( 'New Coin', 'bvc'),
-					'view_item'						=> esc_html__( 'View Coin', 'bvc'),
-					'search_items'				=> esc_html__( 'Search Coins', 'bvc'),
-					'not_found'						=> esc_html__( 'No Coins Found', 'bvc'),
-					'not_found_in_trash'	=> esc_html__( 'No Coins Found in Trash', 'bvc'),
-					'parent_item_colon'		=> esc_html__( 'Parent Coin:', 'bvc') )
+					'name'								=> esc_html__( 'Coins', 'fruitfulblanktextdomain'),
+					'singular_name'				=> esc_html__( 'Coin', 'fruitfulblanktextdomain'),
+					'menu_name'						=> esc_html__( 'Coins', 'fruitfulblanktextdomain'),
+					'add_new'							=> esc_html__( 'Add Coin', 'fruitfulblanktextdomain'),
+					'add_new_item'				=> esc_html__( 'Add New Coin', 'fruitfulblanktextdomain'),
+					'all_items'						=> esc_html__( 'All Coins', 'fruitfulblanktextdomain'),
+					'edit_item'						=> esc_html__( 'Edit Coin', 'fruitfulblanktextdomain'),
+					'new_item'						=> esc_html__( 'New Coin', 'fruitfulblanktextdomain'),
+					'view_item'						=> esc_html__( 'View Coin', 'fruitfulblanktextdomain'),
+					'search_items'				=> esc_html__( 'Search Coins', 'fruitfulblanktextdomain'),
+					'not_found'						=> esc_html__( 'No Coins Found', 'fruitfulblanktextdomain'),
+					'not_found_in_trash'	=> esc_html__( 'No Coins Found in Trash', 'fruitfulblanktextdomain'),
+					'parent_item_colon'		=> esc_html__( 'Parent Coin:', 'fruitfulblanktextdomain') )
 			)
 		);
 
 		register_post_type( 'brokers',
 			array(
-				'label'							=> esc_html__( 'Brokers', 'bvc'),
+				'label'							=> esc_html__( 'Brokers', 'fruitfulblanktextdomain'),
 				'description'				=> '',
 				'public'						=> false,
 				'show_ui'						=> true,
@@ -307,19 +307,19 @@ class bvc_init_controller extends bvc_theme_controller {
 					'read_post'						=> 'edit_pages',
 				),
 				'labels' => array(
-					'name'								=> esc_html__( 'Brokers', 'bvc'),
-					'singular_name'				=> esc_html__( 'Broker', 'bvc'),
-					'menu_name'						=> esc_html__( 'Brokers', 'bvc'),
-					'add_new'							=> esc_html__( 'Add Broker', 'bvc'),
-					'add_new_item'				=> esc_html__( 'Add New Team Broker', 'bvc'),
-					'all_items'						=> esc_html__( 'All Brokers', 'bvc'),
-					'edit_item'						=> esc_html__( 'Edit Broker', 'bvc'),
-					'new_item'						=> esc_html__( 'New Broker', 'bvc'),
-					'view_item'						=> esc_html__( 'View Broker', 'bvc'),
-					'search_items'				=> esc_html__( 'Search Brokers', 'bvc'),
-					'not_found'						=> esc_html__( 'No Brokers Found', 'bvc'),
-					'not_found_in_trash'	=> esc_html__( 'No Brokers found in Trash', 'bvc'),
-					'parent_item_colon'		=> esc_html__( 'Parent Broker:', 'bvc') )
+					'name'								=> esc_html__( 'Brokers', 'fruitfulblanktextdomain'),
+					'singular_name'				=> esc_html__( 'Broker', 'fruitfulblanktextdomain'),
+					'menu_name'						=> esc_html__( 'Brokers', 'fruitfulblanktextdomain'),
+					'add_new'							=> esc_html__( 'Add Broker', 'fruitfulblanktextdomain'),
+					'add_new_item'				=> esc_html__( 'Add New Team Broker', 'fruitfulblanktextdomain'),
+					'all_items'						=> esc_html__( 'All Brokers', 'fruitfulblanktextdomain'),
+					'edit_item'						=> esc_html__( 'Edit Broker', 'fruitfulblanktextdomain'),
+					'new_item'						=> esc_html__( 'New Broker', 'fruitfulblanktextdomain'),
+					'view_item'						=> esc_html__( 'View Broker', 'fruitfulblanktextdomain'),
+					'search_items'				=> esc_html__( 'Search Brokers', 'fruitfulblanktextdomain'),
+					'not_found'						=> esc_html__( 'No Brokers Found', 'fruitfulblanktextdomain'),
+					'not_found_in_trash'	=> esc_html__( 'No Brokers found in Trash', 'fruitfulblanktextdomain'),
+					'parent_item_colon'		=> esc_html__( 'Parent Broker:', 'fruitfulblanktextdomain') )
 			)
 		);
 
@@ -328,7 +328,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		**/
 		register_post_type( 'reviews',
 			array(
-				'label'							=> esc_html__( 'Reviews', 'bvc'),
+				'label'							=> esc_html__( 'Reviews', 'fruitfulblanktextdomain'),
 				'description'				=> '',
 				'public'						=> false,
 				'show_ui'						=> true,
@@ -353,19 +353,19 @@ class bvc_init_controller extends bvc_theme_controller {
 					'read_post'						=> 'edit_pages',
 				),
 				'labels' => array(
-					'name'								=> esc_html__( 'Reviews', 'bvc'),
-					'singular_name'				=> esc_html__( 'Review', 'bvc'),
-					'menu_name'						=> esc_html__( 'Reviews', 'bvc'),
-					'add_new'							=> esc_html__( 'Add Review', 'bvc'),
-					'add_new_item'				=> esc_html__( 'Add New Review', 'bvc'),
-					'all_items'						=> esc_html__( 'All Reviews', 'bvc'),
-					'edit_item'						=> esc_html__( 'Edit Review', 'bvc'),
-					'new_item'						=> esc_html__( 'New Review', 'bvc'),
-					'view_item'						=> esc_html__( 'View Review', 'bvc'),
-					'search_items'				=> esc_html__( 'Search Reviews', 'bvc'),
-					'not_found'						=> esc_html__( 'No Reviews Found', 'bvc'),
-					'not_found_in_trash'	=> esc_html__( 'No Reviews Found in Trash', 'bvc'),
-					'parent_item_colon'		=> esc_html__( 'Parent Review:', 'bvc') )
+					'name'								=> esc_html__( 'Reviews', 'fruitfulblanktextdomain'),
+					'singular_name'				=> esc_html__( 'Review', 'fruitfulblanktextdomain'),
+					'menu_name'						=> esc_html__( 'Reviews', 'fruitfulblanktextdomain'),
+					'add_new'							=> esc_html__( 'Add Review', 'fruitfulblanktextdomain'),
+					'add_new_item'				=> esc_html__( 'Add New Review', 'fruitfulblanktextdomain'),
+					'all_items'						=> esc_html__( 'All Reviews', 'fruitfulblanktextdomain'),
+					'edit_item'						=> esc_html__( 'Edit Review', 'fruitfulblanktextdomain'),
+					'new_item'						=> esc_html__( 'New Review', 'fruitfulblanktextdomain'),
+					'view_item'						=> esc_html__( 'View Review', 'fruitfulblanktextdomain'),
+					'search_items'				=> esc_html__( 'Search Reviews', 'fruitfulblanktextdomain'),
+					'not_found'						=> esc_html__( 'No Reviews Found', 'fruitfulblanktextdomain'),
+					'not_found_in_trash'	=> esc_html__( 'No Reviews Found in Trash', 'fruitfulblanktextdomain'),
+					'parent_item_colon'		=> esc_html__( 'Parent Review:', 'fruitfulblanktextdomain') )
 			)
 		);
 
@@ -374,7 +374,7 @@ class bvc_init_controller extends bvc_theme_controller {
 		**/
 		register_post_type( 'forms',
 			array(
-				'label'							=> esc_html__( 'Forms', 'bvc'),
+				'label'							=> esc_html__( 'Forms', 'fruitfulblanktextdomain'),
 				'description'				=> '',
 				'public'						=> true,
 				'show_ui'						=> true,
@@ -399,19 +399,19 @@ class bvc_init_controller extends bvc_theme_controller {
 					'read_post'						=> 'edit_pages',
 				),
 				'labels' => array(
-					'name'								=> esc_html__( 'Forms', 'bvc'),
-					'singular_name'				=> esc_html__( 'Form', 'bvc'),
-					'menu_name'						=> esc_html__( 'Forms', 'bvc'),
-					'add_new'							=> esc_html__( 'Add Form', 'bvc'),
-					'add_new_item'				=> esc_html__( 'Add New Form', 'bvc'),
-					'all_items'						=> esc_html__( 'All Forms', 'bvc'),
-					'edit_item'						=> esc_html__( 'Edit Form', 'bvc'),
-					'new_item'						=> esc_html__( 'New Form', 'bvc'),
-					'view_item'						=> esc_html__( 'View Form', 'bvc'),
-					'search_items'				=> esc_html__( 'Search Forms', 'bvc'),
-					'not_found'						=> esc_html__( 'No Forms Found', 'bvc'),
-					'not_found_in_trash'	=> esc_html__( 'No Forms Found in Trash', 'bvc'),
-					'parent_item_colon'		=> esc_html__( 'Parent Form:', 'bvc') )
+					'name'								=> esc_html__( 'Forms', 'fruitfulblanktextdomain'),
+					'singular_name'				=> esc_html__( 'Form', 'fruitfulblanktextdomain'),
+					'menu_name'						=> esc_html__( 'Forms', 'fruitfulblanktextdomain'),
+					'add_new'							=> esc_html__( 'Add Form', 'fruitfulblanktextdomain'),
+					'add_new_item'				=> esc_html__( 'Add New Form', 'fruitfulblanktextdomain'),
+					'all_items'						=> esc_html__( 'All Forms', 'fruitfulblanktextdomain'),
+					'edit_item'						=> esc_html__( 'Edit Form', 'fruitfulblanktextdomain'),
+					'new_item'						=> esc_html__( 'New Form', 'fruitfulblanktextdomain'),
+					'view_item'						=> esc_html__( 'View Form', 'fruitfulblanktextdomain'),
+					'search_items'				=> esc_html__( 'Search Forms', 'fruitfulblanktextdomain'),
+					'not_found'						=> esc_html__( 'No Forms Found', 'fruitfulblanktextdomain'),
+					'not_found_in_trash'	=> esc_html__( 'No Forms Found in Trash', 'fruitfulblanktextdomain'),
+					'parent_item_colon'		=> esc_html__( 'Parent Form:', 'fruitfulblanktextdomain') )
 			)
 		);
 

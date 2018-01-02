@@ -18,7 +18,7 @@
 				<div class="item">
 
 					<div class="desc">
-						<?php esc_html_e('What Our Customers say:', 'bvc'); ?>
+						<?php esc_html_e('What Our Customers say:', 'fruitfulblanktextdomain'); ?>
 					</div>
 
 					<div class="text">
@@ -31,8 +31,8 @@
 					<div class="reviews-num">
 						<?php 
 							$reviews_num = absint( fw_get_db_post_option( get_the_ID(), 'reviews_number' ) );
-							$reviews = sprintf( _n( '%s review', '%s reviews', $reviews_num, 'bvc' ), $reviews_num );
-							printf( __( '%s star rating based on %s', 'bvc'), $rating, $reviews );
+							$reviews = sprintf( _n( '%s review', '%s reviews', $reviews_num, 'fruitfulblanktextdomain' ), $reviews_num );
+							printf( __( '%s star rating based on %s', 'fruitfulblanktextdomain'), $rating, $reviews );
 						?>
 					</div>
 

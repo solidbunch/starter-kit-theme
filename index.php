@@ -38,7 +38,7 @@
 						<?php the_excerpt(); ?>
 					</div>
 
-					<a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'Read more', 'bvc'); ?></a>
+					<a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'Read more', 'fruitfulblanktextdomain'); ?></a>
 
 				</article>
 
@@ -51,7 +51,7 @@
 				<div class="row">
 
 					<article class="col-md-12">
-						<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'bvc'); ?></h2>
+						<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'fruitfulblanktextdomain'); ?></h2>
 					</article>
 
 				</div>

@@ -11,7 +11,7 @@ Related posts
 -->
 <div id="related-posts">
 
-	<h4 class="block-title"><?php esc_html_e( 'Related', 'bvc'); ?></h4>
+	<h4 class="block-title"><?php esc_html_e( 'Related', 'fruitfulblanktextdomain'); ?></h4>
 
 	<div class="row">
 		<?php while ( $similar_posts->have_posts() ): $similar_posts->the_post(); ?>
@@ -35,7 +35,7 @@ Related posts
 					<?php the_time( 'F d, Y' ); ?>
 				</span> <span class="separator">|</span> 
 				<span class="author">
-					<?php esc_html_e( 'By', 'bvc'); ?> <?php the_author_link(); ?>
+					<?php esc_html_e( 'By', 'fruitfulblanktextdomain'); ?> <?php the_author_link(); ?>
 				</span>
 			</div>
 
@@ -45,7 +45,7 @@ Related posts
 				<?php the_excerpt(); ?>
 			</div>
 
-			<a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'READ MORE', 'bvc'); ?></a>
+			<a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'READ MORE', 'fruitfulblanktextdomain'); ?></a>
 
 		</div>
 		<?php endwhile; wp_reset_postdata(); ?>

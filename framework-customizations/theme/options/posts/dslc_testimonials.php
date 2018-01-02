@@ -4,16 +4,16 @@
  **/
 $options = array(
 	'details' => array(
-		'title'		=> esc_html__( 'Details', 'bvc' ),
+		'title'		=> esc_html__( 'Details', 'fruitfulblanktextdomain' ),
 		'type'		=> 'box',
 		'options'	=> array(
 
 			'name'	=> array(
-				'label' => esc_html__( 'Name', 'bvc' ),
+				'label' => esc_html__( 'Name', 'fruitfulblanktextdomain' ),
 				'type' => 'text',
 			),
 			'position'	=> array(
-				'label' => esc_html__( 'Position', 'bvc' ),
+				'label' => esc_html__( 'Position', 'fruitfulblanktextdomain' ),
 				'type' => 'text',
 			),
 

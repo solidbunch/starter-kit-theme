@@ -3,14 +3,14 @@
 		<?php the_time( 'F d, Y' ); ?>
 	</span> <span class="separator">|</span> 
 	<span class="author">
-		<?php esc_html_e( 'By', 'bvc'); ?> <?php the_author_link(); ?>
+		<?php esc_html_e( 'By', 'fruitfulblanktextdomain'); ?> <?php the_author_link(); ?>
 	</span>
 	<?php if( is_single() ): ?>
 		<span class="separator">|</span> <span class="comments">
 			<?php comments_number( '0', '1', '%' ); ?>
 		</span>
 		<div class="share-post">
-			<div class="share-title"><i class="fa fa-share-alt"></i> <?php esc_html_e( 'Share', 'bvc'); ?></div>
+			<div class="share-title"><i class="fa fa-share-alt"></i> <?php esc_html_e( 'Share', 'fruitfulblanktextdomain'); ?></div>
 			<div class="share-links">
 				<?php
 					/**

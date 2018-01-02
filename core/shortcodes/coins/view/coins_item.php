@@ -28,11 +28,11 @@
 			<h4><?php echo $currency_name; ?></h4>
 
             <div class="exchange-price">
-                <span class="price"><?php esc_html_e( 'LOADING PRICE...', 'bvc'); ?></span>
-				<span class="qty"><?php esc_html_e( 'PER 1 ', 'bvc'); ?> <?php echo $coin_code; ?></span>
+                <span class="price"><?php esc_html_e( 'LOADING PRICE...', 'fruitfulblanktextdomain'); ?></span>
+				<span class="qty"><?php esc_html_e( 'PER 1 ', 'fruitfulblanktextdomain'); ?> <?php echo $coin_code; ?></span>
             </div>
 
-            <a href="<?php echo get_permalink(); ?>" class="button"><?php esc_html_e( 'BUY', 'bvc'); ?> <i class="fa fa-angle-right"></i></a>
+            <a href="<?php echo get_permalink(); ?>" class="button"><?php esc_html_e( 'BUY', 'fruitfulblanktextdomain'); ?> <i class="fa fa-angle-right"></i></a>
 
         </div>
 		<input type="hidden" class="coin_code" value="<?php echo $coin_code; ?>">

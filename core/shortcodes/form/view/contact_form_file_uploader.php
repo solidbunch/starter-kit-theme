@@ -32,7 +32,7 @@ $attributes[] = 'placeholder="' . esc_attr($atts['placeholder']) . '"';
     jQuery('input[type=file]').each(function () {
         var labelId = "label_<?=esc_attr($atts['el_id']);?>";
         var fileUploaderId = "field_<?=esc_attr($atts['el_id']);?>";
-        var beforeFileName = "<?=esc_html__('File name: ', 'bvc');?>";
+        var beforeFileName = "<?=esc_html__('File name: ', 'fruitfulblanktextdomain');?>";
         var placeholder = "<?=esc_attr($atts['placeholder']);?>";
 
         jQuery('#'+fileUploaderId).on('change', function(){

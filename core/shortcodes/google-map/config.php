@@ -1,34 +1,34 @@
 <?php
 
 vc_map(array(
-	'name' => esc_html__('Map', 'bvc'),
+	'name' => esc_html__('Map', 'fruitfulblanktextdomain'),
 	'base' => 'bvc_map',
-	'category' => esc_html__('BVC Elements', 'bvc'),
-	'description' => esc_html__('Add Google Map', 'bvc'),
+	'category' => esc_html__('BVC Elements', 'fruitfulblanktextdomain'),
+	'description' => esc_html__('Add Google Map', 'fruitfulblanktextdomain'),
 	'params' => array(
 		
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Address', 'bvc'),
+			'heading' => esc_html__('Address', 'fruitfulblanktextdomain'),
 			'param_name' => 'address',
 			'value' => '',
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Google API Key', 'bvc'),
-			'description' => esc_html__('Insert here your Google API Key to avoid request limitations and JavaScript errors.', 'bvc'),
+			'heading' => esc_html__('Google API Key', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Insert here your Google API Key to avoid request limitations and JavaScript errors.', 'fruitfulblanktextdomain'),
 			'param_name' => 'api_key',
 			'value' => '',
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Map Height', 'bvc'),
+			'heading' => esc_html__('Map Height', 'fruitfulblanktextdomain'),
 			'param_name' => 'height',
 			'value' => '650',
 		),
 		array(
 			'type' => 'dropdown',
-			'heading' => esc_html__('Map zoom', 'bvc'),
+			'heading' => esc_html__('Map zoom', 'fruitfulblanktextdomain'),
 			'param_name' => 'zoom',
 			'save_always' => true,
 			'value' => array(
@@ -53,35 +53,35 @@ vc_map(array(
 		
 		array(
 			'type' => 'attach_image',
-			'heading' => esc_html__('Pin Icon', 'bvc'),
+			'heading' => esc_html__('Pin Icon', 'fruitfulblanktextdomain'),
 			'param_name' => 'pin_icon',
 			),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Pin offset X', 'bvc'),
+			'heading' => esc_html__('Pin offset X', 'fruitfulblanktextdomain'),
 			'param_name' => 'pin_offset_x',
 			'value' => 0,
 			'default' => 0,
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Pin offset Y', 'bvc'),
+			'heading' => esc_html__('Pin offset Y', 'fruitfulblanktextdomain'),
 			'param_name' => 'pin_offset_y',
 			'value' => 0,
 			'default' => 0,
 		),
 		array(
 			'type' => 'checkbox',
-			'heading' => esc_html__('Display info window', 'bvc'),
+			'heading' => esc_html__('Display info window', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window',
-			'value' => array(esc_html__('Yes', 'bvc') => 'yes'),
+			'value' => array(esc_html__('Yes', 'fruitfulblanktextdomain') => 'yes'),
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Title', 'bvc'),
+			'heading' => esc_html__('Title', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_title',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -89,10 +89,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Phone number', 'bvc'),
+			'heading' => esc_html__('Phone number', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_phone',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -100,10 +100,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Email', 'bvc'),
+			'heading' => esc_html__('Email', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_email',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -111,10 +111,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textarea',
-			'heading' => esc_html__('Address', 'bvc'),
+			'heading' => esc_html__('Address', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_address',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -122,10 +122,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textarea',
-			'heading' => esc_html__('Working hours', 'bvc'),
+			'heading' => esc_html__('Working hours', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_wh',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -133,10 +133,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Follow Us text', 'bvc'),
+			'heading' => esc_html__('Follow Us text', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_follow_us_text',
-			'value' => esc_html__('FOLLOW US:', 'bvc'),
-			'group' => esc_html__('Info window', 'bvc'),
+			'value' => esc_html__('FOLLOW US:', 'fruitfulblanktextdomain'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -144,10 +144,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Facebook URL', 'bvc'),
+			'heading' => esc_html__('Facebook URL', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_fb_url',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -155,10 +155,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Twitter URL', 'bvc'),
+			'heading' => esc_html__('Twitter URL', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_twitter_url',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -166,10 +166,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Google Plus URL', 'bvc'),
+			'heading' => esc_html__('Google Plus URL', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_google_plus_url',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -177,10 +177,10 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Linked In URL', 'bvc'),
+			'heading' => esc_html__('Linked In URL', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_linkedin_url',
 			'value' => '',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'dependency' => array(
 				'element' => 'info_window',
 				'not_empty' => true,
@@ -188,9 +188,9 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Info Window offset X', 'bvc'),
+			'heading' => esc_html__('Info Window offset X', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_offset_x',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'value' => '',
 			'dependency' => array(
 				'element' => 'info_window',
@@ -199,9 +199,9 @@ vc_map(array(
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Info Window offset Y', 'bvc'),
+			'heading' => esc_html__('Info Window offset Y', 'fruitfulblanktextdomain'),
 			'param_name' => 'info_window_offset_y',
-			'group' => esc_html__('Info window', 'bvc'),
+			'group' => esc_html__('Info window', 'fruitfulblanktextdomain'),
 			'value' => '',
 			'dependency' => array(
 				'element' => 'info_window',
@@ -210,12 +210,12 @@ vc_map(array(
 		),
 		array(
 			'type' => 'el_id',
-			'heading' => esc_html__('Element ID', 'bvc'),
+			'heading' => esc_html__('Element ID', 'fruitfulblanktextdomain'),
 			'param_name' => 'el_id',
 			'settings' => array(
 				'auto_generate' => true,
 			),
-			'description' => esc_html__('Unique identifier of this element', 'bvc'),
+			'description' => esc_html__('Unique identifier of this element', 'fruitfulblanktextdomain'),
 		),
 	
 	)

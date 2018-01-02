@@ -7,11 +7,11 @@
  */
 
 vc_map( array(
-    'name' => esc_html__( 'Ordering steps', 'bvc' ),
+    'name' => esc_html__( 'Ordering steps', 'fruitfulblanktextdomain' ),
     'base' => 'bvc_ordering_steps',
     'icon' => '',
-    'category' => esc_html__( 'BVC Elements', 'bvc' ),
-    'description' => esc_html__( 'Add an ordering step', 'bvc' ),
+    'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
+    'description' => esc_html__( 'Add an ordering step', 'fruitfulblanktextdomain' ),
     'params' => array(
 
         /**
@@ -19,54 +19,54 @@ vc_map( array(
          **/
         array(
             'type' => 'checkbox',
-            'heading' => esc_html__( 'Hide dots?', 'bvc' ),
-            'description' => esc_html__( 'Check to hide dots before this column.', 'bvc' ),
+            'heading' => esc_html__( 'Hide dots?', 'fruitfulblanktextdomain' ),
+            'description' => esc_html__( 'Check to hide dots before this column.', 'fruitfulblanktextdomain' ),
             'param_name' => 'is_hidden_dots',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Step number', 'bvc' ),
-            'description' => esc_html__( 'Write the number of step.', 'bvc' ),
+            'heading' => esc_html__( 'Step number', 'fruitfulblanktextdomain' ),
+            'description' => esc_html__( 'Write the number of step.', 'fruitfulblanktextdomain' ),
             'param_name' => 'number',
             'value' => '',
             'holder'		=> 'h2',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
         array(
             'type' => 'attach_image',
-            'heading' => esc_html__('Title icon Image', 'bvc'),
+            'heading' => esc_html__('Title icon Image', 'fruitfulblanktextdomain'),
             'param_name' => 'image',
             'value' => '',
-            'description' => esc_html__('Select image from media library.', 'bvc'),
+            'description' => esc_html__('Select image from media library.', 'fruitfulblanktextdomain'),
             //'holder'		=> 'img',
             //'class'		=> 'vc_element-icon',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
         array(
             'type' => 'textfield',
-            'heading' => esc_html__( 'Step Title', 'bvc' ),
-            'description' => esc_html__( 'Write the Title of step.', 'bvc' ),
+            'heading' => esc_html__( 'Step Title', 'fruitfulblanktextdomain' ),
+            'description' => esc_html__( 'Write the Title of step.', 'fruitfulblanktextdomain' ),
             'param_name' => 'title',
             'value' => '',
             'holder'		=> 'h2',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
         array(
             'type' => 'textarea',
-            'heading' => esc_html__( 'Step text', 'bvc' ),
-            'description' => esc_html__( 'Write the Title of step.', 'bvc' ),
+            'heading' => esc_html__( 'Step text', 'fruitfulblanktextdomain' ),
+            'description' => esc_html__( 'Write the Title of step.', 'fruitfulblanktextdomain' ),
             'param_name' => 'text',
             'value' => '',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
         array(
             'type' => 'vc_link',
-            'heading' => esc_html__( 'Call to action Button', 'bvc' ),
-            'description' => esc_html__( 'Add link and Text for the button.', 'bvc' ),
+            'heading' => esc_html__( 'Call to action Button', 'fruitfulblanktextdomain' ),
+            'description' => esc_html__( 'Add link and Text for the button.', 'fruitfulblanktextdomain' ),
             'param_name' => 'call_to_action_btn',
             'value' => '',
-            'group' => esc_html__('Main', 'bvc'),
+            'group' => esc_html__('Main', 'fruitfulblanktextdomain'),
         ),
 
     )

@@ -1,24 +1,24 @@
 <?php
 
 vc_map(array(
-	'name' => esc_html__('Form Submit', 'bvc'),
+	'name' => esc_html__('Form Submit', 'fruitfulblanktextdomain'),
 	'base' => 'bvc_contact_form_submit',
 	'content_element' => true,
-	'category' => esc_html__('Form Fields', 'bvc'),
+	'category' => esc_html__('Form Fields', 'fruitfulblanktextdomain'),
 	'as_child' => array('only' => 'bvc_contact_form,vc_column_inner'),
 	'params' => array(
 		
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Label', 'bvc'),
-			'description' => esc_html__('This text will appear in submit button', 'bvc'),
+			'heading' => esc_html__('Label', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('This text will appear in submit button', 'fruitfulblanktextdomain'),
 			'param_name' => 'submit_button_text',
 			'holder'		=> 'h2',
-			'value' => esc_html__('Send', 'bvc'),
+			'value' => esc_html__('Send', 'fruitfulblanktextdomain'),
 		),
 		array(
 			'type' => 'dropdown',
-			'heading' => esc_html__('Button Align', 'bvc'),
+			'heading' => esc_html__('Button Align', 'fruitfulblanktextdomain'),
 			'param_name' => 'align',
 			'save_always' => true,
 			'value' => array(
@@ -30,8 +30,8 @@ vc_map(array(
 		),
 		array(
 			'type' => 'el_id',
-			'heading' => esc_html__('Button ID', 'bvc'),
-			'description' => esc_html__('Here you can set unique identifier for this button', 'bvc'),
+			'heading' => esc_html__('Button ID', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Here you can set unique identifier for this button', 'fruitfulblanktextdomain'),
 			'param_name' => 'el_id',
 			'settings' => array(
 				'auto_generate' => true,

@@ -4,16 +4,16 @@
  **/
 $options = array(
 	'details' => array(
-		'title'		=> esc_html__( 'Details', 'bvc' ),
+		'title'		=> esc_html__( 'Details', 'fruitfulblanktextdomain' ),
 		'type'		=> 'box',
 		'options'	=> array(
 
 			'reviews_number'	=> array(
-				'label' => esc_html__( 'Reviews count', 'bvc' ),
+				'label' => esc_html__( 'Reviews count', 'fruitfulblanktextdomain' ),
 				'type' => 'text',
 			),
 			'rating'	=> array(
-				'label' => esc_html__( 'Rating', 'bvc' ),
+				'label' => esc_html__( 'Rating', 'fruitfulblanktextdomain' ),
 				'type' => 'text',
 			),
 

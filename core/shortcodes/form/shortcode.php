@@ -54,11 +54,11 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 			
 			$js_vars = array(
 				'ajaxurl' => admin_url('admin-ajax.php'),
-				'strSuccess' => esc_html__('Success', 'bvc'),
-				'strError' => esc_html__('Error', 'bvc'),
-				'strAJAXError' => esc_html__('An AJAX error occurred when performing a query. Please contact support if the problem persists.', 'bvc'),
-				'strServerResponseError' => esc_html__('The script have received an invalid response from the server. Please contact support if the problem persists.', 'bvc'),
-				'strFormError' => esc_html__('Form validation error. Please check all required fields and try again.', 'bvc'),
+				'strSuccess' => esc_html__('Success', 'fruitfulblanktextdomain'),
+				'strError' => esc_html__('Error', 'fruitfulblanktextdomain'),
+				'strAJAXError' => esc_html__('An AJAX error occurred when performing a query. Please contact support if the problem persists.', 'fruitfulblanktextdomain'),
+				'strServerResponseError' => esc_html__('The script have received an invalid response from the server. Please contact support if the problem persists.', 'fruitfulblanktextdomain'),
+				'strFormError' => esc_html__('Form validation error. Please check all required fields and try again.', 'fruitfulblanktextdomain'),
 			);
 			
 			wp_localize_script('bvc-contact-form', 'bvcContactForm', $js_vars);

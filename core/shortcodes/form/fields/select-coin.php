@@ -14,25 +14,25 @@ foreach ($currency_codes as $currency_code) {
 }
 
 vc_map(array(
-	'name' => esc_html__('Select Coin Field', 'bvc'),
+	'name' => esc_html__('Select Coin Field', 'fruitfulblanktextdomain'),
 	'base' => 'bvc_contact_form_coin_select',
 	'content_element' => true,
-	'category' => esc_html__('Form Fields', 'bvc'),
+	'category' => esc_html__('Form Fields', 'fruitfulblanktextdomain'),
 	'as_child' => array('only' => 'bvc_contact_form,vc_column_inner'),
 	'params' => array(
 		
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Field name', 'bvc'),
-			'description' => esc_html__('Enter a field name for Humans', 'bvc'),
+			'heading' => esc_html__('Field name', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Enter a field name for Humans', 'fruitfulblanktextdomain'),
 			'param_name' => 'label',
 			'holder'		=> 'h2',
 			'value' => '',
 		),
         array(
             'type' => 'autocomplete',
-            'heading' => esc_html__('Sell currency', 'bvc'),
-            'description' => esc_html__('Enter currency code to sell. *** If empty - GBP by default.', 'bvc'),
+            'heading' => esc_html__('Sell currency', 'fruitfulblanktextdomain'),
+            'description' => esc_html__('Enter currency code to sell. *** If empty - GBP by default.', 'fruitfulblanktextdomain'),
             'param_name' => 'sell',
             'value' => $currencies_arr[0],
             'settings' => array(
@@ -48,33 +48,33 @@ vc_map(array(
         ),
 		array(
 			'type' => 'checkbox',
-			'heading' => esc_html__('Mandatory Field', 'bvc'),
-			'description' => esc_html__('Make this field mandatory?', 'bvc'),
+			'heading' => esc_html__('Mandatory Field', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Make this field mandatory?', 'fruitfulblanktextdomain'),
 			'param_name' => 'required',
-			'value' => array(esc_html__('Yes', 'bvc') => 'yes'),
+			'value' => array(esc_html__('Yes', 'fruitfulblanktextdomain') => 'yes'),
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Minimum ordered value', 'bvc'),
-			'description' => esc_html__('Enter minimum order', 'bvc'),
+			'heading' => esc_html__('Minimum ordered value', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Enter minimum order', 'fruitfulblanktextdomain'),
 			'param_name' => 'min_order',
 			'value' => '500',
 		),
 		array(
 			'type' => 'textfield',
-			'heading' => esc_html__('Minimum ordered message', 'bvc'),
-			'description' => esc_html__('Enter minimum order alert message', 'bvc'),
+			'heading' => esc_html__('Minimum ordered message', 'fruitfulblanktextdomain'),
+			'description' => esc_html__('Enter minimum order alert message', 'fruitfulblanktextdomain'),
 			'param_name' => 'min_order_msg',
 			'value' => 'Minimum Order Value is %d. If you want to invest less, <a target="_blank" href="http://partners.etoro.com/B9157_A62794_TClick_S2738.aspx">visit eToro</a>',
 		),
 		array(
 			'type' => 'el_id',
-			'heading' => esc_html__('Field ID', 'bvc'),
+			'heading' => esc_html__('Field ID', 'fruitfulblanktextdomain'),
 			'param_name' => 'el_id',
 			'settings' => array(
 				'auto_generate' => true,
 			),
-			'description' => esc_html__('Used in "name" attribute', 'bvc'),
+			'description' => esc_html__('Used in "name" attribute', 'fruitfulblanktextdomain'),
 		),
 	
 	)

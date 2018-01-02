@@ -90,7 +90,7 @@ function bvc_ajax_contact_form()
 	*/
 
 	if (!wp_verify_nonce($_POST['security'], 'bvc-contact-form')) {
-		$answer['error'] = esc_html__('Wrong form verification. Please try again.', 'bvc');
+		$answer['error'] = esc_html__('Wrong form verification. Please try again.', 'fruitfulblanktextdomain');
 		die(json_encode($answer));
 	}
 	if (!empty($_POST['y_name'])) {
