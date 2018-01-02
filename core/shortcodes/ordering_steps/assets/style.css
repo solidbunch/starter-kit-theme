@@ -1,0 +1,72 @@
+.ordering-step_wrapper {
+  text-align: center;
+}
+.ordering-step_wrapper .step-number_wrapper {
+  font-size: 139px;
+  line-height: 208px;
+  font-weight: bold;
+  color: #00b1bf;
+}
+.ordering-step_wrapper .step-number_wrapper .dots {
+  position: absolute;
+  color: #cbedf0;
+  font-size: 13px;
+  width: 100%;
+  text-align: justify;
+  padding: 0 25%;
+  left: -50%;
+  z-index: -1;
+}
+.ordering-step_wrapper .step-number_wrapper .dots:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.ordering-step_wrapper .step-number_wrapper i.fa-circle {
+  display: inline-block;
+}
+.ordering-step_wrapper .title_wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  padding-left: 40px;
+}
+.ordering-step_wrapper .title_wrapper .title-icon {
+  max-height: 32px;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -11px;
+  transform: translateY(-50%);
+}
+.ordering-step_wrapper .title_wrapper .step-title {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+}
+.ordering-step_wrapper .description {
+  color: #000;
+  margin-bottom: 45px;
+}
+.ordering-step_wrapper .btn-arrowed:after {
+  display: inline-block;
+  content: '\f105';
+  font: normal normal normal 14px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: top;
+  margin-left: 15px;
+  font-size: 22px;
+  line-height: 20px;
+}
+@media (max-width: 768px) {
+  .ordering-step_wrapper .step-number_wrapper .dots {
+    display: none;
+    visibility: hidden;
+    color: transparent;
+    font-size: 0;
+  }
+}

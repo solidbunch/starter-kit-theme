@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bvc-uk-185915",
+  "private_key_id": "b9a7ba054e078385c8a413eab2cea1d4cd61732d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCkb+GCidB0vX4y\nxIiiMDzKXD9uKYwLsElrH+cwmF5KBMFKFrxzzBQ3RmUh/PRKpKBsrmptfjnLh7bI\nzoida8XeTPKKMxF4XgZV75JNwOhDH5zZ5cKdh0qqauonLO5N05PV5nuecV0diSUa\nf8g5N2GmiYRJfw+tt/wYUWdH5Kb950/b0N/yjJUeP3LjhMYmd6CBUcAl1YB/WvSW\ni8EA7KGSkj39pt1A+9GcWKnaJC5Orbi26Ut7WB0kpFXPtynVzxM9TvXewO5R5y8S\nsUKglhvWk1mC7EGhN0vWC3sBx33J3sYiOyuZmUdna3skXBK5N3LDEcALkIqs6mTY\nMvmm00bnAgMBAAECggEAOn++92S170IWqlL21NRaXBdzTWqkcugVRnIEGmqqaKTG\naugpxPxeWMfHZM8LzZ5BoEhwfmGAiCLQ6SFowrA7pXk0c+v1FCBHGr1vDBBL0M1n\nTLGLieU+r9/3S1aVtMRHfLpRUi28VaybsZCyF4DXUZrsoAT+++tPWQtktdPngL3+\nro21iFydJsuVuVBPgZQE2CwJPXIIEbQ9MiVlqRx1q336Rh7PPsfbXTgcVDS6rb2s\nSin79nUC/4ca2FZ+k1BeSWjZYwL+a9/6oqv6bGDXDvSio6mdghWDlKYFNno/rwWw\n9n0LhCPXaczi7UfX/AI6MU/1ogYWUvyP78X4xY3NkQKBgQDWlh3fZ0dRQ68AswVt\n1Mft/CyhSlrTz0sem3TO7RgNw3ne7meQPVbA6QOE8jTJLuBLg9NtEE3ZnXW92ya3\nkge5+j2XicJY+pwIewzAx/14pgyRuX79o0B1lc7M1psLr4xQZxoIMe1XQrl8zn4B\nJF1oMS6fLb4oOBjcDBFL7MhMKQKBgQDELBQWOpZm62kZS8hSB1tHLU5NXRLlesAT\n7RKT4ozyJm83FIF8DqrqgASAKGMuVB5ZZ4BO3vqRewPVSPmlr7w4IzlknTeTec96\nDjtAWJwdA/kIR8hSQik9MrmXSq5qNIcCtoG61DHP0m3uXluI7OBis2ssAB2YGqP6\nnOsXPUJcjwKBgQCyp4q5a8AJnWM/HszfUy8dKT1zD3etLsGo+t52RRkopF17yFr6\n0MbAl38xmYFvGhLtbBSDkfZuvlS/u4xxeyfpo7jRyITBFe0Adon4msiiQQTn8lsT\nCm7pNs9U5TtysDYO3rfiqMakRs4tZbGse700uPXK2wedbo7r7TQdVUaxeQKBgQCV\nnIBdS6V1LMjk7/UBCndE23rCad+FgI6JI99tRfT0oPdk7JCsSotzeNr12td5d9IF\noXgrrscuuMD9o0AyasqDjemxoG3IXbgsgDoUIwA86NC+zfArPCYzdEIy7lQCz7jA\nCuz5zeeHdhc9Gl15Gh8vZ2KvFg9796Vj9tUczi2UZQKBgFSwEboIhEgwpcVZwle2\nc/gYKhEg4qQ8zWxu+sSFklSV1XIcdjRatxqfyDqIlu3S/JrJ0RUcLjKJ5phHYr8D\nX5ONxLl2CnwW2eYDX2S0Xe1YxXjeSp8HTxc6vGRfn9obIy0syAnkN/jmQash3uFY\nZzXKo+j07t1MR2UBe5PUGtRt\n-----END PRIVATE KEY-----\n",
+  "client_email": "bvc-uk@bvc-uk-185915.iam.gserviceaccount.com",
+  "client_id": "109371868932262519716",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bvc-uk%40bvc-uk-185915.iam.gserviceaccount.com"
+}

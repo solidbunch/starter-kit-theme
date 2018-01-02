@@ -1,0 +1,15 @@
+.menu-icon-dslc_testimonials .wp-menu-image:before {
+	content: "\f122";
+}
+.menu-icon-coins .wp-menu-image:before {
+	content: "\f238";
+}
+.menu-icon-brokers .wp-menu-image:before {
+	content: "\f307";
+}
+.menu-icon-reviews .wp-menu-image:before {
+	content: "\f130";
+}
+.menu-icon-forms .wp-menu-image:before {
+	content: "\f230";
+}

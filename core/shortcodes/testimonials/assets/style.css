@@ -1,0 +1,65 @@
+.shortcode-testimonials .slick-next,
+.shortcode-testimonials .slick-prev {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}
+.shortcode-testimonials .slick-next {
+  right: -55px;
+}
+.shortcode-testimonials .slick-prev {
+  left: -55px;
+}
+.shortcode-testimonials .slick-next:before,
+.shortcode-testimonials .slick-prev:before {
+  font-family: fontawesome;
+  color: #414141;
+  opacity: 1;
+  font-size: 25px;
+  line-height: 40px;
+}
+.shortcode-testimonials .slick-next:before {
+  margin-right: -3px;
+}
+.shortcode-testimonials .slick-prev:before {
+  margin-left: -3px;
+}
+.shortcode-testimonials .slick-next:hover,
+.shortcode-testimonials .slick-prev:hover {
+  box-shadow: 0px 5px 20px 0px rgba(2, 2, 2, 0.15);
+}
+.shortcode-testimonials .slick-next:before {
+  content: "\f105";
+}
+.shortcode-testimonials .slick-prev:before {
+  content: "\f104";
+}
+.shortcode-testimonials .slide {
+  text-align: center;
+}
+.shortcode-testimonials .photo img {
+  margin: 0 auto 45px auto;
+  box-shadow: 0px 5px 20px 0px rgba(2, 2, 2, 0.15);
+}
+.shortcode-testimonials .text {
+  max-width: 70%;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 18px;
+  color: #222;
+  font-weight: bold;
+}
+.shortcode-testimonials .details {
+  padding-top: 30px;
+  background: url('quotes.png') center top no-repeat;
+  font-weight: bold;
+}
+.shortcode-testimonials .details .name {
+  color: #222;
+}
+.shortcode-testimonials .details .position {
+  color: #777;
+  font-size: 14px;
+  line-height: 16px;
+}

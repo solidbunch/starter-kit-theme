@@ -1,0 +1,78 @@
+.shortcode-reviews {
+  color: #666;
+  padding: 20px 0;
+}
+.shortcode-reviews .slick-next {
+  right: -25px;
+}
+.shortcode-reviews .slick-prev {
+  left: -25px;
+}
+.shortcode-reviews .slick-next,
+.shortcode-reviews .slick-prev {
+  background: transparent;
+  width: 14px;
+  height: 15px;
+}
+.shortcode-reviews .slick-next:before,
+.shortcode-reviews .slick-prev:before {
+  font-family: fontawesome;
+  color: #666;
+  opacity: 1;
+  font-size: 25px;
+  line-height: 0;
+}
+.shortcode-reviews .slick-next:before {
+  content: "\f105";
+}
+.shortcode-reviews .slick-prev:before {
+  content: "\f104";
+}
+.shortcode-reviews p {
+  margin-bottom: 0;
+}
+.shortcode-reviews .item {
+  display: table;
+  width: 100%;
+}
+.shortcode-reviews .item > div {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.shortcode-reviews .rating {
+  width: 150px;
+  white-space: nowrap;
+}
+.shortcode-reviews .reviews-num {
+  font-size: 12px;
+  font-weight: bold;
+}
+.shortcode-reviews .desc {
+  font-size: 12px;
+  line-height: 12px;
+}
+.shortcode-reviews img {
+  display: block;
+  margin: 0 auto;
+}
+@media screen and (max-width: 995px) {
+  .shortcode-reviews .rating {
+    width: auto;
+  }
+  .shortcode-reviews .slick-next,
+  .shortcode-reviews .slick-prev {
+    display: none !important;
+  }
+  .shortcode-reviews .item,
+  .shortcode-reviews .item > div {
+    display: block;
+    width: auto;
+  }
+  .shortcode-reviews .item > div {
+    margin-bottom: 5px;
+  }
+  .shortcode-reviews .item > div:last-of-type {
+    margin-bottom: 0;
+  }
+}

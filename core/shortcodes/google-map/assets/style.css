@@ -1,0 +1,31 @@
+.map-marker-content {
+	font-family: Montserrat, sans-serif;
+}
+
+.map-marker-content .map-marker-heading {
+	color: blue;
+	font-size: 18px;
+	line-height: 28px;
+	margin-bottom: 14px;
+	font-weight: bolder;
+}
+
+.map-marker-content .map-marker-image {
+	float: left;
+	margin-right: 15px;
+}
+
+.map-marker-content .map-marker-image img {
+	display: block;
+}
+
+.map-marker-content .map-marker-text {
+	float: left;
+	width: 130px;
+}
+
+.map-marker-content p {
+	color: #777777;
+	font-size: 14px;
+	line-height: 18px;
+}
