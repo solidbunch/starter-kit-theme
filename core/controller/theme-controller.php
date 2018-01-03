@@ -62,6 +62,12 @@ class fruitfulblankprefix_theme_controller {
 
 		require_once get_template_directory() . '/core/controller/shared/init-controller.php';
 		$this->controller->init = new fruitfulblankprefix_init_controller();
+		
+		require_once get_template_directory() . '/core/controller/shared/post-types-controller.php';
+		$this->controller->posttypes = new fruitfulblankprefix_posttypes_controller();
+		
+		require_once get_template_directory() . '/core/controller/shared/shortcodes-controller.php';
+		$this->controller->shortcodes = new fruitfulblankprefix_shortcodes_controller();
 
 		if( is_admin() ) {
 
@@ -72,14 +78,10 @@ class fruitfulblankprefix_theme_controller {
 		} else {
 
 			// Controllers for front-end part only
-
 			require_once get_template_directory() . '/core/controller/front/front-controller.php';
 			$this->controller->front = new fruitfulblankprefix_front_controller();
 
 		}
-
-		require_once get_template_directory() . '/core/controller/shared/shortcodes-controller.php';
-		$this->controller->shortcodes = new fruitfulblankprefix_shortcodes_controller();
 
 		// Inject models, view and controllers from this base controller into all OTHER controllers & models
 		foreach ( $this->controller as $controller ) {
