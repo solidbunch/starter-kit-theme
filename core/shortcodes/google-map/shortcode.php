@@ -8,13 +8,13 @@
 require_once 'config.php';
 
 if (class_exists('WPBakeryShortCode')) {
-	class WPBakeryShortCode_bvc_Map extends WPBakeryShortCode
+	class WPBakeryShortCode_fruitfulblankprefix_Map extends WPBakeryShortCode
 	{
 		
 		protected function content($atts, $content = null)
 		{
 			
-			global $ff_bvc_core;
+			global $ff_fruitfulblankprefix_core;
 			
 			$shortcode_path = __DIR__ . DIRECTORY_SEPARATOR;
 			$shortcode_uri =  get_template_directory_uri() . '/core/shortcodes/google-map/';

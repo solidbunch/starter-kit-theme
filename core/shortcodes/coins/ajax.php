@@ -1,9 +1,9 @@
 <?php
 
-add_action( 'wp_ajax_bvc_load_testimonials', 'ajax_bvc_load_coins' );
-add_action( 'wp_ajax_nopriv_bvc_load_testimonials', 'ajax_bvc_load_coins' );
+add_action( 'wp_ajax_fruitfulblankprefix_load_testimonials', 'ajax_fruitfulblankprefix_load_coins' );
+add_action( 'wp_ajax_nopriv_fruitfulblankprefix_load_testimonials', 'ajax_fruitfulblankprefix_load_coins' );
 
-function ajax_bvc_load_coins() {
+function ajax_fruitfulblankprefix_load_coins() {
 	
 	$data = $_POST['data'];
 

@@ -2,10 +2,10 @@
 
 vc_map(array(
 	'name' => esc_html__('Contact Form', 'fruitfulblanktextdomain'),
-	'base' => 'bvc_contact_form',
+	'base' => 'fruitfulblankprefix_contact_form',
 	'category' => esc_html__('BVC Elements', 'fruitfulblanktextdomain'),
 	'description' => esc_html__('Add contact form', 'fruitfulblanktextdomain'),
-	'as_parent' => array('only' => 'bvc_contact_form_submit,bvc_contact_form_email,bvc_contact_form_text,bvc_contact_form_text_datepicker,bvc_contact_form_textarea,bvc_coin_select,bvc_contact_form_checkbox,vc_column_text,bvc_heading,vc_row,bvc_contact_form_file_uploader'),
+	'as_parent' => array('only' => 'fruitfulblankprefix_contact_form_submit,fruitfulblankprefix_contact_form_email,fruitfulblankprefix_contact_form_text,fruitfulblankprefix_contact_form_text_datepicker,fruitfulblankprefix_contact_form_textarea,fruitfulblankprefix_coin_select,fruitfulblankprefix_contact_form_checkbox,vc_column_text,fruitfulblankprefix_heading,vc_row,fruitfulblankprefix_contact_form_file_uploader'),
 	'content_element' => true,
 	'is_container' => true,
 	'show_settings_on_create' => true,

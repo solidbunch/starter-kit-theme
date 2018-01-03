@@ -18,11 +18,11 @@ require_once 'fields/file-uploader.php';
 
 
 if (class_exists('WPBakeryShortCodesContainer')) {
-	class WPBakeryShortCode_bvc_contact_form extends WPBakeryShortCodesContainer
+	class WPBakeryShortCode_fruitfulblankprefix_contact_form extends WPBakeryShortCodesContainer
 	{
 		
 		protected function content($atts, $content = null) {
-			global $ff_bvc_core;
+			global $ff_fruitfulblankprefix_core;
 			
 			$atts = vc_map_get_attributes($this->getShortcode(), $atts);
 
@@ -49,7 +49,7 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 			$shortcode_uri =  get_template_directory_uri() . '/core/shortcodes/form/';
 			
 			/** scripts **/
-			wp_register_script('bvc-contact-form', $shortcode_uri . 'assets/form-scripts.js',array('jquery'), _BVC_CACHE_TIME_);
+			wp_register_script('bvc-contact-form', $shortcode_uri . 'assets/form-scripts.js',array('jquery'), _FBCONSTPREFIX_CACHE_TIME_);
 			wp_enqueue_script('bvc-contact-form');
 			
 			$js_vars = array(
@@ -64,7 +64,7 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 			wp_localize_script('bvc-contact-form', 'bvcContactForm', $js_vars);
 			
 			/** styles **/
-			wp_enqueue_style('ff-bvc-contact-form', $shortcode_uri . 'assets/style.css', false, _BVC_CACHE_TIME_);
+			wp_enqueue_style('ff-bvc-contact-form', $shortcode_uri . 'assets/style.css', false, _FBCONSTPREFIX_CACHE_TIME_);
 			
 			/** load template **/
 			ob_start();

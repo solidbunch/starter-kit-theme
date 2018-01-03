@@ -2,7 +2,7 @@
 	/**
 	 * Front helper
 	 **/
-	class bvc_front {
+	class fruitfulblankprefix_front {
 
 		/**
 		 * Get post / page content classes

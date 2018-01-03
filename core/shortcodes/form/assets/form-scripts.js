@@ -22,7 +22,7 @@
 		}
     }
 
-	window.bvc_contact_form_init = function () {
+	window.fruitfulblankprefix_contact_form_init = function () {
 
 		$('form.fw_form_fw_form').on('submit', function (e) {
 			e.preventDefault();
@@ -64,7 +64,7 @@
 				var form_id = $form.attr('id');
 				var form = document.getElementById(form_id);
 				var formData = new FormData(form);
-				formData.append('action', 'bvc_contact_form');
+				formData.append('action', 'fruitfulblankprefix_contact_form');
 				formData.append('form_data', $form.data('form-data'));
 				formData.append('security', $form.data('nonce'));
 				formData.append('form_values', values);
@@ -105,7 +105,7 @@
 
 	}
 
-	window.bvc_contact_form_init();
+	window.fruitfulblankprefix_contact_form_init();
 
 })(window.jQuery);
 

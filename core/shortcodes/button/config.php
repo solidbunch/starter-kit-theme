@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Button', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_button',
+	'base' => 'fruitfulblankprefix_button',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a button', 'fruitfulblanktextdomain' ),
 	'params' => array(

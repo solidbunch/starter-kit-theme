@@ -3,7 +3,7 @@
  * Do stuff common to all model classes
  * that extend this database class
  **/
-class bvc_database {
+class fruitfulblankprefix_database {
 	/**
 	 * Class vars
 	 **/

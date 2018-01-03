@@ -4,7 +4,7 @@
 	 * Anything to do with templates
 	 * and outputting client code
 	**/
-	class bvc_core_view extends bvc_theme_controller {
+	class fruitfulblankprefix_core_view extends fruitfulblankprefix_theme_controller {
 
 		function load( $path = '', $data = array() ) {
 

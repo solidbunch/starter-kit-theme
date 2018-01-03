@@ -13,7 +13,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-    class WPBakeryShortCode_BVC_Ordering_steps extends WPBakeryShortCode {
+    class WPBakeryShortCode_FBCONSTPREFIX_Ordering_steps extends WPBakeryShortCode {
 
         protected function content( $atts, $content = null ) {
 
@@ -22,7 +22,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
             $assets_path = get_template_directory_uri() . '/core/shortcodes/ordering_steps/assets';
 
-            wp_enqueue_style( 'bvc-ordering-steps', $assets_path . '/style.css', false, _BVC_CACHE_TIME_ );
+            wp_enqueue_style( 'bvc-ordering-steps', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
             ob_start();
             require 'view/view.php';

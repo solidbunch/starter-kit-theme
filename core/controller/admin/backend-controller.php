@@ -3,7 +3,7 @@
 /**
  * Backend controller
  **/
-class bvc_backend_controller extends bvc_theme_controller {
+class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_controller {
 
 	/**
 	 * Constructor

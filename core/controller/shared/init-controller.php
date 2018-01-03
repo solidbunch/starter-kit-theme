@@ -2,7 +2,7 @@
 /**
  * Theme init
  **/
-class bvc_init_controller extends bvc_theme_controller {
+class fruitfulblankprefix_init_controller extends fruitfulblankprefix_theme_controller {
 
 	/**
 	 * Constructor

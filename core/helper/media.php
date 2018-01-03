@@ -2,7 +2,7 @@
 	/**
 	 * Media helper
 	 **/
-	class bvc_media {
+	class fruitfulblankprefix_media {
 
 		/**
 		 * Generate an image

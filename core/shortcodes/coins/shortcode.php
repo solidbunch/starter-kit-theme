@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_BVC_Coins extends WPBakeryShortCode {
+	class WPBakeryShortCode_FBCONSTPREFIX_Coins extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -37,7 +37,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/coins/assets';
 
-			wp_enqueue_style( 'bvc-coins', $assets_path . '/style.css', false, _BVC_CACHE_TIME_ );
+			wp_enqueue_style( 'bvc-coins', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 			wp_register_script( 'bvc-coins', $assets_path . '/scripts.js', array( 'jquery' ), array(), 2 );
 			wp_enqueue_script( 'bvc-coins' );

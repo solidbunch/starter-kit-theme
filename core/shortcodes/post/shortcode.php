@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_BVC_Form_content extends WPBakeryShortCode {
+	class WPBakeryShortCode_FBCONSTPREFIX_Form_content extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 

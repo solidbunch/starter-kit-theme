@@ -8,7 +8,7 @@
 
 vc_map( array(
     'name' => esc_html__( 'Ordering steps', 'fruitfulblanktextdomain' ),
-    'base' => 'bvc_ordering_steps',
+    'base' => 'fruitfulblankprefix_ordering_steps',
     'icon' => '',
     'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
     'description' => esc_html__( 'Add an ordering step', 'fruitfulblanktextdomain' ),

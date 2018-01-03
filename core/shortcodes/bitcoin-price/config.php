@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Bitcoin Price', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_bitcoin_price',
+	'base' => 'fruitfulblankprefix_bitcoin_price',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add Bitcoin Price Info Block', 'fruitfulblanktextdomain' ),
 	'params' => array(

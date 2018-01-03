@@ -3,7 +3,7 @@
 /**
  * Shortcodes controller
  **/
-class bvc_shortcodes_controller extends bvc_theme_controller {
+class fruitfulblankprefix_shortcodes_controller extends fruitfulblankprefix_theme_controller {
 
 	/**
 	 * Constructor

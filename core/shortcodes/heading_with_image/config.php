@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Heading with image', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_heading_with_image',
+	'base' => 'fruitfulblankprefix_heading_with_image',
 	'icon' => '',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a heading with image', 'fruitfulblanktextdomain' ),

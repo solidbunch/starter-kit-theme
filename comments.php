@@ -29,7 +29,7 @@
 
 					<ul class="comments-list">
 						<?php
-							wp_list_comments( array( 'callback' => 'ff_bvc_comments_callback' ) );
+							wp_list_comments( array( 'callback' => 'ff_fruitfulblankprefix_comments_callback' ) );
 						?>
 					</ul><!-- .commentlist -->
 
@@ -122,7 +122,7 @@
 /**
 	* Comments callback function
  **/
-function ff_bvc_comments_callback( $comment, $args, $depth) {
+function ff_fruitfulblankprefix_comments_callback( $comment, $args, $depth) {
 	$GLOBALS['comment'] = $comment;
 
 	switch ( $comment->comment_type ) :

@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Coins', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_coins',
+	'base' => 'fruitfulblankprefix_coins',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a grid of coins', 'fruitfulblanktextdomain' ),
 	'params' => array(

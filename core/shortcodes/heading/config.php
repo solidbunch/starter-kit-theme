@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Heading', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_heading',
+	'base' => 'fruitfulblankprefix_heading',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a heading', 'fruitfulblanktextdomain' ),
 	'params' => array(

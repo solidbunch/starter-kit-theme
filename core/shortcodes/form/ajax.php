@@ -4,10 +4,10 @@
  * Send a message using AJAX
  **/
 
-add_action('wp_ajax_bvc_contact_form', 'bvc_ajax_contact_form');
-add_action('wp_ajax_nopriv_bvc_contact_form', 'bvc_ajax_contact_form');
+add_action('wp_ajax_fruitfulblankprefix_contact_form', 'fruitfulblankprefix_ajax_contact_form');
+add_action('wp_ajax_nopriv_fruitfulblankprefix_contact_form', 'fruitfulblankprefix_ajax_contact_form');
 
-function bvc_ajax_contact_form()
+function fruitfulblankprefix_ajax_contact_form()
 {
 
 	$answer = array(
@@ -106,12 +106,12 @@ function bvc_ajax_contact_form()
 
 		if( !empty( $callbacks ) ) {
 
-			global $bvc_theme;
+			global $fruitfulblankprefix_theme;
 
 			foreach( $callbacks as $callback_type=>$callback_data ) {
 				if( $callback_type == 'google_calendar' && !empty( $callback_data ) ) {
 					foreach( $callback_data as $c_key=>$c_data ) {
-						$bvc_theme->controller->calendar->create_event( 'Appointment booked', $content, $c_data['start_date'], $c_data['end_date'] );
+						$fruitfulblankprefix_theme->controller->calendar->create_event( 'Appointment booked', $content, $c_data['start_date'], $c_data['end_date'] );
 					}
 				}
 			}

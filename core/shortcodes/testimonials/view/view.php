@@ -20,7 +20,7 @@
 					<?php if( has_post_thumbnail() ): ?>
 					<div class="photo">
 						<?php 
-							echo bvc_media::img( array(
+							echo fruitfulblankprefix_media::img( array(
 								'url' => get_the_post_thumbnail_url( get_the_ID(), 'full'),
 								'width' => 200,
 								'height' => 200,

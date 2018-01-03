@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_BVC_Reviews extends WPBakeryShortCode {
+	class WPBakeryShortCode_FBCONSTPREFIX_Reviews extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -23,7 +23,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/reviews/assets';
 
 			wp_enqueue_style( 'star-rating-svg' );
-			wp_enqueue_style( 'bvc-reviews', $assets_path . '/style.css', false, _BVC_CACHE_TIME_ );
+			wp_enqueue_style( 'bvc-reviews', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 			wp_enqueue_script( 'star-rating-svg' );
 			wp_register_script( 'bvc-reviews', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel', 'star-rating-svg' ) );

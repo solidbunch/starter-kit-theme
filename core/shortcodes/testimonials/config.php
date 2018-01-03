@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Testimonials', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_testimonials',
+	'base' => 'fruitfulblankprefix_testimonials',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add testimonials carousel', 'fruitfulblanktextdomain' ),
 	'params' => array(

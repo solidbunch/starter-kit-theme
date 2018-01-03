@@ -1,7 +1,7 @@
 <?php
 
-	global $bvc_theme;
-	$similar_posts = $bvc_theme->model->post->get_related_posts( get_the_ID(), 3, 'category', true );
+	global $fruitfulblankprefix_theme;
+	$similar_posts = $fruitfulblankprefix_theme->model->post->get_related_posts( get_the_ID(), 3, 'category', true );
 
 	if( $similar_posts != false && $similar_posts->have_posts() ):
 ?>
@@ -20,7 +20,7 @@ Related posts
 			<?php if( has_post_thumbnail() ): ?>
 			<a class="thumb" href="<?php the_permalink(); ?>">
 				<?php
-					echo bvc_media::img( array(
+					echo fruitfulblankprefix_media::img( array(
 						'width' => 370,
 						'height' => 250,
 						'url' => wp_get_attachment_url( get_post_thumbnail_id( get_the_ID()) ),

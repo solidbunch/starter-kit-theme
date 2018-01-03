@@ -23,7 +23,7 @@
 				data-next-page="2" 
 				data-last-number="<?php echo $i; ?>" 
 				data-max-pages="<?php echo esc_attr( $max_num_pages ); ?>" 
-				data-action="bvc_load_testimonials" 
+				data-action="fruitfulblankprefix_load_testimonials" 
 				data-data="<?php echo htmlspecialchars( json_encode( $q_array ), ENT_QUOTES, 'UTF-8' ); ?>"
 				class="button load-more-posts">
 					<?php echo wp_kses_post( $atts['load_more_text'] ); ?>

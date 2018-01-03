@@ -2,7 +2,7 @@
 /**
  * Post model
 **/
-class bvc_post_model extends bvc_database {
+class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
 
 	/**
 	 * Get popular posts

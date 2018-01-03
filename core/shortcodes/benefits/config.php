@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Benefits', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_benefits',
+	'base' => 'fruitfulblankprefix_benefits',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a benefit', 'fruitfulblanktextdomain' ),
 	'params' => array(

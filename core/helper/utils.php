@@ -2,7 +2,7 @@
 	/**
 	 * Utils helper
 	 **/
-	class bvc_utils {
+	class fruitfulblankprefix_utils {
 
 		/**
 		 * Get post categories list

@@ -2,7 +2,7 @@
 
 <section id="content" class="container">
 	<div class="row">
-		<article class="<?php echo bvc_front::get_grid_class(); ?>">
+		<article class="<?php echo fruitfulblankprefix_front::get_grid_class(); ?>">
 
 			<h1><?php the_title(); ?></h1>
 
@@ -11,7 +11,7 @@
 			<?php if( has_post_thumbnail() ): ?>
 				<div class="post-thumb">
 					<?php 
-						echo bvc_media::img( array(
+						echo fruitfulblankprefix_media::img( array(
 							'url' => get_the_post_thumbnail_url( get_the_ID(), 'full'),
 							'width' => 1140,
 							'height' => 600,

@@ -3,7 +3,7 @@
 <section id="content" class="container">
 	<div class="row">
 
-		<div id="posts" class="<?php echo bvc_front::get_grid_class(); ?>">
+		<div id="posts" class="<?php echo fruitfulblankprefix_front::get_grid_class(); ?>">
 
 			<?php if( have_posts() ): $i=0; while ( have_posts() ) : the_post(); ?>
 
@@ -17,7 +17,7 @@
 						<div class="thumb">
 							<a href="<?php the_permalink(); ?>">
 							<?php 
-								echo bvc_media::img( array(
+								echo fruitfulblankprefix_media::img( array(
 									'url' => get_the_post_thumbnail_url( get_the_ID(), 'full'),
 									'width' => 380,
 									'height' => 250,

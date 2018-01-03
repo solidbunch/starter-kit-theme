@@ -1,7 +1,7 @@
 (function ($) {
 	"use strict";
 
-	window.bvc_select_coin_init = function () {
+	window.fruitfulblankprefix_select_coin_init = function () {
 		var exchange = 0;
 	
 		$('.select_coin_field').each(function( index ) {
@@ -124,6 +124,6 @@
 	
 
 
-	window.bvc_select_coin_init();
+	window.fruitfulblankprefix_select_coin_init();
 
 })(window.jQuery);

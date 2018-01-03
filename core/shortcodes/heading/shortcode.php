@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_BVC_Heading extends WPBakeryShortCode {
+	class WPBakeryShortCode_FBCONSTPREFIX_Heading extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -72,7 +72,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			if( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'bvc-theme-style', get_template_directory_uri() . '/style.css', true, _BVC_CACHE_TIME_ );
+				wp_enqueue_style( 'bvc-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
 			  wp_add_inline_style( 'bvc-theme-style', $inline_css );
 			}
 

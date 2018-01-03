@@ -2,7 +2,7 @@
 
 <section id="content" class="container">
 	<div class="row">
-		<article class="<?php echo bvc_front::get_grid_class(); ?>">
+		<article class="<?php echo fruitfulblankprefix_front::get_grid_class(); ?>">
 
 			<h2 class="align-center">
 				<?php esc_html_e( 'Unfortunately, we can not find requested page.', 'fruitfulblanktextdomain'); ?>

@@ -3,7 +3,7 @@
 /**
  * Primary core controller
  **/
-class bvc_theme_controller {
+class fruitfulblankprefix_theme_controller {
 
 	public $controller;
 	public $model;
@@ -45,14 +45,14 @@ class bvc_theme_controller {
 
 		// View
 		require_once get_template_directory() . '/core/view/view.php';
-		$this->view = new bvc_core_view();
+		$this->view = new fruitfulblankprefix_core_view();
 
 		// Models
 		require_once get_template_directory() . '/core/model/database.php';
-		$this->model->database = new bvc_database();
+		$this->model->database = new fruitfulblankprefix_database();
 
 		require_once get_template_directory() . '/core/model/post.php';
-		$this->model->post = new bvc_post_model();
+		$this->model->post = new fruitfulblankprefix_post_model();
 
 		// Autoload helpers
 		$this->_autoload_directory( 'helper', '/', false );
@@ -61,25 +61,25 @@ class bvc_theme_controller {
 		$this->controller->base = $this;
 
 		require_once get_template_directory() . '/core/controller/shared/init-controller.php';
-		$this->controller->init = new bvc_init_controller();
+		$this->controller->init = new fruitfulblankprefix_init_controller();
 
 		if( is_admin() ) {
 
 			// Controllers for admin part only
 			require_once get_template_directory() . '/core/controller/admin/backend-controller.php';
-			$this->controller->backend = new bvc_backend_controller();
+			$this->controller->backend = new fruitfulblankprefix_backend_controller();
 
 		} else {
 
 			// Controllers for front-end part only
 
 			require_once get_template_directory() . '/core/controller/front/front-controller.php';
-			$this->controller->front = new bvc_front_controller();
+			$this->controller->front = new fruitfulblankprefix_front_controller();
 
 		}
 
 		require_once get_template_directory() . '/core/controller/shared/shortcodes-controller.php';
-		$this->controller->shortcodes = new bvc_shortcodes_controller();
+		$this->controller->shortcodes = new fruitfulblankprefix_shortcodes_controller();
 
 		// Inject models, view and controllers from this base controller into all OTHER controllers & models
 		foreach ( $this->controller as $controller ) {
@@ -105,8 +105,8 @@ class bvc_theme_controller {
 				// Figure out class name from file name
 				$class = str_replace('.php', '', $file);
 
-				$class = 'bvc_' . str_replace('-', '_', $class ) . '';
-				$shortClass = str_replace( 'bvc_', '', $class );
+				$class = 'fruitfulblankprefix_' . str_replace('-', '_', $class ) . '';
+				$shortClass = str_replace( 'fruitfulblankprefix_', '', $class );
 				$shortClass = str_replace( '_' . $layer, '', $shortClass);
 
 				if( $load_class ) {

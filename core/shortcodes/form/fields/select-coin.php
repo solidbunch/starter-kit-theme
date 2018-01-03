@@ -15,10 +15,10 @@ foreach ($currency_codes as $currency_code) {
 
 vc_map(array(
 	'name' => esc_html__('Select Coin Field', 'fruitfulblanktextdomain'),
-	'base' => 'bvc_contact_form_coin_select',
+	'base' => 'fruitfulblankprefix_contact_form_coin_select',
 	'content_element' => true,
 	'category' => esc_html__('Form Fields', 'fruitfulblanktextdomain'),
-	'as_child' => array('only' => 'bvc_contact_form,vc_column_inner'),
+	'as_child' => array('only' => 'fruitfulblankprefix_contact_form,vc_column_inner'),
 	'params' => array(
 		
 		array(
@@ -81,11 +81,11 @@ vc_map(array(
 ));
 
 if (class_exists('WPBakeryShortCode')) {
-	class WPBakeryShortCode_bvc_Contact_Form_Coin_Select extends WPBakeryShortCode
+	class WPBakeryShortCode_fruitfulblankprefix_Contact_Form_Coin_Select extends WPBakeryShortCode
 	{
 		
 		protected function content($atts, $content = null) {
-			global $ff_bvc_core, $post;
+			global $ff_fruitfulblankprefix_core, $post;
 			$api_url = $code_sell = $code_buy = $coins_course_api_query = $coins_margin = $min_order = $min_order_msg = $required = '';
 			
 			$atts = vc_map_get_attributes($this->getShortcode(), $atts);

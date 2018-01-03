@@ -2,7 +2,7 @@
 
 vc_map( array(
 	'name' => esc_html__( 'Reviews', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_reviews',
+	'base' => 'fruitfulblankprefix_reviews',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add reviews carousel', 'fruitfulblanktextdomain' ),
 	'params' => array(

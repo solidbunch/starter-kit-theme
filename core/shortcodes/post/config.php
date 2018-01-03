@@ -15,7 +15,7 @@ foreach ($forms_posts as $forms_post) {
 
 vc_map( array(
 	'name' => esc_html__( 'Form content', 'fruitfulblanktextdomain' ),
-	'base' => 'bvc_form_content',
+	'base' => 'fruitfulblankprefix_form_content',
 	'icon' => '',
 	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add post with type Form', 'fruitfulblanktextdomain' ),
