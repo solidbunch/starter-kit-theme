@@ -40,11 +40,11 @@ class bvc_front_controller extends bvc_theme_controller {
 		add_filter( 'get_search_form', array( $this, 'custom_search_template' ) );
 
 		//Add hotspot tracking
-		add_action( 'init', array( $this, 'add_hotspot_tracking_cookie' ) );
+		//add_action( 'init', array( $this, 'add_hotspot_tracking_cookie' ) );
 
 		// Add Google Tag Manager
 				//Add hotspot tracking
-		add_action( 'wp_head', array( $this, 'add_google_tag_manager' ) );
+		//add_action( 'wp_head', array( $this, 'add_google_tag_manager' ) );
 
 	}
 
