@@ -28,6 +28,8 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 
 		// disable VC front-end
 		add_action( 'vc_before_init', array( $this, 'setup_vc') );
+		
+		require_once _FBCONSTPREFIX_LIBRARY_DIR_ . '/tgm/class-tgm-init.php';
 
 	}
 

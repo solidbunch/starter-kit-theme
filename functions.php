@@ -4,10 +4,11 @@
 	 * Theme functions file
 	 **/
 
-	if ( ! isset( $content_width ) ) $content_width = 320;
 
 	// Define necessary constants
 	define( '_FBCONSTPREFIX_CACHE_TIME_', '110820171043' );
+	define( '_FBCONSTPREFIX_LIBRARY_DIR_', get_template_directory() . '/core/library/' );
+	
 
 	// Instantiate base controller that will autoload
 	// all application classes.
