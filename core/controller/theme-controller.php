@@ -60,9 +60,6 @@ class bvc_theme_controller {
 		// Controller
 		$this->controller->base = $this;
 
-		require_once get_template_directory() . '/core/controller/shared/calendar-controller.php';
-		$this->controller->calendar = new bvc_calendar_controller();
-
 		require_once get_template_directory() . '/core/controller/shared/init-controller.php';
 		$this->controller->init = new bvc_init_controller();
 

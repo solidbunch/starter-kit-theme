@@ -9,7 +9,7 @@
 		 **/
 		public static function img( $instance = array() ) {
 			if( ! class_exists( 'Aq_Resize' )) {
-				require_once get_template_directory() . '/core/vendor/aq_resizer/aq_resizer.php';
+				require_once get_template_directory() . '/core/library/aq_resizer/aq_resizer.php';
 			}
 
 			$src = $src2x = $hd_str = $prefix = $suffix = '';
@@ -119,7 +119,7 @@
 		 **/
 		public static function img_resize( $url, $width, $height ) {
 			if( ! class_exists( 'Aq_Resize' )) {
-				require_once get_template_directory() . '/core/vendor/aq_resizer/aq_resizer.php';
+				require_once get_template_directory() . '/core/library/aq_resizer/aq_resizer.php';
 			}
 
 			$src = '';
