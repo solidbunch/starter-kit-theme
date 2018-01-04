@@ -3,7 +3,7 @@
 vc_map( array(
 	'name' => esc_html__( 'Heading', 'fruitfulblanktextdomain' ),
 	'base' => 'fruitfulblankprefix_heading',
-	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
+	'category' => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a heading', 'fruitfulblanktextdomain' ),
 	'params' => array(
 

@@ -17,7 +17,7 @@ vc_map( array(
 	'name' => esc_html__( 'Form content', 'fruitfulblanktextdomain' ),
 	'base' => 'fruitfulblankprefix_form_content',
 	'icon' => '',
-	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
+	'category' => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add post with type Form', 'fruitfulblanktextdomain' ),
 	'params' => array(
 

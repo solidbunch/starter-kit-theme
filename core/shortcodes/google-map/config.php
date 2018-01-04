@@ -3,7 +3,7 @@
 vc_map(array(
 	'name' => esc_html__('Map', 'fruitfulblanktextdomain'),
 	'base' => 'fruitfulblankprefix_map',
-	'category' => esc_html__('BVC Elements', 'fruitfulblanktextdomain'),
+	'category' => esc_html__('Theme Elements', 'fruitfulblanktextdomain'),
 	'description' => esc_html__('Add Google Map', 'fruitfulblanktextdomain'),
 	'params' => array(
 		

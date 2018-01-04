@@ -10,7 +10,6 @@ require_once 'config.php';
 require_once 'fields/email.php';
 require_once 'fields/text.php';
 require_once 'fields/text-datepicker.php';
-require_once 'fields/select-coin.php';
 require_once 'fields/checkbox.php';
 require_once 'fields/textarea.php';
 require_once 'fields/submit.php';
@@ -61,7 +60,7 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 				'strFormError' => esc_html__('Form validation error. Please check all required fields and try again.', 'fruitfulblanktextdomain'),
 			);
 			
-			wp_localize_script('fruitfulblankprefix-contact-form', 'bvcContactForm', $js_vars);
+			wp_localize_script('fruitfulblankprefix-contact-form', 'FBContactForm', $js_vars);
 			
 			/** styles **/
 			wp_enqueue_style('ff-fruitfulblankprefix-contact-form', $shortcode_uri . 'assets/style.css', false, _FBCONSTPREFIX_CACHE_TIME_);

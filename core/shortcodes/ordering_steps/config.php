@@ -10,7 +10,7 @@ vc_map( array(
     'name' => esc_html__( 'Ordering steps', 'fruitfulblanktextdomain' ),
     'base' => 'fruitfulblankprefix_ordering_steps',
     'icon' => '',
-    'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
+    'category' => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
     'description' => esc_html__( 'Add an ordering step', 'fruitfulblanktextdomain' ),
     'params' => array(
 

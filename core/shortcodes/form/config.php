@@ -3,7 +3,7 @@
 vc_map(array(
 	'name' => esc_html__('Contact Form', 'fruitfulblanktextdomain'),
 	'base' => 'fruitfulblankprefix_contact_form',
-	'category' => esc_html__('BVC Elements', 'fruitfulblanktextdomain'),
+	'category' => esc_html__('Theme Elements', 'fruitfulblanktextdomain'),
 	'description' => esc_html__('Add contact form', 'fruitfulblanktextdomain'),
 	'as_parent' => array('only' => 'fruitfulblankprefix_contact_form_submit,fruitfulblankprefix_contact_form_email,fruitfulblankprefix_contact_form_text,fruitfulblankprefix_contact_form_text_datepicker,fruitfulblankprefix_contact_form_textarea,fruitfulblankprefix_coin_select,fruitfulblankprefix_contact_form_checkbox,vc_column_text,fruitfulblankprefix_heading,vc_row,fruitfulblankprefix_contact_form_file_uploader'),
 	'content_element' => true,

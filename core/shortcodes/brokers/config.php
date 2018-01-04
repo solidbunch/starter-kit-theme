@@ -3,7 +3,7 @@
 vc_map( array(
 	'name' => esc_html__( 'Brokers', 'fruitfulblanktextdomain' ),
 	'base' => 'fruitfulblankprefix_brokers',
-	'category' => esc_html__( 'BVC Elements', 'fruitfulblanktextdomain' ),
+	'category' => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a broker', 'fruitfulblanktextdomain' ),
 	'params' => array(
 

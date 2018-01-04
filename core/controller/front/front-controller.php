@@ -25,26 +25,13 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 
 		// load assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
-
-		// Add webste title
-		add_filter( 'wp_title',  array( $this, 'wp_title' ), 10, 2 );
+		//add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
 
 		// Change excerpt dots
-		add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
+		//add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
 
 		// remove empty paragraphs
-		add_filter('the_content', array( $this, 'remove_empty_p' ), 20, 1);
-
-		// Custom search form
-		add_filter( 'get_search_form', array( $this, 'custom_search_template' ) );
-
-		//Add hotspot tracking
-		//add_action( 'init', array( $this, 'add_hotspot_tracking_cookie' ) );
-
-		// Add Google Tag Manager
-				//Add hotspot tracking
-		//add_action( 'wp_head', array( $this, 'add_google_tag_manager' ) );
+		//add_filter('the_content', array( $this, 'remove_empty_p' ), 20, 1);
 
 	}
 
@@ -66,7 +53,7 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 
 		// JS scripts
 		wp_enqueue_script( 'jquery' );
-		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.js', array( 'jquery', 'uiforms' ), _FBCONSTPREFIX_CACHE_TIME_, true );
+		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
 
 		$js_vars = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -74,40 +61,15 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		);
 
 		wp_enqueue_script( 'fruitfulblankprefix-front' );
-		wp_localize_script( 'fruitfulblankprefix-front', 'bvcJsVars', $js_vars );
+		wp_localize_script( 'fruitfulblankprefix-front', 'FBJsVars', $js_vars );
 
 		// CSS styles
-		wp_register_style( 'star-rating-svg', get_template_directory_uri() . '/assets/libs/star-rating-svg/star-rating-svg.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Montserrat:300,400,500,700,800', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'slick-carousel', get_template_directory_uri() . '/assets/libs/slick/slick.css', array(), _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'slick-carousel-theme', get_template_directory_uri() . '/assets/libs/slick/slick-theme.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 		wp_enqueue_style( 'fruitfulblankprefix-base-style', get_template_directory_uri() . '/assets/css/front-base.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'vc_customizations', get_template_directory_uri() . '/assets/css/vc_customizations.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 	}
 
 	function remove_assets() {
 		wp_dequeue_style( 'fw-ext-breadcrumbs-add-css' );
-	}
-
-	/**
-	 * Add website title
-	 **/
-	function wp_title( $title, $sep ) {
-		global $paged, $page;
-
-		if ( is_feed() ) {
-			return $title;
-		}
-
-		if( is_home() || is_front_page() ) {
-			return $title;
-		}
-
-		return $title . ' ' . $sep . ' ' . get_bloginfo( 'description' );
-
 	}
 
 	/**
@@ -126,38 +88,5 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		return $content;
 	}
 
-	/**
-	 * Custom search template
-	 **/
-	function custom_search_template() {
-		ob_start();
-		get_template_part( '/template-parts/search-form' );
-		return ob_get_clean();
-	}
-
-	/**
-	 * Add hotspot tracking
-	 **/
-	function add_hotspot_tracking_cookie() {
-
-		if(isset($_GET['source']) && $_GET['source'] != ''){
-		   setcookie('marketing_source', $_GET['source'], time() + (86400 * 30), '/');
-		}
-	}
-
-	/**
-	 * Add Google Tag Manager to Header
-	**/
-	function add_google_tag_manager() {
-		?>
-		<!-- Google Tag Manager -->
-		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','GTM-PCNFWHZ');</script>
-		<!-- End Google Tag Manager -->
-		<?php
-	}
 
 }

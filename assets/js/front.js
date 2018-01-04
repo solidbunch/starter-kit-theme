@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	window.bvcFront = {
+	window.FBFront = {
 
 		/**
 			Constructor
@@ -53,7 +53,7 @@
 					$elem.attr('id', elemId );
 				}
 
-				particlesJS.load( elemId, bvcJsVars.assetsPath + '/libs/particlesjs-config.json');
+				particlesJS.load( elemId, FBJsVars.assetsPath + '/libs/particlesjs-config.json');
 
 			});
 
@@ -188,6 +188,6 @@
 
 	}
 
-	window.bvcFront.initialize();
+	window.FBFront.initialize();
 
 })( window.jQuery );

@@ -43,7 +43,7 @@
 					val = $input.val();
 				if ($input.attr('required') == 'required' && $.trim(val) == '') {
 					$input.addClass('invalid');
-				} else if ($input.attr('type') == 'email' && !window.bvcFront.isValidEmailAddress(val)){
+				} else if ($input.attr('type') == 'email' && !window.FBFront.isValidEmailAddress(val)){
 					$input.addClass('invalid');
 				} else if($input.attr('type') == 'file'){
                     $input.parent().removeClass('invalid');
@@ -72,7 +72,7 @@
 				$.ajax({
 					type: "POST",
 					enctype: 'multipart/form-data',
-					url: bvcContactForm.ajaxurl,
+					url: FBContactForm.ajaxurl,
 					data: formData,
 					cache: false,
 					contentType: false,
@@ -96,7 +96,7 @@
 
 				return false;
 			} else {
-				$form.append('<div class="form-error-msg">' + bvcContactForm.strFormError + $fileValidateMsg+'</div>');
+				$form.append('<div class="form-error-msg">' + FBContactForm.strFormError + $fileValidateMsg+'</div>');
 			}
 
 
