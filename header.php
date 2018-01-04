@@ -33,9 +33,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-
-				<?php get_template_part('template-parts/logo'); ?>
-
+				<a id="logo" href="<?php echo site_url('/'); ?>">
+					<img src="<?php echo get_template_directory_uri() . '/assets/images/logo-blank-black.png'; ?>" width="161" alt="<?php esc_html_e( 'Fruitful blank', 'fruitfulblanktextdomain'); ?>">
+				</a>
 				<nav id="header-menu">
 					<?php
 						wp_nav_menu( array(
