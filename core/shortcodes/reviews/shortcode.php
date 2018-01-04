@@ -23,11 +23,11 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/reviews/assets';
 
 			wp_enqueue_style( 'star-rating-svg' );
-			wp_enqueue_style( 'bvc-reviews', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-reviews', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 			wp_enqueue_script( 'star-rating-svg' );
-			wp_register_script( 'bvc-reviews', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel', 'star-rating-svg' ) );
-			wp_enqueue_script( 'bvc-reviews' );
+			wp_register_script( 'fruitfulblankprefix-reviews', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel', 'star-rating-svg' ) );
+			wp_enqueue_script( 'fruitfulblankprefix-reviews' );
 
 			ob_start();
 			require 'view/view.php';

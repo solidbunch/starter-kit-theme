@@ -57,15 +57,15 @@ if (class_exists('WPBakeryShortCode')) {
 		{
 			$shortcode_uri =  get_template_directory_uri() . '/core/shortcodes/form/';
 			
-			wp_register_script( 'bvc-air-datepicker', $shortcode_uri. '/assets/libs/air-datepicker/dist/js/datepicker.min.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
-			wp_register_script('bvc-air-datepicker-i18n', $shortcode_uri . '/assets/libs/air-datepicker/dist/js/i18n/datepicker.en.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
-			wp_register_script( 'bvc-air-datepicker-init', $shortcode_uri. '/assets/date-picker-init.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
+			wp_register_script( 'fruitfulblankprefix-air-datepicker', $shortcode_uri. '/assets/libs/air-datepicker/dist/js/datepicker.min.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
+			wp_register_script('fruitfulblankprefix-air-datepicker-i18n', $shortcode_uri . '/assets/libs/air-datepicker/dist/js/i18n/datepicker.en.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
+			wp_register_script( 'fruitfulblankprefix-air-datepicker-init', $shortcode_uri. '/assets/date-picker-init.js', array('jquery'), _FBCONSTPREFIX_CACHE_TIME_, true );
 			
-			wp_enqueue_script( 'bvc-air-datepicker' );
-			wp_enqueue_script( 'bvc-air-datepicker-i18n' );
-			wp_enqueue_script( 'bvc-air-datepicker-init' );
+			wp_enqueue_script( 'fruitfulblankprefix-air-datepicker' );
+			wp_enqueue_script( 'fruitfulblankprefix-air-datepicker-i18n' );
+			wp_enqueue_script( 'fruitfulblankprefix-air-datepicker-init' );
 			
-			wp_enqueue_style( 'bvc-air-datepicker', $shortcode_uri . '/assets/libs/air-datepicker/dist/css/datepicker.min.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-air-datepicker', $shortcode_uri . '/assets/libs/air-datepicker/dist/css/datepicker.min.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 			
 			
 			ob_start();

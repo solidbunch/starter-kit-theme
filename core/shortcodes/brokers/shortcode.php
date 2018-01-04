@@ -22,10 +22,10 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/brokers/assets';
 
-			wp_enqueue_style( 'bvc-brokers', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-brokers', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
-			wp_register_script( 'bvc-brokers', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel' ) );
-			wp_enqueue_script( 'bvc-brokers' );
+			wp_register_script( 'fruitfulblankprefix-brokers', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel' ) );
+			wp_enqueue_script( 'fruitfulblankprefix-brokers' );
 
 			ob_start();
 			require 'view/view.php';

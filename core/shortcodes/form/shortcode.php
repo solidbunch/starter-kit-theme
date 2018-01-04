@@ -29,7 +29,7 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 			$classes = $attributes = $form_data = array();
 
 			// Form attributes
-			$attributes[] = 'id="bvc-form-' . esc_attr($atts['el_id']) . '"';
+			$attributes[] = 'id="fruitfulblankprefix-form-' . esc_attr($atts['el_id']) . '"';
 
 			if ($atts['redirect_on_success'] <> '') {
 				$attributes[] = 'data-redirect-url="' . esc_attr($atts['redirect_on_success']) . '"';
@@ -37,7 +37,7 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 
 			$attributes[] = 'data-msg-success="' . esc_attr($atts['success_message']) . '"';
 
-			$attributes[] = 'data-nonce="' . wp_create_nonce('bvc-contact-form') . '"';
+			$attributes[] = 'data-nonce="' . wp_create_nonce('fruitfulblankprefix-contact-form') . '"';
 
 			$form_data['email_to'] = $atts['email_to'];
 			$form_data['subject_message'] = $atts['subject_message'];
@@ -49,8 +49,8 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 			$shortcode_uri =  get_template_directory_uri() . '/core/shortcodes/form/';
 			
 			/** scripts **/
-			wp_register_script('bvc-contact-form', $shortcode_uri . 'assets/form-scripts.js',array('jquery'), _FBCONSTPREFIX_CACHE_TIME_);
-			wp_enqueue_script('bvc-contact-form');
+			wp_register_script('fruitfulblankprefix-contact-form', $shortcode_uri . 'assets/form-scripts.js',array('jquery'), _FBCONSTPREFIX_CACHE_TIME_);
+			wp_enqueue_script('fruitfulblankprefix-contact-form');
 			
 			$js_vars = array(
 				'ajaxurl' => admin_url('admin-ajax.php'),
@@ -61,10 +61,10 @@ if (class_exists('WPBakeryShortCodesContainer')) {
 				'strFormError' => esc_html__('Form validation error. Please check all required fields and try again.', 'fruitfulblanktextdomain'),
 			);
 			
-			wp_localize_script('bvc-contact-form', 'bvcContactForm', $js_vars);
+			wp_localize_script('fruitfulblankprefix-contact-form', 'bvcContactForm', $js_vars);
 			
 			/** styles **/
-			wp_enqueue_style('ff-bvc-contact-form', $shortcode_uri . 'assets/style.css', false, _FBCONSTPREFIX_CACHE_TIME_);
+			wp_enqueue_style('ff-fruitfulblankprefix-contact-form', $shortcode_uri . 'assets/style.css', false, _FBCONSTPREFIX_CACHE_TIME_);
 			
 			/** load template **/
 			ob_start();

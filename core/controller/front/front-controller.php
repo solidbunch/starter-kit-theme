@@ -66,23 +66,15 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 
 		// JS scripts
 		wp_enqueue_script( 'jquery' );
-		wp_register_script( 'slick-carousel', get_template_directory_uri() . '/assets/libs/slick/slick.min.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
-		wp_register_script( 'star-rating-svg', get_template_directory_uri() . '/assets/libs/star-rating-svg/jquery.star-rating-svg.min.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
-		wp_register_script( 'particles', get_template_directory_uri() . '/assets/libs/particles.min.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
-		wp_register_script( 'uiforms', get_template_directory_uri() . '/assets/libs/jquery.uiforms.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
-		wp_register_script( 'animate-number', get_template_directory_uri() . '/assets/libs/jquery.animateNumber.min.js', array( 'jquery' ), _FBCONSTPREFIX_CACHE_TIME_, true );
-		wp_register_script( 'bvc-front', get_template_directory_uri() . '/assets/js/front.js', array( 'jquery', 'uiforms' ), _FBCONSTPREFIX_CACHE_TIME_, true );
+		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.js', array( 'jquery', 'uiforms' ), _FBCONSTPREFIX_CACHE_TIME_, true );
 
 		$js_vars = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'assetsPath' => get_template_directory_uri() . '/assets',
 		);
 
-		wp_enqueue_script( 'slick-carousel' );
-		wp_enqueue_script( 'particles' );
-		wp_enqueue_script( 'uiforms' );
-		wp_enqueue_script( 'bvc-front' );
-		wp_localize_script( 'bvc-front', 'bvcJsVars', $js_vars );
+		wp_enqueue_script( 'fruitfulblankprefix-front' );
+		wp_localize_script( 'fruitfulblankprefix-front', 'bvcJsVars', $js_vars );
 
 		// CSS styles
 		wp_register_style( 'star-rating-svg', get_template_directory_uri() . '/assets/libs/star-rating-svg/star-rating-svg.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
@@ -91,7 +83,7 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		wp_enqueue_style( 'slick-carousel', get_template_directory_uri() . '/assets/libs/slick/slick.css', array(), _FBCONSTPREFIX_CACHE_TIME_ );
 		wp_enqueue_style( 'slick-carousel-theme', get_template_directory_uri() . '/assets/libs/slick/slick-theme.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
-		wp_enqueue_style( 'bvc-base-style', get_template_directory_uri() . '/assets/css/front-base.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+		wp_enqueue_style( 'fruitfulblankprefix-base-style', get_template_directory_uri() . '/assets/css/front-base.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 		wp_enqueue_style( 'vc_customizations', get_template_directory_uri() . '/assets/css/vc_customizations.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 	}

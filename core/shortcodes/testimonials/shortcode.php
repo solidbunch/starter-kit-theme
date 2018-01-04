@@ -18,10 +18,10 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/testimonials/assets';
 
-			wp_enqueue_style( 'bvc-testimonials', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-testimonials', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
-			wp_register_script( 'bvc-testimonials', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel' ) );
-			wp_enqueue_script( 'bvc-testimonials' );
+			wp_register_script( 'fruitfulblankprefix-testimonials', $assets_path . '/scripts.js', array( 'jquery', 'slick-carousel' ) );
+			wp_enqueue_script( 'fruitfulblankprefix-testimonials' );
 
 			ob_start();
 			require 'view/view.php';

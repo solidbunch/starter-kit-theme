@@ -20,7 +20,7 @@ if (class_exists('WPBakeryShortCode')) {
 			$shortcode_uri =  get_template_directory_uri() . '/core/shortcodes/google-map/';
 			
 			/** styles **/
-			wp_enqueue_style('ff-bvc-map', $shortcode_uri . 'assets/style.css', array(), '1.0.0');
+			wp_enqueue_style('ff-fruitfulblankprefix-map', $shortcode_uri . 'assets/style.css', array(), '1.0.0');
 			
 			/** load view **/
 			ob_start();

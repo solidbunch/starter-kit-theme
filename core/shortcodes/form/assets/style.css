@@ -1,8 +1,8 @@
-#bvc-form-contact-page textarea {
+#fruitfulblankprefix-form-contact-page textarea {
 	height: 130px;
 }
 
-#bvc-form-contact-page button[type="submit"] {
+#fruitfulblankprefix-form-contact-page button[type="submit"] {
 	padding-left: 77px;
 	padding-right: 77px;
 }
@@ -21,14 +21,14 @@
 	margin-top: 40px;
 	color: #f00;
 }
-#bvc-form-contact-page .form-error-msg {
+#fruitfulblankprefix-form-contact-page .form-error-msg {
 	color: #f00;
 }
 .min_order_error{
 	color: #f00;
 	font-size:14px
 }
-#bvc-form-contact-page .success {
+#fruitfulblankprefix-form-contact-page .success {
 	color: #2c8593;
 }
 .select-coin-item .field-text-small {

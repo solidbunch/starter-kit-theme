@@ -37,7 +37,7 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 	 * Load admin assets
 	**/
 	function load_assets() {
-		wp_enqueue_style( 'bvc-backend', get_template_directory_uri() . '/assets/css/admin.css' );
+		wp_enqueue_style( 'fruitfulblankprefix-backend', get_template_directory_uri() . '/assets/css/admin.css' );
 	}
 
 	/**

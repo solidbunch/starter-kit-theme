@@ -1,5 +1,5 @@
 <?php $atts = vc_map_get_attributes($this->getShortcode(), $atts); ?>
-<div id="google-map-id-<?php echo $atts['el_id']; ?>" class="bvc-google-map"
+<div id="google-map-id-<?php echo $atts['el_id']; ?>" class="fruitfulblankprefix-google-map"
 	 style="width: 100%; height: <?php echo esc_attr($atts['height']); ?>px;"></div>
 
 <script src="//maps.googleapis.com/maps/api/js<?php if ($atts['api_key'] != ''): ?>?key=<?php echo $atts['api_key']; ?><?php endif; ?>"></script>

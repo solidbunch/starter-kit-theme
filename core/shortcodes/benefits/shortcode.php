@@ -22,7 +22,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/benefits/assets';
 
-			wp_enqueue_style( 'bvc-benefits', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-benefits', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 			ob_start();
 			require 'view/view.php';

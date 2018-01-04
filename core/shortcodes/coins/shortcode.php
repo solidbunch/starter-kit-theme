@@ -37,10 +37,10 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/coins/assets';
 
-			wp_enqueue_style( 'bvc-coins', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-coins', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
-			wp_register_script( 'bvc-coins', $assets_path . '/scripts.js', array( 'jquery' ), array(), 2 );
-			wp_enqueue_script( 'bvc-coins' );
+			wp_register_script( 'fruitfulblankprefix-coins', $assets_path . '/scripts.js', array( 'jquery' ), array(), 2 );
+			wp_enqueue_script( 'fruitfulblankprefix-coins' );
 			
 			// for meta margin
 			$items_for_meta_margin = get_posts( array(
@@ -85,7 +85,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'api_query' => $coins_course_api_query,
 				'coins_margin_obj' => $coins_margin_arr,
 			);
-			wp_localize_script('bvc-coins', 'bvcCoins', $js_vars);
+			wp_localize_script('fruitfulblankprefix-coins', 'bvcCoins', $js_vars);
 			// :end for meta margin
 			
 			$q_array = array(

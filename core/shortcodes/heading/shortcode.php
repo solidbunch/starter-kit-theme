@@ -72,8 +72,8 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			if( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'bvc-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
-			  wp_add_inline_style( 'bvc-theme-style', $inline_css );
+				wp_enqueue_style( 'fruitfulblankprefix-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
+			  wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
 			}
 
 			ob_start();

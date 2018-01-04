@@ -72,13 +72,13 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			if( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'bvc-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
-				wp_add_inline_style( 'bvc-theme-style', $inline_css );
+				wp_enqueue_style( 'fruitfulblankprefix-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
+				wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
 			}
 
 			$assets_path = get_template_directory_uri() . '/core/shortcodes/heading_with_image/assets';
 
-			wp_enqueue_style( 'bvc-title-with-image', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+			wp_enqueue_style( 'fruitfulblankprefix-title-with-image', $assets_path . '/style.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 			if ($atts['image']) {
 				$atts['image_url'] = wp_get_attachment_image_url( $atts['image'], array(70,50) );

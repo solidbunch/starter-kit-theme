@@ -22,10 +22,10 @@ vc_map(array(
 			'param_name' => 'align',
 			'save_always' => true,
 			'value' => array(
-				esc_html__('None', 'wplab-bvc-core') => '',
-				esc_html__('Left', 'wplab-bvc-core') => 'left',
-				esc_html__('Center', 'wplab-bvc-core') => 'center',
-				esc_html__('Right', 'wplab-bvc-core') => 'right',
+				esc_html__('None', 'wplab-fruitfulblankprefix-core') => '',
+				esc_html__('Left', 'wplab-fruitfulblankprefix-core') => 'left',
+				esc_html__('Center', 'wplab-fruitfulblankprefix-core') => 'center',
+				esc_html__('Right', 'wplab-fruitfulblankprefix-core') => 'right',
 			),
 		),
 		array(

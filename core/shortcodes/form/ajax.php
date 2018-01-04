@@ -14,7 +14,7 @@ function fruitfulblankprefix_ajax_contact_form()
 		'result' => 'fail'
 	);
 
-	if (!wp_verify_nonce($_POST['security'], 'bvc-contact-form')) {
+	if (!wp_verify_nonce($_POST['security'], 'fruitfulblankprefix-contact-form')) {
 		$answer['error'] = esc_html__('Wrong form verification. Please try again.', 'fruitfulblanktextdomain');
 		die(json_encode($answer));
 	}
