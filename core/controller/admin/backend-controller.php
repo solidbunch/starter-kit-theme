@@ -24,7 +24,7 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets') );
 
 		// Change admin menu position
-		add_action( 'fw_backend_add_custom_settings_menu', array( $this, 'add_theme_options_menu' ));
+		//add_action( 'fw_backend_add_custom_settings_menu', array( $this, 'add_theme_options_menu' ));
 
 		// disable VC front-end
 		add_action( 'vc_before_init', array( $this, 'setup_vc') );

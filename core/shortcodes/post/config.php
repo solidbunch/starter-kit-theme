@@ -9,6 +9,7 @@ $forms_posts = get_posts(
 					'post_type'   => 'forms',
 				)
 			);
+$forms = array();
 foreach ($forms_posts as $forms_post) {
 	$forms[$forms_post->post_title] = $forms_post->ID;
 }

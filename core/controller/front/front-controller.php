@@ -61,9 +61,10 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		);
 
 		wp_enqueue_script( 'fruitfulblankprefix-front' );
-		wp_localize_script( 'fruitfulblankprefix-front', 'FBJsVars', $js_vars );
+		wp_localize_script( 'fruitfulblankprefix-front', 'bvcJsVars', $js_vars );
 
 		// CSS styles
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 		wp_enqueue_style( 'fruitfulblankprefix-base-style', get_template_directory_uri() . '/assets/css/front-base.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
 
 	}

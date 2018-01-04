@@ -1,0 +1,9 @@
+diff a/core/controller/front/front-controller.php b/core/controller/front/front-controller.php	(rejected hunks)
+@@ -65,7 +65,6 @@
+ 		wp_localize_script( 'fruitfulblankprefix-front', 'FBJsVars', $js_vars );
+ 
+ 		// CSS styles
+-		wp_enqueue_style( 'slick-carousel-theme', get_template_directory_uri() . '/assets/libs/slick/slick-theme.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+ 		wp_enqueue_style( 'fruitfulblankprefix-base-style', get_template_directory_uri() . '/assets/css/front-base.css', false, _FBCONSTPREFIX_CACHE_TIME_ );
+ 
+ 	}
