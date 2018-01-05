@@ -4,27 +4,10 @@
  * 
  **/
 class fruitfulblankprefix_front_model {
-	/**
-	 * Class vars
-	 **/
-	protected $wpdb = null;
-	protected $tables = array();	
 
-	/**
-	 * Make Wordpress dbase object and other
-	 * models available to all model classes.
-	 * Also, define database tables.
-	 **/
-	function __construct() {
-		global $wpdb;
-		$this->wpdb = $wpdb;		
-		
-		$this->tables = array(
-			'posts' => $this->wpdb->prefix . "posts"
-		);
-		
-	}
-	
+	/* 
+	* Get default composer layout  
+	*/
 	function default_layout_query($layout_type = 'header' ) {
 		$args = array(
 			'post_type'      => 'composerlayout',
@@ -50,6 +33,9 @@ class fruitfulblankprefix_front_model {
 		
 	}
 
+	/* 
+	* Get all composer layouts
+	*/
 	function layouts($layout_type = 'header' ) {
 		
 		$args    = array(

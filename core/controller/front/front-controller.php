@@ -93,7 +93,7 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 	}
 	
 	/**
-	 * Header & Footer
+	 * Header || Footer output
 	 */
 	function get_composer_layout( $layout_type = 'header' ) {
 		global $post;

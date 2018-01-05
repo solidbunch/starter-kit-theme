@@ -1,58 +1,55 @@
 <?php
 /**
- * Team page options array
+ * Page options array
  **/
- 
-$args = array(
-		'public'   => true,
-		'capability_type'   => 'page',
-	);	 
-$post_types_cap_page = get_post_types($args, 'objects');
 
-$args = array(
-		'public'   => true,
-		'publicly_queryable' =>true,
-		'capability_type'   => 'post',
-	);	 
-$post_types_cap_post = get_post_types($args, 'objects');
+$frontmodel = new fruitfulblankprefix_front_model();
 
-$post_types = array_merge( $post_types_cap_page, $post_types_cap_post);
+$headers = $frontmodel->default_layout_query('header');
+$footers = $frontmodel->default_layout_query('footer');
 
-$choices = array(
-					'default' =>esc_html__( 'Default', 'fruitfulblanktextdomain' ),
-					'for-manual-select' => esc_html__( 'For manual select', 'fruitfulblanktextdomain' ),
-					'is-home' => esc_html__( 'Blog page', 'fruitfulblanktextdomain' ),
-					'is-search' => esc_html__( 'Search results page', 'fruitfulblanktextdomain' ),
-					'is-archive' => esc_html__( 'Archive page', 'fruitfulblanktextdomain' ),
-					'is-404' => esc_html__( '404 page', 'fruitfulblanktextdomain' ),
+$choices_headers = $choices_footers = array(
+					'' => esc_html__( 'Inherit', 'fruitfulblanktextdomain' ),
+					'_none_' => esc_html__( 'None', 'fruitfulblanktextdomain' ),
 				);
-				
-foreach ($post_types as $post_type) {
-	$choices[$post_type->name] = $post_type->label;
+
+foreach ($headers->posts as $header) {
+	$choices_headers[$header->ID] = $header->post_title;
 }
+
+foreach ($footers->posts as $footer) {
+	$choices_footers[$footer->ID] = $footer->post_title;
+}
+
+
 
 $options = array(
 	'settings' => array(
-		'title'		=> esc_html__( 'Settings', 'fruitfulblanktextdomain' ),
+		'title'		=> esc_html__( 'Header & Footer options', 'fruitfulblanktextdomain' ),
 		'type'		=> 'box',
 		'options'	=> array(
 
-			'_layouttype'	=> array(
-				'label' => esc_html__( 'Layout type', 'fruitfulblanktextdomain' ),
-				'type' => 'radio',
-				'value' => 'header',
-				'label' => false,
-				'choices' => array(
-					'header' => esc_html__( 'Header', 'fruitfulblanktextdomain' ),
-					'footer' => esc_html__( 'Footer', 'fruitfulblanktextdomain' ),
-				),
-			),
-			'_appointment' => array(
+			'_this_header'	=> array(
+				'label' => esc_html__( 'Page Header', 'fruitfulblanktextdomain' ),
 				'type'  => 'select',
-				'label' => esc_html__( 'Appointment', 'fruitfulblanktextdomain' ),
-				'value' => 'default',
-				'desc'  => esc_html__( 'Where this Header/Footer will show', 'fruitfulblanktextdomain' ),
-				'choices' => $choices,
+				'value' => '',
+				'choices' => $choices_headers,
+				'fw-storage' => array(
+					'type' => 'post-meta',
+					'post-meta' => '_this_header',
+				),
+				
+			),
+			'_this_footer' => array(
+				'label' => esc_html__( 'Page Footer', 'fruitfulblanktextdomain' ),
+				'type'  => 'select',
+				'value' => '',
+				'choices' => $choices_footers,
+				'fw-storage' => array(
+					'type' => 'post-meta',
+					'post-meta' => '_this_footer',
+				),
+
 			)
 
 		) 
