@@ -9,7 +9,6 @@
 	define( '_FBCONSTPREFIX_CACHE_TIME_', '110820171043' );
 	define( '_FBCONSTPREFIX_LIBRARY_DIR_', get_template_directory() . '/core/library/' );
 	
-
 	// Instantiate base controller that will autoload
 	// all application classes.
 	require_once get_template_directory() . '/core/controller/theme-controller.php';

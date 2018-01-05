@@ -67,43 +67,6 @@ class fruitfulblankprefix_init_controller extends fruitfulblankprefix_theme_cont
 			'after_title'   => '</h4>'
 		));
 
-		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #1', 'fruitfulblanktextdomain' ),
-			'id'            => 'footer-1',
-			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '<div class="clearfix"></div></div></div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-
-		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #2', 'fruitfulblanktextdomain' ),
-			'id'            => 'footer-2',
-			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '<div class="clearfix"></div></div></div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-
-		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #3', 'fruitfulblanktextdomain' ),
-			'id'            => 'footer-3',
-			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '<div class="clearfix"></div></div></div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-
-		register_sidebar( array(
-			'name'          => esc_html__( 'Footer widget area #4', 'fruitfulblanktextdomain' ),
-			'id'            => 'footer-4',
-			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
-			'after_widget'  => '<div class="clearfix"></div></div></div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>'
-		));
-
-
 	}
 
 

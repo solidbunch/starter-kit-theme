@@ -26,6 +26,9 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		// load assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
 		//add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
+		
+		// Load Header/Footer
+		add_filter( 'get_composer_layout', array( $this, 'get_composer_layout' ) );
 
 		// Change excerpt dots
 		//add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
@@ -87,6 +90,63 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		$content = str_replace( '<p></p>', '', $content );
 		$content = str_replace( '<p>&nbsp;</p>', '', $content );
 		return $content;
+	}
+	
+	/**
+	 * Header & Footer
+	 */
+	function get_composer_layout( $layout_type = 'header' ) {
+		global $post;
+		$default_layout = '';
+		
+		$postID = is_home() ? get_option( 'page_for_posts' ) : ( $post ? $post->ID : 0 );
+		
+		if ( $postID && (is_singular() || is_home()) && ( $this_layout_id = get_post_meta( $postID, '_this_' . $layout_type, true ) ) ) { // appointment: may be anyone
+			if ( $this_layout_id === '_none_' ) { // layout disabled;
+				return '';
+			}
+			$layout = get_post( $this_layout_id );
+			if ( $layout && $layout->post_status === 'publish' ) {
+				return do_shortcode( $layout->post_content );
+			} else {
+				
+				$default_layout_query = $this->model->frontmodel->default_layout_query($layout_type);
+
+				if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
+					return do_shortcode( $default_layout_query->posts[0]->post_content );
+				}
+				
+			}
+			
+		} else {
+			
+			$layouts = $this->model->frontmodel->layouts($layout_type);
+			
+			if ( $layouts->posts ) {
+				foreach ( $layouts->posts as $layout ) {
+					$_appointment = get_post_meta( $layout->ID, '_appointment', true );
+					
+					if ( ( $postID && ( $post_type = get_post_type( $postID ) ) && $_appointment === $post_type && is_singular() ) ||  // appointment: Any from Post Types (compatibility:post)
+						 ( $_appointment === 'is-home' && is_home() ) ||  // appointment: is-home	
+						 ( $_appointment === 'is-search' && is_search() ) ||  // appointment: is-search
+						 ( $_appointment === 'is-archive' && is_archive() ) ||  // appointment: is-archive
+						 ( $_appointment === 'is-404' && is_404() )             // appointment: is-404
+					
+					) {
+						return do_shortcode( $layout->post_content );
+					} elseif ( $_appointment === 'default' ) {  // appointment: default
+						$default_layout = $layout;
+					}
+				}
+
+				if ( $default_layout ) {
+					return do_shortcode( $default_layout->post_content );
+				}
+				
+			}
+		}
+		
+		return '';
 	}
 
 

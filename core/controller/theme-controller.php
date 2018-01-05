@@ -54,6 +54,9 @@ class fruitfulblankprefix_theme_controller {
 		require_once get_template_directory() . '/core/model/post.php';
 		$this->model->post = new fruitfulblankprefix_post_model();
 
+		require_once get_template_directory() . '/core/model/front-model.php';
+		$this->model->frontmodel = new fruitfulblankprefix_front_model();
+
 		// Autoload helpers
 		$this->_autoload_directory( 'helper', '/', false );
 

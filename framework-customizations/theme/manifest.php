@@ -4,10 +4,10 @@
 		exit;
 	}
 
-	$manifest = array();
-	$manifest['id'] = 'bvc';
+/* 	$manifest = array();
+	$manifest['id'] = 'FB';
 
 	$manifest['supported_extensions'] = array(
 		'sidebars'		=> array(),
 		'breadcrumbs'	=> array(),
-	);
+	); */
