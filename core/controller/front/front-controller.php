@@ -27,8 +27,11 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
 		//add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
 		
-		// Load Header/Footer
+		// Header/Footer display hook
 		add_filter( 'get_composer_layout', array( $this, 'get_composer_layout' ) );
+		
+		// Template connect hook
+		add_filter( 'theme_get_template', array( $this, 'theme_get_template' ), 10, 3);
 
 		// Change excerpt dots
 		//add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
@@ -147,6 +150,31 @@ class fruitfulblankprefix_front_controller extends fruitfulblankprefix_theme_con
 		}
 		
 		return '';
+	}
+	
+	/*
+	* Template connect function
+	* Used in shortcodes and in global views
+	*
+	* @param mixed $template The path to template file without .php. Can be string or array of strings.
+	* @param array $data Data that need to output in templeate file
+	* @return string Output view data
+	*/
+	public function theme_get_template($template, $data = array(), $views_dir = _FBCONSTPREFIX_VIEW_DIR_) {
+
+		if(!is_array($template)){
+			ob_start();
+			require( $views_dir . $template . '.php');
+			$output = ob_get_clean();
+		} else{
+			foreach ($template as $name => $value){
+				ob_start();
+				require( $views_dir . $value . '.php');
+				$output[$name] = ob_get_clean();
+			}
+		}
+
+		return isset($output)?$output:'';
 	}
 
 

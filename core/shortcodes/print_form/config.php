@@ -1,14 +1,11 @@
 <?php
-$args = array(
-	'numberposts' => -1,
-	'post_type'   => 'forms',
-);
+
 $forms_posts = get_posts(
-				array(
-					'numberposts' => -1,
-					'post_type'   => 'forms',
-				)
-			);
+		array(
+			'numberposts' => -1,
+			'post_type'   => 'forms',
+		)
+	);
 $forms = array();
 foreach ($forms_posts as $forms_post) {
 	$forms[$forms_post->post_title] = $forms_post->ID;

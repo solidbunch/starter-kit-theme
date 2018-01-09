@@ -67,7 +67,8 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 		if ( function_exists('vc_set_default_editor_post_types')) {
 			$list = array(
 				'page',
-				'composerlayout'
+				'composerlayout',
+				'forms',
 			);
 			vc_set_default_editor_post_types( $list );
 		}

@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_FBCONSTPREFIX_Heading extends WPBakeryShortCode {
+	class WPBakeryShortCode_fruitfulblankprefix_Heading extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -73,12 +73,18 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			if( $inline_css <> '' ) {
 				// hack to attach inline style
 				wp_enqueue_style( 'fruitfulblankprefix-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
-			  wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
+				wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
 			}
-
-			ob_start();
-			require 'view/view.php';
-			return ob_get_clean();
+			
+			/** Shortcode data to output **/
+			$data = array(
+				'id' => $id,
+				'css_class' => $atts['classes'],
+				'heading' => $atts['heading'],
+				'title' => $atts['title'],
+			);
+			
+			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');
       
 		}
 

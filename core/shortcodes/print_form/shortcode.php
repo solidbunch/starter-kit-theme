@@ -1,14 +1,14 @@
 <?php
 
 /**
-  * Heading Shortcode
+  * Form printing Shortcode
 **/
 
 // Map VC shortcode
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_FBCONSTPREFIX_Form_content extends WPBakeryShortCode {
+	class WPBakeryShortCode_fruitfulblankprefix_Form_content extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -18,9 +18,12 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				$data_post = get_post($atts['form']);
 			}
 			
-			ob_start();
-			require 'view/view.php';
-			return ob_get_clean();
+			/** Shortcode data to output **/
+			$data = array(
+				'data_post' => $data_post,
+			);
+			
+			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');
       
 		}
 

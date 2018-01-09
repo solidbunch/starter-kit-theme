@@ -8,7 +8,7 @@
 require_once 'config.php';
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_FBCONSTPREFIX_Button extends WPBakeryShortCode {
+	class WPBakeryShortCode_fruitfulblankprefix_Button extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
@@ -24,9 +24,18 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				wp_enqueue_style( 'font-awesome' );
 			}
 
-			ob_start();
-			require 'view/view.php';
-			return ob_get_clean();
+			/** Shortcode data to output **/
+			$data = array(
+				'id' => $id,
+				'css_class' => $atts['classes'],
+				'button_style' => $atts['button_style'],
+				'button_align' => $atts['button_align'],
+				'link' => $atts['link'],
+				'title' => $atts['title'],
+				'icon' => $atts['icon'],
+			);
+			
+			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');
       
 		}
 

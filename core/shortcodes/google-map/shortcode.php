@@ -3,6 +3,7 @@
 /**
  * Google Map Shortcode
  **/
+// !!! Need update js
 
 // Map VC shortcode
 require_once 'config.php';

@@ -1,23 +1,17 @@
 <?php
-	$q_array = array(
-		'post_type' => 'dslc_testimonials',
-		'post_status' => 'publish',
-		'posts_per_page' => absint( $atts['posts_per_page'] ),
-		'order' => $atts['order'],
-		'orderby' => $atts['orderby'],
-	);
+/**
+ @array $data shortcode output data from controller
+**/
 
-	$items = new WP_Query( $q_array );
-
-	if( $items->have_posts() ):
+	if( $data['items']->have_posts() ) {
 ?>
 <div class="shortcode-testimonials">
 	<div class="carousel">
-		<?php while( $items->have_posts() ): $items->the_post(); ?>
+		<?php while( $data['items']->have_posts() ) { $data['items']->the_post(); ?>
 			<div class="slide">
 				<div class="item">
 
-					<?php if( has_post_thumbnail() ): ?>
+					<?php if( has_post_thumbnail() ){ ?>
 					<div class="photo">
 						<?php 
 							echo fruitfulblankprefix_media::img( array(
@@ -30,7 +24,7 @@
 							));
 						?>
 					</div>
-					<?php endif; ?>
+					<?php } ?>
 
 					<div class="text">
 						<?php the_content(); ?>
@@ -43,7 +37,7 @@
 
 				</div>
 			</div>
-		<?php endwhile; wp_reset_postdata(); ?>
+	<?php } wp_reset_postdata(); ?>
 	</div>
 </div>
-<?php endif; 
+	<?php } 
