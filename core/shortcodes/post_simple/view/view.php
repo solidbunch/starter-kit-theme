@@ -5,7 +5,7 @@
 
 	if( $data['items']->have_posts() ) {
 ?>
-<div class="shortcode-testimonials">
+<div class="shortcode-postsimple<?php echo esc_attr( $data['css_class'] ); ?>" id="<?php echo esc_attr( $data['id'] ); ?>" >
 	<div class="carousel">
 		<?php while( $data['items']->have_posts() ) { $data['items']->the_post(); ?>
 			<div class="slide">
@@ -26,13 +26,11 @@
 					</div>
 					<?php } ?>
 
+					<div class="title">
+						<?php the_title(); ?>
+					</div>
 					<div class="text">
 						<?php the_content(); ?>
-					</div>
-
-					<div class="details">
-						<div class="name"><?php echo fw_get_db_post_option( get_the_ID(), 'name' ); ?></div>
-						<div class="position"><?php echo fw_get_db_post_option( get_the_ID(), 'position' ); ?></div>
 					</div>
 
 				</div>

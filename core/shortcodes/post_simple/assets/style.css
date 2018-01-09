@@ -1,48 +1,48 @@
-.shortcode-testimonials .slick-next,
-.shortcode-testimonials .slick-prev {
+.shortcode-postsimple .slick-next,
+.shortcode-postsimple .slick-prev {
   background: transparent;
   width: 40px;
   height: 40px;
   text-align: center;
 }
-.shortcode-testimonials .slick-next {
+.shortcode-postsimple .slick-next {
   right: -55px;
 }
-.shortcode-testimonials .slick-prev {
+.shortcode-postsimple .slick-prev {
   left: -55px;
 }
-.shortcode-testimonials .slick-next:before,
-.shortcode-testimonials .slick-prev:before {
+.shortcode-postsimple .slick-next:before,
+.shortcode-postsimple .slick-prev:before {
   font-family: fontawesome;
   color: #414141;
   opacity: 1;
   font-size: 25px;
   line-height: 40px;
 }
-.shortcode-testimonials .slick-next:before {
+.shortcode-postsimple .slick-next:before {
   margin-right: -3px;
 }
-.shortcode-testimonials .slick-prev:before {
+.shortcode-postsimple .slick-prev:before {
   margin-left: -3px;
 }
-.shortcode-testimonials .slick-next:hover,
-.shortcode-testimonials .slick-prev:hover {
+.shortcode-postsimple .slick-next:hover,
+.shortcode-postsimple .slick-prev:hover {
   box-shadow: 0px 5px 20px 0px rgba(2, 2, 2, 0.15);
 }
-.shortcode-testimonials .slick-next:before {
+.shortcode-postsimple .slick-next:before {
   content: "\f105";
 }
-.shortcode-testimonials .slick-prev:before {
+.shortcode-postsimple .slick-prev:before {
   content: "\f104";
 }
-.shortcode-testimonials .slide {
+.shortcode-postsimple .slide {
   text-align: center;
 }
-.shortcode-testimonials .photo img {
+.shortcode-postsimple .photo img {
   margin: 0 auto 45px auto;
   box-shadow: 0px 5px 20px 0px rgba(2, 2, 2, 0.15);
 }
-.shortcode-testimonials .text {
+.shortcode-postsimple .text {
   max-width: 70%;
   margin: 0 auto;
   font-size: 14px;
@@ -50,15 +50,15 @@
   color: #222;
   font-weight: bold;
 }
-.shortcode-testimonials .details {
+.shortcode-postsimple .details {
   padding-top: 30px;
   background: url('quotes.png') center top no-repeat;
   font-weight: bold;
 }
-.shortcode-testimonials .details .name {
+.shortcode-postsimple .details .name {
   color: #222;
 }
-.shortcode-testimonials .details .position {
+.shortcode-postsimple .details .position {
   color: #777;
   font-size: 14px;
   line-height: 16px;
