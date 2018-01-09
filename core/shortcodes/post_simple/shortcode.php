@@ -102,6 +102,8 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'id' => $id,
 				'css_class' => ' '.$atts['classes'],
 				'items' => $items,
+				'load_more' => $atts['load_more'],
+				'load_more_text' => $atts['load_more_text'],
 			);
 			
 			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');

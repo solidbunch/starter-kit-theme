@@ -42,6 +42,24 @@ vc_map( array(
 			'group' => esc_html__('General', 'fruitfulblanktextdomain'),
 		),
 		array(
+			'type' => 'checkbox',
+			'heading' => esc_html__( 'Display load more button', 'bvc' ),
+			'param_name' => 'load_more',
+			'value' => array( esc_html__( 'Yes', 'bvc' ) => 'yes' ),
+			'group' => esc_html__('General', 'fruitfulblanktextdomain'),
+		),
+		array(
+			'type' => 'textfield',
+			'heading' => esc_html__( 'Load more text', 'fruitfulblanktextdomain' ),
+			'param_name' => 'load_more_text',
+			'value' => esc_html__( 'Load more', 'fruitfulblanktextdomain' ),
+			'dependency' => array(
+				'element' => 'load_more',
+				'not_empty' => true,
+			),
+			'group' => esc_html__('General', 'fruitfulblanktextdomain'),
+		),
+		array(
 			'type' => 'textfield',
 			'heading' => esc_html__( 'CSS classes', 'fruitfulblanktextdomain' ),
 			'param_name' => 'classes',

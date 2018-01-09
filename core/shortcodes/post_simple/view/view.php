@@ -4,6 +4,7 @@
 **/
 
 	if( $data['items']->have_posts() ) {
+		$max_num_pages = $data['items']->max_num_pages;
 ?>
 <div class="shortcode-postsimple<?php echo esc_attr( $data['css_class'] ); ?>" id="<?php echo esc_attr( $data['id'] ); ?>" >
 	<div class="carousel">
@@ -37,5 +38,22 @@
 			</div>
 	<?php } wp_reset_postdata(); ?>
 	</div>
+	<?php
+		if( $max_num_pages > 1 && filter_var( $data['load_more'], FILTER_VALIDATE_BOOLEAN ) ):
+
+	?>
+		<div class="ajax-pagination">
+			<a
+				href="javascript:;"
+				data-target-id="#container-<?php echo $data['el_id']; ?>" 
+				data-next-page="2" 
+				data-last-number="<?php echo $i; ?>" 
+				data-max-pages="<?php echo esc_attr( $max_num_pages ); ?>" 
+				data-action="fruitfulblankprefix_ajax_postsimple" 
+				class="button load-more-posts">
+					<?php echo wp_kses_post( $data['load_more_text'] ); ?>
+			</a>
+		</div>
+	<?php endif; ?>
 </div>
 	<?php } 
