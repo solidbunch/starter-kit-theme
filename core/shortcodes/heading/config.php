@@ -166,6 +166,5 @@ vc_map( array(
 			'group' => esc_html__( 'Design options', 'fruitfulblanktextdomain' ),
 		),
 
-
 	)
 ));

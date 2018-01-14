@@ -44,4 +44,18 @@
 			return in_array( 'js_composer/js_composer.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
 		}
 
+		/**
+		 * Make sure that Unyson Framework plugin is active
+		 **/
+		public static function is_unyson() {
+			return in_array( 'unyson/unyson.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		}
+
+		/**
+		 * Make sure that WooCommerce plugin is active
+		 **/
+		public static function is_woocommerce() {
+			return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		}
+
 	}

@@ -27,10 +27,6 @@ class fruitfulblankprefix_theme_controller {
 
 	}
 
-	public function get_option( $option_name, $default = null ) {
-		return isset( $this->options[ $option_name ] ) ? $this->options[ $option_name ] : $default;
-	}
-
 	/**
 	 * Load and instantiate all application
 	 * classes neccessary for this theme
@@ -54,8 +50,8 @@ class fruitfulblankprefix_theme_controller {
 		require_once get_template_directory() . '/core/model/post.php';
 		$this->model->post = new fruitfulblankprefix_post_model();
 
-		require_once get_template_directory() . '/core/model/front-model.php';
-		$this->model->frontmodel = new fruitfulblankprefix_front_model();
+		require_once get_template_directory() . '/core/model/layout.php';
+		$this->model->layout = new fruitfulblankprefix_layout_model();
 
 		// Autoload helpers
 		$this->_autoload_directory( 'helper', '/', false );
@@ -65,10 +61,10 @@ class fruitfulblankprefix_theme_controller {
 
 		require_once get_template_directory() . '/core/controller/shared/init-controller.php';
 		$this->controller->init = new fruitfulblankprefix_init_controller();
-		
+
 		require_once get_template_directory() . '/core/controller/shared/post-types-controller.php';
 		$this->controller->posttypes = new fruitfulblankprefix_posttypes_controller();
-		
+
 		require_once get_template_directory() . '/core/controller/shared/shortcodes-controller.php';
 		$this->controller->shortcodes = new fruitfulblankprefix_shortcodes_controller();
 
@@ -90,6 +86,9 @@ class fruitfulblankprefix_theme_controller {
 		foreach ( $this->controller as $controller ) {
 			$controller->_inject_application_classes( $this->model, $this->view, $this->controller );
 		}
+
+		$this->view->model = $this->model;
+		$this->view->controller = $this->controller;
 
 	}
 
@@ -125,7 +124,7 @@ class fruitfulblankprefix_theme_controller {
 					require_once $directory . $file;
 				}
 
-			} 
+			}
 		}
 
 	}

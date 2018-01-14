@@ -24,11 +24,11 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets') );
 
 		// Change admin menu position
-		//add_action( 'fw_backend_add_custom_settings_menu', array( $this, 'add_theme_options_menu' ));
+		add_action( 'fw_backend_add_custom_settings_menu', array( $this, 'add_theme_options_menu' ));
 
 		// disable VC front-end
 		add_action( 'vc_before_init', array( $this, 'setup_vc') );
-		
+
 		require_once _FBCONSTPREFIX_LIBRARY_DIR_ . '/tgm/class-tgm-init.php';
 
 	}
@@ -60,10 +60,11 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 	 * disable front-end mode
 	**/
 	function setup_vc() {
+
 		if( function_exists( 'vc_disable_frontend') ) {
 			vc_disable_frontend();
 		}
-		
+
 		if ( function_exists('vc_set_default_editor_post_types')) {
 			$list = array(
 				'page',
@@ -72,6 +73,7 @@ class fruitfulblankprefix_backend_controller extends fruitfulblankprefix_theme_c
 			);
 			vc_set_default_editor_post_types( $list );
 		}
+
 	}
 
 }

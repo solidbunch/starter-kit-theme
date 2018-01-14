@@ -99,7 +99,7 @@
 					);
 				?>
 
-				
+
 
 			</div><!-- /comments-->
 
@@ -134,7 +134,7 @@ function ff_fruitfulblankprefix_comments_callback( $comment, $args, $depth) {
 
 				<?php
 
-					$comment_author = get_userdata( $comment->user_id ); 
+					$comment_author = get_userdata( $comment->user_id );
 					$author_name = isset( $comment_author->display_name ) ? $comment_author->display_name : get_comment_author( get_comment_ID() );
 
 				?>
@@ -163,17 +163,6 @@ function ff_fruitfulblankprefix_comments_callback( $comment, $args, $depth) {
 
 			</div>
 
-	<?php
-		break;
-			case 'pingback'  :
-			case 'trackback' :
-	?>
-		<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-			<div class="comment-body">
-				<div class="comment-text">
-					<p><?php esc_html_e( 'Pingback', 'fruitfulblanktextdomain' ); ?>: <?php comment_author_link(); ?></p>
-				</div>
-			</div>
 	<?php
 		break;
 	endswitch;

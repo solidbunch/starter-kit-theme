@@ -9,9 +9,9 @@ $headers = $frontmodel->default_layout_query('header');
 $footers = $frontmodel->default_layout_query('footer');
 
 $choices_headers = $choices_footers = array(
-					'' => esc_html__( 'Inherit', 'fruitfulblanktextdomain' ),
-					'_none_' => esc_html__( 'None', 'fruitfulblanktextdomain' ),
-				);
+	'' => esc_html__( 'Inherit', 'fruitfulblanktextdomain' ),
+	'_none_' => esc_html__( 'None', 'fruitfulblanktextdomain' ),
+);
 
 foreach ($headers->posts as $header) {
 	$choices_headers[$header->ID] = $header->post_title;
@@ -20,8 +20,6 @@ foreach ($headers->posts as $header) {
 foreach ($footers->posts as $footer) {
 	$choices_footers[$footer->ID] = $footer->post_title;
 }
-
-
 
 $options = array(
 	'settings' => array(
@@ -38,7 +36,7 @@ $options = array(
 					'type' => 'post-meta',
 					'post-meta' => '_this_header',
 				),
-				
+
 			),
 			'_this_footer' => array(
 				'label' => esc_html__( 'Page Footer', 'fruitfulblanktextdomain' ),
@@ -52,7 +50,6 @@ $options = array(
 
 			)
 
-		) 
+		)
 	),
-
 );

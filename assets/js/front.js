@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	window.FBFront = {
+	window.themeFront = {
 
 		/**
 			Constructor
@@ -22,11 +22,8 @@
 		**/
 		build: function() {
 
-			var self = this;
-
-			self.createParticles();
-			self.loadSVG();
-			self.setupInputForms();
+			//this.setupHeader();
+			//this.setupMenu();
 
 		},
 		/**
@@ -34,140 +31,9 @@
 		**/
 		events: function() {
 
-			var self = this;
-
-			self.setupHeader();
-			self.setupMenu();
 
 		},
-		/** build particles **/
-		createParticles: function() {
 
-			$('.particles').each( function( i) {
-
-				var $elem = $(this),
-				elemId = $elem.attr('id');
-
-				if( ! elemId ) {
-					elemId = 'particles-num-' + i;
-					$elem.attr('id', elemId );
-				}
-
-				particlesJS.load( elemId, FBJsVars.assetsPath + '/libs/particlesjs-config.json');
-
-			});
-
-		},
-		/** load inline SVG **/
-		loadSVG: function() {
-
-			$('img.image-svg').each(function(){
-
-				var $img = $(this),
-				imgID = $img.attr('id'),
-				imgClass = $img.attr('class'),
-				imgURL = $img.attr('src'),
-				$imgParent = $img.parent(),
-				imgParentId = $imgParent.attr('id'),
-				customColor = $imgParent.data('svg-color'),
-				extension = imgURL.replace(/^.*\./, '');
-
-				extension = extension.toLowerCase();
-
-				if( extension == 'svg' ) {
-
-					$.get(imgURL, function(data) {
-						// Get the SVG tag, ignore the rest
-						var $svg = $(data).find('svg');
-
-						// Add replaced image's ID to the new SVG
-						if(typeof imgID !== undefined) {
-							$svg = $svg.attr('id', imgID);
-						}
-
-						// Add replaced image's classes to the new SVG
-						if(typeof imgClass !== undefined) {
-							$svg = $svg.attr('class', imgClass+' replaced-svg');
-						}
-
-						// Remove any invalid XML tags as per http://validator.w3.org
-						$svg = $svg.removeAttr('xmlns:a');
-
-						// Check if the viewport is set, else we gonna set it if we can.
-						if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-							$svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'));
-						}
-
-						// Colorify
-						if( customColor !== undefined ) {
-							$imgParent.append('<style>#' + imgParentId + ' svg path, #' + imgParentId + ' svg rect, #' + imgParentId + ' svg polygon { fill: ' + customColor + '}</style>');
-						}
-
-						// Replace image with new SVG
-						$img.replaceWith($svg);
-
-					}, 'xml');
-
-				}
-
-			});
-
-		},
-		/** custom checkboxes **/
-		setupInputForms: function() {
-			$("input[type=radio], input[type=checkbox]").checkbox();
-		},
-		/** setup header **/
-		setupHeader: function() {
-
-			if( $('body').hasClass('page-template-landingpage') ) {
-				return;
-			}
-
-			var topBarHeight = $('#top-bar').outerHeight(),
-			$header = $('#header'),
-			headerHeight = $header.outerHeight(),
-			$scrollSpace = $('#header-scroll-space');
-
-			$(window).on( 'scroll', function() {
-
-				var scrollTop = $(window).scrollTop();
-
-				if( scrollTop > topBarHeight ) {
-					$scrollSpace.height( headerHeight );
-					$header.addClass('scrolled');
-				} else {
-					$scrollSpace.height( '0px' );
-					$header.removeClass('scrolled');
-				}
-
-			});
-
-		},
-		/** setup menu **/
-		setupMenu: function() {
-
-			$('#mobile-menu-toggler').on('click', function() {
-				$(this).toggleClass('is-active');
-				$('#header-menu').toggleClass('open');
-				return false;
-			});
-
-			$('.menu-item-has-children > a').on( 'click', function() {
-
-				if( $(window).width() <=995 ) {
-					var $link = $(this),
-					$li = $link.parent();
-
-					if( $li.hasClass('menu-item-open-mobile') == false ) {
-						$li.addClass('menu-item-open-mobile');
-						return false;
-					}
-				}
-
-			});
-
-		},
 		/** Check for mobile device **/
 		isMobile: function() {
 			return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent );
@@ -188,6 +54,6 @@
 
 	}
 
-	window.FBFront.initialize();
+	window.themeFront.initialize();
 
 })( window.jQuery );

@@ -10,8 +10,8 @@
 
 			<?php if( has_post_thumbnail() ): ?>
 				<div class="post-thumb">
-					<?php 
-						echo fruitfulblankprefix_media::img( array(
+					<?php
+						echo fruitfulblankprefix_media::img_resize( array(
 							'url' => get_the_post_thumbnail_url( get_the_ID(), 'full'),
 							'width' => 1140,
 							'height' => 600,
@@ -32,7 +32,7 @@
 			<!--
 				Comments
 			-->
-			
+
 			<?php if( !post_password_required() ): ?>
 				<div id="comments-block">
 					<?php comments_template( '', true ); ?>

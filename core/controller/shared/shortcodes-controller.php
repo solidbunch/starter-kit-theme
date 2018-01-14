@@ -33,16 +33,20 @@ class fruitfulblankprefix_shortcodes_controller extends fruitfulblankprefix_them
 	**/
 	function register_vc_shortcodes() {
 
-		$shortcodes = glob( get_template_directory() . '/core/shortcodes/*' , GLOB_ONLYDIR );
+		if( function_exists( 'vc_map') ) {
 
-		foreach( $shortcodes as $shortcode ) {
-			$shortcode_name = str_replace( '-', '_', basename( $shortcode ));
+			$shortcodes = glob( get_template_directory() . '/core/shortcodes/*' , GLOB_ONLYDIR );
 
-			if( in_array( $shortcode_name, $shortcodes ) ) {
-				continue;
+			foreach( $shortcodes as $shortcode ) {
+				$shortcode_name = str_replace( '-', '_', basename( $shortcode ));
+
+				if( in_array( $shortcode_name, $shortcodes ) ) {
+					continue;
+				}
+
+				require_once( $shortcode . '/shortcode.php' );
+
 			}
-
-			require_once( $shortcode . '/shortcode.php' );
 
 		}
 
@@ -63,7 +67,7 @@ class fruitfulblankprefix_shortcodes_controller extends fruitfulblankprefix_them
 			}
 
 			$ajax_file = $shortcode . '/ajax.php';
-			
+
 			if( file_exists( $ajax_file ) ) {
 				require_once( $ajax_file );
 			}

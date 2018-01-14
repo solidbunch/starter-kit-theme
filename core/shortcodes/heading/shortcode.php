@@ -75,17 +75,16 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				wp_enqueue_style( 'fruitfulblankprefix-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
 				wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
 			}
-			
+
 			/** Shortcode data to output **/
 			$data = array(
 				'id' => $id,
-				'css_class' => $atts['classes'],
-				'heading' => $atts['heading'],
-				'title' => $atts['title'],
+				'atts' => $atts,
+				'content' => $content,
 			);
-			
-			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');
-      
+
+			return apply_filters( 'load_shortcode_tpl', 'view', $data, dirname( __FILE__ ).'/view/' );
+
 		}
 
 	}
