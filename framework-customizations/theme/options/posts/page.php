@@ -3,7 +3,7 @@
  * Page options array
  **/
 
-$frontmodel = new fruitfulblankprefix_front_model();
+$frontmodel = new fruitfulblankprefix_layout_model();
 
 $headers = $frontmodel->default_layout_query('header');
 $footers = $frontmodel->default_layout_query('footer');
