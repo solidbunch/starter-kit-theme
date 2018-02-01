@@ -20,7 +20,7 @@ class fruitfulblankprefix_init_controller extends fruitfulblankprefix_theme_cont
 	function run() {
 
 		// add theme support
-		add_action( 'init', array( $this, 'add_theme_support'));
+		add_action( 'after_setup_theme', array( $this, 'add_theme_support'));
 
 		// register menus
 		add_action( 'init', array( $this, 'register_menus'));
