@@ -106,7 +106,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'load_more_text' => $atts['load_more_text'],
 			);
 			
-			return apply_filters('theme_get_template', 'view', $data, dirname( __FILE__ ).'/view/');
+			return apply_filters( 'load_shortcode_tpl', 'view', $data, dirname( __FILE__ ).'/view/' );
       
 		}
 		
