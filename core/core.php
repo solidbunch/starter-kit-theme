@@ -72,7 +72,10 @@ class core {
 
 		// Autoload Visual Composer shortcodes
 		add_action( 'vc_after_init', function() {
-			\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/shortcodes', 1, 'init.php' );
+			\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/shortcodes', 1, array(
+				'init.php',
+				'ajax.php',
+			));
 		});
 
 	}

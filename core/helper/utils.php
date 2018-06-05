@@ -36,7 +36,8 @@
 
 				if( preg_match( '/\.php$/', $path ) ) {
 
-					if( $load_file <> '' ) {
+					if( is_string( $load_file ) && $load_file <> '' ) {
+
 						// load specific file
 
 						$dir = dirname( $path );
@@ -46,9 +47,26 @@
 							require_once $file;
 						} 
 
+					} elseif( is_array( $load_file )) {
+
+						// load more than one specific file
+
+						foreach( $load_file as $_file ) {
+
+							$dir = dirname( $path );
+							$file = $dir . '/' . $_file;
+
+							if( is_file( $file ) ) {
+								require_once $file;
+							} 
+
+						}
+
 					} else {
+
 						// load all PHP files in folder
 						require_once $path;
+						
 					}
 
 				} elseif( is_dir( $path ) ) {
