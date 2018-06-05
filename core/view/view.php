@@ -1,91 +1,56 @@
 <?php
 
+	namespace ffblank\view;
+	
 	/**
 	 * Anything to do with templates
 	 * and outputting client code
 	**/
-	class fruitfulblankprefix_core_view extends fruitfulblankprefix_theme_controller {
+	class view {
 
-		function __construct() {
+		/**
+		 * Load view. Used on back-end side
+		 *
+		 * @throws \Exception
+		 **/
+		function load( $path = '', $data = array(), $return = false, $base = null ) {
 
-			parent::__construct();
-			$this->run();
-
-		}
-
-		function run() {
-
-			// Load shortcode template
-			add_filter( 'load_shortcode_tpl', array( $this, 'load_shortcode_tpl' ), 10, 3 );
-
-			// Header/Footer display hook
-			add_filter( 'get_composer_layout', array( $this, 'get_composer_layout' ) );
-			
-			// Template connect hook
-			add_filter( 'theme_get_template', array( $this, 'theme_get_template' ), 10, 3);
-
-
-		}
-
-		
-		/*
-		* Template connect function
-		* Used in shortcodes and in global views
-		*
-		* @param mixed $template The path to template file without .php. Can be string or array of strings.
-		* @param array $data Data that need to output in templeate file
-		* @return string Output view data
-		*/
-		public function theme_get_template($template, $data = array(), $views_dir = _FBCONSTPREFIX_VIEW_DIR_) {
-
-			if(!is_array($template)){
-				ob_start();
-				require( $views_dir . $template . '.php');
-				$output = ob_get_clean();
-			} else{
-				foreach ($template as $name => $value){
-					ob_start();
-					require( $views_dir . $value . '.php');
-					$output[$name] = ob_get_clean();
-				}
+			if( is_null( $base ) ) {
+				$base = get_stylesheet_directory();
 			}
 
-			return isset($output)?$output:'';
-		}
-		
-		/*
-		* Template connect function
-		* Used in shortcodes and in global views
-		*
-		* @param mixed $template The path to template file without .php. Can be string or array of strings.
-		* @param array $data Data that need to output in templeate file
-		* @return string Output view data
-		*/
-		public function load_shortcode_tpl( $template, $data = array(), $views_dir = _FBCONSTPREFIX_SHORTCODES_DIR_ ) {
-
-			if( !is_array( $template) ){
-
-				ob_start();
-				require( $views_dir . $template . '.php' );
-				$output = ob_get_clean();
-
-			} else{
-
-				foreach( $template as $name => $value ){
-					ob_start();
-					require( $views_dir . $value . '.php' );
-					$output[$name] = ob_get_clean();
+			if( is_child_theme() ) {
+				$full_path = $base . $path;
+				if( ! file_exists( $full_path ) ) {
+					$base = get_template_directory();
+					$full_path = $base . $path . '.php';
 				}
-
+			} else {
+				$full_path = $base . $path . '.php';
 			}
 
-			return isset( $output) ? $output : '';
+			if( $return ) {
+				ob_start();
+			}
+
+			if ( file_exists( $full_path ) ) {
+
+				require $full_path;
+
+			} else {
+				throw new \Exception( 'The view path ' . $full_path . ' can not be found.' );
+			}
+
+			if( $return ) {
+				return ob_get_clean();
+			}
+
 		}
 
 		/**
-		 * Header || Footer output
+		 * Load layout for header / footer built through Visual Composer
 		 */
-		function get_composer_layout( $layout_type = 'header' ) {
+		function load_composer_layout( $layout_type = 'header' ) {
 			global $post;
 			$default_layout = '';
 
@@ -100,7 +65,7 @@
 					return do_shortcode( $layout->post_content );
 				} else {
 
-					$default_layout_query = $this->model->layout->default_layout_query($layout_type);
+					$default_layout_query = FFBLANK()->model->layout->get_default_layout( $layout_type );
 
 					if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
 						return do_shortcode( $default_layout_query->posts[0]->post_content );
@@ -110,7 +75,7 @@
 
 			} else {
 
-				$layouts = $this->model->layout->layouts($layout_type);
+				$layouts = FFBLANK()->model->layout->get_layouts( $layout_type );
 
 				if ( $layouts->posts ) {
 					foreach ( $layouts->posts as $layout ) {
@@ -138,35 +103,5 @@
 
 			return '';
 		}
-
-		/**
-		 * Load view. Used on back-end side
-		**/
-		function load( $path = '', $data = array() ) {
-
- 			$base = get_stylesheet_directory();
-
-			if( is_child_theme() ) {
-				$full_path = $base . $path;
-				if( ! file_exists( $full_path ) ) {
-					$base = get_template_directory();
-					$full_path = $base . $path;
-				}
-			} else {
-				$full_path = $base . $path;
-			}
-
-			if( ! file_exists( $full_path ) ) {
-				$full_path = get_template_directory() . '/core/view/' . $path . '.php';
-			}
-
-			if ( file_exists( $full_path ) ) {
-				require $full_path;
-			} else {
-				throw new Exception( 'The view path ' . $full_path . ' can not be found.' );
-			}
-
-		}
-		
 
 	}

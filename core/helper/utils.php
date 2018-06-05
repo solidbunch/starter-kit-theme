@@ -1,40 +1,62 @@
 <?php
+
+	namespace ffblank\helper;
+
 	/**
 	 * Utils helper
 	 **/
-	class fruitfulblankprefix_utils {
+	class utils {
 
 		/**
-		 * Get post categories list
-		 **/
-		public static function get_categories( $separator = ', ' ) {
+		 * Get Global Option
+		**/
+		public static function get_option( $option_name, $default_value = null ) {
+			return self::is_unyson() ? fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
+		}
 
-			$post_type = get_post_type();
+		/**
+		 * Get Global Option
+		**/
+		public static function get_post_option( $post_id, $option_name, $default_value = null ) {
+			return self::is_unyson() ? fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
+		}
 
-			switch( $post_type ) {
-				default:
-				case 'post':
-					return self::get_valid_category_list( $separator );
-				break;
+		/**
+		 * Autoload PHP files in directory
+		**/
+		public static function autoload_dir( $dir, $max_scan_depth = 0, $load_file = '', $current_depth = 0 ) {
+			if( $current_depth > $max_scan_depth ) {
+				return;
 			}
 
-		}
+			// require all php files
+			$scan = glob( "$dir" . DIRECTORY_SEPARATOR . "*" );
 
-		/**
-		 * Get valid categories list
-		 **/
-		public static function get_valid_category_list( $separator = ', ' ) {
-			$s = str_replace( ' rel="category"', '', get_the_category_list( $separator ) );
-			$s = str_replace( ' rel="category tag"', '', $s );
-			return $s;
-		}
+			foreach ( $scan as $path ) {
 
-		/**
-		 * Get valid tags list
-		 **/
-		public static function get_valid_tags_list( $separator = ', ' ) {
-			$s = str_replace( ' rel="tag"', '', get_the_tag_list( '', $separator, '' ) );
-			return $s;
+				if( preg_match( '/\.php$/', $path ) ) {
+
+					if( $load_file <> '' ) {
+						// load specific file
+
+						$dir = dirname( $path );
+						$file = $dir . '/' . $load_file;
+
+						if( is_file( $file ) ) {
+							require_once $file;
+						} 
+
+					} else {
+						// load all PHP files in folder
+						require_once $path;
+					}
+
+				} elseif( is_dir( $path ) ) {
+
+					self::autoload_dir( $path, $max_scan_depth, $load_file, $current_depth + 1 );
+
+				}
+			}
 		}
 
 		/**
@@ -56,6 +78,47 @@
 		 **/
 		public static function is_woocommerce() {
 			return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		}
+
+		/**
+		 * Returns shortcodes uri / path
+		**/
+		public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
+			return FFBLANK()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
+		}
+
+		public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
+			return FFBLANK()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
+		}
+
+		/**
+		 * Returns widgets uri / path
+		**/
+		public static function get_widgets_uri( $widget_name, $path = '' ) {
+			return FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		}
+
+		public static function get_widgets_dir( $widget_name, $path = '' ) {
+			return FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		}
+
+		/**
+		 * Get Unyson Framework config for available social icons
+		 **/
+		public static function get_social_cfg_usyon() {
+
+			$config = array();
+
+			foreach( FFBLANK()->config['social_profiles'] as $k=>$v ) {
+				$config[ $k ] = array(
+					'type'  => 'text',
+					'label' => $v,
+					'value' => ''
+				);
+			}
+
+			return $config;
+
 		}
 
 	}

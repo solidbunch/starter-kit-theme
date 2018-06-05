@@ -4,7 +4,7 @@
  **/
 
 // If Unyson Framework plugin is active
-if( fruitfulblankprefix_utils::is_unyson() && function_exists('fw_ext_sidebars_get_current_position') ) {
+if( \ffblank\helper\utils::is_unyson() && function_exists('fw_ext_sidebars_get_current_position') ) {
 
 	// Get sidebar preset from Admin Settings
 	$side_classes = array();
@@ -13,6 +13,10 @@ if( fruitfulblankprefix_utils::is_unyson() && function_exists('fw_ext_sidebars_g
 
 	$side_classes[] = 'sidebar-pos-' . $current_position;
 	$side_classes[] = 'col-md-4';
+
+	if( is_null( $current_position ) ) {
+		$current_position = 'right';
+	}
 
 	/**
 	 * Full means no sidebar, so if page has a sidebar ...
@@ -24,7 +28,7 @@ if( fruitfulblankprefix_utils::is_unyson() && function_exists('fw_ext_sidebars_g
 		// if we don't have any settings for this page, run defaults
 		if( is_null( $side_preset ) || ! $side_preset ) {
 
-			if( fruitfulblankprefix_utils::is_woocommerce() && is_woocommerce() ) {
+			if( \ffblank\helper\utils::is_woocommerce() && is_woocommerce() ) {
 				dynamic_sidebar( 'sidebar-shop' );
 			} else {
 

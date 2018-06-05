@@ -1,8 +1,11 @@
 <?php
+
+namespace ffblank\model;
+
 /**
  * Post model
 **/
-class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
+class post extends database {
 
 	/**
 	 * Get popular posts
@@ -17,7 +20,7 @@ class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
 			'orderby' => 'comment_count'
 		);
 
-		return new WP_Query( $args );
+		return new \WP_Query( $args );
 	}
 
 	/**
@@ -32,7 +35,7 @@ class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
 			'ignore_sticky_posts' => true
 		);
 
-		return new WP_Query( $args );
+		return new \WP_Query( $args );
 	}
 
 	/**
@@ -77,7 +80,7 @@ class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
 				);
 			}
 
-			$response = new WP_Query( $args );
+			$response = new \WP_Query( $args );
 
 		}
 
@@ -102,7 +105,7 @@ class fruitfulblankprefix_post_model extends fruitfulblankprefix_database {
 			);
 		}
 
-		return new WP_Query( $args );
+		return new \WP_Query( $args );
 	}
 
 }

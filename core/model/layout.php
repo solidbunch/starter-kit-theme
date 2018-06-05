@@ -1,14 +1,13 @@
 <?php
-/**
- * Front data request model
- *
- **/
-class fruitfulblankprefix_layout_model {
+
+namespace ffblank\model;
+
+class layout {
 
 	/*
 	* Get default composer layout
 	*/
-	function default_layout_query( $layout_type = 'header' ) {
+	function get_default_layout( $layout_type = 'header' ) {
 		$args = array(
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => 1,
@@ -26,7 +25,7 @@ class fruitfulblankprefix_layout_model {
 
 			)
 		);
-		$default_layout_query = new WP_Query( $args );
+		$default_layout_query = new \WP_Query( $args );
 		wp_reset_query();
 
 		return $default_layout_query;
@@ -36,7 +35,7 @@ class fruitfulblankprefix_layout_model {
 	/*
 	* Get all composer layouts
 	*/
-	function layouts( $layout_type = 'header' ) {
+	function get_layouts( $layout_type = 'header' ) {
 
 		$args = array(
 			'post_type'      => 'composerlayout',
@@ -50,7 +49,7 @@ class fruitfulblankprefix_layout_model {
 			),
 			'order'          => 'ASC',
 		);
-		$layouts = new WP_Query( $args );
+		$layouts = new \WP_Query( $args );
 		wp_reset_query();
 
 		return $layouts;

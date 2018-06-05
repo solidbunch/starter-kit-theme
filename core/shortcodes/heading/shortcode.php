@@ -1,23 +1,22 @@
 <?php
 
-/**
-  * Heading Shortcode
-**/
 
-// Map VC shortcode
-require_once 'config.php';
+if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_Heading') ) {
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_fruitfulblankprefix_Heading extends WPBakeryShortCode {
+	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
+			$shortcode_dir = dirname( __FILE__ );
+			$shortcode = basename( $shortcode_dir );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
+
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 
-			if (!empty($atts['el_id'])) {
+			if ( !empty( $atts['el_id'] ) ) {
 				$id = 'shortcode-' . $atts['el_id'];
 			} else {
-				$id='';
+				$id = '';
 			}
 			$inline_css = '';
 
@@ -72,8 +71,8 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			if( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'fruitfulblankprefix-theme-style', get_template_directory_uri() . '/style.css', true, _FBCONSTPREFIX_CACHE_TIME_ );
-				wp_add_inline_style( 'fruitfulblankprefix-theme-style', $inline_css );
+				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true, FFBLANK()->config['cache_time'] );
+				wp_add_inline_style( 'theme-style', $inline_css );
 			}
 
 			/** Shortcode data to output **/
@@ -83,7 +82,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'content' => $content,
 			);
 
-			return apply_filters( 'load_shortcode_tpl', 'view', $data, dirname( __FILE__ ).'/view/' );
+			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
 
 		}
 

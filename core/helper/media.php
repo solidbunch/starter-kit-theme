@@ -1,9 +1,11 @@
 <?php
 
+	namespace ffblank\helper;
+
 	/**
 	 * Media helper
 	 **/
-	class fruitfulblankprefix_media {
+	class media {
 
 		/**
 		 * Resize image
@@ -11,7 +13,7 @@
 		 **/
 		public static function img_resize( $url, $width, $height ) {
 			if( ! class_exists( 'Aq_Resize' )) {
-				require_once get_template_directory() . '/core/library/aq_resizer/aq_resizer.php';
+				require_once get_template_directory() . '/library/aq_resizer/aq_resizer.php';
 			}
 
 			$src = '';

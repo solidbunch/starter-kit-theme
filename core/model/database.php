@@ -1,9 +1,12 @@
 <?php
+
+namespace ffblank\model;
+
 /**
  * Do stuff common to all model classes
  * that extend this database class
  **/
-class fruitfulblankprefix_database {
+class database {
 	/**
 	 * Class vars
 	 **/

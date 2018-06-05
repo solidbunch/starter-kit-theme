@@ -2,7 +2,7 @@
 
 <section id="content" class="container">
 	<div class="row">
-		<article class="<?php echo fruitfulblankprefix_front::get_grid_class(); ?>">
+		<article class="col-12">
 
 			<h1><?php esc_html_e( 'Unfortunately, we can not find requested page.', 'fruitfulblanktextdomain'); ?></h1>
 
@@ -11,8 +11,6 @@
 			<?php get_search_form(); ?>
 
 		</article>
-
-		<?php get_sidebar(); ?>
 
 	</div>
 </section>

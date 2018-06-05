@@ -22,8 +22,7 @@
 		**/
 		build: function() {
 
-			//this.setupHeader();
-			//this.setupMenu();
+			this.loadGoogleFonts();
 
 		},
 		/**
@@ -31,6 +30,15 @@
 		**/
 		events: function() {
 
+
+		},
+
+		/**
+		 * Load Google Fonts
+		**/
+		loadGoogleFonts: function() {
+
+			WebFont.load({ google: { families: ["Montserrat:300,400,500,600,700,800"] }});
 
 		},
 

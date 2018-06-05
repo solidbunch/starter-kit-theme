@@ -3,10 +3,8 @@
  * Page options array
  **/
 
-$frontmodel = new fruitfulblankprefix_layout_model();
-
-$headers = $frontmodel->default_layout_query('header');
-$footers = $frontmodel->default_layout_query('footer');
+$headers = FFBLANK()->model->layout->get_default_layout( 'header');
+$footers = FFBLANK()->model->layout->get_default_layout( 'footer');
 
 $choices_headers = $choices_footers = array(
 	'' => esc_html__( 'Inherit', 'fruitfulblanktextdomain' ),
