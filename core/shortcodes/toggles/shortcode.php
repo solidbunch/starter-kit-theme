@@ -9,8 +9,9 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 
 		protected function content( $atts, $content = null ) {
 
-			$shortcode = basename( dirname( __FILE__ ) );
-			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_dir = dirname( __FILE__ );
+			$shortcode = basename( $shortcode_dir );
+
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 
 			/** Shortcode data to output **/
@@ -20,7 +21,7 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 				'content' => $content,
 			);
 
-			return FFBLANK()->view->load( '/view/view_container', $data, true, dirname( __FILE__ ) );
+			return FFBLANK()->view->load( '/view/view_container', $data, true, $shortcode_dir );
 
 		}
 
@@ -32,7 +33,8 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 		protected function content( $atts, $content = null ) {
 
-			$shortcode = basename( dirname( __FILE__ ) );
+			$shortcode_dir = dirname( __FILE__ );
+			$shortcode = basename( $shortcode_dir );
 			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 
@@ -43,7 +45,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'content' => $content,
 			);
 
-			return FFBLANK()->view->load( '/view/view_content', $data, true, dirname( __FILE__ ) );
+			return FFBLANK()->view->load( '/view/view_content', $data, true, $shortcode_dir );
 
 		}
 

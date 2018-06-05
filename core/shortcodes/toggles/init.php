@@ -6,7 +6,7 @@ require_once 'shortcode.php';
 vc_map( array(
 	'name' => esc_html__( 'Toggles', 'fruitfulblanktextdomain' ),
 	'base' => 'toggles',
-	'category' => esc_html__( 'Content Elements', 'fruitfulblanktextdomain' ),
+	'category' => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add accordion / toggles', 'fruitfulblanktextdomain' ),
 	'as_parent' => array( 'only' => 'toggle' ),
 	'content_element' => true,

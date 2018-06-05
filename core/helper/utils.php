@@ -47,21 +47,6 @@
 							require_once $file;
 						} 
 
-					} elseif( is_array( $load_file )) {
-
-						// load more than one specific file
-
-						foreach( $load_file as $_file ) {
-
-							$dir = dirname( $path );
-							$file = $dir . '/' . $_file;
-
-							if( is_file( $file ) ) {
-								require_once $file;
-							} 
-
-						}
-
 					} else {
 
 						// load all PHP files in folder

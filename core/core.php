@@ -68,14 +68,11 @@ class core {
 		$this->_load_modules( 'controller', '/' );
 
 		// Autoload widgets
-		\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/widgets', 1, 'init.php' );
+		\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/widgets', 1 );
 
 		// Autoload Visual Composer shortcodes
 		add_action( 'vc_after_init', function() {
-			\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/shortcodes', 1, array(
-				'init.php',
-				'ajax.php',
-			));
+			\ffblank\helper\utils::autoload_dir( get_template_directory() . '/core/shortcodes', 1 );
 		});
 
 	}

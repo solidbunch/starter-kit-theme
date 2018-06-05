@@ -1,7 +1,5 @@
 <?php
 
-require_once 'shortcode.php';
-
 vc_map( array(
 	'name' => esc_html__( 'Alert', 'fruitfulblanktextdomain' ),
 	'base' => 'alert',
