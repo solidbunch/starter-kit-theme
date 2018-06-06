@@ -14,7 +14,14 @@
 					<?php if( has_post_thumbnail() ): ?>
 						<div class="thumb">
 							<a href="<?php the_permalink(); ?>">
-								<img src="<?php echo \ffblank\helper\media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full'), 380, 250 ); ?>" alt="">
+								<!-- an example how to resize image
+									<img src="<?php echo \ffblank\helper\media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full'), 380, 250 ); ?>" alt="">
+								-->
+
+								<!--
+									an example how to print image tag with srcset
+								-->
+								<?php echo \ffblank\helper\media::img(); ?>
 							</a>
 						</div>
 					<?php endif; ?>

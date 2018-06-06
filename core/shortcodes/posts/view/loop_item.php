@@ -10,7 +10,12 @@
 
 				<?php if( $data['atts']['thumbs_dimensions'] == 'crop' ): ?>
 
-					<img src="<?php echo \ffblank\helper\media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full'), absint( $data['atts']['thumb_width'] ), absint( $data['atts']['thumb_height'] ) ); ?>" alt="">
+					<?php
+						echo \ffblank\helper\media::img( array(
+							'width' => absint( $data['atts']['thumb_width'] ),
+							'height' => absint( $data['atts']['thumb_height'] )
+						));
+					?>
 
 				<?php else: ?>
 

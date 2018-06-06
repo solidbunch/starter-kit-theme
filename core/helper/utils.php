@@ -143,4 +143,17 @@
 
 		}
 
+		/**
+		 * Sanitize URL
+		**/
+		public static function sanitize_uri( $url ) {
+			if ( filter_var( $url, FILTER_VALIDATE_URL ) === FALSE ) {
+				$protocol = is_ssl() ? 'https:' : 'http:';
+				if( $url <> '' ) {
+					$url = $protocol . $url;
+				}
+			}
+			return $url;
+		}
+
 	}
