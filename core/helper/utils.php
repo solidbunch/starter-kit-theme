@@ -133,7 +133,7 @@
 
 			foreach( $params as $k=>$v ) {
 				
-				if( is_string( $v ) ) {
+				if( is_string( $v ) || is_numeric( $v ) ) {
 					$sanitized_params[$k] = sanitize_text_field( $v );
 				}
 

@@ -25,8 +25,8 @@ class post extends database {
 
 		if( isset( $args['tax_query_type'] ) ) {
 
-			$_taxonomy_slug = $atts['taxonomy_slug'];
-			$_taxonomy_terms = explode( ',', $atts['taxonomy_terms'] );
+			$_taxonomy_slug = $args['taxonomy_slug'];
+			$_taxonomy_terms = explode( ',', $args['taxonomy_terms'] );
 
 			if( $args['tax_query_type'] == 'only' ) {
 
