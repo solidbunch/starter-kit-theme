@@ -1,7 +1,7 @@
 <?php
 
 
-if ( class_exists( 'WPBakeryShortCode' ) && !class_exists( 'WPBakeryShortCode_Heading') ) {
+if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
 

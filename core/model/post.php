@@ -8,6 +8,55 @@ namespace ffblank\model;
 class post extends database {
 
 	/**
+	 * Get posts by params
+	**/
+	function get_posts( $args ) {
+
+		$defaults = array(
+			'post_type' => 'post',
+			'post_status' => 'publish',
+			'posts_per_page' => get_option( 'posts_per_page'),
+			'paged' => 1,
+			'order' => 'DESC',
+			'orderby' => 'date'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		if( isset( $args['tax_query_type'] ) ) {
+
+			$_taxonomy_slug = $atts['taxonomy_slug'];
+			$_taxonomy_terms = explode( ',', $atts['taxonomy_terms'] );
+
+			if( $args['tax_query_type'] == 'only' ) {
+
+				$args['tax_query'] = array(
+					array(
+						'taxonomy' => $_taxonomy_slug,
+						'field' => 'slug',
+						'terms' => $_taxonomy_terms,
+					)
+				);
+
+			} else if( $args['tax_query_type'] == 'except' ) {
+
+				$args['tax_query'] = array(
+					array(
+						'taxonomy' => $_taxonomy_slug,
+						'field' => 'slug',
+						'terms' => $_taxonomy_terms,
+						'operator' => 'NOT IN',
+					)
+				);
+
+			}
+
+		}
+
+		return new \WP_Query( $args );
+	}
+
+	/**
 	 * Get popular posts
 	 **/
 	function get_popular_posts( $post_type, $limit ) {

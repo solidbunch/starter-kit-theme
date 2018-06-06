@@ -1,7 +1,5 @@
 <?php
 
-require_once 'shortcode.php';
-
 // Parent element
 vc_map( array(
 	'name' => esc_html__( 'Toggles', 'fruitfulblanktextdomain' ),

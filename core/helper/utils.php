@@ -124,4 +124,23 @@
 
 		}
 
+		/** 
+		 * Sanitize text params from array
+		**/
+		public static function sanitize_array_text_params( $params ) {
+
+			$sanitized_params = array();
+
+			foreach( $params as $k=>$v ) {
+				
+				if( is_string( $v ) ) {
+					$sanitized_params[$k] = sanitize_text_field( $v );
+				}
+
+			}
+
+			return $sanitized_params;
+
+		}
+
 	}
