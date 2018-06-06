@@ -1,5 +1,9 @@
 <?php
 
+	/**
+		@data array comes from view function
+	**/
+
 	$atts = array();
 	$atts[] = 'id="' . $data['id'] . '"';
 	$atts[] = 'class="shortcode-posts"';
