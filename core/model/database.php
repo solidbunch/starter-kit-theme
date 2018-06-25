@@ -11,8 +11,8 @@ class database {
 	 * Class vars
 	 **/
 	protected $wpdb = null;
-	protected $tables = array();	
-
+	protected $tables = array();
+	
 	/**
 	 * Make Wordpress dbase object and other
 	 * models available to all model classes.
@@ -20,7 +20,7 @@ class database {
 	 **/
 	function __construct() {
 		global $wpdb;
-		$this->wpdb = $wpdb;		
+		$this->wpdb = $wpdb;
 		
 		$this->tables = array(
 			'posts' => $this->wpdb->prefix . "posts"

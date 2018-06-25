@@ -1,15 +1,19 @@
 .menu-icon-testimonial .wp-menu-image:before {
 	content: "\f122";
 }
+
 .menu-icon-team .wp-menu-image:before {
 	content: "\f338";
 }
+
 .menu-icon-forms .wp-menu-image:before {
 	content: "\f465";
 }
+
 .menu-icon-composerlayout .wp-menu-image:before {
 	content: "\f314";
 }
+
 #vc_license-activation-notice {
 	display: none !important;
 }

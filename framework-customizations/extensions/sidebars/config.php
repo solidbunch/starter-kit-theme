@@ -4,11 +4,11 @@ $cfg = array();
 
 $cfg['sidebar_positions'] = array(
 	'right' => array(
-		'icon_url' => 'right.png',
+		'icon_url'        => 'right.png',
 		'sidebars_number' => 1
 	),
-	'left' => array(
-		'icon_url' => 'left.png',
+	'left'  => array(
+		'icon_url'        => 'left.png',
 		'sidebars_number' => 1
 	),
 	/*
@@ -25,8 +25,8 @@ $cfg['sidebar_positions'] = array(
 		'sidebars_number' => 2
 	),
 	*/
-	'full' => array(
-		'icon_url' => 'full.png',
+	'full'  => array(
+		'icon_url'        => 'full.png',
 		'sidebars_number' => 0
 	),
 );

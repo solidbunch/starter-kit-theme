@@ -3,12 +3,12 @@
 namespace ffblank\model;
 
 class layout {
-
+	
 	/*
 	* Get default composer layout
 	*/
 	function get_default_layout( $layout_type = 'header' ) {
-		$args = array(
+		$args                 = array(
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => 1,
 			'post_status'    => 'publish',
@@ -22,22 +22,22 @@ class layout {
 					'key'   => '_appointment',
 					'value' => 'default',
 				),
-
+			
 			)
 		);
 		$default_layout_query = new \WP_Query( $args );
 		wp_reset_query();
-
+		
 		return $default_layout_query;
-
+		
 	}
-
+	
 	/*
 	* Get all composer layouts
 	*/
 	function get_layouts( $layout_type = 'header' ) {
-
-		$args = array(
+		
+		$args    = array(
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => - 1,
 			'post_status'    => 'publish',
@@ -51,8 +51,8 @@ class layout {
 		);
 		$layouts = new \WP_Query( $args );
 		wp_reset_query();
-
+		
 		return $layouts;
-
+		
 	}
 }

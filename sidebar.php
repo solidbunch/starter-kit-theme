@@ -3,58 +3,61 @@
  * Sidebar template
  **/
 
+use ffblank\helper\utils;
+
 // If Unyson Framework plugin is active
-if( \ffblank\helper\utils::is_unyson() && function_exists('fw_ext_sidebars_get_current_position') ) {
 
+if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
+	
 	// Get sidebar preset from Admin Settings
-	$side_classes = array();
+	$side_classes     = array();
 	$current_position = fw_ext_sidebars_get_current_position();
-	$side_preset = fw_ext_sidebars_get_current_preset();
-
+	$side_preset      = fw_ext_sidebars_get_current_preset();
+	
 	$side_classes[] = 'sidebar-pos-' . $current_position;
 	$side_classes[] = 'col-md-4';
-
-	if( is_null( $current_position ) ) {
+	
+	if ( is_null( $current_position ) ) {
 		$current_position = 'right';
 	}
-
+	
 	/**
 	 * Full means no sidebar, so if page has a sidebar ...
 	 **/
 	if ( $current_position !== 'full' ) {
-
-		echo '<aside id="sidebar" class="aside ' . implode( ' ', $side_classes) . '">';
-
+		
+		echo '<aside id="sidebar" class="aside ' . implode( ' ', $side_classes ) . '">';
+		
 		// if we don't have any settings for this page, run defaults
-		if( is_null( $side_preset ) || ! $side_preset ) {
-
-			if( \ffblank\helper\utils::is_woocommerce() && is_woocommerce() ) {
+		if ( is_null( $side_preset ) || ! $side_preset ) {
+			
+			if ( utils::is_woocommerce() && is_woocommerce() ) {
 				dynamic_sidebar( 'sidebar-shop' );
 			} else {
-
-				if( $current_position === 'left' ) {
+				
+				if ( $current_position === 'left' ) {
 					dynamic_sidebar( 'sidebar-left' );
 				} else {
 					dynamic_sidebar( 'sidebar-right' );
 				}
-
+				
 			}
-
+			
 		} else {
 			// run sidebar preset from options
 			dynamic_sidebar( $side_preset['sidebars']['blue'] );
 		}
 		echo '</aside>';
-
+		
 	}
 
 // If Unyson Framework is not active, just show a right sidebar
 } else {
-
+	
 	?>
 	<aside id="sidebar" class="col-md-3">
 		<?php dynamic_sidebar( 'sidebar-right' ); ?>
 	</aside>
 	<?php
-
+	
 }

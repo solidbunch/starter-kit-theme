@@ -4,21 +4,24 @@
 .align-center {
 	text-align: center;
 }
+
 .alignleft {
 	float: left;
 	margin: 0 10px 10px 0;
 }
+
 .alignright {
 	float: left;
 	margin: 0 0 10px 10px;
 }
+
 .aligncenter {
 	display: block;
 	margin: 0 auto 10px auto;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-	color: inherit; 
+	color: inherit;
 }
 
 table {

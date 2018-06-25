@@ -6,53 +6,53 @@ namespace ffblank\controller;
  * Theme init
  **/
 class init {
-
+	
 	/**
 	 * Constructor
-	**/
+	 **/
 	function __construct() {
-
+		
 		// add theme support
-		add_action( 'after_setup_theme', array( $this, 'add_theme_support'));
-
+		add_action( 'after_setup_theme', array( $this, 'add_theme_support' ) );
+		
 		// register menus
-		add_action( 'init', array( $this, 'register_menus'));
-
+		add_action( 'init', array( $this, 'register_menus' ) );
+		
 		// register sidebars
-		add_action( 'widgets_init', array( $this, 'register_sidebars'));
-
+		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
+		
 	}
-
+	
 	/**
 	 * Add theme support
 	 **/
 	function add_theme_support() {
-
+		
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 		add_theme_support( 'menus' );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
-
+		
 	}
-
+	
 	/**
 	 * Register theme menus
 	 **/
 	function register_menus() {
-
+		
 		register_nav_menus( array(
-			'header_menu' => esc_html__( 'Header Menu', 'fruitfulblanktextdomain'),
-			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'fruitfulblanktextdomain'),
-		));
-
+			'header_menu'     => esc_html__( 'Header Menu', 'fruitfulblanktextdomain' ),
+			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'fruitfulblanktextdomain' ),
+		) );
+		
 	}
-
+	
 	/**
 	 * Register theme sidebars
 	 **/
 	function register_sidebars() {
-
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Left Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-left',
@@ -60,8 +60,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Right Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-right',
@@ -69,8 +69,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Shop Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-shop',
@@ -78,8 +78,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Col 1 Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-footer-1',
@@ -87,8 +87,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Col 2 Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-footer-2',
@@ -96,8 +96,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Col 3 Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-footer-3',
@@ -105,8 +105,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Col 4 Sidebar', 'fruitfulblanktextdomain' ),
 			'id'            => 'sidebar-footer-4',
@@ -114,8 +114,8 @@ class init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		));
-
+		) );
+		
 	}
-
+	
 }
