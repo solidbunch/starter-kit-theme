@@ -6,7 +6,7 @@ module.exports = {
 		singleton: 'FFBLANK', // FFBLANK
 		textdomain: 'fruitfulblanktextdomain',  // fruitfulblanktextdomain
 		name: 'Fruitful Blank Theme', // Fruitful Blank Theme
-		author: 'FFC' // Fruitful Code
+		author: 'Fruitful Code' // Fruitful Code
 	},
 	dev: {
 		browserSync: {

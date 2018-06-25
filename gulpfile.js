@@ -4,6 +4,7 @@ var gulpSourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var gulpAutoprefixer = require('gulp-autoprefixer');
 var tabify = require('gulp-tabify');
+var stringReplace = require('gulp-string-replace');
 
 
 var config = require('./themeConfig.js');
@@ -73,12 +74,20 @@ gulp.task('browserSyncRun', function () {
 	});
 });
 
-/*
+
 gulp.task('replaceNames', function () {
-	paths.toRaplace.src;
-	console.log( a );
+
+	return gulp.src(paths.toRaplace.src)
+		.pipe(stringReplace('ffblank', config.theme.prefix))
+		.pipe(stringReplace('FFBLANK', config.theme.singleton))
+		.pipe(stringReplace('fruitfulblanktextdomain', config.theme.textdomain))
+		.pipe(stringReplace('Fruitful Blank Theme', config.theme.name))
+		.pipe(stringReplace('Fruitful Code', config.theme.author))
+		.pipe(gulp.dest(function(file){
+			return file.base;  // THE SAME DIR
+		}));
 });
-*/
+
 
 
 
