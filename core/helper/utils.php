@@ -157,4 +157,38 @@ class utils {
 		return $url;
 	}
 	
+	/**
+	 * Determine whether this is an AMP response.
+	 *
+	 * Note that this must only be called after the parse_query action.
+	 *
+	 * @link https://github.com/Automattic/amp-wp
+	 * @return bool Is AMP endpoint (and AMP plugin is active).
+	 */
+	public static function is_amp() {
+		return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+	}
+	
+	
+	public static function is_attachment_svg($attachment_id, $attachment_url) {
+		
+		$attachment_id  = (int)    $attachment_id;
+		$attachment_url = (string) $attachment_url;
+		
+		$is_attachment_svg_by_mime = $is_attachment_svg_by_ext = false;
+		
+		if ($attachment_id > 0) {
+			$mime = get_post_mime_type($attachment_id);
+			$is_attachment_svg_by_mime = ($mime === 'image/svg+xml');
+		}
+		
+		if ($attachment_url) {
+			$path      = parse_url($attachment_url, PHP_URL_PATH);   // get path from url
+			$extension = pathinfo($path, PATHINFO_EXTENSION);        // get ext from path
+			$is_attachment_svg_by_ext = strtolower($extension) === 'svg';
+		}
+		
+		
+		return $is_attachment_svg_by_mime || $is_attachment_svg_by_ext;
+	}
 }

@@ -1,4 +1,8 @@
 <?php
+// development helpers
+require_once( get_theme_file_path( 'core/dev.php' ) );
+
+
 /**
  * After registering this autoload function with SPL, the following line
  * would cause the function to attempt to load the \Foo\Bar\Baz\Qux class
@@ -44,14 +48,6 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 320;
 }
 
-// nice dump function
-if ( ! function_exists( 'wp_dump' ) ) {
-	function wp_dump( ...$params ) {
-		echo '<pre style="text-align: left; font-family: \'Courier New\'; font-size: 12px;line-height: 20px;background: #efefef;border: 1px solid #777;border-radius: 5px;color: #333;padding: 10px;margin:0;overflow: auto;overflow-y: hidden;">';
-		var_dump( $params );
-		echo '</pre>';
-	}
-}
 
 // Global point of enter
 if ( ! function_exists( 'FFBLANK' ) ) {
@@ -86,3 +82,13 @@ FFBLANK()->run();
  * \ffblank\helper\media::img_resize();
  * ======================================================================
  **/
+
+
+
+/**
+ * Optional: Add theme support for lazyloading images.
+ *
+ * @link https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
+ */
+require get_template_directory() . '/vendor/lazyload/lazyload.php';
+

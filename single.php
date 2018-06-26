@@ -1,4 +1,6 @@
-<?php use ffblank\helper\front;
+<?php
+use ffblank\helper\front;
+use ffblank\helper\media;
 
 get_header();
 the_post(); ?>
@@ -14,7 +16,23 @@ the_post(); ?>
 				<?php if ( has_post_thumbnail() ): ?>
 					<div class="thumb">
 						<a href="<?php the_permalink(); ?>">
-							<img src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>" alt="">
+<!--							<img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?><!--" alt="">-->
+							<?php
+							$thumb_args = array(
+								'url'    => get_the_post_thumbnail_url( get_the_ID(), 'full' ),
+								'width'  => 800,
+								'height' => 400,
+								'crop'   => true,
+								'hdmi'   => true,
+								'title'  => get_the_post_thumbnail_caption( get_the_ID() ),
+								'alt'    => get_post_meta( get_post_thumbnail_id( get_the_ID() ), '_wp_attachment_image_alt', true ),
+								'id'     => '',
+								'class'  => '',
+								'attachment_id' => get_post_thumbnail_id( get_the_ID() )
+							);
+							
+							echo media::img( $thumb_args );
+							?>
 						</a>
 					</div>
 				<?php endif; ?>

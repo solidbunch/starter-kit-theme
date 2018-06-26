@@ -19,30 +19,37 @@ class media {
 		
 		$image_atts = array();
 		
+		$is_queried_post_thumb = (!empty($args['url']) && (get_the_post_thumbnail_url( get_the_ID(), 'full' ) === $args['url']));
+		
 		$default_args = array(
 			'url'    => \ffblank\helper\utils::sanitize_uri( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ),
 			'width'  => 800,
 			'height' => 400,
 			'crop'   => true,
 			'hdmi'   => true,
-			'title'  => get_the_post_thumbnail_caption( get_the_ID() ),
-			'alt'    => get_post_meta( get_post_thumbnail_id( get_the_ID() ), '_wp_attachment_image_alt', true ),
+			'title'  => $is_queried_post_thumb ? get_the_post_thumbnail_caption( get_the_ID() ) : '',
+			'alt'    => $is_queried_post_thumb ? get_post_meta( get_post_thumbnail_id( get_the_ID() ), '_wp_attachment_image_alt', true ) : '',
 			'id'     => '',
-			'class'  => ''
+			'class'  => '',
+			'attachment_id' => $is_queried_post_thumb ? get_post_thumbnail_id( get_the_ID() ) : 0
 		);
 		
 		$args = wp_parse_args( $args, $default_args );
 		
+		// SVG
+		$is_svg = \ffblank\helper\utils::is_attachment_svg( $args['attachment_id'],  $args['url'] );
+		
+		
 		$src = aq_resize( \ffblank\helper\utils::sanitize_uri( $args['url'] ), absint( $args['width'] ), absint( $args['height'] ), (bool) $args['crop'] );
 		
-		if ( $src == false ) {
+		if ( $src == false || $is_svg ) {
 			$image_atts[] = 'src="' . esc_url( $args['url'] ) . '"';
 			$src          = $args['url'];
 		} else {
 			$image_atts[] = 'src="' . esc_url( $src ) . '"';
 		}
 		
-		if ( filter_var( $args['hdmi'], FILTER_VALIDATE_BOOLEAN ) ) {
+		if ( filter_var( $args['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
 			
 			$double_height = ! is_null( $args['height'] ) ? absint( $args['height'] ) * 2 : null;
 			
@@ -74,8 +81,13 @@ class media {
 		
 		$image_atts[] = 'alt="' . esc_attr( $args['alt'] ) . '"';
 		
-		return '<img ' . implode( ' ', $image_atts ) . '>';
+		$_img = '<img ' . implode( ' ', $image_atts ) . '>';
 		
+		if ( ! ffblank_lazyload_to_skip() ) {
+			return ffblank_add_image_placeholders( $_img );
+		}
+		
+		return $_img;
 	}
 	
 	/**
