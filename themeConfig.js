@@ -29,3 +29,14 @@ module.exports = {
 		compress: true
 	}
 };
+
+/*
+
+usage:
+======
+- change config
+- run:
+> npm i
+> npm replaceNames
+
+*/
