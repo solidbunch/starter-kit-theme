@@ -34,9 +34,15 @@ module.exports = {
 
 usage:
 ======
+TO REPLACE:
 - change config
 - run:
 > npm i
-> npm replaceNames
+> gulp replaceNames
+
+SASS + BROWSERSYNC:
+> gulp sass - sass only compiling
+> gulp watch - sass + browsersync
+> gulp - default: gulp watch
 
 */
