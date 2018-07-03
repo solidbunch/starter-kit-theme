@@ -15,9 +15,6 @@ class init {
 		// add theme support
 		add_action( 'after_setup_theme', array( $this, 'add_theme_support' ) );
 		
-		// register menus
-		add_action( 'init', array( $this, 'register_menus' ) );
-		
 		// register sidebars
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 		
@@ -33,18 +30,6 @@ class init {
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
-		
-	}
-	
-	/**
-	 * Register theme menus
-	 **/
-	function register_menus() {
-		
-		register_nav_menus( array(
-			'header_menu'     => esc_html__( 'Header Menu', 'fruitfulblanktextdomain' ),
-			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'fruitfulblanktextdomain' ),
-		) );
 		
 	}
 	
