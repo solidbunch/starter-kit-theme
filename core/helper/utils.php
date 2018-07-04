@@ -66,43 +66,43 @@ class utils {
 	 * Make sure that Visual Composer is active
 	 **/
 	public static function is_vc() {
-		return in_array( 'js_composer/js_composer.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
+		return in_array( 'js_composer/js_composer.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
 	 * Make sure that Unyson Framework plugin is active
 	 **/
 	public static function is_unyson() {
-		return in_array( 'unyson/unyson.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
+		return in_array( 'unyson/unyson.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
 	 * Make sure that WooCommerce plugin is active
 	 **/
 	public static function is_woocommerce() {
-		return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
+		return in_array( 'woocommerce/woocommerce.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
 	 * Returns shortcodes uri / path
 	 **/
 	public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
-		return FFBLANK()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
+		return \FFBLANK()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
-		return FFBLANK()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
+		return \FFBLANK()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	/**
 	 * Returns widgets uri / path
 	 **/
 	public static function get_widgets_uri( $widget_name, $path = '' ) {
-		return FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	public static function get_widgets_dir( $widget_name, $path = '' ) {
-		return FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	/**
@@ -112,7 +112,7 @@ class utils {
 		
 		$config = array();
 		
-		foreach ( FFBLANK()->config['social_profiles'] as $k => $v ) {
+		foreach ( \FFBLANK()->config['social_profiles'] as $k => $v ) {
 			$config[ $k ] = array(
 				'type'  => 'text',
 				'label' => $v,
@@ -148,7 +148,7 @@ class utils {
 	 **/
 	public static function sanitize_uri( $url ) {
 		if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
-			$protocol = is_ssl() ? 'https:' : 'http:';
+			$protocol = \is_ssl() ? 'https:' : 'http:';
 			if ( $url <> '' ) {
 				$url = $protocol . $url;
 			}
