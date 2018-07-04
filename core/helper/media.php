@@ -38,8 +38,7 @@ class media {
 		
 		// SVG
 		$is_svg = \ffblank\helper\utils::is_attachment_svg( $args['attachment_id'],  $args['url'] );
-		
-		
+				
 		$src = aq_resize( \ffblank\helper\utils::sanitize_uri( $args['url'] ), absint( $args['width'] ), absint( $args['height'] ), (bool) $args['crop'] );
 		
 		if ( $src == false || $is_svg ) {
@@ -83,8 +82,8 @@ class media {
 		
 		$_img = '<img ' . implode( ' ', $image_atts ) . '>';
 		
-		if ( ! ffblank_lazyload_to_skip() ) {
-			return ffblank_add_image_placeholders( $_img );
+		if ( ! FFBLANK()->controller->lazy_load->skip() ) {
+			return FFBLANK()->controller->lazy_load->add_image_placeholders( $_img );
 		}
 		
 		return $_img;

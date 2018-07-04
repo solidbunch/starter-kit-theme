@@ -1,7 +1,6 @@
 <?php
-// development helpers
+// helper functions for developers
 require_once( get_theme_file_path( 'core/dev.php' ) );
-
 
 /**
  * After registering this autoload function with SPL, the following line
@@ -82,13 +81,3 @@ FFBLANK()->run();
  * \ffblank\helper\media::img_resize();
  * ======================================================================
  **/
-
-
-
-/**
- * Optional: Add theme support for lazyloading images.
- *
- * @link https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
- */
-require get_template_directory() . '/vendor/lazyload/lazyload.php';
-

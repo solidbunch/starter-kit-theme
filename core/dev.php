@@ -10,7 +10,6 @@ if ( ! function_exists( 'wp_dump' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'wlog' ) ) {
 	function wlog( $var, $desc = ' >> ', $clear_log = false ) {
 		$log_file_destination = get_stylesheet_directory() . '/w.log';

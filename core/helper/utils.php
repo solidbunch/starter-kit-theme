@@ -11,14 +11,14 @@ class utils {
 	 * Get Global Option
 	 **/
 	public static function get_option( $option_name, $default_value = null ) {
-		return self::is_unyson() ? fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
+		return function_exists(  '\fw_get_db_settings_option') ? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
 	}
 	
 	/**
 	 * Get Global Option
 	 **/
 	public static function get_post_option( $post_id, $option_name, $default_value = null ) {
-		return self::is_unyson() ? fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
+		return function_exists( '\fw_get_db_post_option') ? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
 	}
 	
 	/**
@@ -66,21 +66,21 @@ class utils {
 	 * Make sure that Visual Composer is active
 	 **/
 	public static function is_vc() {
-		return in_array( 'js_composer/js_composer.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		return in_array( 'js_composer/js_composer.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
 	 * Make sure that Unyson Framework plugin is active
 	 **/
 	public static function is_unyson() {
-		return in_array( 'unyson/unyson.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		return in_array( 'unyson/unyson.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
 	 * Make sure that WooCommerce plugin is active
 	 **/
 	public static function is_woocommerce() {
-		return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+		return in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ) );
 	}
 	
 	/**
@@ -134,7 +134,7 @@ class utils {
 		foreach ( $params as $k => $v ) {
 			
 			if ( is_string( $v ) || is_numeric( $v ) ) {
-				$sanitized_params[ $k ] = sanitize_text_field( $v );
+				$sanitized_params[ $k ] = \sanitize_text_field( $v );
 			}
 			
 		}
@@ -166,7 +166,7 @@ class utils {
 	 * @return bool Is AMP endpoint (and AMP plugin is active).
 	 */
 	public static function is_amp() {
-		return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+		return function_exists( '\is_amp_endpoint' ) && \is_amp_endpoint();
 	}
 	
 	
@@ -178,7 +178,7 @@ class utils {
 		$is_attachment_svg_by_mime = $is_attachment_svg_by_ext = false;
 		
 		if ($attachment_id > 0) {
-			$mime = get_post_mime_type($attachment_id);
+			$mime = \get_post_mime_type($attachment_id);
 			$is_attachment_svg_by_mime = ($mime === 'image/svg+xml');
 		}
 		
