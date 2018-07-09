@@ -3,7 +3,7 @@
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
 
-	class WPBakeryShortCode_voip_awards_winning extends WPBakeryShortCode {
+	class WPBakeryShortCode_param_group extends WPBakeryShortCode {
 
 		/**
 		 * @param $atts
@@ -38,9 +38,9 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 		 * @return void
 		 */
 		protected function addStyles( $shortcode ) {
-			$shortcode_uri = \voipstudio\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 
-			wp_enqueue_style( 'awards_winning', $shortcode_uri . '/assets/styles.css' );
+			wp_enqueue_style( 'param_group', $shortcode_uri . '/assets/styles.css' );
 		}
 
 		/**
@@ -70,14 +70,11 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			/** Shortcode data to output **/
 
-			$data = array(
+			return array(
 				'atts'            => $atts,
 				'content'         => $content,
 				'image_blocks'    => $image_blocks
 			);
-
-
-			return $data;
 		}
 
 	}
