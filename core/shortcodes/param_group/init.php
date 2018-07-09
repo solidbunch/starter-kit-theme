@@ -1,10 +1,10 @@
 <?php
 
 vc_map( array(
-	'name'        => esc_html__( 'Awards Winning', 'voipstudio' ),
-	'base'        => 'voip_awards_winning',
-	'category'    => esc_html__( 'VoipStudio', 'voipstudio' ),
-	'description' => esc_html__( 'Awards Winning section template', 'voipstudio' ),
+	'name'        => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
+	'base'        => 'param_group',
+	'category'    => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
+	'description' => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
 	'params'      => array(
 		array(
 			'type'       => 'textfield',
