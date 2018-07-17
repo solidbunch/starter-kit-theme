@@ -12,7 +12,7 @@ var config = require('./themeConfig.js');
 // Project paths
 var paths = {
 
-	toRaplace : {
+	toReplace : {
 		src: ['./**/*.php', './**/*.css', './**/*.scss', './**/*.js', '!vendor/**/*.*', '!node_modules/**/*.*', '!./themeConfig.js', '!./gulpfile.js'],
 	},
 
@@ -77,7 +77,7 @@ gulp.task('browserSyncRun', function () {
 
 gulp.task('replaceNames', function () {
 
-	return gulp.src(paths.toRaplace.src)
+	return gulp.src(paths.toReplace.src)
 		.pipe(stringReplace('ffblank', config.theme.prefix))
 		.pipe(stringReplace('FFBLANK', config.theme.singleton))
 		.pipe(stringReplace('fruitfulblanktextdomain', config.theme.textdomain))
