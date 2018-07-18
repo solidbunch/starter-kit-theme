@@ -62,13 +62,13 @@ class view {
 			}
 			$layout = get_post( $this_layout_id );
 			if ( $layout && $layout->post_status === 'publish' ) {
-				return do_shortcode( $layout->post_content );
+				return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 			} else {
 				
 				$default_layout_query = FFBLANK()->model->layout->get_default_layout( $layout_type );
 				
 				if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
-					return do_shortcode( $default_layout_query->posts[0]->post_content );
+					return do_shortcode( apply_filters( 'the_content', $default_layout_query->posts[0]->post_content ) );
 				}
 				
 			}
@@ -88,14 +88,14 @@ class view {
 					     ( $_appointment === 'is-404' && is_404() )             // appointment: is-404
 					
 					) {
-						return do_shortcode( $layout->post_content );
+						return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 					} elseif ( $_appointment === 'default' ) {  // appointment: default
 						$default_layout = $layout;
 					}
 				}
 				
 				if ( $default_layout ) {
-					return do_shortcode( $default_layout->post_content );
+					return do_shortcode( apply_filters( 'the_content', $default_layout->post_content ) );
 				}
 				
 			}
