@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	$('.shortcode-posts-loadmore').click(function () {
+	$('.shortcode-posts-loadmore').on('click', function () {
 
 		var $button = $(this),
 			$postsContainer = $button.parents('.shortcode-posts').find('.posts'),
