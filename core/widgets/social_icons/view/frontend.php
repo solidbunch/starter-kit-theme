@@ -2,17 +2,17 @@
 $args     = $data['args'];
 $instance = $data['instance'];
 
-echo $args['before_widget'];
+echo wp_kses_post($args['before_widget']);
 ?>
 	
 	<!-- widget title -->
 <?php if ( isset( $instance['title'] ) && $instance['title'] <> '' ) : ?>
 	
-	<?php echo $args['before_title']; ?>
+	<?php echo wp_kses_post($args['before_title']); ?>
 	
-	<?php echo apply_filters( 'widget_title', $instance['title'] ); ?>
+	<?php echo wp_kses_post(apply_filters( 'widget_title', $instance['title'] )); ?>
 	
-	<?php echo $args['after_title']; ?>
+	<?php echo wp_kses_post($args['after_title']); ?>
 
 <?php endif; ?>
 	
@@ -32,4 +32,4 @@ echo $args['before_widget'];
 	</div>
 
 <?php
-echo $args['after_widget'];
+echo wp_kses_post($args['after_widget']);

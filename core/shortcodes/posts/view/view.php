@@ -28,7 +28,7 @@ $atts[] = 'class="shortcode-posts"';
 			
 			<div class="posts-pagination text-center">
 				<a href="javascript:;"
-				   class="shortcode-posts-loadmore btn btn-primary"><?php echo $data['atts']['ajax_load_more_button_text']; ?></a>
+				   class="shortcode-posts-loadmore btn btn-primary"><?php echo wp_kses_post($data['atts']['ajax_load_more_button_text']); ?></a>
 			</div>
 		
 		<?php endif; ?>

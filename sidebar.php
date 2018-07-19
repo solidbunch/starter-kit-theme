@@ -32,7 +32,9 @@ if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_positio
 		if ( is_null( $side_preset ) || ! $side_preset ) {
 			
 			if ( utils::is_woocommerce() && is_woocommerce() ) {
-				dynamic_sidebar( 'sidebar-shop' );
+				if (is_active_sidebar( 'sidebar-shop' )) {
+					dynamic_sidebar( 'sidebar-shop' );
+				}
 			} else {
 				
 				if ( $current_position === 'left' ) {
@@ -53,11 +55,11 @@ if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_positio
 
 // If Unyson Framework is not active, just show a right sidebar
 } else {
-	
-	?>
-	<aside id="sidebar" class="col-md-3">
-		<?php dynamic_sidebar( 'sidebar-right' ); ?>
-	</aside>
-	<?php
-	
+	if (is_active_sidebar( 'sidebar-right' )) {
+		?>
+		<aside id="sidebar" class="col-md-3">
+			<?php dynamic_sidebar( 'sidebar-right' ); ?>
+		</aside>
+		<?php
+	}
 }

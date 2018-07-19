@@ -32,7 +32,7 @@ $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thum
 		</div>
 	<?php endif; ?>
 	
-	<div class="<?php echo $display_thumb ? 'col-sm-10' : 'col-sm-12'; ?>">
+	<div class="<?php echo esc_attr($display_thumb ? 'col-sm-10' : 'col-sm-12'); ?>">
 		
 		<?php if ( filter_var( $data['atts']['display_title'], FILTER_VALIDATE_BOOLEAN ) ): ?>
 			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>

@@ -131,9 +131,9 @@ class media {
 			$info = pathinfo( $file );
 			
 			if ( $info['extension'] == 'svg' ) {
-				echo '<img src="' . \esc_attr( $image['url'] ) . '" class="image-svg" alt="" />';
+				echo '<img src="' . \esc_attr( $image['url'] ) . '" class="image-svg" />';
 			} else {
-				echo '<img src="' . \esc_attr( $image['url'] ) . '" alt="" />';
+				echo '<img src="' . \esc_attr( $image['url'] ) . '" />';
 			}
 			
 		} elseif ( is_numeric( $image ) ) {
@@ -143,13 +143,13 @@ class media {
 			$info = pathinfo( $file );
 			
 			if ( $info['extension'] == 'svg' ) {
-				echo '<img src="' . \esc_attr( $url ) . '" class="image-svg" alt="" />';
+				echo '<img src="' . \esc_attr( $url ) . '" class="image-svg" />';
 			} else {
-				echo '<img src="' . \esc_attr( $url ) . '" alt="" />';
+				echo '<img src="' . \esc_attr( $url ) . '" />';
 			}
 			
 		} elseif ( $fallback <> '' ) {
-			echo '<img src="' . \esc_attr( $fallback ) . '" class="image-svg" alt="" />';
+			echo '<img src="' . \esc_attr( $fallback ) . '" class="image-svg" />';
 		}
 		
 	}

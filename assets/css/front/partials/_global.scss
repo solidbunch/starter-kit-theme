@@ -36,3 +36,12 @@ img {
 select {
 	max-width: 100%;
 }
+
+/** By Envato requirements */
+.wp-caption,
+.wp-caption-text,
+.screen-reader-text,
+.gallery-caption,
+.bypostauthor {
+  border:0;
+}
