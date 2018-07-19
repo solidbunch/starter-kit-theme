@@ -37,6 +37,8 @@ usage:
 TO REPLACE:
 - change config
 - run:
+> npm i npm -g
+> npm i gulp -g
 > npm i
 > gulp replaceNames
 
