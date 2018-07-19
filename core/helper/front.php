@@ -35,7 +35,6 @@ class front {
 		}
 		
 		return $classes_string;
-		
 	}
 	
 	

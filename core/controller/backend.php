@@ -65,7 +65,7 @@ class backend {
 	 **/
 	function add_theme_options_menu( $data ) {
 		
-		add_menu_page(
+		add_theme_page(
 			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
 			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
 			$data['capability'],

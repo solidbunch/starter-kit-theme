@@ -6,26 +6,31 @@
 	<div class="footer4 b-t spacer">
 		<div class="container">
 			<div class="row">
+				
+				<?php if (is_active_sidebar( 'sidebar-footer-1' )) { ?>
 				<div class="col-lg-3 col-md-6 m-b-30">
-					
 					<?php dynamic_sidebar( 'sidebar-footer-1' ); ?>
-				
 				</div>
+				<?php } ?>
+				
+				<?php if (is_active_sidebar( 'sidebar-footer-2' )) { ?>
 				<div class="col-lg-3 col-md-6 m-b-30">
-					
 					<?php dynamic_sidebar( 'sidebar-footer-2' ); ?>
-				
 				</div>
+				<?php } ?>
+				
+				<?php if (is_active_sidebar( 'sidebar-footer-3' )) { ?>
 				<div class="col-lg-3 col-md-6 m-b-30">
-					
 					<?php dynamic_sidebar( 'sidebar-footer-3' ); ?>
-				
 				</div>
+				<?php } ?>
+				
+				<?php if (is_active_sidebar( 'sidebar-footer-4' )) { ?>
 				<div class="col-lg-3 col-md-6">
-					
 					<?php dynamic_sidebar( 'sidebar-footer-4' ); ?>
-				
 				</div>
+				<?php } ?>
+				
 			</div>
 			<div id="bottom-bar" class="f4-bottom-bar">
 				<div class="row">

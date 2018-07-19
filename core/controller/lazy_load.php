@@ -42,6 +42,7 @@ class lazy_load {
 		
 			// Do not lazy load avatar in admin bar.
 			add_action( 'admin_bar_menu', array( $this, 'remove_filters' ), 0 );
+			
 			// Ensure that our lazy image attributes are not filtered out of image tags.
 			add_filter( 'wp_kses_allowed_html', array( $this, 'allow_lazy_attributes' ) );
 

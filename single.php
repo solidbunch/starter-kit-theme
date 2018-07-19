@@ -7,7 +7,7 @@ the_post(); ?>
 	
 	<section id="content" class="container">
 		<div class="row">
-			<article class="<?php echo front::get_grid_class(); ?>">
+			<article <?php post_class(); ?>>
 				
 				<h1><?php the_title(); ?></h1>
 				
@@ -16,7 +16,7 @@ the_post(); ?>
 				<?php if ( has_post_thumbnail() ): ?>
 					<div class="thumb">
 						<a href="<?php the_permalink(); ?>">
-<!--							<img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?><!--" alt="">-->
+<!--							<img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?><!--" >-->
 							<?php
 							$thumb_args = array(
 								'url'    => get_the_post_thumbnail_url( get_the_ID(), 'full' ),
@@ -37,7 +37,16 @@ the_post(); ?>
 					</div>
 				<?php endif; ?>
 				
-				<?php the_content(); ?>
+				<?php
+					the_content();
+				
+					wp_link_pages( array(
+						'before'      => '<div class="page-links">' . __( 'Pages:', 'fruitfulblanktextdomain' ),
+						'after'       => '</div>',
+						'link_before' => '<span class="page-number">',
+						'link_after'  => '</span>',
+					) );
+				?>
 				
 				<div class="clearfix"></div>
 				

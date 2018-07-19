@@ -20,7 +20,7 @@ get_header(); ?>
 							<div class="thumb">
 								<a href="<?php the_permalink(); ?>">
 									<!-- an example how to resize image
-									<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" alt="">
+									<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
 								-->
 									
 									<!--
