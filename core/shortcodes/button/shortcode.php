@@ -31,6 +31,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'id'      => $id,
 				'atts'    => $atts,
 				'content' => $content,
+				'wpb'     => $this
 			);
 			
 			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );

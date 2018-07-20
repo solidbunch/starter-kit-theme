@@ -13,8 +13,7 @@ extract( shortcode_atts( array(
 	'css' => ''
 ), $atts ) );
 
-$css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $this->settings['base'], $atts );
-$css_class .= ' ' . $atts['classes'];
+$css_class = $this->get_css_class( $css, $data );
 
 if ( isset( $atts['button_style'] ) && $atts['button_style'] <> '' ) {
 	if ( isset( $atts['outline'] ) && filter_var( $atts['outline'], FILTER_VALIDATE_BOOLEAN ) ) {
