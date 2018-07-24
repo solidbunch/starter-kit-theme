@@ -27,12 +27,6 @@ class front {
 		// remove jquery migrate for optimization reasons
 		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
 		
-		// add grid class to post classes
-		add_filter('post_class', function($classes) {
-			array_push( $classes, \ffblank\helper\front::get_grid_class() );
-			return $classes;
-		});
-		
 	}
 	
 	/**
