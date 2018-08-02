@@ -91,9 +91,15 @@ class media {
 	
 	/**
 	 * Resize image
+	 *
+	 * @param $url
+	 * @param $width
+	 * @param $height
+	 * @param bool $crop
+	 *
 	 * @return string image path
-	 **/
-	public static function img_resize( $url, $width, $height ) {
+	 */
+	public static function img_resize( $url, $width, $height , $crop = true ) {
 		if ( ! class_exists( 'Aq_Resize' ) ) {
 			require_once \get_template_directory() . '/vendor/aq_resizer/aq_resizer.php';
 		}
@@ -107,7 +113,7 @@ class media {
 			}
 		}
 		
-		$src = \aq_resize( $url, $width, $height, true );
+		$src = \aq_resize( $url, $width, $height, $crop );
 		
 		if ( ! $src ) {
 			$src = $url;
