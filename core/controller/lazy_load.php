@@ -18,7 +18,7 @@ class lazy_load {
 	 * Constructor
 	 **/
 	function __construct() {
-
+		
 		add_action( 'init', array( $this, 'run_lazy_load'));
 		
 	}
@@ -59,7 +59,8 @@ class lazy_load {
 			return true;
 		}
 		
-		$is_img_lazy_load_enabled = (int)\ffblank\helper\utils::get_option( 'img_lazy_load', 0 );
+		
+		$is_img_lazy_load_enabled = (int)\ffblank\helper\utils::get_option( 'img_lazy_load', 1 );
 
 		if ( $is_img_lazy_load_enabled !== 1 ) {
 			return true;
@@ -89,11 +90,7 @@ class lazy_load {
 		if ( is_feed() || is_preview() ) {
 			return $content;
 		}
-		// Don't lazy-load if the content has already been run through previously.
-		if ( false !== strpos( $content, 'data-src' ) ) {
-			return $content;
-		}
-
+		
 		// Find all <img> elements via regex, add lazy-load attributes.
 		$content = preg_replace_callback( '#<(img)([^>]+?)(>(.*?)</\\1>|[\/]?>)#si', array( $this, 'process_image' ), $content );
 		return $content;
@@ -130,11 +127,14 @@ class lazy_load {
 	function process_image( $matches ) {
 		$old_attributes_str       = $matches[2];
 		$old_attributes_kses_hair = wp_kses_hair( $old_attributes_str, wp_allowed_protocols() );
+		
 		if ( empty( $old_attributes_kses_hair['src'] ) ) {
 			return $matches[0];
 		}
+		
 		$old_attributes = $this->flatten_kses_hair_data( $old_attributes_kses_hair );
 		$new_attributes = $this->process_image_attributes( $old_attributes );
+		
 		// If we didn't add lazy attributes, just return the original image source.
 		if ( empty( $new_attributes['data-src'] ) ) {
 			return $matches[0];
@@ -153,15 +153,19 @@ class lazy_load {
 	 * @return array The updated image attributes array with lazy load attributes.
 	 */
 	function process_image_attributes( $attributes ) {
+		
 		if ( empty( $attributes['src'] ) ) {
 			return $attributes;
 		}
 		if ( ! empty( $attributes['class'] ) && $this->should_skip_image_with_blacklisted_class( $attributes['class'] ) ) {
 			return $attributes;
 		}
+		if ( !empty( $attributes['data-src'] ) ) {
+			return $attributes;
+		}
 
 		$old_attributes = $attributes;
-
+		
 		// Add the lazy class to the img element.
 		$attributes['class'] = $this->set_lazy_class( $attributes );
 
@@ -172,7 +176,7 @@ class lazy_load {
 		$attributes['data-src'] = $old_attributes['src'];
 
 		// Process `srcset` attribute.
-		if ( ! empty( $attributes['srcset'] ) ) {
+		if ( ! empty( $attributes['srcset'] ) && ! empty( $attributes['data-srcset'] )) {
 			$attributes['data-srcset'] = $old_attributes['srcset'];
 			unset( $attributes['srcset'] );
 		}
@@ -181,7 +185,7 @@ class lazy_load {
 			$attributes['data-sizes'] = $old_attributes['sizes'];
 			unset( $attributes['sizes'] );
 		}
-
+		
 		return $attributes;
 	}
 
