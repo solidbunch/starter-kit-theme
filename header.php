@@ -10,40 +10,44 @@
 
 <div id="main-wrapper">
 	
-	<header id="header" class="header1 po-relative bg-dark">
+	<header id="header">
 		<div class="container">
-			<nav class="navbar navbar-expand-lg h2-nav">
+			<div class="row align-items-center">
 				
-				<a class="navbar-brand" href="<?php echo site_url( '/' ); ?>">
-					<!-- Logo Image Here -->
-				</a>
+				<div class="col-lg-3 header-logo-container">
+					<a class="logo" href="<?php echo site_url( '/' ); ?>">
+						<!-- Logo Image Here -->
+						Logo
+					</a>
+
+					<!--
+						Mobile Menu Hamburger Link
+					-->
+					<a href="javascript:;" id="mobile-menu-toggler" class="hamburger">
+						<div class="hamburger-box">
+							<div class="hamburger-inner"></div>
+						</div>
+					</a>
+
+				</div>
 				
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header_menu"
-				        aria-controls="header_menu" aria-expanded="false"
-				        aria-label="<?php _e( 'Toggle navigation', 'fruitfulblanktextdomain' ); ?>">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				
-				<?php
-				
-				require_once get_template_directory() . '/vendor/bs4navwalker/bs4navwalker.php';
-				
-				wp_nav_menu( array(
-					'menu'            => 'header_menu',
-					'theme_location'  => 'header_menu',
-					'container'       => 'div',
-					'container_id'    => 'header_menu',
-					'container_class' => 'collapse navbar-collapse',
-					'menu_id'         => false,
-					'menu_class'      => 'navbar-nav ml-auto mt-2 mt-lg-0',
-					'depth'           => 2,
-					'fallback_cb'     => 'bs4navwalker::fallback',
-					'walker'          => new bs4navwalker()
-				) );
-				
-				?>
+				<div class="col-lg-9 header-menu-container">
+					
+					<?php
+					
+						wp_nav_menu( array(
+							'menu'            => 'header_menu',
+							'theme_location'  => 'header_menu',
+							'container'       => 'div',
+							'menu_id'         => false,
+							//'depth'           => 4,
+						) );
+					
+					?>
+
+				</div>
 			
-			</nav>
+			</div>
 		</div>
 	
 	</header>

@@ -22,6 +22,7 @@
 		 **/
 		build: function () {
 
+			this.setupHeader();
 			this.loadGoogleFonts();
 
 		},
@@ -30,6 +31,29 @@
 		 **/
 		events: function () {
 
+
+		},
+
+		/**
+		 * Setup Header
+		 **/
+		setupHeader: function() {
+
+			// mobile menu toggles
+			$('#mobile-menu-toggler').on( 'click', function() {
+
+				$(this).toggleClass('is-active');
+				$('#header ul.menu').toggleClass('open');
+
+				return false;
+			});
+
+			// mobile sub-menu toggler
+			$('#header .menu-item-has-children').append('<span class="mobile-submenu-toggler"></span>');
+
+			$('.mobile-submenu-toggler').on( 'click', function() {
+				$(this).toggleClass('open').prev('.sub-menu').toggleClass('open');
+			});
 
 		},
 
