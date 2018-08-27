@@ -7,7 +7,7 @@ the_post(); ?>
 	
 	<section id="content" class="container">
 		<div class="row">
-			<article <?php post_class(); ?>>
+		<article <?php post_class( front::get_grid_class() ); ?>>
 				
 				<h1><?php the_title(); ?></h1>
 				
