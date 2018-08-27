@@ -11,7 +11,7 @@ the_post(); ?>
 	<div class="container">
 		<div class="row">
 			
-			<article class="<?php echo front::get_grid_class(); ?>">
+			<article class="<?php post_class( front::get_grid_class() ); ?>">
 				
 				<h1><?php the_title(); ?></h1>
 				
