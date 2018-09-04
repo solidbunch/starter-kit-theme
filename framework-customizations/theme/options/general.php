@@ -30,6 +30,22 @@ $options = array(
 							'desc'  => __('Lazy Load Images on site', 'fruitfulblanktextdomain'),
 						
 						),
+
+						'forms_antispam'	=> array(
+							'type'  => 'switch',
+							'label' => __('Antispam', 'fruitfulblanktextdomain'),
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __('Yes', 'fruitfulblanktextdomain')
+							),
+							'left-choice' => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __('No', 'fruitfulblanktextdomain')
+							),
+							'desc'  => __('Antispam for all Email Forms', 'fruitfulblanktextdomain'),
+
+						),
 					
 					)
 				),
