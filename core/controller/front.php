@@ -30,6 +30,10 @@ class front {
 		// Anti-spam
 		add_action( 'phpmailer_init', array( $this, 'antispam_form' ) );
 
+		// add GTM
+		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
+		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
+
 	}
 	
 	/**
@@ -138,5 +142,30 @@ class front {
 
 		return $phpmailer;
 	}
-	
+
+
+	/**
+	 * Load Google Tag Manager
+	 **/
+	function add_gtm_head() {
+		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+
+		if (!empty($tag_manager_code)) {
+
+			FFBLANK()->view->load( '/template-parts/tgm', array('head' => true, 'tag_manager_code' => $tag_manager_code) );
+
+		}
+	}
+
+	function add_gtm_body() {
+		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+
+		if (!empty($tag_manager_code)) {
+
+			FFBLANK()->view->load( '/template-parts/tgm', array('head' => false, 'tag_manager_code' => $tag_manager_code) );
+
+		}
+	}
+
+
 }

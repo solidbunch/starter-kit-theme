@@ -3,12 +3,12 @@
 $options = array(
 	array(
 		'base_options_tab' => array(
-			'title' => esc_html__( 'Base Settings', 'albedo' ),
+			'title' => esc_html__( 'Base Settings', 'fruitfulblanktextdomain' ),
 			'type' => 'tab',
 			'options' => array(
 
 				'img_lazy_load_box' => array(
-					'title'   => esc_html__( 'Extra', 'fruitfulblanktextdomain' ),
+					'title'   => esc_html__( 'Lazy Load', 'fruitfulblanktextdomain' ),
 					'type'    => 'box',
 					'attr'    => array(
 						'class' => 'prevent-auto-close'
@@ -31,6 +31,17 @@ $options = array(
 						
 						),
 
+					)
+				),
+
+				'antispam_box' => array(
+					'title'   => esc_html__( 'Antispam', 'fruitfulblanktextdomain' ),
+					'type'    => 'box',
+					'attr'    => array(
+						'class' => 'prevent-auto-close'
+					),
+					'options' => array(
+
 						'forms_antispam'	=> array(
 							'type'  => 'switch',
 							'label' => __('Antispam', 'fruitfulblanktextdomain'),
@@ -46,7 +57,7 @@ $options = array(
 							'desc'  => __('Antispam for all Email Forms', 'fruitfulblanktextdomain'),
 
 						),
-					
+
 					)
 				),
 
