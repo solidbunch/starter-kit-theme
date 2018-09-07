@@ -149,8 +149,9 @@ class front {
 	 **/
 	function add_gtm_head() {
 		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+		$site_url = get_site_url();
 
-		if (!empty($tag_manager_code)) {
+		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
 
 			FFBLANK()->view->load( '/template-parts/tgm', array('head' => true, 'tag_manager_code' => $tag_manager_code) );
 
@@ -159,8 +160,9 @@ class front {
 
 	function add_gtm_body() {
 		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+		$site_url = get_site_url();
 
-		if (!empty($tag_manager_code)) {
+		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
 
 			FFBLANK()->view->load( '/template-parts/tgm', array('head' => false, 'tag_manager_code' => $tag_manager_code) );
 
