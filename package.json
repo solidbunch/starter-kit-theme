@@ -5,9 +5,11 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "autoprefixer": "^9.1.5",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.2",
     "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.7",
     "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
@@ -16,18 +18,26 @@
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "pre-commit": "^1.2.2",
     "sass-loader": "^7.1.0",
     "svg-inline-loader": "^0.8.0",
     "uglifyjs-webpack-plugin": "^2.0.0",
     "webpack": "^4.19.0",
     "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
     "webpack-entry-plus": "^1.0.12"
   },
   "scripts": {
-    "dev": "webpack --mode development --progress --color",
-    "prod": "webpack --mode production --progress --color",
-    "watch": "webpack --watch --mode development --progress --color"
+    "dev": "webpack --mode development  --hide-modules --progress --color",
+    "prod": "webpack --mode production  --hide-modules --progress --color",
+    "watch": "webpack --watch --mode development  --hide-modules --progress --color",
+    "dev-server": "webpack-dev-server --mode development  --hide-modules --progress --colors"
   },
+  "precommit.silent": false,
+  "pre-commit": [
+    "npm run prod"
+  ],
   "author": "FFC",
   "license": "GPL-3.0"
 }
