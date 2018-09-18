@@ -29,14 +29,14 @@
     "webpack-entry-plus": "^1.0.12"
   },
   "scripts": {
-    "dev": "webpack --mode development  --hide-modules --progress --color",
-    "prod": "webpack --mode production  --hide-modules --progress --color",
-    "watch": "webpack --watch --mode development  --hide-modules --progress --color",
+    "dev": "webpack --mode development --hide-modules --progress --color",
+    "prod": "webpack --mode production --hide-modules --progress --color",
+    "watch": "webpack --watch --mode development --hide-modules --progress --color",
     "dev-server": "webpack-dev-server --mode development  --hide-modules --progress --colors"
   },
   "precommit.silent": false,
   "pre-commit": [
-    "npm run prod"
+    "prod"
   ],
   "author": "FFC",
   "license": "GPL-3.0"
