@@ -3,12 +3,12 @@
  * Page options array
  **/
 
-$headers = FFBLANK()->model->layout->get_default_layout( 'header' );
-$footers = FFBLANK()->model->layout->get_default_layout( 'footer' );
+$headers = TTT()->model->layout->get_default_layout( 'header' );
+$footers = TTT()->model->layout->get_default_layout( 'footer' );
 
 $choices_headers = $choices_footers = array(
-	''       => esc_html__( 'Inherit', 'fruitfulblanktextdomain' ),
-	'_none_' => esc_html__( 'None', 'fruitfulblanktextdomain' ),
+	''       => esc_html__( 'Inherit', 'tttextdomain' ),
+	'_none_' => esc_html__( 'None', 'tttextdomain' ),
 );
 
 foreach ( $headers->posts as $header ) {
@@ -21,12 +21,12 @@ foreach ( $footers->posts as $footer ) {
 
 $options = array(
 	'settings' => array(
-		'title'   => esc_html__( 'Header & Footer options', 'fruitfulblanktextdomain' ),
+		'title'   => esc_html__( 'Header & Footer options', 'tttextdomain' ),
 		'type'    => 'box',
 		'options' => array(
 			
 			'_this_header' => array(
-				'label'      => esc_html__( 'Page Header', 'fruitfulblanktextdomain' ),
+				'label'      => esc_html__( 'Page Header', 'tttextdomain' ),
 				'type'       => 'select',
 				'value'      => '',
 				'choices'    => $choices_headers,
@@ -37,7 +37,7 @@ $options = array(
 			
 			),
 			'_this_footer' => array(
-				'label'      => esc_html__( 'Page Footer', 'fruitfulblanktextdomain' ),
+				'label'      => esc_html__( 'Page Footer', 'tttextdomain' ),
 				'type'       => 'select',
 				'value'      => '',
 				'choices'    => $choices_footers,

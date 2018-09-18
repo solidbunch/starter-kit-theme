@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\view;
+namespace ttt\view;
 
 /**
  * Anything to do with templates
@@ -65,7 +65,7 @@ class view {
 				return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 			} else {
 				
-				$default_layout_query = FFBLANK()->model->layout->get_default_layout( $layout_type );
+				$default_layout_query = TTT()->model->layout->get_default_layout( $layout_type );
 				
 				if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
 					return do_shortcode( apply_filters( 'the_content', $default_layout_query->posts[0]->post_content ) );
@@ -75,7 +75,7 @@ class view {
 			
 		} else {
 			
-			$layouts = FFBLANK()->model->layout->get_layouts( $layout_type );
+			$layouts = TTT()->model->layout->get_layouts( $layout_type );
 			
 			if ( $layouts->posts ) {
 				foreach ( $layouts->posts as $layout ) {

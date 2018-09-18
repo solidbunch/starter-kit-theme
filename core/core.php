@@ -1,10 +1,10 @@
 <?php
 
-namespace ffblank;
+namespace ttt;
 
-use ffblank\helper\utils;
-use ffblank\model\database;
-use ffblank\view\view;
+use ttt\helper\utils;
+use ttt\model\database;
+use ttt\view\view;
 
 /**
  * Primary core controller
@@ -41,7 +41,7 @@ class core {
 		$this->config = require get_template_directory() . '/core/config.php';
 		
 		// Translation support
-		load_theme_textdomain( 'fruitfulblanktextdomain', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'tttextdomain', get_template_directory() . '/languages' );
 		
 		// Load core classes
 		$this->_dispatch();
@@ -101,7 +101,7 @@ class core {
 				
 				// Avoid recursion
 				if ( $class !== get_class( $this ) ) {
-					$classPath            = "\\ffblank\\{$layer}\\{$class}";
+					$classPath            = "\\ttt\\{$layer}\\{$class}";
 					$this->$layer->$class = new $classPath();
 				}
 				

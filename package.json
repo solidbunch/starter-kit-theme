@@ -31,7 +31,7 @@
   },
   "scripts": {
     "replaceNames" : "./node_modules/.bin/gulp replaceNames",
-    "sass" : "./node_modules/.bin/gulp sass",
+    "saas" : "./node_modules/.bin/gulp saas",
     "watch" : "./node_modules/.bin/gulp watch"
   },
   "author": "FFC",

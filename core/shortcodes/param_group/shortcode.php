@@ -20,7 +20,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			$data = $this->getDataArray( $atts, $content );
 
 			try {
-				return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
+				return VOIPSTUDIO()->view->load( '/view/view', $data, true, $shortcode_dir );
 			} catch ( \Exception $exception ) {
 				error_log( $exception );
 
@@ -38,7 +38,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 		 * @return void
 		 */
 		protected function addStyles( $shortcode ) {
-			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
 
 			wp_enqueue_style( 'param_group', $shortcode_uri . '/assets/styles.css' );
 		}

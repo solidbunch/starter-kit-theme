@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\controller;
+namespace ttt\controller;
 
 /**
  * Theme init
@@ -38,7 +38,7 @@ class init {
 	function register_sidebars() {
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Left Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Left Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-left',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -47,7 +47,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Right Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Right Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-right',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -56,7 +56,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Shop Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Shop Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-shop',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -65,7 +65,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Col 1 Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Footer Col 1 Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-footer-1',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -74,7 +74,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Col 2 Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Footer Col 2 Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-footer-2',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -83,7 +83,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Col 3 Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Footer Col 3 Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-footer-3',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
@@ -92,7 +92,7 @@ class init {
 		) );
 		
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Col 4 Sidebar', 'fruitfulblanktextdomain' ),
+			'name'          => esc_html__( 'Footer Col 4 Sidebar', 'tttextdomain' ),
 			'id'            => 'sidebar-footer-4',
 			'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content">',
 			'after_widget'  => '<div class="clearfix"></div></div></div>',

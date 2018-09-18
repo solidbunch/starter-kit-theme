@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\helper;
+namespace ttt\helper;
 
 /**
  * Utils helper
@@ -87,22 +87,22 @@ class utils {
 	 * Returns shortcodes uri / path
 	 **/
 	public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
-		return \FFBLANK()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
+		return \TTT()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
-		return \FFBLANK()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
+		return \TTT()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	/**
 	 * Returns widgets uri / path
 	 **/
 	public static function get_widgets_uri( $widget_name, $path = '' ) {
-		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \TTT()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	public static function get_widgets_dir( $widget_name, $path = '' ) {
-		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \TTT()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	/**
@@ -112,7 +112,7 @@ class utils {
 		
 		$config = array();
 		
-		foreach ( \FFBLANK()->config['social_profiles'] as $k => $v ) {
+		foreach ( \TTT()->config['social_profiles'] as $k => $v ) {
 			$config[ $k ] = array(
 				'type'  => 'text',
 				'label' => $v,
@@ -147,7 +147,7 @@ class utils {
 	 * Sanitize URL
 	 **/
 	public static function sanitize_uri( $url ) {
-		if ( strpos( $url, 'http' ) !== 0 ) {
+		if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 			$protocol = \is_ssl() ? 'https:' : 'http:';
 			if ( $url <> '' ) {
 				$url = $protocol . $url;

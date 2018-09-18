@@ -7,7 +7,7 @@
  * @link https://github.com/Automattic/jetpack/blob/master/modules/lazy-images/lazy-images.php
  */
 
-namespace ffblank\controller;
+namespace ttt\controller;
 
 /**
  * Add LazyLoad support for all images
@@ -60,7 +60,7 @@ class lazy_load {
 		}
 		
 		
-		$is_img_lazy_load_enabled = (int)\ffblank\helper\utils::get_option( 'img_lazy_load', 1 );
+		$is_img_lazy_load_enabled = (int)\ttt\helper\utils::get_option( 'img_lazy_load', 1 );
 
 		if ( $is_img_lazy_load_enabled !== 1 ) {
 			return true;
@@ -72,7 +72,7 @@ class lazy_load {
 		}
 		
 		// If AMP is active, do nothing.
-		if ( \ffblank\helper\utils::is_amp() ) {
+		if ( \ttt\helper\utils::is_amp() ) {
 			return true;
 		}
 		
@@ -252,8 +252,8 @@ class lazy_load {
 	 * Load lazy JS
 	 */
 	function load_assets() {
-		wp_enqueue_script( 'ffblank-lazy-load-images', FFBLANK()->config['assets_uri'] . 'js/lazyload.js', array(), FFBLANK()->config['cache_time'], false );
-		wp_script_add_data( 'ffblank-lazy-load-images', 'defer', true );
+		wp_enqueue_script( 'ttt-lazy-load-images', TTT()->config['assets_uri'] . 'js/lazyload.js', array(), TTT()->config['cache_time'], false );
+		wp_script_add_data( 'ttt-lazy-load-images', 'defer', true );
 	}
 
 	/**

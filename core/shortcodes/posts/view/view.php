@@ -37,7 +37,7 @@ $atts[] = 'class="shortcode-posts"';
 	
 	<?php else: ?>
 		
-		<p><?php _e( 'No posts found', 'fruitfulblanktextdomain' ); ?></p>
+		<p><?php _e( 'No posts found', 'tttextdomain' ); ?></p>
 	
 	<?php endif; ?>
 

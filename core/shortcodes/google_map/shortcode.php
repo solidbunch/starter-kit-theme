@@ -7,7 +7,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			$shortcode_dir = dirname( __FILE__ );
 			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
 			
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 			
@@ -24,7 +24,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			);
 			
 			$api_key = $data['atts']['api_key'] <> '' ? '?key=' . $data['atts']['api_key'] : '';
-			wp_enqueue_script( 'google-maps-api', '//maps.googleapis.com/maps/api/js' . $api_key, false, FFBLANK()->config['cache_time'], true );
+			wp_enqueue_script( 'google-maps-api', '//maps.googleapis.com/maps/api/js' . $api_key, false, TTT()->config['cache_time'], true );
 			
 			ob_start();
 			
@@ -34,7 +34,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			wp_add_inline_script( 'google-maps-api', $map_loader_script );
 			
-			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
+			return TTT()->view->load( '/view/view', $data, true, $shortcode_dir );
 		}
 		
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\helper;
+namespace ttt\helper;
 
 /**
  * Media helper
@@ -22,7 +22,7 @@ class media {
 		$is_queried_post_thumb = (!empty($args['url']) && ( \get_the_post_thumbnail_url( \get_the_ID(), 'full' ) === $args['url']));
 		
 		$default_args = array(
-			'url'    => \ffblank\helper\utils::sanitize_uri( \get_the_post_thumbnail_url( \get_the_ID(), 'full' ) ),
+			'url'    => \ttt\helper\utils::sanitize_uri( \get_the_post_thumbnail_url( \get_the_ID(), 'full' ) ),
 			'width'  => 800,
 			'height' => 400,
 			'crop'   => true,
@@ -37,9 +37,9 @@ class media {
 		$args = wp_parse_args( $args, $default_args );
 		
 		// SVG
-		$is_svg = \ffblank\helper\utils::is_attachment_svg( $args['attachment_id'],  $args['url'] );
+		$is_svg = \ttt\helper\utils::is_attachment_svg( $args['attachment_id'],  $args['url'] );
 				
-		$src = \aq_resize( \ffblank\helper\utils::sanitize_uri( $args['url'] ), \absint( $args['width'] ), \absint( $args['height'] ), (bool) $args['crop'] );
+		$src = \aq_resize( \ttt\helper\utils::sanitize_uri( $args['url'] ), \absint( $args['width'] ), \absint( $args['height'] ), (bool) $args['crop'] );
 		
 		if ( $src == false || $is_svg ) {
 			$image_atts[] = 'src="' . \esc_url( $args['url'] ) . '"';
@@ -82,8 +82,8 @@ class media {
 		
 		$_img = '<img ' . implode( ' ', $image_atts ) . '>';
 		
-		if ( ! \FFBLANK()->controller->lazy_load->skip() ) {
-			return \FFBLANK()->controller->lazy_load->add_image_placeholders( $_img );
+		if ( ! \TTT()->controller->lazy_load->skip() ) {
+			return \TTT()->controller->lazy_load->add_image_placeholders( $_img );
 		}
 		
 		return $_img;
