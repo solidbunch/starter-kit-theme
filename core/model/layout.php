@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\model;
+namespace ttt\model;
 
 class layout {
 	

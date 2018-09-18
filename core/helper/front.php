@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\helper;
+namespace ttt\helper;
 
 /**
  * Front helper

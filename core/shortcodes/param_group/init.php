@@ -1,10 +1,10 @@
 <?php
 
 vc_map( array(
-	'name'        => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
+	'name'        => esc_html__( 'Param Group', 'tttextdomain' ),
 	'base'        => 'param_group',
-	'category'    => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
-	'description' => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
+	'category'    => esc_html__( 'Param Group', 'tttextdomain' ),
+	'description' => esc_html__( 'Param Group', 'tttextdomain' ),
 	'params'      => array(
 		array(
 			'type'       => 'textfield',

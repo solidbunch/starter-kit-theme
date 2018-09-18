@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\controller;
+namespace ttt\controller;
 
 /**
  * Menu controller
@@ -25,8 +25,8 @@ class menu {
 	function register_menus() {
 		
 		register_nav_menus( array(
-			'header_menu'     => esc_html__( 'Header Menu', 'fruitfulblanktextdomain' ),
-			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'fruitfulblanktextdomain' ),
+			'header_menu'     => esc_html__( 'Header Menu', 'tttextdomain' ),
+			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'tttextdomain' ),
 		) );
 		
 	}

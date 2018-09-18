@@ -2,15 +2,15 @@
 
 module.exports = {
 	theme: {
-		prefix: 'ffblank', // ffblank
-		singleton: 'FFBLANK', // FFBLANK
-		textdomain: 'fruitfulblanktextdomain',  // fruitfulblanktextdomain
-		name: 'Fruitful Blank Theme', // Fruitful Blank Theme
-		author: 'Fruitful Code' // Fruitful Code
+		prefix: 'ttt', // ffblank
+		singleton: 'TTT', // FFBLANK
+		textdomain: 'tttextdomain',  // fruitfulblanktextdomain
+		name: 'Test Task Theme', // Fruitful Blank Theme
+		author: 'unbirth' // Fruitful Code
 	},
 	dev: {
 		browserSync: {
-			proxyURL: 'blank.nul', // yourlocaldomain,
+			proxyURL: 'design.loc', // yourlocaldomain,
 			bypassPort: '8181'
 		},
 		/*

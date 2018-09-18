@@ -1,12 +1,12 @@
 <?php
 
-namespace ffblank\controller;
+namespace ttt\controller;
 
 /**
  * Front side controller
  **/
 class front {
-
+	
 	/**
 	 * Constructor
 	 **/
@@ -26,14 +26,7 @@ class front {
 		
 		// remove jquery migrate for optimization reasons
 		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
-
-		// Anti-spam
-		add_action( 'phpmailer_init', array( $this, 'antispam_form' ) );
-
-		// add GTM
-		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
-		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
-
+		
 	}
 	
 	/**
@@ -60,14 +53,14 @@ class front {
 		
 		// JS scripts
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/libs/popper/popper.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
-		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
+		wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/libs/popper/popper.min.js', array( 'jquery' ), TTT()->config['cache_time'], true );
+		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.js', array( 'jquery' ), TTT()->config['cache_time'], true );
 
-		wp_register_script( 'google-fonts', get_template_directory_uri() . '/assets/libs/google-fonts/webfont.js', false, FFBLANK()->config['cache_time'], true );
+		wp_register_script( 'google-fonts', get_template_directory_uri() . '/assets/libs/google-fonts/webfont.js', false, TTT()->config['cache_time'], true );
 		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.js', array(
 			'jquery',
 			'google-fonts'
-		), FFBLANK()->config['cache_time'], true );
+		), TTT()->config['cache_time'], true );
 		
 		$js_vars = array(
 			'ajaxurl'    => esc_url(admin_url( 'admin-ajax.php' )),
@@ -80,21 +73,15 @@ class front {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
-
-		if ( $this->antispam_enabled() === 1 ) {
-			wp_enqueue_script( 'fruitfulblankprefix-antispam', get_template_directory_uri() . '/assets/js/antispam.js', array(
-				'jquery',
-			), FFBLANK()->config['cache_time'], true );
-		}
 		
 		
 		// CSS styles
-		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/libs/font-awesome/css/font-awesome.min.css', false, FFBLANK()->config['cache_time'] );
-		wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/libs/animatecss/animate.min.css', false, FFBLANK()->config['cache_time'] );
-		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.css', false, FFBLANK()->config['cache_time'] );
-		//wp_enqueue_style( 'uikit', get_template_directory_uri() . '/assets/libs/uikit/style.css', false, FFBLANK()->config['cache_time'] );
-		//wp_enqueue_style( 'uikit-elements', get_template_directory_uri() . '/assets/libs/uikit/elements.css', false, FFBLANK()->config['cache_time'] );
-		wp_enqueue_style( 'fruitfulblankprefix-style', get_template_directory_uri() . '/assets/css/front/front.css', false, FFBLANK()->config['cache_time'] );
+		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/libs/font-awesome/css/font-awesome.min.css', false, TTT()->config['cache_time'] );
+		wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/libs/animatecss/animate.min.css', false, TTT()->config['cache_time'] );
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.css', false, TTT()->config['cache_time'] );
+		//wp_enqueue_style( 'uikit', get_template_directory_uri() . '/assets/libs/uikit/style.css', false, TTT()->config['cache_time'] );
+		//wp_enqueue_style( 'uikit-elements', get_template_directory_uri() . '/assets/libs/uikit/elements.css', false, TTT()->config['cache_time'] );
+		wp_enqueue_style( 'fruitfulblankprefix-style', get_template_directory_uri() . '/assets/css/front/front.css', false, TTT()->config['cache_time'] );
 		
 	}
 	
@@ -123,51 +110,5 @@ class front {
 			$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
 		}
 	}
-
-	/**
-	 * Anti-spam
-	 **/
-	function antispam_enabled() {
-		return (int)\ffblank\helper\utils::get_option( 'forms_antispam', 0 );
-	}
-
-	function antispam_form($phpmailer) {
-
-		if ( $this->antispam_enabled() !== 1 )
-			return;
-
-		if ( ! empty( $_POST ) && empty( $_POST['as_code'] ) ) {
-			$phpmailer->ClearAllRecipients();
-		}
-
-		return $phpmailer;
-	}
-
-
-	/**
-	 * Load Google Tag Manager
-	 **/
-	function add_gtm_head() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
-		$site_url = get_site_url();
-
-		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
-
-			FFBLANK()->view->load( '/template-parts/tgm', array('head' => true, 'tag_manager_code' => $tag_manager_code) );
-
-		}
-	}
-
-	function add_gtm_body() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
-		$site_url = get_site_url();
-
-		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
-
-			FFBLANK()->view->load( '/template-parts/tgm', array('head' => false, 'tag_manager_code' => $tag_manager_code) );
-
-		}
-	}
-
-
+	
 }

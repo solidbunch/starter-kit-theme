@@ -62,7 +62,7 @@
 		 **/
 		loadGoogleFonts: function () {
 
-			WebFont.load({google: {families: ["Montserrat:300,400,500,600,700,800"]}});
+			WebFont.load({google: {families: ["Oswald:300,400,700", "PT+Serif:400,400i"]}});
 
 		},
 

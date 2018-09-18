@@ -1,6 +1,6 @@
 <?php
 
-namespace ffblank\controller;
+namespace ttt\controller;
 
 /**
  * Backend controller
@@ -28,7 +28,7 @@ class backend {
 	 * Load admin assets
 	 **/
 	function load_assets() {
-		wp_enqueue_style( 'fruitfulblankprefix-backend', get_template_directory_uri() . '/assets/css/admin/admin.css', false, FFBLANK()->config['cache_time'] );
+		wp_enqueue_style( 'fruitfulblankprefix-backend', get_template_directory_uri() . '/assets/css/admin/admin.css', false, TTT()->config['cache_time'] );
 	}
 	
 	/**
@@ -66,8 +66,8 @@ class backend {
 	function add_theme_options_menu( $data ) {
 		
 		add_theme_page(
-			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
-			esc_html__( 'Website Settings', 'fruitfulblanktextdomain' ),
+			esc_html__( 'Website Settings', 'tttextdomain' ),
+			esc_html__( 'Website Settings', 'tttextdomain' ),
 			$data['capability'],
 			$data['slug'],
 			$data['content_callback']

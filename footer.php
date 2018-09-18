@@ -1,5 +1,5 @@
 <footer id="composer-footer">
-	<?php echo FFBLANK()->view->load_composer_layout( 'footer' ); ?>
+	<?php echo TTT()->view->load_composer_layout( 'footer' ); ?>
 </footer>
 
 <footer id="footer">
@@ -36,7 +36,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="d-flex font-14">
-							<div class="m-t-10 m-b-10 copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
+							<div class="m-t-10 m-b-10 copyright"><?php echo \ttt\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
 							<div class="links ml-auto m-t-10 m-b-10">
 								
 								<?php wp_nav_menu( array(
