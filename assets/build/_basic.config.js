@@ -2,7 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-return {
+
+module.exports =  {
     optimization: {
         minimizer: [
             // enable the js minification plugin
@@ -21,7 +22,7 @@ return {
         ]
     },
     output: {
-        path: path.resolve(__dirname),
+        path: path.resolve(__dirname + " /../../"),
         filename: "./assets/js/build/[name].js"
     },
     module: {
