@@ -1,4 +1,4 @@
-const baseConfig = require('./_basic.config');
+const baseConfig = require('./_basic.config')();
 // include the css extraction and minification plugins
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 

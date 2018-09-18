@@ -1,4 +1,4 @@
-const baseConfig = require('./_basic.config');
+const baseConfig = require('./_basic.config')();
 const path = require('path');
 const glob = require('glob');
 const pathTo = path.resolve(__dirname + "/../") + '/core/shortcodes/';

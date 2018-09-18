@@ -11,6 +11,7 @@
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.24.7",
     "browser-sync-webpack-plugin": "^2.2.2",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
@@ -32,7 +33,7 @@
     "dev": "webpack --mode development --hide-modules --progress --color",
     "prod": "webpack --mode production --hide-modules --progress --color",
     "watch": "webpack --watch --mode development --hide-modules --progress --color",
-    "dev-server": "webpack-dev-server --mode development  --hide-modules --progress --colors"
+    "browser-sync": "cross-env SYNC=\"true\" webpack --watch --mode development --hide-modules --progress --color"
   },
   "precommit.silent": false,
   "pre-commit": [
