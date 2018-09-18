@@ -1,4 +1,4 @@
-const baseConfig = require('./_basic.config');
+const baseConfig = require('./_basic.config')();
 const path = require('path');
 const glob = require('glob');
 //read all styles.scss from widgets

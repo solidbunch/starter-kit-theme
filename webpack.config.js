@@ -14,6 +14,8 @@ function isEmptyObject(obj) {
 
 const config = [];
 
+const SYNC = process.env.SYNC;
+
 configs.forEach(function (item) {
     if(typeof item.entry !== 'undefined' && isEmptyObject(item.entry) === false ) {
         config.push(item);
