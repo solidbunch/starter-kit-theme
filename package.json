@@ -30,9 +30,9 @@
     "gulp-tabify": "0.0.2"
   },
   "scripts": {
-    "replaceNames" : "./node_modules/.bin/gulp replaceNames",
-    "saas" : "./node_modules/.bin/gulp saas",
-    "watch" : "./node_modules/.bin/gulp watch"
+    "replaceNames": "./node_modules/.bin/gulp replaceNames",
+    "saas": "./node_modules/.bin/gulp saas",
+    "watch": "./node_modules/.bin/gulp watch"
   },
   "author": "FFC",
   "license": "GPL-3.0"
