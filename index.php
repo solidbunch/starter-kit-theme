@@ -3,6 +3,8 @@
 use ttt\helper\front;
 use ttt\helper\media;
 
+$titleMaxLength = 25;
+
 get_header(); ?>
 	
 	<section id="content" class="container">
@@ -16,7 +18,21 @@ get_header(); ?>
 					
 					<article <?php post_class( array( 'col-sm-6' ) ); ?>>
 						
-						<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+						<h2>
+							<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+
+								<?php
+
+									if ( strlen( get_the_title() ) > $titleMaxLength ) {
+									    echo esc_html__(substr( get_the_title(), 0, $titleMaxLength ) . '...');
+									} else {
+                                        echo esc_html__( get_the_title() );
+                                    }
+
+								?>
+
+							</a>
+						</h2>
 						
 						<div class="thumb">
 							<a href="<?php the_permalink(); ?>">
@@ -29,7 +45,7 @@ get_header(); ?>
 										an example how to print image tag with srcset
 									-->
 								
-									<?php echo has_post_thumbnail() ? media::img() : media::img(array('url' => 'https://dummyimage.com/350x175/eee/aaaaaa')); ?>
+									<?php echo has_post_thumbnail() ? media::img(array('width'  => 350, 'height' => 175, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/350x175/eee/aaaaaa')); ?>
 
 
 							</a>
