@@ -1,4 +1,4 @@
 module.exports = {
-    proxy: 'blank.nul', // yourlocaldomain,
+    proxy: 'design.loc', // yourlocaldomain,
     port: '8181'
 };
