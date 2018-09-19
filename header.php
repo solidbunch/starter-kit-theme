@@ -66,10 +66,10 @@
 				</div>
 
 				<div class="col-xs-12 col-sm-4 text-right">
-
-					<input type="text" name="search" class="search" placeholder="SEARCH">
-					<button type="submit" class="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-
+                    <form action="/" method="get">
+					    <input type="text" name="search" class="search" placeholder="SEARCH">
+					    <button type="submit" class="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
 				</div>
 
 			</div>
