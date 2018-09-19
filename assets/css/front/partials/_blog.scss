@@ -37,8 +37,7 @@
 }
 
 #content {
-
-    margin-bottom: 105px;
+  margin-bottom: 105px;
 
   .row {
     flex-direction: row;
@@ -50,7 +49,7 @@
 }
 
 article {
-  margin-top: 20px;
+  max-width: 100%;
 
   h2 {
     font-size: 24px;
@@ -58,7 +57,7 @@ article {
 
   .post-data {
     font-size: 14px;
-    margin: 10px 0 5px;
+    margin: 10px 0 20px;
   }
 }
 
@@ -76,5 +75,127 @@ article {
 
   .current {
     color: #eb3c00;
+  }
+}
+
+blockquote, q {
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  display: inline-block;
+  padding: 15px 25px;
+  font-family: 'PT Serif';
+  margin-bottom: 1rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+cite {
+  display: block;
+  width: 100%;
+  text-align: right;
+  font-family: 'PT Serif';
+}
+
+
+table {
+  thead {
+    border-bottom: 1px dotted #ccc;
+  }
+
+  th,
+  td {
+    border-right: 1px dotted #ccc;
+    border-bottom: 1px dotted #ccc;
+    padding: 5px;
+    &:last-child {
+      border-right: none;
+    }
+
+  }
+
+  tr:last-child {
+    th, td {
+      border-bottom: none;
+    }
+  }
+}
+
+
+dl {
+  width:100%;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+dt, dd {
+  display: inline-block;
+  width: 20%;
+}
+dt {
+  text-align: right;
+  font-weight: bold;
+  clear: left;
+  float: left;
+
+  & + dd {
+    clear: both;
+  }
+
+  &:first-child {
+    padding-top: .5em;
+  }
+
+  & dt {
+    width: 100%;
+    float: none;
+    padding: 0 70% 0 0;
+
+    & + dd {
+      margin-top: -2em;
+
+      & + dt {
+        margin-top: 2em;
+      }
+    }
+  }
+}
+
+dd {
+  width: 80%;
+  padding: .5em 0;
+  padding-left: 1em;
+  clear: right;
+
+  & + dt {
+    clear: both;
+    padding-top: .5em;
+  }
+}
+
+ul {
+  li {
+    list-style: disc;
+
+    li {
+      list-style: disc;
+
+      li {
+        list-style: disc;
+
+        li {
+          list-style: disc;
+
+          li {
+            list-style: disc;
+          }
+        }
+      }
+    }
   }
 }
