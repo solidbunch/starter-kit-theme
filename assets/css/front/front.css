@@ -2866,6 +2866,79 @@ ul li {
         ul li li li li li {
           list-style: disc; }
 
+@media (max-width: 1023px) {
+  #nav .search {
+    width: 100%; } }
+
+@media (max-width: 767px) {
+  header {
+    text-align: center; }
+  header #logo {
+    margin: 20px 0px 5px;
+    width: 100%; }
+  header #sublogo {
+    margin: 0; }
+  header .text-right {
+    margin-top: 15px; }
+  header .login {
+    width: 100%;
+    text-align: center; }
+  header .contact-button {
+    position: relative;
+    left: 10px; }
+  #nav ul {
+    position: relative;
+    display: inline-block;
+    width: calc(100% + 20px);
+    left: -10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+  #nav ul li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px; }
+  #nav ul li a {
+    font-size: 20px; }
+  #nav .search {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    font-size: 20px;
+    width: 100%;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+    margin-left: -10px; }
+  #nav .submit {
+    top: 10px;
+    right: 5px; }
+  #content .article {
+    padding: 10px; }
+  #content .article h1 {
+    font-size: 40px;
+    max-width: 100%; }
+  #content .article h3 {
+    line-height: 1.5em;
+    font-size: 18px;
+    max-width: 100%;
+    padding: 0px 0px; }
+  #content .news .row-header {
+    padding: 0px 0px 20px;
+    font-size: 20px; }
+  #content .news a img {
+    width: 100%; }
+  #content .news a h5 {
+    font-size: 20px;
+    max-width: 100%;
+    text-align: center;
+    padding-bottom: 20px; } }
+
 /*------------------------------------------------------------------
 [Footer styles]
 -------------------------------------------------------------------*/
