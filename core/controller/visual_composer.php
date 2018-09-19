@@ -27,7 +27,7 @@ class visual_composer {
 	function custom_css_classes_for_vc_grid( $class_string, $tag ) {
 		
 		if ( $tag == 'vc_row' || $tag == 'vc_row_inner' ) {
-			$class_string = str_replace( 'vc_row-fluid', 'row', $class_string );
+			$class_string = str_replace( 'vc_row-fluid', 'row-fluid', $class_string );
 			$class_string = str_replace( 'vc_row', 'row', $class_string );
 			$class_string = str_replace( 'wpb_row', '', $class_string );
 			$class_string = str_replace( 'row-o-content-bottom', 'align-items-end', $class_string );
