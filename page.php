@@ -4,30 +4,36 @@
  */
 
 use ttt\helper\front;
+use ttt\helper\utils;
 
 get_header();
+
 the_post(); ?>
 	
 	<div id="content" class="container">
 
-		<div class="row">
-			<div class="col-sm-12">
+        <?php
 
-				<div class="row article">
-					
-					<article class="<?php echo front::get_grid_class(0); ?>">
-						
-						<h1><?php the_title(); ?></h1>
-						
-						<?php the_content(); ?>
+        if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
 
-					</article>
-					
-					<?php get_sidebar(); ?>
-				
-				</div>
+            $current_position = fw_ext_sidebars_get_current_position();
+            $reversed = $current_position === 'left' ? 'reversed' : '';
+        }
 
-			</div>
+        ?>
+
+		<div class="row <?php echo $reversed; ?>">
+
+            <article class="<?php echo front::get_grid_class(4); ?>">
+
+                <h1><?php the_title(); ?></h1>
+
+                <?php the_content(); ?>
+
+            </article>
+
+            <?php get_sidebar(); ?>
+
 		</div>
 
 	</div>

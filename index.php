@@ -4,21 +4,34 @@ use ttt\helper\front;
 use ttt\helper\media;
 
 $titleMaxLength = 25;
+$postsPerPage   = 10;
 
 get_header(); ?>
 	
 	<section id="content" class="container">
+
 		<div class="row">
 			
 			<div id="posts" class="<?php echo front::get_grid_class(); ?>">
 
 				<div class="row">
-				
-				<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
-					
-					<article <?php post_class( array( 'col-sm-6' ) ); ?>>
+
+                <?php
+
+                    $args = array(
+                        'posts_per_page' => $postsPerPage
+                    );
+
+                    $query = new WP_Query($args);
+
+				?>
+
+				<?php if ( $query->have_posts() ): while ( $query->have_posts() ) : $query->the_post(); ?>
+
+					<article <?php post_class( is_sticky() ? array( 'col-sm-12' ) : array( 'col-sm-6' ) ); ?>>
 						
 						<h2>
+
 							<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
 
 								<?php
@@ -32,9 +45,11 @@ get_header(); ?>
 								?>
 
 							</a>
+
 						</h2>
 						
 						<div class="thumb">
+
 							<a href="<?php the_permalink(); ?>">
 						
 									<!-- an example how to resize image
@@ -49,6 +64,7 @@ get_header(); ?>
 
 
 							</a>
+
 						</div>
 						
 						<?php get_template_part( 'template-parts/post-data' ); ?>
@@ -84,6 +100,7 @@ get_header(); ?>
 			<?php get_sidebar(); ?>
 		
 		</div>
+
 	</section>
 
 <?php get_footer();

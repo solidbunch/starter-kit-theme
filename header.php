@@ -15,18 +15,28 @@
 		<div class="container">
 
 			<div class="row flex">
+
 				<div class="col-sm-8">
+
 					<h1 id="logo">
 						<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo('name'); ?></a>
 					</h1>
+
 					<small id="sublogo"><?php bloginfo('description'); ?></small>
+
 				</div>
-				<div class="col-sm-2 text-right">
+
+                <?php
+
+				/*<div class="col-sm-2 text-right">
 					<a class="login" href="#"><i class="fa fa-key" aria-hidden="true"></i> Login</a>
 				</div>
 				<div class="col-sm-2 text-right">
 					<button class="btn contact-button">Contact me</button>
-				</div>
+				</div>*/
+
+				?>
+
 			</div>
 
 		</div>
@@ -38,6 +48,7 @@
 		<div class="container">
 
 			<div class="row">
+
 				<div class="col-xs-12 col-sm-8">
 
 					<?php 
@@ -53,10 +64,14 @@
 					?>
 
 				</div>
+
 				<div class="col-xs-12 col-sm-4 text-right">
+
 					<input type="text" name="search" class="search" placeholder="SEARCH">
 					<button type="submit" class="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
 				</div>
+
 			</div>
 
 		</div>

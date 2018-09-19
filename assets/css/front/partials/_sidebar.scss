@@ -2,6 +2,20 @@
 [Sidebar styles]
 -------------------------------------------------------------------*/
 #sidebar {
+	margin-top: 25px;
+
+	ul {
+		list-style: none;
+
+		a {
+			color: #282828;
+			&:hover {
+				text-decoration: none;
+				color: #eb3c00;
+			}
+		}
+	}
+
 	@include media-breakpoint-down(sm) {
 		margin-top: 35px;
 	}
@@ -15,5 +29,4 @@
 			display: none;
 		}
 	}
-
 }

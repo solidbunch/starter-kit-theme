@@ -17,6 +17,11 @@ header {
 		display: inline-block;
 		line-height: 1em;
 		margin: 33px 0;
+
+		&:hover a {
+			color: #e13200;
+			text-decoration: none;
+		}
 	}
 
 	#sublogo {
@@ -63,6 +68,7 @@ header {
 
 #nav {
 	background-color: #282828;
+	min-height: 73px;
 
 	ul {
 		list-style: none;
@@ -81,6 +87,31 @@ header {
 				height: 100%;
 				width: 100%;
 				color: #ffffff;
+				text-decoration: none;
+			}
+
+			ul {
+				display: none;
+				position: absolute;
+				margin-left: -16px;
+				top: 73px;
+				z-index: 1;
+				box-sizing: content-box;
+			}
+
+			&:hover ul {
+				display: block;
+
+				li {
+					background: #282828;
+					display: block;
+					float: none;
+					min-width: 100px;
+
+					&:hover {
+						background: #eb3c00;
+					}
+				}
 			}
 		}
 

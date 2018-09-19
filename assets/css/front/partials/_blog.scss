@@ -2,42 +2,79 @@
 [Blog styles]
 -------------------------------------------------------------------*/
 
-#content .article {
-  font-family: 'PT Serif';
-  padding: 28px 0;
+.page {
+  article {
+    font-family: 'PT Serif';
+    padding: 28px 0;
 
-  h1 {
-    font-family: 'Oswald';
-    font-size: 52px;
-    letter-spacing: -0.6px;
-    padding: 4px 0;
-    max-width: 70%;
-  }
+    h1 {
+      font-family: 'Oswald';
+      font-size: 52px;
+      letter-spacing: -0.6px;
+      padding: 4px 0;
+      max-width: 70%;
+    }
 
-  h3 {
-    line-height: 36px;
-    max-width: 75%;
-    padding: 20px 0;
-  }
+    h3 {
+      line-height: 36px;
+      max-width: 75%;
+      padding: 20px 0;
+    }
 
-  strong {
-    font-size: 19px;
-  }
-
-  ul {
-    padding: 2px 18px;
-
-    li {
+    strong {
       font-size: 19px;
-      letter-spacing: -0.5px;
+    }
+
+    ul {
+      padding: 2px 18px;
+
+      li {
+        font-size: 19px;
+        letter-spacing: -0.5px;
+      }
     }
   }
 }
 
+#content {
+
+    margin-bottom: 105px;
+
+  .row {
+    flex-direction: row;
+  }
+
+  .reversed {
+    flex-direction: row-reverse;
+  }
+}
+
 article {
-  margin-top: 15px;
+  margin-top: 20px;
 
   h2 {
     font-size: 24px;
+  }
+
+  .post-data {
+    font-size: 14px;
+    margin: 10px 0 5px;
+  }
+}
+
+#posts {
+  margin-top: 5px;
+}
+
+.pagination {
+  justify-content: space-between;
+  margin-top: 30px;
+
+  a, span {
+    color: #282828;
+  }
+
+  .current {
+    color: #eb3c00;
   }
 }
