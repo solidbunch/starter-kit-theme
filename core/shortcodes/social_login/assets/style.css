@@ -1,0 +1,17 @@
+.shortcode-social-icons {
+  margin-bottom: 30px; }
+  .shortcode-social-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff; }
+  .shortcode-social-icons a.facebook {
+    background: #4267b2; }
+  .shortcode-social-icons a.twitter {
+    background: #1da1f2; }
+  .shortcode-social-icons a.google {
+    background: #e53935; }
+
+/*# sourceMappingURL=style.css.map */
