@@ -38,6 +38,8 @@ class visual_composer {
 			
 			$class_string = str_replace( 'vc_col-sm-', 'col-md-', $class_string );
 			$class_string = str_replace( 'vc_col-', 'col-', $class_string );
+			//Todo
+			//$class_string = preg_replace( '/vc_hidden\-([a-z]{2})/', 'd-$1-none', $class_string );
 			
 		}
 		
