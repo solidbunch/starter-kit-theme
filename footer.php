@@ -39,16 +39,22 @@
 							<div class="m-t-10 m-b-10 copyright"><?php echo \ttt\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
 							<div class="links ml-auto m-t-10 m-b-10">
 								
-								<?php wp_nav_menu( array(
+								<?php
+
+								$location = 'bottom_bar_menu';
+
+									wp_nav_menu( array(
 									'menu'            => 'bottom_bar_menu',
-									'theme_location'  => 'bottom_bar_menu',
+									'theme_location'  => $location,
 									'container'       => 'div',
 									'container_id'    => 'bottom_bar_menu',
 									'container_class' => '',
-									'menu_id'         => false,
+									'menu_id'         => 'bottom-menu',
 									'menu_class'      => '',
 									'depth'           => 1,
-								) ); ?>
+								) );
+
+								?>
 							
 							</div>
 						</div>

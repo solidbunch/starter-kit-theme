@@ -51,25 +51,29 @@
 
 				<div class="col-xs-12 col-sm-8">
 
-					<?php 
+					<?php
 
-						wp_nav_menu( array(
-							'menu'            => 'header_menu',
-							'theme_location'  => 'header_menu',
-							'container'       => 'ul',
-							'menu_id'         => nav-menu,
-							//'depth'           => 4,
-						) );
+						$location = 'header_menu';
+
+						if ( has_nav_menu($location) ) {
+
+							wp_nav_menu(array(
+								'menu' => $location,
+								'theme_location' => 'header_menu',
+								'container' => 'ul',
+								'menu_id' => "nav-menu",
+								//'depth'           => 4,
+							));
+						}
 
 					?>
 
 				</div>
 
 				<div class="col-xs-12 col-sm-4 text-right">
-                    <form action="/" method="get">
-					    <input type="text" name="search" class="search" placeholder="SEARCH">
-					    <button type="submit" class="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
+
+					<?php get_template_part( 'template-parts/search-form' ); ?>
+
 				</div>
 
 			</div>

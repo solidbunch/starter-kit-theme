@@ -16,17 +16,7 @@ get_header(); ?>
 
 				<div class="row">
 
-                <?php
-
-                    $args = array(
-                        'posts_per_page' => $postsPerPage
-                    );
-
-                    $query = new WP_Query($args);
-
-				?>
-
-				<?php if ( $query->have_posts() ): while ( $query->have_posts() ) : $query->the_post(); ?>
+				<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 
 					<article <?php post_class( is_sticky() ? array( 'col-sm-12' ) : array( 'col-sm-6' ) ); ?>>
 						
