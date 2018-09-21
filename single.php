@@ -14,7 +14,7 @@ the_post(); ?>
 
 				<div class="row">
 
-					<article <?php post_class(); ?>>
+					<article <?php post_class('col-md-12'); ?>>
 						
 						<h1><?php the_title(); ?></h1>
 						

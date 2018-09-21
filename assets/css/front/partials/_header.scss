@@ -82,6 +82,15 @@ header {
 			text-transform: uppercase;
 			font-size: 21px;
 
+		  	&.menu-item-has-children {
+			  // position: relative;
+
+			  & > a:after {
+				// content: '•';
+				// position: absolute;
+			  }
+			}
+
 			a {
 				display: inline-block;
 				height: 100%;
@@ -99,7 +108,7 @@ header {
 				box-sizing: content-box;
 			}
 
-			&:hover ul {
+			&:hover > ul {
 				display: block;
 
 				li {
