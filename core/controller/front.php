@@ -60,11 +60,11 @@ class front {
 		
 		// JS scripts
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/libs/popper/popper.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
-		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
+		//wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/libs/popper/popper.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
+		//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
 
 		wp_register_script( 'google-fonts', get_template_directory_uri() . '/assets/libs/google-fonts/webfont.js', false, FFBLANK()->config['cache_time'], true );
-		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.js', array(
+		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/build/main.js', array(
 			'jquery',
 			'google-fonts'
 		), FFBLANK()->config['cache_time'], true );
@@ -89,13 +89,14 @@ class front {
 		
 		
 		// CSS styles
-		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/libs/font-awesome/css/font-awesome.min.css', false, FFBLANK()->config['cache_time'] );
-		wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/libs/animatecss/animate.min.css', false, FFBLANK()->config['cache_time'] );
+		//wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/libs/font-awesome/css/font-awesome.min.css', false, FFBLANK()->config['cache_time'] );
+		//wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/libs/animatecss/animate.min.css', false, FFBLANK()->config['cache_time'] );
 		//wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.css', false, FFBLANK()->config['cache_time'] );
 		//wp_enqueue_style( 'uikit', get_template_directory_uri() . '/assets/libs/uikit/style.css', false, FFBLANK()->config['cache_time'] );
 		//wp_enqueue_style( 'uikit-elements', get_template_directory_uri() . '/assets/libs/uikit/elements.css', false, FFBLANK()->config['cache_time'] );
+		wp_enqueue_style( 'fruitfulblankprefix-libs', get_template_directory_uri() . '/assets/css/libs/libs.css', false, FFBLANK()->config['cache_time'] );
 		wp_enqueue_style( 'fruitfulblankprefix-style', get_template_directory_uri() . '/assets/css/front/front.css', false, FFBLANK()->config['cache_time'] );
-		
+
 	}
 	
 	function remove_assets() {
