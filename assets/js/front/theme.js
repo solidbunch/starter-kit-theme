@@ -1,11 +1,5 @@
-require('popper.js');
-const $ = require('jquery'); // jquery
-require('bootstrap'); // full bootstrap
-// require('bootstrap/js/src/button'); // single bootstrap component
-
-$(document).ready(() => {
-    window.themeFront = {
-
+module.exports = function ($) {
+    return {
         /**
          Constructor
          **/
@@ -13,10 +7,8 @@ $(document).ready(() => {
 
             var self = this;
 
-            $(document).ready(function () {
-                self.build();
-                self.events();
-            });
+            self.build();
+            self.events()
 
         },
         /**
@@ -26,7 +18,6 @@ $(document).ready(() => {
 
             this.setupHeader();
             this.loadGoogleFonts();
-
         },
         /**
          Set page events
@@ -39,10 +30,10 @@ $(document).ready(() => {
         /**
          * Setup Header
          **/
-        setupHeader: function() {
+        setupHeader: function () {
 
             // mobile menu toggles
-            $('#mobile-menu-toggler').on( 'click', function() {
+            $('#mobile-menu-toggler').on('click', function () {
 
                 $(this).toggleClass('is-active');
                 $('#header ul.menu').toggleClass('open');
@@ -53,7 +44,7 @@ $(document).ready(() => {
             // mobile sub-menu toggler
             $('#header .menu-item-has-children').append('<span class="mobile-submenu-toggler"></span>');
 
-            $('.mobile-submenu-toggler').on( 'click', function() {
+            $('.mobile-submenu-toggler').on('click', function () {
                 $(this).toggleClass('open').prev('.sub-menu').toggleClass('open');
             });
 
@@ -94,4 +85,4 @@ $(document).ready(() => {
         }
 
     }
-});
+}

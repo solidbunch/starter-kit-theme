@@ -6,14 +6,13 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "bootstrap": "^4.1.3",
-    "file-loader": "^2.0.0",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
     "popper.js": "^1.14.4"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-es2016": "^7.0.0-beta.53",
     "autoprefixer": "^9.1.5",
     "babel-loader": "^8.0.2",
     "browser-sync": "^2.24.7",
@@ -22,6 +21,7 @@
     "css-loader": "^1.0.0",
     "cssnano": "^4.1.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^2.0.0",
     "glob": "^7.1.3",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^5.0.0",
