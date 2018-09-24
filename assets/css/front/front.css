@@ -2773,14 +2773,21 @@ article {
 #posts {
   margin-top: 5px; }
 
-.pagination {
+.pagination,
+.posts-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 30px; }
-  .pagination a, .pagination span {
+  .pagination a, .pagination span,
+  .posts-pagination a,
+  .posts-pagination span {
     color: #282828; }
-  .pagination .current {
+  .pagination .current,
+  .posts-pagination .current {
     color: #eb3c00; }
 
 blockquote, q {
@@ -2997,7 +3004,8 @@ ul > li {
   right: 0; }
 
 #bottom-bar {
-  padding: 25px 0; }
+  padding: 25px 0;
+  color: #ffffff; }
   @media (max-width: 767.98px) {
     #bottom-bar {
       text-align: center; } }

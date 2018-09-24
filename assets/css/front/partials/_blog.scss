@@ -64,7 +64,9 @@ article {
   margin-top: 5px;
 }
 
-.pagination {
+.pagination,
+.posts-pagination {
+  display: flex;
   justify-content: space-between;
   margin-top: 30px;
 
