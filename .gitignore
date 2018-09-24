@@ -55,6 +55,6 @@ node_modules
 #===========================#
 #      Specific Plugins     #
 #===========================#
-
+build/broswer-sync.config.js
 
 

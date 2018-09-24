@@ -1,0 +1,4 @@
+module.exports = {
+    proxy: 'http://yourlocal.domain', // yourlocaldomain,
+    port: '8181'
+};

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "For FFC Blank",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "^4.1.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-sass": "^4.0.0",
