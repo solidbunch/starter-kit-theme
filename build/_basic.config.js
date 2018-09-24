@@ -58,8 +58,8 @@ module.exports = function () {
         plugins: [],
     };
 
-
-    if (process.env.SYNC === "true") {
+    const fs = require('fs');
+    if (process.env.SYNC === "true" && fs.existsSync('./broswer-sync.config') ) {
         const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
         baseConf.plugins.push(
             new BrowserSyncPlugin(
