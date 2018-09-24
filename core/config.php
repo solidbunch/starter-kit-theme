@@ -5,7 +5,7 @@
  **/
 
 return array(
-	'cache_time'      => '110820171043',
+	'cache_time'      => '110820171044',
 	'assets_uri'  		=> get_template_directory_uri() . '/assets/',
 	'shortcodes_dir'  => get_template_directory() . '/core/shortcodes/',
 	'shortcodes_uri'  => get_template_directory_uri() . '/core/shortcodes/',

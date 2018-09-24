@@ -11,11 +11,13 @@ module.exports = Object.assign(
     {
         name: 'core',
         entry: {
-            front: './assets/css/front/front.scss',
+            front: ['./assets/css/front/front.scss','./assets/js/front.js'],
             libs: './assets/css/libs/libs.scss',
             admin: './assets/css/admin/admin.scss',
-            main : './assets/js/main.js',
         },
+        externals: {
+            jquery: 'jQuery'
+        }
     },
     baseConfig
 );

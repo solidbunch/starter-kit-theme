@@ -64,7 +64,7 @@ class front {
 		//wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/libs/bootstrap/bootstrap.min.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
 
 		wp_register_script( 'google-fonts', get_template_directory_uri() . '/assets/libs/google-fonts/webfont.js', false, FFBLANK()->config['cache_time'], true );
-		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/build/main.js', array(
+		wp_register_script( 'fruitfulblankprefix-front', get_template_directory_uri() . '/assets/js/front.min.js', array(
 			'jquery',
 			'google-fonts'
 		), FFBLANK()->config['cache_time'], true );
