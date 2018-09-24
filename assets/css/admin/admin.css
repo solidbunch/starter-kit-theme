@@ -2,23 +2,22 @@
  * Add custom icons for custom post types
 **/
 #menu-posts-video .wp-menu-image:before {
-	content: '\f126';
-}
+  content: '\F126'; }
 
 #menu-posts-team_members .wp-menu-image:before {
-	content: '\f110';
-}
+  content: '\F110'; }
 
 #menu-posts-portfolio .wp-menu-image:before {
-	content: '\f322';
-}
+  content: '\F322'; }
 
 #menu-posts-testimonials .wp-menu-image:before {
-	content: '\f130';
-}
+  content: '\F130'; }
 
 #menu-posts-composerlayout .wp-menu-image:before {
-	content: '\f134';
-}
+  content: '\F134'; }
 
-/*# sourceMappingURL=admin.css.map */
+.fw-brz-dismiss {
+  display: none; }
+
+
+/*# sourceMappingURL=admin.css.map*/
