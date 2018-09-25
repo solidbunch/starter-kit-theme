@@ -4,9 +4,9 @@
 		<div class="row">
 			<article class="col-12">
 				
-				<h1><?php esc_html_e( 'Unfortunately, we can not find requested page.', 'tttextdomain' ); ?></h1>
+				<h1><?php esc_html_e( 'Unfortunately, we can not find requested page.', 'fruitfulblanktextdomain' ); ?></h1>
 				
-				<h4><?php esc_html_e( 'Try to find something else using a form below.', 'tttextdomain' ); ?></h4>
+				<h4><?php esc_html_e( 'Try to find something else using a form below.', 'fruitfulblanktextdomain' ); ?></h4>
 				
 				<?php get_search_form(); ?>
 			

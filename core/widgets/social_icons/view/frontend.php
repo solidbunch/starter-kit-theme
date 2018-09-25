@@ -19,14 +19,14 @@ echo wp_kses_post($args['before_widget']);
 	<!-- widget content -->
 	<div class="round-social light">
 		
-		<?php foreach ( TTT()->config['social_profiles'] as $k => $v ):
-			$link_url = \ttt\helper\utils::get_option( $k );
+		<?php foreach ( FFBLANK()->config['social_profiles'] as $k => $v ):
+			$link_url = \ffblank\helper\utils::get_option( $k );
 			$class_name = str_replace( '_', '-', str_replace( '_url', '', $k ) );
 			if ( $link_url <> '' ):
 				?>
 				<a rel="nofollow" class="link <?php echo esc_attr( $class_name ); ?>" target="_blank"
 				   href="<?php echo esc_attr( $link_url ); ?>"><i
-							class="<?php echo esc_attr( TTT()->config['social_icons'][ $k ] ); ?>"></i></a>
+							class="<?php echo esc_attr( FFBLANK()->config['social_icons'][ $k ] ); ?>"></i></a>
 			<?php endif; endforeach; ?>
 	
 	</div>

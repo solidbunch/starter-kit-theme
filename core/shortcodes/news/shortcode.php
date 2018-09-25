@@ -11,7 +11,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			// define path vars
 			$shortcode_dir = dirname( __FILE__ );
 			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 			
 			// get shortcode attributes
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
@@ -23,7 +23,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			}
 			
 			// query news
-			$posts_query = TTT()->model->news->get_news( $atts );
+			$posts_query = FFBLANK()->model->news->get_news( $atts );
 			
 			// collect data for shortcode view
 			$data = array(
@@ -34,7 +34,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			);
 			
 			// enqueue shortcode scripts, here we use AJAX pagination
-			wp_register_script( 'shortcode-news', $shortcode_uri . '/assets/scripts.js', array( 'jquery' ), TTT()->config['cache_time'], true );
+			wp_register_script( 'shortcode-news', $shortcode_uri . '/assets/scripts.js', array( 'jquery' ), FFBLANK()->config['cache_time'], true );
 			wp_register_style( 'shortcode-news-style', $shortcode_uri . '/assets/styles.css' );
 			wp_localize_script( 'shortcode-news', 'shortcodeNewsJsParams', array(
 				'query_vars'     => json_encode( $posts_query->query_vars ),
@@ -46,7 +46,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			wp_enqueue_style( 'shortcode-news-style' );
 			
 			// display shortcode template
-			return TTT()->view->load( '/view/view', $data, true, $shortcode_dir );
+			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
 			
 		}
 		

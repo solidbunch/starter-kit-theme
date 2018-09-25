@@ -34,7 +34,7 @@ $atts[] = 'class="shortcode-news"';
 	
 	<?php else: ?>
 		
-		<p><?php _e( 'No news found', 'tttextdomain' ); ?></p>
+		<p><?php _e( 'No news found', 'fruitfulblanktextdomain' ); ?></p>
 	
 	<?php endif; ?>
 

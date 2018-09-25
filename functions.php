@@ -16,7 +16,7 @@ require_once( get_theme_file_path( 'core/dev.php' ) );
 spl_autoload_register( function ( $class ) {
 	
 	// project-specific namespace prefix
-	$prefix = 'ttt\\';
+	$prefix = 'ffblank\\';
 	
 	// base directory for the namespace prefix
 	$base_dir = __DIR__ . '/core/';
@@ -49,35 +49,35 @@ if ( ! isset( $content_width ) ) {
 
 
 // Global point of enter
-if ( ! function_exists( 'TTT' ) ) {
+if ( ! function_exists( 'FFBLANK' ) ) {
 	
-	function TTT() {
-		return \ttt\core::getInstance();
+	function FFBLANK() {
+		return \ffblank\core::getInstance();
 	}
 	
 }
 
 // Run the theme
-TTT()->run();
+FFBLANK()->run();
 
 /**
  * Examples to use:
  * ======================================================================
  * Controllers::
- * TTT()->controller->front->your_method();
- * TTT()->controller->backend->your_method();
- * TTT()->controller->test->your_method();
- * TTT()->controller->shortcodes->your_method();
+ * FFBLANK()->controller->front->your_method();
+ * FFBLANK()->controller->backend->your_method();
+ * FFBLANK()->controller->test->your_method();
+ * FFBLANK()->controller->shortcodes->your_method();
  *
  * Model / View::
- * TTT()->model->post->get_random_posts( 'portfolio', 5 );
- * TTT()->view->load('/front/my_template', array( 'foo' => 'bar' ));
+ * FFBLANK()->model->post->get_random_posts( 'portfolio', 5 );
+ * FFBLANK()->view->load('/front/my_template', array( 'foo' => 'bar' ));
  *
  * Config::
- * TTT()->config['social_profiles']
+ * FFBLANK()->config['social_profiles']
  *
  * Helpers::
- * \ttt\helper\front::get_grid_class();
- * \ttt\helper\media::img_resize();
+ * \ffblank\helper\front::get_grid_class();
+ * \ffblank\helper\media::img_resize();
  * ======================================================================
  **/

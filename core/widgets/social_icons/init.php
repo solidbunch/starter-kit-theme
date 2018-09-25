@@ -2,5 +2,5 @@
 
 // Init the widget
 add_action( 'widgets_init', function () {
-	register_widget( \ttt\widgets\social_icons\widget::class );
+	register_widget( \ffblank\widgets\social_icons\widget::class );
 } );

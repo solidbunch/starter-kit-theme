@@ -4,6 +4,7 @@
   "description": "For FFC Blank",
   "main": "gulpfile.js",
   "dependencies": {
+    "npm": "^6.4.1",
     "reinstall": "^2.0.0",
     "webpack-serve": "^2.0.2"
   },

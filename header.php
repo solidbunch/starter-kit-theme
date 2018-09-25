@@ -83,5 +83,5 @@
 	</div>
 	
 	<header id="composer-header">
-		<?php echo TTT()->view->load_composer_layout( 'header' ); ?>
+		<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
 	</header>

@@ -8,14 +8,14 @@ $options = array(
 			'options' => array(
 
 				'social_profiles-settings-box' => array(
-					'title'   => esc_html__( 'Social Profiles', 'tttextdomain' ),
+					'title'   => esc_html__( 'Social Profiles', 'fruitfulblanktextdomain' ),
 					'type'    => 'box',
 					'attr'    => array(
 						'class' => 'prevent-auto-close'
 					),
 					'options' => array(
 						
-						\ttt\helper\utils::get_social_cfg_usyon()
+						\ffblank\helper\utils::get_social_cfg_usyon()
 					
 					)
 				),

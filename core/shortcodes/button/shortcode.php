@@ -11,7 +11,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			$shortcode_dir = dirname( __FILE__ );
 			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 			
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 			
@@ -25,7 +25,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				wp_enqueue_style( 'font-awesome' );
 			}
 			
-			//wp_enqueue_style( 'my-style', \ttt\helper\utils::get_shortcodes_uri( $shortcode, '/assets/my-style.css') );
+			//wp_enqueue_style( 'my-style', \ffblank\helper\utils::get_shortcodes_uri( $shortcode, '/assets/my-style.css') );
 			
 			$data = array(
 				'id'      => $id,
@@ -34,7 +34,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'wpb'     => $this
 			);
 			
-			return TTT()->view->load( '/view/view', $data, true, $shortcode_dir );
+			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
 			
 		}
 		

@@ -1,6 +1,6 @@
 <?php
 
-namespace ttt\helper;
+namespace ffblank\helper;
 
 /**
  * Utils helper
@@ -87,22 +87,22 @@ class utils {
 	 * Returns shortcodes uri / path
 	 **/
 	public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
-		return \TTT()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
+		return \FFBLANK()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
-		return \TTT()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
+		return \FFBLANK()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
 	}
 	
 	/**
 	 * Returns widgets uri / path
 	 **/
 	public static function get_widgets_uri( $widget_name, $path = '' ) {
-		return \TTT()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	public static function get_widgets_dir( $widget_name, $path = '' ) {
-		return \TTT()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return \FFBLANK()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
 	}
 	
 	/**
@@ -112,7 +112,7 @@ class utils {
 		
 		$config = array();
 		
-		foreach ( \TTT()->config['social_profiles'] as $k => $v ) {
+		foreach ( \FFBLANK()->config['social_profiles'] as $k => $v ) {
 			$config[ $k ] = array(
 				'type'  => 'text',
 				'label' => $v,

@@ -3,7 +3,7 @@
  * Loop item template
  * Called from shortcode and from AJAX loop
  **/
-use ttt\helper\media;
+use ffblank\helper\media;
 
 $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOOLEAN );
 
@@ -18,7 +18,7 @@ $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thum
 				<?php if ( $data['atts']['thumbs_dimensions'] == 'crop' ): ?>
 					
 					<?php
-					echo \ttt\helper\media::img( array(
+					echo \ffblank\helper\media::img( array(
 						'width'  => absint( $data['atts']['thumb_width'] ),
 						'height' => absint( $data['atts']['thumb_height'] )
 					) );

@@ -1,6 +1,6 @@
 <?php
 
-namespace ttt\widgets\social_icons;
+namespace ffblank\widgets\social_icons;
 
 class widget extends \WP_Widget {
 	
@@ -11,7 +11,7 @@ class widget extends \WP_Widget {
 		
 		$widget_ops = array(
 			'classname'   => 'social_icons_widget',
-			'description' => esc_html__( 'A widget that displays social icons', 'tttextdomain' )
+			'description' => esc_html__( 'A widget that displays social icons', 'fruitfulblanktextdomain' )
 		);
 		
 		$control_ops = array(
@@ -22,7 +22,7 @@ class widget extends \WP_Widget {
 		
 		parent::__construct(
 			'social_icons_widget',
-			esc_html__( '[FRUITFUL BLANK] Social Icons', 'tttextdomain' ),
+			esc_html__( '[FRUITFUL BLANK] Social Icons', 'fruitfulblanktextdomain' ),
 			$widget_ops,
 			$control_ops
 		);
@@ -38,7 +38,7 @@ class widget extends \WP_Widget {
 		if ( is_active_widget( false, false, $this->id_base, true ) ) {
 			wp_enqueue_style( 'font-awesome' );
 			
-			//wp_enqueue_style( 'my-style', \ttt\helper\utils::get_widgets_uri( 'social_icons', '/assets/my-style.css') );
+			//wp_enqueue_style( 'my-style', \ffblank\helper\utils::get_widgets_uri( 'social_icons', '/assets/my-style.css') );
 			
 		}
 	}
@@ -57,8 +57,8 @@ class widget extends \WP_Widget {
 	 * Admin: widget settings form
 	 **/
 	function form( $instance ) {
-		
-		TTT()->view->load(
+
+		FFBLANK()->view->load(
 			'/view/backend',
 			array(
 				'widget'   => $this,
@@ -74,8 +74,8 @@ class widget extends \WP_Widget {
 	 * Front-end output
 	 **/
 	function widget( $args, $instance ) {
-		
-		TTT()->view->load(
+
+		FFBLANK()->view->load(
 			'/view/frontend',
 			array(
 				'args'     => $args,

@@ -9,7 +9,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			$shortcode_dir = dirname( __FILE__ );
 			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 			
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 			
@@ -71,7 +71,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			if ( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true, TTT()->config['cache_time'] );
+				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true, FFBLANK()->config['cache_time'] );
 				wp_add_inline_style( 'theme-style', $inline_css );
 			}
 			
@@ -83,7 +83,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'wpb'     => $this
 			);
 			
-			return TTT()->view->load( '/view/view', $data, true, $shortcode_dir );
+			return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
 			
 		}
 		
