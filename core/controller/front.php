@@ -27,13 +27,6 @@ class front {
 		// remove jquery migrate for optimization reasons
 		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
 
-		// Anti-spam
-		add_action( 'phpmailer_init', array( $this, 'antispam_form' ) );
-
-		// add GTM
-		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
-		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
-
 	}
 	
 	/**
@@ -80,12 +73,6 @@ class front {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
-
-		if ( $this->antispam_enabled() === 1 ) {
-			wp_enqueue_script( 'fruitfulblankprefix-antispam', get_template_directory_uri() . '/assets/js/antispam.js', array(
-				'jquery',
-			), FFBLANK()->config['cache_time'], true );
-		}
 		
 		
 		// CSS styles
@@ -124,51 +111,5 @@ class front {
 			$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
 		}
 	}
-
-	/**
-	 * Anti-spam
-	 **/
-	function antispam_enabled() {
-		return (int)\ffblank\helper\utils::get_option( 'forms_antispam', 0 );
-	}
-
-	function antispam_form($phpmailer) {
-
-		if ( $this->antispam_enabled() !== 1 )
-			return;
-
-		if ( ! empty( $_POST ) && empty( $_POST['as_code'] ) ) {
-			$phpmailer->ClearAllRecipients();
-		}
-
-		return $phpmailer;
-	}
-
-
-	/**
-	 * Load Google Tag Manager
-	 **/
-	function add_gtm_head() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
-		$site_url = get_site_url();
-
-		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
-
-			FFBLANK()->view->load( '/template-parts/tgm', array('head' => true, 'tag_manager_code' => $tag_manager_code) );
-
-		}
-	}
-
-	function add_gtm_body() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
-		$site_url = get_site_url();
-
-		if (!empty($tag_manager_code) && strpos($site_url, 'wpengine.com') === false) {
-
-			FFBLANK()->view->load( '/template-parts/tgm', array('head' => false, 'tag_manager_code' => $tag_manager_code) );
-
-		}
-	}
-
 
 }

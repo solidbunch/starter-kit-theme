@@ -7,4 +7,280 @@
 	Author URI: https://fruitfulcode.com/
 	Version: 1.2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+	===== COLORS: =====
+
+	Red			#eb3c00
+	Button Red	#ee4400
+	Dark Grey	#282828
+	Light Grey	#f5f5f5
+
 */
+
+html body {
+	background-color: #f5f5f5;
+	font-family: 'Oswald';
+}
+
+p,span,h1,h2,h3,h4,h5,h6 {
+	color: #282828;
+}
+
+header {
+	background-color: #ffffff;
+}
+
+header #logo {
+	color: #eb3c00;
+	font-size: 48px;
+	transform: scale(1, 1.1);
+	font-weight: bold;
+	text-transform: uppercase;
+	display: inline-block;
+	line-height: 1em;
+	margin: 33px 0;
+}
+
+header #sublogo {
+	color: #bbbbbb;
+	font-family: 'PT Serif';
+	font-size: 18px;
+	text-transform: lowercase;
+	font-style: italic;
+	display: inline-block;
+	margin: 62px 0px 0px 5px;
+}
+
+header .text-right {
+	font-family: 'PT Serif';
+	font-size: 10pt;
+	font-style: italic;
+	text-transform: uppercase;
+	margin-top: 41px;
+}
+
+header .login {
+	display: inline-block;
+	padding: 12px 32px;
+	color: #282828;
+}
+
+header .login i {
+	color: #eb3c00;
+	padding-right: 5px;
+}
+
+header .contact-button {
+	text-transform: uppercase;
+	height: 45px;
+	background-color: #ee4400;
+	color: #ffffff;
+	border: none;
+	border-radius: 0;
+	float: right;
+	width: calc( 100% + 20px );
+}
+
+#nav {
+	background-color: #282828;
+}
+
+#nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul li {
+	display: inline-block;
+	float: left;
+	padding: 21px 16px;
+	text-transform: uppercase;
+	font-size: 21px
+}
+
+#nav ul li.active,
+#nav ul li:hover,
+#nav ul li:active{
+	background-color: #eb3c00;
+}
+
+#nav ul li a {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	color: #ffffff;
+}
+
+#nav .search {
+	font-size: 15px;
+	margin-top: 16px;
+	border: none;
+	padding: 10px 13px;
+	width: 269px;	
+}
+
+#nav .search::placeholder {
+	color: #cccccc;
+}
+
+#nav .submit {
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	font-size: 18px;
+	right: 15px;
+	top: 20px;
+}
+
+#content .article {
+	font-family: 'PT Serif';
+	padding: 28px 0;
+}
+
+#content .article h1 {
+	font-family: 'Oswald';
+	font-size: 52px;
+	letter-spacing: -0.6px;
+	padding: 4px 0;
+	max-width: 70%;
+}
+
+#content .article h3 {
+	
+	line-height: 36px;
+	max-width: 75%;
+	padding: 20px 0;
+}
+
+#content .article strong {
+	font-size: 19px;
+}
+
+#content .article ul {
+	padding: 2px 18px;
+}
+
+#content .article ul li {
+	font-size: 19px;
+	letter-spacing: -0.5px;
+}
+
+#content .news .row-header {
+	padding: 10px 0px 13px;
+	color: #eb3c00;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+#content .news a img {
+	max-width: 100%;
+}
+
+#content .news a h5{
+	font-size: 17px;
+	max-width: 95%;
+}
+
+@media (max-width: 1023px) {
+	#nav .search {
+		width: 100%;
+	}
+}
+
+@media (max-width: 767px) {
+	header {
+		text-align: center;
+	}
+	
+	header #logo {
+		margin: 20px 0px 5px;
+		width: 100%;
+	}
+
+	header #sublogo {
+		margin: 0;
+	}
+
+	header .text-right {
+		margin-top: 15px;
+	}
+
+	header .login{
+		width: 100%;
+		text-align: center;
+	}
+
+	header .contact-button {
+		position: relative;
+		left: 10px;
+	}
+
+	#nav ul {
+		position: relative;
+		display: inline-block;
+		width: calc(100% + 20px);
+		left: -10px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	#nav ul li {
+		display: flex;
+		padding: 10px;
+	}
+
+	#nav ul li a {
+		font-size: 20px;
+	}
+
+	#nav .search {
+		margin: 0;
+		display: inline-block;
+		position: relative;
+		padding: 10px;
+		font-size: 20px;
+		width: 100%;
+		box-sizing: content-box;
+		margin-left: -10px;
+	}
+
+	#nav .submit {
+		top: 10px;
+		right: 5px;
+	}
+
+	#content .article {
+		padding: 10px;
+	}
+
+	#content .article h1 {
+		font-size: 40px;
+		max-width: 100%;
+	}
+
+	#content .article h3 {
+		line-height: 1.5em;
+		font-size: 18px;
+		max-width: 100%;
+		padding: 0px 0px;
+	}
+
+	#content .news .row-header {
+		padding: 0px 0px 20px;
+		font-size: 20px;
+	}
+
+	#content .news a img {
+		width: 100%;
+	}
+
+	#content .news a h5{
+		font-size: 20px;
+		max-width: 100%;
+		text-align: center;
+		padding-bottom: 20px;
+	}
+
+
+}

@@ -31,7 +31,9 @@ class media {
 			'alt'    => $is_queried_post_thumb ? \get_post_meta( \get_post_thumbnail_id( \get_the_ID() ), '_wp_attachment_image_alt', true ) : '',
 			'id'     => '',
 			'class'  => '',
-			'attachment_id' => $is_queried_post_thumb ? \get_post_thumbnail_id( \get_the_ID() ) : 0
+			'attachment_id' => $is_queried_post_thumb ? \get_post_thumbnail_id( \get_the_ID() ) : 0,
+            'single' => true,
+            'upscale' => false
 		);
 		
 		$args = wp_parse_args( $args, $default_args );
@@ -39,7 +41,7 @@ class media {
 		// SVG
 		$is_svg = \ffblank\helper\utils::is_attachment_svg( $args['attachment_id'],  $args['url'] );
 				
-		$src = \aq_resize( \ffblank\helper\utils::sanitize_uri( $args['url'] ), \absint( $args['width'] ), \absint( $args['height'] ), (bool) $args['crop'] );
+		$src = \aq_resize( \ffblank\helper\utils::sanitize_uri( $args['url'] ), \absint( $args['width'] ), \absint( $args['height'] ), (bool) $args['crop'], (bool) $args['single'], (bool) $args['upscale'] );
 		
 		if ( $src == false || $is_svg ) {
 			$image_atts[] = 'src="' . \esc_url( $args['url'] ) . '"';

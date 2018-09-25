@@ -147,7 +147,7 @@ class utils {
 	 * Sanitize URL
 	 **/
 	public static function sanitize_uri( $url ) {
-		if ( strpos( $url, 'http' ) !== 0 ) {
+		if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 			$protocol = \is_ssl() ? 'https:' : 'http:';
 			if ( $url <> '' ) {
 				$url = $protocol . $url;

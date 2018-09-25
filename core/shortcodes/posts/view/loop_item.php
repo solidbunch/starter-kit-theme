@@ -3,7 +3,10 @@
  * Loop item template
  * Called from shortcode and from AJAX loop
  **/
+use ffblank\helper\media;
+
 $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOOLEAN );
+
 ?>
 <article class="row">
 	
