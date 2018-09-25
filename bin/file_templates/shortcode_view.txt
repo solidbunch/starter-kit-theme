@@ -1,0 +1,13 @@
+<?php
+/**
+ * @array $data shortcode output data from controller
+ **/
+
+$atts    = $data['atts'];
+$content = isset( $data['content'] ) ? $data['content'] : '';
+
+?>
+
+<div <?php echo implode( ' ', $atts ); ?>>
+
+</div>
