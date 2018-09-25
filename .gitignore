@@ -41,6 +41,8 @@ error_log
 access_log
 .sass-cache
 *.css.map
+*.js.map
+*.LICENSE
 
 
 #===================================#
