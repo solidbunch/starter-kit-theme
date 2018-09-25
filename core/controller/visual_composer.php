@@ -1,6 +1,6 @@
 <?php
 
-namespace ttt\controller;
+namespace ffblank\controller;
 
 /**
  * Visual Composer init

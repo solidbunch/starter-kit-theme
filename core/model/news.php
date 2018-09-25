@@ -1,6 +1,6 @@
 <?php
 
-namespace ttt\model;
+namespace ffblank\model;
 
 /**
  * News model

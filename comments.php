@@ -25,7 +25,7 @@ if ( post_password_required() ) {
 			<div class="indent <?php echo get_option( 'show_avatars' ) ? 'with-avatars' : 'no-avatars'; ?>"
 			     id="comments">
 				
-				<h3 class="comments-title"><?php printf( _nx( '<span>1</span> Comment', '<span>%1$s</span> Comments', get_comments_number(), 'comments title', 'tttextdomain' ), number_format_i18n( get_comments_number() ) ); ?></h3>
+				<h3 class="comments-title"><?php printf( _nx( '<span>1</span> Comment', '<span>%1$s</span> Comments', get_comments_number(), 'comments title', 'fruitfulblanktextdomain' ), number_format_i18n( get_comments_number() ) ); ?></h3>
 				
 				<?php if ( have_comments() ) : ?>
 					
@@ -48,11 +48,11 @@ if ( post_password_required() ) {
 					
 					<?php if ( is_page() ): ?>
 						
-						<p class="no-comments"><?php esc_html_e( 'There are not comments on this page.', 'tttextdomain' ); ?></p>
+						<p class="no-comments"><?php esc_html_e( 'There are not comments on this page.', 'fruitfulblanktextdomain' ); ?></p>
 					
 					<?php else: ?>
 						
-						<p class="no-comments"><?php esc_html_e( 'There are no comments on this post.', 'tttextdomain' ); ?></p>
+						<p class="no-comments"><?php esc_html_e( 'There are no comments on this post.', 'fruitfulblanktextdomain' ); ?></p>
 					
 					<?php endif; ?>
 				
@@ -74,15 +74,15 @@ if ( post_password_required() ) {
 					
 					'class_form' => 'comment-form ' . $form_classes,
 					
-					'title_reply' => esc_html__( 'Leave a reply', 'tttextdomain' ),
+					'title_reply' => esc_html__( 'Leave a reply', 'fruitfulblanktextdomain' ),
 					
-					'comment_field' => '<textarea class="input-icon-comment" id="comment" placeholder="' . esc_html__( 'Your Comment *', 'tttextdomain' ) . '" name="comment" cols="45" rows="8" aria-required="true"></textarea>',
+					'comment_field' => '<textarea class="input-icon-comment" id="comment" placeholder="' . esc_html__( 'Your Comment *', 'fruitfulblanktextdomain' ) . '" name="comment" cols="45" rows="8" aria-required="true"></textarea>',
 					
 					'fields' => apply_filters( 'comment_form_default_fields', array(
 							
-							'author' => '<div class="row"><div class="form-row ' . $col_rtl . ' col-md-6"><input class="input-icon-user" id="author" name="author" type="text" placeholder="' . esc_html__( 'Your Name *', 'tttextdomain' ) . '" value="' . $commenter['comment_author'] . '" size="30"' . $aria_req . ' /></div>',
+							'author' => '<div class="row"><div class="form-row ' . $col_rtl . ' col-md-6"><input class="input-icon-user" id="author" name="author" type="text" placeholder="' . esc_html__( 'Your Name *', 'fruitfulblanktextdomain' ) . '" value="' . $commenter['comment_author'] . '" size="30"' . $aria_req . ' /></div>',
 							
-							'email' => '<div class="form-row col-md-6"><input id="email" class="input-icon-email" name="email" type="text" placeholder="' . esc_html__( 'Email Address *', 'tttextdomain' ) . '" value="' . $commenter['comment_author_email'] . '" size="30"' . $aria_req . ' /></div></div>',
+							'email' => '<div class="form-row col-md-6"><input id="email" class="input-icon-email" name="email" type="text" placeholder="' . esc_html__( 'Email Address *', 'fruitfulblanktextdomain' ) . '" value="' . $commenter['comment_author_email'] . '" size="30"' . $aria_req . ' /></div></div>',
 							
 							'url' => ''
 						
@@ -91,13 +91,13 @@ if ( post_password_required() ) {
 					
 					'comment_notes_after' => '',
 					
-					'must_log_in' => '<p>' . wp_kses_post( sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.', 'tttextdomain' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) ) . '</p>',
+					'must_log_in' => '<p>' . wp_kses_post( sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.', 'fruitfulblanktextdomain' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) ) . '</p>',
 					
 					'logged_in_as' => '',
 					
 					'comment_notes_before' => '',
 					
-					'label_submit' => esc_html__( 'POST COMMENT', 'tttextdomain' )
+					'label_submit' => esc_html__( 'POST COMMENT', 'fruitfulblanktextdomain' )
 				
 				);
 				?>
@@ -161,14 +161,14 @@ function fruitfulblankprefix_comments_callback( $comment, $args, $depth ) {
 						<?php echo wp_kses_post( $author_name ); ?>
 					</h4>
 
-					<div class="comment-time"><?php echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) . " " . esc_html__( 'ago', 'tttextdomain' ); ?></div>
+					<div class="comment-time"><?php echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) . " " . esc_html__( 'ago', 'fruitfulblanktextdomain' ); ?></div>
 
 					<div class="comment-contents">
 						<?php comment_text(); ?>
 					</div>
 
 					<?php comment_reply_link( array_merge( $args, array( 'add_below'  => 'comment',
-					                                                     'reply_text' => esc_html__( 'Reply', 'tttextdomain' ),
+					                                                     'reply_text' => esc_html__( 'Reply', 'fruitfulblanktextdomain' ),
 					                                                     'depth'      => $depth,
 					                                                     'max_depth'  => $args['max_depth']
 					) ), get_comment_ID(), get_the_ID() ); ?>

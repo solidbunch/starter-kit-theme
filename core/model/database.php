@@ -1,6 +1,6 @@
 <?php
 
-namespace ttt\model;
+namespace ffblank\model;
 
 /**
  * Do stuff common to all model classes

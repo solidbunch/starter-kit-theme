@@ -3,8 +3,8 @@
  * The page template file
  */
 
-use ttt\helper\front;
-use ttt\helper\utils;
+use ffblank\helper\front;
+use ffblank\helper\utils;
 
 get_header();
 

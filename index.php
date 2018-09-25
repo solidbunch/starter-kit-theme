@@ -1,7 +1,7 @@
 <?php
 
-use ttt\helper\front;
-use ttt\helper\media;
+use ffblank\helper\front;
+use ffblank\helper\media;
 
 $titleMaxLength = 25;
 $postsPerPage   = 10;
@@ -64,7 +64,7 @@ get_header(); ?>
 						</div>
 						
 						<a href="<?php the_permalink(); ?>"
-						   class="button"><?php esc_html_e( 'Read more', 'tttextdomain' ); ?></a>
+						   class="button"><?php esc_html_e( 'Read more', 'fruitfulblanktextdomain' ); ?></a>
 					
 					</article>
 				
@@ -73,7 +73,7 @@ get_header(); ?>
 					<div class="row">
 						
 						<article class="col-md-12">
-							<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'tttextdomain' ); ?></h2>
+							<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'fruitfulblanktextdomain' ); ?></h2>
 						</article>
 					
 					</div>

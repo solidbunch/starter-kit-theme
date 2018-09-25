@@ -8,7 +8,7 @@ $options = array(
 			'options' => array(
 
 				'img_lazy_load_box' => array(
-					'title'   => esc_html__( 'Extra', 'tttextdomain' ),
+					'title'   => esc_html__( 'Extra', 'fruitfulblanktextdomain' ),
 					'type'    => 'box',
 					'attr'    => array(
 						'class' => 'prevent-auto-close'
@@ -17,17 +17,17 @@ $options = array(
 						
 						'img_lazy_load'	=> array(
 							'type'  => 'switch',
-							'label' => __('Lazy Load Images', 'tttextdomain'),
+							'label' => __('Lazy Load Images', 'fruitfulblanktextdomain'),
 							'right-choice' => array(
 								'value' => '1',
-								'label' => __('Yes', 'tttextdomain')
+								'label' => __('Yes', 'fruitfulblanktextdomain')
 							),
 							'left-choice' => array(
 								'value' => '0',
 								'color' => '#ccc',
-								'label' => __('No', 'tttextdomain')
+								'label' => __('No', 'fruitfulblanktextdomain')
 							),
-							'desc'  => __('Lazy Load Images on site', 'tttextdomain'),
+							'desc'  => __('Lazy Load Images on site', 'fruitfulblanktextdomain'),
 						
 						),
 					

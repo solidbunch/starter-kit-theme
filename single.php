@@ -1,7 +1,7 @@
 <?php
 
-use ttt\helper\front;
-use ttt\helper\media;
+use ffblank\helper\front;
+use ffblank\helper\media;
 
 get_header();
 the_post(); ?>
@@ -48,7 +48,7 @@ the_post(); ?>
 							the_content();
 						
 							wp_link_pages( array(
-								'before'      => '<div class="page-links">' . __( 'Pages:', 'tttextdomain' ),
+								'before'      => '<div class="page-links">' . __( 'Pages:', 'fruitfulblanktextdomain' ),
 								'after'       => '</div>',
 								'link_before' => '<span class="page-number">',
 								'link_after'  => '</span>',

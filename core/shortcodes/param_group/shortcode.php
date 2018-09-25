@@ -38,7 +38,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 		 * @return void
 		 */
 		protected function addStyles( $shortcode ) {
-			$shortcode_uri = \ttt\helper\utils::get_shortcodes_uri( $shortcode );
+			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 
 			wp_enqueue_style( 'param_group', $shortcode_uri . '/assets/styles.css' );
 		}

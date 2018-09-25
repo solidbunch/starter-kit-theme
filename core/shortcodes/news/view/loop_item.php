@@ -3,7 +3,7 @@
  * Loop item template
  * Called from shortcode and from AJAX loop
  **/
-use ttt\helper\media;
+use ffblank\helper\media;
 
 $display_thumb = filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOOLEAN );
 
