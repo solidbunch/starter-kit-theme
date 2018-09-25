@@ -4,7 +4,9 @@
   "description": "For FFC Blank",
   "main": "gulpfile.js",
   "dependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "animate.css": "^3.7.0",
+    "babel-preset-es2015": "^6.24.1",
     "bootstrap": "^4.1.3",
     "font-awesome": "^4.7.0",
     "popper.js": "^1.14.4"
