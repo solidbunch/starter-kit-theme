@@ -259,6 +259,50 @@ class post_types {
 			)
 		);
 		
+		register_post_type( 'news',
+			array(
+				'label'             => esc_html__( 'News', 'fruitfulblanktextdomain' ),
+				'description'       => '',
+				'public'            => true,
+				'show_ui'           => true,
+				'show_in_menu'      => true,
+				'show_in_nav_menus' => true,
+				'capability_type'   => 'post',
+				'hierarchical'      => false,
+				'supports'          => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
+				'rewrite'           => false,
+				'has_archive'       => true,
+				'query_var'         => false,
+				'menu_position'     => 1,
+				'capabilities'      => array(
+					'publish_posts'       => 'edit_pages',
+					'edit_posts'          => 'edit_pages',
+					'edit_others_posts'   => 'edit_pages',
+					'delete_posts'        => 'edit_pages',
+					'delete_others_posts' => 'edit_pages',
+					'read_private_posts'  => 'edit_pages',
+					'edit_post'           => 'edit_pages',
+					'delete_post'         => 'edit_pages',
+					'read_post'           => 'edit_pages',
+				),
+				'labels'            => array(
+					'name'               => esc_html__( 'News', 'fruitfulblanktextdomain' ),
+					'singular_name'      => esc_html__( 'News Item', 'fruitfulblanktextdomain' ),
+					'menu_name'          => esc_html__( 'News', 'fruitfulblanktextdomain' ),
+					'add_new'            => esc_html__( 'Add News', 'fruitfulblanktextdomain' ),
+					'add_new_item'       => esc_html__( 'Add News', 'fruitfulblanktextdomain' ),
+					'all_items'          => esc_html__( 'All News', 'fruitfulblanktextdomain' ),
+					'edit_item'          => esc_html__( 'Edit News', 'fruitfulblanktextdomain' ),
+					'new_item'           => esc_html__( 'New News', 'fruitfulblanktextdomain' ),
+					'view_item'          => esc_html__( 'View News', 'fruitfulblanktextdomain' ),
+					'search_items'       => esc_html__( 'Search News', 'fruitfulblanktextdomain' ),
+					'not_found'          => esc_html__( 'No News Found', 'fruitfulblanktextdomain' ),
+					'not_found_in_trash' => esc_html__( 'No News Found in Trash', 'fruitfulblanktextdomain' ),
+					'parent_item_colon'  => esc_html__( 'Parent News:', 'fruitfulblanktextdomain' )
+				)
+			)
+		);
+
 	}
 	
 	

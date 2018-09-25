@@ -24,7 +24,7 @@ function load_posts() {
 	
 	// display posts
 	while ( $query->have_posts() ): $query->the_post();
-		
+
 		FFBLANK()->view->load( '/view/loop_item', array(
 			'atts' => $shortcode_atts
 		), false, dirname( __FILE__ ) );

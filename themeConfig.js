@@ -10,7 +10,7 @@ module.exports = {
 	},
 	dev: {
 		browserSync: {
-			proxyURL: 'blank.nul', // yourlocaldomain,
+			proxyURL: 'yourlocaldomain', // yourlocaldomain,
 			bypassPort: '8181'
 		},
 		/*

@@ -20,7 +20,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			$data = $this->getDataArray( $atts, $content );
 
 			try {
-				return FFBLANK()->view->load( '/view/view', $data, true, $shortcode_dir );
+				return VOIPSTUDIO()->view->load( '/view/view', $data, true, $shortcode_dir );
 			} catch ( \Exception $exception ) {
 				error_log( $exception );
 

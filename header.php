@@ -9,48 +9,78 @@
 <body <?php body_class(); ?>>
 
 <div id="main-wrapper">
-	
-	<header id="header">
-		<div class="container">
-			<div class="row align-items-center">
-				
-				<div class="col-lg-3 header-logo-container">
-					<a class="logo" href="<?php echo site_url( '/' ); ?>">
-						<!-- Logo Image Here -->
-						Logo
-					</a>
 
-					<!--
-						Mobile Menu Hamburger Link
-					-->
-					<a href="javascript:;" id="mobile-menu-toggler" class="hamburger">
-						<div class="hamburger-box">
-							<div class="hamburger-inner"></div>
-						</div>
-					</a>
+	<header id="top">
+
+		<div class="container">
+
+			<div class="row flex">
+
+				<div class="col-sm-8">
+
+					<h1 id="logo">
+						<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo('name'); ?></a>
+					</h1>
+
+					<small id="sublogo"><?php bloginfo('description'); ?></small>
 
 				</div>
-				
-				<div class="col-lg-9 header-menu-container">
-					
+
+                <?php
+
+				/*<div class="col-sm-2 text-right">
+					<a class="login" href="#"><i class="fa fa-key" aria-hidden="true"></i> Login</a>
+				</div>
+				<div class="col-sm-2 text-right">
+					<button class="btn contact-button">Contact me</button>
+				</div>*/
+
+				?>
+
+			</div>
+
+		</div>
+
+	</header>
+
+	<div id="nav">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-8">
+
 					<?php
-					
-						wp_nav_menu( array(
-							'menu'            => 'header_menu',
-							'theme_location'  => 'header_menu',
-							'container'       => 'div',
-							'menu_id'         => false,
-							//'depth'           => 4,
-						) );
-					
+
+						$location = 'header_menu';
+
+						if ( has_nav_menu($location) ) {
+
+							wp_nav_menu(array(
+								'menu' => $location,
+								'theme_location' => 'header_menu',
+								'container' => 'ul',
+								'menu_id' => "nav-menu",
+								//'depth'           => 4,
+							));
+						}
+
 					?>
 
 				</div>
-			
+
+				<div class="col-xs-12 col-sm-4 text-right">
+
+					<?php get_template_part( 'template-parts/search-form' ); ?>
+
+				</div>
+
 			</div>
+
 		</div>
-	
-	</header>
+
+	</div>
 	
 	<header id="composer-header">
 		<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
