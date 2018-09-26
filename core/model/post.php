@@ -1,17 +1,42 @@
 <?php
+/**
+ * Posts model
+ *
+ * PHP version 5.6
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 
 namespace ffblank\model;
 
 /**
- * Post model
- **/
+ * Posts model
+ *
+ * works with default posts
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 class post extends database {
-	
+
 	/**
 	 * Get posts by params
-	 **/
-	function get_posts( $args ) {
-		
+	 *
+	 * @param $args
+	 *
+	 * @return \WP_Query
+	 */
+	public function get_posts( $args ) {
+
 		$defaults = array(
 			'post_type'      => 'post',
 			'post_status'    => 'publish',
@@ -20,16 +45,16 @@ class post extends database {
 			'order'          => 'DESC',
 			'orderby'        => 'date'
 		);
-		
+
 		$args = wp_parse_args( $args, $defaults );
-		
+
 		if ( isset( $args['tax_query_type'] ) ) {
-			
+
 			$_taxonomy_slug  = $args['taxonomy_slug'];
 			$_taxonomy_terms = explode( ',', $args['taxonomy_terms'] );
-			
-			if ( $args['tax_query_type'] == 'only' ) {
-				
+
+			if ( $args['tax_query_type'] === 'only' ) {
+
 				$args['tax_query'] = array(
 					array(
 						'taxonomy' => $_taxonomy_slug,
@@ -37,9 +62,9 @@ class post extends database {
 						'terms'    => $_taxonomy_terms,
 					)
 				);
-				
-			} else if ( $args['tax_query_type'] == 'except' ) {
-				
+
+			} elseif ( $args['tax_query_type'] === 'except' ) {
+
 				$args['tax_query'] = array(
 					array(
 						'taxonomy' => $_taxonomy_slug,
@@ -48,18 +73,23 @@ class post extends database {
 						'operator' => 'NOT IN',
 					)
 				);
-				
+
 			}
-			
+
 		}
-		
+
 		return new \WP_Query( $args );
 	}
-	
+
 	/**
 	 * Get popular posts
-	 **/
-	function get_popular_posts( $post_type, $limit ) {
+	 *
+	 * @param $post_type
+	 * @param $limit
+	 *
+	 * @return \WP_Query
+	 */
+	public function get_popular_posts( $post_type, $limit ) {
 		$args = array(
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
@@ -68,14 +98,19 @@ class post extends database {
 			'ignore_sticky_posts' => true,
 			'orderby'             => 'comment_count'
 		);
-		
+
 		return new \WP_Query( $args );
 	}
-	
+
 	/**
 	 * Get recent posts
-	 **/
-	function get_recent_posts( $post_type, $limit ) {
+	 *
+	 * @param $post_type
+	 * @param $limit
+	 *
+	 * @return \WP_Query
+	 */
+	public function get_recent_posts( $post_type, $limit ) {
 		$args = array(
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
@@ -83,28 +118,40 @@ class post extends database {
 			'order'               => 'DESC',
 			'ignore_sticky_posts' => true
 		);
-		
+
 		return new \WP_Query( $args );
 	}
-	
+
 	/**
 	 * Get related posts
-	 **/
-	function get_related_posts( $primary_post_id, $limit, $taxonomy = 'category', $with_thumbnail_only = false ) {
-		
+	 *
+	 * @param $primary_post_id
+	 * @param $limit
+	 * @param string $taxonomy
+	 * @param bool $with_thumbnail_only
+	 *
+	 * @return bool|\WP_Query
+	 */
+	public function get_related_posts(
+		$primary_post_id,
+		$limit,
+		$taxonomy = 'category',
+		$with_thumbnail_only = false
+	) {
+
 		$terms = wp_get_post_terms( $primary_post_id, $taxonomy );
-		
+
 		$response = false;
-		
+
 		if ( count( $terms ) > 0 ) {
-			
+
 			$post_type      = get_post_type( $primary_post_id );
 			$post_terms_ids = array();
-			
+
 			foreach ( $terms as $term ) {
 				$post_terms_ids[] = $term->term_id;
 			}
-			
+
 			$args = array(
 				'post_type'           => $post_type,
 				'post_status'         => 'publish',
@@ -122,24 +169,30 @@ class post extends database {
 					)
 				)
 			);
-			
+
 			if ( $with_thumbnail_only ) {
 				$args['meta_query'][] = array(
 					'key' => '_thumbnail_id'
 				);
 			}
-			
+
 			$response = new \WP_Query( $args );
-			
+
 		}
-		
+
 		return $response;
 	}
-	
+
 	/**
 	 * Get random posts
-	 **/
-	function get_random_posts( $post_type, $limit, $with_thumbnail_only = false ) {
+	 *
+	 * @param $post_type
+	 * @param $limit
+	 * @param bool $with_thumbnail_only
+	 *
+	 * @return \WP_Query
+	 */
+	public function get_random_posts( $post_type, $limit, $with_thumbnail_only = false ) {
 		$args = array(
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
@@ -147,14 +200,14 @@ class post extends database {
 			'ignore_sticky_posts' => true,
 			'orderby'             => 'rand'
 		);
-		
+
 		if ( $with_thumbnail_only ) {
 			$args['meta_query'][] = array(
 				'key' => '_thumbnail_id'
 			);
 		}
-		
+
 		return new \WP_Query( $args );
 	}
-	
+
 }

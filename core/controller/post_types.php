@@ -1,27 +1,48 @@
 <?php
+/**
+ * Post Types
+ *
+ * PHP version 5.6
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 
 namespace ffblank\controller;
 
 /**
- * Theme init
- **/
+ * Post Types
+ *
+ * Register custom post types
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 class post_types {
-	
+
 	/**
 	 * Constructor
 	 **/
-	function __construct() {
-		
+	public function __construct() {
+
 		// Register Custom Post Types and Taxonomies
 		add_action( 'init', array( $this, 'register_custom_post_types' ), 5 );
-		
+
 	}
-	
+
 	/**
 	 * Register custom post types
 	 **/
-	function register_custom_post_types() {
-		
+	public function register_custom_post_types() {
+
 		register_post_type( 'composerlayout', array(
 				'label'               => esc_html__( 'Header / Footer', 'fruitfulblanktextdomain' ),
 				'description'         => '',
@@ -52,12 +73,13 @@ class post_types {
 					'view_item'          => esc_html__( 'View Header / Footer', 'fruitfulblanktextdomain' ),
 					'search_items'       => esc_html__( 'Search Header / Footer', 'fruitfulblanktextdomain' ),
 					'not_found'          => esc_html__( 'No Header / Footer Found', 'fruitfulblanktextdomain' ),
-					'not_found_in_trash' => esc_html__( 'No Header / Footer Found in Trash', 'fruitfulblanktextdomain' ),
+					'not_found_in_trash' => esc_html__( 'No Header / Footer Found in Trash',
+						'fruitfulblanktextdomain' ),
 					'parent'             => esc_html__( 'Parent Header / Footer', 'fruitfulblanktextdomain' )
 				)
 			)
 		);
-		
+
 		register_post_type( 'testimonials',
 			array(
 				'label'             => esc_html__( 'Testimonials', 'fruitfulblanktextdomain' ),
@@ -101,7 +123,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_taxonomy( 'testimonial_cat',
 			'testimonial',
 			array(
@@ -112,8 +134,10 @@ class post_types {
 				'rewrite'           => false,
 				'show_admin_column' => true,
 				'labels'            => array(
-					'name'          => _x( 'Testimonials Categories', 'taxonomy general name', 'fruitfulblanktextdomain' ),
-					'singular_name' => _x( 'Testimonials Category', 'taxonomy singular name', 'fruitfulblanktextdomain' ),
+					'name'          => _x( 'Testimonials Categories', 'taxonomy general name',
+						'fruitfulblanktextdomain' ),
+					'singular_name' => _x( 'Testimonials Category', 'taxonomy singular name',
+						'fruitfulblanktextdomain' ),
 					'search_items'  => esc_html__( 'Search in categories', 'fruitfulblanktextdomain' ),
 					'all_items'     => esc_html__( 'All Categories', 'fruitfulblanktextdomain' ),
 					'edit_item'     => esc_html__( 'Edit Category', 'fruitfulblanktextdomain' ),
@@ -124,7 +148,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_post_type( 'team_members',
 			array(
 				'label'             => esc_html__( 'Team Members', 'fruitfulblanktextdomain' ),
@@ -168,7 +192,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_taxonomy( 'team_members_cat',
 			'team',
 			array(
@@ -179,8 +203,10 @@ class post_types {
 				'rewrite'           => false,
 				'show_admin_column' => true,
 				'labels'            => array(
-					'name'          => _x( 'Team Members Categories', 'taxonomy general name', 'fruitfulblanktextdomain' ),
-					'singular_name' => _x( 'Team Members Category', 'taxonomy singular name', 'fruitfulblanktextdomain' ),
+					'name'          => _x( 'Team Members Categories', 'taxonomy general name',
+						'fruitfulblanktextdomain' ),
+					'singular_name' => _x( 'Team Members Category', 'taxonomy singular name',
+						'fruitfulblanktextdomain' ),
 					'search_items'  => esc_html__( 'Search in categories', 'fruitfulblanktextdomain' ),
 					'all_items'     => esc_html__( 'All Categories', 'fruitfulblanktextdomain' ),
 					'edit_item'     => esc_html__( 'Edit Category', 'fruitfulblanktextdomain' ),
@@ -191,7 +217,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_post_type( 'portfolio',
 			array(
 				'label'             => esc_html__( 'Portfolio', 'fruitfulblanktextdomain' ),
@@ -235,7 +261,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_taxonomy( 'portfolio_cat',
 			'portfolio',
 			array(
@@ -258,7 +284,7 @@ class post_types {
 				)
 			)
 		);
-		
+
 		register_post_type( 'news',
 			array(
 				'label'             => esc_html__( 'News', 'fruitfulblanktextdomain' ),
@@ -304,6 +330,6 @@ class post_types {
 		);
 
 	}
-	
-	
+
+
 }

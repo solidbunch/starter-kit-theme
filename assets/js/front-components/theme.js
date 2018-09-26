@@ -1,13 +1,12 @@
 import $ from 'jquery';
 
-export default class Front {
+export default class Theme {
 	/**
 	 Constructor
 	 **/
 	constructor() {
 		this.build();
 		this.events()
-
 	}
 
 	/**
@@ -53,7 +52,6 @@ export default class Front {
 	 **/
 	loadGoogleFonts() {
 		WebFont.load({google: {families: ["Montserrat:300,400,500,600,700,800"]}});
-		console.log('loadGoogleFonts');
 	}
 
 	/** Check for mobile device **/

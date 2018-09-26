@@ -6,13 +6,12 @@
 @import "~bootstrap/scss/bootstrap-reboot";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
-
 // full bootstrap
 // @import "~bootstrap/scss/bootstrap";
 // custom theme styles here
 @import 'partials/global';
 @import 'partials/header';
-@import 'partials/header_menu'; 
+@import 'partials/header_menu';
 @import 'partials/blog';
 @import 'partials/footer';
 @import 'partials/sidebar';
