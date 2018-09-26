@@ -16,6 +16,7 @@ class core {
 	public $config;
 	public $controller;
 	public $model;
+	/** @var view */
 	public $view;
 	
 	private function __construct() {
@@ -56,10 +57,11 @@ class core {
 		
 		$this->controller = new \stdClass();
 		$this->model      = new \stdClass();
-		$this->view       = new \stdClass();
+		//$this->view       = new \stdClass();
 		
 		// load dependency classes first
 		// View
+		/** @var view */
 		$this->view = new view();
 		
 		// Model

@@ -17,8 +17,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-	<div class="row">
-		<div class="col-md-12">
+
 			
 			<!--
 				Comments block
@@ -60,6 +59,7 @@ if ( post_password_required() ) {
 				<?php endif; // have_comments() ?>
 				
 				<?php
+
 				$commenter = wp_get_current_commenter();
 				$req       = get_option( 'require_name_email' );
 				$aria_req  = ( $req ? " aria-required='true'" : '' );
@@ -76,7 +76,7 @@ if ( post_password_required() ) {
 					
 					'title_reply' => esc_html__( 'Leave a reply', 'fruitfulblanktextdomain' ),
 					
-					'comment_field' => '<div class="row"><div class="form-row col-md-12"><textarea class="input-icon-comment" id="comment" placeholder="' . esc_html__( 'Your Comment *', 'fruitfulblanktextdomain' ) . '" name="comment" cols="45" rows="8" aria-required="true"></textarea></div></div>',
+					'comment_field' => '<textarea class="input-icon-comment" id="comment" placeholder="' . esc_html__( 'Your Comment *', 'fruitfulblanktextdomain' ) . '" name="comment" cols="45" rows="8" aria-required="true"></textarea>',
 					
 					'fields' => apply_filters( 'comment_form_default_fields', array(
 							
@@ -105,19 +105,18 @@ if ( post_password_required() ) {
 			
 			</div><!-- /comments-->
 		
-		</div>
-	</div>
+
 
 <?php if ( comments_open() ): ?>
-	<div class="comment-form-wrapper">
+
 		<div class="row">
-			<div class="col-md-8">
-				
-				<?php comment_form( $comment_form_args ); ?>
-			
+			<div class="col-md-12">
+				<div class="comment-form-wrapper">
+					<?php comment_form( $comment_form_args ); ?>
+				</div>
 			</div>
 		</div>
-	</div>
+
 <?php endif; ?>
 
 <?php
@@ -125,51 +124,62 @@ if ( post_password_required() ) {
  * Comments callback function
  **/
 function fruitfulblankprefix_comments_callback( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	
-	switch ( $comment->comment_type ) :
-		case '':
-			?>
+	$GLOBALS['comment'] = $comment; ?>
+
 		<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-			
+
 			<div class="comment-body">
-				
+
 				<?php
-				
+
 				$comment_author = get_userdata( $comment->user_id );
 				$author_name    = isset( $comment_author->display_name ) ? $comment_author->display_name : get_comment_author( get_comment_ID() );
-				
+
 				?>
-				
-				<?php if ( get_option( 'show_avatars' ) ): ?>
+
+				<?php if( get_option('show_avatars') ): ?>
+
 					<div class="avatar">
-						<?php echo get_avatar( $comment, 165 ); ?>
+
+						<?php if ( $comment->comment_type === 'pingback' || $comment->comment_type === 'trackback' ) : ?>
+
+							<img class="avatar" height="60" width="60" src="<?php echo get_template_directory_uri() . '/assets/images/robot.png'; ?>" alt="<?php echo $comment->comment_type; ?>">
+
+						<?php else: ?>
+
+							<?php echo get_avatar( $comment, 165, '', get_comment_author() ); ?>
+
+						<?php endif; ?>
+
 					</div>
+
 				<?php endif; ?>
-				
+
 				<div class="comment-text">
-					
+
 					<h4 class="author-name-mobile">
 						<?php echo wp_kses_post( $author_name ); ?>
 					</h4>
-					
-					<?php comment_text(); ?>
-					
+
 					<div class="comment-time"><?php echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) . " " . esc_html__( 'ago', 'fruitfulblanktextdomain' ); ?></div>
-					
+
+					<div class="comment-contents">
+						<?php comment_text(); ?>
+					</div>
+
 					<?php comment_reply_link( array_merge( $args, array( 'add_below'  => 'comment',
 					                                                     'reply_text' => esc_html__( 'Reply', 'fruitfulblanktextdomain' ),
 					                                                     'depth'      => $depth,
 					                                                     'max_depth'  => $args['max_depth']
 					) ), get_comment_ID(), get_the_ID() ); ?>
-					
+
 					<div class="clearfix"></div>
-				
+
 				</div>
-			
+
 			</div>
-			
-			<?php
-			break;
-	endswitch;
+
+		<?php
+
+
 }
