@@ -7,6 +7,9 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = function () {
     const baseConf = {
+        externals: {
+            jquery: 'jQuery'
+        },
         optimization: {
             minimizer: [
                 // enable the js minification plugin
