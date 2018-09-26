@@ -15,9 +15,6 @@ module.exports = Object.assign(
             libs: './assets/css/libs/libs.scss',
             admin: './assets/css/admin/admin.scss',
         },
-        externals: {
-            jquery: 'jQuery'
-        }
     },
     baseConfig
 );
