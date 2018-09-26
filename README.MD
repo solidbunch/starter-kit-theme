@@ -1,14 +1,19 @@
 # Fruitful Blank Theme
 **Requirements**
+ 
  1. PHP5.6+
+ 
  2. NodeJs
 
 **Optional utilities** 
  1. WP_CLI (https://wp-cli.org/)
 
 **Setup**
+ 
  1. clone repo
+ 
  2. run `npm i` or  `yarn`  command (setup node depencies)
+ 
  3. to run webpack use next commands
      - > `npm run prod`  or  `yarn prod` - build minified assets
      - > `npm run dev` or `yarn dev`- build assets with source maps (for development) 
@@ -62,9 +67,13 @@
 #Naming conventions
 
 **shortcodes/widgets**
+ 
  1. all styles and scripts files should be in `{shortcode/widget}/assets` - folder
+ 
  2. styles should be named  - `style.scss`
+ 
  3. JS files should be named - `scripts.js`ß
+ 
  4. enque in shortcode  - `style.css` and `scritps.min.js`
  
 #Shortcodes
