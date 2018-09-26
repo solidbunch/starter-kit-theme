@@ -2,18 +2,18 @@
 [Sidebar styles]
 -------------------------------------------------------------------*/
 #sidebar {
-	@include media-breakpoint-down(sm) {
-		margin-top: 35px;
-	}
+  @include media-breakpoint-down(sm) {
+	margin-top: 35px;
+  }
 
-	.widget {
-		margin-bottom: 35px;
-	}
+  .widget {
+	margin-bottom: 35px;
+  }
 
-	.widget_nav_menu {
-		ul ul ul ul ul {
-			display: none;
-		}
+  .widget_nav_menu {
+	ul ul ul ul ul {
+	  display: none;
 	}
+  }
 
 }

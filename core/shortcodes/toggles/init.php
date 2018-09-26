@@ -21,7 +21,7 @@ vc_map( array(
 	'content_element' => true,
 	'as_child'        => array( 'only' => 'toggles' ),
 	'params'          => array(
-		
+
 		array(
 			'type'        => 'textfield',
 			'heading'     => esc_html__( 'Title', 'fruitfulblanktextdomain' ),
@@ -41,6 +41,6 @@ vc_map( array(
 			'param_name' => 'open',
 			'value'      => array( esc_html__( 'Yes', 'wplab-albedo-core-plugin' ) => 'yes' ),
 		),
-	
+
 	)
 ) );

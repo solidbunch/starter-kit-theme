@@ -1,12 +1,21 @@
 <?php
-
 /**
  * Core config
- **/
-
+ *
+ * return an array with predefined config values
+ *
+ * PHP version 5.6
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 return array(
 	'cache_time'      => '110820171044',
-	'assets_uri'  		=> get_template_directory_uri() . '/assets/',
+	'assets_uri'      => get_template_directory_uri() . '/assets/',
 	'shortcodes_dir'  => get_template_directory() . '/core/shortcodes/',
 	'shortcodes_uri'  => get_template_directory_uri() . '/core/shortcodes/',
 	'widgets_dir'     => get_template_directory() . '/core/widgets/',

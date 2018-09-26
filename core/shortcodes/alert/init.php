@@ -6,7 +6,7 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add an alert', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		array(
 			'type'       => 'textarea_html',
 			'heading'    => esc_html__( 'Alert Content', 'fruitfulblanktextdomain' ),
@@ -52,6 +52,6 @@ vc_map( array(
 				esc_html__( 'Dark', 'fruitfulblanktextdomain' )      => 'dark',
 			),
 		),
-	
+
 	)
 ) );

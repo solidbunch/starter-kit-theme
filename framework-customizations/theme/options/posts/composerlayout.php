@@ -38,7 +38,7 @@ $options = array(
 		'title'   => esc_html__( 'Settings', 'fruitfulblanktextdomain' ),
 		'type'    => 'box',
 		'options' => array(
-			
+
 			'_layouttype'  => array(
 				'label'      => esc_html__( 'Layout type', 'fruitfulblanktextdomain' ),
 				'type'       => 'radio',
@@ -63,7 +63,7 @@ $options = array(
 					'post-meta' => '_appointment',
 				),
 			)
-		
+
 		)
 	),
 

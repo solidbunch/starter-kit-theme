@@ -35,21 +35,21 @@ if ( isset( $atts['button_size'] ) && $atts['button_size'] <> '' ) {
 <?php endif; ?>
 	<a href="<?php echo esc_attr( $atts['link'] ); ?>" id="<?php echo esc_attr( $id ); ?>"
 	   class="btn <?php echo esc_attr( $css_class ); ?>">
-		
+
 		<?php if ( $is_styled ): ?>
 		<span class="inside"><span class="text">
 	<?php endif; ?>
-				
+
 				<?php echo wp_kses_post( $atts['title'] ); ?>
-				
+
 				<?php if ( $atts['icon'] <> '' ): ?>
 					<i class="<?php echo esc_attr( $atts['icon'] ); ?>"></i>
 				<?php endif; ?>
-				
+
 				<?php if ( $is_styled ): ?>
 		</span></span>
 	<?php endif; ?>
-	
+
 	</a>
 <?php if ( $atts['button_align'] <> '' ): ?>
 	</div>
