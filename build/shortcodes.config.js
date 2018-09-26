@@ -22,9 +22,8 @@ scriptsArray.reduce((acc, item) => {
 	if (Array.isArray(assetsObject[name]) === true) {
 		assetsObject[name].push(item);
 	} else {
-		acc[name] = new Array(item);
+		assetsObject[name] = new Array(item);
 	}
-	return acc;
 }, {});
 
 // include the css extraction and minification plugins

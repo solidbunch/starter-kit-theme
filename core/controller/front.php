@@ -108,7 +108,7 @@ class front {
 		);
 		wp_register_script(
 			'fruitfulblankprefix-front',
-			get_template_directory_uri() . '/assets/js/front.min.js',
+			get_template_directory_uri() . '/assets/js/app.min.js',
 			array(
 				'jquery',
 				'google-fonts'

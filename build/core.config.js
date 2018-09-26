@@ -11,7 +11,8 @@ module.exports = Object.assign(
 	{
 		name: 'core',
 		entry: {
-			front: ['./assets/css/front/front.scss', './assets/js/front.js'],
+			app: './assets/js/app.js',
+			front: './assets/css/front/front.scss',
 			libs: './assets/css/libs/libs.scss',
 			admin: './assets/css/admin/admin.scss',
 		},
