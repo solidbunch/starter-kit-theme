@@ -3,7 +3,7 @@
 $options = array(
 	array(
 		'footer_options_tab' => array(
-			'title' => esc_html__( 'Footer', 'fruitfulblanktextdomain' ),
+			'title' => esc_html__( 'Footer', 'albedo' ),
 			'type' => 'tab',
 			'options' => array(
 

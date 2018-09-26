@@ -57,7 +57,7 @@ class widget extends \WP_Widget {
 	 * Admin: widget settings form
 	 **/
 	function form( $instance ) {
-		
+
 		FFBLANK()->view->load(
 			'/view/backend',
 			array(
@@ -74,7 +74,7 @@ class widget extends \WP_Widget {
 	 * Front-end output
 	 **/
 	function widget( $args, $instance ) {
-		
+
 		FFBLANK()->view->load(
 			'/view/frontend',
 			array(

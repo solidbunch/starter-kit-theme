@@ -1,11 +1,19 @@
-@import 'functions';
+//import bootstrap functions
+@import "~bootstrap/scss/functions";
+//rewrite bootstrap variables
 @import 'variables';
-@import 'mixins';
-@import 'utilities';
+@import "_grid";
+@import "~bootstrap/scss/bootstrap-reboot";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// full bootstrap
+// @import "~bootstrap/scss/bootstrap";
 // custom theme styles here
 @import 'partials/global';
 @import 'partials/header';
 @import 'partials/header_menu'; 
+@import 'partials/blog';
 @import 'partials/footer';
 @import 'partials/sidebar';
 @import 'partials/js_composer'; 
