@@ -16,7 +16,19 @@ module.exports = function () {
 				new UglifyJSPlugin({
 					test: /\.js(\?.*)?$/i,
 					sourceMap: false,
-					extractComments: true
+					extractComments: true,
+					parallel: true,
+					uglifyOptions: {
+						warnings: false,
+						parse: {},
+						compress: {},
+						mangle: true, // Note `mangle.properties` is `false` by default.
+						output: null,
+						toplevel: false,
+						nameCache: null,
+						ie8: false,
+						keep_fnames: false,
+					}
 				}),
 				//enable the css minification plugin
 				new OptimizeCSSAssetsPlugin({
@@ -78,7 +90,9 @@ module.exports = function () {
 		},
 		devtool: 'source-map',
 		plugins: [
-			new FixStyleOnlyEntriesPlugin(),
+			new FixStyleOnlyEntriesPlugin({
+				silent: true
+			}),
 		],
 	};
 
