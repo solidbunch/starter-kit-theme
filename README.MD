@@ -34,6 +34,8 @@
    - js/
    - libs/
    - fonts/
+ - bin - WP_CLI commands
+ - build - webpack configs 
  - core/ – main theme files
    - controller/
      - backend.php – all for wp-admin
