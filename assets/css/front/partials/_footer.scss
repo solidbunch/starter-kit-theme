@@ -2,45 +2,45 @@
 [Footer styles]
 -------------------------------------------------------------------*/
 #footer {
-	background-color: #282828;
-	margin-top: 35px;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
+  background-color: #282828;
+  margin-top: 35px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #bottom-bar {
-	padding: 25px 0;
-	color: #ffffff;
+  padding: 25px 0;
+  color: #ffffff;
 
-	@include media-breakpoint-down(sm) {
-		text-align: center;
-	}
+  @include media-breakpoint-down(sm) {
+	text-align: center;
+  }
 
-	.links {
+  .links {
 
-		ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			li {
-				display: inline-block;
-				margin: 0 0 0 20px;
-				padding: 0;
+	ul {
+	  list-style: none;
+	  margin: 0;
+	  padding: 0;
+	  li {
+		display: inline-block;
+		margin: 0 0 0 20px;
+		padding: 0;
 
-				a {
-					color: #ffffff;
-				}
-
-				@include media-breakpoint-down(sm) {
-					margin: 0;
-				}
-
-			}
-			ul {
-				display: none;
-			}
+		a {
+		  color: #ffffff;
 		}
+
+		@include media-breakpoint-down(sm) {
+		  margin: 0;
+		}
+
+	  }
+	  ul {
+		display: none;
+	  }
 	}
+  }
 }

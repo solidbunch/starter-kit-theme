@@ -6,7 +6,7 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Any post type with pagination', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		/**
 		 *  Query tab
 		 **/
@@ -80,7 +80,8 @@ vc_map( array(
 		array(
 			'type'        => 'textarea',
 			'heading'     => esc_html__( 'Categories', 'fruitfulblanktextdomain' ),
-			'description' => esc_html__( 'Type here category slugs to include or exclude, based on previous parameter. Explode multiple categories slugs by comma', 'fruitfulblanktextdomain' ),
+			'description' => esc_html__( 'Type here category slugs to include or exclude, based on previous parameter. Explode multiple categories slugs by comma',
+				'fruitfulblanktextdomain' ),
 			'param_name'  => 'taxonomy_terms',
 			'admin_label' => true,
 			'value'       => '',
@@ -100,7 +101,7 @@ vc_map( array(
 			'group'       => esc_html__( 'General', 'fruitfulblanktextdomain' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'fruitfulblanktextdomain' ),
 		),
-		
+
 		/**
 		 *  Pagination tab
 		 **/
@@ -123,7 +124,7 @@ vc_map( array(
 			'value'      => esc_html__( 'Load more', 'fruitfulblanktextdomain' ),
 			'group'      => esc_html__( 'Pagination', 'fruitfulblanktextdomain' ),
 		),
-		
+
 		/**
 		 *  Appearance tab
 		 **/
@@ -163,7 +164,7 @@ vc_map( array(
 			),
 			'group'       => esc_html__( 'Appearance', 'fruitfulblanktextdomain' ),
 		),
-		
+
 		/**
 		 *  Style tab
 		 **/
@@ -201,6 +202,6 @@ vc_map( array(
 			),
 			'group'       => esc_html__( 'Style', 'fruitfulblanktextdomain' ),
 		),
-	
+
 	),
 ) );

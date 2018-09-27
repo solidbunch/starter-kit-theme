@@ -55,25 +55,25 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 		protected function getDataArray( $atts, $content = null ) {
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 			//parse param_group sting to array
-			$images = vc_param_group_parse_atts($atts['images']);
+			$images = vc_param_group_parse_atts( $atts['images'] );
 
 
 			$image_blocks = array();
 			foreach ( $images as $image ) {
 				$image_blocks[] = array(
-					'src' => \wp_get_attachment_image_url($image['image'],'full'),
-					'alt' => \get_post_meta( $image['image'], '_wp_attachment_image_alt', true ),
+					'src'     => \wp_get_attachment_image_url( $image['image'], 'full' ),
+					'alt'     => \get_post_meta( $image['image'], '_wp_attachment_image_alt', true ),
 					'caption' => $image['caption'],
-					'text' => $image['hover_text']
+					'text'    => $image['hover_text']
 				);
 			}
 
 			/** Shortcode data to output **/
 
 			return array(
-				'atts'            => $atts,
-				'content'         => $content,
-				'image_blocks'    => $image_blocks
+				'atts'         => $atts,
+				'content'      => $content,
+				'image_blocks' => $image_blocks
 			);
 		}
 

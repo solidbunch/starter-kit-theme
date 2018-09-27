@@ -3,8 +3,8 @@
 $options = array(
 	array(
 		'base_options_tab' => array(
-			'title' => esc_html__( 'Base Settings', 'albedo' ),
-			'type' => 'tab',
+			'title'   => esc_html__( 'Base Settings', 'albedo' ),
+			'type'    => 'tab',
 			'options' => array(
 
 				'img_lazy_load_box' => array(
@@ -14,23 +14,23 @@ $options = array(
 						'class' => 'prevent-auto-close'
 					),
 					'options' => array(
-						
-						'img_lazy_load'	=> array(
-							'type'  => 'switch',
-							'label' => __('Lazy Load Images', 'fruitfulblanktextdomain'),
+
+						'img_lazy_load' => array(
+							'type'         => 'switch',
+							'label'        => __( 'Lazy Load Images', 'fruitfulblanktextdomain' ),
 							'right-choice' => array(
 								'value' => '1',
-								'label' => __('Yes', 'fruitfulblanktextdomain')
+								'label' => __( 'Yes', 'fruitfulblanktextdomain' )
 							),
-							'left-choice' => array(
+							'left-choice'  => array(
 								'value' => '0',
 								'color' => '#ccc',
-								'label' => __('No', 'fruitfulblanktextdomain')
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
 							),
-							'desc'  => __('Lazy Load Images on site', 'fruitfulblanktextdomain'),
-						
+							'desc'         => __( 'Lazy Load Images on site', 'fruitfulblanktextdomain' ),
+
 						),
-					
+
 					)
 				),
 

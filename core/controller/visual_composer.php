@@ -1,31 +1,52 @@
 <?php
+/**
+ * Visual Composer
+ *
+ * PHP version 5.6
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 
 namespace ffblank\controller;
 
 /**
- * Visual Composer init
- **/
+ * Visual Composer
+ *
+ * Rewrite default Visual Composer functions
+ *
+ * @category   Wordpress
+ * @package    FFBLANK Backend
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
+ */
 class visual_composer {
-	
+
 	/**
 	 * Constructor
 	 **/
-	function __construct() {
-		
+	public function __construct() {
+
 		// replace default VC grid classes
 		add_filter( 'vc_shortcodes_css_class', array( $this, 'custom_css_classes_for_vc_grid' ), 10, 2 );
-		
+
 		// Remove default VC elements
 		add_action( 'vc_after_init', array( $this, 'setup_vc' ) );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Set Bootstrap 4 classes for VC Grid
 	 **/
-	function custom_css_classes_for_vc_grid( $class_string, $tag ) {
-		
+	public function custom_css_classes_for_vc_grid( $class_string, $tag ) {
+
 		if ( $tag == 'vc_row' || $tag == 'vc_row_inner' ) {
 			$class_string = str_replace( 'vc_row-fluid', 'row-fluid', $class_string );
 			$class_string = str_replace( 'vc_row', 'row', $class_string );
@@ -33,30 +54,30 @@ class visual_composer {
 			$class_string = str_replace( 'row-o-content-bottom', 'align-items-end', $class_string );
 			$class_string = str_replace( 'row-o-content-middle', 'align-items-center', $class_string );
 		}
-		
+
 		if ( $tag == 'vc_column' || $tag == 'vc_column_inner' ) {
-			
+
 			$class_string = str_replace( 'vc_col-sm-', 'col-md-', $class_string );
 			$class_string = str_replace( 'vc_col-', 'col-', $class_string );
 			//Todo
 			//$class_string = preg_replace( '/vc_hidden\-([a-z]{2})/', 'd-$1-none', $class_string );
-			
+
 		}
-		
+
 		return $class_string;
 	}
-	
+
 	/**
 	 * Remove default VC shortcodes and some unused options
 	 **/
-	function setup_vc() {
-		
+	public function setup_vc() {
+
 		/**
 		 * if( function_exists( 'vc_disable_frontend') ) {
 		 * vc_disable_frontend();
 		 * }
 		 **/
-		
+
 		if ( function_exists( 'vc_set_default_editor_post_types' ) ) {
 			$list = array(
 				'page',
@@ -64,7 +85,7 @@ class visual_composer {
 			);
 			vc_set_default_editor_post_types( $list );
 		}
-		
+
 		vc_remove_element( 'vc_btn' );
 		vc_remove_element( 'vc_separator' );
 		vc_remove_element( 'vc_section' );
@@ -100,8 +121,8 @@ class visual_composer {
 		vc_remove_element( 'vc_line_chart' );
 		vc_remove_element( 'vc_posts_slider' );
 		vc_remove_element( 'vc_gmaps' );
-		
+
 		vc_remove_param( 'vc_row', 'gap' );
 	}
-	
+
 }
