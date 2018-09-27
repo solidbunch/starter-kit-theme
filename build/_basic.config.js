@@ -40,7 +40,7 @@ module.exports = function () {
 			]
 		},
 		output: {
-			path: path.resolve(__dirname + " /../"),
+			path: path.resolve(__dirname + "/../"),
 			filename: "./assets/js/[name].min.js"
 		},
 		module: {
