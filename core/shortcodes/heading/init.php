@@ -6,7 +6,7 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a heading', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		/**
 		 *  Header attributes tab
 		 **/
@@ -51,8 +51,8 @@ vc_map( array(
 			'group'       => esc_html__( 'Header Attributes', 'fruitfulblanktextdomain' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'fruitfulblanktextdomain' ),
 		),
-		
-		
+
+
 		/**
 		 *  Styling tab
 		 **/
@@ -165,6 +165,6 @@ vc_map( array(
 			'param_name' => 'css',
 			'group'      => esc_html__( 'Design options', 'fruitfulblanktextdomain' ),
 		),
-	
+
 	)
 ) );
