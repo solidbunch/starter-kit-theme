@@ -2,7 +2,7 @@ const baseConfig = require('./_basic.config')();
 const path = require('path');
 const glob = require('glob');
 
-const pathTo = path.resolve( "./../") + '/core/shortcodes/';
+const pathTo = path.resolve( "./") + '/core/shortcodes/';
 //read all styles.scss from shortcodes
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 
