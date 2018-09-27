@@ -24,7 +24,7 @@ $options = array(
 		'title'   => esc_html__( 'Header & Footer options', 'fruitfulblanktextdomain' ),
 		'type'    => 'box',
 		'options' => array(
-			
+
 			'_this_header' => array(
 				'label'      => esc_html__( 'Page Header', 'fruitfulblanktextdomain' ),
 				'type'       => 'select',
@@ -34,7 +34,7 @@ $options = array(
 					'type'      => 'post-meta',
 					'post-meta' => '_this_header',
 				),
-			
+
 			),
 			'_this_footer' => array(
 				'label'      => esc_html__( 'Page Footer', 'fruitfulblanktextdomain' ),
@@ -45,9 +45,9 @@ $options = array(
 					'type'      => 'post-meta',
 					'post-meta' => '_this_footer',
 				),
-			
+
 			)
-		
+
 		)
 	),
 );

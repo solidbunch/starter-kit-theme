@@ -13,7 +13,7 @@ the_post(); ?>
 	<div id="content" class="container">
 
         <?php
-
+        $reversed = '';
         if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
 
             $current_position = fw_ext_sidebars_get_current_position();

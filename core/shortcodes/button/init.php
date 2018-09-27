@@ -6,7 +6,7 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a button', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		array(
 			'type'       => 'textfield',
 			'heading'    => esc_html__( 'Button title', 'fruitfulblanktextdomain' ),
@@ -94,7 +94,7 @@ vc_map( array(
 			'param_name' => 'css',
 			'group'      => esc_html__( 'Design options', 'fruitfulblanktextdomain' ),
 		),
-	
-	
+
+
 	)
 ) );
