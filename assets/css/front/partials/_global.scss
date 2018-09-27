@@ -24,6 +24,13 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit;
 }
 
+a {
+  color: #eb3c00;
+  &:hover {
+    color: #b03200;
+  }
+}
+
 table {
   width: 100%;
 }
