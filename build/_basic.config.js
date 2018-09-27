@@ -40,7 +40,7 @@ module.exports = function () {
 			]
 		},
 		output: {
-			path: path.resolve(__dirname + "/../"),
+			path: path.resolve("./../"),
 			filename: "./assets/js/[name].min.js"
 		},
 		module: {
@@ -88,11 +88,11 @@ module.exports = function () {
 				}
 			]
 		},
-		devtool: 'source-map',
+		//devtool: 'source-map',
 		plugins: [
 			new FixStyleOnlyEntriesPlugin({
 				silent: true
-			}),
+			})
 		],
 	};
 
