@@ -20,4 +20,52 @@
 	padding-left: 0;
   }
 
+  ul {
+	padding-left: 0px;
+
+	ul {
+	  padding-left: 15px;
+	}
+
+	li {
+	  list-style: none;
+	}
+  }
+
+  table {
+	* {
+	  border-color: #555c66;
+	}
+	tfoot td {
+	  border: none;
+	}
+  }
+
+  label {
+	width: 100%;
+  }
+
+  input, select {
+	width: 100%;
+	padding: 10px 5px;
+	border: none;
+	background-color: #ffffff;
+	color: #282828;
+  }
+
+  input[type='submit'],
+  button {
+	background-color: #eb3c00;
+	color: #ffffff;
+  }
+
+  .widget-title {
+	font-size: 24px;
+  }
+
+  .widget_calendar caption {
+	color: #999999;
+	text-align: center;
+  }
+
 }
