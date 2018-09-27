@@ -5035,6 +5035,41 @@ ul > li {
 #sidebar .widget-content > ul {
   padding-left: 0; }
 
+#sidebar ul {
+  padding-left: 0px; }
+  #sidebar ul ul {
+    padding-left: 15px; }
+  #sidebar ul li {
+    list-style: none; }
+
+#sidebar table * {
+  border-color: #555c66; }
+
+#sidebar table tfoot td {
+  border: none; }
+
+#sidebar label {
+  width: 100%; }
+
+#sidebar input, #sidebar select {
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  background-color: #ffffff;
+  color: #282828; }
+
+#sidebar input[type='submit'],
+#sidebar button {
+  background-color: #eb3c00;
+  color: #ffffff; }
+
+#sidebar .widget-title {
+  font-size: 24px; }
+
+#sidebar .widget_calendar caption {
+  color: #999999;
+  text-align: center; }
+
 /*------------------------------------------------------------------
 [Stripped version of JS Composer styles]
 -------------------------------------------------------------------*/
