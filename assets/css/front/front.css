@@ -4278,6 +4278,11 @@ a.text-dark:hover, a.text-dark:focus {
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit; }
 
+a {
+  color: #eb3c00; }
+  a:hover {
+    color: #b03200; }
+
 table {
   width: 100%; }
 
@@ -4876,11 +4881,12 @@ ul > li {
 #reply-title a {
   float: right; }
 
-#sidebar ul li {
-  list-style: none; }
-
-#sidebar ul ul {
-  padding-left: 15px; }
+#sidebar {
+  margin-top: 43px; }
+  #sidebar ul li {
+    list-style: none; }
+  #sidebar ul ul {
+    padding-left: 15px; }
 
 @media (max-width: 1023px) {
   #nav .search {
@@ -4960,11 +4966,36 @@ ul > li {
 -------------------------------------------------------------------*/
 #footer {
   background-color: #282828;
-  margin-top: 35px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0; }
+  margin-top: 35px; }
+  #footer, #footer p, #footer span, #footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
+    color: #ffffff; }
+  #footer ul {
+    padding-left: 0px; }
+    #footer ul ul {
+      padding-left: 15px; }
+    #footer ul li {
+      list-style: none; }
+  #footer table * {
+    border-color: #555c66; }
+  #footer table tfoot td {
+    border: none; }
+  #footer label {
+    width: 100%; }
+  #footer input, #footer select {
+    width: 100%;
+    padding: 10px 5px;
+    border: none;
+    background-color: #ffffff;
+    color: #282828; }
+  #footer input[type='submit'],
+  #footer button {
+    background-color: #eb3c00;
+    color: #ffffff; }
+  #footer .widget-title {
+    font-size: 24px; }
+  #footer .widget_calendar caption {
+    color: #999999;
+    text-align: center; }
 
 #bottom-bar {
   padding: 25px 0;
@@ -5000,6 +5031,9 @@ ul > li {
 
 #sidebar .widget_nav_menu ul ul ul ul ul {
   display: none; }
+
+#sidebar .widget-content > ul {
+  padding-left: 0; }
 
 /*------------------------------------------------------------------
 [Stripped version of JS Composer styles]
