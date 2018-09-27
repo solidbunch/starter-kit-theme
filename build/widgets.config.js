@@ -2,7 +2,7 @@ const baseConfig = require('./_basic.config')();
 const path = require('path');
 const glob = require('glob');
 
-const pathTo = path.resolve( "./../") + '/core/widgets/';
+const pathTo = path.resolve( "./") + '/core/widgets/';
 //read all styles.scss from widgets
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 

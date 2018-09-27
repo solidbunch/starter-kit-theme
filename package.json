@@ -40,7 +40,7 @@
     "webpack-fix-style-only-entries": "0.0.4"
   },
   "scripts": {
-    "replaceNames": "./node_modules/bin/gulp replaceNames",
+    "replaceNames": "./node_modules/.bin/gulp replaceNames",
     "dev": "webpack --mode development --hide-modules --progress --color",
     "prod": "webpack --mode production --hide-modules --progress --color",
     "watch": "webpack --watch --mode development --hide-modules --progress --color",
