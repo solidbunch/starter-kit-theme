@@ -1,10 +1,10 @@
 import $ from 'jquery';
-import Front from './front/theme'
+import Theme from './front-components/theme'
 
 require('popper.js');
 require('bootstrap'); // full bootstrap
 // require('bootstrap/js/src/button'); // single bootstrap component
 
 $(document).ready(() => {
-    new Front();
+	new Theme();
 });

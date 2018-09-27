@@ -6,7 +6,7 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'News', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		/**
 		 *  Query tab
 		 **/
@@ -43,7 +43,7 @@ vc_map( array(
 			'group'       => esc_html__( 'General', 'fruitfulblanktextdomain' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'fruitfulblanktextdomain' ),
 		),
-		
+
 		/**
 		 *  Appearance tab
 		 **/
@@ -62,6 +62,6 @@ vc_map( array(
 			'value'      => array( esc_html__( 'Yes', 'fruitfulblanktextdomain' ) => 'yes' ),
 			'group'      => esc_html__( 'Appearance', 'fruitfulblanktextdomain' ),
 			'std'        => 'yes'
-		),	
+		),
 	),
 ) );

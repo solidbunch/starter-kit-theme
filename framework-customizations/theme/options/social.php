@@ -3,8 +3,8 @@
 $options = array(
 	array(
 		'social_options_tab' => array(
-			'title' => esc_html__( 'Social', 'albedo' ),
-			'type' => 'tab',
+			'title'   => esc_html__( 'Social', 'albedo' ),
+			'type'    => 'tab',
 			'options' => array(
 
 				'oauth-settings-box' => array(
@@ -15,7 +15,7 @@ $options = array(
 					),
 					'options' => array(
 
-						'facebook_app_id' => array(
+						'facebook_app_id'     => array(
 							'type'  => 'text',
 							'label' => esc_html__( 'Facebook Application ID', 'fruitfulblanktextdomain' ),
 							'value' => ''
@@ -26,7 +26,7 @@ $options = array(
 							'value' => ''
 						),
 
-						'google_client_id' => array(
+						'google_client_id'     => array(
 							'type'  => 'text',
 							'label' => esc_html__( 'Google Client ID', 'fruitfulblanktextdomain' ),
 							'value' => ''
@@ -37,7 +37,7 @@ $options = array(
 							'value' => ''
 						),
 
-						'twitter_consumer_key' => array(
+						'twitter_consumer_key'    => array(
 							'type'  => 'text',
 							'label' => esc_html__( 'Twitter Consumer Key', 'fruitfulblanktextdomain' ),
 							'value' => ''
@@ -58,9 +58,9 @@ $options = array(
 						'class' => 'prevent-auto-close'
 					),
 					'options' => array(
-						
+
 						\ffblank\helper\utils::get_social_cfg_usyon()
-					
+
 					)
 				),
 

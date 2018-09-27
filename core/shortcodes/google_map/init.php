@@ -6,11 +6,12 @@ vc_map( array(
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add Google Map', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-		
+
 		array(
 			'type'        => 'textfield',
 			'heading'     => esc_html__( 'Google API Key', 'fruitfulblanktextdomain' ),
-			'description' => esc_html__( 'Insert here your Google API Key to avoid request limitations and JavaScript errors.', 'fruitfulblanktextdomain' ),
+			'description' => esc_html__( 'Insert here your Google API Key to avoid request limitations and JavaScript errors.',
+				'fruitfulblanktextdomain' ),
 			'param_name'  => 'api_key',
 			'value'       => '',
 		),
@@ -50,7 +51,7 @@ vc_map( array(
 				'1'  => '1',
 			),
 		),
-		
+
 		array(
 			'type'       => 'attach_image',
 			'heading'    => esc_html__( 'Pin Icon', 'fruitfulblanktextdomain' ),
@@ -79,7 +80,7 @@ vc_map( array(
 			),
 			'description' => esc_html__( 'Unique identifier of this element', 'fruitfulblanktextdomain' ),
 		),
-		
+
 		array(
 			'type'       => 'textfield',
 			'heading'    => esc_html__( 'Hue', 'fruitfulblanktextdomain' ),
@@ -108,6 +109,6 @@ vc_map( array(
 			'value'      => '1',
 			'group'      => esc_html__( 'Styling', 'fruitfulblanktextdomain' ),
 		),
-	
+
 	)
 ) );
