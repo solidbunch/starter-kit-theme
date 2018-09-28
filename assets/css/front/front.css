@@ -1104,7 +1104,7 @@
       -ms-flex-pack: end !important;
           justify-content: flex-end !important; }
 
-.justify-content-center {
+.justify-content-center, .pagination-nav ul {
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important; }
@@ -1961,7 +1961,7 @@ template {
 [hidden] {
   display: none !important; }
 
-.btn {
+.btn, button, input[type="submit"] {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -1982,47 +1982,49 @@ template {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
-    .btn {
+    .btn, button, input[type="submit"] {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
-  .btn:hover, .btn:focus {
+  .btn:hover, button:hover, input:hover[type="submit"], .btn:focus, button:focus, input:focus[type="submit"] {
     text-decoration: none; }
-  .btn:focus, .btn.focus {
+  .btn:focus, button:focus, input:focus[type="submit"], .btn.focus, button.focus, input.focus[type="submit"] {
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .btn.disabled, .btn:disabled {
+  .btn.disabled, button.disabled, input.disabled[type="submit"], .btn:disabled, button:disabled, input:disabled[type="submit"] {
     opacity: 0.65; }
-  .btn:not(:disabled):not(.disabled) {
+  .btn:not(:disabled):not(.disabled), button:not(:disabled):not(.disabled), input:not(:disabled):not(.disabled)[type="submit"] {
     cursor: pointer; }
 
 a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
-.btn-primary {
+.btn-primary, input[type="submit"] {
   color: #fff;
   background-color: #eb3c00;
   border-color: #eb3c00; }
-  .btn-primary:hover {
+  .btn-primary:hover, input:hover[type="submit"] {
     color: #fff;
     background-color: #c53200;
     border-color: #b82f00; }
-  .btn-primary:focus, .btn-primary.focus {
+  .btn-primary:focus, input:focus[type="submit"], .btn-primary.focus, input.focus[type="submit"] {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5); }
-  .btn-primary.disabled, .btn-primary:disabled {
+  .btn-primary.disabled, input.disabled[type="submit"], .btn-primary:disabled, input:disabled[type="submit"] {
     color: #fff;
     background-color: #eb3c00;
     border-color: #eb3c00; }
-  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-  .show > .btn-primary.dropdown-toggle {
+  .btn-primary:not(:disabled):not(.disabled):active, input:not(:disabled):not(.disabled):active[type="submit"], .btn-primary:not(:disabled):not(.disabled).active, input:not(:disabled):not(.disabled).active[type="submit"],
+  .show > .btn-primary.dropdown-toggle,
+  .show > input.dropdown-toggle[type="submit"] {
     color: #fff;
     background-color: #b82f00;
     border-color: #ab2c00; }
-    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-primary.dropdown-toggle:focus {
+    .btn-primary:not(:disabled):not(.disabled):active:focus, input:not(:disabled):not(.disabled):active:focus[type="submit"], .btn-primary:not(:disabled):not(.disabled).active:focus, input:not(:disabled):not(.disabled).active:focus[type="submit"],
+    .show > .btn-primary.dropdown-toggle:focus,
+    .show > input.dropdown-toggle:focus[type="submit"] {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5);
               box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5); }
 
@@ -2419,13 +2421,13 @@ fieldset:disabled a.btn {
     color: #6c757d;
     pointer-events: none; }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > button, .btn-group-lg > input[type="submit"] {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > button, .btn-group-sm > input[type="submit"] {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -2442,7 +2444,7 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%; }
 
-.form-control {
+.form-control, input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="url"], input[type="search"], textarea {
   display: block;
   width: 100%;
   height: calc(2.25rem + 2px);
@@ -2460,33 +2462,33 @@ input[type="button"].btn-block {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
-    .form-control {
+    .form-control, input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="url"], input[type="search"], textarea {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
-  .form-control::-ms-expand {
+  .form-control::-ms-expand, input[type="text"]::-ms-expand, input[type="number"]::-ms-expand, input[type="password"]::-ms-expand, input[type="date"]::-ms-expand, input[type="url"]::-ms-expand, input[type="search"]::-ms-expand, textarea::-ms-expand {
     background-color: transparent;
     border: 0; }
-  .form-control:focus {
+  .form-control:focus, input:focus[type="text"], input:focus[type="number"], input:focus[type="password"], input:focus[type="date"], input:focus[type="url"], input:focus[type="search"], textarea:focus {
     color: #495057;
     background-color: #fff;
     border-color: #ff916c;
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .form-control::-webkit-input-placeholder {
+  .form-control::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="date"]::-webkit-input-placeholder, input[type="url"]::-webkit-input-placeholder, input[type="search"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control:-ms-input-placeholder {
+  .form-control:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder, input[type="number"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="date"]:-ms-input-placeholder, input[type="url"]:-ms-input-placeholder, input[type="search"]:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control::-ms-input-placeholder {
+  .form-control::-ms-input-placeholder, input[type="text"]::-ms-input-placeholder, input[type="number"]::-ms-input-placeholder, input[type="password"]::-ms-input-placeholder, input[type="date"]::-ms-input-placeholder, input[type="url"]::-ms-input-placeholder, input[type="search"]::-ms-input-placeholder, textarea::-ms-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control::placeholder {
+  .form-control::placeholder, input[type="text"]::placeholder, input[type="number"]::placeholder, input[type="password"]::placeholder, input[type="date"]::placeholder, input[type="url"]::placeholder, input[type="search"]::placeholder, textarea::placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control:disabled, .form-control[readonly] {
+  .form-control:disabled, input:disabled[type="text"], input:disabled[type="number"], input:disabled[type="password"], input:disabled[type="date"], input:disabled[type="url"], input:disabled[type="search"], textarea:disabled, .form-control[readonly], input[readonly][type="text"], input[readonly][type="number"], input[readonly][type="password"], input[readonly][type="date"], input[readonly][type="url"], input[readonly][type="search"], textarea[readonly] {
     background-color: #e9ecef;
     opacity: 1; }
 
@@ -2550,7 +2552,7 @@ select.form-control:focus::-ms-value {
 select.form-control[size], select.form-control[multiple] {
   height: auto; }
 
-textarea.form-control {
+textarea.form-control, textarea {
   height: auto; }
 
 .form-group {
@@ -2624,24 +2626,39 @@ textarea.form-control {
   background-color: rgba(40, 167, 69, 0.9);
   border-radius: 0.25rem; }
 
-.was-validated .form-control:valid, .form-control.is-valid, .was-validated
-.custom-select:valid,
-.custom-select.is-valid {
+.was-validated .form-control:valid, .was-validated input:valid[type="text"], .was-validated input:valid[type="number"], .was-validated input:valid[type="password"], .was-validated input:valid[type="date"], .was-validated input:valid[type="url"], .was-validated input:valid[type="search"], .was-validated textarea:valid, .form-control.is-valid, input.is-valid[type="text"], input.is-valid[type="number"], input.is-valid[type="password"], input.is-valid[type="date"], input.is-valid[type="url"], input.is-valid[type="search"], textarea.is-valid, .was-validated .custom-select:valid, .was-validated select:valid,
+.custom-select.is-valid,
+select.is-valid {
   border-color: #28a745; }
-  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
-  .custom-select:valid:focus,
-  .custom-select.is-valid:focus {
+  .was-validated .form-control:valid:focus, .was-validated input:valid:focus[type="text"], .was-validated input:valid:focus[type="number"], .was-validated input:valid:focus[type="password"], .was-validated input:valid:focus[type="date"], .was-validated input:valid:focus[type="url"], .was-validated input:valid:focus[type="search"], .was-validated textarea:valid:focus, .form-control.is-valid:focus, input.is-valid:focus[type="text"], input.is-valid:focus[type="number"], input.is-valid:focus[type="password"], input.is-valid:focus[type="date"], input.is-valid:focus[type="url"], input.is-valid:focus[type="search"], textarea.is-valid:focus, .was-validated .custom-select:valid:focus, .was-validated select:valid:focus,
+  .custom-select.is-valid:focus,
+  select.is-valid:focus {
     border-color: #28a745;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
-  .was-validated .form-control:valid ~ .valid-feedback,
-  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
-  .form-control.is-valid ~ .valid-tooltip, .was-validated
-  .custom-select:valid ~ .valid-feedback,
-  .was-validated
-  .custom-select:valid ~ .valid-tooltip,
+  .was-validated .form-control:valid ~ .valid-feedback, .was-validated input:valid[type="text"] ~ .valid-feedback, .was-validated input:valid[type="number"] ~ .valid-feedback, .was-validated input:valid[type="password"] ~ .valid-feedback, .was-validated input:valid[type="date"] ~ .valid-feedback, .was-validated input:valid[type="url"] ~ .valid-feedback, .was-validated input:valid[type="search"] ~ .valid-feedback, .was-validated textarea:valid ~ .valid-feedback,
+  .was-validated .form-control:valid ~ .valid-tooltip,
+  .was-validated input:valid[type="text"] ~ .valid-tooltip,
+  .was-validated input:valid[type="number"] ~ .valid-tooltip,
+  .was-validated input:valid[type="password"] ~ .valid-tooltip,
+  .was-validated input:valid[type="date"] ~ .valid-tooltip,
+  .was-validated input:valid[type="url"] ~ .valid-tooltip,
+  .was-validated input:valid[type="search"] ~ .valid-tooltip,
+  .was-validated textarea:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, input.is-valid[type="text"] ~ .valid-feedback, input.is-valid[type="number"] ~ .valid-feedback, input.is-valid[type="password"] ~ .valid-feedback, input.is-valid[type="date"] ~ .valid-feedback, input.is-valid[type="url"] ~ .valid-feedback, input.is-valid[type="search"] ~ .valid-feedback, textarea.is-valid ~ .valid-feedback,
+  .form-control.is-valid ~ .valid-tooltip,
+  input.is-valid[type="text"] ~ .valid-tooltip,
+  input.is-valid[type="number"] ~ .valid-tooltip,
+  input.is-valid[type="password"] ~ .valid-tooltip,
+  input.is-valid[type="date"] ~ .valid-tooltip,
+  input.is-valid[type="url"] ~ .valid-tooltip,
+  input.is-valid[type="search"] ~ .valid-tooltip,
+  textarea.is-valid ~ .valid-tooltip, .was-validated .custom-select:valid ~ .valid-feedback, .was-validated select:valid ~ .valid-feedback,
+  .was-validated .custom-select:valid ~ .valid-tooltip,
+  .was-validated select:valid ~ .valid-tooltip,
   .custom-select.is-valid ~ .valid-feedback,
-  .custom-select.is-valid ~ .valid-tooltip {
+  select.is-valid ~ .valid-feedback,
+  .custom-select.is-valid ~ .valid-tooltip,
+  select.is-valid ~ .valid-tooltip {
     display: block; }
 
 .was-validated .form-control-file:valid ~ .valid-feedback,
@@ -2709,24 +2726,39 @@ textarea.form-control {
   background-color: rgba(235, 60, 0, 0.9);
   border-radius: 0.25rem; }
 
-.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
-.custom-select:invalid,
-.custom-select.is-invalid {
+.was-validated .form-control:invalid, .was-validated input:invalid[type="text"], .was-validated input:invalid[type="number"], .was-validated input:invalid[type="password"], .was-validated input:invalid[type="date"], .was-validated input:invalid[type="url"], .was-validated input:invalid[type="search"], .was-validated textarea:invalid, .form-control.is-invalid, input.is-invalid[type="text"], input.is-invalid[type="number"], input.is-invalid[type="password"], input.is-invalid[type="date"], input.is-invalid[type="url"], input.is-invalid[type="search"], textarea.is-invalid, .was-validated .custom-select:invalid, .was-validated select:invalid,
+.custom-select.is-invalid,
+select.is-invalid {
   border-color: #eb3c00; }
-  .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
-  .custom-select:invalid:focus,
-  .custom-select.is-invalid:focus {
+  .was-validated .form-control:invalid:focus, .was-validated input:invalid:focus[type="text"], .was-validated input:invalid:focus[type="number"], .was-validated input:invalid:focus[type="password"], .was-validated input:invalid:focus[type="date"], .was-validated input:invalid:focus[type="url"], .was-validated input:invalid:focus[type="search"], .was-validated textarea:invalid:focus, .form-control.is-invalid:focus, input.is-invalid:focus[type="text"], input.is-invalid:focus[type="number"], input.is-invalid:focus[type="password"], input.is-invalid:focus[type="date"], input.is-invalid:focus[type="url"], input.is-invalid:focus[type="search"], textarea.is-invalid:focus, .was-validated .custom-select:invalid:focus, .was-validated select:invalid:focus,
+  .custom-select.is-invalid:focus,
+  select.is-invalid:focus {
     border-color: #eb3c00;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .was-validated .form-control:invalid ~ .invalid-feedback,
-  .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-  .form-control.is-invalid ~ .invalid-tooltip, .was-validated
-  .custom-select:invalid ~ .invalid-feedback,
-  .was-validated
-  .custom-select:invalid ~ .invalid-tooltip,
+  .was-validated .form-control:invalid ~ .invalid-feedback, .was-validated input:invalid[type="text"] ~ .invalid-feedback, .was-validated input:invalid[type="number"] ~ .invalid-feedback, .was-validated input:invalid[type="password"] ~ .invalid-feedback, .was-validated input:invalid[type="date"] ~ .invalid-feedback, .was-validated input:invalid[type="url"] ~ .invalid-feedback, .was-validated input:invalid[type="search"] ~ .invalid-feedback, .was-validated textarea:invalid ~ .invalid-feedback,
+  .was-validated .form-control:invalid ~ .invalid-tooltip,
+  .was-validated input:invalid[type="text"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="number"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="password"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="date"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="url"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="search"] ~ .invalid-tooltip,
+  .was-validated textarea:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback, input.is-invalid[type="text"] ~ .invalid-feedback, input.is-invalid[type="number"] ~ .invalid-feedback, input.is-invalid[type="password"] ~ .invalid-feedback, input.is-invalid[type="date"] ~ .invalid-feedback, input.is-invalid[type="url"] ~ .invalid-feedback, input.is-invalid[type="search"] ~ .invalid-feedback, textarea.is-invalid ~ .invalid-feedback,
+  .form-control.is-invalid ~ .invalid-tooltip,
+  input.is-invalid[type="text"] ~ .invalid-tooltip,
+  input.is-invalid[type="number"] ~ .invalid-tooltip,
+  input.is-invalid[type="password"] ~ .invalid-tooltip,
+  input.is-invalid[type="date"] ~ .invalid-tooltip,
+  input.is-invalid[type="url"] ~ .invalid-tooltip,
+  input.is-invalid[type="search"] ~ .invalid-tooltip,
+  textarea.is-invalid ~ .invalid-tooltip, .was-validated .custom-select:invalid ~ .invalid-feedback, .was-validated select:invalid ~ .invalid-feedback,
+  .was-validated .custom-select:invalid ~ .invalid-tooltip,
+  .was-validated select:invalid ~ .invalid-tooltip,
   .custom-select.is-invalid ~ .invalid-feedback,
-  .custom-select.is-invalid ~ .invalid-tooltip {
+  select.is-invalid ~ .invalid-feedback,
+  .custom-select.is-invalid ~ .invalid-tooltip,
+  select.is-invalid ~ .invalid-tooltip {
     display: block; }
 
 .was-validated .form-control-file:invalid ~ .invalid-feedback,
@@ -2813,14 +2845,15 @@ textarea.form-control {
           -ms-flex-align: center;
               align-items: center;
       margin-bottom: 0; }
-    .form-inline .form-control {
+    .form-inline .form-control, .form-inline input[type="text"], .form-inline input[type="number"], .form-inline input[type="password"], .form-inline input[type="date"], .form-inline input[type="url"], .form-inline input[type="search"], .form-inline textarea {
       display: inline-block;
       width: auto;
       vertical-align: middle; }
     .form-inline .form-control-plaintext {
       display: inline-block; }
     .form-inline .input-group,
-    .form-inline .custom-select {
+    .form-inline .custom-select,
+    .form-inline select {
       width: auto; }
     .form-inline .form-check {
       display: -webkit-box;
@@ -3274,8 +3307,9 @@ textarea.form-control {
       -ms-flex-align: stretch;
           align-items: stretch;
   width: 100%; }
-  .input-group > .form-control,
+  .input-group > .form-control, .input-group > input[type="text"], .input-group > input[type="number"], .input-group > input[type="password"], .input-group > input[type="date"], .input-group > input[type="url"], .input-group > input[type="search"], .input-group > textarea,
   .input-group > .custom-select,
+  .input-group > select,
   .input-group > .custom-file {
     position: relative;
     -webkit-box-flex: 1;
@@ -3283,28 +3317,80 @@ textarea.form-control {
             flex: 1 1 auto;
     width: 1%;
     margin-bottom: 0; }
-    .input-group > .form-control + .form-control,
+    .input-group > .form-control + .form-control, .input-group > input[type="text"] + .form-control, .input-group > input[type="number"] + .form-control, .input-group > input[type="password"] + .form-control, .input-group > input[type="date"] + .form-control, .input-group > input[type="url"] + .form-control, .input-group > input[type="search"] + .form-control, .input-group > textarea + .form-control, .input-group > .form-control + input[type="text"], .input-group > input[type="text"] + input[type="text"], .input-group > input[type="number"] + input[type="text"], .input-group > input[type="password"] + input[type="text"], .input-group > input[type="date"] + input[type="text"], .input-group > input[type="url"] + input[type="text"], .input-group > input[type="search"] + input[type="text"], .input-group > textarea + input[type="text"], .input-group > .form-control + input[type="number"], .input-group > input[type="text"] + input[type="number"], .input-group > input[type="number"] + input[type="number"], .input-group > input[type="password"] + input[type="number"], .input-group > input[type="date"] + input[type="number"], .input-group > input[type="url"] + input[type="number"], .input-group > input[type="search"] + input[type="number"], .input-group > textarea + input[type="number"], .input-group > .form-control + input[type="password"], .input-group > input[type="text"] + input[type="password"], .input-group > input[type="number"] + input[type="password"], .input-group > input[type="password"] + input[type="password"], .input-group > input[type="date"] + input[type="password"], .input-group > input[type="url"] + input[type="password"], .input-group > input[type="search"] + input[type="password"], .input-group > textarea + input[type="password"], .input-group > .form-control + input[type="date"], .input-group > input[type="text"] + input[type="date"], .input-group > input[type="number"] + input[type="date"], .input-group > input[type="password"] + input[type="date"], .input-group > input[type="date"] + input[type="date"], .input-group > input[type="url"] + input[type="date"], .input-group > input[type="search"] + input[type="date"], .input-group > textarea + input[type="date"], .input-group > .form-control + input[type="url"], .input-group > input[type="text"] + input[type="url"], .input-group > input[type="number"] + input[type="url"], .input-group > input[type="password"] + input[type="url"], .input-group > input[type="date"] + input[type="url"], .input-group > input[type="url"] + input[type="url"], .input-group > input[type="search"] + input[type="url"], .input-group > textarea + input[type="url"], .input-group > .form-control + input[type="search"], .input-group > input[type="text"] + input[type="search"], .input-group > input[type="number"] + input[type="search"], .input-group > input[type="password"] + input[type="search"], .input-group > input[type="date"] + input[type="search"], .input-group > input[type="url"] + input[type="search"], .input-group > input[type="search"] + input[type="search"], .input-group > textarea + input[type="search"], .input-group > .form-control + textarea, .input-group > input[type="text"] + textarea, .input-group > input[type="number"] + textarea, .input-group > input[type="password"] + textarea, .input-group > input[type="date"] + textarea, .input-group > input[type="url"] + textarea, .input-group > input[type="search"] + textarea, .input-group > textarea + textarea,
     .input-group > .form-control + .custom-select,
+    .input-group > input[type="text"] + .custom-select,
+    .input-group > input[type="number"] + .custom-select,
+    .input-group > input[type="password"] + .custom-select,
+    .input-group > input[type="date"] + .custom-select,
+    .input-group > input[type="url"] + .custom-select,
+    .input-group > input[type="search"] + .custom-select,
+    .input-group > textarea + .custom-select,
+    .input-group > .form-control + select,
+    .input-group > input[type="text"] + select,
+    .input-group > input[type="number"] + select,
+    .input-group > input[type="password"] + select,
+    .input-group > input[type="date"] + select,
+    .input-group > input[type="url"] + select,
+    .input-group > input[type="search"] + select,
+    .input-group > textarea + select,
     .input-group > .form-control + .custom-file,
+    .input-group > input[type="text"] + .custom-file,
+    .input-group > input[type="number"] + .custom-file,
+    .input-group > input[type="password"] + .custom-file,
+    .input-group > input[type="date"] + .custom-file,
+    .input-group > input[type="url"] + .custom-file,
+    .input-group > input[type="search"] + .custom-file,
+    .input-group > textarea + .custom-file,
     .input-group > .custom-select + .form-control,
+    .input-group > select + .form-control,
+    .input-group > .custom-select + input[type="text"],
+    .input-group > select + input[type="text"],
+    .input-group > .custom-select + input[type="number"],
+    .input-group > select + input[type="number"],
+    .input-group > .custom-select + input[type="password"],
+    .input-group > select + input[type="password"],
+    .input-group > .custom-select + input[type="date"],
+    .input-group > select + input[type="date"],
+    .input-group > .custom-select + input[type="url"],
+    .input-group > select + input[type="url"],
+    .input-group > .custom-select + input[type="search"],
+    .input-group > select + input[type="search"],
+    .input-group > .custom-select + textarea,
+    .input-group > select + textarea,
     .input-group > .custom-select + .custom-select,
+    .input-group > select + .custom-select,
+    .input-group > .custom-select + select,
+    .input-group > select + select,
     .input-group > .custom-select + .custom-file,
+    .input-group > select + .custom-file,
     .input-group > .custom-file + .form-control,
+    .input-group > .custom-file + input[type="text"],
+    .input-group > .custom-file + input[type="number"],
+    .input-group > .custom-file + input[type="password"],
+    .input-group > .custom-file + input[type="date"],
+    .input-group > .custom-file + input[type="url"],
+    .input-group > .custom-file + input[type="search"],
+    .input-group > .custom-file + textarea,
     .input-group > .custom-file + .custom-select,
+    .input-group > .custom-file + select,
     .input-group > .custom-file + .custom-file {
       margin-left: -1px; }
-  .input-group > .form-control:focus,
+  .input-group > .form-control:focus, .input-group > input:focus[type="text"], .input-group > input:focus[type="number"], .input-group > input:focus[type="password"], .input-group > input:focus[type="date"], .input-group > input:focus[type="url"], .input-group > input:focus[type="search"], .input-group > textarea:focus,
   .input-group > .custom-select:focus,
+  .input-group > select:focus,
   .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
     z-index: 3; }
   .input-group > .custom-file .custom-file-input:focus {
     z-index: 4; }
-  .input-group > .form-control:not(:last-child),
-  .input-group > .custom-select:not(:last-child) {
+  .input-group > .form-control:not(:last-child), .input-group > input:not(:last-child)[type="text"], .input-group > input:not(:last-child)[type="number"], .input-group > input:not(:last-child)[type="password"], .input-group > input:not(:last-child)[type="date"], .input-group > input:not(:last-child)[type="url"], .input-group > input:not(:last-child)[type="search"], .input-group > textarea:not(:last-child),
+  .input-group > .custom-select:not(:last-child),
+  .input-group > select:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0; }
-  .input-group > .form-control:not(:first-child),
-  .input-group > .custom-select:not(:first-child) {
+  .input-group > .form-control:not(:first-child), .input-group > input:not(:first-child)[type="text"], .input-group > input:not(:first-child)[type="number"], .input-group > input:not(:first-child)[type="password"], .input-group > input:not(:first-child)[type="date"], .input-group > input:not(:first-child)[type="url"], .input-group > input:not(:first-child)[type="search"], .input-group > textarea:not(:first-child),
+  .input-group > .custom-select:not(:first-child),
+  .input-group > select:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
   .input-group > .custom-file {
@@ -3327,18 +3413,36 @@ textarea.form-control {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
-  .input-group-prepend .btn,
-  .input-group-append .btn {
+  .input-group-prepend .btn, .input-group-prepend button, .input-group-prepend input[type="submit"],
+  .input-group-append .btn,
+  .input-group-append button,
+  .input-group-append input[type="submit"] {
     position: relative;
     z-index: 2; }
-  .input-group-prepend .btn + .btn,
+  .input-group-prepend .btn + .btn, .input-group-prepend button + .btn, .input-group-prepend input[type="submit"] + .btn, .input-group-prepend .btn + button, .input-group-prepend button + button, .input-group-prepend input[type="submit"] + button, .input-group-prepend .btn + input[type="submit"], .input-group-prepend button + input[type="submit"], .input-group-prepend input[type="submit"] + input[type="submit"],
   .input-group-prepend .btn + .input-group-text,
+  .input-group-prepend button + .input-group-text,
+  .input-group-prepend input[type="submit"] + .input-group-text,
   .input-group-prepend .input-group-text + .input-group-text,
   .input-group-prepend .input-group-text + .btn,
+  .input-group-prepend .input-group-text + button,
+  .input-group-prepend .input-group-text + input[type="submit"],
   .input-group-append .btn + .btn,
+  .input-group-append button + .btn,
+  .input-group-append input[type="submit"] + .btn,
+  .input-group-append .btn + button,
+  .input-group-append button + button,
+  .input-group-append input[type="submit"] + button,
+  .input-group-append .btn + input[type="submit"],
+  .input-group-append button + input[type="submit"],
+  .input-group-append input[type="submit"] + input[type="submit"],
   .input-group-append .btn + .input-group-text,
+  .input-group-append button + .input-group-text,
+  .input-group-append input[type="submit"] + .input-group-text,
   .input-group-append .input-group-text + .input-group-text,
-  .input-group-append .input-group-text + .btn {
+  .input-group-append .input-group-text + .btn,
+  .input-group-append .input-group-text + button,
+  .input-group-append .input-group-text + input[type="submit"] {
     margin-left: -1px; }
 
 .input-group-prepend {
@@ -3369,42 +3473,58 @@ textarea.form-control {
   .input-group-text input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group-lg > .form-control,
+.input-group-lg > .form-control, .input-group-lg > input[type="text"], .input-group-lg > input[type="number"], .input-group-lg > input[type="password"], .input-group-lg > input[type="date"], .input-group-lg > input[type="url"], .input-group-lg > input[type="search"], .input-group-lg > textarea,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
-.input-group-lg > .input-group-append > .btn {
+.input-group-lg > .input-group-prepend > button,
+.input-group-lg > .input-group-prepend > input[type="submit"],
+.input-group-lg > .input-group-append > .btn,
+.input-group-lg > .input-group-append > button,
+.input-group-lg > .input-group-append > input[type="submit"] {
   height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.input-group-sm > .form-control,
+.input-group-sm > .form-control, .input-group-sm > input[type="text"], .input-group-sm > input[type="number"], .input-group-sm > input[type="password"], .input-group-sm > input[type="date"], .input-group-sm > input[type="url"], .input-group-sm > input[type="search"], .input-group-sm > textarea,
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-append > .btn {
+.input-group-sm > .input-group-prepend > button,
+.input-group-sm > .input-group-prepend > input[type="submit"],
+.input-group-sm > .input-group-append > .btn,
+.input-group-sm > .input-group-append > button,
+.input-group-sm > .input-group-append > input[type="submit"] {
   height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem; }
 
-.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > button, .input-group > .input-group-prepend > input[type="submit"],
 .input-group > .input-group-prepend > .input-group-text,
 .input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > button,
+.input-group > .input-group-append:not(:last-child) > input[type="submit"],
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > button:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > input:not(:last-child):not(.dropdown-toggle)[type="submit"],
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > button, .input-group > .input-group-append > input[type="submit"],
 .input-group > .input-group-append > .input-group-text,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > button,
+.input-group > .input-group-prepend:not(:first-child) > input[type="submit"],
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > button:not(:first-child),
+.input-group > .input-group-prepend:first-child > input:not(:first-child)[type="submit"],
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
@@ -3838,7 +3958,7 @@ button.bg-dark:focus {
       -ms-flex-pack: end !important;
           justify-content: flex-end !important; }
 
-.justify-content-center {
+.justify-content-center, .pagination-nav ul {
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important; }
@@ -7256,7 +7376,7 @@ pre {
   .table-responsive > .table-bordered {
     border: 0; }
 
-.form-control {
+.form-control, input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="url"], input[type="search"], textarea {
   display: block;
   width: 100%;
   height: calc(2.25rem + 2px);
@@ -7274,33 +7394,33 @@ pre {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
-    .form-control {
+    .form-control, input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="url"], input[type="search"], textarea {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
-  .form-control::-ms-expand {
+  .form-control::-ms-expand, input[type="text"]::-ms-expand, input[type="number"]::-ms-expand, input[type="password"]::-ms-expand, input[type="date"]::-ms-expand, input[type="url"]::-ms-expand, input[type="search"]::-ms-expand, textarea::-ms-expand {
     background-color: transparent;
     border: 0; }
-  .form-control:focus {
+  .form-control:focus, input:focus[type="text"], input:focus[type="number"], input:focus[type="password"], input:focus[type="date"], input:focus[type="url"], input:focus[type="search"], textarea:focus {
     color: #495057;
     background-color: #fff;
     border-color: #ff916c;
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .form-control::-webkit-input-placeholder {
+  .form-control::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, input[type="date"]::-webkit-input-placeholder, input[type="url"]::-webkit-input-placeholder, input[type="search"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control:-ms-input-placeholder {
+  .form-control:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder, input[type="number"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="date"]:-ms-input-placeholder, input[type="url"]:-ms-input-placeholder, input[type="search"]:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control::-ms-input-placeholder {
+  .form-control::-ms-input-placeholder, input[type="text"]::-ms-input-placeholder, input[type="number"]::-ms-input-placeholder, input[type="password"]::-ms-input-placeholder, input[type="date"]::-ms-input-placeholder, input[type="url"]::-ms-input-placeholder, input[type="search"]::-ms-input-placeholder, textarea::-ms-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control::placeholder {
+  .form-control::placeholder, input[type="text"]::placeholder, input[type="number"]::placeholder, input[type="password"]::placeholder, input[type="date"]::placeholder, input[type="url"]::placeholder, input[type="search"]::placeholder, textarea::placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control:disabled, .form-control[readonly] {
+  .form-control:disabled, input:disabled[type="text"], input:disabled[type="number"], input:disabled[type="password"], input:disabled[type="date"], input:disabled[type="url"], input:disabled[type="search"], textarea:disabled, .form-control[readonly], input[readonly][type="text"], input[readonly][type="number"], input[readonly][type="password"], input[readonly][type="date"], input[readonly][type="url"], input[readonly][type="search"], textarea[readonly] {
     background-color: #e9ecef;
     opacity: 1; }
 
@@ -7364,7 +7484,7 @@ select.form-control:focus::-ms-value {
 select.form-control[size], select.form-control[multiple] {
   height: auto; }
 
-textarea.form-control {
+textarea.form-control, textarea {
   height: auto; }
 
 .form-group {
@@ -7438,24 +7558,39 @@ textarea.form-control {
   background-color: rgba(40, 167, 69, 0.9);
   border-radius: 0.25rem; }
 
-.was-validated .form-control:valid, .form-control.is-valid, .was-validated
-.custom-select:valid,
-.custom-select.is-valid {
+.was-validated .form-control:valid, .was-validated input:valid[type="text"], .was-validated input:valid[type="number"], .was-validated input:valid[type="password"], .was-validated input:valid[type="date"], .was-validated input:valid[type="url"], .was-validated input:valid[type="search"], .was-validated textarea:valid, .form-control.is-valid, input.is-valid[type="text"], input.is-valid[type="number"], input.is-valid[type="password"], input.is-valid[type="date"], input.is-valid[type="url"], input.is-valid[type="search"], textarea.is-valid, .was-validated .custom-select:valid, .was-validated select:valid,
+.custom-select.is-valid,
+select.is-valid {
   border-color: #28a745; }
-  .was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
-  .custom-select:valid:focus,
-  .custom-select.is-valid:focus {
+  .was-validated .form-control:valid:focus, .was-validated input:valid:focus[type="text"], .was-validated input:valid:focus[type="number"], .was-validated input:valid:focus[type="password"], .was-validated input:valid:focus[type="date"], .was-validated input:valid:focus[type="url"], .was-validated input:valid:focus[type="search"], .was-validated textarea:valid:focus, .form-control.is-valid:focus, input.is-valid:focus[type="text"], input.is-valid:focus[type="number"], input.is-valid:focus[type="password"], input.is-valid:focus[type="date"], input.is-valid:focus[type="url"], input.is-valid:focus[type="search"], textarea.is-valid:focus, .was-validated .custom-select:valid:focus, .was-validated select:valid:focus,
+  .custom-select.is-valid:focus,
+  select.is-valid:focus {
     border-color: #28a745;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
-  .was-validated .form-control:valid ~ .valid-feedback,
-  .was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
-  .form-control.is-valid ~ .valid-tooltip, .was-validated
-  .custom-select:valid ~ .valid-feedback,
-  .was-validated
-  .custom-select:valid ~ .valid-tooltip,
+  .was-validated .form-control:valid ~ .valid-feedback, .was-validated input:valid[type="text"] ~ .valid-feedback, .was-validated input:valid[type="number"] ~ .valid-feedback, .was-validated input:valid[type="password"] ~ .valid-feedback, .was-validated input:valid[type="date"] ~ .valid-feedback, .was-validated input:valid[type="url"] ~ .valid-feedback, .was-validated input:valid[type="search"] ~ .valid-feedback, .was-validated textarea:valid ~ .valid-feedback,
+  .was-validated .form-control:valid ~ .valid-tooltip,
+  .was-validated input:valid[type="text"] ~ .valid-tooltip,
+  .was-validated input:valid[type="number"] ~ .valid-tooltip,
+  .was-validated input:valid[type="password"] ~ .valid-tooltip,
+  .was-validated input:valid[type="date"] ~ .valid-tooltip,
+  .was-validated input:valid[type="url"] ~ .valid-tooltip,
+  .was-validated input:valid[type="search"] ~ .valid-tooltip,
+  .was-validated textarea:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback, input.is-valid[type="text"] ~ .valid-feedback, input.is-valid[type="number"] ~ .valid-feedback, input.is-valid[type="password"] ~ .valid-feedback, input.is-valid[type="date"] ~ .valid-feedback, input.is-valid[type="url"] ~ .valid-feedback, input.is-valid[type="search"] ~ .valid-feedback, textarea.is-valid ~ .valid-feedback,
+  .form-control.is-valid ~ .valid-tooltip,
+  input.is-valid[type="text"] ~ .valid-tooltip,
+  input.is-valid[type="number"] ~ .valid-tooltip,
+  input.is-valid[type="password"] ~ .valid-tooltip,
+  input.is-valid[type="date"] ~ .valid-tooltip,
+  input.is-valid[type="url"] ~ .valid-tooltip,
+  input.is-valid[type="search"] ~ .valid-tooltip,
+  textarea.is-valid ~ .valid-tooltip, .was-validated .custom-select:valid ~ .valid-feedback, .was-validated select:valid ~ .valid-feedback,
+  .was-validated .custom-select:valid ~ .valid-tooltip,
+  .was-validated select:valid ~ .valid-tooltip,
   .custom-select.is-valid ~ .valid-feedback,
-  .custom-select.is-valid ~ .valid-tooltip {
+  select.is-valid ~ .valid-feedback,
+  .custom-select.is-valid ~ .valid-tooltip,
+  select.is-valid ~ .valid-tooltip {
     display: block; }
 
 .was-validated .form-control-file:valid ~ .valid-feedback,
@@ -7523,24 +7658,39 @@ textarea.form-control {
   background-color: rgba(235, 60, 0, 0.9);
   border-radius: 0.25rem; }
 
-.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
-.custom-select:invalid,
-.custom-select.is-invalid {
+.was-validated .form-control:invalid, .was-validated input:invalid[type="text"], .was-validated input:invalid[type="number"], .was-validated input:invalid[type="password"], .was-validated input:invalid[type="date"], .was-validated input:invalid[type="url"], .was-validated input:invalid[type="search"], .was-validated textarea:invalid, .form-control.is-invalid, input.is-invalid[type="text"], input.is-invalid[type="number"], input.is-invalid[type="password"], input.is-invalid[type="date"], input.is-invalid[type="url"], input.is-invalid[type="search"], textarea.is-invalid, .was-validated .custom-select:invalid, .was-validated select:invalid,
+.custom-select.is-invalid,
+select.is-invalid {
   border-color: #eb3c00; }
-  .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
-  .custom-select:invalid:focus,
-  .custom-select.is-invalid:focus {
+  .was-validated .form-control:invalid:focus, .was-validated input:invalid:focus[type="text"], .was-validated input:invalid:focus[type="number"], .was-validated input:invalid:focus[type="password"], .was-validated input:invalid:focus[type="date"], .was-validated input:invalid:focus[type="url"], .was-validated input:invalid:focus[type="search"], .was-validated textarea:invalid:focus, .form-control.is-invalid:focus, input.is-invalid:focus[type="text"], input.is-invalid:focus[type="number"], input.is-invalid:focus[type="password"], input.is-invalid:focus[type="date"], input.is-invalid:focus[type="url"], input.is-invalid:focus[type="search"], textarea.is-invalid:focus, .was-validated .custom-select:invalid:focus, .was-validated select:invalid:focus,
+  .custom-select.is-invalid:focus,
+  select.is-invalid:focus {
     border-color: #eb3c00;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .was-validated .form-control:invalid ~ .invalid-feedback,
-  .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-  .form-control.is-invalid ~ .invalid-tooltip, .was-validated
-  .custom-select:invalid ~ .invalid-feedback,
-  .was-validated
-  .custom-select:invalid ~ .invalid-tooltip,
+  .was-validated .form-control:invalid ~ .invalid-feedback, .was-validated input:invalid[type="text"] ~ .invalid-feedback, .was-validated input:invalid[type="number"] ~ .invalid-feedback, .was-validated input:invalid[type="password"] ~ .invalid-feedback, .was-validated input:invalid[type="date"] ~ .invalid-feedback, .was-validated input:invalid[type="url"] ~ .invalid-feedback, .was-validated input:invalid[type="search"] ~ .invalid-feedback, .was-validated textarea:invalid ~ .invalid-feedback,
+  .was-validated .form-control:invalid ~ .invalid-tooltip,
+  .was-validated input:invalid[type="text"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="number"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="password"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="date"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="url"] ~ .invalid-tooltip,
+  .was-validated input:invalid[type="search"] ~ .invalid-tooltip,
+  .was-validated textarea:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback, input.is-invalid[type="text"] ~ .invalid-feedback, input.is-invalid[type="number"] ~ .invalid-feedback, input.is-invalid[type="password"] ~ .invalid-feedback, input.is-invalid[type="date"] ~ .invalid-feedback, input.is-invalid[type="url"] ~ .invalid-feedback, input.is-invalid[type="search"] ~ .invalid-feedback, textarea.is-invalid ~ .invalid-feedback,
+  .form-control.is-invalid ~ .invalid-tooltip,
+  input.is-invalid[type="text"] ~ .invalid-tooltip,
+  input.is-invalid[type="number"] ~ .invalid-tooltip,
+  input.is-invalid[type="password"] ~ .invalid-tooltip,
+  input.is-invalid[type="date"] ~ .invalid-tooltip,
+  input.is-invalid[type="url"] ~ .invalid-tooltip,
+  input.is-invalid[type="search"] ~ .invalid-tooltip,
+  textarea.is-invalid ~ .invalid-tooltip, .was-validated .custom-select:invalid ~ .invalid-feedback, .was-validated select:invalid ~ .invalid-feedback,
+  .was-validated .custom-select:invalid ~ .invalid-tooltip,
+  .was-validated select:invalid ~ .invalid-tooltip,
   .custom-select.is-invalid ~ .invalid-feedback,
-  .custom-select.is-invalid ~ .invalid-tooltip {
+  select.is-invalid ~ .invalid-feedback,
+  .custom-select.is-invalid ~ .invalid-tooltip,
+  select.is-invalid ~ .invalid-tooltip {
     display: block; }
 
 .was-validated .form-control-file:invalid ~ .invalid-feedback,
@@ -7627,14 +7777,15 @@ textarea.form-control {
           -ms-flex-align: center;
               align-items: center;
       margin-bottom: 0; }
-    .form-inline .form-control {
+    .form-inline .form-control, .form-inline input[type="text"], .form-inline input[type="number"], .form-inline input[type="password"], .form-inline input[type="date"], .form-inline input[type="url"], .form-inline input[type="search"], .form-inline textarea {
       display: inline-block;
       width: auto;
       vertical-align: middle; }
     .form-inline .form-control-plaintext {
       display: inline-block; }
     .form-inline .input-group,
-    .form-inline .custom-select {
+    .form-inline .custom-select,
+    .form-inline select {
       width: auto; }
     .form-inline .form-check {
       display: -webkit-box;
@@ -7663,7 +7814,7 @@ textarea.form-control {
     .form-inline .custom-control-label {
       margin-bottom: 0; } }
 
-.btn {
+.btn, button, input[type="submit"] {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -7684,47 +7835,49 @@ textarea.form-control {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
-    .btn {
+    .btn, button, input[type="submit"] {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
-  .btn:hover, .btn:focus {
+  .btn:hover, button:hover, input:hover[type="submit"], .btn:focus, button:focus, input:focus[type="submit"] {
     text-decoration: none; }
-  .btn:focus, .btn.focus {
+  .btn:focus, button:focus, input:focus[type="submit"], .btn.focus, button.focus, input.focus[type="submit"] {
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .btn.disabled, .btn:disabled {
+  .btn.disabled, button.disabled, input.disabled[type="submit"], .btn:disabled, button:disabled, input:disabled[type="submit"] {
     opacity: 0.65; }
-  .btn:not(:disabled):not(.disabled) {
+  .btn:not(:disabled):not(.disabled), button:not(:disabled):not(.disabled), input:not(:disabled):not(.disabled)[type="submit"] {
     cursor: pointer; }
 
 a.btn.disabled,
 fieldset:disabled a.btn {
   pointer-events: none; }
 
-.btn-primary {
+.btn-primary, input[type="submit"] {
   color: #fff;
   background-color: #eb3c00;
   border-color: #eb3c00; }
-  .btn-primary:hover {
+  .btn-primary:hover, input:hover[type="submit"] {
     color: #fff;
     background-color: #c53200;
     border-color: #b82f00; }
-  .btn-primary:focus, .btn-primary.focus {
+  .btn-primary:focus, input:focus[type="submit"], .btn-primary.focus, input.focus[type="submit"] {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5); }
-  .btn-primary.disabled, .btn-primary:disabled {
+  .btn-primary.disabled, input.disabled[type="submit"], .btn-primary:disabled, input:disabled[type="submit"] {
     color: #fff;
     background-color: #eb3c00;
     border-color: #eb3c00; }
-  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-  .show > .btn-primary.dropdown-toggle {
+  .btn-primary:not(:disabled):not(.disabled):active, input:not(:disabled):not(.disabled):active[type="submit"], .btn-primary:not(:disabled):not(.disabled).active, input:not(:disabled):not(.disabled).active[type="submit"],
+  .show > .btn-primary.dropdown-toggle,
+  .show > input.dropdown-toggle[type="submit"] {
     color: #fff;
     background-color: #b82f00;
     border-color: #ab2c00; }
-    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-    .show > .btn-primary.dropdown-toggle:focus {
+    .btn-primary:not(:disabled):not(.disabled):active:focus, input:not(:disabled):not(.disabled):active:focus[type="submit"], .btn-primary:not(:disabled):not(.disabled).active:focus, input:not(:disabled):not(.disabled).active:focus[type="submit"],
+    .show > .btn-primary.dropdown-toggle:focus,
+    .show > input.dropdown-toggle:focus[type="submit"] {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5);
               box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.5); }
 
@@ -8121,13 +8274,13 @@ fieldset:disabled a.btn {
     color: #6c757d;
     pointer-events: none; }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-lg, .btn-group-lg > .btn, .btn-group-lg > button, .btn-group-lg > input[type="submit"] {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > button, .btn-group-sm > input[type="submit"] {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -8353,27 +8506,53 @@ input[type="button"].btn-block {
   display: -ms-inline-flexbox;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn,
-  .btn-group-vertical > .btn {
+  .btn-group > .btn, .btn-group > button, .btn-group > input[type="submit"],
+  .btn-group-vertical > .btn,
+  .btn-group-vertical > button,
+  .btn-group-vertical > input[type="submit"] {
     position: relative;
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto; }
-    .btn-group > .btn:hover,
-    .btn-group-vertical > .btn:hover {
+    .btn-group > .btn:hover, .btn-group > button:hover, .btn-group > input:hover[type="submit"],
+    .btn-group-vertical > .btn:hover,
+    .btn-group-vertical > button:hover,
+    .btn-group-vertical > input:hover[type="submit"] {
       z-index: 1; }
-    .btn-group > .btn:focus, .btn-group > .btn:active, .btn-group > .btn.active,
+    .btn-group > .btn:focus, .btn-group > button:focus, .btn-group > input:focus[type="submit"], .btn-group > .btn:active, .btn-group > button:active, .btn-group > input:active[type="submit"], .btn-group > .btn.active, .btn-group > button.active, .btn-group > input.active[type="submit"],
     .btn-group-vertical > .btn:focus,
+    .btn-group-vertical > button:focus,
+    .btn-group-vertical > input:focus[type="submit"],
     .btn-group-vertical > .btn:active,
-    .btn-group-vertical > .btn.active {
+    .btn-group-vertical > button:active,
+    .btn-group-vertical > input:active[type="submit"],
+    .btn-group-vertical > .btn.active,
+    .btn-group-vertical > button.active,
+    .btn-group-vertical > input.active[type="submit"] {
       z-index: 1; }
-  .btn-group .btn + .btn,
+  .btn-group .btn + .btn, .btn-group button + .btn, .btn-group input[type="submit"] + .btn, .btn-group .btn + button, .btn-group button + button, .btn-group input[type="submit"] + button, .btn-group .btn + input[type="submit"], .btn-group button + input[type="submit"], .btn-group input[type="submit"] + input[type="submit"],
   .btn-group .btn + .btn-group,
+  .btn-group button + .btn-group,
+  .btn-group input[type="submit"] + .btn-group,
   .btn-group .btn-group + .btn,
+  .btn-group .btn-group + button,
+  .btn-group .btn-group + input[type="submit"],
   .btn-group .btn-group + .btn-group,
   .btn-group-vertical .btn + .btn,
+  .btn-group-vertical button + .btn,
+  .btn-group-vertical input[type="submit"] + .btn,
+  .btn-group-vertical .btn + button,
+  .btn-group-vertical button + button,
+  .btn-group-vertical input[type="submit"] + button,
+  .btn-group-vertical .btn + input[type="submit"],
+  .btn-group-vertical button + input[type="submit"],
+  .btn-group-vertical input[type="submit"] + input[type="submit"],
   .btn-group-vertical .btn + .btn-group,
+  .btn-group-vertical button + .btn-group,
+  .btn-group-vertical input[type="submit"] + .btn-group,
   .btn-group-vertical .btn-group + .btn,
+  .btn-group-vertical .btn-group + button,
+  .btn-group-vertical .btn-group + input[type="submit"],
   .btn-group-vertical .btn-group + .btn-group {
     margin-left: -1px; }
 
@@ -8389,16 +8568,20 @@ input[type="button"].btn-block {
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:first-child {
+.btn-group > .btn:first-child, .btn-group > button:first-child, .btn-group > input:first-child[type="submit"] {
   margin-left: 0; }
 
-.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
-.btn-group > .btn-group:not(:last-child) > .btn {
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > button:not(:last-child):not(.dropdown-toggle), .btn-group > input:not(:last-child):not(.dropdown-toggle)[type="submit"],
+.btn-group > .btn-group:not(:last-child) > .btn,
+.btn-group > .btn-group:not(:last-child) > button,
+.btn-group > .btn-group:not(:last-child) > input[type="submit"] {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.btn-group > .btn:not(:first-child),
-.btn-group > .btn-group:not(:first-child) > .btn {
+.btn-group > .btn:not(:first-child), .btn-group > button:not(:first-child), .btn-group > input:not(:first-child)[type="submit"],
+.btn-group > .btn-group:not(:first-child) > .btn,
+.btn-group > .btn-group:not(:first-child) > button,
+.btn-group > .btn-group:not(:first-child) > input[type="submit"] {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
@@ -8412,11 +8595,11 @@ input[type="button"].btn-block {
   .dropleft .dropdown-toggle-split::before {
     margin-right: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > button + .dropdown-toggle-split, .btn-group-sm > input[type="submit"] + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > button + .dropdown-toggle-split, .btn-group-lg > input[type="submit"] + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem; }
 
@@ -8431,31 +8614,47 @@ input[type="button"].btn-block {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
-  .btn-group-vertical .btn,
+  .btn-group-vertical .btn, .btn-group-vertical button, .btn-group-vertical input[type="submit"],
   .btn-group-vertical .btn-group {
     width: 100%; }
-  .btn-group-vertical > .btn + .btn,
+  .btn-group-vertical > .btn + .btn, .btn-group-vertical > button + .btn, .btn-group-vertical > input[type="submit"] + .btn, .btn-group-vertical > .btn + button, .btn-group-vertical > button + button, .btn-group-vertical > input[type="submit"] + button, .btn-group-vertical > .btn + input[type="submit"], .btn-group-vertical > button + input[type="submit"], .btn-group-vertical > input[type="submit"] + input[type="submit"],
   .btn-group-vertical > .btn + .btn-group,
+  .btn-group-vertical > button + .btn-group,
+  .btn-group-vertical > input[type="submit"] + .btn-group,
   .btn-group-vertical > .btn-group + .btn,
+  .btn-group-vertical > .btn-group + button,
+  .btn-group-vertical > .btn-group + input[type="submit"],
   .btn-group-vertical > .btn-group + .btn-group {
     margin-top: -1px;
     margin-left: 0; }
-  .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
-  .btn-group-vertical > .btn-group:not(:last-child) > .btn {
+  .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > button:not(:last-child):not(.dropdown-toggle), .btn-group-vertical > input:not(:last-child):not(.dropdown-toggle)[type="submit"],
+  .btn-group-vertical > .btn-group:not(:last-child) > .btn,
+  .btn-group-vertical > .btn-group:not(:last-child) > button,
+  .btn-group-vertical > .btn-group:not(:last-child) > input[type="submit"] {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0; }
-  .btn-group-vertical > .btn:not(:first-child),
-  .btn-group-vertical > .btn-group:not(:first-child) > .btn {
+  .btn-group-vertical > .btn:not(:first-child), .btn-group-vertical > button:not(:first-child), .btn-group-vertical > input:not(:first-child)[type="submit"],
+  .btn-group-vertical > .btn-group:not(:first-child) > .btn,
+  .btn-group-vertical > .btn-group:not(:first-child) > button,
+  .btn-group-vertical > .btn-group:not(:first-child) > input[type="submit"] {
     border-top-left-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group-toggle > .btn,
-.btn-group-toggle > .btn-group > .btn {
+.btn-group-toggle > .btn, .btn-group-toggle > button, .btn-group-toggle > input[type="submit"],
+.btn-group-toggle > .btn-group > .btn,
+.btn-group-toggle > .btn-group > button,
+.btn-group-toggle > .btn-group > input[type="submit"] {
   margin-bottom: 0; }
-  .btn-group-toggle > .btn input[type="radio"],
+  .btn-group-toggle > .btn input[type="radio"], .btn-group-toggle > button input[type="radio"], .btn-group-toggle > input[type="submit"] input[type="radio"],
   .btn-group-toggle > .btn input[type="checkbox"],
+  .btn-group-toggle > button input[type="checkbox"],
+  .btn-group-toggle > input[type="submit"] input[type="checkbox"],
   .btn-group-toggle > .btn-group > .btn input[type="radio"],
-  .btn-group-toggle > .btn-group > .btn input[type="checkbox"] {
+  .btn-group-toggle > .btn-group > button input[type="radio"],
+  .btn-group-toggle > .btn-group > input[type="submit"] input[type="radio"],
+  .btn-group-toggle > .btn-group > .btn input[type="checkbox"],
+  .btn-group-toggle > .btn-group > button input[type="checkbox"],
+  .btn-group-toggle > .btn-group > input[type="submit"] input[type="checkbox"] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
     pointer-events: none; }
@@ -8471,8 +8670,9 @@ input[type="button"].btn-block {
       -ms-flex-align: stretch;
           align-items: stretch;
   width: 100%; }
-  .input-group > .form-control,
+  .input-group > .form-control, .input-group > input[type="text"], .input-group > input[type="number"], .input-group > input[type="password"], .input-group > input[type="date"], .input-group > input[type="url"], .input-group > input[type="search"], .input-group > textarea,
   .input-group > .custom-select,
+  .input-group > select,
   .input-group > .custom-file {
     position: relative;
     -webkit-box-flex: 1;
@@ -8480,28 +8680,80 @@ input[type="button"].btn-block {
             flex: 1 1 auto;
     width: 1%;
     margin-bottom: 0; }
-    .input-group > .form-control + .form-control,
+    .input-group > .form-control + .form-control, .input-group > input[type="text"] + .form-control, .input-group > input[type="number"] + .form-control, .input-group > input[type="password"] + .form-control, .input-group > input[type="date"] + .form-control, .input-group > input[type="url"] + .form-control, .input-group > input[type="search"] + .form-control, .input-group > textarea + .form-control, .input-group > .form-control + input[type="text"], .input-group > input[type="text"] + input[type="text"], .input-group > input[type="number"] + input[type="text"], .input-group > input[type="password"] + input[type="text"], .input-group > input[type="date"] + input[type="text"], .input-group > input[type="url"] + input[type="text"], .input-group > input[type="search"] + input[type="text"], .input-group > textarea + input[type="text"], .input-group > .form-control + input[type="number"], .input-group > input[type="text"] + input[type="number"], .input-group > input[type="number"] + input[type="number"], .input-group > input[type="password"] + input[type="number"], .input-group > input[type="date"] + input[type="number"], .input-group > input[type="url"] + input[type="number"], .input-group > input[type="search"] + input[type="number"], .input-group > textarea + input[type="number"], .input-group > .form-control + input[type="password"], .input-group > input[type="text"] + input[type="password"], .input-group > input[type="number"] + input[type="password"], .input-group > input[type="password"] + input[type="password"], .input-group > input[type="date"] + input[type="password"], .input-group > input[type="url"] + input[type="password"], .input-group > input[type="search"] + input[type="password"], .input-group > textarea + input[type="password"], .input-group > .form-control + input[type="date"], .input-group > input[type="text"] + input[type="date"], .input-group > input[type="number"] + input[type="date"], .input-group > input[type="password"] + input[type="date"], .input-group > input[type="date"] + input[type="date"], .input-group > input[type="url"] + input[type="date"], .input-group > input[type="search"] + input[type="date"], .input-group > textarea + input[type="date"], .input-group > .form-control + input[type="url"], .input-group > input[type="text"] + input[type="url"], .input-group > input[type="number"] + input[type="url"], .input-group > input[type="password"] + input[type="url"], .input-group > input[type="date"] + input[type="url"], .input-group > input[type="url"] + input[type="url"], .input-group > input[type="search"] + input[type="url"], .input-group > textarea + input[type="url"], .input-group > .form-control + input[type="search"], .input-group > input[type="text"] + input[type="search"], .input-group > input[type="number"] + input[type="search"], .input-group > input[type="password"] + input[type="search"], .input-group > input[type="date"] + input[type="search"], .input-group > input[type="url"] + input[type="search"], .input-group > input[type="search"] + input[type="search"], .input-group > textarea + input[type="search"], .input-group > .form-control + textarea, .input-group > input[type="text"] + textarea, .input-group > input[type="number"] + textarea, .input-group > input[type="password"] + textarea, .input-group > input[type="date"] + textarea, .input-group > input[type="url"] + textarea, .input-group > input[type="search"] + textarea, .input-group > textarea + textarea,
     .input-group > .form-control + .custom-select,
+    .input-group > input[type="text"] + .custom-select,
+    .input-group > input[type="number"] + .custom-select,
+    .input-group > input[type="password"] + .custom-select,
+    .input-group > input[type="date"] + .custom-select,
+    .input-group > input[type="url"] + .custom-select,
+    .input-group > input[type="search"] + .custom-select,
+    .input-group > textarea + .custom-select,
+    .input-group > .form-control + select,
+    .input-group > input[type="text"] + select,
+    .input-group > input[type="number"] + select,
+    .input-group > input[type="password"] + select,
+    .input-group > input[type="date"] + select,
+    .input-group > input[type="url"] + select,
+    .input-group > input[type="search"] + select,
+    .input-group > textarea + select,
     .input-group > .form-control + .custom-file,
+    .input-group > input[type="text"] + .custom-file,
+    .input-group > input[type="number"] + .custom-file,
+    .input-group > input[type="password"] + .custom-file,
+    .input-group > input[type="date"] + .custom-file,
+    .input-group > input[type="url"] + .custom-file,
+    .input-group > input[type="search"] + .custom-file,
+    .input-group > textarea + .custom-file,
     .input-group > .custom-select + .form-control,
+    .input-group > select + .form-control,
+    .input-group > .custom-select + input[type="text"],
+    .input-group > select + input[type="text"],
+    .input-group > .custom-select + input[type="number"],
+    .input-group > select + input[type="number"],
+    .input-group > .custom-select + input[type="password"],
+    .input-group > select + input[type="password"],
+    .input-group > .custom-select + input[type="date"],
+    .input-group > select + input[type="date"],
+    .input-group > .custom-select + input[type="url"],
+    .input-group > select + input[type="url"],
+    .input-group > .custom-select + input[type="search"],
+    .input-group > select + input[type="search"],
+    .input-group > .custom-select + textarea,
+    .input-group > select + textarea,
     .input-group > .custom-select + .custom-select,
+    .input-group > select + .custom-select,
+    .input-group > .custom-select + select,
+    .input-group > select + select,
     .input-group > .custom-select + .custom-file,
+    .input-group > select + .custom-file,
     .input-group > .custom-file + .form-control,
+    .input-group > .custom-file + input[type="text"],
+    .input-group > .custom-file + input[type="number"],
+    .input-group > .custom-file + input[type="password"],
+    .input-group > .custom-file + input[type="date"],
+    .input-group > .custom-file + input[type="url"],
+    .input-group > .custom-file + input[type="search"],
+    .input-group > .custom-file + textarea,
     .input-group > .custom-file + .custom-select,
+    .input-group > .custom-file + select,
     .input-group > .custom-file + .custom-file {
       margin-left: -1px; }
-  .input-group > .form-control:focus,
+  .input-group > .form-control:focus, .input-group > input:focus[type="text"], .input-group > input:focus[type="number"], .input-group > input:focus[type="password"], .input-group > input:focus[type="date"], .input-group > input:focus[type="url"], .input-group > input:focus[type="search"], .input-group > textarea:focus,
   .input-group > .custom-select:focus,
+  .input-group > select:focus,
   .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
     z-index: 3; }
   .input-group > .custom-file .custom-file-input:focus {
     z-index: 4; }
-  .input-group > .form-control:not(:last-child),
-  .input-group > .custom-select:not(:last-child) {
+  .input-group > .form-control:not(:last-child), .input-group > input:not(:last-child)[type="text"], .input-group > input:not(:last-child)[type="number"], .input-group > input:not(:last-child)[type="password"], .input-group > input:not(:last-child)[type="date"], .input-group > input:not(:last-child)[type="url"], .input-group > input:not(:last-child)[type="search"], .input-group > textarea:not(:last-child),
+  .input-group > .custom-select:not(:last-child),
+  .input-group > select:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0; }
-  .input-group > .form-control:not(:first-child),
-  .input-group > .custom-select:not(:first-child) {
+  .input-group > .form-control:not(:first-child), .input-group > input:not(:first-child)[type="text"], .input-group > input:not(:first-child)[type="number"], .input-group > input:not(:first-child)[type="password"], .input-group > input:not(:first-child)[type="date"], .input-group > input:not(:first-child)[type="url"], .input-group > input:not(:first-child)[type="search"], .input-group > textarea:not(:first-child),
+  .input-group > .custom-select:not(:first-child),
+  .input-group > select:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
   .input-group > .custom-file {
@@ -8524,18 +8776,36 @@ input[type="button"].btn-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
-  .input-group-prepend .btn,
-  .input-group-append .btn {
+  .input-group-prepend .btn, .input-group-prepend button, .input-group-prepend input[type="submit"],
+  .input-group-append .btn,
+  .input-group-append button,
+  .input-group-append input[type="submit"] {
     position: relative;
     z-index: 2; }
-  .input-group-prepend .btn + .btn,
+  .input-group-prepend .btn + .btn, .input-group-prepend button + .btn, .input-group-prepend input[type="submit"] + .btn, .input-group-prepend .btn + button, .input-group-prepend button + button, .input-group-prepend input[type="submit"] + button, .input-group-prepend .btn + input[type="submit"], .input-group-prepend button + input[type="submit"], .input-group-prepend input[type="submit"] + input[type="submit"],
   .input-group-prepend .btn + .input-group-text,
+  .input-group-prepend button + .input-group-text,
+  .input-group-prepend input[type="submit"] + .input-group-text,
   .input-group-prepend .input-group-text + .input-group-text,
   .input-group-prepend .input-group-text + .btn,
+  .input-group-prepend .input-group-text + button,
+  .input-group-prepend .input-group-text + input[type="submit"],
   .input-group-append .btn + .btn,
+  .input-group-append button + .btn,
+  .input-group-append input[type="submit"] + .btn,
+  .input-group-append .btn + button,
+  .input-group-append button + button,
+  .input-group-append input[type="submit"] + button,
+  .input-group-append .btn + input[type="submit"],
+  .input-group-append button + input[type="submit"],
+  .input-group-append input[type="submit"] + input[type="submit"],
   .input-group-append .btn + .input-group-text,
+  .input-group-append button + .input-group-text,
+  .input-group-append input[type="submit"] + .input-group-text,
   .input-group-append .input-group-text + .input-group-text,
-  .input-group-append .input-group-text + .btn {
+  .input-group-append .input-group-text + .btn,
+  .input-group-append .input-group-text + button,
+  .input-group-append .input-group-text + input[type="submit"] {
     margin-left: -1px; }
 
 .input-group-prepend {
@@ -8566,42 +8836,58 @@ input[type="button"].btn-block {
   .input-group-text input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group-lg > .form-control,
+.input-group-lg > .form-control, .input-group-lg > input[type="text"], .input-group-lg > input[type="number"], .input-group-lg > input[type="password"], .input-group-lg > input[type="date"], .input-group-lg > input[type="url"], .input-group-lg > input[type="search"], .input-group-lg > textarea,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
 .input-group-lg > .input-group-prepend > .btn,
-.input-group-lg > .input-group-append > .btn {
+.input-group-lg > .input-group-prepend > button,
+.input-group-lg > .input-group-prepend > input[type="submit"],
+.input-group-lg > .input-group-append > .btn,
+.input-group-lg > .input-group-append > button,
+.input-group-lg > .input-group-append > input[type="submit"] {
   height: calc(2.875rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.input-group-sm > .form-control,
+.input-group-sm > .form-control, .input-group-sm > input[type="text"], .input-group-sm > input[type="number"], .input-group-sm > input[type="password"], .input-group-sm > input[type="date"], .input-group-sm > input[type="url"], .input-group-sm > input[type="search"], .input-group-sm > textarea,
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
 .input-group-sm > .input-group-prepend > .btn,
-.input-group-sm > .input-group-append > .btn {
+.input-group-sm > .input-group-prepend > button,
+.input-group-sm > .input-group-prepend > input[type="submit"],
+.input-group-sm > .input-group-append > .btn,
+.input-group-sm > .input-group-append > button,
+.input-group-sm > .input-group-append > input[type="submit"] {
   height: calc(1.8125rem + 2px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
   border-radius: 0.2rem; }
 
-.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > button, .input-group > .input-group-prepend > input[type="submit"],
 .input-group > .input-group-prepend > .input-group-text,
 .input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > button,
+.input-group > .input-group-append:not(:last-child) > input[type="submit"],
 .input-group > .input-group-append:not(:last-child) > .input-group-text,
 .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > button:not(:last-child):not(.dropdown-toggle),
+.input-group > .input-group-append:last-child > input:not(:last-child):not(.dropdown-toggle)[type="submit"],
 .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .btn, .input-group > .input-group-append > button, .input-group > .input-group-append > input[type="submit"],
 .input-group > .input-group-append > .input-group-text,
 .input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > button,
+.input-group > .input-group-prepend:not(:first-child) > input[type="submit"],
 .input-group > .input-group-prepend:not(:first-child) > .input-group-text,
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > button:not(:first-child),
+.input-group > .input-group-prepend:first-child > input:not(:first-child)[type="submit"],
 .input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
@@ -8698,7 +8984,7 @@ input[type="button"].btn-block {
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
   background-color: rgba(235, 60, 0, 0.5); }
 
-.custom-select {
+.custom-select, select {
   display: inline-block;
   width: 100%;
   height: calc(2.25rem + 2px);
@@ -8713,22 +8999,22 @@ input[type="button"].btn-block {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none; }
-  .custom-select:focus {
+  .custom-select:focus, select:focus {
     border-color: #ff916c;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(255, 145, 108, 0.5);
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(255, 145, 108, 0.5); }
-    .custom-select:focus::-ms-value {
+    .custom-select:focus::-ms-value, select:focus::-ms-value {
       color: #495057;
       background-color: #fff; }
-  .custom-select[multiple], .custom-select[size]:not([size="1"]) {
+  .custom-select[multiple], select[multiple], .custom-select[size]:not([size="1"]), select[size]:not([size="1"]) {
     height: auto;
     padding-right: 0.75rem;
     background-image: none; }
-  .custom-select:disabled {
+  .custom-select:disabled, select:disabled {
     color: #6c757d;
     background-color: #e9ecef; }
-  .custom-select::-ms-expand {
+  .custom-select::-ms-expand, select::-ms-expand {
     opacity: 0; }
 
 .custom-select-sm {
@@ -8911,8 +9197,7 @@ input[type="button"].btn-block {
     border-radius: 1rem; }
 
 .custom-control-label::before,
-.custom-file-label,
-.custom-select {
+.custom-file-label, .custom-select, select {
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   -o-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -8920,8 +9205,7 @@ input[type="button"].btn-block {
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
   @media screen and (prefers-reduced-motion: reduce) {
     .custom-control-label::before,
-    .custom-file-label,
-    .custom-select {
+    .custom-file-label, .custom-select, select {
       -webkit-transition: none;
       -o-transition: none;
       transition: none; } }
@@ -9589,7 +9873,7 @@ input[type="button"].btn-block {
 .breadcrumb-item.active {
   color: #6c757d; }
 
-.pagination {
+.pagination, .pagination-nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9597,7 +9881,7 @@ input[type="button"].btn-block {
   list-style: none;
   border-radius: 0.25rem; }
 
-.page-link {
+.page-link, .pagination-nav ul li a, .pagination-nav ul li span {
   position: relative;
   display: block;
   padding: 0.5rem 0.75rem;
@@ -9606,65 +9890,65 @@ input[type="button"].btn-block {
   color: #eb3c00;
   background-color: #fff;
   border: 1px solid #dee2e6; }
-  .page-link:hover {
+  .page-link:hover, .pagination-nav ul li a:hover, .pagination-nav ul li span:hover {
     z-index: 2;
     color: #9f2800;
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #dee2e6; }
-  .page-link:focus {
+  .page-link:focus, .pagination-nav ul li a:focus, .pagination-nav ul li span:focus {
     z-index: 2;
     outline: 0;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25);
             box-shadow: 0 0 0 0.2rem rgba(235, 60, 0, 0.25); }
-  .page-link:not(:disabled):not(.disabled) {
+  .page-link:not(:disabled):not(.disabled), .pagination-nav ul li a:not(:disabled):not(.disabled), .pagination-nav ul li span:not(:disabled):not(.disabled) {
     cursor: pointer; }
 
-.page-item:first-child .page-link {
+.page-item:first-child .page-link, .pagination-nav ul li:first-child .page-link, .page-item:first-child .pagination-nav ul li a, .pagination-nav ul li .page-item:first-child a, .pagination-nav ul li:first-child a, .page-item:first-child .pagination-nav ul li span, .pagination-nav ul li .page-item:first-child span, .pagination-nav ul li:first-child span {
   margin-left: 0;
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem; }
 
-.page-item:last-child .page-link {
+.page-item:last-child .page-link, .pagination-nav ul li:last-child .page-link, .page-item:last-child .pagination-nav ul li a, .pagination-nav ul li .page-item:last-child a, .pagination-nav ul li:last-child a, .page-item:last-child .pagination-nav ul li span, .pagination-nav ul li .page-item:last-child span, .pagination-nav ul li:last-child span {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem; }
 
-.page-item.active .page-link {
+.page-item.active .page-link, .pagination-nav ul li.active .page-link, .page-item.active .pagination-nav ul li a, .pagination-nav ul li .page-item.active a, .pagination-nav ul li.active a, .page-item.active .pagination-nav ul li span, .pagination-nav ul li .page-item.active span, .pagination-nav ul li.active span {
   z-index: 1;
   color: #fff;
   background-color: #eb3c00;
   border-color: #eb3c00; }
 
-.page-item.disabled .page-link {
+.page-item.disabled .page-link, .pagination-nav ul li.disabled .page-link, .page-item.disabled .pagination-nav ul li a, .pagination-nav ul li .page-item.disabled a, .pagination-nav ul li.disabled a, .page-item.disabled .pagination-nav ul li span, .pagination-nav ul li .page-item.disabled span, .pagination-nav ul li.disabled span {
   color: #6c757d;
   pointer-events: none;
   cursor: auto;
   background-color: #fff;
   border-color: #dee2e6; }
 
-.pagination-lg .page-link {
+.pagination-lg .page-link, .pagination-lg .pagination-nav ul li a, .pagination-nav ul li .pagination-lg a, .pagination-lg .pagination-nav ul li span, .pagination-nav ul li .pagination-lg span {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   line-height: 1.5; }
 
-.pagination-lg .page-item:first-child .page-link {
+.pagination-lg .page-item:first-child .page-link, .pagination-lg .pagination-nav ul li:first-child .page-link, .pagination-nav ul .pagination-lg li:first-child .page-link, .pagination-lg .page-item:first-child .pagination-nav ul li a, .pagination-nav ul li .pagination-lg .page-item:first-child a, .pagination-lg .pagination-nav ul li:first-child a, .pagination-nav ul .pagination-lg li:first-child a, .pagination-lg .page-item:first-child .pagination-nav ul li span, .pagination-nav ul li .pagination-lg .page-item:first-child span, .pagination-lg .pagination-nav ul li:first-child span, .pagination-nav ul .pagination-lg li:first-child span {
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem; }
 
-.pagination-lg .page-item:last-child .page-link {
+.pagination-lg .page-item:last-child .page-link, .pagination-lg .pagination-nav ul li:last-child .page-link, .pagination-nav ul .pagination-lg li:last-child .page-link, .pagination-lg .page-item:last-child .pagination-nav ul li a, .pagination-nav ul li .pagination-lg .page-item:last-child a, .pagination-lg .pagination-nav ul li:last-child a, .pagination-nav ul .pagination-lg li:last-child a, .pagination-lg .page-item:last-child .pagination-nav ul li span, .pagination-nav ul li .pagination-lg .page-item:last-child span, .pagination-lg .pagination-nav ul li:last-child span, .pagination-nav ul .pagination-lg li:last-child span {
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem; }
 
-.pagination-sm .page-link {
+.pagination-sm .page-link, .pagination-sm .pagination-nav ul li a, .pagination-nav ul li .pagination-sm a, .pagination-sm .pagination-nav ul li span, .pagination-nav ul li .pagination-sm span {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5; }
 
-.pagination-sm .page-item:first-child .page-link {
+.pagination-sm .page-item:first-child .page-link, .pagination-sm .pagination-nav ul li:first-child .page-link, .pagination-nav ul .pagination-sm li:first-child .page-link, .pagination-sm .page-item:first-child .pagination-nav ul li a, .pagination-nav ul li .pagination-sm .page-item:first-child a, .pagination-sm .pagination-nav ul li:first-child a, .pagination-nav ul .pagination-sm li:first-child a, .pagination-sm .page-item:first-child .pagination-nav ul li span, .pagination-nav ul li .pagination-sm .page-item:first-child span, .pagination-sm .pagination-nav ul li:first-child span, .pagination-nav ul .pagination-sm li:first-child span {
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem; }
 
-.pagination-sm .page-item:last-child .page-link {
+.pagination-sm .page-item:last-child .page-link, .pagination-sm .pagination-nav ul li:last-child .page-link, .pagination-nav ul .pagination-sm li:last-child .page-link, .pagination-sm .page-item:last-child .pagination-nav ul li a, .pagination-nav ul li .pagination-sm .page-item:last-child a, .pagination-sm .pagination-nav ul li:last-child a, .pagination-nav ul .pagination-sm li:last-child a, .pagination-sm .page-item:last-child .pagination-nav ul li span, .pagination-nav ul li .pagination-sm .page-item:last-child span, .pagination-sm .pagination-nav ul li:last-child span, .pagination-nav ul .pagination-sm li:last-child span {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem; }
 
@@ -9681,7 +9965,7 @@ input[type="button"].btn-block {
   .badge:empty {
     display: none; }
 
-.btn .badge {
+.btn .badge, button .badge, input[type="submit"] .badge {
   position: relative;
   top: -1px; }
 
@@ -11117,7 +11401,7 @@ button.bg-dark:focus {
       -ms-flex-pack: end !important;
           justify-content: flex-end !important; }
 
-.justify-content-center {
+.justify-content-center, .pagination-nav ul {
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important; }
@@ -12991,7 +13275,7 @@ a.text-dark:hover, a.text-dark:focus {
     text-shadow: none !important;
     -webkit-box-shadow: none !important;
             box-shadow: none !important; }
-  a:not(.btn) {
+  a:not(.btn):not(button):not(input[type="submit"]) {
     text-decoration: underline; }
   abbr[title]::after {
     content: " (" attr(title) ")"; }
@@ -13076,17 +13360,6 @@ img {
   max-width: 100%;
   height: auto; }
 
-select {
-  max-width: 100%;
-  display: inline-block;
-  width: 100%;
-  height: calc(2.25rem + 2px);
-  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-  line-height: 1.5;
-  background-color: #ffffff;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem; }
-
 /** By Envato requirements */
 .wp-caption,
 .wp-caption-text,
@@ -13100,6 +13373,20 @@ select {
 -------------------------------------------------------------------*/
 .navbar {
   padding: 0.5rem 0; }
+
+.dropdown-menu {
+  padding: 0; }
+  .dropdown-menu li {
+    padding: 0; }
+    .dropdown-menu li a {
+      padding: 10px 25px;
+      border-radius: 3px; }
+    .dropdown-menu li:active {
+      color: #fff; }
+    .dropdown-menu li:hover > ul {
+      display: inline-block;
+      top: 75%;
+      left: 25%; }
 
 /*------------------------------------------------------------------
 [Mobile menu styles]
@@ -13359,6 +13646,10 @@ select {
 article > * {
   max-width: 100%; }
 
+.comment-form .form-submit {
+  padding-top: 10px;
+  text-align: right; }
+
 /*------------------------------------------------------------------
 [Footer styles]
 -------------------------------------------------------------------*/
@@ -13387,8 +13678,14 @@ article > * {
   #sidebar ul > li > ul {
     padding-left: 15px; }
 
-#sidebar .widget {
+/*------------------------------------------------------------------
+[Widget styles]
+-------------------------------------------------------------------*/
+.widget {
   margin-bottom: 30px; }
+  .widget .search-form label {
+    vertical-align: bottom;
+    margin-bottom: 0; }
 
 /*------------------------------------------------------------------
 [Stripped version of JS Composer styles]

@@ -266,4 +266,8 @@ class utils {
 
 		return $is_attachment_svg_by_mime || $is_attachment_svg_by_ext;
 	}
+
+	public static function trim_text($text, $max_length = 20, $finisher = "...") {
+		return strlen( $text ) > $max_length ? esc_html__(substr( $text, 0, $max_length ) . $finisher) : esc_html__( $text );
+	}
 }
