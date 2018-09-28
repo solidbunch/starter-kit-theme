@@ -3,9 +3,6 @@
 use ffblank\helper\front;
 use ffblank\helper\media;
 
-$titleMaxLength = 19;
-$postsPerPage   = 10;
-
 get_header(); ?>
 	
 	<section id="content" class="container pt-5">
@@ -26,11 +23,7 @@ get_header(); ?>
 
 								<?php
 
-									if ( strlen( get_the_title() ) > $titleMaxLength ) {
-									    echo esc_html__(substr( get_the_title(), 0, $titleMaxLength ) . '...');
-									} else {
-                                        echo esc_html__( get_the_title() );
-                                    }
+									echo is_sticky() ? get_the_title() : ffblank\helper\utils::trim_text( get_the_title(), 19 );
 
 								?>
 
