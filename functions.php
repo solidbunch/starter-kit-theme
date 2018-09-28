@@ -67,6 +67,19 @@ if ( ! function_exists( 'FFBLANK' ) ) {
 	
 }
 
+// Adding bootstrap classes on nav menu elements
+function add_classes_on_li($classes) {
+	$classes[] = 'nav-item';
+	return $classes;
+}
+
+function add_classes_on_a($classes) {
+	return preg_replace('/<a /', '<a class="nav-link"', $classes);
+}
+
+add_filter('nav_menu_css_class','add_classes_on_li',1,3);
+add_filter('wp_nav_menu','add_classes_on_a');
+
 // Run the theme
 FFBLANK()->run();
 

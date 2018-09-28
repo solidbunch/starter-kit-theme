@@ -1,0 +1,10 @@
+@mixin list-padding ($padding) {
+  ul {
+	padding-left: 0;
+
+	& > li > ul {
+	  padding-left: $padding;
+	}
+  }
+}
+

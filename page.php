@@ -10,7 +10,7 @@ get_header();
 
 the_post(); ?>
 	
-	<div id="content" class="container">
+	<div id="content" class="container pt-5">
 
         <?php
         $reversed = '';

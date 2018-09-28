@@ -15,6 +15,7 @@ export default class Theme {
 	build() {
 		this.setupHeader();
 		this.loadGoogleFonts();
+		this.addBootstrapClasses();
 	}
 
 	/**
@@ -57,6 +58,13 @@ export default class Theme {
 	/** Check for mobile device **/
 	isMobile() {
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	}
+
+	addBootstrapClasses () {
+		$('select').addClass('custom-select');
+		$('input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="url"], input[type="search"], textarea').addClass('form-control');
+		$('button, input[type="submit"]').addClass('btn');
+		$('input[type="submit"]').addClass('btn-primary');
 	}
 
 	stringToBoolean(string) {

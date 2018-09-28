@@ -6,7 +6,7 @@
 get_header();
 the_post(); ?>
 	
-	<div class="container">
+	<div class="container pt-5">
 		<div class="row">
 			
 			<div class="col-12">

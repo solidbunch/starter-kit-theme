@@ -3,12 +3,12 @@
 use ffblank\helper\front;
 use ffblank\helper\media;
 
-$titleMaxLength = 25;
+$titleMaxLength = 19;
 $postsPerPage   = 10;
 
 get_header(); ?>
 	
-	<section id="content" class="container">
+	<section id="content" class="container pt-5">
 
 		<div class="row">
 			
