@@ -21,11 +21,7 @@ get_header(); ?>
 
 							<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
 
-								<?php
-
-									echo is_sticky() ? get_the_title() : ffblank\helper\utils::trim_text( get_the_title(), 19 );
-
-								?>
+								<?php the_title(); ?>
 
 							</a>
 
