@@ -33,11 +33,21 @@ get_header(); ?>
 
 										<?php
 
-										if ( is_sticky() ) {
-											echo has_post_thumbnail() ? media::img(array('width'  => 700, 'height' => 350, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/700x350/eee/aaaaaa', 'width'  => 700, 'height' => 350, 'upscale' => true));
-										} else {
-											echo has_post_thumbnail() ? media::img(array('width'  => 150, 'height' => 150, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/150x150/eee/aaaaaa', 'width'  => 150, 'height' => 150, 'upscale' => true));
-										}
+											$width      = is_sticky() ? '700' : '150';
+											$height     = is_sticky() ? '350' : '150';
+											$upscale    = true;
+
+											$args   = array(
+												'width'     => $width,
+												'height'    => $height,
+												'upscale'   => $upscale
+											);
+
+											if ( !has_post_thumbnail() ) {
+												$args['url'] = 'https://dummyimage.com/' . $width . 'x' . $height . '/eee/aaaaaa';
+											}
+
+											echo media::img($args);
 
 										?>
 
