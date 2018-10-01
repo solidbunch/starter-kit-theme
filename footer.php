@@ -35,35 +35,31 @@
 			<div id="bottom-bar" class="f4-bottom-bar">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="d-flex font-14">
-							<div class="my-auto copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
-							<nav class="links ml-auto m-t-10 m-b-10">
+						<div class="row">
+							<div class="col-md-6 my-auto copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
+							<nav class="col-md-6 links text-md-right text-center">
 
-								<nav id="navigation-bottom" class="navbar navbar-expand-md">
+								<?php
 
-									<?php
+								$location = 'bottom_bar_menu';
 
-									$location = 'bottom_bar_menu';
+								if ( has_nav_menu($location) ) {
 
-									if ( has_nav_menu($location) ) {
-
-										wp_nav_menu(array(
-											'menu' => 'bottom_bar_menu',
-											'theme_location' => $location,
-											'container' => 'ul',
-											'menu_id' => "bottom-menu",
-											'menu_class' => '',
-											'items_wrap' => '<ul id="%1$s" class="navbar-nav %2$s">%3$s</ul>',
+									wp_nav_menu(array(
+										'menu' => 'bottom_bar_menu',
+										'theme_location' => $location,
+										'container' => 'ul',
+										'menu_id' => "bottom-menu",
+										'menu_class' => '',
+										'items_wrap' => '<ul id="%1$s" class="list-inline %2$s">%3$s</ul>',
 //											'walker' => new \ffblank\controller\walker_bootstrap(),
-											'depth' => 1
-										));
+										'depth' => 1
+									));
 
-									}
+								}
 
-									?>
+								?>
 
-								</nav>
-							
 							</div>
 						</div>
 					</div>

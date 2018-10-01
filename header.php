@@ -40,17 +40,14 @@
 
 		<div class="container">
 
-			<nav id="navigation" class="navbar navbar-expand-md">
+			<nav id="navigation" class="navbar navbar-dark bg-dark navbar-expand-md">
 
-				<div class="mx-auto order-0">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".header-menu">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-						<span class="navbar-toggler-icon"></span>
-					</button>
 
-				</div>
-
-				<div class="navbar-collapse collapse w-100 order-3 dual-collapse2 row">
+				<div class="navbar-collapse collapse w-100 order-3 row header-menu">
 
 					<?php
 
