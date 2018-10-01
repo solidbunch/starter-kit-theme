@@ -266,4 +266,5 @@ class utils {
 
 		return $is_attachment_svg_by_mime || $is_attachment_svg_by_ext;
 	}
+
 }
