@@ -64,7 +64,7 @@ class walker_bootstrap extends \Walker_Nav_Menu {
 		$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr($item->url) . '"' : '';
 
-		$attributes .= ( $args->walker->has_children ) ? ' class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ' class="nav-link"';
+		$attributes .= ( $args->walker->has_children && $args->depth != 1) ? ' class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ' class="nav-link"';
 
 		$item_output = $args->before;
 		$item_output .= ( $depth > 0 ) ? '<a class="dropdown-item"' . $attributes . '>' : '<a' . $attributes . '>';
