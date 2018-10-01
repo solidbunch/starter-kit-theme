@@ -13643,12 +13643,18 @@ img {
 /*------------------------------------------------------------------
 [Blog styles]
 -------------------------------------------------------------------*/
-article > * {
+article > figure,
+article > img {
   max-width: 100%; }
 
 .comment-form .form-submit {
   padding-top: 10px;
   text-align: right; }
+
+.pagination-nav ul li a.current, .pagination-nav ul li span.current {
+  background: #eb3c00;
+  border-color: #eb3c00;
+  color: #fff; }
 
 /*------------------------------------------------------------------
 [Footer styles]
@@ -13656,7 +13662,7 @@ article > * {
 #footer {
   margin-top: 35px; }
   #footer ul {
-    padding-left: 0; }
+    padding-left: 17px; }
     #footer ul > li > ul {
       padding-left: 15px; }
 
@@ -13674,7 +13680,7 @@ article > * {
     margin-top: 35px; } }
 
 #sidebar ul {
-  padding-left: 0; }
+  padding-left: 17px; }
   #sidebar ul > li > ul {
     padding-left: 15px; }
 
