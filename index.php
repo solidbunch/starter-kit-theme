@@ -3,12 +3,9 @@
 use ffblank\helper\front;
 use ffblank\helper\media;
 
-$titleMaxLength = 25;
-$postsPerPage   = 10;
-
 get_header(); ?>
 	
-	<section id="content" class="container">
+	<section id="content" class="container pt-5">
 
 		<div class="row">
 			
@@ -24,15 +21,7 @@ get_header(); ?>
 
 							<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
 
-								<?php
-
-									if ( strlen( get_the_title() ) > $titleMaxLength ) {
-									    echo esc_html__(substr( get_the_title(), 0, $titleMaxLength ) . '...');
-									} else {
-                                        echo esc_html__( get_the_title() );
-                                    }
-
-								?>
+								<?php the_title(); ?>
 
 							</a>
 

@@ -14,74 +14,78 @@
 
 		<div class="container">
 
-			<div class="row flex">
+			<nav class="navbar">
 
-				<div class="col-sm-8">
+				<div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2">
 
-					<h1 id="logo">
-						<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo('name'); ?></a>
-					</h1>
+					<div class="navbar-brand">
 
-					<small id="sublogo"><?php bloginfo('description'); ?></small>
+						<a href="<?php echo site_url( '/' ); ?>">
+							<h1><?php bloginfo('name'); ?></h1>
+						</a>
+
+						<small><?php bloginfo('description'); ?></small>
+
+					</div>
 
 				</div>
 
-                <?php
-
-				/*<div class="col-sm-2 text-right">
-					<a class="login" href="#"><i class="fa fa-key" aria-hidden="true"></i> Login</a>
-				</div>
-				<div class="col-sm-2 text-right">
-					<button class="btn contact-button">Contact me</button>
-				</div>*/
-
-				?>
-
-			</div>
+			</nav>
 
 		</div>
 
 	</header>
 
-	<div id="nav">
+	<section class="bg-dark">
 
 		<div class="container">
 
-			<div class="row">
+			<nav id="navigation" class="navbar navbar-expand-md">
 
-				<div class="col-xs-12 col-sm-8">
+				<div class="mx-auto order-0">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+				</div>
+
+				<div class="navbar-collapse collapse w-100 order-3 dual-collapse2 row">
 
 					<?php
 
-						$location = 'header_menu';
+					$location = 'header_menu';
 
-						if ( has_nav_menu($location) ) {
+					if ( has_nav_menu($location) ) {
 
-							wp_nav_menu(array(
-								'menu' => $location,
-								'theme_location' => 'header_menu',
-								'container' => 'ul',
-								'menu_id' => "nav-menu",
-								//'depth'           => 4,
-							));
-						}
+						wp_nav_menu(array(
+							'menu' => $location,
+							'theme_location' => 'header_menu',
+							'container' => 'ul',
+							'menu_id' => "nav-menu",
+							'menu_class' => '',
+							'items_wrap' => '<div class="col-sm-9"><ul id="%1$s" class="navbar-nav %2$s">%3$s</ul></div>',
+							'walker' => new \ffblank\controller\walker_bootstrap()
+							//'depth'           => 4,
+						));
+					}
 
 					?>
 
+					<div class="col-sm-3">
+
+						<?php get_template_part( 'template-parts/search-form' ); ?>
+
+					</div>
+
 				</div>
 
-				<div class="col-xs-12 col-sm-4 text-right">
-
-					<?php get_template_part( 'template-parts/search-form' ); ?>
-
-				</div>
-
-			</div>
+			</nav>
 
 		</div>
 
-	</div>
+	</section>
 	
-	<header id="composer-header">
+	<section id="composer-header">
 		<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
-	</header>
+	</section>
