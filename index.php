@@ -11,51 +11,70 @@ get_header(); ?>
 			
 			<div id="posts" class="<?php echo front::get_grid_class(); ?>">
 
-				<div class="row">
-
 				<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 
-					<article <?php post_class( is_sticky() ? array( 'col-sm-12' ) : array( 'col-sm-6' ) ); ?>>
-						
-						<h2>
+				<div class="row">
 
-							<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+					<article <?php post_class( array( 'col-sm-12' ) ); ?>>
 
-								<?php the_title(); ?>
+						<div class="row pb-5">
 
-							</a>
+							<div class="thumb pb-3 col-md-<?php echo is_sticky() ? '12' : '3'; ?>">
 
-						</h2>
-						
-						<div class="thumb">
+								<a href="<?php the_permalink(); ?>">
 
-							<a href="<?php the_permalink(); ?>">
-						
-									<!-- an example how to resize image
-									<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
-								-->
-									
-									<!--
-										an example how to print image tag with srcset
-									-->
-								
-									<?php echo has_post_thumbnail() ? media::img(array('width'  => 350, 'height' => 175, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/350x175/eee/aaaaaa')); ?>
+										<!-- an example how to resize image
+											<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
+										-->
+
+										<!--
+											an example how to print image tag with srcset
+										-->
+
+										<?php
+
+										if ( is_sticky() ) {
+											echo has_post_thumbnail() ? media::img(array('width'  => 700, 'height' => 350, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/700x350/eee/aaaaaa', 'width'  => 700, 'height' => 350, 'upscale' => true));
+										} else {
+											echo has_post_thumbnail() ? media::img(array('width'  => 150, 'height' => 150, 'upscale' => true)) : media::img(array('url' => 'https://dummyimage.com/150x150/eee/aaaaaa', 'width'  => 150, 'height' => 150, 'upscale' => true));
+										}
+
+										?>
 
 
-							</a>
+								</a>
+
+							</div>
+
+							<div class="col-md-<?php echo is_sticky() ? '12' : '9'; ?>">
+
+								<h2 class="pb-3">
+
+									<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
+
+										<?php the_title(); ?>
+
+									</a>
+
+								</h2>
+
+								<?php get_template_part( 'template-parts/post-data' ); ?>
+
+								<div class="excerpt">
+									<?php the_excerpt(); ?>
+								</div>
+
+								<a href="<?php the_permalink(); ?>" class="btn btn-primary col-sm-12 col-md-3">
+									<?php esc_html_e( 'Read more', 'fruitfulblanktextdomain' ); ?>
+								</a>
+
+							</div>
 
 						</div>
-						
-						<?php get_template_part( 'template-parts/post-data' ); ?>
-						
-						<div class="excerpt">
-							<?php the_excerpt(); ?>
-						</div>
-						
-						<a href="<?php the_permalink(); ?>"
-						   class="button"><?php esc_html_e( 'Read more', 'fruitfulblanktextdomain' ); ?></a>
 					
 					</article>
+
+				</div>
 				
 				<?php endwhile; else: ?>
 					
@@ -69,8 +88,6 @@ get_header(); ?>
 				
 				<?php endif;
 				wp_reset_postdata(); ?>
-
-				</div>
 				
 				<?php get_template_part( 'template-parts/pagination' ); ?>
 			
