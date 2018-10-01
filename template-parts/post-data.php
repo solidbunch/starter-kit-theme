@@ -1,4 +1,4 @@
-<div class="post-data">
+<div class="post-data font-italic">
 	<span class="date">
 		<?php the_time( 'F d, Y' ); ?>
 	</span> <span class="separator">|</span>
