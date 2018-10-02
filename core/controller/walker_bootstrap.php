@@ -1,6 +1,6 @@
 <?php
 /**
- * Adding Custom Menus
+ * Adding Custom Menu Walker
  *
  * PHP version 5.6
  *
@@ -17,7 +17,7 @@ namespace ffblank\controller;
 /**
  * Adding Walker
  *
- * Controller which add support of custom menus positions
+ * Controller which add bootstrap menu walker
  *
  * @category   Wordpress
  * @package    FFBLANK Backend
@@ -36,7 +36,7 @@ class walker_bootstrap extends \Walker_Nav_Menu {
 
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) { // li a span
 
-		$indent = ( $depth ) ? str_repeat("\t",$depth) : '';
+		$indent = $depth ? str_repeat("\t",$depth) : '';
 
 		$li_attributes = '';
 		$class_names = $value = '';
@@ -51,7 +51,7 @@ class walker_bootstrap extends \Walker_Nav_Menu {
 			$classes[] = 'dropdown-submenu';
 		}
 
-		$class_names =  join(' ', apply_filters('nav_menu_css_class', array_filter( $classes ), $item, $args ) );
+		$class_names =  implode(' ', apply_filters('nav_menu_css_class', array_filter( $classes ), $item, $args ) );
 		$class_names = ' class="' . esc_attr($class_names) . '"';
 
 		$id = apply_filters('nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args);
@@ -64,7 +64,11 @@ class walker_bootstrap extends \Walker_Nav_Menu {
 		$attributes .= ! empty( $item->xfn ) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
 		$attributes .= ! empty( $item->url ) ? ' href="' . esc_attr($item->url) . '"' : '';
 
-		$attributes .= ( $args->walker->has_children && $args->depth != 1) ? ' class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"' : ' class="nav-link"';
+		if ( ( $args->walker->has_children && $args->depth != 1 ) ) {
+			$attributes .= ' class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"';
+		} else {
+			$attributes .= ' class="nav-link"';
+		}
 
 		$item_output = $args->before;
 		$item_output .= ( $depth > 0 ) ? '<a class="dropdown-item"' . $attributes . '>' : '<a' . $attributes . '>';
