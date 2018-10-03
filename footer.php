@@ -2,8 +2,8 @@
 	<?php echo FFBLANK()->view->load_composer_layout( 'footer' ); ?>
 </footer>
 
-<footer id="footer">
-	<div class="footer4 b-t spacer">
+<footer id="footer" class="bg-dark text-white">
+	<div class="footer4 b-t spacer pt-3">
 		<div class="container">
 			<div class="row">
 				
@@ -35,27 +35,31 @@
 			<div id="bottom-bar" class="f4-bottom-bar">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="d-flex font-14">
-							<div class="m-t-10 m-b-10 copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
-							<div class="links ml-auto m-t-10 m-b-10">
-								
+						<div class="row">
+							<div class="col-md-6 my-auto copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
+							<nav class="col-md-6 links text-md-right text-center">
+
 								<?php
 
 								$location = 'bottom_bar_menu';
 
-									wp_nav_menu( array(
-									'menu'            => 'bottom_bar_menu',
-									'theme_location'  => $location,
-									'container'       => 'div',
-									'container_id'    => 'bottom_bar_menu',
-									'container_class' => '',
-									'menu_id'         => 'bottom-menu',
-									'menu_class'      => '',
-									'depth'           => 1,
-								) );
+								if ( has_nav_menu($location) ) {
+
+									wp_nav_menu(array(
+										'menu' => 'bottom_bar_menu',
+										'theme_location' => $location,
+										'container' => 'ul',
+										'menu_id' => "bottom-menu",
+										'menu_class' => '',
+										'items_wrap' => '<ul id="%1$s" class="list-inline %2$s">%3$s</ul>',
+//											'walker' => new \ffblank\controller\walker_bootstrap(),
+										'depth' => 1
+									));
+
+								}
 
 								?>
-							
+
 							</div>
 						</div>
 					</div>
