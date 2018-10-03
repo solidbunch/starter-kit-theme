@@ -4,7 +4,11 @@
  **/
 ?>
 
-<form class="search-form" action="<?php echo get_site_url(); ?>" method="get">
-	<input type="text" name="s" class="search" placeholder="SEARCH">
-	<button type="submit" class="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+<form class="form-inline" action="<?php echo get_site_url(); ?>" method="get">
+	<div class="input-group">
+		<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="s">
+		<div class="input-group-append">
+			<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</div>
+	</div>
 </form>

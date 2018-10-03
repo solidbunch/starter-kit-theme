@@ -1,3 +1,5 @@
+@import "../_variables";
+
 /*------------------------------------------------------------------
 [Global styles]
 -------------------------------------------------------------------*/
@@ -11,7 +13,7 @@
 }
 
 .alignright {
-  float: left;
+  float: right;
   margin: 0 0 10px 10px;
 }
 
@@ -25,9 +27,9 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 a {
-  color: #eb3c00;
+  color: $primary;
   &:hover {
-    color: #b03200;
+    color: darken( $primary, 10% );
   }
 }
 
@@ -41,47 +43,33 @@ img {
 }
 
 select {
-  max-width: 100%;
+  @extend .custom-select;
 }
 
-html body {
-  background-color: #f5f5f5;
-  font-family: 'Oswald';
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 20px;
-  -ms-word-wrap: break-word;
-  word-wrap: break-word;
-}
-
-p, span, h1, h2, h3, h4, h5, h6 {
-  color: #282828;
-}
-
-figure, figure img {
-  max-width: 100% !important;
-}
-
-input[type='password'] {
-  text-align: right;
-  padding: 5px 10px;
-  border: 1px solid #e7e7e7;
-}
-
-input[type='submit'] {
-  background-color: #282828;
-  color: #fff;
-  border: none;
-  padding: 6px 20px;
-
-  &:hover {
-	background-color: #eb3c00;
-	cursor: pointer;
+input{
+  &[type="text"],
+  &[type="number"],
+  &[type="password"],
+  &[type="date"],
+  &[type="url"],
+  &[type="search"] {
+    @extend .form-control;
   }
 }
 
-/** By Envato requirements */
+textarea {
+  @extend .form-control;
+}
+
+button, input[type="submit"] {
+  @extend .btn;
+}
+
+input[type="submit"] {
+  @extend .btn-primary;
+}
+
+  /** By Envato requirements */
 .wp-caption,
 .wp-caption-text,
 .screen-reader-text,
@@ -89,3 +77,4 @@ input[type='submit'] {
 .bypostauthor {
   border: 0;
 }
+

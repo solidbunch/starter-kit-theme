@@ -6,7 +6,7 @@ use ffblank\helper\media;
 get_header();
 the_post(); ?>
 	
-	<section id="content" class="container">
+	<section id="content" class="container pt-5">
 		
 		<div class="row">
 

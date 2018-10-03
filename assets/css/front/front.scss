@@ -3,11 +3,16 @@
 //rewrite bootstrap variables
 @import 'variables';
 @import "_grid";
-@import "~bootstrap/scss/bootstrap-reboot";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities";
+//@import "~bootstrap/scss/bootstrap-reboot";
+//@import "~bootstrap/scss/buttons";
+//@import "~bootstrap/scss/forms";
+//@import "~bootstrap/scss/nav";
+//@import "~bootstrap/scss/navbar";
+//@import "~bootstrap/scss/input-group";
+//@import "~bootstrap/scss/mixins";
+//@import "~bootstrap/scss/utilities";
 // full bootstrap
-// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 // custom theme styles here
 @import 'partials/global';
 @import 'partials/header';
@@ -15,4 +20,5 @@
 @import 'partials/blog';
 @import 'partials/footer';
 @import 'partials/sidebar';
-@import 'partials/js_composer'; 
+@import 'partials/widgets';
+@import 'partials/js_composer';
