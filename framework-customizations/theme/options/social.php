@@ -3,7 +3,7 @@
 $options = array(
 	array(
 		'social_options_tab' => array(
-			'title'   => esc_html__( 'Social', 'albedo' ),
+			'title'   => esc_html__( 'Social', 'fruitfulblanktextdomain' ),
 			'type'    => 'tab',
 			'options' => array(
 
