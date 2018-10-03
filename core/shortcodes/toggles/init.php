@@ -39,7 +39,7 @@ vc_map( array(
 			'type'       => 'checkbox',
 			'heading'    => esc_html__( 'Open by defaults', 'fruitfulblanktextdomain' ),
 			'param_name' => 'open',
-			'value'      => array( esc_html__( 'Yes', 'wplab-albedo-core-plugin' ) => 'yes' ),
+			'value'      => array( esc_html__( 'Yes', 'fruitfulblanktextdomain' ) => 'yes' ),
 		),
 
 	)
