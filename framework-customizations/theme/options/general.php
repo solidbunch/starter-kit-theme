@@ -3,7 +3,7 @@
 $options = array(
 	array(
 		'base_options_tab' => array(
-			'title'   => esc_html__( 'Base Settings', 'albedo' ),
+			'title'   => esc_html__( 'Base Settings', 'fruitfulblanktextdomain' ),
 			'type'    => 'tab',
 			'options' => array(
 
