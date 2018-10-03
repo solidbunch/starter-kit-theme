@@ -1,7 +1,7 @@
 const configs = [
     require('./build/core.config'),
     require('./build/shortcodes.config'),
-    //require('./build/widgets.config')
+    require('./build/widgets.config')
 ];
 
 function isEmptyObject(obj) {
