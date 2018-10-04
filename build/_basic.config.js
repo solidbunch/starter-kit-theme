@@ -20,14 +20,18 @@ module.exports = function () {
 					parallel: true,
 					uglifyOptions: {
 						warnings: false,
-						parse: {},
-						compress: {},
+						compress: {
+							unsafe: true,
+							inline: true,
+							passes: 2,
+							keep_fargs: false,
+						},
 						mangle: true, // Note `mangle.properties` is `false` by default.
-						output: null,
+						output: {
+							beautify: false,
+						},
 						toplevel: false,
-						nameCache: null,
 						ie8: false,
-						keep_fnames: false,
 					}
 				}),
 				//enable the css minification plugin
@@ -50,17 +54,9 @@ module.exports = function () {
 					test: /\.(sass|scss)$/,
 					use: [
 						MiniCssExtractPlugin.loader,
-						{loader: 'css-loader', options: {sourceMap: true}},
-						{
-							loader: 'postcss-loader',
-							options: {
-								sourceMap: true,
-								plugins: () => [autoprefixer({
-									'browsers': ['last 5 versions', '> 1%', 'ie 11']
-								})]
-							}
-						},
-						{loader: 'sass-loader', options: {sourceMap: true}},
+						{loader: 'css-loader', options: {sourceMap: false, minimize: true}},
+						{loader: 'postcss-loader'},
+						{loader: 'sass-loader', options: {sourceMap: false}},
 					]
 				},
 				// fonts loader

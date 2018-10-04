@@ -1,14 +1,19 @@
 {
   "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "node": "6.10",
-          "esmodules": true
-        }
-      }
-    ]
+	[
+	  "@babel/preset-env",
+	  {
+		"targets": {
+		  "node": "6.10",
+		  "esmodules": true,
+		  "loose": true,
+		  "exclude": ["transform-async-to-generator", "transform-regenerator"],
+		}
+	  }
+	]
   ],
-  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+  "plugins": [
+	["module:fast-async", { "spec": true }],
+	"@babel/plugin-proposal-object-rest-spread"
+  ]
 }
