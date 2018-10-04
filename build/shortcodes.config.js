@@ -1,8 +1,9 @@
 const baseConfig = require('./_basic.config')();
 const path = require('path');
 const glob = require('glob');
+let dir = path.resolve();
 
-const pathTo = process.cwd() +'/core/shortcodes/';
+const pathTo = dir.replace(/\\/g, '/') +'/core/shortcodes/';
 //read all styles.scss from shortcodes
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 
@@ -35,7 +36,7 @@ baseConfig.plugins.push(
 	}));
 
 baseConfig.output = {
-	path: pathTo,
+	path: dir + '/core/shortcodes/',
 	filename: '[name]/assets/scripts.min.js'
 };
 
