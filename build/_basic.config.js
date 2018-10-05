@@ -2,7 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = function () {
@@ -39,6 +38,7 @@ module.exports = function () {
 					cssProcessor: require('cssnano'),
 					cssProcessorPluginOptions: {
 						preset: ['default', {discardComments: {removeAll: true}}],
+						canPrint: true
 					}
 				})
 			]
@@ -77,14 +77,11 @@ module.exports = function () {
 					exclude: /(node_modules|bower_components)/,
 					use: {
 						loader: 'babel-loader',
-						options: {
-							presets: ['@babel/preset-env']
-						}
 					}
 				}
 			]
 		},
-		//devtool: 'source-map',
+		devtool: 'source-map',
 		plugins: [
 			new FixStyleOnlyEntriesPlugin({
 				silent: true
