@@ -37,8 +37,8 @@ class utils {
 	 * @return null
 	 */
 	public static function get_option( $option_name, $default_value = null ) {
-		return function_exists( '\fw_get_db_settings_option' ) ? \fw_get_db_settings_option( $option_name,
-			$default_value ) : $default_value;
+		return function_exists( '\fw_get_db_settings_option' )
+			? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
 	}
 
 	/**
@@ -51,8 +51,8 @@ class utils {
 	 * @return null
 	 */
 	public static function get_post_option( $post_id, $option_name, $default_value = null ) {
-		return function_exists( '\fw_get_db_post_option' ) ? \fw_get_db_post_option( $post_id, $option_name,
-			$default_value ) : $default_value;
+		return function_exists( '\fw_get_db_post_option' )
+			? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
 	}
 
 	/**
