@@ -55,8 +55,8 @@ module.exports = function () {
 					use: [
 						MiniCssExtractPlugin.loader,
 						{loader: 'css-loader', options: {sourceMap: false, minimize: true}},
-						{loader: 'postcss-loader'},
-						{loader: 'sass-loader', options: {sourceMap: false}},
+						{loader: 'postcss-loader', options: {sourceMap: false, minimize: true}},
+						{loader: 'sass-loader', options: {sourceMap: false ,minimize: true}},
 					]
 				},
 				// fonts loader
