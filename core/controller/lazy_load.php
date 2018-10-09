@@ -9,7 +9,7 @@
  * @link https://github.com/Automattic/jetpack/blob/master/modules/lazy-images/lazy-images.php
  * @category   Wordpress
  * @package    FFBLANK Backend
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
@@ -24,7 +24,7 @@ namespace ffblank\controller;
  *
  * @category   Wordpress
  * @package    FFBLANK Backend
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
