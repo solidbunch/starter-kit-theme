@@ -17,7 +17,6 @@ if ( ! function_exists( 'wlog' ) ) {
 			file_put_contents( $log_file_destination, '' );
 		}
 		error_log( '[' . date( "H:i:s" ) . ']' . '-------------------------' . PHP_EOL, 3, $log_file_destination );
-		error_log( '[' . date( "H:i:s" ) . ']' . $desc . ' : ' . print_r( $var, true ) . PHP_EOL, 3,
-			$log_file_destination );
+		error_log( '[' . date( "H:i:s" ) . ']' . $desc . ' : ' . print_r( $var, true ) . PHP_EOL, 3, $log_file_destination );
 	}
 }
