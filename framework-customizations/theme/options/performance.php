@@ -27,6 +27,20 @@ $options = array(
 							),
 							'desc'         => __( 'HTTP/2 Preload for styles on/off', 'fruitfulblanktextdomain' ),
 						),
+						'http2_scripts_enable' => array(
+							'type'         => 'switch',
+							'label'        => __( 'Enable/Disable HTTP/2 Preload for scripts', 'fruitfulblanktextdomain' ),
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __( 'Yes', 'fruitfulblanktextdomain' )
+							),
+							'left-choice'  => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
+							),
+							'desc'         => __( 'HTTP/2 Preload for scripts on/off', 'fruitfulblanktextdomain' ),
+						),
 					)
 				),
 			)
