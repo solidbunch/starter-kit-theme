@@ -1,6 +1,6 @@
 <?php
 // helper functions for developers
-require_once __DIR__ . '/dev/functions.php';
+require_once __DIR__ . '/core/dev.php';
 
 if(class_exists('WP_CLI')) {
 	//define theme root directory for future commands
