@@ -91,7 +91,7 @@ $options = array(
 
 						'disable_pingbacks'	=> array(
 							'type'  => 'switch',
-							'label' => __('Antispam', 'fruitfulblanktextdomain'),
+							'label' => __('Trackbacks/Pingbacks', 'fruitfulblanktextdomain'),
 							'right-choice' => array(
 								'value' => '1',
 								'label' => __('Yes', 'fruitfulblanktextdomain')
