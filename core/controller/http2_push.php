@@ -4,9 +4,8 @@
  *
  * @category   fruitfulblank
  * @package    fruitfulblank
- * @author     Nikita Bolotov <zyv4yk@gmail.com>
- * @copyright  2018 Nikita Bolotov
- * @license    https://opensource.org/licenses/OSL-3.0
+ * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @copyright  2018 Mates Marketing LLC
  */
 
 namespace ffblank\controller;
@@ -32,28 +31,33 @@ class http2_push {
 	 * plugin's output to 4k should keep those errors away.
 	 */
 	const HTTP2_MAX_HEADER_SIZE = 1024 * 4;
-	private $http2_header_size_accumulator = 0;
+	protected $http2_header_size_accumulator = 0;
+	/** @var array */
+	protected $assets = [];
 
 	/**
 	 * http2_push constructor.
 	 */
 	public function __construct() {
-		add_action( 'init', 'http2_ob_start' );
+		add_action( 'init', function () {
+			$scripts = utils::get_option( 'http2_scripts_enable', false );
+			$styles  = utils::get_option( 'http2_styles_enable', false );
 
-		if ( ! is_admin() ) {
+			if ( ( $scripts || $styles ) && ! is_admin() ) {
+				$this->http2_ob_start();
+				if ( $scripts ) {
+					add_filter( 'script_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
+				}
 
-			if ( utils::get_option( 'http2_scripts', false ) ) {
-				add_filter( 'script_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
+				if ( $styles ) {
+					add_filter( 'style_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
+				}
+
+				if ( $this->http2_should_render_prefetch_headers() ) {
+					add_action( 'wp_head', array( $this, 'http2_resource_hints' ), PHP_INT_MAX, 1 );
+				}
 			}
-
-			if ( utils::get_option( 'http2_styles_enable', false ) ) {
-				add_filter( 'style_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
-			}
-
-			if ( $this->http2_should_render_prefetch_headers() ) {
-				add_action( 'wp_head', array( $this, 'http2_resource_hints' ), PHP_INT_MAX, 1 );
-			}
-		}
+		} );
 
 	}
 
@@ -85,7 +89,8 @@ class http2_push {
 	public function http2_link_preload_header( $src ) {
 		if ( strpos( $src, site_url() ) !== false ) {
 			$preload_src = apply_filters( 'http2_link_preload_src', $src );
-			if ( ! empty( $preload_src ) ) {
+			if ( ! empty( $preload_src ) &&
+			     ( strpos( $preload_src, '.css' ) !== false || strpos( $preload_src, '.js' ) !== false ) ) {
 				$header = sprintf(
 					'Link: <%s>; rel=preload; as=%s',
 					esc_url( $this->http2_link_url_to_relative_path( $preload_src ) ),
@@ -97,7 +102,7 @@ class http2_push {
 					header( $header, false );
 				}
 
-				$GLOBALS[ 'http2_' . $this->http2_link_resource_hint_as( current_filter() ) . '_srcs' ][] = $this->http2_link_url_to_relative_path( $preload_src );
+				$this->assets[ 'http2_' . $this->http2_link_resource_hint_as( current_filter() ) . '_srcs' ][] = $this->http2_link_url_to_relative_path( $preload_src );
 
 			}
 		}
@@ -113,7 +118,7 @@ class http2_push {
 	 * @return string mixed relative path
 	 */
 	public function http2_link_url_to_relative_path( $src ) {
-		if ( '//' === substr( $src, 0, 2 ) ) {
+		if ( strpos( $src, '//' ) === 0 ) {
 			return preg_replace( '/^\/\/([^\/]*)\//', '/', $src );
 		}
 
@@ -138,7 +143,7 @@ class http2_push {
 	public function http2_resource_hints() {
 		$resource_types = array( 'script', 'style' );
 		array_walk( $resource_types, function ( $resource_type ) {
-			$resources = $this->http2_get_resources( $GLOBALS, $resource_type );
+			$resources = $this->http2_get_resources( $resource_type );
 			array_walk( $resources, function ( $src ) use ( $resource_type ) {
 				printf( '<link rel="preload" href="%s" as="%s">', esc_url( $src ), esc_html( $resource_type ) );
 			} );
@@ -149,23 +154,21 @@ class http2_push {
 	 * Get resources of a certain type that have been enqueued through the WordPress API.
 	 * Needed because some plugins mangle these global values
 	 *
-	 * @param array $globals the $GLOBALS array
 	 * @param string $resource_type resource type (script, style)
 	 *
 	 * @return array
 	 */
-	public function http2_get_resources( $globals, $resource_type ) {
-		$globals           = ( null === $globals ) ? $GLOBALS : $globals;
+	public function http2_get_resources( $resource_type ) {
 		$resource_type_key = "http2_{$resource_type}_srcs";
 
-		if ( ! ( is_array( $globals ) && isset( $globals[ $resource_type_key ] ) ) ) {
+		if ( ! ( is_array( $this->assets ) && isset( $this->assets[ $resource_type_key ] ) ) ) {
 			return array();
 		}
 
-		if ( ! is_array( $globals[ $resource_type_key ] ) ) {
-			return array( $globals[ $resource_type_key ] );
+		if ( ! is_array( $this->assets[ $resource_type_key ] ) ) {
+			return array( $this->assets[ $resource_type_key ] );
 		}
 
-		return $globals[ $resource_type_key ];
+		return $this->assets[ $resource_type_key ];
 	}
 }
