@@ -4,7 +4,7 @@
  *
  * @category   fruitfulblank
  * @package    fruitfulblank
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  */
 
@@ -19,7 +19,7 @@ use ffblank\helper\utils;
  *
  * @category   Wordpress
  * @package    FFBLANK Backend
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.1
  * @since      Class available since Release 1.0.1
@@ -30,7 +30,7 @@ class http2_push {
 	 * Cloudflare gives an HTTP 520 error when more than 8k of headers are present. Limiting $this
 	 * plugin's output to 4k should keep those errors away.
 	 */
-	const HTTP2_MAX_HEADER_SIZE = 1024 * 4;
+	const HTTP2_MAX_HEADER_SIZE = 1024 * 400;
 	protected $http2_header_size_accumulator = 0;
 	/** @var array */
 	protected $assets = [];
@@ -89,8 +89,7 @@ class http2_push {
 	public function http2_link_preload_header( $src ) {
 		if ( strpos( $src, site_url() ) !== false ) {
 			$preload_src = apply_filters( 'http2_link_preload_src', $src );
-			if ( ! empty( $preload_src ) &&
-			     ( strpos( $preload_src, '.css' ) !== false || strpos( $preload_src, '.js' ) !== false ) ) {
+			if ( ! empty( $preload_src ) ) {
 				$header = sprintf(
 					'Link: <%s>; rel=preload; as=%s',
 					esc_url( $this->http2_link_url_to_relative_path( $preload_src ) ),

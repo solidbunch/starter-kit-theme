@@ -6,13 +6,15 @@
  *
  * @category   Wordpress
  * @package    FFBLANK Backend
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
  */
 
 namespace ffblank\controller;
+
+use ffblank\helper\utils;
 
 /**
  * Front controller
@@ -22,7 +24,7 @@ namespace ffblank\controller;
  *
  * @category   Wordpress
  * @package    FFBLANK Backend
- * @author     Mates Marketing <hellp@matesmarketing.com>
+ * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
@@ -57,6 +59,7 @@ class front {
 		// add GTM
 		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
 		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
+		new optimization();
 
 	}
 
@@ -159,7 +162,7 @@ class front {
 	 * @return int
 	 */
 	public function antispam_enabled() {
-		return (int) \ffblank\helper\utils::get_option( 'forms_antispam', 0 );
+		return (int) utils::get_option( 'forms_antispam', 0 );
 	}
 
 	/**
@@ -204,7 +207,7 @@ class front {
 	 *
 	 * @return null|\PHPMailer
 	 */
-	function antispam_form( \PHPMailer $phpmailer ) {
+	public function antispam_form( \PHPMailer $phpmailer ) {
 
 		if ( $this->antispam_enabled() !== 1 ) {
 			return null;
@@ -222,7 +225,7 @@ class front {
 	 * Load Google Tag Manager
 	 **/
 	public function add_gtm_head() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+		$tag_manager_code = utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
@@ -239,7 +242,7 @@ class front {
 	 * @throws \Exception
 	 */
 	public function add_gtm_body() {
-		$tag_manager_code = \ffblank\helper\utils::get_option( 'tag_manager_code', '' );
+		$tag_manager_code = utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
