@@ -43,6 +43,52 @@ $options = array(
 						),
 					)
 				),
+				'wp_head' => array(
+					'title'   => esc_html__( 'WP Head Options', 'fruitfulblanktextdomain' ),
+					'type'    => 'box',
+					'attr'    => array(
+						'class' => 'prevent-auto-close'
+					),
+					'options' => array(
+						'clean_wp_head' => array(
+							'type'         => 'switch',
+							'label'        => __( 'Clen Up WP head', 'fruitfulblanktextdomain' ),
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __( 'Yes', 'fruitfulblanktextdomain' )
+							),
+							'left-choice'  => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
+							),
+							'desc'         => __( 'Remove unnecessary link\'s ,Remove inline CSS and JS from WP emoji support, Remove inline CSS used by Recent Comments widget, Remove inline CSS used by posts with galleries, Remove self-closing tag', 'fruitfulblanktextdomain' ),
+						),
+					)
+				),
+				'assets' => array(
+					'title'   => esc_html__( 'Js/Css additional', 'fruitfulblanktextdomain' ),
+					'type'    => 'box',
+					'attr'    => array(
+						'class' => 'prevent-auto-close'
+					),
+					'options' => array(
+						'assets_versions' => array(
+							'type'         => 'switch',
+							'label'        => __( 'Remove Versions', 'fruitfulblanktextdomain' ),
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __( 'Yes', 'fruitfulblanktextdomain' )
+							),
+							'left-choice'  => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
+							),
+							'desc'         => __( 'Resources with a "?" in the URL are not cached by some proxy caching servers.', 'fruitfulblanktextdomain' ),
+						),
+					)
+				),
 			)
 		)
 	)
