@@ -10,9 +10,6 @@ module.exports = function () {
 			jquery: 'jQuery'
 		},
 		optimization: {
-			splitChunks: {
-				chunks: 'all'
-			},
 			minimizer: [
 				// enable the js minification plugin
 				new UglifyJSPlugin({
