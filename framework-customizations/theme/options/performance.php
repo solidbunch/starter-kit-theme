@@ -6,6 +6,64 @@ $options = array(
 			'title'   => esc_html__( 'Performance Settings', 'fruitfulblanktextdomain' ),
 			'type'    => 'tab',
 			'options' => array(
+
+				'img_lazy_load_box' => array(
+					'title'   => esc_html__( 'Lazy Load Options', 'fruitfulblanktextdomain' ),
+					'type'    => 'box',
+					'attr'    => array(
+						'class' => 'prevent-auto-close'
+					),
+					'options' => array(
+
+						'img_lazy_load' => array(
+							'type'         => 'switch',
+							'label'        => __( 'Lazy Load', 'fruitfulblanktextdomain' ),
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __( 'Yes', 'fruitfulblanktextdomain' )
+							),
+							'left-choice'  => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
+							),
+							'desc'         => __( 'Lazy Load Images on/off', 'fruitfulblanktextdomain' ),
+
+						),
+						'lazy_img_min_width' => array(
+							'type'  => 'text',
+							'label' => esc_html__( 'Image min width (px)', 'fruitfulblanktextdomain' ),
+							'value' => '24'
+						),
+						'lazy_img_min_height' => array(
+							'type'  => 'text',
+							'label' => esc_html__( 'Image min height (px)', 'fruitfulblanktextdomain' ),
+							'value' => '24'
+						),
+						'placeholder_color' => array(
+							'type' => 'color-picker',
+							'label' => __('Placeholder color', 'fruitfulblanktextdomain'),
+							'value' => '#555',
+							'desc'         => __( 'Image preloader color' ),
+						),
+						'lazy_load_get_sizes_with_getimagesize' => array(
+							'type' => 'switch',
+							'right-choice' => array(
+								'value' => '1',
+								'label' => __('Yes', 'fruitfulblanktextdomain'),
+							),
+							'left-choice'  => array(
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'fruitfulblanktextdomain' )
+							),
+							'desc'         => __( 'Try to get image sizes with getimagesize() if there is no width and heght attributes.
+						 Attantion! php function getimagesize() can significantly slow down your site speed. Use neatly', 'fruitfulblanktextdomain' ),
+						),
+
+					)
+				),
+
 				'http2' => array(
 					'title'   => esc_html__( 'HTTP/2 Preload Options', 'fruitfulblanktextdomain' ),
 					'type'    => 'box',

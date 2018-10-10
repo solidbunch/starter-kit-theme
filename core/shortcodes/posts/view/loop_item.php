@@ -19,9 +19,11 @@ $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thum
 				<?php if ( $data['atts']['thumbs_dimensions'] == 'crop' ): ?>
 
 					<?php
-					echo \ffblank\helper\media::img( array(
+					media::the_img( array(
 						'width'  => absint( $data['atts']['thumb_width'] ),
-						'height' => absint( $data['atts']['thumb_height'] )
+						'height' => absint( $data['atts']['thumb_height'] ),
+					), array(
+						'crop' => true,
 					) );
 					?>
 

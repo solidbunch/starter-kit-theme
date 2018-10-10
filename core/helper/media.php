@@ -35,88 +35,113 @@ class media {
 	 *
 	 * @return string image tag
 	 */
-	public static function img( $args = array() ) {
 
-		if ( ! class_exists( 'Aq_Resize' ) ) {
-			require_once \get_template_directory() . '/vendor/aq_resizer/aq_resizer.php';
-		}
 
-		$image_atts = array();
+	/**
+	 * Generate image tag with srcset for retina
+	 * @return string image tag
+	 **/
+	public static function the_img( $image_atts = array(), $func_atts = array() ) {
 
-		$is_queried_post_thumb = ( ! empty( $args['url'] ) && ( \get_the_post_thumbnail_url( \get_the_ID(),
-					'full' ) === $args['url'] ) );
+		$is_queried_post_thumb = false;
 
-		$default_args = array(
-			'url'           => utils::sanitize_uri( \get_the_post_thumbnail_url( \get_the_ID(), 'full' ) ),
-			'width'         => 800,
-			'height'        => 400,
-			'crop'          => true,
-			'hdmi'          => true,
-			'title'         => $is_queried_post_thumb ? \get_the_post_thumbnail_caption( \get_the_ID() ) : '',
-			'alt'           => $is_queried_post_thumb ? \get_post_meta( \get_post_thumbnail_id( \get_the_ID() ),
-				'_wp_attachment_image_alt', true ) : '',
-			'id'            => '',
-			'class'         => '',
-			'attachment_id' => $is_queried_post_thumb ? \get_post_thumbnail_id( \get_the_ID() ) : 0,
-			'single'        => true,
-			'upscale'       => false
+		$func_dafault_atts = array(
+			'attachment_id' => 0,
+			'hdmi' => true,
+			'size' => 'full',
+			'crop' => false,
+			'single' => true,
+			'upscale' => false,
 		);
 
-		$args = wp_parse_args( $args, $default_args );
+		$func_atts = wp_parse_args( $func_atts, $func_dafault_atts );
 
-		// SVG
-		$is_svg = utils::is_attachment_svg( $args['attachment_id'], $args['url'] );
-
-		$src = \aq_resize( utils::sanitize_uri( $args['url'] ), \absint( $args['width'] ), \absint( $args['height'] ),
-			(bool) $args['crop'], (bool) $args['single'], (bool) $args['upscale'] );
-
-		if ( $src == false || $is_svg ) {
-			$image_atts[] = 'src="' . \esc_url( $args['url'] ) . '"';
-			$src          = $args['url'];
-		} else {
-			$image_atts[] = 'src="' . \esc_url( $src ) . '"';
+		if ( ! class_exists( 'Aq_Resize' )) {
+			require_once get_template_directory() . '/vendor/aq_resizer/aq_resizer.php';
 		}
 
-		if ( filter_var( $args['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
+		if ( ( empty($image_atts['src']) && empty($func_atts['attachment_id']) ) or ( !empty($image_atts['src']) &&  $image_atts['src'] ===  get_the_post_thumbnail_url( get_the_ID(), 'full' ) ) ) {
 
-			$double_height = ! is_null( $args['height'] ) ? \absint( $args['height'] ) * 2 : null;
+			$is_queried_post_thumb = true;
+			$func_atts['attachment_id'] = get_post_thumbnail_id( get_the_ID() );
+		}
 
-			$src2x = \aq_resize( $args['url'], \absint( $args['width'] ) * 2, $double_height, (bool) $args['crop'] );
+		$attachment_data['url'] = wp_get_attachment_image_url( $func_atts['attachment_id'], $func_atts['size'] );
+
+		$attachment_data['alt'] = get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) ? get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) : '';
+
+		$default_attrs = array(
+			'src'    => $attachment_data['url'] ? $attachment_data['url'] : '',
+			'width'  => 0,
+			'height' => 0,
+			'title'  => '',
+			'alt'    => $is_queried_post_thumb ? strip_tags( get_the_title() ) : $attachment_data['alt'],
+			'id'     => '',
+			'class'  => '',
+		);
+
+		$image_atts = wp_parse_args( $image_atts, $default_attrs );
+
+
+		if (empty($image_atts['src'])) {
+			return;
+		}
+
+		$orig_src = $image_atts['src'];
+		// SVG
+		$is_svg = utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
+
+		if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
+			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+		} else {
+			$src = aq_resize( $image_atts['src'] , absint( $image_atts['width'] ), absint( $image_atts['height'] ), (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+		}
+
+
+		if ( empty($src) || $is_svg ) {
+			$image_atts['src'] = esc_url( $image_atts['src'] );
+		} else {
+			$image_atts['src'] = esc_url( $src );
+		}
+
+		if ( filter_var( $func_atts['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
+
+			if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
+				$double_width = ! is_null( $image_atts['data-width'] ) ? absint( $image_atts['data-width'] ) * 2 : null;
+				$double_height = ! is_null( $image_atts['data-height'] ) ? absint( $image_atts['data-height'] ) * 2 : null;
+			} else {
+				$double_width = ! is_null( $image_atts['width'] ) ? absint( $image_atts['width'] ) * 2 : null;
+				$double_height = ! is_null( $image_atts['height'] ) ? absint( $image_atts['height'] ) * 2 : null;
+			}
+
+			$src2x = aq_resize( $orig_src, $double_width, $double_height, (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
 
 			if ( $src2x != false ) {
-				$image_atts[] = 'srcset="' . \esc_url( $src ) . ' 1x, ' . \esc_url( $src2x ) . ' 2x"';
+				$image_atts['srcset'] = esc_url( $src ) . ' 1x, ' . esc_url( $src2x ) . ' 2x';
+			}
+		}
+
+		$image_atts['width'] = absint( $image_atts['width'] );
+		$image_atts['height'] = absint( $image_atts['height'] );
+
+		//Add filter to atts
+		$image_atts = apply_filters( 'ff_media_img_html', $image_atts );
+
+		$image_html = '<img ';
+
+		foreach ( $image_atts as $att_name => $image_att ) {
+			if (!empty($image_att) || $att_name === 'alt') {
+				$image_html .= $att_name . '="' . esc_attr( $image_att ) . '" ';
 			}
 
 		}
 
-		if ( $args['id'] <> '' ) {
-			$image_atts[] = 'id="' . \esc_attr( $args['id'] ) . '"';
-		}
+		$image_html .= '/>';
 
-		if ( $args['class'] <> '' ) {
-			$image_atts[] = 'class="' . \esc_attr( $args['class'] ) . '"';
-		}
-
-		if ( $args['title'] <> '' ) {
-			$image_atts[] = 'title="' . \esc_attr( $args['title'] ) . '"';
-		}
-
-		if ( is_numeric( $args['height'] ) ) {
-			$image_atts[] = 'height="' . \absint( $args['height'] ) . '"';
-		}
-
-		$image_atts[] = 'width="' . \absint( $args['width'] ) . '"';
-
-		$image_atts[] = 'alt="' . \esc_attr( $args['alt'] ) . '"';
-
-		$_img = '<img ' . implode( ' ', $image_atts ) . '>';
-
-		if ( ! \FFBLANK()->controller->lazy_load->skip() ) {
-			return \FFBLANK()->controller->lazy_load->add_image_placeholders( $_img );
-		}
-
-		return $_img;
+		echo $image_html;
 	}
+
+
 
 	/**
 	 * Resize image

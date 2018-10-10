@@ -4,7 +4,7 @@ use ffblank\helper\front;
 use ffblank\helper\media;
 
 get_header(); ?>
-	
+
 	<section id="content" class="container pt-5">
 
 		<div class="row">
@@ -26,28 +26,38 @@ get_header(); ?>
 										<!-- an example how to resize image
 											<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
 										-->
+										<!-- an example how to print image with sizes and with srcset
+											<?php media::the_img(array('width' => 380, 'height' => 250) ); ?>
+										-->
+										<!-- an example how to print image without sizes, but with lazy load and with srcset
+											<?php media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
+										-->
+
 
 										<!--
-											an example how to print image tag with srcset
+											an example how to print image tag without srcset
+											<?php media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
 										-->
 
 										<?php
 
 											$width      = is_sticky() ? '700' : '150';
 											$height     = is_sticky() ? '350' : '150';
-											$upscale    = true;
 
 											$args   = array(
 												'width'     => $width,
 												'height'    => $height,
-												'upscale'   => $upscale
+											);
+
+											$func_args   = array(
+												'upscale'     => true,
 											);
 
 											if ( !has_post_thumbnail() ) {
-												$args['url'] = 'https://dummyimage.com/' . $width . 'x' . $height . '/eee/aaaaaa';
+												$args['src'] = 'https://dummyimage.com/' . $width . 'x' . $height . '/eee/aaaaaa';
 											}
 
-											echo media::img($args);
+											echo media::the_img($args, $func_args);
 
 										?>
 

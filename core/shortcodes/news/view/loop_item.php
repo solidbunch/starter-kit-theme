@@ -17,9 +17,9 @@ $display_thumb = filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOO
 		<?php if ( filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOOLEAN ) ): ?>
 
 			<?php if ( has_post_thumbnail() ) : ?>
-				<?php the_post_thumbnail( array( 200 ) ); ?>
+				<?php the_post_thumbnail( array( 100 ) ); ?>
 			<?php else : ?>
-				<?php echo media::img( array( 'url' => 'https://dummyimage.com/200x135/eee/aaa' ) ); ?>
+				<?php media::the_img( array( 'src' => 'https://dummyimage.com/100x100/eee/aaa', 'data-width' => 100, 'data-height' => 100) ); ?>
 			<?php endif; ?>
 
 		<?php endif; ?>
