@@ -74,7 +74,7 @@
  
  2. styles should be named  - `style.scss`
  
- 3. JS files should be named - `scripts.js`ß
+ 3. JS files should be named - `scripts.js`
  
  4. enque in shortcode  - `style.css` and `scritps.min.js`
  

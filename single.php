@@ -23,22 +23,8 @@ the_post(); ?>
 						<?php if ( has_post_thumbnail() ): ?>
 							<div class="thumb">
 								<a href="<?php the_permalink(); ?>">
-		<!--							<img src="--><?php //echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?><!--" >-->
 									<?php
-									$thumb_args = array(
-										'url'    => get_the_post_thumbnail_url( get_the_ID(), 'full' ),
-										'width'  => 800,
-										'height' => 400,
-										'crop'   => true,
-										'hdmi'   => true,
-										'title'  => get_the_post_thumbnail_caption( get_the_ID() ),
-										'alt'    => get_post_meta( get_post_thumbnail_id( get_the_ID() ), '_wp_attachment_image_alt', true ),
-										'id'     => '',
-										'class'  => '',
-										'attachment_id' => get_post_thumbnail_id( get_the_ID() )
-									);
-									
-									echo media::img( $thumb_args );
+										media::the_img( array('width' => 800, 'height' => 400), array( 'crop' => true) );
 									?>
 								</a>
 							</div>

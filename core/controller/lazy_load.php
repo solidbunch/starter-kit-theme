@@ -8,7 +8,7 @@
  *
  * @link https://github.com/Automattic/jetpack/blob/master/modules/lazy-images/lazy-images.php
  * @category   Wordpress
- * @package    FFBLANK Backend
+ * @package    FFBLANK Frontend
  * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
@@ -23,7 +23,7 @@ namespace ffblank\controller;
  * Controller which add support of images lazy loading
  *
  * @category   Wordpress
- * @package    FFBLANK Backend
+ * @package    FFBLANK Frontend
  * @author     Mates Marketing <hello@matesmarketing.com>
  * @copyright  2018 Mates Marketing LLC
  * @version    Release: 1.0.0
@@ -72,9 +72,13 @@ class lazy_load {
 	 */
 	public function skip() {
 
-		$is_img_lazy_load_enabled = (int) \ffblank\helper\utils::get_option( 'img_lazy_load', 1 );
+		$img_lazy_load = (int) \ffblank\helper\utils::get_option( 'img_lazy_load', 1 );
 
-		if ( $is_img_lazy_load_enabled !== 1 ) {
+		if ( $img_lazy_load !== 1 ) {
+			return true;
+		}
+
+		if ( is_admin() ) {
 			return true;
 		}
 
@@ -160,17 +164,17 @@ class lazy_load {
 			return $attributes;
 		}
 		
-		$image_size['width'] = $min_width = 24;
-		$image_size['height'] = $min_height = 24;
-		
+		$image_size['width'] = $min_width = (int) \ffblank\helper\utils::get_option( 'lazy_img_min_width', 24 );
+		$image_size['height'] = $min_height = (int) \ffblank\helper\utils::get_option( 'lazy_img_min_height', 24 );
+
 		if ( isset( $attributes['width']) && isset( $attributes['height'] ) && !empty( $attributes['width'] && $attributes['height'] ) ) {
 			$image_size['width'] = $attributes['width'];
 			$image_size['height'] = $attributes['height'];
-			
+
 		} elseif ( isset($attributes['data-width'] ) && isset( $attributes['data-height'] ) && !empty( $attributes['data-width'] && $attributes['data-height'] )) {
 			$image_size['width'] = $attributes['data-width'];
 			$image_size['height'] = $attributes['data-height'];
-			
+
 		} elseif ( preg_match('/([\d]+)x([\d]+)\.(jpg|png|jpeg|gif)/i', $attributes['src'], $size_match)) {
 			$image_size['width'] = $size_match[1];
 			$image_size['height'] = $size_match[2];
@@ -184,7 +188,7 @@ class lazy_load {
 			}
 			
 		}
-		
+
 		if ($image_size['width'] < $min_width && $image_size['height'] < $min_height) {
 			return $attributes;
 		}
@@ -314,8 +318,7 @@ class lazy_load {
 	 * Load lazy JS
 	 */
 	public function load_assets() {
-		wp_enqueue_script( 'lazy-load', FFBLANK()->config['assets_uri'] . 'js/lazyload.js', array(),FFBLANK()->config['cache_time'], false );
-		wp_script_add_data( 'lazy-load', 'defer', true );
+		wp_enqueue_script( 'lazy-load', FFBLANK()->config['assets_uri'] . 'js/lazyload.js', array(), FFBLANK()->config['cache_time'], true );
 	}
 
 	/**
