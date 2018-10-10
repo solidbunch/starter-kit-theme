@@ -10,6 +10,9 @@ module.exports = function () {
 			jquery: 'jQuery'
 		},
 		optimization: {
+			splitChunks: {
+				chunks: 'all'
+			},
 			minimizer: [
 				// enable the js minification plugin
 				new UglifyJSPlugin({
@@ -55,8 +58,8 @@ module.exports = function () {
 					use: [
 						MiniCssExtractPlugin.loader,
 						{loader: 'css-loader', options: {sourceMap: false, minimize: true}},
-						{loader: 'postcss-loader', options: {sourceMap: false, minimize: true}},
-						{loader: 'sass-loader', options: {sourceMap: false ,minimize: true}},
+						{loader: 'postcss-loader'},
+						{loader: 'sass-loader', options: {sourceMap: false, minimize: true}},
 					]
 				},
 				// fonts loader
