@@ -158,9 +158,7 @@ class media {
 			require_once \get_template_directory() . '/vendor/aq_resizer/aq_resizer.php';
 		}
 
-		$src = '';
-
-		if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+		if ( strpos( $url, 'http' ) !== 0 ) {
 			$protocol = \is_ssl() ? 'https:' : 'http:';
 			if ( $url <> '' ) {
 				$url = $protocol . $url;
