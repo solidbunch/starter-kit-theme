@@ -86,7 +86,8 @@
  File structure
  
  view/ – templates
- assets/ – all assets (images, styles,scripts,fonts,etc)
+ assets/ – all assets (styles,scripts,fonts,etc)
+ images/ - all images
  ajax.php – backend for ajax queries( not required)
  init.php – vc_map
  shortcode.php – main shortcode controller which must be child class of `WPBakeryShortCode`
