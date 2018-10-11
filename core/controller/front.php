@@ -229,7 +229,7 @@ class front {
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
-			FFBLANK()->view->load( '/template-parts/tgm',
+			FFBLANK()->view->load( '/template-parts/gtm',
 				array( 'head' => true, 'tag_manager_code' => $tag_manager_code ) );
 
 		}
@@ -246,7 +246,7 @@ class front {
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
-			FFBLANK()->view->load( '/template-parts/tgm',
+			FFBLANK()->view->load( '/template-parts/gtm',
 				array( 'head' => false, 'tag_manager_code' => $tag_manager_code ) );
 
 		}
