@@ -44,7 +44,7 @@ baseConfig.module.rules.push(
 			loader: 'file-loader',
 			options: {
 				name: '[name].[ext]',
-				publicPath: '../images/'       // override the default path
+				publicPath: 'images/'       // override the default path
 			}
 		}]
 	},
