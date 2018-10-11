@@ -46,7 +46,6 @@ baseConfig.module.rules.push(
 			loader: 'file-loader',
 			options: {
 				name: '[name].[ext]',
-				outputPath: '[name]/images/',    // where the fonts will go
 				publicPath: '../images/'       // override the default path
 			}
 		}]
