@@ -59,7 +59,6 @@ class front {
 		// add GTM
 		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
 		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
-		new optimization();
 
 	}
 
