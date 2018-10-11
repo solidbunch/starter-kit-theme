@@ -35,7 +35,23 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
 		filename: '[name]/assets/style.css'
-	}));
+	})
+);
+
+baseConfig.module.rules.push(
+	// fonts loader
+	{
+		test: /\.(png|jpg|svg|gif)$/i,
+		use: [{
+			loader: 'file-loader',
+			options: {
+				name: '[name].[ext]',
+				outputPath: '[name]/images/',    // where the fonts will go
+				publicPath: '../images/'       // override the default path
+			}
+		}]
+	},
+);
 
 baseConfig.output = {
 	path: dir + '/core/widgets/',
