@@ -34,13 +34,13 @@ module.exports = function () {
 					}
 				}),
 				//enable the css minification plugin
-				new OptimizeCSSAssetsPlugin({
-					cssProcessor: require('cssnano'),
-					cssProcessorPluginOptions: {
-						preset: ['default', {discardComments: {removeAll: true}}],
-						canPrint: true
-					}
-				})
+				// new OptimizeCSSAssetsPlugin({
+				// 	cssProcessor: require('cssnano'),
+				// 	cssProcessorPluginOptions: {
+				// 		preset: ['default', {discardComments: {removeAll: true}}],
+				// 		canPrint: true
+				// 	}
+				// })
 			]
 		},
 		output: {

@@ -4,6 +4,10 @@ module.exports = {
 		minimize: true
 	},
 	plugins: [
-		require('autoprefixer')
+		require('autoprefixer'),
+		require('cssnano')({
+			preset: ['default', {discardComments: {removeAll: true}}],
+			canPrint: true
+		})
 	]
 };
