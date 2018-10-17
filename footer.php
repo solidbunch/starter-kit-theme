@@ -48,11 +48,6 @@
 									wp_nav_menu(array(
 										'menu' => 'bottom_bar_menu',
 										'theme_location' => $location,
-										'container' => 'ul',
-										'menu_id' => "bottom-menu",
-										'menu_class' => '',
-										'items_wrap' => '<ul id="%1$s" class="list-inline %2$s">%3$s</ul>',
-//											'walker' => new \ffblank\controller\walker_bootstrap(),
 										'depth' => 1
 									));
 
