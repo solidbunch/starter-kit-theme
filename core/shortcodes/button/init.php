@@ -3,6 +3,7 @@
 vc_map( array(
 	'name'        => esc_html__( 'Button', 'fruitfulblanktextdomain' ),
 	'base'        => 'button',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'button.svg',
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a button', 'fruitfulblanktextdomain' ),
 	'params'      => array(

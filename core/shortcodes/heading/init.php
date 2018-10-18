@@ -3,6 +3,7 @@
 vc_map( array(
 	'name'        => esc_html__( 'Heading', 'fruitfulblanktextdomain' ),
 	'base'        => 'heading',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'heading.png',
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add a heading', 'fruitfulblanktextdomain' ),
 	'params'      => array(
