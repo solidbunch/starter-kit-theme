@@ -14,13 +14,14 @@
  * @since      Class available since Release 1.0.0
  */
 return array(
-	'cache_time'      => '110820171044',
-	'assets_uri'      => get_template_directory_uri() . '/assets/',
-	'shortcodes_dir'  => get_template_directory() . '/core/shortcodes/',
-	'shortcodes_uri'  => get_template_directory_uri() . '/core/shortcodes/',
-	'widgets_dir'     => get_template_directory() . '/core/widgets/',
-	'widgets_uri'     => get_template_directory_uri() . '/core/widgets/',
-	'social_profiles' => array(
+	'cache_time'          => '110820171044',
+	'assets_uri'          => get_template_directory_uri() . '/assets/',
+	'shortcodes_dir'      => get_template_directory() . '/core/shortcodes/',
+	'shortcodes_uri'      => get_template_directory_uri() . '/core/shortcodes/',
+	'shortcodes_icon_uri' => get_template_directory_uri() . '/assets/images/icon/',
+	'widgets_dir'         => get_template_directory() . '/core/widgets/',
+	'widgets_uri'         => get_template_directory_uri() . '/core/widgets/',
+	'social_profiles'     => array(
 		'facebook_url'    => esc_html__( 'Facebook URL', 'fruitfulblanktextdomain' ),
 		'twitter_url'     => esc_html__( 'Twitter URL', 'fruitfulblanktextdomain' ),
 		'instagram_url'   => esc_html__( 'Instagram URL', 'fruitfulblanktextdomain' ),
@@ -35,7 +36,7 @@ return array(
 		'flickr_url'      => esc_html__( 'Flickr URL', 'fruitfulblanktextdomain' ),
 		'medium_url'      => esc_html__( 'Medium URL', 'fruitfulblanktextdomain' ),
 	),
-	'social_icons'    => array(
+	'social_icons'        => array(
 		'facebook_url'    => 'fa fa-facebook',
 		'twitter_url'     => 'fa fa-twitter',
 		'instagram_url'   => 'fa fa-instagram',
@@ -50,7 +51,7 @@ return array(
 		'flickr_url'      => 'fa fa-flickr',
 		'medium_url'      => 'fa fa-medium',
 	),
-	'animations'      => array(
+	'animations'          => array(
 		'bounce'            => esc_html__( 'Bounce', 'fruitfulblanktextdomain' ),
 		'pulse'             => esc_html__( 'Pulse', 'fruitfulblanktextdomain' ),
 		'tada'              => esc_html__( 'Tada', 'fruitfulblanktextdomain' ),

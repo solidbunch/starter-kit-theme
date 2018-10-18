@@ -3,10 +3,11 @@
 vc_map( array(
 	'name'        => esc_html__( 'Alert', 'fruitfulblanktextdomain' ),
 	'base'        => 'alert',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'alerts.svg',	
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Add an alert', 'fruitfulblanktextdomain' ),
 	'params'      => array(
-
+ 
 		array(
 			'type'       => 'textarea_html',
 			'heading'    => esc_html__( 'Alert Content', 'fruitfulblanktextdomain' ),
