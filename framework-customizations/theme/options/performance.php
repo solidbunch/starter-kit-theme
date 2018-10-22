@@ -42,9 +42,9 @@ $options = array(
 						),
 						'placeholder_color' => array(
 							'type' => 'color-picker',
-							'label' => __('Placeholder color', 'fruitfulblanktextdomain'),
+							'label' => __('Placeholder color', 'fruitfulblanktextdomain' ),
 							'value' => '#555',
-							'desc'         => __( 'Image preloader color' ),
+							'desc'  => __( 'Image preloader color' , 'fruitfulblanktextdomain' ),
 						),
 						'lazy_load_get_sizes_with_getimagesize' => array(
 							'type' => 'switch',

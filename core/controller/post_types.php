@@ -329,6 +329,49 @@ class post_types {
 			)
 		);
 
+		register_post_type( 'coins',
+			array(
+				'label'				=> esc_html__( 'Coins', 'bvc'),
+				'description'		=> '',
+				'public'			=> true,
+				'show_ui'			=> true,
+				'show_in_menu' 	    => true,
+				'show_in_nav_menus' => true,
+				'capability_type'	=> 'post',
+				'hierarchical'		=> false,
+				'supports'			=> array( 'title', 'editor', 'thumbnail' ),
+				'rewrite'			=> true,
+				'has_archive'		=> false,
+				'query_var'			=> true,
+				'menu_position'		=> 5,
+				'capabilities'      => array(
+					'publish_posts'	      => 'edit_pages',
+					'edit_posts'		  => 'edit_pages',
+					'edit_others_posts'   => 'edit_pages',
+					'delete_posts'				=> 'edit_pages',
+					'delete_others_posts' => 'edit_pages',
+					'read_private_posts'  => 'edit_pages',
+					'edit_post'			  => 'edit_pages',
+					'delete_post'		  => 'edit_pages',
+					'read_post'			  => 'edit_pages',
+				),
+				'labels'            => array(
+					'name'				 => esc_html__( 'Coins', 'bvc'),
+					'singular_name'		 => esc_html__( 'Coin', 'bvc'),
+					'menu_name'			 => esc_html__( 'Coins', 'bvc'),
+					'add_new'			 => esc_html__( 'Add Coin', 'bvc'),
+					'add_new_item'		 => esc_html__( 'Add New Coin', 'bvc'),
+					'all_items'			 => esc_html__( 'All Coins', 'bvc'),
+					'edit_item'			 => esc_html__( 'Edit Coin', 'bvc'),
+					'new_item'			 => esc_html__( 'New Coin', 'bvc'),
+					'view_item'			 => esc_html__( 'View Coin', 'bvc'),
+					'search_items'		 => esc_html__( 'Search Coins', 'bvc'),
+					'not_found'			 => esc_html__( 'No Coins Found', 'bvc'),
+					'not_found_in_trash' => esc_html__( 'No Coins Found in Trash', 'bvc'),
+					'parent_item_colon'	 => esc_html__( 'Parent Coin:', 'bvc') )
+			)
+		);
+
 	}
 
 
