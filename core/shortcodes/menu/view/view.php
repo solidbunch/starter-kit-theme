@@ -20,29 +20,11 @@ $mobile_args['menu_class']  = 'mobile-menu';
 	</button>
 
 	<div class="d-md-block d-lg-none order-3 header-menu">
-
-		<?php
-
-		if ( has_nav_menu( $args['menu_location'] ) ) {
-
-			wp_nav_menu( $mobile_args );
-		}
-
-		?>
-
+		<?php wp_nav_menu( $mobile_args ); ?>
 	</div>
 
 	<div class="w-100 order-3 header-menu">
-
-		<?php
-
-		if ( has_nav_menu( $args['menu_location'] ) ) {
-
-			wp_nav_menu( $desktop_args );
-		}
-
-		?>
-
+		<?php wp_nav_menu( $desktop_args ); ?>
 	</div>
 
 </nav>

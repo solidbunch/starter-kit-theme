@@ -20,9 +20,9 @@
 
 					<div class="navbar-brand">
 
-						<a href="<?php echo site_url( '/' ); ?>">
-							<h1><?php bloginfo('name'); ?></h1>
-						</a>
+						<h1 class="text-primary">
+							<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo('name'); ?></a>
+						</h1>
 
 						<small><?php bloginfo('description'); ?></small>
 
@@ -36,7 +36,7 @@
 
 	</header>
 
-	<section id="composer-header bg-dark">
+	<section id="composer-header" class="bg-dark">
 		<div class="container">
 			<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
 		</div>
