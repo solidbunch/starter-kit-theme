@@ -25,14 +25,6 @@ vc_map( array(
 		/**
 		 *  Menu settings tab
 		 **/
-		array(
-			'type'        => 'dropdown',
-			'heading'     => esc_html__( 'Menu Location', 'fruitfulblanktextdomain' ),
-			'description' => esc_html__( 'Theme location to be used.', 'fruitfulblanktextdomain' ),
-			'param_name'  => 'menu_location',
-			'value'       => $menu_locations,
-			'group'       => esc_html__( 'Menu Settings', 'fruitfulblanktextdomain' ),
-		),
 
 		array(
 			'type'        => 'dropdown',

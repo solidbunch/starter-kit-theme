@@ -7007,6 +7007,10 @@ a.text-dark:hover, a.text-dark:focus {
   display: block;
   margin: 0 auto 10px auto; }
 
+.screen-reader-text {
+  visibility: hidden;
+  position: absolute; }
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit; }
 
