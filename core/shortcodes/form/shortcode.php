@@ -8,7 +8,7 @@ ffblank\helper\open_fields::open_file( dirname( __FILE__ ) );
 
 if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 
-	class WPBakeryShortCode_shortcode_contact_form extends WPBakeryShortCodesContainer{	
+	class WPBakeryShortCode_shortcode_contact_form extends WPBakeryShortCodesContainer {	
 
 		/**
 		 * @param $atts
@@ -46,7 +46,7 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 				'strServerResponseError' => esc_html__('The script have received an invalid response from the server. Please contact support if the problem persists.', 'fruitfulblanktextdomain'),
 				'strFormError'           => esc_html__('Form validation error. Please check all required fields and try again.', 'fruitfulblanktextdomain'),
 			));	
-					
+
 			/** styles **/
 			wp_enqueue_style( 'shortcode-contact-form', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/style.css', false, FFBLANK()->config['cache_time'] );			
 		}
@@ -62,7 +62,8 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 		 */
 		protected function getDataArray( $atts, $content = null ) { 
 
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+			$atts    = vc_map_get_attributes( $this->getShortcode(), $atts );
+			$classes = $attributes = $form_data = array();
 
 			if ( ! empty( $atts['el_id'] ) ) {
 				$id = 'shortcode-' . $atts['el_id'];
@@ -87,7 +88,8 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 				'atts'       => $atts,
 				'content'    => $content,
 				'attributes' => $attributes,
-				'wpb'        => $this
+				'classes'    => $classes,
+				'wpb'        => $this,
 			);
 		}
 

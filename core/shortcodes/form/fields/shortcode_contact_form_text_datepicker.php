@@ -3,6 +3,7 @@
 vc_map(array(
 	'name'            => esc_html__( 'Form Text Field with Datepicker', 'fruitfulblanktextdomain' ),
 	'base'            => 'shortcode_contact_form_text_datepicker',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'calendar.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'fruitfulblanktextdomain' ),
 	'as_child'        => array(
