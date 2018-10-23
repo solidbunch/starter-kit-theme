@@ -11,7 +11,7 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 
 			$shortcode_dir = dirname( __FILE__ );
 			$shortcode     = basename( $shortcode_dir );
-
+			$id = '';
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 
 			/** Shortcode data to output **/
@@ -37,7 +37,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			$shortcode     = basename( $shortcode_dir );
 			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
 			$atts          = vc_map_get_attributes( $this->getShortcode(), $atts );
-
+			$id = '';
 			/** Shortcode data to output **/
 			$data = array(
 				'id'      => $id,

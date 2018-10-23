@@ -3,6 +3,7 @@
 vc_map(array(
 	'name'            => esc_html__( 'Form Email', 'fruitfulblanktextdomain' ),
 	'base'            => 'shortcode_contact_form_email',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'arroba.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'fruitfulblanktextdomain' ),
 	'as_child'        => array(

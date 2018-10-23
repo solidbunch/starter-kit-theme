@@ -3,6 +3,7 @@
 vc_map(array(
 	'name'            => esc_html__( 'Form Submit', 'fruitfulblanktextdomain' ),
 	'base'            => 'shortcode_contact_form_submit',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'enter.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'fruitfulblanktextdomain' ),
 	'as_child'        => array(

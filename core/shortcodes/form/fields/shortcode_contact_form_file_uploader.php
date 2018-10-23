@@ -3,6 +3,7 @@
 vc_map(array(
 	'name'            => esc_html__( 'Form File Uploader', 'fruitfulblanktextdomain' ),
 	'base'            => 'shortcode_contact_form_file_uploader',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'file.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'fruitfulblanktextdomain' ),
 	'as_child'        => array(

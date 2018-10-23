@@ -3,6 +3,7 @@
 vc_map(array(
 	'name'            => esc_html__( 'Form Textarea', 'fruitfulblanktextdomain' ),
 	'base'            => 'shortcode_contact_form_textarea',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'font.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'fruitfulblanktextdomain' ),
 	'as_child'        => array(

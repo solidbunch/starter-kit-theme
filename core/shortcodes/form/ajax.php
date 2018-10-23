@@ -43,7 +43,6 @@ function shortcode_ajax_contact_form(){
 		$hubspot->addContact( $hubspot_api_url, $hubspot_api_key, $hubspot_api_source, $name, $phone, $email, $order_value );
 
 	}
-
 	/*
 	* Hubspot api integration stop
 	*/
@@ -81,11 +80,11 @@ function shortcode_ajax_contact_form(){
 			$MailChimp->syncMailchimp($data);
 		}
 	}
-
 	/*
 	* MailChimp api integration stop
 	*/
-	if ( !wp_verify_nonce( $_POST['security'], 'shordcode-contact-form' ) ) {
+
+	if ( !wp_verify_nonce( $_POST['security'], 'shortcode-contact-form' ) ) {
 		$answer['error'] = esc_html__( 'Wrong form verification. Please try again.', 'fruitfulblanktextdomain' );
 		die( json_encode( $answer ) );
 	}
@@ -198,5 +197,5 @@ function shortcode_ajax_contact_form(){
 
 	}
 	
-	die( json_encode( $answer ) );
+	die( 'test' );
 }

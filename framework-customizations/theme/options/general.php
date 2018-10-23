@@ -61,30 +61,6 @@ $options = array(
 					)
 				),
 				
-				'general' => array(
-					'title' => esc_html__('General', 'fruitfulblanktextdomain'),
-					'type' => 'box',
-					'attr' => array(
-						'class' => 'prevent-auto-close'
-					),
-					'options' => array(
-
-						'coins_course_api_url' => array(
-							'type'  => 'text',
-							'label' => esc_html__('Enter link to currency API', 'fruitfulblanktextdomain'),
-							'value' => 'https://min-api.cryptocompare.com/data/pricemulti?fsyms={FROM}&tsyms={TO}'
-						),
-
-						'coins_margin' => array(
-							'type'  => 'short-text',
-							'label' => esc_html__('Enter default margin to exchange rate in %', 'fruitfulblanktextdomain'),
-							'desc'  => esc_html__('This value is used if no value is specified for a particular coin', 'fruitfulblanktextdomain'),
-							'value' => '10'
-						),
-
-					)
-				),
-
 				'api' => array(
 					'title' => esc_html__('Google Calendar API', 'fruitfulblanktextdomain'),
 					'type' => 'box',
