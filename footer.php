@@ -41,17 +41,10 @@
 
 								<?php
 
-								$location = 'bottom_bar_menu';
-
-								if ( has_nav_menu($location) ) {
-
 									wp_nav_menu(array(
 										'menu' => 'bottom_bar_menu',
-										'theme_location' => $location,
 										'depth' => 1
 									));
-
-								}
 
 								?>
 
