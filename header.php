@@ -36,6 +36,44 @@
 
 	</header>
 
+	<section class="bg-light">
+
+		<div class="container">
+
+			<nav id="main-nav" class="navigation-menu">
+
+				<div class="d-md-block d-lg-none order-3">
+					<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'header_menu',
+								'menu_class' => 'mobile-menu'
+							)
+						);
+					?>
+				</div>
+
+				<div class="w-100 order-3">
+					<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'header_menu',
+								'menu_class' => 'desktop-menu'
+							)
+						);
+					?>
+				</div>
+
+				<button class="menu-button" type="button">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			</nav>
+
+		</div>
+
+	</section>
+
 	<section id="composer-header" class="bg-dark">
 		<div class="container">
 			<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>

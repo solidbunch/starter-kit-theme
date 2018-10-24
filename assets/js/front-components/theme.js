@@ -15,7 +15,7 @@ export default class Theme {
 	build() {
 		this.setupHeader();
 		this.loadGoogleFonts();
-		this.mobileMenuListener( '.header-menu' );
+		this.mobileMenuListener( '.navigation-menu' );
 	}
 
 	/**
@@ -89,35 +89,21 @@ export default class Theme {
 
 		jQuery(function($) {
 
-			//*********************Mobile script********************//
-			$(selector + ' .mobile-menu li.menu-item-has-children').prepend('<span class="rh-arrow"></span>');
+			$(selector).parent().find('.mobile-menu li.menu-item-has-children').prepend('<span class="rh-arrow"></span>');
 
-			$(selector + ' .mobile-menu li.menu-item-has-children>.rh-arrow').on('click', function(e) {
+			$(selector).parent().find('.mobile-menu li.menu-item-has-children>.rh-arrow').on('click', function(e) {
 				$(this).parent().find('> .sub-menu').slideToggle("slow");
-				$(this).addClass('active');
+				$(this).toggleClass('active');
 				$(this).parent().find('> a').toggleClass('active');
 			});
-
-			// $('.rh-menu .mobile-menu').addClass('deactive');
 
 			$('.menu-button').on('click', function() {
 				$(this).toggleClass('active');
 				if ($(this).hasClass('active')) {
-					$(selector + " .mobile-menu").show().animate({"right":"25%"}, 500);
+					$(this).parent().find('.mobile-menu').show().animate({"right":"50%"}, 500);
 				} else {
-					$(selector + " .mobile-menu").animate({"right":"-200%"}, 500, function(){$( selector + " .mobile-menu").hide() } );
+					$(this).parent().find('.mobile-menu').animate({"right":"-200%"}, 500, function(){$(this).parent().find('.mobile-menu')g.hide() } );
 				}
-			});
-
-			//*********************Desktop script********************//
-
-			$(selector + ' .desktop-menu .menu-item-has-children > .sub-menu > li').first().addClass( "first-element" );
-
-			$(selector + ' .desktop-menu .menu-item-has-children > .sub-menu > li.first-element').mouseleave(function(){
-				$(this).removeClass('first-element');
-			});
-			$(selector + ' .desktop-menu>li>.sub-menu').mouseleave(function(){
-				$(selector + ' .desktop-menu .menu-item-has-children > .sub-menu > li').first().addClass( "first-element" );
 			});
 
 		});

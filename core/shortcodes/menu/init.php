@@ -1,13 +1,5 @@
 <?php
 
-$menu_locations = get_nav_menu_locations();
-
-foreach ($menu_locations as $slug => $id) {
-	// Beautify menu slugs
-	$menu_locations[ucwords(str_replace("_", " ", $slug))] = $slug;
-	unset($menu_locations[$slug]);
-}
-
 $menus_raw = get_terms( 'nav_menu', array( 'hide_empty' => true ) );
 $menus = array();
 
