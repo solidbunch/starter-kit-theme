@@ -3,7 +3,7 @@
 vc_map( array(
 	'name'        => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
 	'base'        => 'param_group',
-	'category'    => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
+	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Param Group', 'fruitfulblanktextdomain' ),
 	'params'      => array(
 		array(
