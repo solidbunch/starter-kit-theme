@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Shortcodes Icons/Tabs</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Shortcodes-Icons/Tabs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M31.5,10.5 L14,10.5 C12.6192881,10.5 11.5,9.38071187 11.5,8 L11.5,4.5 L2,4.5 C1.17157288,4.5 0.5,5.17157288 0.5,6 L0.5,26 C0.5,26.8284271 1.17157288,27.5 2,27.5 L30,27.5 C30.8284271,27.5 31.5,26.8284271 31.5,26 L31.5,10.5 Z" id="Rectangle-29" stroke="#4A4A4A"></path>
+        <path d="M11.5,4.5 L11.5,8 C11.5,9.38071187 12.6192881,10.5 14,10.5 L31.5,10.5 L31.5,6 C31.5,5.17157288 30.8284271,4.5 30,4.5 L11.5,4.5 Z" id="Rectangle-30" stroke="#4A4A4A"></path>
+        <rect id="Rectangle-32" fill="#4A4A4A" x="21" y="5" width="1" height="5"></rect>
+    </g>
+</svg>
