@@ -20,9 +20,9 @@
 
 					<div class="navbar-brand">
 
-						<a href="<?php echo site_url( '/' ); ?>">
-							<h1><?php bloginfo('name'); ?></h1>
-						</a>
+						<h1 class="text-primary">
+							<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo('name'); ?></a>
+						</h1>
 
 						<small><?php bloginfo('description'); ?></small>
 
@@ -36,53 +36,46 @@
 
 	</header>
 
-	<section class="bg-dark">
+	<section class="bg-light">
 
 		<div class="container">
 
-			<nav id="navigation" class="navbar navbar-dark bg-dark navbar-expand-md">
+			<nav id="main-nav" class="navigation-menu">
 
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".header-menu">
+				<div class="d-md-block d-lg-none order-3">
+					<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'header_menu',
+								'menu_class' => 'mobile-menu'
+							)
+						);
+					?>
+				</div>
+
+				<div class="w-100 order-3">
+					<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'header_menu',
+								'menu_class' => 'desktop-menu'
+							)
+						);
+					?>
+				</div>
+
+				<button class="menu-button" type="button">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
-
-				<div class="navbar-collapse collapse w-100 order-3 row header-menu">
-
-					<?php
-
-					$location = 'header_menu';
-
-					if ( has_nav_menu($location) ) {
-
-						wp_nav_menu(array(
-							'menu' => $location,
-							'theme_location' => 'header_menu',
-							'container' => 'ul',
-							'menu_id' => "nav-menu",
-							'menu_class' => '',
-							'items_wrap' => '<div class="col-sm-9"><ul id="%1$s" class="navbar-nav %2$s">%3$s</ul></div>',
-							'walker' => new \ffblank\controller\walker_bootstrap()
-							//'depth'           => 4,
-						));
-					}
-
-					?>
-
-					<div class="col-sm-3">
-
-						<?php get_template_part( 'template-parts/search-form' ); ?>
-
-					</div>
-
-				</div>
 
 			</nav>
 
 		</div>
 
 	</section>
-	
-	<section id="composer-header">
-		<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
+
+	<section id="composer-header" class="bg-dark">
+		<div class="container">
+			<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
+		</div>
 	</section>
