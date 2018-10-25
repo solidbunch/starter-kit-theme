@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Line</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Accordion" transform="translate(-1070.000000, -936.000000)" fill="#4A4A4A" fill-rule="nonzero">
+            <g id="Group-3" transform="translate(175.000000, 912.000000)">
+                <path d="M906.262846,24.3242754 C906.636038,23.9171564 907.268606,23.8896535 907.675725,24.2628459 C908.082844,24.6360383 908.110347,25.2686056 907.737154,25.6757246 L901.5,32.4798928 L895.262846,25.6757246 C894.889653,25.2686056 894.917156,24.6360383 895.324275,24.2628459 C895.731394,23.8896535 896.363962,23.9171564 896.737154,24.3242754 L901.5,29.5201072 L906.262846,24.3242754 Z" id="Line" transform="translate(901.500000, 28.239943) scale(1, -1) translate(-901.500000, -28.239943) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
