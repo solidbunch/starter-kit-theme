@@ -102,7 +102,7 @@ export default class Theme {
 				if ($(this).hasClass('active')) {
 					$(this).parent().find('.mobile-menu').show().animate({"right":"50%"}, 500);
 				} else {
-					$(this).parent().find('.mobile-menu').animate({"right":"-200%"}, 500, function(){$(this).parent().find('.mobile-menu')g.hide() } );
+					$(this).parent().find('.mobile-menu').animate({"right":"-200%"}, 500, function(){$(this).parent().find('.mobile-menu').hide() } );
 				}
 			});
 

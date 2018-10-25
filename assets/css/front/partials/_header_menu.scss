@@ -192,6 +192,10 @@
 			  ul > li {
 				padding: 7px 0;
 			  }
+
+			  ul > li:last-child {
+				padding-bottom: 0;
+			  }
 			}
 
 			&.mobile-menu {
@@ -215,9 +219,10 @@
 		  }
 
 		  & > ul {
-			background-color: lighten($dark, 5);
+			background-color: lighten($dark, 10);
 			border-radius: 4px;
 			pointer-events: all;
+			margin-top: 10px;
 
 			& > li {
 			  position: relative;
