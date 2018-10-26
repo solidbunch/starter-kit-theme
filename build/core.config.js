@@ -1,10 +1,16 @@
 const baseConfig = require('./_basic.config')();
 // include the css extraction and minification plugins
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin	= require("mini-css-extract-plugin");
+const BrowserSyncPlugin 	= require('browser-sync-webpack-plugin');
 
 baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
 		filename: './assets/css/[name]/[name].css',
+	}),
+	new BrowserSyncPlugin({
+		host: 'localhost',
+		port: 3000,
+		proxy: 'http://blank.lc'
 	})
 );
 
@@ -32,7 +38,7 @@ baseConfig.module.rules.push(
 				publicPath: '../../fonts/'       // override the default path
 			}
 		}]
-	},
+	}
 );
 
 module.exports = Object.assign(
@@ -43,7 +49,7 @@ module.exports = Object.assign(
 			front: './assets/css/front/front.scss',
 			libs: './assets/css/libs/libs.scss',
 			admin: './assets/css/admin/admin.scss',
-		},
+		}
 	},
 	baseConfig
 );

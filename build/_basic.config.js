@@ -77,15 +77,15 @@ module.exports = function () {
 		],
 	};
 
-	const fs = require('fs');
-	if (process.env.SYNC === "true" && fs.existsSync('./broswer-sync.config')) {
-		const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-		baseConf.plugins.push(
-			new BrowserSyncPlugin(
-				require('./broswer-sync.config')
-			),
-		)
-	}
+	// const fs = require('fs');
+	// if (process.env.SYNC === "true" && fs.existsSync('./browser-sync.config')) {
+	// 	const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+	// 	baseConf.plugins.push(
+	// 		new BrowserSyncPlugin(
+	// 			require('./browser-sync.config')
+	// 		)
+	// 	)
+	// }
 
 	return baseConf;
 };
