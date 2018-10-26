@@ -49,7 +49,7 @@ baseConfig.module.rules.push(
 				publicPath: 'images/'       // override the default path
 			}
 		}]
-	},
+	}
 );
 
 baseConfig.output = {
