@@ -10,7 +10,7 @@ baseConfig.plugins.push(
 	new BrowserSyncPlugin({
 		host: 'localhost',
 		port: 3000,
-		proxy: 'http://blank.lc'
+		proxy: 'http://blank.lc' // your local domain
 	})
 );
 
