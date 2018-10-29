@@ -49,6 +49,9 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 		 */
 		protected function content( $atts, $content = null ){
 
+			/** init style **/
+			$this->enqueue_scripts();
+
 			$atts         = vc_map_get_attributes( $this->getShortcode(), $atts );
 			$attributes   = array();
 			$attributes[] = 'id="field_' . esc_attr($atts['el_id']) . '"';
@@ -60,8 +63,23 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 				'attributes'  => $attributes,
 			);
 
-			return FFBLANK()->view->load( '/../view/contact_form_file_uploader', $data, true, dirname( __FILE__ ) );
+			return FFBLANK()->view->load( '/../view/contact_form_file_uploader', $data, true, dirname( __FILE__ ) );		
 						
+		}
+
+		/**
+		 *
+		 * Add Styles and scripts
+		 *		 		 
+		 *
+		 * @return void
+		 */
+		public function enqueue_scripts() {
+			
+			
+			/** scripts **/
+			wp_register_script( 'shortcode-uploader', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ). '../form/assets/uploader.js', array('jquery'), FFBLANK()->config['cache_time'], true );
+			wp_enqueue_script( 'shortcode-uploader' );
 		}
 		
 	}
