@@ -6,7 +6,7 @@ $base_child = ffblank\helper\open_fields::name_fields( dirname( __FILE__ ) );
 vc_map(array(
 	'name'                    => esc_html__( 'Contact Form', 'fruitfulblanktextdomain' ),
 	'base'                    => 'shortcode_contact_form',
-	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . '259550.svg',
+	'icon'                    => FFBLANK()->config['shortcodes_icon_uri'] . '259550.svg',
 	'category'                => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description'             => esc_html__( 'Add contact form', 'fruitfulblanktextdomain' ),
 	'as_parent'               => array(

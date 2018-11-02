@@ -21,6 +21,8 @@ return array(
 	'shortcodes_icon_uri' => get_template_directory_uri() . '/assets/images/icon/',
 	'widgets_dir'         => get_template_directory() . '/core/widgets/',
 	'widgets_uri'         => get_template_directory_uri() . '/core/widgets/',
+	'param_dir'           => get_template_directory() . '/core/param/',
+	'param_uri'           => get_template_directory_uri() . '/core/param/',
 	'social_profiles'     => array(
 		'facebook_url'    => esc_html__( 'Facebook URL', 'fruitfulblanktextdomain' ),
 		'twitter_url'     => esc_html__( 'Twitter URL', 'fruitfulblanktextdomain' ),

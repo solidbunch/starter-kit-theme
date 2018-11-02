@@ -1,23 +1,28 @@
 <?php
 
 /**
- * Tabs / Accordion Shortcode
+ * Tabs Shortcode
  **/
+
+
+
 ffblank\helper\open_fields::open_file( dirname( __FILE__ ) );
 
 if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+
 	class WPBakeryShortCode_Tabs extends WPBakeryShortCodesContainer {
 
 		protected function content( $atts, $content = null ) {
 
+			/** Init style \ scripts **/
+			$this->enqueue_scripts();
+
 			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$id = '';
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+			$shortcode     = basename( $shortcode_dir );		
+			$atts          = vc_map_get_attributes( $this->getShortcode(), $atts );
 
 			/** Shortcode data to output **/
 			$data = array(
-				'id'      => $id,
 				'atts'    => $atts,
 				'content' => $content,
 			);
@@ -26,28 +31,21 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 
 		}
 
-	}
-}
+		/**
+		 *
+		 * add styles and scripts
+		 *		 
+		 *
+		 * @return void
+		 */
+		public function enqueue_scripts() {
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Tabs_Child extends WPBakeryShortCode {
+			/** scripts **/
+			wp_register_script( 'shortcode-tabs', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/js/scripts.js',array( 'jquery' ), FFBLANK()->config['cache_time'] );
 
-		protected function content( $atts, $content = null ) {
-
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \ffblank\helper\utils::get_shortcodes_uri( $shortcode );
-			$atts          = vc_map_get_attributes( $this->getShortcode(), $atts );
-			$id = '';
-			/** Shortcode data to output **/
-			$data = array(
-				'id'      => $id,
-				'atts'    => $atts,
-				'content' => $content,
-			);
-
-			return FFBLANK()->view->load( '/view/view_content', $data, true, $shortcode_dir );
-
+			wp_enqueue_script( 'shortcode-tabs' );
+			/** styles **/
+			wp_enqueue_style( 'shortcode-tabs', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/css/styles.css', false, FFBLANK()->config['cache_time'] );			
 		}
 
 	}
