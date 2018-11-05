@@ -15,7 +15,7 @@
 namespace ffblank\helper;
 
 
-class open_fields { 
+class open_fields {
 
 	/**
 	 * Open files directory fields
@@ -24,9 +24,9 @@ class open_fields {
 	 *
 	 * @return void
 	 */
-	 static function open_file( $dir = '') {
+	static function open_file( $dir = '' ) {
 
-		foreach( glob( $dir . '/fields/*.php' ) as $file){
+		foreach ( glob( $dir . '/fields/*.php' ) as $file ) {
 			include_once $file;
 		}
 
@@ -39,16 +39,16 @@ class open_fields {
 	 *
 	 * @return string
 	 */
-	static function name_fields( $dir = '') {
+	static function name_fields( $dir = '' ) {
 
-		foreach( glob( $dir . '/fields/*.php' ) as $file){
-			
-			 $name[] = basename( $file, ".php" );
+		foreach ( glob( $dir . '/fields/*.php' ) as $file ) {
+
+			$name[] = basename( $file, ".php" );
 		};
 
-		$base = implode( ', ' , $name ). ', '; 
+		$base = implode( ', ', $name ) . ', ';
 
-		return $base ;
+		return $base;
 
 	}
 }

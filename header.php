@@ -82,7 +82,7 @@
 		</div>
 
 	</section>
-	
+
 	<section id="composer-header">
 		<?php echo FFBLANK()->view->load_composer_layout( 'header' ); ?>
 	</section>

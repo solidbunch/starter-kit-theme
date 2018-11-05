@@ -16,7 +16,7 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 			$this->enqueue_scripts();
 
 			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );		
+			$shortcode     = basename( $shortcode_dir );
 			$atts          = vc_map_get_attributes( $this->getShortcode(), $atts );
 
 			/** Shortcode data to output **/
@@ -32,18 +32,22 @@ if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
 		/**
 		 *
 		 * add styles and scripts
-		 *		 
+		 *
 		 *
 		 * @return void
 		 */
 		public function enqueue_scripts() {
 
 			/** scripts **/
-			wp_register_script( 'shortcode-tabs', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/js/scripts.js',array( 'jquery' ), FFBLANK()->config['cache_time'] );
+			wp_register_script( 'shortcode-tabs',
+				\ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/js/scripts.js',
+				array( 'jquery' ), FFBLANK()->config['cache_time'] );
 
 			wp_enqueue_script( 'shortcode-tabs' );
 			/** styles **/
-			wp_enqueue_style( 'shortcode-tabs', \ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/css/styles.css', false, FFBLANK()->config['cache_time'] );			
+			wp_enqueue_style( 'shortcode-tabs',
+				\ffblank\helper\utils::get_shortcodes_uri( basename( dirname( __FILE__ ) ) ) . 'assets/css/styles.css',
+				false, FFBLANK()->config['cache_time'] );
 		}
 
 	}
