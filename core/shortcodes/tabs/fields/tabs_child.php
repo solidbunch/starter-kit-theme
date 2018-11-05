@@ -11,7 +11,7 @@ vc_map( array(
 			'type'        => 'textfield',
 			'heading'     => esc_html__( 'Title', 'fruitfulblanktextdomain' ),
 			'param_name'  => 'title',
-			'value'       => 'test',
+			'value'       => '',
 			'admin_label' => true,
 		),
 		array(

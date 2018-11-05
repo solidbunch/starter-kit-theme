@@ -48,7 +48,7 @@ vc_map( array(
 			'group' =>  esc_html__( 'Design Options', 'fruitfulblanktextdomain' ),
 		),
 		  array(
-			"type" => "my_param",
+			"type" => "awesome_icon",
 			"holder" => "div",
 			"class" => "",
 			"heading" =>  esc_html__( 'Font Awesome', 'fruitfulblanktextdomain' ),

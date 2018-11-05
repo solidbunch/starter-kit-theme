@@ -1,0 +1,36 @@
+	.param_awesome {
+	    display: inline-block;
+	    width: 49px;
+	    padding: 5px;
+	    height: 75px;
+	    text-align: center;
+	    vertical-align: text-bottom;
+	    cursor:pointer;
+	    border: 1px solid transparent;
+	}
+
+	.param_awesome i.fa.fa-road {
+	    vertical-align: text-top;
+	}
+
+	.param_awesome span.name_awesome {
+	    display: block;
+	    word-wrap: break-word;
+	}
+	body .awesome_block .box_awesome .search_awesome{
+		width: 169px;
+	    display: block;
+	    margin: 10px 0;
+	}
+	.box_awesome{
+		display:none;
+	}
+	.awesome_block.active .box_awesome{					
+		display:block;					
+	}
+	.param_awesome.active{
+		border: 1px solid #000;
+	}
+	.param_awesome.active span{
+		font-weight: bold;
+	}
