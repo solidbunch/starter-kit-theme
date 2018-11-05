@@ -41,12 +41,12 @@ vc_map( array(
 			'group'       => esc_html__( 'Tabs', 'fruitfulblanktextdomain' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'fruitfulblanktextdomain' ),
 		),
-		array(
-			'type'       => 'css_editor',
-			'heading'    => esc_html__( 'CSS box', 'fruitfulblanktextdomain' ),
-			'param_name' => 'css',
-			'group'      => esc_html__( 'Design Options', 'fruitfulblanktextdomain' ),
-		),
+//		array(
+//			'type'       => 'css_editor',
+//			'heading'    => esc_html__( 'CSS box', 'fruitfulblanktextdomain' ),
+//			'param_name' => 'css',
+//			'group'      => esc_html__( 'Design Options', 'fruitfulblanktextdomain' ),
+//		),
 	),
 
 

@@ -28,7 +28,7 @@ vc_map( array(
 			'heading'     => esc_html__( 'Text', 'fruitfulblanktextdomain' ),
 			'param_name'  => 'content',
 			'value'       => '',
-			'description' => esc_html__( 'Enter your content.", "my-text-domain' )
+			'description' => esc_html__( 'Enter your content.', 'fruitfulblanktextdomain' )
 		),
 	),
 ) );
