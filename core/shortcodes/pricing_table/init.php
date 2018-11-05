@@ -73,6 +73,8 @@ vc_map( array(
 		 * Fonts
 		 */
 
+		/*
+
 		array(
 			'type' => 'google_fonts',
 			'param_name' => 'heading_font',
@@ -121,6 +123,8 @@ vc_map( array(
 			'weight' => 0,
 			'group' => esc_html__( 'Fonts', 'fruitfulblanktextdomain' ),
 		),
+
+		*/
 
 		/**
 		 * Colors
