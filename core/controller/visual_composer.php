@@ -123,6 +123,8 @@ class visual_composer {
 		vc_remove_element( 'vc_gmaps' );
 
 		vc_remove_param( 'vc_row', 'gap' );
+
+		vc_disable_frontend();
 	}
 
 }
