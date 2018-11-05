@@ -33,7 +33,7 @@
 
 		});
 
-		$('.search_awesome').keyup(function(event) {
+		$('body').on('keyup','.search_awesome',function(event) {
 
 			$('.param_awesome').each(function(index, el) {
 
