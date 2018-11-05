@@ -1,26 +1,26 @@
-(function($){
+(function ($) {
 
 	"use strict";
 
-	window.ff_fruitful_tabs_shortcode = function() {
+	window.ff_fruitful_tabs_shortcode = function () {
 
 		// build tabs markup
-		$('.fruitful_tabs').each( function() {
+		$('.fruitful_tabs').each(function () {
 
 			var $shortcode = $(this),
-			$titles = $shortcode.find('h4'),
-			$tabs = $shortcode.find('.fruitful_tabs_tab'),
-			type = $shortcode.data('type'),
-			respBreak = $shortcode.data('break');
+				$titles = $shortcode.find('h4'),
+				$tabs = $shortcode.find('.fruitful_tabs_tab'),
+				type = $shortcode.data('type'),
+				respBreak = $shortcode.data('break');
 
 			// build nav for tabs
 			$shortcode.prepend('<nav></nav>');
 
 			var $nav = $shortcode.find('nav');
 
-			$titles.each( function() {
+			$titles.each(function () {
 
-				$nav.append('<a href="javascript:;">' + $(this).text() + '</a>');
+				$nav.append('<a href="javascript:;">' + $(this).html() + '</a>');
 
 			});
 
@@ -28,11 +28,11 @@
 			$shortcode.find('.fruitful_tabs_tab:first').addClass('current active');
 
 			// turn tabs into accordion on responsive break
-			if( $shortcode.hasClass('type-accordion') == false ) {
+			if ($shortcode.hasClass('type-accordion') == false) {
 
-				$(window).on('resize', function() {
+				$(window).on('resize', function () {
 
-					if( $(window).width() <= respBreak ) {
+					if ($(window).width() <= respBreak) {
 						$shortcode.removeClass('type-vertical');
 						$shortcode.removeClass('type-default');
 						$shortcode.addClass('type-accordion');
@@ -64,17 +64,17 @@
 
 	}
 
-	window.ff_fruitful_tabs_nav_shortcode = function() {
+	window.ff_fruitful_tabs_nav_shortcode = function () {
 
 		// tabs click
-		$('.fruitful_tabs.type-default nav a, .fruitful_tabs.type-vertical nav a').off('click').on('click', function() {
+		$('.fruitful_tabs.type-default nav a, .fruitful_tabs.type-vertical nav a').off('click').on('click', function () {
 
 			var $link = $(this),
-			$shortcode = $link.parents('.fruitful_tabs'),
-			index = $link.parent().find('a').index( $link );
+				$shortcode = $link.parents('.fruitful_tabs'),
+				index = $link.parent().find('a').index($link);
 
 			$shortcode.find('.fruitful_tabs_tab').hide();
-			$shortcode.find('.fruitful_tabs_tab').eq( index ).show();
+			$shortcode.find('.fruitful_tabs_tab').eq(index).show();
 
 			$shortcode.find('nav a').removeClass('current');
 			$link.addClass('current');
@@ -83,10 +83,10 @@
 		});
 
 		// accordion click
-		$('.fruitful_tabs.type-accordion .ff-title').off('click').on('click', function() {
+		$('.fruitful_tabs.type-accordion .ff-title').off('click').on('click', function () {
 
 			var $link = $(this),
-			$block = $link.parents('.fruitful_tabs_tab');
+				$block = $link.parents('.fruitful_tabs_tab');
 
 			$link.parents('.fruitful_tabs_tab').toggleClass('active');
 
@@ -101,8 +101,8 @@
 
 	window.ff_fruitful_tabs_nav_shortcode();
 
-	$(window).on('resize', function() {
+	$(window).on('resize', function () {
 		window.ff_fruitful_tabs_nav_shortcode();
 	});
 
-})( window.jQuery );
+})(window.jQuery);
