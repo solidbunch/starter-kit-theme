@@ -169,6 +169,28 @@ class utils {
 	}
 
 	/**
+	 * Returns param uri / path
+	 *
+	 * @param $param_name
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	public static function get_param_uri( $shortcode_name, $path = '' ) {
+		return \FFBLANK()->config['param_uri'] . '/' . $shortcode_name . '/' . $path;
+	}
+
+	/**
+	 * @param $param_name
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	public static function get_param_dir( $shortcode_name, $path = '' ) {
+		return \FFBLANK()->config['param_dir'] . '/' . $shortcode_name . '/' . $path;
+	}
+
+	/**
 	 * Get Unyson Framework config for available social icons
 	 **/
 	public static function get_social_cfg_usyon() {
