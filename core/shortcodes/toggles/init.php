@@ -4,6 +4,7 @@
 vc_map( array(
 	'name'                    => esc_html__( 'Toggles', 'fruitfulblanktextdomain' ),
 	'base'                    => 'toggles',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'toggle.svg',
 	'category'                => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description'             => esc_html__( 'Add accordion / toggles', 'fruitfulblanktextdomain' ),
 	'as_parent'               => array( 'only' => 'toggle' ),
@@ -18,6 +19,7 @@ vc_map( array(
 vc_map( array(
 	'name'            => esc_html__( 'Toggle Section', 'fruitfulblanktextdomain' ),
 	'base'            => 'toggle',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'toggle.svg',
 	'content_element' => true,
 	'as_child'        => array( 'only' => 'toggles' ),
 	'params'          => array(
