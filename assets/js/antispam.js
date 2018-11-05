@@ -27,7 +27,7 @@
 
 				if ($(this).attr('method').toUpperCase() === 'POST') {
 
-					$(this).find('input[type=submit]').each(function () {
+					$(this).find('input[type=submit], button[type=submit]').each(function () {
 						try {
 							var sbmt = $(this)[0],
 								npt = document.createElement('input'),
