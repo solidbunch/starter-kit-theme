@@ -4,8 +4,6 @@
  * Tabs Shortcode
  **/
 
-
-
 ffblank\helper\open_fields::open_file( dirname( __FILE__ ) );
 
 if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
