@@ -12,6 +12,19 @@
     "url-loader": "^1.1.2"
   },
   "devDependencies": {
+    "gulp-sass": "^4.0.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-zip": "^4.1.0",
+    "gulp-wp-pot": "^2.2.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-phpcs": "^2.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-image": "^4.3.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-tabify": "0.0.2",
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
@@ -54,6 +67,7 @@
   ],
   "scripts": {
     "replaceNames": "./node_modules/.bin/gulp replaceNames",
+    "gulp": "./node_modules/.bin/gulp watch",
     "dev": "webpack --mode development --hide-modules --progress --color",
     "prod": "webpack --mode production --hide-modules --progress --color",
     "watch": "webpack --watch --mode development --hide-modules --progress --color",
