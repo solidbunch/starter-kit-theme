@@ -3,6 +3,7 @@
 vc_map( array(
 	'name'        => esc_html__( 'Posts', 'fruitfulblanktextdomain' ),
 	'base'        => 'posts',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'post-it.svg',
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'Any post type with pagination', 'fruitfulblanktextdomain' ),
 	'params'      => array(

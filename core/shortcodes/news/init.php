@@ -3,6 +3,7 @@
 vc_map( array(
 	'name'        => esc_html__( 'News', 'fruitfulblanktextdomain' ),
 	'base'        => 'news',
+	'icon'        => FFBLANK()->config['shortcodes_icon_uri'] . 'newspaper.svg',
 	'category'    => esc_html__( 'Theme Elements', 'fruitfulblanktextdomain' ),
 	'description' => esc_html__( 'News', 'fruitfulblanktextdomain' ),
 	'params'      => array(
