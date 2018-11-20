@@ -1,7 +1,7 @@
 <?php
 
-use ffblank\helper\front;
-use ffblank\helper\media;
+use StarterKit\Helper\Front;
+use StarterKit\Helper\Media;
 
 get_header(); ?>
 
@@ -85,7 +85,7 @@ get_header(); ?>
 								</div>
 
 								<a href="<?php the_permalink(); ?>" class="btn btn-primary col-sm-12 col-md-3">
-									<?php esc_html_e( 'Read more', 'fruitfulblanktextdomain' ); ?>
+									<?php esc_html_e( 'Read more', 'starter-kit' ); ?>
 								</a>
 
 							</div>
@@ -101,7 +101,7 @@ get_header(); ?>
 					<div class="row">
 						
 						<article class="col-md-12">
-							<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'fruitfulblanktextdomain' ); ?></h2>
+							<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'starter-kit' ); ?></h2>
 						</article>
 					
 					</div>

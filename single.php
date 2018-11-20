@@ -1,7 +1,7 @@
 <?php
 
-use ffblank\helper\front;
-use ffblank\helper\media;
+use StarterKit\Helper\Front;
+use StarterKit\Helper\Media;
 
 get_header();
 the_post(); ?>
@@ -34,7 +34,7 @@ the_post(); ?>
 							the_content();
 						
 							wp_link_pages( array(
-								'before'      => '<div class="page-links">' . __( 'Pages:', 'fruitfulblanktextdomain' ),
+								'before'      => '<div class="page-links">' . __( 'Pages:', 'starter-kit' ),
 								'after'       => '</div>',
 								'link_before' => '<span class="page-number">',
 								'link_after'  => '</span>',

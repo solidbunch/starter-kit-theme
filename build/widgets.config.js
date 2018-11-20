@@ -4,7 +4,7 @@ const glob = require('glob');
 
 let dir = path.resolve();
 
-const pathTo = dir.replace(/\\/g, '/') +'/core/widgets/';
+const pathTo = dir.replace(/\\/g, '/') +'/app/Widgets/';
 //read all styles.scss from widgets
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 
@@ -53,7 +53,7 @@ baseConfig.module.rules.push(
 );
 
 baseConfig.output = {
-	path: dir + '/core/widgets/',
+	path: dir + '/app/Widgets/',
 	filename: '[name]/assets/scripts.min.js'
 };
 

@@ -1,6 +1,6 @@
 <?php
 // helper functions for developers
-require_once __DIR__ . '/core/dev.php';
+require_once __DIR__ . '/app/dev.php';
 
 if(class_exists('WP_CLI')) {
 	//define theme root directory for future commands
@@ -26,10 +26,10 @@ if(class_exists('WP_CLI')) {
 spl_autoload_register( function ( $class ) {
 	
 	// project-specific namespace prefix
-	$prefix = 'ffblank\\';
+	$prefix = 'StarterKit\\';
 	
 	// base directory for the namespace prefix
-	$base_dir = __DIR__ . '/core/';
+	$base_dir = __DIR__ . '/app/';
 	
 	// does the class use the namespace prefix?
 	$len = strlen( $prefix );
@@ -59,35 +59,35 @@ if ( ! isset( $content_width ) ) {
 
 
 // Global point of enter
-if ( ! function_exists( 'FFBLANK' ) ) {
+if ( ! function_exists( 'Starter_Kit' ) ) {
 	
-	function FFBLANK() {
-		return \ffblank\core::getInstance();
+	function Starter_Kit() {
+		return \StarterKit\App::getInstance();
 	}
 	
 }
 
 // Run the theme
-FFBLANK()->run();
+Starter_Kit()->run();
 
 /**
  * Examples to use:
  * ======================================================================
  * Controllers::
- * FFBLANK()->controller->front->your_method();
- * FFBLANK()->controller->backend->your_method();
- * FFBLANK()->controller->test->your_method();
- * FFBLANK()->controller->shortcodes->your_method();
+ * Starter_Kit()->Controller->Front->your_method();
+ * Starter_Kit()->Controller->Backend->your_method();
+ * Starter_Kit()->Controller->Test->your_method();
+ * Starter_Kit()->Controller->Shortcodes->your_method();
  *
  * Model / View::
- * FFBLANK()->model->post->get_random_posts( 'portfolio', 5 );
- * FFBLANK()->view->load('/front/my_template', array( 'foo' => 'bar' ));
+ * Starter_Kit()->Model->Post->get_random_posts( 'portfolio', 5 );
+ * Starter_Kit()->View->load('/front/my_template', array( 'foo' => 'bar' ));
  *
  * Config::
- * FFBLANK()->config['social_profiles']
+ * Starter_Kit()->config['social_profiles']
  *
  * Helpers::
- * \ffblank\helper\front::get_grid_class();
- * \ffblank\helper\media::img_resize();
+ * \StarterKit\Helper\Front::get_grid_class();
+ * \StarterKit\Helper\Media::img_resize();
  * ======================================================================
  **/

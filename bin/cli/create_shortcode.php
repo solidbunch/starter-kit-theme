@@ -1,8 +1,8 @@
 <?php
 /**
  * @category   WP_CLI commands
- * @package    fruitfulblank
- * @author     Mates Marketing <hello@matesmarketing.com>
+ * @package    StarterKit
+ * @author     {author}
  * @author     Nikita Bolotov <nikita.bolotov@matesmarketing.com>
  * @copyright  2018 Nikita Bolotov
  * @license    https://opensource.org/licenses/OSL-3.0
@@ -11,7 +11,7 @@ try {
 	WP_CLI::add_command(
 		'create:shortcode',
 		function ( $args, $assoc_args ) {
-			$shrotcodes_dir = THEME_ROOT_DIRECTORY . '/core/shortcodes/';
+			$shrotcodes_dir = THEME_ROOT_DIRECTORY . '/app/Shortcodes/';
 
 			$name       = $assoc_args['name'];
 			$base       = strtolower( $name );

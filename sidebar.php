@@ -3,7 +3,7 @@
  * Sidebar template
  **/
 
-use ffblank\helper\utils;
+use StarterKit\Helper\Utils;
 
 // If Unyson Framework plugin is active
 

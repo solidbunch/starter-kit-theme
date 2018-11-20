@@ -36,20 +36,20 @@
    - fonts/
  - bin - WP_CLI commands
  - build - webpack configs 
- - core/ – main theme files
-   - controller/
-     - backend.php – all for wp-admin
-     - front.php – all for front-end
-     - init.php – theme initialization
-     - lazy_load.php – lazy load for images
-     - menu.php – menu registration hooks and methods
-     - post_types.php – registering custom post types
-     - visual_composer.php – settings for Page Builder
-   - helper/ – Helplers classes
-   - model/ – models to work with database
-   - shortcodes/ – all shortcodes (regular and for Page Builder)
-   - view/ – templates (included in controller)
-   - widgets/ – widgets (included in controller)
+ - app/ – main theme files
+   - Controller/
+     - Backend.php – all for wp-admin
+     - Front.php – all for front-end
+     - Init.php – theme initialization
+     - LazyLoad.php – lazy load for images
+     - Menu.php – menu registration hooks and methods
+     - PostTypes.php – registering custom post types
+     - VisualComposer.php – settings for Page Builder
+   - Helper/ – Helplers classes
+   - Model/ – models to work with database
+   - Shortcodes/ – all shortcodes (regular and for Page Builder)
+   - View/ – templates (included in controller)
+   - Widgets/ – widgets (included in controller)
   - framework-customizations/ – Unyson customization (see https://github.com/ThemeFuse/Scratch-Theme)
   - template-parts/ – default WordPress templates (included in files below)
  - 404.php

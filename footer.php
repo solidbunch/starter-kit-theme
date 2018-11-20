@@ -1,5 +1,5 @@
 <footer id="composer-footer">
-	<?php echo FFBLANK()->view->load_composer_layout( 'footer' ); ?>
+	<?php echo Starter_Kit()->View->load_composer_layout( 'footer' ); ?>
 </footer>
 
 <footer id="footer" class="bg-dark text-white">
@@ -36,7 +36,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
-							<div class="col-md-6 my-auto copyright"><?php echo \ffblank\helper\utils::get_option( 'bottom_bar_text' ); ?></div>
+							<div class="col-md-6 my-auto copyright"><?php echo \StarterKit\Helper\Utils::get_option( 'bottom_bar_text' ); ?></div>
 							<nav class="col-md-6 links text-md-right text-center">
 
 								<?php

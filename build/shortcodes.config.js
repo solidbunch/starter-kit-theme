@@ -3,7 +3,7 @@ const path = require('path');
 const glob = require('glob');
 let dir = path.resolve();
 
-const pathTo = dir.replace(/\\/g, '/') +'/core/shortcodes/';
+const pathTo = dir.replace(/\\/g, '/') +'/app/Shortcodes/';
 //read all styles.scss from shortcodes
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 
@@ -50,7 +50,7 @@ baseConfig.module.rules.push(
 	}
 );
 baseConfig.output = {
-	path: dir + '/core/shortcodes/',
+	path: dir + '/app/Shortcodes/',
 	filename: '[name]/assets/scripts.min.js'
 };
 
