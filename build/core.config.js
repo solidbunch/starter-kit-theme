@@ -43,7 +43,7 @@ baseConfig.module.rules.push(
 
 module.exports = Object.assign(
 	{
-		name: 'core',
+		name: 'app',
 		entry: {
 			app: './assets/js/app.js',
 			front: './assets/css/front/front.scss',

@@ -2,11 +2,11 @@ var gulp = require('gulp');
 var stringReplace = require('gulp-string-replace');
 var config = {
 	theme: {
-		prefix: 'ffblank', // ffblank
-		singleton: 'FFBLANK', // FFBLANK
-		textdomain: 'fruitfulblanktextdomain',  // fruitfulblanktextdomain
-		name: 'Fruitful Blank Theme', // Fruitful Blank Theme
-		author: 'Fruitful Code' // Fruitful Code
+		prefix: 'StarterKit',
+		singleton: 'Starter_Kit',
+		textdomain: 'starter-kit',
+		name: 'Starter Kit Wordpress Theme',
+		author: ''
 	}
 };
 
@@ -29,17 +29,17 @@ var paths = {
 		//dest: './'
 	},
 	css: {
-		src: ['core/**/*.css', 'assets/**/*.css'],
+		src: ['app/**/*.css', 'assets/**/*.css'],
 		//dest: './'
 	},
 	scss: {
-		src: ['core/**/*.scss', 'assets/**/*.scss'],
+		src: ['app/**/*.scss', 'assets/**/*.scss'],
 		//dest: '.'
 	},
 	js: {
-		src_all: ['core/**/*.js', 'assets/**/*.js'],
-		src: ['core/**/*.js', 'assets/**/*.js', '!core/**/*.min.js', '!assets/**/*.min.js'],
-		src_min: ['core/**/*.min.js', 'assets/**/*.min.js'],
+		src_all: ['app/**/*.js', 'assets/**/*.js'],
+		src: ['app/**/*.js', 'assets/**/*.js', '!app/**/*.min.js', '!assets/**/*.min.js'],
+		src_min: ['app/**/*.min.js', 'assets/**/*.min.js'],
 		//dest: './'
 	},
 	images: {
@@ -103,11 +103,11 @@ gulp.task('default', ['watch']);
 gulp.task('replaceNames', function () {
 
 	return gulp.src(paths.toReplace.src)
-		.pipe(stringReplace('ffblank', config.theme.prefix))
-		.pipe(stringReplace('FFBLANK', config.theme.singleton))
-		.pipe(stringReplace('fruitfulblanktextdomain', config.theme.textdomain))
-		.pipe(stringReplace('Fruitful Blank Theme', config.theme.name))
-		.pipe(stringReplace('Fruitful Code', config.theme.author))
+		.pipe(stringReplace('StarterKit', config.theme.prefix))
+		.pipe(stringReplace('Starter_Kit', config.theme.singleton))
+		.pipe(stringReplace('starter-kit', config.theme.textdomain))
+		.pipe(stringReplace('Starter Kit Wordpress Theme', config.theme.name))
+		.pipe(stringReplace('', config.theme.author))
 		.pipe(gulp.dest(function (file) {
 			return file.base;  // THE SAME DIR
 		}));

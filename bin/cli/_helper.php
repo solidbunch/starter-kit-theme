@@ -1,8 +1,8 @@
 <?php
 /**
  * @category   WP_CLI commands functions helper
- * @package    fruitfulblank
- * @author     Mates Marketing <hello@matesmarketing.com>
+ * @package    StarterKit
+ * @author     {author}
  * @author     Nikita Bolotov <nikita.bolotov@matesmarketing.com>
  * @copyright  2018 Nikita Bolotov
  * @license    https://opensource.org/licenses/OSL-3.0

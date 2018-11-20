@@ -3,8 +3,8 @@
  * The page template file
  */
 
-use ffblank\helper\front;
-use ffblank\helper\utils;
+use StarterKit\Helper\Front;
+use StarterKit\Helper\Utils;
 
 get_header();
 
