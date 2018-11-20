@@ -99,11 +99,13 @@ class core {
 
 		// Autoload widgets
 		utils::autoload_dir( get_template_directory() . '/core/widgets', 1 );
+		utils::autoload_dir( get_template_directory() . '/core/param', 1 );
 
 		// Autoload Visual Composer shortcodes
 		add_action( 'vc_after_init', function () {
 			utils::autoload_dir( get_template_directory() . '/core/shortcodes', 1 );
 		} );
+
 
 	}
 
