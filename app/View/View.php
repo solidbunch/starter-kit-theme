@@ -126,19 +126,4 @@ class View {
 		return '';
 	}
 
-	/**
-	 * Define attribute class for shortcodes
-	 *
-	 * @param $css
-	 * @param $data
-	 *
-	 * @return string
-	 */
-	public function get_css_class( $css, $data ) {
-		$css_class = trim( apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ), $data['wpb']->settings( 'base' ), $data['atts'] ) );
-		$css_class .= ! empty( $data['atts']['classes'] ) && trim( $data['atts']['classes'] ) ? ( ( $css_class ? ' ' : '' ) . trim( $data['atts']['classes'] ) ) : '';
-
-		return $css_class;
-	}
-
 }

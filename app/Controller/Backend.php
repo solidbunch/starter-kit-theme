@@ -63,7 +63,7 @@ class Backend {
 			array(
 				'name'         => 'WPBakery Page Builder',
 				'slug'         => 'js_composer',
-				'source'       => 'https://fruitfulcode.com/themeforest/js_composer.zip',
+				'source'       => '{TODO}',
 				'required'     => false,
 				'version'      => '',
 				'external_url' => '',

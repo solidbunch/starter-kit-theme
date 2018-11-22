@@ -5,7 +5,7 @@ var config = {
 		prefix: 'StarterKit',
 		singleton: 'Starter_Kit',
 		textdomain: 'starter-kit',
-		name: 'Starter Kit Wordpress Theme',
+		name: 'Starter Kit Theme',
 		author: ''
 	}
 };
@@ -106,8 +106,8 @@ gulp.task('replaceNames', function () {
 		.pipe(stringReplace('StarterKit', config.theme.prefix))
 		.pipe(stringReplace('Starter_Kit', config.theme.singleton))
 		.pipe(stringReplace('starter-kit', config.theme.textdomain))
-		.pipe(stringReplace('Starter Kit Wordpress Theme', config.theme.name))
-		.pipe(stringReplace('', config.theme.author))
+		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
+		.pipe(stringReplace('{TODO}', config.theme.author))
 		.pipe(gulp.dest(function (file) {
 			return file.base;  // THE SAME DIR
 		}));

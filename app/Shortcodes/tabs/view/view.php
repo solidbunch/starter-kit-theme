@@ -1,7 +1,12 @@
-<?php $type = ( $data["atts"]["position"] == 'vertical' ) ? 'vertical ' : 'default '; ?>
+<?php
+    $type = ( $data["atts"]["position"] == 'vertical' ) ? 'vertical ' : 'default ';
+    $class = $data['atts']['classes'].' type-'.$type.' style-'.$type;
+?>
 
-<div class="fruitful_tabs type-<?php echo $type; ?> style-<?php echo $type; ?>" data-type="<?php echo $type; ?>">
+<div class="<?php echo esc_attr($class); ?>" data-type="<?php echo $type; ?>">
 
-	<?php echo wpb_js_remove_wpautop( $data['content'] ); ?>
+	<?php
+	    echo do_shortcode( $data['content'] );
+    ?>
 
 </div>
