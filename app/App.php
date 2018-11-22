@@ -91,12 +91,8 @@ class App {
 		utils::autoload_dir( get_template_directory() . '/app/Widgets', 1 );
 		utils::autoload_dir( get_template_directory() . '/app/Param', 1 );
 
-		// Autoload Visual Composer shortcodes
-		add_action( 'vc_after_init', function () {
-			utils::autoload_dir( get_template_directory() . '/app/Shortcodes', 1 );
-		} );
-
-
+		// Autoload shortcodes
+		//$this->Controller->Shortcodes = new Shortcodes();
 	}
 
 	/**

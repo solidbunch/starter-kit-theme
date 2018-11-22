@@ -120,7 +120,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
-		return \Starter_Kit()->config['shortcodes_uri'] . '/' . $shortcode_name . '/' . $path;
+		return \Starter_Kit()->config['shortcodes_uri'] .  $shortcode_name . '/' . $path;
 	}
 
 	/**
@@ -130,7 +130,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
-		return \Starter_Kit()->config['shortcodes_dir'] . '/' . $shortcode_name . '/' . $path;
+		return \Starter_Kit()->config['shortcodes_dir'] .  $shortcode_name . '/' . $path;
 	}
 
 	/**
@@ -225,7 +225,7 @@ class Utils {
 
 
 	/**
-	 * check if attachment if SVG
+	 * Check if attachment if SVG
 	 *
 	 * @param $attachment_id
 	 * @param $attachment_url

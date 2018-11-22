@@ -1,4 +1,4 @@
-# Fruitful Blank Theme
+# Starter Kit Theme
 **Requirements**
  
  1. PHP5.6+

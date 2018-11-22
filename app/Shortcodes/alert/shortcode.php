@@ -1,36 +1,35 @@
 <?php
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Alert extends WPBakeryShortCode {
+use StarterKit\Model\Shortcode;
 
-		protected function content( $atts, $content = null ) {
+if ( !class_exists( 'StarterKitShortcode_Alert' ) ) {
+	class StarterKitShortcode_Alert extends Shortcode {
 
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode );
+		public function content( $atts, $content = null ) {
 
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
-
-			if ( ! empty( $atts['el_id'] ) ) {
-				$id = 'shortcode-' . $atts['el_id'];
-			} else {
-				$id = '';
-			}
+			$atts = shortcode_atts( [
+				'icon' 			=> '',
+				'el_id' 		=> '',
+				'style' 		=> '',
+				'classes'		=> ''
+			], $this->atts($atts), $this->shortcode );
 
 			if ( $atts['icon'] <> '' ) {
 				wp_enqueue_style( 'font-awesome' );
 			}
 
-			//wp_enqueue_style( 'my-style', \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode, '/assets/my-style.css') );
+			$this->add_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
+			$this->add_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/script.js' );
 
-			$data = array(
-				'id'      => $id,
+			$data = $this->data( array(
 				'atts'    => $atts,
 				'content' => $content,
-			);
+			));
 
-			return Starter_Kit()->View->load( '/view/view', $data, true, $shortcode_dir );
+			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 
 	}
 }
+
+

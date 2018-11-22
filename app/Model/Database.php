@@ -21,6 +21,7 @@ class Database {
 
 	/** @var \wpdb null */
 	protected $wpdb;
+
 	/** @var array */
 	protected $tables = array();
 

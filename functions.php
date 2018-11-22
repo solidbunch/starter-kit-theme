@@ -70,25 +70,8 @@ if ( ! function_exists( 'Starter_Kit' ) ) {
 // Run the theme
 Starter_Kit()->run();
 
-/**
- * Examples to use:
- * ======================================================================
- * Controllers::
- * Starter_Kit()->Controller->Front->your_method();
- * Starter_Kit()->Controller->Backend->your_method();
- * Starter_Kit()->Controller->Test->your_method();
- * Starter_Kit()->Controller->Shortcodes->your_method();
- *
- * Model / View::
- * Starter_Kit()->Model->Post->get_random_posts( 'portfolio', 5 );
- * Starter_Kit()->View->load('/front/my_template', array( 'foo' => 'bar' ));
- *
- * Config::
- * Starter_Kit()->config['social_profiles']
- *
- * Helpers::
- * \StarterKit\Helper\Front::get_grid_class();
- * \StarterKit\Helper\Media::img_resize();
- * ======================================================================
- **/
-
+add_action('shutdown', function() {
+	global $shortcode_tags;
+	//dd($shortcode_tags);
+	//dump(Starter_Kit()->Controller->Shortcodes->shortcodes);
+});

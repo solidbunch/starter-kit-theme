@@ -1,52 +1,27 @@
 <?php
 
 /**
- * Toggles / Accordion Shortcode
+ * Toggles Container / Accordion Shortcode
  **/
 
-if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
-	class WPBakeryShortCode_Toggles extends WPBakeryShortCodesContainer {
+use StarterKit\Model\Shortcode;
 
-		protected function content( $atts, $content = null ) {
+if ( !class_exists( 'StarterKitShortcode_Toggles' ) ) {
+	class StarterKitShortcode_Toggles extends Shortcode {
 
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$id = '';
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+		public function content( $atts, $content = null ) {
 
-			/** Shortcode data to output **/
-			$data = array(
-				'id'      => $id,
+			$atts = shortcode_atts( [
+				'el_id'             => '',
+				'classes'           => 'accordion'
+			], $this->atts($atts), $this->shortcode );
+
+			$data = $this->data( [
 				'atts'    => $atts,
-				'content' => $content,
-			);
+				'content' => $content
+			]);
 
-			return Starter_Kit()->View->load( '/view/view_container', $data, true, $shortcode_dir );
-
-		}
-
-	}
-}
-
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Toggle extends WPBakeryShortCode {
-
-		protected function content( $atts, $content = null ) {
-
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode );
-			$atts          = vc_map_get_attributes( $this->getShortcode(), $atts );
-			$id = '';
-			/** Shortcode data to output **/
-			$data = array(
-				'id'      => $id,
-				'atts'    => $atts,
-				'content' => $content,
-			);
-
-			return Starter_Kit()->View->load( '/view/view_content', $data, true, $shortcode_dir );
-
+			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 
 	}

@@ -2,40 +2,38 @@
 
 /**
  * Button Shortcode
+ *
  **/
+use StarterKit\Model\Shortcode;
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Button extends WPBakeryShortCode {
+if ( !class_exists( 'StarterKitShortcode_Button' ) ) {
+	class StarterKitShortcode_Button extends Shortcode {
 
-		protected function content( $atts, $content = null ) {
+		public function content( $atts, $content = null ) {
 
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode );
-
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
-
-			if ( ! empty( $atts['el_id'] ) ) {
-				$id = 'shortcode-' . $atts['el_id'];
-			} else {
-				$id = '';
-			}
+			$atts = shortcode_atts( [
+				'title'		    => '',
+				'link' 			=> '',
+				'icon' 			=> '',
+				'button_align'  => '',
+				'button_size'   => '',
+				'button_style'  => 'primary',
+				'outline'       => '',
+				'css'           => '',
+				'el_id' 		=> '',
+				'classes' 		=> ''
+			], $this->atts($atts), $this->shortcode );
 
 			if ( $atts['icon'] <> '' ) {
 				wp_enqueue_style( 'font-awesome' );
 			}
 
-			//wp_enqueue_style( 'my-style', \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode, '/assets/my-style.css') );
-
-			$data = array(
-				'id'      => $id,
+			$data = $this->data( array(
 				'atts'    => $atts,
-				'content' => $content,
-				'wpb'     => $this
-			);
+				'content' => $content
+			));
 
-			return Starter_Kit()->View->load( '/view/view', $data, true, $shortcode_dir );
-
+			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 
 	}

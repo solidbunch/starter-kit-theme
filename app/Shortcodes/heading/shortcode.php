@@ -1,63 +1,80 @@
 <?php
 
+/**
+ * Heading Shortcode
+ *
+ **/
+use StarterKit\Model\Shortcode;
 
-if ( class_exists( 'WPBakeryShortCode' ) ) {
+if ( !class_exists( 'StarterKitShortcode_Heading' ) ) {
+	class StarterKitShortcode_Heading extends Shortcode {
 
-	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
+		public function content( $atts, $content = null ) {
 
-		protected function content( $atts, $content = null ) {
-
-			$shortcode_dir = dirname( __FILE__ );
-			$shortcode     = basename( $shortcode_dir );
-			$shortcode_uri = \StarterKit\Helper\Utils::get_shortcodes_uri( $shortcode );
-
-			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
+			$atts = shortcode_atts( [
+				'title'		        => '',
+				'heading' 			=> '',
+				'header_color' 		=> '',
+				'text_align'        => '',
+				'text_transform'    => '',
+				'font_style'        => '',
+				'font_weight'       => '',
+				'letter_spacing'    => '',
+				'font_size'         => '',
+				'line_height'       => '',
+				'font_size_mobile'  => '',
+				'line_height_mobile'=> '',
+				'css'               => '',
+				'classes'           => ''
+			], $this->atts($atts), $this->shortcode );
 
 			if ( ! empty( $atts['el_id'] ) ) {
 				$id = 'shortcode-' . $atts['el_id'];
 			} else {
-				$id = '';
+				$id = $this->shortcode . '_' . rand(100000,1000000);
 			}
-			$inline_css = '';
+
+			$inline_css = [];
 
 			if ( $atts['header_color'] <> '' ) {
-				$inline_css .= '#' . $id . ' { color: ' . $atts['header_color'] . ';}';
+				$inline_css[] = 'color: ' . $atts['header_color'];
 			}
 
 			/** text align **/
 			if ( $atts['text_align'] <> '' ) {
-				$inline_css .= '#' . $id . ' { text-align: ' . $atts['text_align'] . ';}';
+				$inline_css[] = 'text-align: ' . $atts['text_align'];
 			}
 
 			/** text transform **/
 			if ( $atts['text_transform'] <> '' ) {
-				$inline_css .= '#' . $id . ' { text-transform: ' . $atts['text_transform'] . ';}';
+				$inline_css[] = 'text-transform: ' . $atts['text_transform'];
 			}
 
 			/** font style **/
 			if ( $atts['font_style'] <> '' ) {
-				$inline_css .= '#' . $id . ' { font-style: ' . $atts['font_style'] . ';}';
+				$inline_css[] = 'font-style: ' . $atts['font_style'];
 			}
 
 			/** font weight **/
 			if ( $atts['font_weight'] <> '' ) {
-				$inline_css .= '#' . $id . ' { font-weight: ' . $atts['font_weight'] . ';}';
+				$inline_css[] = 'font-weight: ' . $atts['font_weight'];
 			}
 
 			/** letter spacing **/
 			if ( $atts['letter_spacing'] <> '' ) {
-				$inline_css .= '#' . $id . ' { letter-spacing: ' . $atts['letter_spacing'] . 'px;}';
+				$inline_css[] = 'letter-spacing: ' . $atts['letter_spacing'] . 'px';
 			}
 
 			/** font size **/
 			if ( $atts['font_size'] <> '' ) {
-				$inline_css .= '#' . $id . ' { font-size: ' . $atts['font_size'] . 'px;}';
+				$inline_css[] = 'font-size: ' . $atts['font_size'] . 'px';
 			}
 
 			/** line height **/
 			if ( $atts['line_height'] <> '' ) {
-				$inline_css .= '#' . $id . ' { line-height: ' . $atts['line_height'] . 'px;}';
+				$inline_css[] = 'line-height: ' . $atts['line_height'] . 'px';
 			}
+			$inline_css = !empty($inline_css) ? '#' . $id . ' { '.implode(';',$inline_css) .' }':'';
 
 			/** font size for mobile devices **/
 			if ( $atts['font_size_mobile'] <> '' ) {
@@ -71,21 +88,17 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 			if ( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true,
-					Starter_Kit()->config['cache_time'] );
+				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true, Starter_Kit()->config['cache_time'] );
 				wp_add_inline_style( 'theme-style', $inline_css );
 			}
 
-			/** Shortcode data to output **/
-			$data = array(
+			$data = $this->data( array(
 				'id'      => $id,
 				'atts'    => $atts,
-				'content' => $content,
-				'wpb'     => $this
-			);
+				'content' => $content
+			));
 
-			return Starter_Kit()->View->load( '/view/view', $data, true, $shortcode_dir );
-
+			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 
 	}
