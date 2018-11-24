@@ -3,7 +3,7 @@ const path = require('path');
 const glob = require('glob');
 let dir = path.resolve();
 
-const pathTo = dir.replace(/\\/g, '/') +'/app/Shortcodes/';
+const pathTo = dir.replace(/\\/g, '/') + '/app/Shortcodes/';
 //read all styles.scss from shortcodes
 const stylesArray = glob.sync(pathTo + '**/assets/style.scss');
 
@@ -37,17 +37,17 @@ baseConfig.plugins.push(
 );
 
 baseConfig.module.rules.push(
-	// fonts loader
+	// images loader
 	{
 		test: /\.(png|jpg|svg|gif)$/i,
+		exclude: path.resolve('node_modules/'),
 		use: [{
-			loader: 'file-loader',
+			loader: 'url-loader',
 			options: {
-				name: '[name].[ext]',
-				publicPath: 'images/'       // override the default path
+				limit: 9999999999
 			}
 		}]
-	}
+	},
 );
 baseConfig.output = {
 	path: dir + '/app/Shortcodes/',
