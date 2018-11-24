@@ -5,9 +5,6 @@
  
  2. NodeJs
 
-**Optional utilities** 
- 1. WP_CLI (https://wp-cli.org/)
-
 **Setup**
  
  1. clone repo
@@ -21,12 +18,6 @@
      - > `npm run browser-sync` or `yarn browser-sync` - to start watcher with broser sync
     - To use browser sync make sure that you copied **`build/broswer-sync.config.js.sample`** to  `build/broswer-sync.config.js` - and configured your local domain
 
- 4. WP_CLI
-	- create shortcode :  
-	  - `php wp-cli.phar create:shortcode --name=shortcode_name --path='path/to/wordpress'`
-	  - create a shortcode dirrectory with `init.php`, `shortcode.php`, `view/view.php` files and starter code
-
-
 #Sturcture 
  - assets/ – all assets (css,scss,images,fonts,js files)
    - css/
@@ -34,7 +25,6 @@
    - js/
    - libs/
    - fonts/
- - bin - WP_CLI commands
  - build - webpack configs 
  - app/ – main theme files
    - Controller/
