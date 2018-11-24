@@ -1,35 +1,30 @@
 const baseConfig = require('./_basic.config')();
 // include the css extraction and minification plugins
-const MiniCssExtractPlugin	= require("mini-css-extract-plugin");
-const BrowserSyncPlugin 	= require('browser-sync-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+
 
 baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
 		filename: './assets/css/[name]/[name].css',
 	}),
-	new BrowserSyncPlugin({
-		host: 'localhost',
-		port: 3000,
-		proxy: 'http://blank.lc' // your local domain
-	})
 );
 
 baseConfig.module.rules.push(
-	// fonts loader
+	// images loader
 	{
 		test: /\.(png|jpg|svg|gif)$/i,
+		exclude: path.resolve('node_modules/'),
 		use: [{
-			loader: 'file-loader',
+			loader: 'url-loader',
 			options: {
-				name: '[name].[ext]',
-				outputPath: './assets/images/',    // where the fonts will go
-				publicPath: '../../images/'       // override the default path
+				limit: 9999999999
 			}
 		}]
 	},
 	// fonts loader
 	{
-		test: /.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+		test: /.(ttf|otf|svg|eot|woff(2)?)(\?[a-z0-9]+)?$/,
 		use: [{
 			loader: 'file-loader',
 			options: {
