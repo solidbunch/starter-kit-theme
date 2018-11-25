@@ -20,7 +20,7 @@ var tabify = require('gulp-tabify');
 // Project paths
 var paths = {
 
-	toRaplace: {
+	toReplace: {
 		src: ['./**/*.php', './**/*.css', './**/*.scss', './**/*.js', '!vendor/**/*.*', '!node_modules/**/*.*', '!./themeConfig.js', '!./gulpfile.js'],
 	},
 
@@ -84,7 +84,7 @@ gulp.task('sass', function () {
 
 /*
 gulp.task('replaceNames', function () {
-	paths.toRaplace.src;
+	paths.toReplace.src;
 	console.log( a );
 });
 */
