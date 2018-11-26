@@ -18,8 +18,8 @@ if ( !class_exists( 'StarterKitShortcode_Form_Checkbox' ) ) {
 			], $this->atts($atts), $this->shortcode );
 
 			$attributes   = [];
-			$attributes[] = 'id="field_' . esc_attr($atts['el_id']) . '"';
-			$attributes[] = 'name="field_' . esc_attr($atts['el_id']) . '"';
+			$attributes[] = 'id = "field_' . esc_attr($atts['el_id']) . '"';
+			$attributes[] = 'name = "field_' . esc_attr($atts['el_id']) . '"';
 
 			if ( filter_var( $atts['required'], FILTER_VALIDATE_BOOLEAN) ) {
 				$attributes[] = 'required="required"';

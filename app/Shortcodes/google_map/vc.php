@@ -1,10 +1,10 @@
 <?php
 /**
- * Heading Shortcode / VC Support
- *
+ * Google Map / VC Support
  **/
-if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
+
+if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
+	class WPBakeryShortCode_Google_Map extends WPBakeryShortCodesContainer {
 
 		protected function content( $atts, $content = null ) {
 

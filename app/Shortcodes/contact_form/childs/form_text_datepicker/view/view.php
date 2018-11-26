@@ -7,8 +7,6 @@
 			   value="create_event">
 		<?php endif; ?>
 		<input type="text" <?php echo implode( ' ',$data['attributes'] ); ?> class="air-datepicker">
-        <div class="clearfix"></div>
 	</div>
-
 </div>
 

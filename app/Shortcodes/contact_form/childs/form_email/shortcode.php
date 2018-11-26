@@ -22,6 +22,7 @@ if ( !class_exists( 'StarterKitShortcode_Form_Email' ) ) {
 			$attributes[] = 'id = "field_' . esc_attr($atts['el_id']) . '"';
 			$attributes[] = 'name = "field_' . esc_attr($atts['el_id']) . '"';
 			$attributes[] = 'placeholder = "' . esc_attr($atts['placeholder']) . '"';
+			$attributes[] = 'class = "form-control"';
 
 			if ( filter_var( $atts['required'], FILTER_VALIDATE_BOOLEAN) ) {
 				$attributes[] = 'required = "required"';

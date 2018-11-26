@@ -101,7 +101,7 @@ class Shortcode {
 	 */
 	public function data($data) {
 		if ( empty( $data['id']) && ! empty( $data['atts']['el_id'] ) ) {
-			$data['id'] = 'shortcode-' . $data['atts']['el_id'];
+			$data['id'] = $data['atts']['el_id'];
 		}
 		return $data;
 	}
@@ -148,9 +148,15 @@ class Shortcode {
 	/**
 	 * Localize shortcode script
 	 */
-
 	public function localize_script( $handle, $object_name, $l10n ) {
 		wp_localize_script( $handle, $object_name, $l10n );
+	}
+
+	/**
+	 * Add inline script
+	 */
+	public function add_inline_script( $handle, $data, $position = 'after' ) {
+		wp_add_inline_script($handle, $data, $position);
 	}
 
 }
