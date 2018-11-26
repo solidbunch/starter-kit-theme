@@ -49,21 +49,36 @@ class Shortcodes {
 
 			$parent = basename($shortcode_dir);
 
-			// Load shortcode
-			$this->load_dir($shortcode_dir);
-
 			// Load childs shortcodes if exist
+			$childs = [];
 			if (is_dir($shortcode_dir.'/childs')) {
 				$dirs_childs = glob( $shortcode_dir.'/childs/*', GLOB_ONLYDIR );
-				foreach ( $dirs_childs as $shortcode_dir ) {
-					$this->load_dir( $shortcode_dir, $parent );
+				foreach ( $dirs_childs as $shortcode_child_dir ) {
+					$shortcode = $this->load_shortcode( $shortcode_child_dir, $parent );
+					$childs[] = $shortcode->shortcode;
 				}
 			}
+
+			// Load shortcode
+			$this->load_shortcode($shortcode_dir, '', $childs);
+
+
 		}
 	}
 
-	public function load_dir($shortcode_dir, $parent='') {
+	public function load_shortcode($shortcode_dir, $parent='', $childs=[]) {
 		$config = require_once( $shortcode_dir . '/config.php' );
+
+		// Add childs shortcodes to container config
+		if (!empty($childs) && isset($config['as_parent'])) {
+			$only = explode(',', $config['as_parent']['only']);
+			foreach($childs as $child) {
+				if (!in_array($child, $only)) $only[] = $child;
+			}
+			$config['as_parent']['only'] = implode(',', $only);
+		}
+
+		//dump($config);
 		require_once( $shortcode_dir . '/shortcode.php' );
 
 		$class_name = 'StarterKitShortcode_'.str_replace('-','_',$config['base']);
@@ -76,6 +91,7 @@ class Shortcodes {
 				)
 
 			) );
+			return $this->shortcodes[ $config['base'] ];
 		}
 	}
 

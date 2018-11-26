@@ -52,6 +52,11 @@ class Shortcode {
 			} else {
 				$this->wp_shortcode();
 			}
+
+			// Add AJAX script
+			if (file_exists($this->shortcode_dir . '/ajax.php')) {
+				require_once( $this->shortcode_dir . '/ajax.php' );
+			}
 		}
 	}
 
@@ -96,7 +101,7 @@ class Shortcode {
 	 */
 	public function data($data) {
 		if ( empty( $data['id']) && ! empty( $data['atts']['el_id'] ) ) {
-			$data['id'] = 'shortcode-' . $data['atts']['el_id'];
+			$data['id'] = $data['atts']['el_id'];
 		}
 		return $data;
 	}
@@ -127,19 +132,31 @@ class Shortcode {
 	}
 
 	/**
-	 * Add shortcode style
+	 * Enqueue shortcode style
 	 */
-	public function add_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {
+	public function enqueue_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
-	 * Add shortcode script
+	 * Enqueue shortcode script
 	 */
-	public function add_script( $handle, $src, $deps = array(), $ver = false, $in_footer = false ) {
+	public function enqueue_script( $handle, $src, $deps = array(), $ver = false, $in_footer = false ) {
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
+	/**
+	 * Localize shortcode script
+	 */
+	public function localize_script( $handle, $object_name, $l10n ) {
+		wp_localize_script( $handle, $object_name, $l10n );
+	}
 
+	/**
+	 * Add inline script
+	 */
+	public function add_inline_script( $handle, $data, $position = 'after' ) {
+		wp_add_inline_script($handle, $data, $position);
+	}
 
 }

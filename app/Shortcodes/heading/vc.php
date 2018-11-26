@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Heading Shortcode / VC Support
+ *
+ **/
 if ( class_exists( 'WPBakeryShortCode' ) ) {
 	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
 
