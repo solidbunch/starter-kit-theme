@@ -1,11 +1,11 @@
 <?php
-
 /**
- * Form Shortcode / VC Support
+ * Posts Shortcode / VC Support
+ *
  **/
 
-if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {
-	class WPBakeryShortCode_Contact_Form extends WPBakeryShortCodesContainer {
+if ( class_exists( 'WPBakeryShortCode' ) ) {
+	class WPBakeryShortCode_Posts extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 
