@@ -61,12 +61,6 @@
 	height: 25px;
 }
 
-@media (min-width: 768px) {
-	.form-builder-item .datepicker {
-		position: absolute !important;
-	}
-
-}
 @media (min-width: 768px) and (max-width: 991px) {
 	.form-builder-item .datepicker {
 		width: 220px;

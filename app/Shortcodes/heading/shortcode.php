@@ -1,9 +1,9 @@
 <?php
-
 /**
  * Heading Shortcode
  *
  **/
+
 use StarterKit\Model\Shortcode;
 
 if ( !class_exists( 'StarterKitShortcode_Heading' ) ) {

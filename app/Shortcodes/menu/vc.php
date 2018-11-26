@@ -1,10 +1,10 @@
 <?php
 /**
- * Heading Shortcode / VC Support
+ * Menu Shortcode / VC Support
  *
  **/
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Heading extends WPBakeryShortCode {
+	class WPBakeryShortCode_Menu extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 

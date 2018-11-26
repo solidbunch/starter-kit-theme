@@ -72,6 +72,8 @@ Starter_Kit()->run();
 
 add_action('1shutdown', function() {
 	global $shortcode_tags;
+
+	dd(wp_get_nav_menus());
 	dd($shortcode_tags);
 	//dump(Starter_Kit()->Controller->Shortcodes->shortcodes);
 });
