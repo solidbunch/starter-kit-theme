@@ -70,8 +70,8 @@ if ( ! function_exists( 'Starter_Kit' ) ) {
 // Run the theme
 Starter_Kit()->run();
 
-add_action('shutdown', function() {
+add_action('1shutdown', function() {
 	global $shortcode_tags;
-	//dd($shortcode_tags);
+	dd($shortcode_tags);
 	//dump(Starter_Kit()->Controller->Shortcodes->shortcodes);
 });

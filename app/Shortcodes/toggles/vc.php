@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Toggles / Accordion Shortcode
+ * Shortcode: Toggles / VC Support
  **/
 
 if ( class_exists( 'WPBakeryShortCodesContainer' ) ) {

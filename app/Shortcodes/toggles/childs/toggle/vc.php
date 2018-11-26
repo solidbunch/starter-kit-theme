@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Toggle Shortcode
+ * Toggle Child / VC Support
  **/
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
