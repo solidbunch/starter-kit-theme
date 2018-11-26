@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Toggles Container / Accordion Shortcode
+ * Toggles Shortcode
  **/
 
 use StarterKit\Model\Shortcode;

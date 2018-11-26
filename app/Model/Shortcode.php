@@ -52,6 +52,11 @@ class Shortcode {
 			} else {
 				$this->wp_shortcode();
 			}
+
+			// Add AJAX script
+			if (file_exists($this->shortcode_dir . '/ajax.php')) {
+				require_once( $this->shortcode_dir . '/ajax.php' );
+			}
 		}
 	}
 
@@ -127,19 +132,25 @@ class Shortcode {
 	}
 
 	/**
-	 * Add shortcode style
+	 * Enqueue shortcode style
 	 */
-	public function add_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {
+	public function enqueue_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
-	 * Add shortcode script
+	 * Enqueue shortcode script
 	 */
-	public function add_script( $handle, $src, $deps = array(), $ver = false, $in_footer = false ) {
+	public function enqueue_script( $handle, $src, $deps = array(), $ver = false, $in_footer = false ) {
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
+	/**
+	 * Localize shortcode script
+	 */
 
+	public function localize_script( $handle, $object_name, $l10n ) {
+		wp_localize_script( $handle, $object_name, $l10n );
+	}
 
 }
