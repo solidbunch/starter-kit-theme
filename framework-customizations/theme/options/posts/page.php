@@ -3,8 +3,8 @@
  * Page options array
  **/
 
-$headers = Starter_Kit()->Model->layout->get_default_layout( 'header' );
-$footers = Starter_Kit()->Model->layout->get_default_layout( 'footer' );
+$headers = Starter_Kit()->Model->Layout->get_default_layout( 'header' );
+$footers = Starter_Kit()->Model->Layout->get_default_layout( 'footer' );
 
 $choices_headers = $choices_footers = array(
 	''       => esc_html__( 'Inherit', 'starter-kit' ),

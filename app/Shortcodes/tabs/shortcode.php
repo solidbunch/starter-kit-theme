@@ -17,8 +17,8 @@ if ( !class_exists( 'StarterKitShortcode_Tabs' ) ) {
 				'classes'           => 'sk_tabs'
 			], $this->atts($atts), $this->shortcode );
 
-			$this->add_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/css/style.css' );
-			$this->add_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/js/script.js' );
+			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/css/style.css' );
+			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/js/script.js' );
 
 			$data = $this->data( [
 				'atts'    => $atts,

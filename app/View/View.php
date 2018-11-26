@@ -86,7 +86,7 @@ class View {
 				return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 			} else {
 
-				$default_layout_query = Starter_Kit()->Model->layout->get_default_layout( $layout_type );
+				$default_layout_query = Starter_Kit()->Model->Layout->get_default_layout( $layout_type );
 
 				if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
 					return do_shortcode( apply_filters( 'the_content',

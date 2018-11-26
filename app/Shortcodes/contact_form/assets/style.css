@@ -1,0 +1,238 @@
+.contact-form textarea {
+	height: 130px;
+}
+
+.contact-form button[type="submit"] {
+	padding-left: 77px;
+	padding-right: 77px;
+}
+
+@media (min-width: 768px) {
+	.cf-left .vc_column-inner{
+		padding-right: 10px!important;
+	}
+
+	.cf-right .vc_column-inner{
+		padding-left: 10px!important;
+	}
+
+}
+.form-error-msg{
+	margin-top: 40px;
+	color: #f00;
+}
+.contact-form .form-error-msg {
+	color: #f00;
+}
+.min_order_error{
+	color: #f00;
+	font-size:14px
+}
+.contact-form .success {
+	color: #2c8593;
+}
+.select-coin-item .field-text-small {
+	width:40%;
+	float:left;
+}
+.select-coin-item .field-text-small-label {
+	float:left;
+	margin:0 5px;
+	color:#2c8593;
+	font-size:14px;
+	width:calc(20% - 10px);
+	text-align:center;
+	padding: 15px 0;
+}
+.form-builder-item{
+	margin-bottom:20px;
+}
+
+.form-builder-item .datepicker {
+	border-radius: 0;
+	margin-top: 20px;
+	border: 2px solid #c3c3c3!important;
+	margin-bottom: 20px;
+	width: 260px;
+
+}
+
+.form-builder-item .datepicker--cell {
+	height: 25px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.form-builder-item .datepicker {
+		width: 220px;
+	}
+
+}
+
+.sell-link-text, .buy-link-text{
+	text-decoration: none;
+	transition: color .3s;
+	color: #2c8593;
+	cursor:pointer;
+	display:inline-block;
+	float:right;
+	line-height: 22px;
+	padding: 13px 0;
+}
+.buy-link-text{
+	float:left;
+}
+.button-sell{
+	float:right;
+}
+.sell-link-text:hover,.buy-link-text:hover{
+	color: #222;
+}
+.button-sell,.buy-link-text{
+	display:none;
+}
+
+/*------------------------------------------------------------------
+	File_uploader styles
+-------------------------------------------------------------------*/
+.field-file-uploader{
+	position: relative;
+}
+
+.file-uploader_icon{
+    color: #c3c3c3;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-125%);
+    z-index: -1;
+}
+label.file_uploader{
+	border: 2px solid #c3c3c3;
+	color: #c3c3c3;
+	display: block;
+	font-size: 14px;
+	font-family: Montserrat, sans-serif;
+	padding: 15px 30px;
+	width: 100%;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.field-file-uploader.invalid label.file_uploader{
+	border: 2px solid red;
+}
+/*------------------------------------------------------------------
+	Ajax Preloader styles
+-------------------------------------------------------------------*/
+#preloader_wrapper {
+	width: 74px;
+	height: 74px;
+	display: block;
+	position: relative;
+	margin: auto
+}
+.preloader_block {
+	background-color: #fff;
+	border: 2px solid #24d0de;
+	float: left;
+	height: 52px;
+	margin-left: 4px;
+	width: 14px;
+	opacity: .1;
+	animation-name: bounceG;
+	-o-animation-name: bounceG;
+	-ms-animation-name: bounceG;
+	-webkit-animation-name: bounceG;
+	-moz-animation-name: bounceG;
+	animation-duration: 1.5s;
+	-o-animation-duration: 1.5s;
+	-ms-animation-duration: 1.5s;
+	-webkit-animation-duration: 1.5s;
+	-moz-animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	-o-animation-iteration-count: infinite;
+	-ms-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: infinite;
+	animation-direction: normal;
+	-o-animation-direction: normal;
+	-ms-animation-direction: normal;
+	-webkit-animation-direction: normal;
+	-moz-animation-direction: normal;
+	transform: scale(.7);
+	-o-transform: scale(.7);
+	-ms-transform: scale(.7);
+	-webkit-transform: scale(.7);
+	-moz-transform: scale(.7)
+}
+#block_1 {
+	animation-delay: .45s;
+	-o-animation-delay: .45s;
+	-ms-animation-delay: .45s;
+	-webkit-animation-delay: .45s;
+	-moz-animation-delay: .45s
+}
+#block_2 {
+	animation-delay: .6s;
+	-o-animation-delay: .6s;
+	-ms-animation-delay: .6s;
+	-webkit-animation-delay: .6s;
+	-moz-animation-delay: .6s
+}
+#block_3 {
+	animation-delay: .75s;
+	-o-animation-delay: .75s;
+	-ms-animation-delay: .75s;
+	-webkit-animation-delay: .75s;
+	-moz-animation-delay: .75s
+}
+@keyframes bounceG {
+	0% {
+		transform: scale(1.2);
+		opacity: 1
+	}
+	100% {
+		transform: scale(.7);
+		opacity: .1
+	}
+}
+@-o-keyframes bounceG {
+	0% {
+		-o-transform: scale(1.2);
+		opacity: 1
+	}
+	100% {
+		-o-transform: scale(.7);
+		opacity: .1
+	}
+}
+@-ms-keyframes bounceG {
+	0% {
+		-ms-transform: scale(1.2);
+		opacity: 1
+	}
+	100% {
+		-ms-transform: scale(.7);
+		opacity: .1
+	}
+}
+@-webkit-keyframes bounceG {
+	0% {
+		-webkit-transform: scale(1.2);
+		opacity: 1
+	}
+	100% {
+		-webkit-transform: scale(.7);
+		opacity: .1
+	}
+}
+@-moz-keyframes bounceG {
+	0% {
+		-moz-transform: scale(1.2);
+		opacity: 1
+	}
+	100% {
+		-moz-transform: scale(.7);
+		opacity: .1
+	}
+}
