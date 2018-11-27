@@ -5,6 +5,7 @@ var config = {
 		prefix: 'StarterKit',
 		singleton: 'Starter_Kit',
 		textdomain: 'starter-kit',
+        styles: 'starter-kit',
 		name: 'Starter Kit Theme',
 		author: ''
 	}
@@ -105,6 +106,16 @@ gulp.task('replaceNames', function () {
 	return gulp.src(paths.toReplace.src)
 		.pipe(stringReplace('StarterKit', config.theme.prefix))
 		.pipe(stringReplace('Starter_Kit', config.theme.singleton))
+
+		// Styles, classes, ID
+        .pipe(stringReplace('.starter-kit-', '.'+config.theme.styles+'-'))
+        .pipe(stringReplace('class=".starter-kit-', 'class = ".'+config.theme.styles+'-'))
+        .pipe(stringReplace('class = ".starter-kit-', 'class = ".'+config.theme.styles+'-'))
+        .pipe(stringReplace('#starter-kit-', '#'+config.theme.styles+'-'))
+        .pipe(stringReplace('id="starter-kit-', 'id = ".'+config.theme.styles+'-'))
+        .pipe(stringReplace('id = "starter-kit-', 'id = ".'+config.theme.styles+'-'))
+
+
 		.pipe(stringReplace('starter-kit', config.theme.textdomain))
 		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
 		.pipe(stringReplace('{TODO}', config.theme.author))

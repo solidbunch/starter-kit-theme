@@ -1,4 +1,8 @@
 <?php
+/**
+ * Alert Shortcode / VC Support
+ *
+ **/
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
 	class WPBakeryShortCode_Alert extends WPBakeryShortCode {
@@ -12,5 +16,3 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 
 	}
 }
-
-

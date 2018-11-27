@@ -132,6 +132,20 @@ class Shortcode {
 	}
 
 	/**
+	 * Parse param group atts
+	 *
+	 * @see vc_param_group_parse_atts()
+	 *
+	 * @param $atts_string
+	 * @return array|mixed
+	 */
+	function param_group_parse_atts( $atts_string ) {
+		$array = json_decode( urldecode( $atts_string ), true );
+
+		return $array;
+	}
+
+	/**
 	 * Enqueue shortcode style
 	 */
 	public function enqueue_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {

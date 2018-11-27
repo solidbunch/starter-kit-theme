@@ -1,7 +1,7 @@
 <?php
-
 /**
  * News Shortcode / VC Support
+ *
  **/
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
