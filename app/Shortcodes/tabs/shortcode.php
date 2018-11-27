@@ -14,7 +14,7 @@ if ( !class_exists( 'StarterKitShortcode_Tabs' ) ) {
 			$atts = shortcode_atts( [
 				'position'          => '',
 				'el_id'             => '',
-				'classes'           => 'sk_tabs'
+				'classes'           => ''
 			], $this->atts($atts), $this->shortcode );
 
 			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/css/style.css' );

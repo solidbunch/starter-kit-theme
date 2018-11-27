@@ -1,0 +1,20 @@
+.shortcode-social-login {
+  margin-bottom: 30px;
+  a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+  }
+  a.facebook {
+	  background: #4267b2;
+  }
+  a.twitter {
+	  background: #1da1f2;
+  }
+  a.google {
+	  background: #e53935;
+  }
+}

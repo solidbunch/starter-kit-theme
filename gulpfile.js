@@ -114,9 +114,12 @@ gulp.task('replaceNames', function () {
         .pipe(stringReplace('#starter-kit-', '#'+config.theme.styles+'-'))
         .pipe(stringReplace('id="starter-kit-', 'id = ".'+config.theme.styles+'-'))
         .pipe(stringReplace('id = "starter-kit-', 'id = ".'+config.theme.styles+'-'))
+        .pipe(stringReplace('\'starter-kit_', '\''+config.theme.styles+'_'))
 
-
-		.pipe(stringReplace('starter-kit', config.theme.textdomain))
+        // Textdomain
+		.pipe(stringReplace('\'starter-kit\'', '\''+config.theme.textdomain+'\''))
+        .pipe(stringReplace('"starter-kit"', '"'+config.theme.textdomain+'"'))
+        
 		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
 		.pipe(stringReplace('{TODO}', config.theme.author))
 		.pipe(gulp.dest(function (file) {
