@@ -148,14 +148,14 @@ class Shortcode {
 	/**
 	 * Enqueue shortcode style
 	 */
-	public function enqueue_style( $handle, $src, $deps = array(), $ver = false, $media = 'all' ) {
+	public function enqueue_style( $handle, $src = '', $deps = array(), $ver = false, $media = 'all' ) {
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
 	 * Enqueue shortcode script
 	 */
-	public function enqueue_script( $handle, $src, $deps = array(), $ver = false, $in_footer = false ) {
+	public function enqueue_script( $handle, $src = '', $deps = array(), $ver = false, $in_footer = false ) {
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
