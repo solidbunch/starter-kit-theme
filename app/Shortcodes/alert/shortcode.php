@@ -1,4 +1,8 @@
 <?php
+/**
+ * Alert Shortcode
+ *
+ */
 
 use StarterKit\Model\Shortcode;
 
