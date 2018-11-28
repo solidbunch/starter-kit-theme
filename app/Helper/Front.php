@@ -4,7 +4,7 @@ namespace StarterKit\Helper;
 /**
  * Front Helper
  *
- * helper functions for templates and front controllers
+ * Helper functions for templates and front controllers
  *
  * @category   Wordpress
  * @package    Starter Kit Backend

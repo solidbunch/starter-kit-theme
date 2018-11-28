@@ -39,7 +39,7 @@ if ( !class_exists( 'StarterKitShortcode_Posts' ) ) {
 
 
 			// Add styles and scripts
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/script.js' );
+			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
 			$this->localize_script( $this->shortcode.'-script', 'shortcodePostsJsParams', array(
 				'query_vars'     => json_encode( $posts_query->query_vars ),
 				'paged'          => 1,

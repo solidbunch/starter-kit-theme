@@ -23,7 +23,6 @@ if ( !class_exists( 'StarterKitShortcode_Alert' ) ) {
 			}
 
 			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/script.js' );
 
 			$data = $this->data( array(
 				'atts'    => $atts,
