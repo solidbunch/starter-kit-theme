@@ -29,7 +29,7 @@ if ( !class_exists( 'StarterKitShortcode_News' ) ) {
 			]);
 
 			// Add styles and scripts
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/script.js' );
+			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
 			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
 			$this->localize_script( $this->shortcode.'-script', 'shortcodeNewsJsParams', array(
 				'query_vars'     => json_encode( $posts_query->query_vars ),
