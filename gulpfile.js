@@ -8,6 +8,28 @@ var config = {
 		name: 'Starter Kit Theme',
 		author: ''
 	}
+	/*
+	,
+	dev: {
+		browserSync: {
+			proxyURL: 'starter-kit.loc', // yourlocaldomain,
+			bypassPort: '8181'
+		},
+		/*
+		browserslist: [ // See https://github.com/browserslist/browserslist
+			'> 1%',
+			'last 2 versions'
+		],
+		*-/
+
+		debug: {
+			styles: true, // Render verbose CSS for debugging.
+			scripts: true // Render verbose JS for debugging.
+		}
+	},
+	export: {
+		compress: true
+	} */
 };
 
 var gulpSass = require('gulp-sass');
@@ -82,12 +104,6 @@ gulp.task('sass', function () {
 // 	});
 // });
 
-/*
-gulp.task('replaceNames', function () {
-	paths.toReplace.src;
-	console.log( a );
-});
-*/
 
 
 gulp.task('watch', ['sass'], function () {

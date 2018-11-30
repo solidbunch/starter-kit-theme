@@ -22,7 +22,7 @@ class widget extends \WP_Widget {
 
 		parent::__construct(
 			'social_icons_widget',
-			esc_html__( '[FRUITFUL BLANK] Social Icons', 'starter-kit' ),
+			esc_html__( '[STARTER KIT] Social Icons', 'starter-kit' ),
 			$widget_ops,
 			$control_ops
 		);
