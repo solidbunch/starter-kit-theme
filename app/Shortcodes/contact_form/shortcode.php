@@ -53,7 +53,7 @@ if ( !class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
 		 */
 		public function enqueue_scripts() {
 
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/script.js' );
+			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
 			$this->localize_script( $this->shortcode.'-script', 'ShortcodeContactForm', array(
 				'ajaxurl'                => admin_url( 'admin-ajax.php' ),
 				'strSuccess'             => esc_html__('Success', 'starter-kit'),

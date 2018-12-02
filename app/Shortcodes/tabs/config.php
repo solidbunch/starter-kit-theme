@@ -27,7 +27,7 @@ return [
 			'type'       => 'textfield',
 			'heading'    => esc_html__( 'CSS classes', 'starter-kit' ),
 			'param_name' => 'classes',
-			'value'      => 'sk_tabs',
+			'value'      => 'starter-kit_tabs',
 			'group'      => esc_html__( 'Header Attributes', 'starter-kit' ),
 		],
 		[

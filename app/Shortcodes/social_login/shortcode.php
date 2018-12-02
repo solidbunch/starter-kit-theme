@@ -1,27 +1,20 @@
 <?php
 /**
- * Alert Shortcode
+ * Social Login Shortcode
  *
  */
 
 use StarterKit\Model\Shortcode;
 
-if ( !class_exists( 'StarterKitShortcode_Alert' ) ) {
-	class StarterKitShortcode_Alert extends Shortcode {
+if ( !class_exists( 'StarterKitShortcode_Social_Login' ) ) {
+	class StarterKitShortcode_Social_Login extends Shortcode {
 
 		public function content( $atts, $content = null ) {
 
 			$atts = shortcode_atts( [
-				'icon' 			=> '',
-				'el_id' 		=> '',
-				'style' 		=> '',
-				'classes'		=> ''
 			], $this->atts($atts), $this->shortcode );
 
-			if ( $atts['icon'] <> '' ) {
-				wp_enqueue_style( 'font-awesome' );
-			}
-
+			$this->enqueue_style( 'font-awesome' );
 			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
 
 			$data = $this->data( array(
@@ -34,5 +27,3 @@ if ( !class_exists( 'StarterKitShortcode_Alert' ) ) {
 
 	}
 }
-
-

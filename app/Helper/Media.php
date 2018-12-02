@@ -4,7 +4,7 @@ namespace StarterKit\Helper;
 /**
  * Media Helper
  *
- * helper functions for work with media objects
+ * Helper functions for work with media objects
  *
  * @category   Wordpress
  * @package    Starter Kit Backend

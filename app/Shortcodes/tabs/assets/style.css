@@ -2,32 +2,32 @@
 	Tabs Shortcode
 		-- Horizontal Tabs
 -------------------------------------------------------------------*/
-.sk_tabs {
+.starter-kit_tabs {
 	margin-bottom: 32px;
 }
 
-.sk_tabs.type-default {
+.starter-kit_tabs.type-default {
 	border-top: 0;
 	border-radius: 4px;
 }
 
-.sk_tabs.type-default nav {
+.starter-kit_tabs.type-default nav {
 	display: flex;
 }
 
-.sk_tabs.type-default nav a:before,
-.sk_tabs.type-default nav a:after {
+.starter-kit_tabs.type-default nav a:before,
+.starter-kit_tabs.type-default nav a:after {
 	display: none;
 }
 
-.sk_tabs.type-default nav a,
-.sk_tabs.type-default nav a:hover,
-.sk_tabs.type-default nav a:active {
+.starter-kit_tabs.type-default nav a,
+.starter-kit_tabs.type-default nav a:hover,
+.starter-kit_tabs.type-default nav a:active {
 	box-shadow: none;
 	outline: none;
 }
 
-.sk_tabs.type-default nav a {
+.starter-kit_tabs.type-default nav a {
 	display: block;
 	padding: 13px 25px;
 	border-left: 1px solid #e0e0e0;
@@ -42,35 +42,35 @@
 	margin-right: 8px;
 }
 
-.sk_tabs.type-default nav a:last-of-type {
+.starter-kit_tabs.type-default nav a:last-of-type {
 	margin-right: 0;
 }
 
-.sk_tabs.type-default nav a.current {
+.starter-kit_tabs.type-default nav a.current {
 	background: #fff;
 	margin-bottom: -1px;
 	padding-bottom: 13px;
 	font-weight: 600;
 }
 
-.sk_tabs.type-default nav a:first-of-type.current {
+.starter-kit_tabs.type-default nav a:first-of-type.current {
 	border-top-left-radius: 4px;
 }
 
-.sk_tabs.type-default .sk-title {
+.starter-kit_tabs.type-default .starter-kit-title {
 	display: none;
 }
 
-.sk_tabs.type-default .sk_tabs_tab {
+.starter-kit_tabs.type-default .starter-kit_tabs_tab {
 	display: none;
 }
 
-.sk_tabs.type-default .sk_tabs_tab.current,
-.sk_tabs.type-default .sk-tab-content {
+.starter-kit_tabs.type-default .starter-kit_tabs_tab.current,
+.starter-kit_tabs.type-default .starter-kit-tab-content {
 	display: block;
 }
 
-.sk_tabs.type-default .sk-tab-content {
+.starter-kit_tabs.type-default .starter-kit-tab-content {
 	padding: 24px 32px;
 	font-size: 14px;
 	line-height: 24px;
@@ -84,24 +84,24 @@
 	Tabs Shortcode
 		-- Vertical Tabs
 -------------------------------------------------------------------*/
-.sk_tabs.type-vertical {
+.starter-kit_tabs.type-vertical {
 	display: flex;
 	border-radius: 4px;
 }
 
-.sk_tabs.type-vertical nav a:before,
-.sk_tabs.type-vertical nav a:after {
+.starter-kit_tabs.type-vertical nav a:before,
+.starter-kit_tabs.type-vertical nav a:after {
 	display: none;
 }
 
-.sk_tabs.type-vertical nav a,
-.sk_tabs.type-vertical nav a:hover,
-.sk_tabs.type-vertical nav a:active {
+.starter-kit_tabs.type-vertical nav a,
+.starter-kit_tabs.type-vertical nav a:hover,
+.starter-kit_tabs.type-vertical nav a:active {
 	box-shadow: none;
 	outline: none;
 }
 
-.sk_tabs.type-vertical nav a {
+.starter-kit_tabs.type-vertical nav a {
 	display: block;
 	padding: 17px 18px;
 	color: #4a4a4a;
@@ -117,11 +117,11 @@
 	margin-bottom: 8px;
 }
 
-.sk_tabs.type-vertical nav a:first-of-type {
+.starter-kit_tabs.type-vertical nav a:first-of-type {
 	border-top-left-radius: 4px;
 }
 
-.sk_tabs.type-vertical nav a.current {
+.starter-kit_tabs.type-vertical nav a.current {
 	background: #fff;
 	font-weight: 600;
 	margin-right: -1px;
@@ -130,22 +130,22 @@
 	position: relative;
 }
 
-.sk_tabs.type-vertical .sk-title {
+.starter-kit_tabs.type-vertical .starter-kit-title {
 	display: none;
 }
 
-.sk_tabs.type-vertical .sk_tabs_tab {
+.starter-kit_tabs.type-vertical .starter-kit_tabs_tab {
 	display: none;
 	flex-grow: 1;
 }
 
-.sk_tabs.type-vertical .sk_tabs_tab.current,
-.sk_tabs.type-vertical .sk-tab-content {
+.starter-kit_tabs.type-vertical .starter-kit_tabs_tab.current,
+.starter-kit_tabs.type-vertical .starter-kit-tab-content {
 	display: block;
 	min-height: 184px;
 }
 
-.sk_tabs.type-vertical .sk-tab-content {
+.starter-kit_tabs.type-vertical .starter-kit-tab-content {
 	z-index: 1;
 	position: relative;
 	padding: 22px 30px;
@@ -161,29 +161,29 @@
 	Tabs Shortcode
 		-- Accordions / Toggles
 -------------------------------------------------------------------*/
-.sk_tabs.type-accordion nav {
+.starter-kit_tabs.type-accordion nav {
 	display: none;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab {
 	display: block;
 	margin-bottom: 16px;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 }
 
-.sk_tabs.type-accordion .sk-tab-content {
+.starter-kit_tabs.type-accordion .starter-kit-tab-content {
 	display: none;
 	padding: 22px 32px;
 	font-size: 14px;
 	line-height: 24px;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab.current .sk-tab-content {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current .starter-kit-tab-content {
 	display: block;
 }
 
-.sk_tabs.type-accordion .sk-title {
+.starter-kit_tabs.type-accordion .starter-kit-title {
 	cursor: pointer;
 	color: #4a4a4a;
 	font-size: 16px;
@@ -197,7 +197,7 @@
 	position: relative;
 }
 
-.sk_tabs.type-accordion .sk-title:after {
+.starter-kit_tabs.type-accordion .starter-kit-title:after {
 	content: '';
 	width: 13px;
 	height: 9px;
@@ -208,25 +208,25 @@
 	background: url(../img/down.svg) center center no-repeat;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab.current .sk-title,
-.sk_tabs.type-accordion .sk_tabs_tab.active .sk-title {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current .starter-kit-title,
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.active .starter-kit-title {
 	border-bottom: 1px solid #e0e0e0;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab.current.active .sk-title {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current.active .starter-kit-title {
 	border-bottom: 0;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab.active .sk-title:after {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.active .starter-kit-title:after {
 	background-image: url(../img/up.svg);
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab:last-of-type .sk-tab-content {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab:last-of-type .starter-kit-tab-content {
 	border-bottom: 0;
 	border-top: 1px solid #e0e0e0;
 }
 
-.sk_tabs.type-accordion .sk_tabs_tab:last-of-type .sk-title {
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab:last-of-type .starter-kit-title {
 	border-bottom: 0;
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;

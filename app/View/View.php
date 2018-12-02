@@ -126,4 +126,20 @@ class View {
 		return '';
 	}
 
+	/**
+	 * Remove wpautop
+	 *
+	 * @see  wp_js_remove_wpautop()
+	 * @param $content
+	 * @param bool $autop
+	 * @return string
+	 */
+	function js_remove_wpautop( $content, $autop = false ) {
+
+		if ( $autop ) {
+			$content = wpautop( preg_replace( '/<\/?p\>/', "\n", $content ) . "\n" );
+		}
+		return do_shortcode( shortcode_unautop( $content ) );
+	}
+
 }
