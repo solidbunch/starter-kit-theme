@@ -14,11 +14,11 @@ if ( !class_exists( 'StarterKitShortcode_Tabs' ) ) {
 			$atts = shortcode_atts( [
 				'position'          => '',
 				'el_id'             => '',
-				'classes'           => 'sk_tabs'
+				'classes'           => ''
 			], $this->atts($atts), $this->shortcode );
 
-			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/css/style.css' );
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/js/script.js' );
+			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
+			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
 
 			$data = $this->data( [
 				'atts'    => $atts,

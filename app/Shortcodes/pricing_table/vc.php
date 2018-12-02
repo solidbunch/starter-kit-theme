@@ -1,11 +1,11 @@
 <?php
 /**
- * Button Shortcode / VC Support
+ * Pricing Table Shortcode / VC Support
  *
  **/
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Button extends WPBakeryShortCode {
+	class WPBakeryShortCode_Pricing_Table extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 

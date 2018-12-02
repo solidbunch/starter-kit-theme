@@ -1,11 +1,11 @@
 <?php
 /**
- * Button Shortcode / VC Support
+ * Social Login Shortcode / VC Support
  *
  **/
 
 if ( class_exists( 'WPBakeryShortCode' ) ) {
-	class WPBakeryShortCode_Button extends WPBakeryShortCode {
+	class WPBakeryShortCode_Social_Login extends WPBakeryShortCode {
 
 		protected function content( $atts, $content = null ) {
 

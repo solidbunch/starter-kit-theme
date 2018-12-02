@@ -21,7 +21,7 @@ return array(
 		array(
 			'type'        => 'textfield',
 			'heading'     => esc_html__( 'Email To', 'starter-kit' ),
-			'description' => esc_html__( 'The form will be sent to this email address.', 'starter-kit '),
+			'description' => esc_html__( 'The form will be sent to this email address.', 'starter-kit'),
 			'param_name'  => 'email_to',
 			'save_always' => true,
 			'value'       => get_option( 'admin_email' ),

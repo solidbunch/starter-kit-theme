@@ -112,7 +112,7 @@ class PostTypes {
 		);
 
 		register_taxonomy( 'testimonial_cat',
-			'testimonial',
+			'testimonials',
 			array(
 				'hierarchical'      => true,
 				'show_ui'           => true,
