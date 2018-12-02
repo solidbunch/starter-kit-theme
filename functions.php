@@ -52,7 +52,7 @@ spl_autoload_register( function ( $class ) {
 	}
 } );
 
-// https://codex.wordpress.org/Content_Width
+// https://codex.wordpress.org/Content_Width , https://developer.wordpress.com/themes/content-width/
 if ( ! isset( $content_width ) ) {
 	$content_width = 320;
 }
