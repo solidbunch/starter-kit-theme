@@ -5,11 +5,11 @@ var config = {
 		prefix: 'StarterKit',
 		singleton: 'Starter_Kit',
 		textdomain: 'starter-kit',
-        styles: 'starter-kit',
+		styles: 'starter-kit',
 		name: 'Starter Kit Theme',
 		author: '',
-        theme_uri: '',
-        author_uri: '',
+		theme_uri: '',
+		author_uri: '',
 	}
 	/*
 	,
@@ -44,11 +44,11 @@ var tabify = require('gulp-tabify');
 
 // Project paths
 var paths = {
-
+	
 	toReplace: {
 		src: ['./**/*.php', './**/*.css', './**/*.scss', './**/*.js', '!vendor/**/*.*', '!node_modules/**/*.*', '!./themeConfig.js', '!./gulpfile.js'],
 	},
-
+	
 	php: {
 		src: ['./**/*.php', '!vendor/**/*.*', '!node_modules/**/*.*'],
 		//dest: './'
@@ -79,7 +79,7 @@ var paths = {
 
 
 gulp.task('sass', function () {
-
+	
 	return gulp.src(paths.scss.src)
 		.pipe(gulpSourcemaps.init())
 		.pipe(gulpSass({outputStyle: 'expanded'}).on('error', gulpSass.logError)) // nested - default; expanded ; compact ; compressed
@@ -108,7 +108,6 @@ gulp.task('sass', function () {
 // });
 
 
-
 gulp.task('watch', ['sass'], function () {
 	gulp.watch(paths.scss.src, ['sass']);
 	//gulp.watch('./**/*.php', browserSync.reload);
@@ -120,35 +119,35 @@ gulp.task('default', ['watch']);
 
 
 gulp.task('replaceNames', function () {
-
-    return gulp.src(paths.toReplace.src)
-        .pipe(stringReplace('StarterKit', config.theme.prefix))
-        .pipe(stringReplace('Starter_Kit', config.theme.singleton))
-
-        // Styles, classes, ID
-        .pipe(stringReplace('class="starter-kit-', 'class = "'+config.theme.styles+'-'))
-        .pipe(stringReplace('class = "starter-kit-', 'class = "'+config.theme.styles+'-'))
-        .pipe(stringReplace('class="starter-kit_', 'class = "'+config.theme.styles+'_'))
-        .pipe(stringReplace('class = "starter-kit_', 'class = "'+config.theme.styles+'_'))
-        .pipe(stringReplace('#starter-kit-', '#'+config.theme.styles+'-'))
-        .pipe(stringReplace('id="starter-kit-', 'id = "'+config.theme.styles+'-'))
-        .pipe(stringReplace('id = "starter-kit-', 'id = "'+config.theme.styles+'-'))
-        .pipe(stringReplace('\'starter-kit_', '\''+config.theme.styles+'_'))
-        .pipe(stringReplace('\\.starter-kit-', '.'+config.theme.styles+'-'))
-        .pipe(stringReplace('\\.starter-kit_', '.'+config.theme.styles+'_'))
-
-        // Textdomain
-        .pipe(stringReplace('Text Domain: starter-kit', 'Text Domain: '+config.theme.textdomain))
-        .pipe(stringReplace('\'starter-kit', '\''+config.theme.textdomain))
-        .pipe(stringReplace('\"starter-kit', '"'+config.theme.textdomain))
-
-        .pipe(stringReplace('Starter Kit Theme', config.theme.name))
-
-        .pipe(stringReplace('{author}', config.theme.author))
-        .pipe(stringReplace('{theme_uri}', config.theme.theme_uri))
-        .pipe(stringReplace('{author_uri}', config.theme.author_uri))
-
-        .pipe(gulp.dest(function (file) {
-            return file.base;  // THE SAME DIR
-        }));
+	
+	return gulp.src(paths.toReplace.src)
+		.pipe(stringReplace('StarterKit', config.theme.prefix))
+		.pipe(stringReplace('Starter_Kit', config.theme.singleton))
+		
+		// Styles, classes, ID
+		.pipe(stringReplace('class="starter-kit-', 'class = "' + config.theme.styles + '-'))
+		.pipe(stringReplace('class = "starter-kit-', 'class = "' + config.theme.styles + '-'))
+		.pipe(stringReplace('class="starter-kit_', 'class = "' + config.theme.styles + '_'))
+		.pipe(stringReplace('class = "starter-kit_', 'class = "' + config.theme.styles + '_'))
+		.pipe(stringReplace('#starter-kit-', '#' + config.theme.styles + '-'))
+		.pipe(stringReplace('id="starter-kit-', 'id = "' + config.theme.styles + '-'))
+		.pipe(stringReplace('id = "starter-kit-', 'id = "' + config.theme.styles + '-'))
+		.pipe(stringReplace('\'starter-kit_', '\'' + config.theme.styles + '_'))
+		.pipe(stringReplace('\\.starter-kit-', '.' + config.theme.styles + '-'))
+		.pipe(stringReplace('\\.starter-kit_', '.' + config.theme.styles + '_'))
+		
+		// Textdomain
+		.pipe(stringReplace('Text Domain: starter-kit', 'Text Domain: ' + config.theme.textdomain))
+		.pipe(stringReplace('\'starter-kit', '\'' + config.theme.textdomain))
+		.pipe(stringReplace('\"starter-kit', '"' + config.theme.textdomain))
+		
+		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
+		
+		.pipe(stringReplace('{author}', config.theme.author))
+		.pipe(stringReplace('{theme_uri}', config.theme.theme_uri))
+		.pipe(stringReplace('{author_uri}', config.theme.author_uri))
+		
+		.pipe(gulp.dest(function (file) {
+			return file.base;  // THE SAME DIR
+		}));
 });

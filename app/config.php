@@ -14,7 +14,7 @@
  * @since      Class available since Release 1.0.0
  */
 return array(
-	'cache_time'          => '110820171044',
+	'cache_time'          => '201812022311',
 	'assets_uri'          => get_template_directory_uri() . '/assets/',
 	'shortcodes_dir'      => get_template_directory() . '/app/Shortcodes/',
 	'shortcodes_uri'      => get_template_directory_uri() . '/app/Shortcodes/',
