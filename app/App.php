@@ -5,6 +5,7 @@ namespace StarterKit;
 use StarterKit\Helper\Utils;
 use StarterKit\Model\Database;
 use StarterKit\View\View;
+use StarterKit\Controller\Shortcodes;
 
 /**
  * Application Singleton
@@ -89,10 +90,6 @@ class App {
 		
 		// Autoload widgets
 		utils::autoload_dir( get_template_directory() . '/app/Widgets', 1 );
-		utils::autoload_dir( get_template_directory() . '/app/Param', 1 );
-		
-		// Autoload shortcodes
-		//$this->Controller->Shortcodes = new Shortcodes();
 	}
 	
 	/**
