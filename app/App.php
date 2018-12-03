@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit;
 
 use StarterKit\Helper\Utils;
@@ -18,25 +19,25 @@ use StarterKit\View\View;
  * @since      Class available since Release 1.0.0
  */
 class App {
-
+	
 	/** @var  $instance - self */
 	private static $instance;
-
+	
 	/** @var array */
 	public $config;
-
+	
 	/** @var \stdClass */
-	public $controller;
-
+	public $Controller;
+	
 	/** @var \stdClass */
-	public $model;
-
+	public $Model;
+	
 	/** @var view */
-	public $view;
-
+	public $View;
+	
 	private function __construct() {
 	}
-
+	
 	/**
 	 * @return App Singleton
 	 */
@@ -44,57 +45,56 @@ class App {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
-
+		
 		return self::$instance;
 	}
-
+	
 	/**
 	 * Run the theme
 	 **/
 	public function run() {
-
+		
 		// Load default config
 		$this->config = require get_template_directory() . '/app/config.php';
-
+		
 		// Translation support
 		load_theme_textdomain( 'starter-kit', get_template_directory() . '/languages' );
-
+		
 		// Load core classes
 		$this->_dispatch();
-
+		
 	}
-
+	
 	/**
 	 * Load and instantiate all application
-	 * classes neccessary for this theme
+	 * classes necessary for this theme
 	 **/
 	private function _dispatch() {
-
+		
 		$this->Controller = new \stdClass();
 		$this->Model      = new \stdClass();
-
+		
 		// load dependency classes first
 		// View
-		/** @var view */
 		$this->View = new View();
-
+		
 		// Model
 		$this->Model->Database = new Database();
-
+		
 		// Autoload models
 		$this->_load_modules( 'Model', '/' );
-
+		
 		// Autoload controllers
 		$this->_load_modules( 'Controller', '/' );
-
+		
 		// Autoload widgets
 		utils::autoload_dir( get_template_directory() . '/app/Widgets', 1 );
 		utils::autoload_dir( get_template_directory() . '/app/Param', 1 );
-
+		
 		// Autoload shortcodes
 		//$this->Controller->Shortcodes = new Shortcodes();
 	}
-
+	
 	/**
 	 * Autoload core modules in a specific directory
 	 *
@@ -103,28 +103,28 @@ class App {
 	 * @param bool
 	 **/
 	private function _load_modules( $layer, $dir = '/' ) {
-
+		
 		$directory = get_template_directory() . '/app/' . $layer . $dir;
 		$handle    = opendir( $directory );
-
+		
 		while ( false !== ( $file = readdir( $handle ) ) ) {
-
+			
 			if ( is_file( $directory . $file ) ) {
 				// Figure out class name from file name
 				$class = str_replace( '.php', '', $file );
-
+				
 				// Avoid recursion
 				if ( $class !== get_class( $this ) ) {
 					$classPath            = "\\StarterKit\\{$layer}\\{$class}";
 					$this->$layer->$class = new $classPath();
 				}
-
+				
 			}
 		}
-
+		
 	}
-
+	
 	private function __clone() {
 	}
-
+	
 }

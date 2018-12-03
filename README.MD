@@ -12,7 +12,7 @@
  2. run `npm i` or  `yarn`  command (setup node depencies)
  
  3. to replace names use command
-    - > `npm run replaceNames` - build minified assets
+    - > `npm run replaceNames` - doing replacement by config object (edit first in gulpfile.js)
  
  3. to run webpack use next commands
      - > `npm run prod`  or  `yarn prod` - build minified assets
@@ -90,9 +90,9 @@
  
 #Naming conventions
 
-**shortcodes/widgets**
+**shortcodes | widgets**
  
- 1. all styles and scripts files should be in `{Shortcodes/Widgets}/assets` - folder
+ 1. all styles and scripts files should be in `{Shortcodes|Widgets}/assets` - folder
  
  2. styles should be named  - `style.scss`
  
@@ -112,7 +112,7 @@
  
  **File structure**
  
- - assets/ – all assets (styles, scripts, fonts,etc)
+ - assets/ – all assets (styles, scripts, fonts, etc)
     - assets/style.scss - styles
     - assets/scripts.js - scripts
     - assets/images/ - images
