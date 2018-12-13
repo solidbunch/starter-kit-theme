@@ -22,25 +22,40 @@ class Utils {
 	 * @param $option_name
 	 * @param null $default_value
 	 *
-	 * @return null
+	 * @return string|array|object|null
 	 */
 	public static function get_option( $option_name, $default_value = null ) {
 		return function_exists( '\fw_get_db_settings_option' )
 			? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
 	}
-	
+
 	/**
-	 * Get Global Option
+	 * Get Post Option
 	 *
 	 * @param $post_id
 	 * @param $option_name
 	 * @param null $default_value
 	 *
-	 * @return null
+	 * @return string|array|object|null
 	 */
 	public static function get_post_option( $post_id, $option_name, $default_value = null ) {
 		return function_exists( '\fw_get_db_post_option' )
 			? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
+	}
+
+	/**
+	 * Get Term Option
+	 *
+	 * @param $term_id
+	 * @param $taxonomy
+	 * @param $option_name
+	 * @param null $default_value
+	 *
+	 * @return string|array|object|null
+	 */
+	public static function get_term_option( $term_id, $taxonomy, $option_name, $default_value = null ) {
+		return function_exists( '\fw_get_db_term_option' )
+			? \fw_get_db_term_option( $term_id, $taxonomy, $option_name, $default_value ) : $default_value;
 	}
 	
 	/**
