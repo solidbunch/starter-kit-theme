@@ -74,6 +74,6 @@
     "watch": "webpack --watch --mode development --hide-modules --progress --color",
     "browser-sync": "cross-env SYNC=\"true\" webpack --watch --mode development --hide-modules --progress --color"
   },
-  "author": "{author}",
+  "author": "SolidBunch",
   "license": "GPL-3.0"
 }
