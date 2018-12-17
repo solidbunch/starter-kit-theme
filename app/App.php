@@ -5,7 +5,6 @@ namespace StarterKit;
 use StarterKit\Helper\Utils;
 use StarterKit\Model\Database;
 use StarterKit\View\View;
-use StarterKit\Controller\Shortcodes;
 
 /**
  * Application Singleton
@@ -15,7 +14,6 @@ use StarterKit\Controller\Shortcodes;
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
- * @copyright  {copyright}
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
  */
