@@ -2,14 +2,14 @@ var gulp = require('gulp');
 var stringReplace = require('gulp-string-replace');
 var config = {
 	theme: {
-		prefix: 'StarterKit',
-		singleton: 'Starter_Kit',
-		textdomain: 'starter-kit',
-		styles: 'starter-kit',
-		name: 'Starter Kit Theme',
-		author: '',
-		theme_uri: '',
-		author_uri: '',
+        name: 'Starter Kit Theme',	// Change theme name
+		prefix: 'StarterKit',		// Change theme prefix
+		singleton: 'Starter_Kit',	// Change theme main class
+		textdomain: 'starter-kit',	// Change textdomain
+		styles: 'starter-kit',		// Change CSS styles refix
+		author: 'SolidBunch',		// Change author
+		theme_uri: 'https://github.com/SolidBunch/Starter-Kit', 	// Change theme URI
+		author_uri: 'https://solidbunch.com',	// Change author URI
 	}
 	/*
 	,
@@ -144,7 +144,7 @@ gulp.task('replaceNames', function () {
 		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
 		
 		.pipe(stringReplace('SolidBunch', config.theme.author))
-		.pipe(stringReplace('{theme_uri}', config.theme.theme_uri))
+		.pipe(stringReplace('https://github.com/SolidBunch/Starter-Kit', config.theme.theme_uri))
 		.pipe(stringReplace('https://solidbunch.com', config.theme.author_uri))
 		
 		.pipe(gulp.dest(function (file) {

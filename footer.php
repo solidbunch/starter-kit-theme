@@ -37,7 +37,7 @@
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6 my-auto copyright"><?php echo \StarterKit\Helper\Utils::get_option( 'bottom_bar_text' ); ?></div>
-							<nav class="col-md-6 links text-md-right text-center">
+							<nav class="col-md-6 links">
 
 								<?php
 
