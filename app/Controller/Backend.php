@@ -62,7 +62,7 @@ class Backend {
 			array(
 				'name'         => 'WPBakery Page Builder',
 				'slug'         => 'js_composer',
-				'source'       => '{TODO}',
+				'source'       => 'https://solidbunch.com/required_plugins/js_composer.zip',
 				'required'     => false,
 				'version'      => '',
 				'external_url' => '',
