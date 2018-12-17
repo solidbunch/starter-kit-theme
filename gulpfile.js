@@ -143,9 +143,9 @@ gulp.task('replaceNames', function () {
 		
 		.pipe(stringReplace('Starter Kit Theme', config.theme.name))
 		
-		.pipe(stringReplace('{author}', config.theme.author))
+		.pipe(stringReplace('SolidBunch', config.theme.author))
 		.pipe(stringReplace('{theme_uri}', config.theme.theme_uri))
-		.pipe(stringReplace('{author_uri}', config.theme.author_uri))
+		.pipe(stringReplace('https://solidbunch.com', config.theme.author_uri))
 		
 		.pipe(gulp.dest(function (file) {
 			return file.base;  // THE SAME DIR

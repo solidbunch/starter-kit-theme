@@ -11,7 +11,7 @@ use StarterKit\Helper\Utils;
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
- * @author     {author}
+ * @author     SolidBunch
  * @copyright  {copyright}
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
