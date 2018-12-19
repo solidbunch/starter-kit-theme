@@ -1,0 +1,233 @@
+/*------------------------------------------------------------------
+	Tabs Shortcode
+		-- Horizontal Tabs
+-------------------------------------------------------------------*/
+.starter-kit_tabs {
+	margin-bottom: 32px;
+}
+
+.starter-kit_tabs.type-default {
+	border-top: 0;
+	border-radius: 4px;
+}
+
+.starter-kit_tabs.type-default nav {
+	display: flex;
+}
+
+.starter-kit_tabs.type-default nav a:before,
+.starter-kit_tabs.type-default nav a:after {
+	display: none;
+}
+
+.starter-kit_tabs.type-default nav a,
+.starter-kit_tabs.type-default nav a:hover,
+.starter-kit_tabs.type-default nav a:active {
+	box-shadow: none;
+	outline: none;
+}
+
+.starter-kit_tabs.type-default nav a {
+	display: block;
+	padding: 13px 25px;
+	border-left: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	border-top: 1px solid #e0e0e0;
+	color: #4a4a4a;
+	background-color: #f5f5f5;
+	font-size: 16px;
+	line-height: 20px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	margin-right: 8px;
+}
+
+.starter-kit_tabs.type-default nav a:last-of-type {
+	margin-right: 0;
+}
+
+.starter-kit_tabs.type-default nav a.current {
+	background: #fff;
+	margin-bottom: -1px;
+	padding-bottom: 13px;
+	font-weight: 600;
+}
+
+.starter-kit_tabs.type-default nav a:first-of-type.current {
+	border-top-left-radius: 4px;
+}
+
+.starter-kit_tabs.type-default .starter-kit-title {
+	display: none;
+}
+
+.starter-kit_tabs.type-default .starter-kit_tabs_tab {
+	display: none;
+}
+
+.starter-kit_tabs.type-default .starter-kit_tabs_tab.current,
+.starter-kit_tabs.type-default .starter-kit-tab-content {
+	display: block;
+}
+
+.starter-kit_tabs.type-default .starter-kit-tab-content {
+	padding: 24px 32px;
+	font-size: 14px;
+	line-height: 24px;
+	border: 1px solid #e0e0e0;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+/*------------------------------------------------------------------
+	Tabs Shortcode
+		-- Vertical Tabs
+-------------------------------------------------------------------*/
+.starter-kit_tabs.type-vertical {
+	display: flex;
+	border-radius: 4px;
+}
+
+.starter-kit_tabs.type-vertical nav a:before,
+.starter-kit_tabs.type-vertical nav a:after {
+	display: none;
+}
+
+.starter-kit_tabs.type-vertical nav a,
+.starter-kit_tabs.type-vertical nav a:hover,
+.starter-kit_tabs.type-vertical nav a:active {
+	box-shadow: none;
+	outline: none;
+}
+
+.starter-kit_tabs.type-vertical nav a {
+	display: block;
+	padding: 17px 18px;
+	color: #4a4a4a;
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #e0e0e0;
+	border-top: 1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	white-space: nowrap;
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 8px;
+}
+
+.starter-kit_tabs.type-vertical nav a:first-of-type {
+	border-top-left-radius: 4px;
+}
+
+.starter-kit_tabs.type-vertical nav a.current {
+	background: #fff;
+	font-weight: 600;
+	margin-right: -1px;
+	padding-right: 1px;
+	z-index: 2;
+	position: relative;
+}
+
+.starter-kit_tabs.type-vertical .starter-kit-title {
+	display: none;
+}
+
+.starter-kit_tabs.type-vertical .starter-kit_tabs_tab {
+	display: none;
+	flex-grow: 1;
+}
+
+.starter-kit_tabs.type-vertical .starter-kit_tabs_tab.current,
+.starter-kit_tabs.type-vertical .starter-kit-tab-content {
+	display: block;
+	min-height: 184px;
+}
+
+.starter-kit_tabs.type-vertical .starter-kit-tab-content {
+	z-index: 1;
+	position: relative;
+	padding: 22px 30px;
+	font-size: 14px;
+	line-height: 24px;
+	border: 1px solid #e0e0e0;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+/*------------------------------------------------------------------
+	Tabs Shortcode
+		-- Accordions / Toggles
+-------------------------------------------------------------------*/
+.starter-kit_tabs.type-accordion nav {
+	display: none;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab {
+	display: block;
+	margin-bottom: 16px;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit-tab-content {
+	display: none;
+	padding: 22px 32px;
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current .starter-kit-tab-content {
+	display: block;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit-title {
+	cursor: pointer;
+	color: #4a4a4a;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 600;
+	background: #f9f9f9;
+	margin: 0;
+	padding: 17px 16px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	position: relative;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit-title:after {
+	content: '';
+	width: 13px;
+	height: 9px;
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: url(../img/down.svg) center center no-repeat;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current .starter-kit-title,
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.active .starter-kit-title {
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current.active .starter-kit-title {
+	border-bottom: 0;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab.active .starter-kit-title:after {
+	background-image: url(../img/up.svg);
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab:last-of-type .starter-kit-tab-content {
+	border-bottom: 0;
+	border-top: 1px solid #e0e0e0;
+}
+
+.starter-kit_tabs.type-accordion .starter-kit_tabs_tab:last-of-type .starter-kit-title {
+	border-bottom: 0;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}

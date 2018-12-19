@@ -1,0 +1,25 @@
+@import "../mixins/_list-padding.scss";
+
+/*------------------------------------------------------------------
+[Footer styles]
+-------------------------------------------------------------------*/
+#footer {
+  margin-top: 35px;
+  @include list-padding(15px);
+
+  .list-inline li {
+    @extend .list-inline-item;
+  }
+
+  .widget-content * {
+    max-width: 100%;
+  }
+}
+
+#bottom-bar {
+  padding: 25px 0;
+
+  @include media-breakpoint-down(sm) {
+	text-align: center;
+  }
+}

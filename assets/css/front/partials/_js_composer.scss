@@ -1,0 +1,62 @@
+/*------------------------------------------------------------------
+[Stripped version of JS Composer styles]
+-------------------------------------------------------------------*/
+.vc_parallax-inner iframe,
+.vc_video-bg iframe {
+  max-width: 1000%;
+}
+
+.vc_video-bg-container {
+  position: relative;
+}
+
+.vc_video-bg {
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.vc_parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.vc_parallax > * {
+  position: relative;
+  z-index: 1;
+}
+
+.vc_parallax .vc_parallax-inner {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-attachment: scroll;
+  background-color: transparent;
+  background-image: inherit;
+  background-size: cover;
+  z-index: 0;
+  background-position: 50% 0;
+}
+
+.row-o-full-height {
+  min-height: 100vh;
+}
+
+.row-o-equal-height {
+  -webkit-box-align: stretch !important;
+  -webkit-align-items: stretch !important;
+  -ms-flex-align: stretch !important;
+  align-items: stretch !important;
+}
+
+.row-no-padding > .vc_column_container {
+  padding-left: 0;
+  padding-right: 0;
+}

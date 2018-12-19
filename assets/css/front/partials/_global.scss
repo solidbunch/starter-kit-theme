@@ -1,0 +1,85 @@
+@import "../_variables";
+
+/*------------------------------------------------------------------
+[Global styles]
+-------------------------------------------------------------------*/
+.align-center {
+  text-align: center;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.screen-reader-text {
+  visibility: hidden;
+  position: absolute;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit;
+}
+
+a {
+  color: $primary;
+  &:hover {
+    color: darken( $primary, 10% );
+  }
+}
+
+table {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+select {
+  @extend .custom-select;
+}
+
+input{
+  &[type="text"],
+  &[type="number"],
+  &[type="password"],
+  &[type="date"],
+  &[type="url"],
+  &[type="search"] {
+    @extend .form-control;
+  }
+}
+
+textarea {
+  @extend .form-control;
+}
+
+button, input[type="submit"] {
+  @extend .btn;
+}
+
+input[type="submit"] {
+  @extend .btn-primary;
+}
+
+  /** By Envato requirements */
+.wp-caption,
+.wp-caption-text,
+.screen-reader-text,
+.gallery-caption,
+.bypostauthor {
+  border: 0;
+}
+

@@ -1,0 +1,38 @@
+@import "../_variables";
+
+/*------------------------------------------------------------------
+[Header styles]
+-------------------------------------------------------------------*/
+
+.navbar {
+  padding: 0.5rem 0;
+}
+
+.dropdown-menu {
+  padding: 0;
+
+  li {
+    padding: 0;
+
+    a {
+      padding: 10px 25px;
+      border-radius: 3px;
+    }
+
+    &:active {
+      color: $white;
+    }
+
+    &:hover {
+      & > ul{
+        display: inline-block;
+        top: 75%;
+        left: 25%;
+      }
+    }
+  }
+
+}
+
+
+

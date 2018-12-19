@@ -1,0 +1,13 @@
+@import "../mixins/_list-padding.scss";
+
+/*------------------------------------------------------------------
+[Sidebar styles]
+-------------------------------------------------------------------*/
+#sidebar {
+  @include media-breakpoint-down(sm) {
+	margin-top: 35px;
+  }
+
+  @include list-padding(15px);
+
+}
