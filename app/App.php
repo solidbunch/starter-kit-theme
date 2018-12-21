@@ -14,6 +14,7 @@ use StarterKit\View\View;
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
+ * @link       http://solidbunch.com
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
  */
