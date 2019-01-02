@@ -79,9 +79,9 @@ class Media {
 		$is_svg = utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
 
 		if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
 		} else {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['width'] ), absint( $image_atts['height'] ), (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			$src = aq_resize( $image_atts['src'] , absint( $image_atts['width'] ), absint( $image_atts['height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
 		}
 
 
@@ -101,7 +101,7 @@ class Media {
 				$double_height = ! is_null( $image_atts['height'] ) ? absint( $image_atts['height'] ) * 2 : null;
 			}
 
-			$src2x = aq_resize( $orig_src, $double_width, $double_height, (bool) $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			$src2x = aq_resize( $orig_src, $double_width, $double_height, $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
 
 			if ( $src2x != false ) {
 				$image_atts['srcset'] = esc_url( $src ) . ' 1x, ' . esc_url( $src2x ) . ' 2x';
