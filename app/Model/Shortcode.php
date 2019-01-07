@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Model;
 
 use StarterKit\Helper\Utils;
@@ -40,12 +41,12 @@ class Shortcode {
 	 *
 	 * @param $data
 	 */
-	public function __construct($data=null) {
-		if ($data) {
-			$this->shortcode = $data['config']['base'];
+	public function __construct( $data = null ) {
+		if ( $data ) {
+			$this->shortcode     = $data['config']['base'];
 			$this->shortcode_dir = $data['shortcode_dir'];
 			$this->shortcode_uri = $data['shortcode_uri'];
-			$this->config = $data['config'];
+			$this->config        = $data['config'];
 
 			if ( Utils::is_vc() ) {
 				$this->vc_shortcode();
@@ -54,66 +55,10 @@ class Shortcode {
 			}
 
 			// Add AJAX script
-			if (file_exists($this->shortcode_dir . '/ajax.php')) {
+			if ( file_exists( $this->shortcode_dir . '/ajax.php' ) ) {
 				require_once( $this->shortcode_dir . '/ajax.php' );
 			}
 		}
-	}
-
-	public function custom_css_class($param_value, $prefix = '') {
-		$css_class = preg_match( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', $param_value ) ? $prefix . preg_replace( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', '$1', $param_value ) : '';
-		return $css_class;
-	}
-
-	/**
-	 * Prepare atts for shortcode
-	 *
-	 * @param $data
-	 *
-	 * @return mixed
-	 */
-	public function atts($atts) {
-		//if (!isset($atts['classes'])) $atts['classes'] = '';
-
-		if (!empty($atts['css'])) {
-			if (Utils::is_vc() && function_exists('vc_shortcode_custom_css_class') ) {
-				$css_class = trim( apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $atts['css'], ' ' ), $this->shortcode, $atts ) );
-			} else {
-				$css_class = $this->custom_css_class($atts['css']);
-				if (!empty($css_class)) {
-					Starter_Kit()->Controller->Shortcodes->custom_css[] = $atts['css'];
-				}
-			}
-			//dump( $this->shortcode );
-			//dump($css_class);
-			$atts['classes'] = $css_class . ' ' . trim(!empty( $atts['classes'] ) && trim( $atts['classes'] ) ? $atts['classes']:'');
-		}
-		//dump($atts);
-		return $atts;
-	}
-
-	/**
-	 * Prepare data for shortcode view
-	 *
-	 * @param $data
-	 *
-	 * @return mixed
-	 */
-	public function data($data) {
-		if ( empty( $data['id']) && ! empty( $data['atts']['el_id'] ) ) {
-			$data['id'] = $data['atts']['el_id'];
-		}
-		return $data;
-	}
-
-	/**
-	 * Add native Wordpress shortcode support
-	 *
-	 */
-	public function wp_shortcode() {
-		global $shortcode_tags;
-		//dump($shortcode_tags);
-		add_shortcode($this->shortcode, array($this, 'content') );
 	}
 
 	/**
@@ -122,7 +67,7 @@ class Shortcode {
 	 */
 	public function vc_shortcode() {
 
-		if ( class_exists( 'WPBakeryShortCode' ) && file_exists($this->shortcode_dir . '/vc.php')) {
+		if ( class_exists( 'WPBakeryShortCode' ) && file_exists( $this->shortcode_dir . '/vc.php' ) ) {
 			// Add shortcode map
 			vc_map( $this->config );
 
@@ -132,11 +77,74 @@ class Shortcode {
 	}
 
 	/**
+	 * Add native Wordpress shortcode support
+	 *
+	 */
+	public function wp_shortcode() {
+		global $shortcode_tags;
+		//dump($shortcode_tags);
+		add_shortcode( $this->shortcode, array( $this, 'content' ) );
+	}
+
+	/**
+	 * Prepare atts for shortcode
+	 *
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function atts( $atts ) {
+		//if (!isset($atts['classes'])) $atts['classes'] = '';
+
+		if ( ! empty( $atts['css'] ) ) {
+			if ( Utils::is_vc() && function_exists( 'vc_shortcode_custom_css_class' ) ) {
+				$css_class = trim( apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG,
+					vc_shortcode_custom_css_class( $atts['css'], ' ' ), $this->shortcode, $atts ) );
+			} else {
+				$css_class = $this->custom_css_class( $atts['css'] );
+				if ( ! empty( $css_class ) ) {
+					Starter_Kit()->Controller->Shortcodes->custom_css[] = $atts['css'];
+				}
+			}
+			//dump( $this->shortcode );
+			//dump($css_class);
+			$atts['classes'] = $css_class . ' ' . trim( ! empty( $atts['classes'] ) && trim( $atts['classes'] ) ? $atts['classes'] : '' );
+		}
+
+		//dump($atts);
+		return $atts;
+	}
+
+	public function custom_css_class( $param_value, $prefix = '' ) {
+		$css_class = preg_match( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/',
+			$param_value ) ? $prefix . preg_replace( '/\s*\.([^\{]+)\s*\{\s*([^\}]+)\s*\}\s*/', '$1',
+				$param_value ) : '';
+
+		return $css_class;
+	}
+
+	/**
+	 * Prepare data for shortcode view
+	 *
+	 * @param $data
+	 *
+	 * @return mixed
+	 */
+	public function data( $data ) {
+		if ( empty( $data['id'] ) && ! empty( $data['atts']['el_id'] ) ) {
+			$data['id'] = $data['atts']['el_id'];
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Parse param group atts
 	 *
 	 * @see vc_param_group_parse_atts()
 	 *
 	 * @param $atts_string
+	 *
 	 * @return array|mixed
 	 */
 	function param_group_parse_atts( $atts_string ) {
@@ -155,12 +163,6 @@ class Shortcode {
 	 * @param string $media
 	 */
 	public function enqueue_style( $handle, $src = '', $deps = array(), $ver = false, $media = 'all' ) {
-		$src = get_stylesheet_directory_uri() .'/dist/css/shortcode-'. $src;
-
-		if($ver === false) {
-			/** @var int $ver - timestamp */
-			$ver = filemtime(get_stylesheet_directory() . '/dist/css/shortcode-' . $src);
-		}
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
@@ -174,13 +176,6 @@ class Shortcode {
 	 * @param bool $in_footer
 	 */
 	public function enqueue_script( $handle, $src = '', $deps = array(), $ver = false, $in_footer = false ) {
-		$src = get_stylesheet_directory_uri() .'/dist/js/shortcode-'. $src;
-
-		if($ver === false) {
-			/** @var int $ver - timestamp */
-			$ver = filemtime(get_stylesheet_directory() . '/dist/js/shortcode-' . $src);
-		}
-
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
@@ -203,7 +198,7 @@ class Shortcode {
 	 * @param string $position
 	 */
 	public function add_inline_script( $handle, $data, $position = 'after' ) {
-		wp_add_inline_script($handle, $data, $position);
+		wp_add_inline_script( $handle, $data, $position );
 	}
 
 }
