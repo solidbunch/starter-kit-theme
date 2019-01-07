@@ -11,32 +11,10 @@ var config = {
 		theme_uri: 'https://github.com/SolidBunch/Starter-Kit', 	// Change theme URI
 		author_uri: 'https://solidbunch.com',	// Change author URI
 	}
-	/*
-	,
-	dev: {
-		browserSync: {
-			proxyURL: 'starter-kit.loc', // yourlocaldomain,
-			bypassPort: '8181'
-		},
-		/*
-		browserslist: [ // See https://github.com/browserslist/browserslist
-			'> 1%',
-			'last 2 versions'
-		],
-		*-/
-
-		debug: {
-			styles: true, // Render verbose CSS for debugging.
-			scripts: true // Render verbose JS for debugging.
-		}
-	},
-	export: {
-		compress: true
-	} */
 };
 
-var gulpSass = require('gulp-sass');
-var gulpSourcemaps = require('gulp-sourcemaps');
+//var gulpSass = require('gulp-sass');
+//var gulpSourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var gulpAutoprefixer = require('gulp-autoprefixer');
 var tabify = require('gulp-tabify');
