@@ -147,20 +147,49 @@ class Shortcode {
 
 	/**
 	 * Enqueue shortcode style
+	 *
+	 * @param $handle
+	 * @param string $src
+	 * @param array $deps
+	 * @param mixed $ver
+	 * @param string $media
 	 */
 	public function enqueue_style( $handle, $src = '', $deps = array(), $ver = false, $media = 'all' ) {
+		$src = get_stylesheet_directory_uri() .'/dist/css/shortcode-'. $src;
+
+		if($ver === false) {
+			/** @var int $ver - timestamp */
+			$ver = filemtime(get_stylesheet_directory() . '/dist/css/shortcode-' . $src);
+		}
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
 	 * Enqueue shortcode script
+	 *
+	 * @param $handle
+	 * @param string $src
+	 * @param array $deps
+	 * @param mixed $ver
+	 * @param bool $in_footer
 	 */
 	public function enqueue_script( $handle, $src = '', $deps = array(), $ver = false, $in_footer = false ) {
+		$src = get_stylesheet_directory_uri() .'/dist/js/shortcode-'. $src;
+
+		if($ver === false) {
+			/** @var int $ver - timestamp */
+			$ver = filemtime(get_stylesheet_directory() . '/dist/js/shortcode-' . $src);
+		}
+
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
 	/**
 	 * Localize shortcode script
+	 *
+	 * @param $handle
+	 * @param $object_name
+	 * @param $l10n
 	 */
 	public function localize_script( $handle, $object_name, $l10n ) {
 		wp_localize_script( $handle, $object_name, $l10n );
@@ -168,6 +197,10 @@ class Shortcode {
 
 	/**
 	 * Add inline script
+	 *
+	 * @param $handle
+	 * @param $data
+	 * @param string $position
 	 */
 	public function add_inline_script( $handle, $data, $position = 'after' ) {
 		wp_add_inline_script($handle, $data, $position);
