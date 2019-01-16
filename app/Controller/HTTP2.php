@@ -82,7 +82,7 @@ class HTTP2 {
 			$preload_src = apply_filters( 'http2_link_preload_src', $src );
 			if ( ! empty( $preload_src ) ) {
 				$header = sprintf(
-					'Link: <%s>; rel=preload; as=%s',
+					'Link: <%s>; rel=preload; as=%s; nopush',
 					esc_url( $this->http2_link_url_to_relative_path( $preload_src ) ),
 					sanitize_html_class( $this->http2_link_resource_hint_as( current_filter() ) )
 				);
