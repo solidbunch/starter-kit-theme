@@ -12,7 +12,7 @@ use StarterKit\Helper\Utils;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.1
+ * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.1
  */
 class Optimization {

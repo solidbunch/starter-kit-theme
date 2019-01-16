@@ -32,26 +32,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
-		filename: '[name]/assets/style.css'
+		filename: './css/shortcode-[name].css'
 	})
 );
-
-baseConfig.module.rules.push(
-	// images loader
-	{
-		test: /\.(png|jpg|svg|gif)$/i,
-		exclude: path.resolve('node_modules/'),
-		use: [{
-			loader: 'url-loader',
-			options: {
-				limit: 9999999999
-			}
-		}]
-	},
-);
 baseConfig.output = {
-	path: dir + '/app/Shortcodes/',
-	filename: '[name]/assets/scripts.min.js'
+	path: dir + '/dist/',
+	filename: 'js/shortcode-[name].min.js'
 };
 
 module.exports = Object.assign(
