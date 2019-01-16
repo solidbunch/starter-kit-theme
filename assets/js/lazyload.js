@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (lazyImage.dataset.sizes) {
                         lazyImage.sizes = lazyImage.dataset.sizes;
                     }
-                    lazyImage.classList.remove('lazy-loading');
+                    lazyImage.onload = function () {
+                        lazyImage.classList.remove('lazy-loading');
+                    };
                     lazyImageObserver.unobserve(lazyImage);
                 }
             });
@@ -49,7 +51,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (lazyImage.dataset.sizes) {
                                 lazyImage.sizes = lazyImage.dataset.sizes;
                             }
-                            lazyImage.classList.remove('lazy-loading');
+
+                            lazyImage.onload = function () {
+                                lazyImage.classList.remove('lazy-loading');
+
+                            };
 
                             lazyImages = lazyImages.filter(function (image) {
                                 return image !== lazyImage;

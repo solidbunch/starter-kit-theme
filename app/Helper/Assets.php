@@ -12,8 +12,8 @@ namespace StarterKit\Helper;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 2.0.0
- * @since      Class available since Release 2.0.0
+ * @version    Release: 1.0.0
+ * @since      Class available since Release 1.0.0
  */
 class Assets {
 	/**
