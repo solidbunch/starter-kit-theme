@@ -1,6 +1,7 @@
 <?php
 namespace StarterKit\Controller;
 
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\Utils;
 
 /**
@@ -95,14 +96,7 @@ class Front {
 			Starter_Kit()->config['cache_time'],
 			true
 		);
-		wp_register_script(
-			'starter-kit-front',
-			get_template_directory_uri() . '/assets/js/app.min.js',
-			array(
-				'jquery',
-				'google-fonts'
-			), Starter_Kit()->config['cache_time'], true
-		);
+		Assets::enqueue_script('starter-kit-front', 'app.min.js', array( 'jquery', 'google-fonts' ));
 
 		$js_vars = array(
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
@@ -129,16 +123,8 @@ class Front {
 
 
 		// CSS styles
-		wp_enqueue_style(
-			'starter-kit-libs',
-			get_template_directory_uri() . '/assets/css/libs/libs.css', false,
-			Starter_Kit()->config['cache_time']
-		);
-		wp_enqueue_style(
-			'starter-kit-style',
-			get_template_directory_uri() . '/assets/css/front/front.css',
-			false, Starter_Kit()->config['cache_time']
-		);
+		Assets::enqueue_style('starter-kit-libs', 'libs.css');
+		Assets::enqueue_style('starter-kit-front', 'front.css');
 
 	}
 
