@@ -32,7 +32,7 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		self::enqueue_style( $handle, '/dist/css' . $src, $deps, $ver, $media );
+		self::enqueue_style( $handle, 'dist/css/' . $src, $deps, $ver, $media );
 	}
 
 	/**
@@ -51,10 +51,11 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		$src = get_stylesheet_directory_uri() . '/' . $src;
-		$ver = self::add_version( $src, $ver );
+		$stylePath = get_stylesheet_directory() . '/' . $src;
 
-		if ( file_exists( $src ) ) {
+		if ( file_exists( $stylePath ) ) {
+			$ver = self::add_version( $stylePath, $ver );
+			$src = get_stylesheet_directory_uri() . '/' . $src;
 			wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 		}
 	}
@@ -62,16 +63,16 @@ class Assets {
 	/**
 	 * set timestamp to $ver var if false provided
 	 *
-	 * @param $src
+	 * @param $srcPath
 	 * @param $ver
 	 *
 	 * @return int
 	 */
-	protected static function add_version( $src, $ver ) {
+	protected static function add_version( $srcPath, $ver ) {
 		$remove_versions = utils::get_option( 'assets_versions', false );
-		if ( $ver === false && file_exists( $src ) && ! $remove_versions ) {
+		if ( $ver === false && ! $remove_versions ) {
 			/** @var int $ver - timestamp */
-			$ver = filemtime( $src );
+			$ver = filemtime( $srcPath );
 		}
 
 		return $ver;
@@ -93,9 +94,10 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		$src = get_stylesheet_directory_uri() . '/' . $src;
-		$ver = self::add_version( $src, $ver );
-		if ( file_exists( $src ) ) {
+		$scriptPath = get_stylesheet_directory() . '/' . $src;
+		$ver = self::add_version( $scriptPath, $ver );
+		if ( file_exists( $scriptPath ) ) {
+			$src = get_stylesheet_directory_uri() . '/' . $src;
 			wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 		}
 	}
@@ -116,10 +118,10 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		$src = get_stylesheet_directory_uri() . '/' . $src;
-		$ver = self::add_version( $src, $ver );
-
-		if ( file_exists( $src ) ) {
+		$stylePath = get_stylesheet_directory() . '/' . $src;
+		if ( file_exists( $stylePath ) ) {
+			$ver = self::add_version( $stylePath, $ver );
+			$src = get_stylesheet_directory_uri() . '/' . $src;
 			wp_register_style( $handle, $src, $deps, $ver, $media );
 		}
 	}
@@ -140,7 +142,7 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		self::enqueue_script( $handle, '/dist/js' . $src, $deps, $ver, $in_footer );
+		self::enqueue_script( $handle, 'dist/js/' . $src, $deps, $ver, $in_footer );
 	}
 
 	/**
@@ -159,10 +161,33 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		$src = get_stylesheet_directory_uri() . '/' . $src;
-		$ver = self::add_version( $src, $ver );
-		if ( file_exists( $src ) ) {
+		$scriptPath = get_stylesheet_directory() . '/' . $src ;
+		if ( file_exists( $scriptPath )) {
+			$ver = self::add_version( $scriptPath, $ver );
+			$src = get_stylesheet_directory_uri() . '/' . $src;
 			wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 		}
+	}
+
+	/**
+	 * Add inline script
+	 *
+	 * @param $handle
+	 * @param $data
+	 * @param string $position
+	 */
+	public static function add_inline_style( $handle, $data, $position = 'after' ) {
+		wp_add_inline_script( $handle, $data, $position );
+	}
+
+	/**
+	 * Localize script
+	 *
+	 * @param $handle
+	 * @param $object_name
+	 * @param $l10n
+	 */
+	public static function localize_script( $handle, $object_name, $l10n ) {
+		wp_localize_script( $handle, $object_name, $l10n );
 	}
 }
