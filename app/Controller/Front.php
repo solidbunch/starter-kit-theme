@@ -94,10 +94,10 @@ class Front {
 			'google-fonts',
 			'/assets/libs/google-fonts/webfont.js',
 			false,
-			Starter_Kit()->config['cache_time'],
+			false,
 			true
 		);
-		Assets::enqueue_script('starter-kit-front', 'app.min.js', array( 'jquery', 'google-fonts' ));
+		Assets::enqueue_script_dist('starter-kit-front', 'app.min.js', array( 'jquery', 'google-fonts' ));
 
 		$js_vars = array(
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
@@ -125,7 +125,7 @@ class Front {
 
 		// CSS styles
 		Assets::enqueue_style_dist('starter-kit-libs', 'libs.css');
-		Assets::enqueue_style('starter-kit-front', 'front.css');
+		Assets::enqueue_style_dist('starter-kit-front', 'front.css');
 
 	}
 
