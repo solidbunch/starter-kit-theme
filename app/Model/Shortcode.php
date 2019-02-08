@@ -2,6 +2,7 @@
 
 namespace StarterKit\Model;
 
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\Utils;
 
 /**
@@ -82,7 +83,7 @@ class Shortcode {
 	 */
 	public function wp_shortcode() {
 		global $shortcode_tags;
-		//dump($shortcode_tags);
+
 		add_shortcode( $this->shortcode, array( $this, 'content' ) );
 	}
 
@@ -94,8 +95,6 @@ class Shortcode {
 	 * @return mixed
 	 */
 	public function atts( $atts ) {
-		//if (!isset($atts['classes'])) $atts['classes'] = '';
-
 		if ( ! empty( $atts['css'] ) ) {
 			if ( Utils::is_vc() && function_exists( 'vc_shortcode_custom_css_class' ) ) {
 				$css_class = trim( apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG,
@@ -106,12 +105,9 @@ class Shortcode {
 					Starter_Kit()->Controller->Shortcodes->custom_css[] = $atts['css'];
 				}
 			}
-			//dump( $this->shortcode );
-			//dump($css_class);
 			$atts['classes'] = $css_class . ' ' . trim( ! empty( $atts['classes'] ) && trim( $atts['classes'] ) ? $atts['classes'] : '' );
 		}
 
-		//dump($atts);
 		return $atts;
 	}
 
@@ -148,9 +144,7 @@ class Shortcode {
 	 * @return array|mixed
 	 */
 	function param_group_parse_atts( $atts_string ) {
-		$array = json_decode( urldecode( $atts_string ), true );
-
-		return $array;
+		return json_decode( urldecode( $atts_string ), true );
 	}
 
 	/**
@@ -180,25 +174,27 @@ class Shortcode {
 	}
 
 	/**
-	 * Localize shortcode script
+	 * Wrapper for Assets::localize_script
 	 *
+	 * @see Assets::localize_script
 	 * @param $handle
 	 * @param $object_name
 	 * @param $l10n
 	 */
 	public function localize_script( $handle, $object_name, $l10n ) {
-		wp_localize_script( $handle, $object_name, $l10n );
+		Assets::localize_script( $handle, $object_name, $l10n );
 	}
 
 	/**
-	 * Add inline script
+	 * Wrapper for Assets::add_inline_style
 	 *
+	 * @see Assets::add_inline_style
 	 * @param $handle
 	 * @param $data
 	 * @param string $position
 	 */
 	public function add_inline_script( $handle, $data, $position = 'after' ) {
-		wp_add_inline_script( $handle, $data, $position );
+		Assets::add_inline_style( $handle, $data, $position );
 	}
 
 }
