@@ -29,7 +29,7 @@ if ( !class_exists( 'StarterKitShortcode_Pricing_Table' ) ) {
 
 			], $this->atts($atts), $this->shortcode );
 
-			\StarterKit\Helper\Assets::enqueue_style(
+			\StarterKit\Helper\Assets::enqueue_style_dist(
 				$this->shortcode.'-style',
 				'shortcode-pricing_table.css'
 			);
