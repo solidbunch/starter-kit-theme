@@ -5,6 +5,7 @@
  */
 
 use StarterKit\Model\Shortcode;
+use StarterKit\Helper\Assets;
 
 if ( !class_exists( 'StarterKitShortcode_Social_Login' ) ) {
 	class StarterKitShortcode_Social_Login extends Shortcode {
@@ -13,8 +14,8 @@ if ( !class_exists( 'StarterKitShortcode_Social_Login' ) ) {
 
 			$atts = shortcode_atts( [], $this->atts($atts), $this->shortcode );
 
-			$this->enqueue_style( 'font-awesome' );
-			\StarterKit\Helper\Assets::enqueue_style(
+			Assets::enqueue_style( 'font-awesome' );
+			Assets::enqueue_style_dist(
 				$this->shortcode.'-style',
 				'shortcode-social_login.css'
 			);

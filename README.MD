@@ -3,9 +3,9 @@
 **Requirements**
  
  1. PHP5.6+
-  2. NodeJs
+ 2. NodeJs
 
-#Setup
+# Setup
  
  1. clone repo
  
@@ -21,7 +21,7 @@
      - > `npm run browser-sync` or `yarn browser-sync` - to start watcher with broser sync
     - To use browser sync make sure that you copied **`build/broswer-sync.config.js.sample`** to  `build/broswer-sync.config.js` - and configured your local domain
 
-#Sturcture
+# Sturcture
  - app/ – main theme files 
     - Controller/
         - Backend.php – wp-admin functions
@@ -88,7 +88,7 @@
  - style.css
  - webpack.config.js
  
-#Naming conventions
+# Naming conventions
 
 **shortcodes | widgets**
  
@@ -100,7 +100,7 @@
  
  4. enqueue in shortcode  - `style.css` and `scritps.min.js`
  
-#Shortcodes
+# Shortcodes
  
  Shortcodes in the shortcodes folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
  

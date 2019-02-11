@@ -4,6 +4,7 @@
  *
  **/
 
+use StarterKit\Helper\Assets;
 use StarterKit\Model\Shortcode;
 
 if ( !class_exists( 'StarterKitShortcode_Heading' ) ) {
@@ -88,8 +89,8 @@ if ( !class_exists( 'StarterKitShortcode_Heading' ) ) {
 
 			if ( $inline_css <> '' ) {
 				// hack to attach inline style
-				wp_enqueue_style( 'theme-style', get_template_directory_uri() . '/style.css', true, Starter_Kit()->config['cache_time'] );
-				wp_add_inline_style( 'theme-style', $inline_css );
+				Assets::enqueue_style( 'theme-style', 'style.css');
+				Assets::add_inline_style( 'theme-style', $inline_css );
 			}
 
 			$data = $this->data( array(
