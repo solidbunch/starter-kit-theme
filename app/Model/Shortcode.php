@@ -150,6 +150,7 @@ class Shortcode {
 	/**
 	 * Enqueue shortcode style
 	 *
+	 * @see Assets::enqueue_style
 	 * @param $handle
 	 * @param string $src
 	 * @param array $deps
@@ -157,12 +158,14 @@ class Shortcode {
 	 * @param string $media
 	 */
 	public function enqueue_style( $handle, $src = '', $deps = array(), $ver = false, $media = 'all' ) {
-		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+		//wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+		Assets::enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
 	 * Enqueue shortcode script
 	 *
+	 * @see Assets::enqueue_script
 	 * @param $handle
 	 * @param string $src
 	 * @param array $deps
@@ -170,7 +173,8 @@ class Shortcode {
 	 * @param bool $in_footer
 	 */
 	public function enqueue_script( $handle, $src = '', $deps = array(), $ver = false, $in_footer = false ) {
-		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
+		//wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
+		Assets::enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
 	/**
@@ -188,13 +192,14 @@ class Shortcode {
 	/**
 	 * Wrapper for Assets::add_inline_style
 	 *
-	 * @see Assets::add_inline_style
+	 * @see Assets::add_inline_script
+	 *
 	 * @param $handle
 	 * @param $data
 	 * @param string $position
 	 */
 	public function add_inline_script( $handle, $data, $position = 'after' ) {
-		Assets::add_inline_style( $handle, $data, $position );
+		Assets::add_inline_script( $handle, $data, $position );
 	}
 
 }
