@@ -21,7 +21,7 @@ class HTTP2 {
 	 * Cloudflare gives an HTTP 520 error when more than 8k of headers are present. Limiting $this
 	 * plugin's output to 4k should keep those errors away.
 	 */
-	const HTTP2_MAX_HEADER_SIZE = 1024 * 400;
+	const HTTP2_MAX_HEADER_SIZE = 1024 * 200;
 	protected $http2_header_size_accumulator = 0;
 	/** @var array */
 	protected $assets = [];
