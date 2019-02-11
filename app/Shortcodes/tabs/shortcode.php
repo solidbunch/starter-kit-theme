@@ -6,6 +6,8 @@
 
 use StarterKit\Model\Shortcode;
 
+use \StarterKit\Helper\Assets;
+
 if ( !class_exists( 'StarterKitShortcode_Tabs' ) ) {
 	class StarterKitShortcode_Tabs extends Shortcode {
 
@@ -17,8 +19,8 @@ if ( !class_exists( 'StarterKitShortcode_Tabs' ) ) {
 				'classes'           => ''
 			], $this->atts($atts), $this->shortcode );
 
-			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
+			Assets::enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
+			Assets::enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
 
 			$data = $this->data( [
 				'atts'    => $atts,

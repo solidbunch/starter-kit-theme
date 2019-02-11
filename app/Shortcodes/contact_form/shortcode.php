@@ -3,6 +3,7 @@
  * Form Shortcode
  **/
 
+use StarterKit\Helper\Assets;
 use StarterKit\Model\Shortcode;
 
 if ( !class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
@@ -53,8 +54,8 @@ if ( !class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
 		 */
 		public function enqueue_scripts() {
 
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
-			$this->localize_script( $this->shortcode.'-script', 'ShortcodeContactForm', array(
+			Assets::enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
+			Assets::localize_script( $this->shortcode.'-script', 'ShortcodeContactForm', array(
 				'ajaxurl'                => admin_url( 'admin-ajax.php' ),
 				'strSuccess'             => esc_html__('Success', 'starter-kit'),
 				'strError'               => esc_html__('Error', 'starter-kit'),
@@ -63,7 +64,7 @@ if ( !class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
 				'strFormError'           => esc_html__('Form validation error. Please check all required fields and try again.', 'starter-kit'),
 			));
 
-			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
+			Assets::enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
 		}
 
 		/**
