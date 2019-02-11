@@ -68,17 +68,17 @@ class Assets {
 	 *
 	 * @param string $src
 	 *
-	 * @param bool $returnUrl
+	 * @param bool $return_url
 	 *
 	 * @return bool|string
 	 */
-	protected static function isFullUrl( $src, $returnUrl = true ) {
-		$filter = filter_var( $src, FILTER_VALIDATE_URL );
-		if ( ! $returnUrl ) {
-			return $filter ? true : false;
+	protected static function isFullUrl( $src, $return_url = true ) {
+		$parsed_url = parse_url($src);
+		if ( ! $return_url ) {
+			return !empty($parsed_url['host']) ? true : false;
 		}
 
-		return $filter ? $src : get_stylesheet_directory_uri() . '/' . $src;
+		return !empty($parsed_url['host']) ? $src : get_stylesheet_directory_uri() . '/' . $src;
 	}
 
 	/**
