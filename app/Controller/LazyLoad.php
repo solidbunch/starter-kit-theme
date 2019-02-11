@@ -162,15 +162,17 @@ class LazyLoad {
 		} elseif ( preg_match('/([\d]+)x([\d]+)\.(jpg|png|jpeg|gif)/i', $attributes['src'], $size_match)) {
 			$image_size['width'] = $size_match[1];
 			$image_size['height'] = $size_match[2];
-			
-		} elseif ( \StarterKit\Helper\Utils::get_option('lazy_load_get_sizes_with_getimagesize', 1) ) {
-			$image_size = getimagesize($old_attributes['src']);
-			
-			if(!empty($image_size[0] && $image_size[1])){
-				$image_size['width'] = $image_size[0];
+
+		} elseif ( \StarterKit\Helper\Utils::get_option( 'lazy_load_get_sizes_with_getimagesize', 1 ) ) {
+			$image_size = @getimagesize( $old_attributes['src'] );
+
+			if($image_size === false) {
+				error_log( 'lazy load error in : ' . __CLASS__ . ':' . __LINE__ );
+			} elseif ( ! empty( $image_size[0] && $image_size[1] ) ) {
+				$image_size['width']  = $image_size[0];
 				$image_size['height'] = $image_size[1];
 			}
-			
+
 		}
 
 		if ($image_size['width'] < $min_width && $image_size['height'] < $min_height) {
