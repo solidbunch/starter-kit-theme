@@ -51,12 +51,12 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		if ( !self::isFullUrl( $src, false ) ) {
+		if ( ! self::is_full_url( $src, false ) ) {
 			$stylePath = get_stylesheet_directory() . '/' . $src;
 			if ( file_exists( $stylePath ) ) {
 				$ver = self::add_version( $stylePath, $ver );
 				/** @var string|bool $src */
-				$src = self::isFullUrl( $src );
+				$src = self::is_full_url( $src );
 
 			}
 		}
@@ -72,13 +72,13 @@ class Assets {
 	 *
 	 * @return bool|string
 	 */
-	protected static function isFullUrl( $src, $return_url = true ) {
-		$parsed_url = parse_url($src);
+	public static function is_full_url( $src, $return_url = true ) {
+		$parsed_url = parse_url( $src );
 		if ( ! $return_url ) {
-			return !empty($parsed_url['host']) ? true : false;
+			return ! empty( $parsed_url['host'] ) ? true : false;
 		}
 
-		return !empty($parsed_url['host']) ? $src : get_stylesheet_directory_uri() . '/' . $src;
+		return ! empty( $parsed_url['host'] ) ? $src : get_stylesheet_directory_uri() . '/' . $src;
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Assets {
 	 *
 	 * @return int
 	 */
-	protected static function add_version( $srcPath, $ver ) {
+	public static function add_version( $srcPath, $ver ) {
 		$remove_versions = utils::get_option( 'assets_versions', false );
 		if ( $ver === false && ! $remove_versions ) {
 			/** @var int $ver - timestamp */
@@ -115,11 +115,11 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		if ( !self::isFullUrl( $src, false ) ) {
+		if ( ! self::is_full_url( $src, false ) ) {
 			$scriptPath = get_stylesheet_directory() . '/' . $src;
 			$ver        = self::add_version( $scriptPath, $ver );
 			if ( file_exists( $scriptPath ) ) {
-				$src = self::isFullUrl( $src );
+				$src = self::is_full_url( $src );
 			}
 		}
 		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
@@ -141,11 +141,11 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		if ( !self::isFullUrl( $src, false ) ) {
+		if ( ! self::is_full_url( $src, false ) ) {
 			$stylePath = get_stylesheet_directory() . '/' . $src;
 			if ( file_exists( $stylePath ) ) {
 				$ver = self::add_version( $stylePath, $ver );
-				$src = self::isFullUrl( $src );
+				$src = self::is_full_url( $src );
 			}
 		}
 		wp_register_style( $handle, $src, $deps, $ver, $media );
@@ -186,11 +186,11 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		if ( !self::isFullUrl( $src, false ) ) {
+		if ( ! self::is_full_url( $src, false ) ) {
 			$scriptPath = get_stylesheet_directory() . '/' . $src;
 			if ( file_exists( $scriptPath ) ) {
 				$ver = self::add_version( $scriptPath, $ver );
-				$src = self::isFullUrl( $src );
+				$src = self::is_full_url( $src );
 			}
 		}
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
@@ -225,6 +225,6 @@ class Assets {
 	 * @param $style
 	 */
 	public static function add_inline_style( $handler, $style ) {
-		wp_add_inline_style( $handler , $style );
+		wp_add_inline_style( $handler, $style );
 	}
 }
