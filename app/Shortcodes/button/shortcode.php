@@ -25,7 +25,7 @@ if ( !class_exists( 'StarterKitShortcode_Button' ) ) {
 			], $this->atts($atts), $this->shortcode );
 
 			if ( $atts['icon'] <> '' ) {
-				wp_enqueue_style( 'font-awesome' );
+				\StarterKit\Helper\Assets::enqueue_style( 'font-awesome' );
 			}
 
 			$data = $this->data( array(
