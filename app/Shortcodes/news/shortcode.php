@@ -5,6 +5,7 @@
  **/
 
 use StarterKit\Model\Shortcode;
+use StarterKit\Helper\Assets;
 
 if ( !class_exists( 'StarterKitShortcode_News' ) ) {
 	class StarterKitShortcode_News extends Shortcode {
@@ -29,9 +30,9 @@ if ( !class_exists( 'StarterKitShortcode_News' ) ) {
 			]);
 
 			// Add styles and scripts
-			$this->enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
-			$this->enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
-			$this->localize_script( $this->shortcode.'-script', 'shortcodeNewsJsParams', array(
+			Assets::enqueue_script( $this->shortcode.'-script', $this->shortcode_uri.'/assets/scripts.js' );
+			Assets::enqueue_style( $this->shortcode.'-style', $this->shortcode_uri.'/assets/style.css' );
+			Assets::localize_script( $this->shortcode.'-script', 'shortcodeNewsJsParams', array(
 				'query_vars'     => json_encode( $posts_query->query_vars ),
 				'paged'          => 1,
 				'max_num_pages'  => $posts_query->max_num_pages,
