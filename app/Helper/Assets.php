@@ -51,13 +51,34 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		$stylePath = get_stylesheet_directory() . '/' . $src;
+		if ( !self::isFullUrl( $src, false ) ) {
+			$stylePath = get_stylesheet_directory() . '/' . $src;
+			if ( file_exists( $stylePath ) ) {
+				$ver = self::add_version( $stylePath, $ver );
+				/** @var string|bool $src */
+				$src = self::isFullUrl( $src );
 
-		if ( file_exists( $stylePath ) ) {
-			$ver = self::add_version( $stylePath, $ver );
-			$src = get_stylesheet_directory_uri() . '/' . $src;
-			wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+			}
 		}
+		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+	}
+
+	/**
+	 * Check is $src is url
+	 *
+	 * @param string $src
+	 *
+	 * @param bool $returnUrl
+	 *
+	 * @return bool|string
+	 */
+	protected static function isFullUrl( $src, $returnUrl = true ) {
+		$filter = filter_var( $src, FILTER_VALIDATE_URL );
+		if ( ! $returnUrl ) {
+			return $filter ? true : false;
+		}
+
+		return $filter ? $src : get_stylesheet_directory_uri() . '/' . $src;
 	}
 
 	/**
@@ -94,12 +115,14 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		$scriptPath = get_stylesheet_directory() . '/' . $src;
-		$ver = self::add_version( $scriptPath, $ver );
-		if ( file_exists( $scriptPath ) ) {
-			$src = get_stylesheet_directory_uri() . '/' . $src;
-			wp_register_script( $handle, $src, $deps, $ver, $in_footer );
+		if ( !self::isFullUrl( $src, false ) ) {
+			$scriptPath = get_stylesheet_directory() . '/' . $src;
+			$ver        = self::add_version( $scriptPath, $ver );
+			if ( file_exists( $scriptPath ) ) {
+				$src = self::isFullUrl( $src );
+			}
 		}
+		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
 	/**
@@ -118,12 +141,14 @@ class Assets {
 		$ver = false,
 		$media = 'all'
 	) {
-		$stylePath = get_stylesheet_directory() . '/' . $src;
-		if ( file_exists( $stylePath ) ) {
-			$ver = self::add_version( $stylePath, $ver );
-			$src = get_stylesheet_directory_uri() . '/' . $src;
-			wp_register_style( $handle, $src, $deps, $ver, $media );
+		if ( !self::isFullUrl( $src, false ) ) {
+			$stylePath = get_stylesheet_directory() . '/' . $src;
+			if ( file_exists( $stylePath ) ) {
+				$ver = self::add_version( $stylePath, $ver );
+				$src = self::isFullUrl( $src );
+			}
 		}
+		wp_register_style( $handle, $src, $deps, $ver, $media );
 	}
 
 	/**
@@ -161,12 +186,14 @@ class Assets {
 		$ver = false,
 		$in_footer = false
 	) {
-		$scriptPath = get_stylesheet_directory() . '/' . $src ;
-		if ( file_exists( $scriptPath )) {
-			$ver = self::add_version( $scriptPath, $ver );
-			$src = get_stylesheet_directory_uri() . '/' . $src;
-			wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
+		if ( !self::isFullUrl( $src, false ) ) {
+			$scriptPath = get_stylesheet_directory() . '/' . $src;
+			if ( file_exists( $scriptPath ) ) {
+				$ver = self::add_version( $scriptPath, $ver );
+				$src = self::isFullUrl( $src );
+			}
 		}
+		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
 
 	/**
@@ -176,7 +203,7 @@ class Assets {
 	 * @param $data
 	 * @param string $position
 	 */
-	public static function add_inline_style( $handle, $data, $position = 'after' ) {
+	public static function add_inline_script( $handle, $data, $position = 'after' ) {
 		wp_add_inline_script( $handle, $data, $position );
 	}
 
@@ -189,5 +216,15 @@ class Assets {
 	 */
 	public static function localize_script( $handle, $object_name, $l10n ) {
 		wp_localize_script( $handle, $object_name, $l10n );
+	}
+
+	/**
+	 * Add inline style
+	 *
+	 * @param $handler
+	 * @param $style
+	 */
+	public static function add_inline_style( $handler, $style ) {
+		wp_add_inline_style( $handler , $style );
 	}
 }

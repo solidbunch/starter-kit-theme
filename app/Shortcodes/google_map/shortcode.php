@@ -4,6 +4,7 @@
  *
  **/
 
+use StarterKit\Helper\Assets;
 use StarterKit\Model\Shortcode;
 
 if ( !class_exists( 'StarterKitShortcode_Google_Map' ) ) {
@@ -33,12 +34,12 @@ if ( !class_exists( 'StarterKitShortcode_Google_Map' ) ) {
 			]);
 
 			$api_key = $atts['api_key'] <> '' ? '?key=' . $atts['api_key'] : '';
-			$this->enqueue_script( 'google-maps-api', '//maps.googleapis.com/maps/api/js' . $api_key);
+			Assets::enqueue_script( 'google-maps-api', 'https://maps.googleapis.com/maps/api/js' . $api_key);
 
 			ob_start();
 			require_once 'view/google_map_init.php';
 			$map_loader_script = ob_get_clean();
-			$this->add_inline_script( 'google-maps-api', $map_loader_script );
+			Assets::add_inline_script( 'google-maps-api', $map_loader_script );
 
 			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
 		}
