@@ -2,11 +2,11 @@
 // helper functions for developers
 require_once __DIR__ . '/app/dev.php';
 
-if(class_exists('WP_CLI')) {
+if ( class_exists( 'WP_CLI' ) ) {
 	//define theme root directory for future commands
-	define('THEME_ROOT_DIRECTORY' , __DIR__);
+	define( 'THEME_ROOT_DIRECTORY', __DIR__ );
 	//load commands for dir
-	foreach (glob(__DIR__ . '/dev/cli/*.php') as $file) {
+	foreach ( glob( __DIR__ . '/dev/cli/*.php' ) as $file ) {
 		require $file;
 	}
 }
