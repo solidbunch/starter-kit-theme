@@ -67,7 +67,9 @@ class OAuth {
 	 **/
 	public function auth_facebook() {
 
-		require_once get_template_directory() . '/vendor/oauth/facebook/autoload.php';
+		if(defined('VENDOR_DIR')) {
+			require_once get_template_directory() . '/vendor-custom/oauth/facebook/autoload.php';
+		}
 
 		$fb = new \Facebook\Facebook( [
 			'app_id'     => \StarterKit\Helper\Utils::get_option( 'facebook_app_id' ),
@@ -92,8 +94,9 @@ class OAuth {
 	 * Oauth callback for Facebook
 	 **/
 	public function callback_facebook() {
-
-		require_once get_template_directory() . '/vendor/oauth/facebook/autoload.php';
+		if(defined('VENDOR_DIR')) {
+			require_once get_template_directory() . '/vendor-custom/oauth/facebook/autoload.php';
+		}
 
 		try {
 			$fb = new \Facebook\Facebook( [
@@ -223,7 +226,9 @@ class OAuth {
 	 **/
 	private function _get_google_client() {
 
-		require_once get_template_directory() . '/vendor/oauth/google/vendor/autoload.php';
+		if(defined('VENDOR_DIR')) {
+			require_once get_template_directory() . '/vendor-custom/oauth/google/vendor/autoload.php';
+		}
 
 		$client = new \Google_Client();
 		$client->setAuthConfig( [
@@ -273,7 +278,9 @@ class OAuth {
 	 **/
 	public function auth_twitter() {
 
-		require_once get_template_directory() . '/vendor/oauth/twitter/autoload.php';
+		if(defined('VENDOR_DIR')) {
+			require_once get_template_directory() . '/vendor-custom/oauth/twitter/autoload.php';
+		}
 
 		$connection = new \Abraham\TwitterOAuth\TwitterOAuth(
 			\StarterKit\Helper\Utils::get_option( 'twitter_consumer_key' ),
@@ -308,7 +315,9 @@ class OAuth {
 			exit;
 		}
 
-		require_once get_template_directory() . '/vendor/oauth/twitter/autoload.php';
+		if(defined('VENDOR_DIR')) {
+			require_once get_template_directory() . '/vendor-custom/oauth/twitter/autoload.php';
+		}
 
 		$oauth_token     = $_GET['oauth-token'];
 		$consumer_key    = \StarterKit\Helper\Utils::get_option( 'twitter_consumer_key' );
