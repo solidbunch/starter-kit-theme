@@ -1,6 +1,8 @@
 <?php
 namespace StarterKit\Controller;
 
+use StarterKit\Helper\Assets;
+
 /**
  * Backend controller
  *
@@ -41,8 +43,7 @@ class Backend {
 	 * @return void
 	 **/
 	public function load_assets() {
-		wp_enqueue_style( 'starter-kit-backend', get_template_directory_uri() . '/assets/css/admin/admin.css',
-			false, Starter_Kit()->config['cache_time'] );
+		Assets::enqueue_style_dist('starter-kit-backend','admin.css');
 	}
 
 	/**
