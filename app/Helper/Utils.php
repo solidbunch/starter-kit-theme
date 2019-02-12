@@ -28,7 +28,7 @@ class Utils {
 		return function_exists( '\fw_get_db_settings_option' )
 			? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
 	}
-
+	
 	/**
 	 * Get Post Option
 	 *
@@ -42,7 +42,7 @@ class Utils {
 		return function_exists( '\fw_get_db_post_option' )
 			? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
 	}
-
+	
 	/**
 	 * Get Term Option
 	 *
@@ -72,7 +72,7 @@ class Utils {
 		}
 		
 		// require all php files
-		$scan = glob( $dir . DIRECTORY_SEPARATOR . '*' );
+		$scan = glob( trailingslashit( $dir ) . '*' );
 		
 		foreach ( $scan as $path ) {
 			
@@ -134,7 +134,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_shortcodes_uri( $shortcode_name, $path = '' ) {
-		return \Starter_Kit()->config['shortcodes_uri'] . $shortcode_name . '/' . $path;
+		return trailingslashit( \Starter_Kit()->config['shortcodes_uri'] ) . $shortcode_name . '/' . $path;
 	}
 	
 	/**
@@ -146,7 +146,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
-		return \Starter_Kit()->config['shortcodes_dir'] . $shortcode_name . '/' . $path;
+		return trailingslashit( \Starter_Kit()->config['shortcodes_dir'] ) . $shortcode_name . '/' . $path;
 	}
 	
 	/**
@@ -158,7 +158,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_widgets_uri( $widget_name, $path = '' ) {
-		return \Starter_Kit()->config['widgets_uri'] . '/' . $widget_name . '/' . $path;
+		return trailingslashit( \Starter_Kit()->config['widgets_uri'] ) . $widget_name . '/' . $path;
 	}
 	
 	/**
@@ -170,7 +170,7 @@ class Utils {
 	 * @return string
 	 */
 	public static function get_widgets_dir( $widget_name, $path = '' ) {
-		return \Starter_Kit()->config['widgets_dir'] . '/' . $widget_name . '/' . $path;
+		return trailingslashit( \Starter_Kit()->config['widgets_dir'] ) . $widget_name . '/' . $path;
 	}
 	
 	/**
@@ -226,7 +226,7 @@ class Utils {
 		
 		if ( strpos( $url, '//' ) === 0 ) {
 			$protocol = \is_ssl() ? 'https:' : 'http:';
-			$url = $protocol . $url;
+			$url      = $protocol . $url;
 		}
 		
 		return $url;

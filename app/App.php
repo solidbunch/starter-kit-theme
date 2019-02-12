@@ -88,7 +88,7 @@ class App {
 		$this->_load_modules( 'Controller', '/' );
 		
 		// Autoload widgets
-		utils::autoload_dir( get_template_directory() . '/app/Widgets', 1 );
+		utils::autoload_dir( $this->config['widgets_dir'], 1 );
 	}
 	
 	/**
