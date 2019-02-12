@@ -211,8 +211,6 @@ class Front {
 
 	/**
 	 * add GTM after open <body> tag
-	 *
-	 * @throws \Exception
 	 */
 	public function add_gtm_body() {
 		$tag_manager_code = utils::get_option( 'tag_manager_code', '' );

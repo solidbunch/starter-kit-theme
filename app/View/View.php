@@ -26,9 +26,8 @@ class View {
 	 * @param null $base
 	 *
 	 * @return false|string
-	 * @throws \Exception
 	 */
-	function load( $path = '', array $data = array(), $return = false, $base = null ) {
+	public function load( $path = '', array $data = array(), $return = false, $base = null ) {
 		
 		if ( $base === null ) {
 			$base = get_stylesheet_directory();
@@ -48,13 +47,18 @@ class View {
 			ob_start();
 		}
 		
-		if ( file_exists( $full_path ) ) {
-			
-			require $full_path;
-			
-		} else {
-			throw new \Exception( 'The view path ' . $full_path . ' can not be found.' );
+		try {
+			if ( file_exists( $full_path ) ) {
+				
+				require $full_path;
+				
+			} else {
+				throw new \RuntimeException( 'The view path ' . $full_path . ' can not be found.' );
+			}
+		} catch ( \Exception $e) {
+			trigger_error($e->getMessage(), E_USER_ERROR);
 		}
+		
 		
 		if ( $return ) {
 			return ob_get_clean();
@@ -137,7 +141,7 @@ class View {
 	 *
 	 * @return string
 	 */
-	function js_remove_wpautop( $content, $autop = false ) {
+	public function js_remove_wpautop( $content, $autop = false ) {
 		
 		if ( $autop ) {
 			$content = wpautop( preg_replace( '/<\/?p\>/', "\n", $content ) . "\n" );
