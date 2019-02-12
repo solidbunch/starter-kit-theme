@@ -30,7 +30,7 @@ class Backend {
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets' ) );
 		
 		// install required plugins
-		require_once get_template_directory() . '/vendor/tgm/class-tgm-plugin-activation.php';
+		require_once get_template_directory() . '/vendor-custom/tgm/class-tgm-plugin-activation.php';
 		add_action( 'tgmpa_register', array( $this, 'tgmpa_register' ) );
 		
 		// Change theme options default menu position
