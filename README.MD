@@ -70,7 +70,7 @@
  - build - webpack configs 
  - framework-customizations/ – Unyson customization (see https://github.com/ThemeFuse/Scratch-Theme)
  - template-parts/ – default WordPress templates (included in files below)
- - vendor/ – third-party development
+ - vendor-custom/ – third-party development
  - 404.php
  - comments.php
  - footer.php
