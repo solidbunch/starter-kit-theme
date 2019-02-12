@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 /**
@@ -15,26 +16,27 @@ namespace StarterKit\Controller;
  * @since      Class available since Release 1.0.0
  */
 class Backend {
-
+	
 	/**
 	 * Constructor - add all needed actions
 	 *
 	 * @return void
 	 **/
 	public function __construct() {
-
+		
 		// load admin assets
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets' ) );
-
+		
 		// install required plugins
 		require_once get_template_directory() . '/vendor/tgm/class-tgm-plugin-activation.php';
 		add_action( 'tgmpa_register', array( $this, 'tgmpa_register' ) );
-
+		
 		// Change theme options default menu position
 		add_action( 'fw_backend_add_custom_settings_menu', array( $this, 'add_theme_options_menu' ) );
-
+		
 	}
-
+	
+	
 	/**
 	 * Load admin assets
 	 *
@@ -44,22 +46,23 @@ class Backend {
 		wp_enqueue_style( 'starter-kit-backend', get_template_directory_uri() . '/assets/css/admin/admin.css',
 			false, Starter_Kit()->config['cache_time'] );
 	}
-
+	
+	
 	/**
 	 * Install required plugins
 	 *
 	 * @return void
 	 **/
 	public function tgmpa_register() {
-
+		
 		$plugins = array(
-
+			
 			array(
 				'name'     => 'Unyson',
 				'slug'     => 'unyson',
 				'required' => false
 			),
-
+			
 			array(
 				'name'         => 'WPBakery Page Builder',
 				'slug'         => 'js_composer',
@@ -68,14 +71,15 @@ class Backend {
 				'version'      => '',
 				'external_url' => '',
 			),
-
+		
 		);
-
-		// it is not necessairy to provide custom language config for TGM, so just leave it default
+		
+		// it is not necessary to provide custom language config for TGM, so just leave it default
 		tgmpa( $plugins );
-
+		
 	}
-
+	
+	
 	/**
 	 * Add Website Options Menu
 	 *
@@ -84,7 +88,7 @@ class Backend {
 	 * @return void
 	 */
 	public function add_theme_options_menu( array $data ) {
-
+		
 		add_theme_page(
 			esc_html__( 'Website Settings', 'starter-kit' ),
 			esc_html__( 'Website Settings', 'starter-kit' ),
@@ -92,7 +96,7 @@ class Backend {
 			$data['slug'],
 			$data['content_callback']
 		);
-
+		
 	}
-
+	
 }
