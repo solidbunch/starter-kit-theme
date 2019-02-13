@@ -4,6 +4,7 @@
  *
  **/
 
+use StarterKit\Helper\Assets;
 use StarterKit\Model\Shortcode;
 
 if ( !class_exists( 'StarterKitShortcode_Form_Text_Datepicker' ) ) {
@@ -46,11 +47,11 @@ if ( !class_exists( 'StarterKitShortcode_Form_Text_Datepicker' ) ) {
 		 */
 		public function enqueue_scripts() {
 
-			$this->enqueue_script( 'shortcode-air-datepicker', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/js/datepicker.min.js' );
-			$this->enqueue_script( 'shortcode-air-datepicker-i18n', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/js/i18n/datepicker.en.js' );
-			$this->enqueue_script( 'shortcode-air-datepicker-init', $this->shortcode_uri.'/assets/date-picker-init.js' );
+			Assets::enqueue_script( 'shortcode-air-datepicker', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/js/datepicker.min.js' );
+			Assets::enqueue_script( 'shortcode-air-datepicker-i18n', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/js/i18n/datepicker.en.js' );
+			Assets::enqueue_script( 'shortcode-air-datepicker-init', $this->shortcode_uri.'/assets/date-picker-init.js' );
 
-			$this->enqueue_style( 'shortcode-air-datepicker', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/css/datepicker.min.css' );
+			Assets::enqueue_style( 'shortcode-air-datepicker', $this->shortcode_uri.'/assets/libs/air-datepicker/dist/css/datepicker.min.css' );
 		}
 
 	}
