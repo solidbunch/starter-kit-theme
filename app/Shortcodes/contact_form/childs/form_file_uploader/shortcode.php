@@ -44,7 +44,7 @@ if ( !class_exists( 'StarterKitShortcode_Form_File_Uploader' ) ) {
 		 * @return void
 		 */
 		public function enqueue_scripts() {
-			$this->enqueue_script( 'shortcode-uploader', $this->shortcode_uri.'/assets/uploader.js' );
+			\StarterKit\Helper\Assets::enqueue_script( 'shortcode-uploader', $this->shortcode_uri.'/assets/uploader.js' );
 		}
 
 	}
