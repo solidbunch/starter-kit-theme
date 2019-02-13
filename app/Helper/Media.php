@@ -76,7 +76,7 @@ class Media {
 
 		$orig_src = $image_atts['src'];
 		// SVG
-		$is_svg = utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
+		$is_svg = Utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
 
 		if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
 			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );

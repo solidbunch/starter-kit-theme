@@ -31,8 +31,8 @@ class HTTP2 {
 	 */
 	public function __construct() {
 		add_action( 'init', function () {
-			$scripts = utils::get_option( 'http2_scripts_enable', false );
-			$styles  = utils::get_option( 'http2_styles_enable', false );
+			$scripts = Utils::get_option( 'http2_scripts_enable', false );
+			$styles  = Utils::get_option( 'http2_styles_enable', false );
 
 			if ( ( $scripts || $styles ) && ! is_admin() ) {
 				$this->http2_ob_start();

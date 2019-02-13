@@ -135,7 +135,7 @@ class Front {
 	 * @return int
 	 */
 	public function antispam_enabled() {
-		return (int) utils::get_option( 'forms_antispam', 0 );
+		return (int) Utils::get_option( 'forms_antispam', 0 );
 	}
 
 	/**
@@ -198,7 +198,7 @@ class Front {
 	 * Load Google Tag Manager
 	 **/
 	public function add_gtm_head() {
-		$tag_manager_code = utils::get_option( 'tag_manager_code', '' );
+		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
@@ -213,7 +213,7 @@ class Front {
 	 * add GTM after open <body> tag
 	 */
 	public function add_gtm_body() {
-		$tag_manager_code = utils::get_option( 'tag_manager_code', '' );
+		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
 
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
