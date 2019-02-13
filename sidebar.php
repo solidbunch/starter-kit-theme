@@ -7,7 +7,7 @@ use StarterKit\Helper\Utils;
 
 // If Unyson Framework plugin is active
 
-if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
+if ( Utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
 	
 	// Get sidebar preset from Admin Settings
 	$side_classes     = array();
@@ -31,7 +31,7 @@ if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_positio
 		// if we don't have any settings for this page, run defaults
 		if ( is_null( $side_preset ) || ! $side_preset ) {
 			
-			if ( utils::is_woocommerce() && is_woocommerce() ) {
+			if ( Utils::is_woocommerce() && is_woocommerce() ) {
 				if (is_active_sidebar( 'sidebar-shop' )) {
 					dynamic_sidebar( 'sidebar-shop' );
 				}

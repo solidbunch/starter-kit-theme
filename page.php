@@ -14,7 +14,7 @@ the_post(); ?>
 
         <?php
         $reversed = '';
-        if ( utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
+        if ( Utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
 
             $current_position = fw_ext_sidebars_get_current_position();
             $reversed = $current_position === 'left' ? 'reversed' : '';
@@ -24,7 +24,7 @@ the_post(); ?>
 
 		<div class="row <?php echo $reversed; ?>">
 
-            <article class="<?php echo front::get_grid_class(4); ?>">
+            <article class="<?php echo Front::get_grid_class(4); ?>">
 
                 <h1><?php the_title(); ?></h1>
 
