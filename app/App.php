@@ -3,7 +3,6 @@
 namespace StarterKit;
 
 use StarterKit\Helper\Utils;
-use StarterKit\Model\Database;
 use StarterKit\View\View;
 
 /**
@@ -78,9 +77,6 @@ class App {
 		// View
 		$this->View = new View();
 		
-		// Model
-		$this->Model->Database = new Database();
-		
 		// Autoload models
 		$this->_load_modules( 'Model', '/' );
 		
@@ -88,7 +84,7 @@ class App {
 		$this->_load_modules( 'Controller', '/' );
 		
 		// Autoload widgets
-		utils::autoload_dir( $this->config['widgets_dir'], 1 );
+		Utils::autoload_dir( $this->config['widgets_dir'], 1 );
 	}
 	
 	/**
