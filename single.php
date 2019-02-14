@@ -10,7 +10,7 @@ the_post(); ?>
 		
 		<div class="row">
 
-			<div id="posts" class="<?php echo front::get_grid_class(); ?>">
+			<div id="posts" class="<?php echo Front::get_grid_class(); ?>">
 
 				<div class="row">
 

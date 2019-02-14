@@ -21,7 +21,7 @@ class Menu {
 	public function __construct() {
 
 		// register menus
-		add_action( 'init', array( $this, 'register_menus' ) );
+		add_action( 'after_setup_theme', array( $this, 'register_menus' ) );
 
 		// here we can add custom menu fields, modify admin walkers etc
 
