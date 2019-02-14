@@ -17,7 +17,7 @@ var config = {
 var paths = {
 	
 	toReplace: {
-		src: ['./**/*.php', './**/*.css', './**/*.scss', './**/*.js', '!vendor/**/*.*', '!node_modules/**/*.*', '!./gulpfile.js'],
+		src: ['./**/*.php', './**/*.css', './**/*.scss', './**/*.js', '!vendor/**/*.*','!vendor-custom/**/*.*', '!node_modules/**/*.*', '!./gulpfile.js'],
 	},
 };
 
