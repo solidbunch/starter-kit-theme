@@ -90,7 +90,7 @@ class Assets {
 	 * @return int
 	 */
 	public static function add_version( $srcPath, $ver ) {
-		$remove_versions = utils::get_option( 'assets_versions', false );
+		$remove_versions = Utils::get_option( 'assets_versions', false );
 		if ( $ver === false && ! $remove_versions ) {
 			/** @var int $ver - timestamp */
 			$ver = filemtime( $srcPath );

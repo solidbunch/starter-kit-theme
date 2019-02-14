@@ -9,7 +9,7 @@ get_header(); ?>
 
 		<div class="row">
 			
-			<div id="posts" class="<?php echo front::get_grid_class(); ?>">
+			<div id="posts" class="<?php echo Front::get_grid_class(); ?>">
 
 				<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 
