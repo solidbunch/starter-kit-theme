@@ -60,6 +60,36 @@ return array(
 		),
 		array(
 			'type'       => 'textfield',
+			'heading'    => esc_html__( 'Label', 'starter-kit' ),
+			'param_name' => 'pin_label',
+		),
+		array(
+			'type' => 'colorpicker',
+			'heading' => esc_html__( 'Label color', 'starter-kit' ),
+			'param_name' => 'pin_color',
+			'value' => '#333333',
+			'description' => esc_html__( 'Select color', 'starter-kit' ),
+		),
+		array(
+			'type'        => 'dropdown',
+			'heading'     => esc_html__( 'Font weight', 'starter-kit' ),
+			'param_name'  => 'pin_fontweight',
+			'save_always' => true,
+			'value'       => array(
+				'normal' => 'normal',
+				'lighter' => 'lighter',
+				'bolder' => 'bolder',
+				'bold' => 'bold',
+			),
+		),
+		array(
+			'type'       => 'textfield',
+			'heading'    => esc_html__( 'Label offset', 'starter-kit' ),
+			'param_name' => 'pin_labelorigin',
+			'description' => esc_html__( 'x,y', 'starter-kit' ),
+		),
+		array(
+			'type'       => 'textfield',
 			'heading'    => esc_html__( 'Pin offset X', 'starter-kit' ),
 			'param_name' => 'pin_offset_x',
 			'value'      => 0,
