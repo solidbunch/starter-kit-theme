@@ -12,7 +12,7 @@ if ( !class_exists( 'StarterKitShortcode_Google_Map' ) ) {
 
 		public function content( $atts, $content = null ) {
 
-			/** Form data **/
+			/** Shortcode data **/
 			$atts = shortcode_atts( [
 				'el_id'         => '',
 				'api_key'       => '',
@@ -20,6 +20,10 @@ if ( !class_exists( 'StarterKitShortcode_Google_Map' ) ) {
 				'height'        => '',
 				'zoom'          => '',
 				'pin_icon'      => '',
+				'pin_label'      => '',
+				'pin_color'      => '',
+				'pin_fontweight' => '',
+				'pin_labelorigin' => '',
 				'pin_offset_x'  => '',
 				'pin_offset_y'  => '',
 				'hue'           => '',
@@ -33,12 +37,11 @@ if ( !class_exists( 'StarterKitShortcode_Google_Map' ) ) {
 				'content' => $content
 			]);
 
-			$api_key = $atts['api_key'] <> '' ? '?key=' . $atts['api_key'] : '';
+			$api_key = $atts['api_key'] !== '' ? '?key=' . $atts['api_key'] : '';
 			Assets::enqueue_script( 'google-maps-api', 'https://maps.googleapis.com/maps/api/js' . $api_key);
 
-			ob_start();
-			require_once 'view/google_map_init.php';
-			$map_loader_script = ob_get_clean();
+			$map_loader_script = Starter_Kit()->View->load( '/view/google_map_init', $data, true, $this->shortcode_dir );
+			
 			Assets::add_inline_script( 'google-maps-api', $map_loader_script );
 
 			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
