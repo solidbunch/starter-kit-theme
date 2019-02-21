@@ -1,4 +1,9 @@
-
+<?php 
+/*
+*Google map init
+*/
+?>
+ 
 var geocoder = new google.maps.Geocoder();
 
 var latlong;
@@ -35,8 +40,21 @@ setTimeout( function() {
             latlong = results[0].geometry.location;
             var marker = new google.maps.Marker({
                 position: latlong,
-                map: map<?php if ( $data['atts']['pin_icon'] <> '' ): ?>,
-                icon: '<?php echo esc_url(wp_get_attachment_url( $data['atts']['pin_icon'] )) ?>'<?php endif; ?>
+                map: map,
+             <?php if ( $data['atts']['pin_icon'] !== '' ){ ?>
+                icon: { 
+                    url: '<?php echo esc_url(wp_get_attachment_url( $data['atts']['pin_icon'] )) ?>', 
+					<?php if ( $data['atts']['pin_labelorigin'] !== '' ){ ?>
+                    labelOrigin: new google.maps.Point(<?php echo $data['atts']['pin_labelorigin']; ?>),
+					<?php } ?>
+                },
+             <?php } if ( $data['atts']['pin_label'] !== '' ){ ?>
+                label: {
+                    text: '<?php echo $data['atts']['pin_label']; ?>', 
+                    color: "<?php echo $data['atts']['pin_color']; ?>", 
+                    fontWeight: '<?php echo $data['atts']['pin_fontweight']; ?>'}
+             <?php } ?>
+
             });
 
             map.setCenter(latlong);
