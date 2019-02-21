@@ -35,12 +35,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
-		filename: './css/widget-[name].css'
+		filename: './dist/css/widget-[name].css'
 	})
 );
 baseConfig.output = {
-	path: dir + '/dist/',
-	filename: 'js/widget-[name].min.js'
+	path: dir,
+	filename: './dist/js/widget-[name].min.js'
 };
 
 module.exports = Object.assign(
