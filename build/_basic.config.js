@@ -52,7 +52,7 @@ module.exports = function () {
 					use: [{
 						loader: 'file-loader',
 						options: {
-							outputPath: './img/',    // where the fonts will go
+							outputPath: './dist/img/',    // where the fonts will go
 							publicPath: '../img/',
 							name: '[name]-[hash].[ext]'
 						}
