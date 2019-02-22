@@ -56,7 +56,7 @@ class LazyLoad {
 	 */
 	public function skip() {
 
-		$img_lazy_load = (int) \StarterKit\Helper\Utils::get_option( 'img_lazy_load', 1 );
+		$img_lazy_load = (int) \StarterKit\Helper\Utils::get_option( 'img_lazy_load', 0 );
 
 		if ( $img_lazy_load !== 1 ) {
 			return true;
