@@ -102,17 +102,17 @@ module.exports = function () {
 			})
 		],
 	};
-
+	
 	const fs = require('fs');
-	if (process.env.SYNC === "true" && fs.existsSync('./browser-sync.config')) {
+	
+	if (process.env.SYNC === "true" && fs.existsSync('./build/browser-sync.config.js') && !process.isBrowserSyncAdded) {
 		const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-		baseConf.plugins.push(
-			new BrowserSyncPlugin(
-				require('./browser-sync.config')
-			)
-		)
+		const config = require('./browser-sync.config');
+		
+		baseConf.plugins.push(new BrowserSyncPlugin(config));
+		process.isBrowserSyncAdded = true;
 	}
-
-
+	
+	
 	return baseConf;
 };
