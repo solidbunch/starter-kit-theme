@@ -39,6 +39,7 @@ class Media {
 			'crop' => false,
 			'single' => true,
 			'upscale' => false,
+			'resize' => true,
 		);
 
 		$func_atts = wp_parse_args( $func_atts, $func_dafault_atts );
@@ -78,10 +79,17 @@ class Media {
 		// SVG
 		$is_svg = Utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
 
-		if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
-		} else {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['width'] ), absint( $image_atts['height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+		if ($func_atts['resize']) {
+
+			if ( ! empty( $image_atts['data-width'] ) ) {
+
+				$image_atts['data-height'] = !empty( $image_atts['data-height'] ) ? $image_atts['data-height'] : null;
+
+				$src = aq_resize( $image_atts['src'], absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			} else {
+				$src = aq_resize( $image_atts['src'], absint( $image_atts['width'] ), absint( $image_atts['height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			}
+
 		}
 
 
@@ -93,7 +101,7 @@ class Media {
 
 		if ( filter_var( $func_atts['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
 
-			if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
+			if ( !empty($image_atts['data-width']) ) {
 				$double_width = ! is_null( $image_atts['data-width'] ) ? absint( $image_atts['data-width'] ) * 2 : null;
 				$double_height = ! is_null( $image_atts['data-height'] ) ? absint( $image_atts['data-height'] ) * 2 : null;
 			} else {
