@@ -125,7 +125,7 @@
 
 # Helpers usage
 
-##Media
+## Media
 
 Media helper contains functions for working with images. 
 
@@ -133,7 +133,7 @@ The `img_resize()` function returns a link to the modified image according to th
 
 **Usage:**
 
-    <?php echo Media::img_resize( $url, $width, $height, $crop ); ?>
+     <img src="<?php echo Media::img_resize( $url, $width, $height, $crop ); ?>" >
 
 
 - `$url` - URL to image file to resize
@@ -151,7 +151,7 @@ The `img_resize()` function returns a link to the modified image according to th
     <img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250, false ); ?>" >
 
 
-Function `the_img()` is universal and can print a full &lt;img&gt; tag with various attributes. All params are optional. The function is friendly with built-in Lazy Load controller. Lazy Load needs to know image sizes (width & height or data-width & data-height or [width]x[height] in the image file name)
+Function `the_img()` is universal and can print a full &lt;img&gt; tag with various attributes. All parameters are optional. The function is friendly with built-in theme Lazy Load controller. Lazy Load needs to know image sizes (width & height or data-width & data-height or [width]x[height] in the image file name)
 
 **Usage:**
 
@@ -164,7 +164,7 @@ Function `the_img()` is universal and can print a full &lt;img&gt; tag with vari
     - `title` - title attribute, string, not used if empty
     - `alt` - alt attribute, string, the system tries to fill automatically
     - `id`- id attribute, string, not used if empty
-    - `class` class attribute, string, not used if empty
+    - `class` - class attribute, string, not used if empty
     - ... - You can add any custom attribute to use in &lt;img&gt; tag 
 - `$func_atts` - array of functional attributes - needs to prepare image
     - `attachment_id` - WP media id, integer, the system tries to fill automatically from global $post featured image
@@ -193,20 +193,20 @@ With different parameters:
 
 Print image with sizes atts and with srcset
         
-    <?php Media::the_img(array('width' => 380, 'height' => 250) ); ?>
+    Media::the_img(array('width' => 380, 'height' => 250) );
     
 Print image without strong sizes, but with lazy load and with srcset
     
-    <?php Media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
+    Media::the_img(array('data-width' => 380, 'data-height' => 250) );
     
 An example how to print image tag without srcset
 
-    <?php Media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
+    Media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) );
     
 With different and custom attributes
 
-    <?php Media::the_img(array('width' => 380, 'height' => 250, 'class' => 'image-class', 'data-my-attr' => $my-attr-value), array('attachment_id' => $attachment_id) ); ?>
+    Media::the_img(array('width' => 380, 'height' => 250, 'class' => 'image-class', 'data-my-attr' => $my-attr-value), array('attachment_id' => $attachment_id) );
     
 With no attributes, only standart WP size in post
 
-    <?php Media::the_img(array(), array('size' => 'medium') ); ?>
+    Media::the_img(array(), array('size' => 'medium') );
