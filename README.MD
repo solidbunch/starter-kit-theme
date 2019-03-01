@@ -162,8 +162,8 @@ Function `the_img()` is universal and can print a full &lt;img&gt; tag with vari
     
 - `$image_atts` - array of &lt;img&gt; tag attributes
     - `src` - URL to image file, string, the system tries to fill automatically from global $post featured image
-    - `$width` - width value, integer, not used if empty
-    - `$height` - height value, integer, not used if empty
+    - `width` - width value, integer, not used if empty
+    - `height` - height value, integer, not used if empty
     - `title` - title attribute, string, not used if empty
     - `alt` - alt attribute, string, the system tries to fill automatically
     - `id`- id attribute, string, not used if empty
