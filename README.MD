@@ -122,3 +122,91 @@
  - config.php – shortcode config
  - shortcode.php – shortcode controller
  - vc.php - WPBakery Page Builder support
+
+# Helpers usage
+
+##Media
+
+Media helper contains functions for working with images. 
+
+The `img_resize()` function returns a link to the modified image according to the passed parameters. You can see examples in index.php.
+
+**Usage:**
+
+    <?php echo Media::img_resize( $url, $width, $height, $crop ); ?>
+
+
+- `$url` - URL to image file to resize
+- `$width` - width value, integer 
+- `$height` - height value, integer
+- `$crop` - bool flag crop or not
+    
+**Returns:**
+`string` resized image path
+
+**Example:**
+
+    use StarterKit\Helper\Media;
+    
+    <img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250, false ); ?>" >
+
+
+Function `the_img()` is universal and can print a full &lt;img&gt; tag with various attributes. All params are optional. The function is friendly with built-in Lazy Load controller. Lazy Load needs to know image sizes (width & height or data-width & data-height or [width]x[height] in the image file name)
+
+**Usage:**
+
+    Media::the_img( $image_atts = array(), $func_atts = array() );
+    
+- `$image_atts` - array of &lt;img&gt; tag attributes
+    - `src` - URL to image file, string, the system tries to fill automatically from global $post featured image
+    - `$width` - width value, integer, not used if empty
+    - `$height` - height value, integer, not used if empty
+    - `title` - title attribute, string, not used if empty
+    - `alt` - alt attribute, string, the system tries to fill automatically
+    - `id`- id attribute, string, not used if empty
+    - `class` class attribute, string, not used if empty
+    - ... - You can add any custom attribute to use in &lt;img&gt; tag 
+- `$func_atts` - array of functional attributes - needs to prepare image
+    - `attachment_id` - WP media id, integer, the system tries to fill automatically from global $post featured image
+    - `hdmi` - default true, srcset flag, boolean
+    - `size` - default 'full', WP image sizes, string, 'thumbnail', 'medium', 'large', 'full' or custom
+    - `crop` - default false, bool flag crop or not
+    - `upscale` - default false, resizes smaller images, boolean
+    - `resize` - default true, do resize or not, boolean 
+
+**Returns:**
+echo  `string` image tag or return `false` if error
+
+**Example:**
+
+You can call it in posts loop without parameters and function will print featured image from Post in 'full' size (function use global $post when image src and attachment_id is empty)
+    
+    use StarterKit\Helper\Media;
+        
+    Media::the_img();
+    
+or 
+
+    \StarterKit\Helper\Media::the_img();
+   
+With different parameters:
+
+Print image with sizes atts and with srcset
+        
+    <?php Media::the_img(array('width' => 380, 'height' => 250) ); ?>
+    
+Print image without strong sizes, but with lazy load and with srcset
+    
+    <?php Media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
+    
+An example how to print image tag without srcset
+
+    <?php Media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
+    
+With different and custom attributes
+
+    <?php Media::the_img(array('width' => 380, 'height' => 250, 'class' => 'image-class', 'data-my-attr' => $my-attr-value), array('attachment_id' => $attachment_id) ); ?>
+    
+With no attributes, only standart WP size in post
+
+    <?php Media::the_img(array(), array('size' => 'medium') ); ?>
