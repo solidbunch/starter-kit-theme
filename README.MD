@@ -129,6 +129,8 @@
 
 Media helper contains functions for working with images. 
 
+### img_resize()
+
 The `img_resize()` function returns a link to the modified image according to the passed parameters. You can see examples in index.php.
 
 **Usage:**
@@ -150,6 +152,7 @@ The `img_resize()` function returns a link to the modified image according to th
     
     <img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250, false ); ?>" >
 
+### the_img()
 
 Function `the_img()` is universal and can print a full &lt;img&gt; tag with various attributes. All parameters are optional. The function is friendly with built-in theme Lazy Load controller. Lazy Load needs to know image sizes (width & height or data-width & data-height or [width]x[height] in the image file name)
 
