@@ -61,10 +61,10 @@ module.exports = function () {
 				// fonts loader
 				{
 					test: /.(ttf|otf|svg|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+					include: path.resolve('node_modules/'),
 					use: [{
 						loader: 'file-loader',
 						options: {
-							include: path.resolve('node_modules/'),
 							name: '[name]-[hash].[ext]',
 							outputPath: './dist/fonts/',    // where the fonts will go
 							publicPath: '../fonts/'       // override the default path
