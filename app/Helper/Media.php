@@ -16,19 +16,20 @@ namespace StarterKit\Helper;
 class Media {
 
 	/**
-	 * Generate image tag with srcset for retina
+	 * Generate image tag with various attributes
 	 *
-	 * @param array $args
+	 * @param array $image_atts
+	 * @param array $func_atts
 	 *
-	 * @return string image tag
-	 */
+	 * @echo  string image tag
+	 * or
+	 * @return bool false
 
-
-	/**
-	 * Generate image tag with srcset for retina
-	 * @return string image tag
 	 **/
 	public static function the_img( $image_atts = array(), $func_atts = array() ) {
+		if ( ! class_exists( 'Aq_Resize' )) {
+			require_once get_template_directory() . '/vendor-custom/aq_resizer/aq_resizer.php';
+		}
 
 		$is_queried_post_thumb = false;
 
@@ -39,23 +40,29 @@ class Media {
 			'crop' => false,
 			'single' => true,
 			'upscale' => false,
+			'resize' => true,
 		);
 
 		$func_atts = wp_parse_args( $func_atts, $func_dafault_atts );
 
-		if ( ! class_exists( 'Aq_Resize' )) {
-			require_once get_template_directory() . '/vendor-custom/aq_resizer/aq_resizer.php';
-		}
-
-		if ( ( empty($image_atts['src']) && empty($func_atts['attachment_id']) ) or ( !empty($image_atts['src']) &&  $image_atts['src'] ===  get_the_post_thumbnail_url( get_the_ID(), 'full' ) ) ) {
+		// If src and attachment_id is empty or if src image is post featured image, we can find out attachment_id
+		if ( ( empty($image_atts['src']) && empty($func_atts['attachment_id']) ) or ( !empty($image_atts['src']) &&  $image_atts['src'] ===  get_the_post_thumbnail_url( get_the_ID(), $func_atts['size'] ) ) ) {
 
 			$is_queried_post_thumb = true;
 			$func_atts['attachment_id'] = get_post_thumbnail_id( get_the_ID() );
 		}
 
-		$attachment_data['url'] = wp_get_attachment_image_url( $func_atts['attachment_id'], $func_atts['size'] );
+		if ( !empty($func_atts['attachment_id']) ) {
 
-		$attachment_data['alt'] = get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) ? get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) : '';
+			$attachment_data['url'] = wp_get_attachment_image_url( $func_atts['attachment_id'], $func_atts['size'] );
+			$attachment_data['alt'] = get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) ? get_post_meta( $func_atts['attachment_id'], '_wp_attachment_image_alt', true ) : '';
+
+		} else {
+
+			$attachment_data['url'] = '';
+			$attachment_data['alt'] = '';
+
+		}
 
 		$default_attrs = array(
 			'src'    => $attachment_data['url'] ? $attachment_data['url'] : '',
@@ -71,17 +78,24 @@ class Media {
 
 
 		if (empty($image_atts['src'])) {
-			return;
+			return false;
 		}
 
 		$orig_src = $image_atts['src'];
 		// SVG
 		$is_svg = Utils::is_attachment_svg( $func_atts['attachment_id'],  $image_atts['src'] );
 
-		if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
-		} else {
-			$src = aq_resize( $image_atts['src'] , absint( $image_atts['width'] ), absint( $image_atts['height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+		if ($func_atts['resize']) {
+
+			if ( ! empty( $image_atts['data-width'] ) ) {
+
+				$image_atts['data-height'] = !empty( $image_atts['data-height'] ) ? $image_atts['data-height'] : null;
+
+				$src = aq_resize( $image_atts['src'], absint( $image_atts['data-width'] ), absint( $image_atts['data-height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			} else {
+				$src = aq_resize( $image_atts['src'], absint( $image_atts['width'] ), absint( $image_atts['height'] ), $func_atts['crop'], (bool) $func_atts['single'], (bool) $func_atts['upscale'] );
+			}
+
 		}
 
 
@@ -93,7 +107,7 @@ class Media {
 
 		if ( filter_var( $func_atts['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
 
-			if ( !empty($image_atts['data-width']) && !empty($image_atts['data-height']) ) {
+			if ( !empty($image_atts['data-width']) ) {
 				$double_width = ! is_null( $image_atts['data-width'] ) ? absint( $image_atts['data-width'] ) * 2 : null;
 				$double_height = ! is_null( $image_atts['data-height'] ) ? absint( $image_atts['data-height'] ) * 2 : null;
 			} else {
@@ -133,9 +147,9 @@ class Media {
 	/**
 	 * Resize image
 	 *
-	 * @param $url
-	 * @param $width
-	 * @param $height
+	 * @param string $url
+	 * @param integer $width
+	 * @param integer $height
 	 * @param bool $crop
 	 *
 	 * @return string image path
@@ -162,41 +176,5 @@ class Media {
 
 	}
 
-	/**
-	 * Echo image SRC based on file type
-	 *
-	 * @param array
-	 * @param string
-	 **/
-	public static function image_src( $image, $fallback = '' ) {
-
-		if ( is_array( $image ) && ! empty( $image ) ) {
-
-			$file = \get_attached_file( $image['attachment_id'] );
-			$info = pathinfo( $file );
-
-			if ( $info['extension'] == 'svg' ) {
-				echo '<img src="' . \esc_attr( $image['url'] ) . '" class="image-svg" />';
-			} else {
-				echo '<img src="' . \esc_attr( $image['url'] ) . '" />';
-			}
-
-		} elseif ( is_numeric( $image ) ) {
-
-			$url  = \wp_get_attachment_url( $image );
-			$file = \get_attached_file( $image );
-			$info = pathinfo( $file );
-
-			if ( $info['extension'] == 'svg' ) {
-				echo '<img src="' . \esc_attr( $url ) . '" class="image-svg" />';
-			} else {
-				echo '<img src="' . \esc_attr( $url ) . '" />';
-			}
-
-		} elseif ( $fallback <> '' ) {
-			echo '<img src="' . \esc_attr( $fallback ) . '" class="image-svg" />';
-		}
-
-	}
 
 }
