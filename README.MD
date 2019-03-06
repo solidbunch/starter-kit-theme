@@ -7,7 +7,7 @@
 **Requirements**
  
  1. PHP5.6+
- 2. NodeJs
+ 2. NodeJs (v10 +) (optional)
 
 # Setup
  
