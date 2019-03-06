@@ -24,19 +24,20 @@ get_header(); ?>
 								<a href="<?php the_permalink(); ?>">
 
 										<!-- an example how to resize image
-											<img src="<?php echo media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
+											<img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
 										-->
 										<!-- an example how to print image with sizes and with srcset
-											<?php media::the_img(array('width' => 380, 'height' => 250) ); ?>
+											<?php Media::the_img(array('width' => 380, 'height' => 250) ); ?>
 										-->
 										<!-- an example how to print image without sizes, but with lazy load and with srcset
-											<?php media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
+											<?php Media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
 										-->
-
-
 										<!--
 											an example how to print image tag without srcset
-											<?php media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
+											<?php Media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
+										-->
+										<!-- an example how to print image without sizes, but with lazy load if we know only width
+											<?php Media::the_img(array('data-width' => 380) ); ?>
 										-->
 
 										<?php
@@ -55,9 +56,10 @@ get_header(); ?>
 
 											if ( !has_post_thumbnail() ) {
 												$args['src'] = 'https://dummyimage.com/' . $width . 'x' . $height . '/eee/aaaaaa';
+												$func_args['resize'] = false;
 											}
 
-											echo media::the_img($args, $func_args);
+											Media::the_img($args, $func_args);
 
 										?>
 
