@@ -7,6 +7,8 @@ $options = array(
 			'type'    => 'tab',
 			'options' => array(
 
+				//startoauthsettings
+
 				'oauth-settings-box' => array(
 					'title'   => esc_html__( 'Social Login', 'starter-kit' ),
 					'type'    => 'box',
@@ -50,6 +52,8 @@ $options = array(
 
 					)
 				),
+
+				//endoauthsettings
 
 				'social_profiles-settings-box' => array(
 					'title'   => esc_html__( 'Social Profiles', 'starter-kit' ),
