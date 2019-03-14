@@ -66,6 +66,8 @@ class View {
 		
 	}
 	
+	//startcomposerlayout
+
 	/**
 	 * Load layout for header / footer built through Visual Composer
 	 *
@@ -130,6 +132,8 @@ class View {
 		
 		return '';
 	}
+
+	//endcomposerlayout
 	
 	/**
 	 * Remove wpautop
