@@ -27,7 +27,7 @@ class View {
 	 *
 	 * @return false|string
 	 */
-	public function load( $path = '', array $data = array(), $return = false, $base = null ) {
+	public function load( $path = '', array $data = [], $return = false, $base = null ) {
 		
 		if ( $base === null ) {
 			$base = get_stylesheet_directory();
@@ -55,8 +55,8 @@ class View {
 			} else {
 				throw new \RuntimeException( 'The view path ' . $full_path . ' can not be found.' );
 			}
-		} catch ( \Exception $e) {
-			trigger_error($e->getMessage(), E_USER_ERROR);
+		} catch ( \Exception $e ) {
+			trigger_error( $e->getMessage(), E_USER_ERROR );
 		}
 		
 		
@@ -67,7 +67,7 @@ class View {
 	}
 	
 	//startcomposerlayout
-
+	
 	/**
 	 * Load layout for header / footer built through Visual Composer
 	 *
@@ -132,7 +132,7 @@ class View {
 		
 		return '';
 	}
-
+	
 	//endcomposerlayout
 	
 	/**

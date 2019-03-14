@@ -17,10 +17,10 @@ return [
 			'description' => esc_html__( 'Please select position', 'starter-kit' ),
 			'param_name'  => 'position',
 			'save_always' => true,
-			'value'       => array(
+			'value'       => [
 				esc_html__( 'Vertical', 'starter-kit' )   => 'vertical',
 				esc_html__( 'Horizontal', 'starter-kit' ) => 'horizontal',
-			),
+			],
 			'group'       => esc_html__( 'Tabs', 'starter-kit' ),
 		],
 		[
@@ -34,9 +34,9 @@ return [
 			'type'        => 'el_id',
 			'heading'     => esc_html__( 'Element ID', 'starter-kit' ),
 			'param_name'  => 'el_id',
-			'settings'    => array(
+			'settings'    => [
 				'auto_generate' => true,
-			),
+			],
 			'group'       => esc_html__( 'Tabs', 'starter-kit' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'starter-kit' ),
 		],

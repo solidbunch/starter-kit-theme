@@ -1,31 +1,31 @@
 <?php
 
-$options = array(
-	array(
-		'analytics_options_tab' => array(
+$options = [
+	[
+		'analytics_options_tab' => [
 			'title'   => esc_html__( 'Analytics', 'starter-kit' ),
 			'type'    => 'tab',
-			'options' => array(
-
-				'google' => array(
+			'options' => [
+				
+				'google' => [
 					'title'   => esc_html__( 'Google', 'starter-kit' ),
 					'type'    => 'box',
-					'attr'    => array(
+					'attr'    => [
 						'class' => 'prevent-auto-close'
-					),
-					'options' => array(
-
-						'tag_manager_code' => array(
+					],
+					'options' => [
+						
+						'tag_manager_code' => [
 							'type'  => 'text',
 							'label' => esc_html__( 'Tag Manager Code', 'starter-kit' ),
-							'attr'  => array( 'placeholder' => 'GTM-XXXXXXX' ),
+							'attr'  => [ 'placeholder' => 'GTM-XXXXXXX' ],
 							'value' => ''
-						),
-
-					)
-				),
-
-			)
-		)
-	)
-);
+						],
+					
+					]
+				],
+			
+			]
+		]
+	]
+];
