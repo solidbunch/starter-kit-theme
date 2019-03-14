@@ -8,6 +8,10 @@
  
  1. PHP5.6+
  2. NodeJs (v10 +) (optional)
+	
+**StarterKit Generator**
+
+You can include / exclude functional using online generator tool https://solidbunch.github.io/starter-kit-generator/
 
 # Setup
  
