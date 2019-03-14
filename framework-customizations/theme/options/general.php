@@ -1,67 +1,67 @@
 <?php
 
-$options = array(
-	array(
-		'base_options_tab' => array(
+$options = [
+	[
+		'base_options_tab' => [
 			'title'   => esc_html__( 'Base Settings', 'starter-kit' ),
 			'type'    => 'tab',
-			'options' => array(
-
-				'antispam_box' => array(
+			'options' => [
+				
+				'antispam_box' => [
 					'title'   => esc_html__( 'Antispam', 'starter-kit' ),
 					'type'    => 'box',
-					'attr'    => array(
+					'attr'    => [
 						'class' => 'prevent-auto-close'
-					),
-					'options' => array(
-
-						'forms_antispam'	=> array(
-							'type'  => 'switch',
-							'label' => __('Antispam', 'starter-kit'),
-							'right-choice' => array(
+					],
+					'options' => [
+						
+						'forms_antispam' => [
+							'type'         => 'switch',
+							'label'        => __( 'Antispam', 'starter-kit' ),
+							'right-choice' => [
 								'value' => '1',
-								'label' => __('Yes', 'starter-kit')
-							),
-							'left-choice' => array(
+								'label' => __( 'Yes', 'starter-kit' )
+							],
+							'left-choice'  => [
 								'value' => '0',
 								'color' => '#ccc',
-								'label' => __('No', 'starter-kit')
-							),
-							'desc'  => __('Antispam for all Email Forms', 'starter-kit'),
-
-						),
-
-					)
-				),
-
-				'pingbacks' => array(
+								'label' => __( 'No', 'starter-kit' )
+							],
+							'desc'         => __( 'Antispam for all Email Forms', 'starter-kit' ),
+						
+						],
+					
+					]
+				],
+				
+				'pingbacks' => [
 					'title'   => esc_html__( 'Ping Backs', 'starter-kit' ),
 					'type'    => 'box',
-					'attr'    => array(
+					'attr'    => [
 						'class' => 'prevent-auto-close'
-					),
-					'options' => array(
-
-						'disable_pingbacks'	=> array(
-							'type'  => 'switch',
-							'label' => __('Trackbacks/Pingbacks', 'starter-kit'),
-							'right-choice' => array(
+					],
+					'options' => [
+						
+						'disable_pingbacks' => [
+							'type'         => 'switch',
+							'label'        => __( 'Trackbacks/Pingbacks', 'starter-kit' ),
+							'right-choice' => [
 								'value' => '1',
-								'label' => __('Yes', 'starter-kit')
-							),
-							'left-choice' => array(
+								'label' => __( 'Yes', 'starter-kit' )
+							],
+							'left-choice'  => [
 								'value' => '0',
 								'color' => '#ccc',
-								'label' => __('No', 'starter-kit')
-							),
-							'desc'  => __('Disables trackbacks/pingbacks', 'starter-kit'),
-
-						),
-
-					)
-				),
-
-			)
-		)
-	)
-);
+								'label' => __( 'No', 'starter-kit' )
+							],
+							'desc'         => __( 'Disables trackbacks/pingbacks', 'starter-kit' ),
+						
+						],
+					
+					]
+				],
+			
+			]
+		]
+	]
+];

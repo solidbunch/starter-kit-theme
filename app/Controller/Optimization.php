@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 use StarterKit\Helper\Utils;
@@ -16,9 +17,9 @@ use StarterKit\Helper\Utils;
  * @since      Class available since Release 1.0.1
  */
 class Optimization {
-
+	
 	public function __construct() {
-
+		
 		add_action( 'init', function () {
 			if ( Utils::get_option( 'clean_wp_head', false ) ) {
 				$this->head_cleanup();
@@ -26,14 +27,14 @@ class Optimization {
 			if ( Utils::get_option( 'disable_trackbacks', false ) ) {
 				$this->disable_trackbacks();
 			}
-
+			
 			if ( Utils::get_option( 'assets_versions', false ) ) {
 				add_filter( 'script_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
 				add_filter( 'style_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
 			}
 		} );
 	}
-
+	
 	/**
 	 * Clean up wp_head()
 	 *
@@ -58,7 +59,7 @@ class Optimization {
 		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
 		remove_action( 'wp_head', 'wp_generator' );
 		if ( function_exists( 'visual_composer' ) ) {
-			remove_action( 'wp_head', array( visual_composer(), 'addMetaData' ) );
+			remove_action( 'wp_head', [ visual_composer(), 'addMetaData' ] );
 		}
 		remove_action( 'wp_head', 'wp_shortlink_wp_head', 10 );
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -82,7 +83,7 @@ class Optimization {
 		add_filter( 'post_thumbnail_html', [ $this, 'remove_self_closing_tags' ] ); // <img />
 		add_filter( 'get_bloginfo_rss', [ $this, 'remove_default_description' ] );
 	}
-
+	
 	/**
 	 * Disables trackbacks/pingbacks
 	 */
@@ -93,7 +94,7 @@ class Optimization {
 		add_filter( 'bloginfo_url', [ $this, 'kill_pingback_url' ], 10, 2 );
 		add_action( 'xmlrpc_call', [ $this, 'kill_xmlrpc' ] );
 	}
-
+	
 	/**
 	 * Clean up output of stylesheet <link> tags
 	 */
@@ -108,10 +109,10 @@ class Optimization {
 		}
 		// Only display media if it is meaningful
 		$media = $matches[3][0] !== '' && $matches[3][0] !== 'all' ? ' media="' . $matches[3][0] . '"' : '';
-
+		
 		return '<link rel="stylesheet" href="' . $matches[2][0] . '"' . $media . '>' . "\n";
 	}
-
+	
 	/**
 	 * Clean up output of <script> tags
 	 *
@@ -120,9 +121,9 @@ class Optimization {
 	 * @return mixed
 	 */
 	public function clean_script_tag( $input ) {
-		return str_replace( array( "type='text/javascript' ", "'" ), array( '', '"' ), $input );
+		return str_replace( [ "type='text/javascript' ", "'" ], [ '', '"' ], $input );
 	}
-
+	
 	/**
 	 * Wrap embedded media as suggested by Readability
 	 *
@@ -136,7 +137,7 @@ class Optimization {
 	public function embed_wrap( $cache ) {
 		return '<div class="entry-content-asset">' . $cache . '</div>';
 	}
-
+	
 	/**
 	 * Remove unnecessary self-closing tags
 	 *
@@ -147,7 +148,7 @@ class Optimization {
 	public function remove_self_closing_tags( $input ) {
 		return str_replace( ' />', '>', $input );
 	}
-
+	
 	/**
 	 * Don't return the default description in the RSS feed if it hasn't been changed
 	 *
@@ -157,10 +158,10 @@ class Optimization {
 	 */
 	public function remove_default_description( $bloginfo ) {
 		$default_tagline = 'Just another WordPress site';
-
+		
 		return ( $bloginfo === $default_tagline ) ? '' : $bloginfo;
 	}
-
+	
 	/**
 	 * Disable pingback XMLRPC method
 	 *
@@ -170,10 +171,10 @@ class Optimization {
 	 */
 	public function filter_xmlrpc_method( $methods ) {
 		unset( $methods['pingback.ping'] );
-
+		
 		return $methods;
 	}
-
+	
 	/**
 	 * Remove pingback header
 	 *
@@ -185,10 +186,10 @@ class Optimization {
 		if ( isset( $headers['X-Pingback'] ) ) {
 			unset( $headers['X-Pingback'] );
 		}
-
+		
 		return $headers;
 	}
-
+	
 	/**
 	 * Kill trackback rewrite rule
 	 *
@@ -202,10 +203,10 @@ class Optimization {
 				unset( $rules[ $rule ] );
 			}
 		}
-
+		
 		return $rules;
 	}
-
+	
 	/**
 	 * Kill bloginfo('pingback_url')
 	 *
@@ -218,10 +219,10 @@ class Optimization {
 		if ( $show === 'pingback_url' ) {
 			$output = '';
 		}
-
+		
 		return $output;
 	}
-
+	
 	/**
 	 * Disable XMLRPC call
 	 *
@@ -232,7 +233,7 @@ class Optimization {
 			wp_die( 'Pingbacks are not supported', 'Not Allowed!', [ 'response' => 403 ] );
 		}
 	}
-
+	
 	/**
 	 * Remove version query string from all styles and scripts
 	 */

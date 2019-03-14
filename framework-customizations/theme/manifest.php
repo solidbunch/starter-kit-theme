@@ -4,21 +4,21 @@ if ( ! defined( 'FW' ) ) {
 	exit;
 }
 
-$manifest = array(
+$manifest = [
 	'id' => get_option( 'stylesheet' )
-);
+];
 
-$manifest['requirements'] = array(
-	'wordpress'  => array(),
-	'framework'  => array(),
-	'extensions' => array()
-);
+$manifest['requirements'] = [
+	'wordpress'  => [],
+	'framework'  => [],
+	'extensions' => []
+];
 
-$manifest['supported_extensions'] = array(
+$manifest['supported_extensions'] = [
 	//'page-builder'	=> array(),
 	//'wp-shortcodes' => array(),
-	'backups'  => array(),
-	'sidebars' => array(),
+	'backups'  => [],
+	'sidebars' => [],
 	//'portfolio' 		=> array(),
 	//'breadcrumbs' 	=> array(),
 	//'seo' 					=> array(),
@@ -26,4 +26,4 @@ $manifest['supported_extensions'] = array(
 	//'social' 				=> array(),
 	//'megamenu'			=> array(),
 	//'events' 				=> array(),
-);
+];

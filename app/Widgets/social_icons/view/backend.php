@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \WP_Widget[]|array[] $data   
+ * @var \WP_Widget[]|array[] $data
  */
 ?>
 
