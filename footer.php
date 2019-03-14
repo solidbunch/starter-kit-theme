@@ -1,6 +1,8 @@
+<!--startcomposerlayout-->
 <footer id="composer-footer">
 	<?php echo Starter_Kit()->View->load_composer_layout( 'footer' ); ?>
 </footer>
+<!--endcomposerlayout-->
 
 <footer id="footer" class="bg-dark text-white">
 	<div class="footer4 b-t spacer pt-3">
