@@ -1,30 +1,30 @@
 <?php
 
-$options = array(
-	array(
-		'footer_options_tab' => array(
+$options = [
+	[
+		'footer_options_tab' => [
 			'title'   => esc_html__( 'Footer', 'starter-kit' ),
 			'type'    => 'tab',
-			'options' => array(
-
-				'bottom_bar-settings-box' => array(
+			'options' => [
+				
+				'bottom_bar-settings-box' => [
 					'title'   => esc_html__( 'Bottom Bar', 'starter-kit' ),
 					'type'    => 'box',
-					'attr'    => array(
+					'attr'    => [
 						'class' => 'prevent-auto-close'
-					),
-					'options' => array(
-
-						'bottom_bar_text' => array(
+					],
+					'options' => [
+						
+						'bottom_bar_text' => [
 							'type'  => 'text',
 							'label' => esc_html__( 'Bottom bar text', 'starter-kit' ),
 							'value' => ''
-						),
-
-					)
-				),
-
-			)
-		)
-	)
-);
+						],
+					
+					]
+				],
+			
+			]
+		]
+	]
+];

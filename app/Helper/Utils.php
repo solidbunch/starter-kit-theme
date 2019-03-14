@@ -178,14 +178,14 @@ class Utils {
 	 **/
 	public static function get_social_cfg_usyon() {
 		
-		$config = array();
+		$config = [];
 		
 		foreach ( \Starter_Kit()->config['social_profiles'] as $k => $v ) {
-			$config[ $k ] = array(
+			$config[ $k ] = [
 				'type'  => 'text',
 				'label' => $v,
 				'value' => ''
-			);
+			];
 		}
 		
 		return $config;
@@ -201,7 +201,7 @@ class Utils {
 	 */
 	public static function sanitize_array_text_params( $params ) {
 		
-		$sanitized_params = array();
+		$sanitized_params = [];
 		
 		foreach ( $params as $k => $v ) {
 			

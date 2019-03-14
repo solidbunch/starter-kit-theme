@@ -27,7 +27,7 @@ class widget extends \WP_Widget {
 			$control_ops
 		);
 		
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'add_styles' ] );
 		
 	}
 	

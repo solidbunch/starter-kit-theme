@@ -9,12 +9,12 @@ the_post(); ?>
 	<section id="content" class="container pt-5">
 		
 		<div class="row">
-
+			
 			<div id="posts" class="<?php echo Front::get_grid_class(); ?>">
-
+				
 				<div class="row">
-
-					<article <?php post_class('col-md-12'); ?>>
+					
+					<article <?php post_class( 'col-md-12' ); ?>>
 						
 						<h1><?php the_title(); ?></h1>
 						
@@ -24,21 +24,21 @@ the_post(); ?>
 							<div class="thumb">
 								<a href="<?php the_permalink(); ?>">
 									<?php
-										media::the_img( array('width' => 800, 'height' => 400), array( 'crop' => true) );
+									media::the_img( array( 'width' => 800, 'height' => 400 ), array( 'crop' => true ) );
 									?>
 								</a>
 							</div>
 						<?php endif; ?>
 						
 						<?php
-							the_content();
+						the_content();
 						
-							wp_link_pages( array(
-								'before'      => '<div class="page-links">' . __( 'Pages:', 'starter-kit' ),
-								'after'       => '</div>',
-								'link_before' => '<span class="page-number">',
-								'link_after'  => '</span>',
-							) );
+						wp_link_pages( array(
+							'before'      => '<div class="page-links">' . __( 'Pages:', 'starter-kit' ),
+							'after'       => '</div>',
+							'link_before' => '<span class="page-number">',
+							'link_after'  => '</span>',
+						) );
 						?>
 						
 						<div class="clearfix"></div>
@@ -56,10 +56,10 @@ the_post(); ?>
 						<?php endif; ?>
 					
 					</article>
-					
-
+				
+				
 				</div>
-
+			
 			</div>
 			
 			<?php get_sidebar(); ?>
