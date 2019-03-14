@@ -1,5 +1,7 @@
 # Starter Kit Theme
 
+[![TotalDownloads](https://img.shields.io/github/downloads/SolidBunch/starter-kit/total.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/releases)
+[![Release](https://img.shields.io/github/release/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/releases)
 [![GitHub Issues](https://img.shields.io/github/issues/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/issues)
 [![License](https://img.shields.io/github/license/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/blob/master/LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/)
