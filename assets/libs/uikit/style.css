@@ -227,15 +227,15 @@ form-banner 1
 	#banner1 {
 		background-position: right -14em center;
 	}
-
+	
 	#banner1 h2 {
 		font-size: 40px;
 	}
-
+	
 	#banner1 input[type="text"] {
 		width: 59%;
 	}
-
+	
 	#banner1 input[type="submit"] {
 		padding: 0 20px;
 	}
@@ -246,12 +246,12 @@ form-banner 1
 		height: auto !important;
 		padding: 100px 0;
 	}
-
+	
 	#banner1 {
 		background-position: right -6em center;
 		background-size: 80%;
 	}
-
+	
 	#banner1 h2 {
 		font-size: 30px;
 	}
@@ -261,16 +261,16 @@ form-banner 1
 	.banner {
 		padding: 30px 0;
 	}
-
+	
 	#banner1 {
 		background-size: 100%;
 		background-position: right center;
 	}
-
+	
 	#banner1 input[type="submit"] {
 		padding: 0 30px;
 	}
-
+	
 	#banner1 img {
 		margin-top: 25px;
 	}
@@ -287,12 +287,12 @@ form-banner 1
 		font-size: 14px;
 		line-height: 50px;
 	}
-
+	
 	#banner1 input[type="text"] {
 		border-radius: 25px 0 0 25px;
 		text-indent: 20px;
 	}
-
+	
 	#banner1 input[type="submit"] {
 		border-radius: 0 25px 25px 0;
 		padding: 0 15px;
@@ -487,7 +487,7 @@ Responsive
 		font-size: 60px;
 		line-height: 60px;
 	}
-
+	
 	.topbar {
 		background: #263238;
 	}

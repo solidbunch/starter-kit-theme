@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Model;
 
 /**
@@ -12,24 +13,24 @@ namespace StarterKit\Model;
  * @since      Class available since Release 1.0.0
  */
 class Layout {
-
+	
 	/**
 	 * Model constructor
 	 */
 	public function __construct() {
-
-		add_action( 'init', function() {
+		
+		add_action( 'init', function () {
 			$this->register_post_type();
 		}, 5 );
-
+		
 	}
-
+	
 	/**
 	 * Register custom post type
 	 */
 	public function register_post_type() {
-
-		register_post_type( 'composerlayout', array(
+		
+		register_post_type( 'composerlayout', [
 			'label'               => esc_html__( 'Header / Footer', 'starter-kit' ),
 			'description'         => '',
 			'public'              => true,
@@ -45,8 +46,8 @@ class Layout {
 			'menu_position'       => null,
 			'rewrite'             => false,
 			'query_var'           => true,
-			'supports'            => array( 'title', 'editor' ),
-			'labels'              => array(
+			'supports'            => [ 'title', 'editor' ],
+			'labels'              => [
 				'name'               => esc_html__( 'Header / Footer', 'starter-kit' ),
 				'singular_name'      => esc_html__( 'Header / Footer', 'starter-kit' ),
 				'menu_name'          => esc_html__( 'Header / Footer', 'starter-kit' ),
@@ -61,11 +62,11 @@ class Layout {
 				'not_found'          => esc_html__( 'No Header / Footer Found', 'starter-kit' ),
 				'not_found_in_trash' => esc_html__( 'No Header / Footer Found in Trash', 'starter-kit' ),
 				'parent'             => esc_html__( 'Parent Header / Footer', 'starter-kit' )
-			)
-		));
-
+			]
+		] );
+		
 	}
-
+	
 	/**
 	 * Get default composer layout
 	 *
@@ -74,29 +75,29 @@ class Layout {
 	 * @return \WP_Query
 	 */
 	public function get_default_layout( $layout_type = 'header' ) {
-		$args                 = array(
+		$args                 = [
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => 1,
 			'post_status'    => 'publish',
-			'meta_query'     => array(
+			'meta_query'     => [
 				'relation' => 'AND',
-				array(
+				[
 					'key'   => '_layouttype',
 					'value' => $layout_type,
-				),
-				array(
+				],
+				[
 					'key'   => '_appointment',
 					'value' => 'default',
-				),
-
-			)
-		);
+				],
+			
+			]
+		];
 		$default_layout_query = new \WP_Query( $args );
 		wp_reset_query();
-
+		
 		return $default_layout_query;
 	}
-
+	
 	/**
 	 * Get all composer layouts
 	 *
@@ -105,22 +106,22 @@ class Layout {
 	 * @return \WP_Query
 	 */
 	public function get_layouts( $layout_type = 'header' ) {
-
-		$args    = array(
+		
+		$args    = [
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => - 1,
 			'post_status'    => 'publish',
-			'meta_query'     => array(
-				'composerlayout_layouttype' => array(
+			'meta_query'     => [
+				'composerlayout_layouttype' => [
 					'key'   => '_layouttype',
 					'value' => $layout_type,
-				),
-			),
+				],
+			],
 			'order'          => 'ASC',
-		);
+		];
 		$layouts = new \WP_Query( $args );
 		wp_reset_query();
-
+		
 		return $layouts;
 	}
 }
