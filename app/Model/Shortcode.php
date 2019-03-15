@@ -68,9 +68,15 @@ class Shortcode {
 	 */
 	public function vc_shortcode() {
 		
-		if ( class_exists( 'WPBakeryShortCode' ) && file_exists( $this->shortcode_dir . '/vc.php' ) ) {
+		if (
+			
+			class_exists( 'WPBakeryShortCode' )
+			&& file_exists( $this->shortcode_dir . '/vc.php' ) 
+			&& file_exists( $this->shortcode_dir . '/config.php' )
+
+			) {
 			// Add shortcode map
-			vc_map( $this->config );
+			vc_lean_map( $this->shortcode, null, $this->shortcode_dir . '/config.php' );
 			
 			// Add shortcode to VC
 			require_once( $this->shortcode_dir . '/vc.php' );
