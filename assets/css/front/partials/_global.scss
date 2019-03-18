@@ -27,13 +27,17 @@
 	position: absolute;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	word-wrap: break-word;
+}
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 	color: inherit;
 }
 
 a {
 	color: $primary;
-	
+
 	&:hover {
 		color: darken($primary, 10%);
 	}
@@ -74,13 +78,3 @@ button, input[type="submit"] {
 input[type="submit"] {
 	@extend .btn-primary;
 }
-
-/** By Envato requirements */
-.wp-caption,
-.wp-caption-text,
-.screen-reader-text,
-.gallery-caption,
-.bypostauthor {
-	border: 0;
-}
-
