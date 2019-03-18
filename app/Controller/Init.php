@@ -62,7 +62,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 		register_sidebar( [
 			'name'          => esc_html__( 'Shop Sidebar', 'starter-kit' ),
@@ -71,7 +71,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 		register_sidebar( [
 			'name'          => esc_html__( 'Footer Col 1 Sidebar', 'starter-kit' ),
@@ -80,7 +80,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 		register_sidebar( [
 			'name'          => esc_html__( 'Footer Col 2 Sidebar', 'starter-kit' ),
@@ -89,7 +89,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 		register_sidebar( [
 			'name'          => esc_html__( 'Footer Col 3 Sidebar', 'starter-kit' ),
@@ -98,7 +98,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 		register_sidebar( [
 			'name'          => esc_html__( 'Footer Col 4 Sidebar', 'starter-kit' ),
@@ -107,7 +107,7 @@ class Init {
 			'after_widget'  => '<div class="clearfix"></div></div></div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
-		]);
+		] );
 
 	}
 

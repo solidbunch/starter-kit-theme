@@ -5,38 +5,38 @@
 -------------------------------------------------------------------*/
 
 article {
-  & > figure,
-  & > img{
-	max-width: 100%;
-  }
+	& > figure,
+	& > img {
+		max-width: 100%;
+	}
 }
 
 .comment-form {
-  .form-submit {
-	padding-top: 10px;
-	text-align: right;
-  }
+	.form-submit {
+		padding-top: 10px;
+		text-align: right;
+	}
 }
 
 
 .pagination-nav {
-
-  ul {
-	@extend .pagination;
-	@extend .justify-content-center;
-
-	li {
-	  @extend .page-item;
-
-	  a, span {
-		@extend .page-link;
-
-		&.current {
-		  background: $primary;
-		  border-color: $primary;
-		  color: #fff;
+	
+	ul {
+		@extend .pagination;
+		@extend .justify-content-center;
+		
+		li {
+			@extend .page-item;
+			
+			a, span {
+				@extend .page-link;
+				
+				&.current {
+					background: $primary;
+					border-color: $primary;
+					color: #fff;
+				}
+			}
 		}
-	  }
 	}
-  }
 }

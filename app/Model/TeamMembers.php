@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Model;
 
 /**
@@ -14,26 +15,26 @@ namespace StarterKit\Model;
  * @since      Class available since Release 1.0.0
  */
 class TeamMembers extends Database {
-
+	
 	/**
 	 * Model constructor
 	 */
 	public function __construct() {
-
-		add_action( 'init', function() {
+		
+		add_action( 'init', function () {
 			$this->register_post_type();
 			$this->register_taxonomy();
 		}, 5 );
-
+		
 	}
-
+	
 	/**
 	 * Register custom post type
 	 */
 	public function register_post_type() {
-
+		
 		register_post_type( 'team_members',
-			array(
+			[
 				'label'             => esc_html__( 'Team Members', 'starter-kit' ),
 				'description'       => '',
 				'public'            => false,
@@ -42,12 +43,12 @@ class TeamMembers extends Database {
 				'show_in_nav_menus' => true,
 				'capability_type'   => 'post',
 				'hierarchical'      => false,
-				'supports'          => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
+				'supports'          => [ 'title', 'editor', 'custom-fields', 'thumbnail' ],
 				'rewrite'           => false,
 				'has_archive'       => false,
 				'query_var'         => false,
 				'menu_position'     => 5,
-				'capabilities'      => array(
+				'capabilities'      => [
 					'publish_posts'       => 'edit_pages',
 					'edit_posts'          => 'edit_pages',
 					'edit_others_posts'   => 'edit_pages',
@@ -57,8 +58,8 @@ class TeamMembers extends Database {
 					'edit_post'           => 'edit_pages',
 					'delete_post'         => 'edit_pages',
 					'read_post'           => 'edit_pages',
-				),
-				'labels'            => array(
+				],
+				'labels'            => [
 					'name'               => esc_html__( 'Team Members', 'starter-kit' ),
 					'singular_name'      => esc_html__( 'Team Member', 'starter-kit' ),
 					'menu_name'          => esc_html__( 'Team Members', 'starter-kit' ),
@@ -72,27 +73,27 @@ class TeamMembers extends Database {
 					'not_found'          => esc_html__( 'No Team Members Found', 'starter-kit' ),
 					'not_found_in_trash' => esc_html__( 'No Team Members Found in Trash', 'starter-kit' ),
 					'parent_item_colon'  => esc_html__( 'Parent Team Member:', 'starter-kit' )
-				)
-			)
+				]
+			]
 		);
-
+		
 	}
-
+	
 	/**
 	 * Register custom post type
 	 */
 	public function register_taxonomy() {
-
+		
 		register_taxonomy( 'team_members_cat',
 			'team',
-			array(
+			[
 				'hierarchical'      => true,
 				'show_ui'           => true,
 				'query_var'         => false,
 				'show_in_nav_menus' => false,
 				'rewrite'           => false,
 				'show_admin_column' => true,
-				'labels'            => array(
+				'labels'            => [
 					'name'          => _x( 'Team Members Categories', 'taxonomy general name',
 						'starter-kit' ),
 					'singular_name' => _x( 'Team Members Category', 'taxonomy singular name',
@@ -104,10 +105,10 @@ class TeamMembers extends Database {
 					'add_new_item'  => esc_html__( 'Add New Category', 'starter-kit' ),
 					'new_item_name' => esc_html__( 'New Category', 'starter-kit' ),
 					'menu_name'     => esc_html__( 'Categories', 'starter-kit' )
-				)
-			)
+				]
+			]
 		);
-
+		
 	}
-
+	
 }

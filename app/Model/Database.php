@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Model;
 
 /**
@@ -18,13 +19,13 @@ class Database {
 	/**
 	 * Class vars
 	 **/
-
+	
 	/** @var \wpdb null */
 	protected $wpdb;
-
+	
 	/** @var array */
-	protected $tables = array();
-
+	protected $tables = [];
+	
 	/**
 	 * Make Wordpress dbase object and other
 	 * models available to all model classes.
@@ -33,10 +34,10 @@ class Database {
 	public function __construct() {
 		global $wpdb;
 		$this->wpdb = $wpdb;
-
-		$this->tables = array(
+		
+		$this->tables = [
 			'posts' => $this->wpdb->prefix . "posts"
-		);
-
+		];
+		
 	}
 }

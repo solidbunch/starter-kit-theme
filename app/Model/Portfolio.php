@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Model;
 
 /**
@@ -14,26 +15,26 @@ namespace StarterKit\Model;
  * @since      Class available since Release 1.0.0
  */
 class Portfolio extends Database {
-
+	
 	/**
 	 * Model constructor
 	 */
 	public function __construct() {
-
-		add_action( 'init', function() {
+		
+		add_action( 'init', function () {
 			$this->register_post_type();
 			$this->register_taxonomy();
 		}, 5 );
-
+		
 	}
-
+	
 	/**
 	 * Register custom post type
 	 */
 	public function register_post_type() {
-
+		
 		register_post_type( 'portfolio',
-			array(
+			[
 				'label'             => esc_html__( 'Portfolio', 'starter-kit' ),
 				'description'       => '',
 				'public'            => true,
@@ -42,12 +43,12 @@ class Portfolio extends Database {
 				'show_in_nav_menus' => true,
 				'capability_type'   => 'post',
 				'hierarchical'      => false,
-				'supports'          => array( 'title', 'editor', 'custom-fields', 'thumbnail' ),
+				'supports'          => [ 'title', 'editor', 'custom-fields', 'thumbnail' ],
 				'rewrite'           => true,
 				'has_archive'       => true,
 				'query_var'         => true,
 				'menu_position'     => 5,
-				'capabilities'      => array(
+				'capabilities'      => [
 					'publish_posts'       => 'edit_pages',
 					'edit_posts'          => 'edit_pages',
 					'edit_others_posts'   => 'edit_pages',
@@ -57,8 +58,8 @@ class Portfolio extends Database {
 					'edit_post'           => 'edit_pages',
 					'delete_post'         => 'edit_pages',
 					'read_post'           => 'edit_pages',
-				),
-				'labels'            => array(
+				],
+				'labels'            => [
 					'name'               => esc_html__( 'Portfolio', 'starter-kit' ),
 					'singular_name'      => esc_html__( 'Post', 'starter-kit' ),
 					'menu_name'          => esc_html__( 'Portfolio', 'starter-kit' ),
@@ -72,27 +73,27 @@ class Portfolio extends Database {
 					'not_found'          => esc_html__( 'No Posts Found', 'starter-kit' ),
 					'not_found_in_trash' => esc_html__( 'No Posts Found in Trash', 'starter-kit' ),
 					'parent_item_colon'  => esc_html__( 'Parent Post:', 'starter-kit' )
-				)
-			)
+				]
+			]
 		);
-
+		
 	}
-
+	
 	/**
 	 * Register custom post type
 	 */
 	public function register_taxonomy() {
-
+		
 		register_taxonomy( 'portfolio_cat',
 			'portfolio',
-			array(
+			[
 				'hierarchical'      => true,
 				'show_ui'           => true,
 				'query_var'         => true,
 				'show_in_nav_menus' => true,
 				'rewrite'           => true,
 				'show_admin_column' => true,
-				'labels'            => array(
+				'labels'            => [
 					'name'          => _x( 'Categories', 'taxonomy general name', 'starter-kit' ),
 					'singular_name' => _x( 'Category', 'taxonomy singular name', 'starter-kit' ),
 					'search_items'  => esc_html__( 'Search in categories', 'starter-kit' ),
@@ -102,10 +103,10 @@ class Portfolio extends Database {
 					'add_new_item'  => esc_html__( 'Add New Category', 'starter-kit' ),
 					'new_item_name' => esc_html__( 'New Category', 'starter-kit' ),
 					'menu_name'     => esc_html__( 'Categories', 'starter-kit' )
-				)
-			)
+				]
+			]
 		);
-
+		
 	}
-
+	
 }
