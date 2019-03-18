@@ -13,36 +13,36 @@ class LayoutGlobal {
 	function __construct() {
 
 		// Header
-		add_action( 'starter-kit/before_header', [ $this, 'before_header'] );
-		add_action( 'starter-kit/header', [ $this, 'header'] );
-		add_action( 'starter-kit/after_header', [ $this, 'after_header'] );
+		add_action( 'StarterKit/before_header', [ $this, 'before_header'] );
+		add_action( 'StarterKit/header', [ $this, 'header'] );
+		add_action( 'StarterKit/after_header', [ $this, 'after_header'] );
 
 		// Footer
-		add_action( 'starter-kit/before_footer', [ $this, 'before_footer'] );
-		add_action( 'starter-kit/footer', [ $this, 'footer'] );
-		add_action( 'starter-kit/after_footer', [ $this, 'after_footer'] );
+		add_action( 'StarterKit/before_footer', [ $this, 'before_footer'] );
+		add_action( 'StarterKit/footer', [ $this, 'footer'] );
+		add_action( 'StarterKit/after_footer', [ $this, 'after_footer'] );
 
 		// Grid
-		add_action( 'starter-kit/layout_start', [ $this, 'layout_start'] );
-		add_action( 'starter-kit/layout_end', [ $this, 'layout_end'] );
+		add_action( 'StarterKit/layout_start', [ $this, 'layout_start'] );
+		add_action( 'StarterKit/layout_end', [ $this, 'layout_end'] );
 
 		// Sidebar
-		add_action( 'starter-kit/sidebar', [ $this, 'sidebar'] );
+		add_action( 'StarterKit/sidebar', [ $this, 'sidebar'] );
 
 		// Page 404
-		add_action( 'starter-kit/before_page_404_content', [ $this, 'before_page_404_content'] );
-		add_action( 'starter-kit/page_404_content', [ $this, 'page_404_content'] );
-		add_action( 'starter-kit/after_page_404_content', [ $this, 'after_page_404_content'] );
+		add_action( 'StarterKit/before_page_404_content', [ $this, 'before_page_404_content'] );
+		add_action( 'StarterKit/page_404_content', [ $this, 'page_404_content'] );
+		add_action( 'StarterKit/after_page_404_content', [ $this, 'after_page_404_content'] );
 
 		// Loops
-		add_action( 'starter-kit/before_loop', [ $this, 'before_loop'] );
-		add_action( 'starter-kit/after_loop', [ $this, 'after_loop'] );
+		add_action( 'StarterKit/before_loop', [ $this, 'before_loop'] );
+		add_action( 'StarterKit/after_loop', [ $this, 'after_loop'] );
 
 	}
 
 	/**
 	 * Template layout hook
-	 * starter-kit/before_header
+	 * StarterKit/before_header
 	 */
 	function before_header() {
 
@@ -52,7 +52,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/header
+	 * StarterKit/header
 	 */
 	function header() {
 
@@ -62,7 +62,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/after_header
+	 * StarterKit/after_header
 	 */
 	function after_header() {
 
@@ -74,7 +74,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/before_footer
+	 * StarterKit/before_footer
 	 */
 	function before_footer() {
 
@@ -82,7 +82,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/footer
+	 * StarterKit/footer
 	 */
 	function footer() {
 
@@ -92,7 +92,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/after_footer
+	 * StarterKit/after_footer
 	 */
 	function after_footer() {
 
@@ -102,7 +102,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/layout_start
+	 * StarterKit/layout_start
 	 */
 	function layout_start() {
 
@@ -112,7 +112,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/layout_end
+	 * StarterKit/layout_end
 	 */
 	function layout_end() {
 
@@ -122,7 +122,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/sidebar
+	 * StarterKit/sidebar
 	 */
 	function sidebar() {
 
@@ -132,7 +132,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/before_page_404_content
+	 * StarterKit/before_page_404_content
 	 */
 	function before_page_404_content() {
 
@@ -140,7 +140,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/page_404_content
+	 * StarterKit/page_404_content
 	 */
 	function page_404_content() {
 
@@ -150,7 +150,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/after_page_404_content
+	 * StarterKit/after_page_404_content
 	 */
 	function after_page_404_content() {
 
@@ -159,7 +159,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/before_loop
+	 * StarterKit/before_loop
 	 */
 	function before_loop() {
 
@@ -169,7 +169,7 @@ class LayoutGlobal {
 
 	/**
 	 * Template layout hook
-	 * starter-kit/after_loop
+	 * StarterKit/after_loop
 	 */
 	function after_loop() {
 

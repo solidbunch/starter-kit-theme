@@ -8,9 +8,9 @@ get_header(); ?>
 	<!--
 		Start layout
 	-->
-	<?php do_action( 'starter-kit/layout_start'); ?>
+	<?php do_action( 'StarterKit/layout_start'); ?>
 
-		<?php do_action( 'starter-kit/before_loop'); ?>
+		<?php do_action( 'StarterKit/before_loop'); ?>
 
 			<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 
@@ -27,7 +27,7 @@ get_header(); ?>
 
 			<?php endif; ?>
 
-		<?php do_action( 'starter-kit/after_loop'); ?>
+		<?php do_action( 'StarterKit/after_loop'); ?>
 
 		<!--
 			Sidebar
@@ -37,6 +37,6 @@ get_header(); ?>
 	<!--
 		End layout
 	-->
-	<?php do_action( 'starter-kit/layout_end'); ?>
+	<?php do_action( 'StarterKit/layout_end'); ?>
 
 <?php get_footer(); ?>

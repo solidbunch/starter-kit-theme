@@ -13,34 +13,34 @@ class LayoutSingle {
 	function __construct() {
 
 		// Post layout
-		add_action( 'starter-kit/before_single_post', [ $this, 'before_single_post'] );
-		add_action( 'starter-kit/after_single_post', [ $this, 'after_single_post'] );
+		add_action( 'StarterKit/before_single_post', [ $this, 'before_single_post'] );
+		add_action( 'StarterKit/after_single_post', [ $this, 'after_single_post'] );
 
 		// Post thumbnail
-		add_action( 'starter-kit/before_single_post_thumbnail', [ $this, 'before_single_post_thumbnail'] );
-		add_action( 'starter-kit/single_post_thumbnail', [ $this, 'single_post_thumbnail'] );
-		add_action( 'starter-kit/after_single_post_thumbnail', [ $this, 'after_single_post_thumbnail'] );
+		add_action( 'StarterKit/before_single_post_thumbnail', [ $this, 'before_single_post_thumbnail'] );
+		add_action( 'StarterKit/single_post_thumbnail', [ $this, 'single_post_thumbnail'] );
+		add_action( 'StarterKit/after_single_post_thumbnail', [ $this, 'after_single_post_thumbnail'] );
 
 		// Post title
-		add_action( 'starter-kit/before_single_post_title', [ $this, 'before_single_post_title'] );
-		add_action( 'starter-kit/single_post_title', [ $this, 'single_post_title'] );
-		add_action( 'starter-kit/after_single_post_title', [ $this, 'after_single_post_title'] );
+		add_action( 'StarterKit/before_single_post_title', [ $this, 'before_single_post_title'] );
+		add_action( 'StarterKit/single_post_title', [ $this, 'single_post_title'] );
+		add_action( 'StarterKit/after_single_post_title', [ $this, 'after_single_post_title'] );
 
 		// Post content
-		add_action( 'starter-kit/before_single_post_content', [ $this, 'before_single_post_content'] );
-		add_action( 'starter-kit/single_post_content', [ $this, 'single_post_content'] );
-		add_action( 'starter-kit/after_single_post_content', [ $this, 'after_single_post_content'] );
+		add_action( 'StarterKit/before_single_post_content', [ $this, 'before_single_post_content'] );
+		add_action( 'StarterKit/single_post_content', [ $this, 'single_post_content'] );
+		add_action( 'StarterKit/after_single_post_content', [ $this, 'after_single_post_content'] );
 
 		// Post comments
-		add_action( 'starter-kit/before_single_post_comments', [ $this, 'before_single_post_comments'] );
-		add_action( 'starter-kit/single_post_comments', [ $this, 'single_post_comments'] );
-		add_action( 'starter-kit/after_single_post_comments', [ $this, 'after_single_post_comments'] );
+		add_action( 'StarterKit/before_single_post_comments', [ $this, 'before_single_post_comments'] );
+		add_action( 'StarterKit/single_post_comments', [ $this, 'single_post_comments'] );
+		add_action( 'StarterKit/after_single_post_comments', [ $this, 'after_single_post_comments'] );
 
 	}
 
 	/**
 	 * Single post content hook
-	 * starter-kit/before_post
+	 * StarterKit/before_post
 	 */
 	function before_single_post() {
 
@@ -50,7 +50,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/after_post
+	 * StarterKit/after_post
 	 */
 	function after_single_post() {
 
@@ -60,7 +60,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/before_post_title
+	 * StarterKit/before_post_title
 	 */
 	function before_single_post_title() {
 
@@ -68,7 +68,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/post_title
+	 * StarterKit/post_title
 	 */
 	function single_post_title() {
 
@@ -78,7 +78,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/after_post_title
+	 * StarterKit/after_post_title
 	 */
 	function after_single_post_title() {
 
@@ -88,7 +88,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/before_post_thumbnail
+	 * StarterKit/before_post_thumbnail
 	 */
 	function before_single_post_thumbnail() {
 
@@ -96,7 +96,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/post_thumbnail
+	 * StarterKit/post_thumbnail
 	 */
 	function single_post_thumbnail() {
 
@@ -106,7 +106,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/after_post_thumbnail
+	 * StarterKit/after_post_thumbnail
 	 */
 	function after_single_post_thumbnail() {
 
@@ -114,7 +114,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/before_post_content
+	 * StarterKit/before_post_content
 	 */
 	function before_single_post_content() {
 
@@ -122,7 +122,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/post_content
+	 * StarterKit/post_content
 	 */
 	function single_post_content() {
 
@@ -132,7 +132,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/after_post_content
+	 * StarterKit/after_post_content
 	 */
 	function after_single_post_content() {
 
@@ -142,7 +142,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/before_post_comments
+	 * StarterKit/before_post_comments
 	 */
 	function before_single_post_comments() {
 
@@ -150,7 +150,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/post_comments
+	 * StarterKit/post_comments
 	 */
 	function single_post_comments() {
 
@@ -160,7 +160,7 @@ class LayoutSingle {
 
 	/**
 	 * Single post content hook
-	 * starter-kit/after_post_comments
+	 * StarterKit/after_post_comments
 	 */
 	function after_single_post_comments() {
 

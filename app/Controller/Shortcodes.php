@@ -66,7 +66,7 @@ class Shortcodes {
 		}
 
 		// add filter of all shortcodes list
-		$this->shortcodes = apply_filters( 'starter-kit/shortcodes', $this->shortcodes );
+		$this->shortcodes = apply_filters( 'StarterKit/shortcodes', $this->shortcodes );
 
 	}
 
