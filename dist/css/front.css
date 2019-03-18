@@ -6498,6 +6498,9 @@ a.text-dark:hover, a.text-dark:focus {
   visibility: hidden;
   position: absolute; }
 
+h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word; }
+
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit; }
 
@@ -6512,14 +6515,6 @@ table {
 img {
   max-width: 100%;
   height: auto; }
-
-/** By Envato requirements */
-.wp-caption,
-.wp-caption-text,
-.screen-reader-text,
-.gallery-caption,
-.bypostauthor {
-  border: 0; }
 
 /*------------------------------------------------------------------
 [Header styles]
@@ -6787,6 +6782,18 @@ img {
 /*------------------------------------------------------------------
 [Blog styles]
 -------------------------------------------------------------------*/
+.loop article {
+  margin-bottom: 35px;
+  padding-bottom: 35px;
+  border-bottom: 2px solid #eee; }
+
+.post-data {
+  display: flex;
+  flex-wrap: wrap; }
+  .post-data > div {
+    margin-right: 15px;
+    font-size: 14px; }
+
 article > figure,
 article > img {
   max-width: 100%; }
@@ -6799,6 +6806,129 @@ article > img {
   background: #eb3c00;
   border-color: #eb3c00;
   color: #fff; }
+
+#comments .comment-respond {
+  margin-bottom: 60px;
+  padding: 0 30px 15px 30px; }
+  #comments .comment-respond input[type=text], #comments .comment-respond input[type=email], #comments .comment-respond textarea {
+    background: #fff; }
+  #comments .comment-respond h3 {
+    display: block;
+    margin: 0 -30px 30px -30px;
+    padding: 12px 30px 12px 30px;
+    font-size: 18px;
+    line-height: 28px; }
+
+#comments .comments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+#comments .comment, #comments .pingback {
+  position: relative;
+  margin: 0 0 30px 0;
+  padding: 0 0 30px 0;
+  border-bottom: 1px solid #eee; }
+  #comments .comment .comment-respond, #comments .pingback .comment-respond {
+    margin-top: 30px; }
+
+#comments .pingback {
+  padding-left: 30px; }
+
+#comments .pingback-entry {
+  position: relative; }
+
+#comments .comment:before, #comments .pingback:before {
+  display: none; }
+
+#comments .comment-avatar {
+  position: absolute;
+  left: 0;
+  top: 0; }
+  @media (max-width: 767px) {
+    #comments .comment-avatar {
+      position: static;
+      margin-bottom: 10px; } }
+
+#comments .author-name {
+  margin-bottom: 5px; }
+
+#comments .comment-data {
+  float: right;
+  font-size: 0.9em; }
+  @media (max-width: 767px) {
+    #comments .comment-data {
+      float: none;
+      display: block; } }
+
+#comments .comment-reply-link {
+  color: #fff;
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 13px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold; }
+
+#comments .comment-body {
+  position: relative;
+  padding-left: 100px; }
+  @media (max-width: 767px) {
+    #comments .comment-body {
+      padding-left: 0; } }
+
+#comments .comment-text {
+  min-height: 70px; }
+  #comments .comment-text p {
+    margin-bottom: 10px; }
+  #comments .comment-text p:last-of-type {
+    margin-bottom: 0; }
+
+#comments .children {
+  margin: 30px 0 0 0;
+  padding: 30px 0 0 0;
+  list-style: none;
+  border-top: 1px solid #eee; }
+  #comments .children .comment .comment-body, #comments .children .comment-respond,
+  #comments .children .comment .pingback {
+    margin-left: 70px; }
+    @media (max-width: 767px) {
+      #comments .children .comment .comment-body, #comments .children .comment-respond,
+      #comments .children .comment .pingback {
+        margin-left: 0; } }
+  #comments .children .comment .comment .comment-body, #comments .children .comment .comment-respond,
+  #comments .children .comment .comment .pingback {
+    margin-left: 140px; }
+    @media (max-width: 767px) {
+      #comments .children .comment .comment .comment-body, #comments .children .comment .comment-respond,
+      #comments .children .comment .comment .pingback {
+        margin-left: 0; } }
+  #comments .children .comment:last-of-type {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0; }
+
+#cancel-comment-reply-link {
+  float: right;
+  color: #fff;
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 13px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 3px; }
+  @media (max-width: 767px) {
+    #cancel-comment-reply-link {
+      float: none; } }
+
+#comments.no-avatars .comment {
+  padding: 0 0 30px 0; }
+
+p.no-comments {
+  margin-bottom: 60px;
+  padding: 15px 30px; }
 
 /*------------------------------------------------------------------
 [Footer styles]

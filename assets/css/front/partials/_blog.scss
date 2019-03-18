@@ -4,6 +4,23 @@
 [Blog styles]
 -------------------------------------------------------------------*/
 
+.loop {
+	article {
+		margin-bottom: 35px;
+		padding-bottom: 35px;
+		border-bottom: 2px solid #eee;
+	}
+}
+
+.post-data {
+	display: flex;
+	flex-wrap: wrap;
+	> div {
+		margin-right: 15px;
+		font-size: 14px;
+	}
+}
+
 article {
 	& > figure,
 	& > img {
@@ -20,17 +37,17 @@ article {
 
 
 .pagination-nav {
-	
+
 	ul {
 		@extend .pagination;
 		@extend .justify-content-center;
-		
+
 		li {
 			@extend .page-item;
-			
+
 			a, span {
 				@extend .page-link;
-				
+
 				&.current {
 					background: $primary;
 					border-color: $primary;
@@ -39,4 +56,157 @@ article {
 			}
 		}
 	}
+}
+
+#comments {
+
+	.comment-respond {
+		margin-bottom: 60px;
+		padding: 0 30px 15px 30px;
+
+		input[type=text], input[type=email], textarea {
+			background: #fff;
+		}
+
+		h3 {
+			display: block;
+			margin: 0 -30px 30px -30px;
+			padding: 12px 30px 12px 30px;
+			font-size: 18px;
+			line-height: 28px;
+		}
+
+	}
+
+	.comments-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.comment, .pingback {
+		position: relative;
+		margin: 0 0 30px 0;
+		padding: 0 0 30px 0;
+		border-bottom: 1px solid #eee;
+		.comment-respond {
+			margin-top: 30px;
+		}
+	}
+
+	.pingback {
+		padding-left: 30px;
+	}
+
+	.pingback-entry {
+		position: relative;
+	}
+
+	.comment:before, .pingback:before {
+		display: none;
+	}
+	.comment-avatar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		@media (max-width: 767px) {
+			position: static;
+			margin-bottom: 10px;
+		}
+	}
+	.author-name {
+		margin-bottom: 5px;
+	}
+	.comment-data {
+		float: right;
+		font-size: 0.9em;
+		@media (max-width: 767px) {
+			float: none;
+			display: block;
+		}
+	}
+	.comment-reply-link {
+		color: #fff;
+		display: inline-block;
+		padding: 4px 10px;
+		font-size: 13px;
+		line-height: 13px;
+		border-radius: 4px;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	.comment-body {
+		position: relative;
+		padding-left: 100px;
+		@media (max-width: 767px) {
+			padding-left: 0;
+		}
+	}
+
+	.comment-text {
+		min-height: 70px;
+		p {
+			margin-bottom: 10px;
+		}
+		p:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.children {
+		margin: 30px 0 0 0;
+		padding: 30px 0 0 0;
+		list-style: none;
+		border-top: 1px solid #eee;
+
+		.comment .comment-body, .comment-respond,
+		.comment .pingback {
+			margin-left: 70px;
+			@media (max-width: 767px) {
+				margin-left: 0;
+			}
+		}
+
+		.comment .comment .comment-body, .comment .comment-respond,
+		.comment .comment .pingback {
+			margin-left: 140px;
+			@media (max-width: 767px) {
+				margin-left: 0;
+			}
+		}
+
+		.comment:last-of-type {
+			border-bottom: 0;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
+
+}
+
+#cancel-comment-reply-link {
+	float: right;
+	color: #fff;
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 13px;
+	line-height: 13px;
+	border-radius: 4px;
+	text-decoration: none;
+	margin-top: 3px;
+	@media (max-width: 767px) {
+		float: none;
+	}
+}
+
+#comments.no-avatars {
+	.comment {
+		padding: 0 0 30px 0;
+	}
+}
+
+p.no-comments {
+	margin-bottom: 60px;
+	padding: 15px 30px;
+	//border: 1px solid $color-borders;
 }
