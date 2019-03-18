@@ -29,14 +29,14 @@ if ( isset( $atts['button_size'] ) && $atts['button_size'] <> '' ) {
 	<div class="align-<?php echo esc_attr( $atts['button_align'] ); ?>">
 <?php endif; ?>
 	<a href="<?php echo esc_attr( $atts['link'] ); ?>" id="<?php echo esc_attr( $data['id'] ); ?>"
-	   class="btn <?php echo esc_attr( trim($css_class.' '.$atts['classes']) ); ?>">
-
-        <?php echo wp_kses_post( $atts['title'] ); ?>
-
-        <?php if ( $atts['icon'] <> '' ): ?>
-            <i class="<?php echo esc_attr( $atts['icon'] ); ?>"></i>
-        <?php endif; ?>
-
+	   class="btn <?php echo esc_attr( trim( $css_class . ' ' . $atts['classes'] ) ); ?>">
+		
+		<?php echo wp_kses_post( $atts['title'] ); ?>
+		
+		<?php if ( $atts['icon'] <> '' ): ?>
+			<i class="<?php echo esc_attr( $atts['icon'] ); ?>"></i>
+		<?php endif; ?>
+	
 	</a>
 <?php if ( $atts['button_align'] <> '' ): ?>
 	</div>

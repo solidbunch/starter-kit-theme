@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 use StarterKit\Helper\Assets;
@@ -70,8 +71,26 @@ class Front {
 	 **/
 	public function load_assets() {
 
+		// add support for visual composer animations, row stretching, parallax etc
+		if ( function_exists( 'vc_asset_url' ) ) {
+			wp_enqueue_script(
+				'waypoints',
+				vc_asset_url( 'lib/waypoints/waypoints.min.js' ),
+				[ 'jquery' ],
+				WPB_VC_VERSION,
+				true
+			);
+			wp_enqueue_script(
+				'wpb_composer_front_js',
+				vc_asset_url( 'js/dist/js_composer_front.min.js' ),
+				[ 'jquery' ],
+				WPB_VC_VERSION,
+				true
+			);
+		}
+
 		// JS scripts
-		Assets::enqueue_script('jquery');
+		Assets::enqueue_script( 'jquery' );
 		Assets::enqueue_script(
 			'google-fonts',
 			'/assets/libs/google-fonts/webfont.js',
@@ -79,7 +98,7 @@ class Front {
 			false,
 			true
 		);
-		Assets::enqueue_script_dist('starter-kit-front', 'app.min.js', ['jquery', 'google-fonts']);
+		Assets::enqueue_script_dist( 'starter-kit-front', 'app.min.js', [ 'jquery', 'google-fonts' ] );
 
 		$js_vars = [
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
@@ -97,15 +116,17 @@ class Front {
 			Assets::enqueue_script(
 				'starter-kit-antispam',
 				'/assets/js/antispam.js',
-				['jquery'],
+				[
+					'jquery',
+				],
 				Starter_Kit()->config['cache_time'], true
 			);
 		}
 
 
 		// CSS styles
-		Assets::enqueue_style_dist('starter-kit-libs', 'libs.css');
-		Assets::enqueue_style_dist('starter-kit-front', 'front.css');
+		Assets::enqueue_style_dist( 'starter-kit-libs', 'libs.css' );
+		Assets::enqueue_style_dist( 'starter-kit-front', 'front.css' );
 
 	}
 
@@ -151,7 +172,7 @@ class Front {
 	public function dequeue_jquery_migrate( $scripts ) {
 		if ( ! is_admin() ) {
 			$scripts->remove( 'jquery' );
-			$scripts->add( 'jquery', false, ['jquery-core'], '1.10.2' );
+			$scripts->add( 'jquery', false, [ 'jquery-core' ], '1.10.2' );
 		}
 	}
 
@@ -184,10 +205,7 @@ class Front {
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
 			Starter_Kit()->View->load( '/template-parts/gtm',
-			[
-				'head' => true,
-				'tag_manager_code' => $tag_manager_code
-			] );
+				[ 'head' => true, 'tag_manager_code' => $tag_manager_code ] );
 
 		}
 	}
@@ -202,10 +220,7 @@ class Front {
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
 			Starter_Kit()->View->load( '/template-parts/gtm',
-			[
-				'head' => false,
-				'tag_manager_code' => $tag_manager_code
-			] );
+				[ 'head' => false, 'tag_manager_code' => $tag_manager_code ] );
 
 		}
 	}

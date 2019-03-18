@@ -9,7 +9,7 @@ baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
 		filename: './dist/css/[name].css',
 	}),
-	new CleanWebpackPlugin(path.resolve('dist') , {
+	new CleanWebpackPlugin(path.resolve('dist'), {
 		root: path.resolve()
 	}),
 );

@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -67,7 +68,7 @@ class OAuth {
 	 **/
 	public function auth_facebook() {
 
-		if(defined('VENDOR_DIR')) {
+		if ( defined( 'VENDOR_DIR' ) ) {
 			require_once get_template_directory() . '/vendor-custom/oauth/facebook/autoload.php';
 		}
 
@@ -94,7 +95,7 @@ class OAuth {
 	 * Oauth callback for Facebook
 	 **/
 	public function callback_facebook() {
-		if(defined('VENDOR_DIR')) {
+		if ( defined( 'VENDOR_DIR' ) ) {
 			require_once get_template_directory() . '/vendor-custom/oauth/facebook/autoload.php';
 		}
 
@@ -226,7 +227,7 @@ class OAuth {
 	 **/
 	private function _get_google_client() {
 
-		if(defined('VENDOR_DIR')) {
+		if ( defined( 'VENDOR_DIR' ) ) {
 			require_once get_template_directory() . '/vendor-custom/oauth/google/vendor/autoload.php';
 		}
 
@@ -278,7 +279,7 @@ class OAuth {
 	 **/
 	public function auth_twitter() {
 
-		if(defined('VENDOR_DIR')) {
+		if ( defined( 'VENDOR_DIR' ) ) {
 			require_once get_template_directory() . '/vendor-custom/oauth/twitter/autoload.php';
 		}
 
@@ -299,9 +300,7 @@ class OAuth {
 		);
 
 		$auth_url = $connection->url( "oauth/authorize",
-		[
-			"oauth_token" => $temporary_credentials['oauth_token']
-		] );
+			[ "oauth_token" => $temporary_credentials['oauth_token'] ] );
 		wp_redirect( $auth_url );
 		exit;
 
@@ -317,7 +316,7 @@ class OAuth {
 			exit;
 		}
 
-		if(defined('VENDOR_DIR')) {
+		if ( defined( 'VENDOR_DIR' ) ) {
 			require_once get_template_directory() . '/vendor-custom/oauth/twitter/autoload.php';
 		}
 

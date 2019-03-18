@@ -178,14 +178,14 @@ class Utils {
 	 **/
 	public static function get_social_cfg_usyon() {
 
-		$config = array();
+		$config = [];
 
 		foreach ( \Starter_Kit()->config['social_profiles'] as $k => $v ) {
-			$config[ $k ] = array(
+			$config[ $k ] = [
 				'type'  => 'text',
 				'label' => $v,
 				'value' => ''
-			);
+			];
 		}
 
 		return $config;
