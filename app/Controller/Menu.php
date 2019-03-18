@@ -21,7 +21,7 @@ class Menu {
 	public function __construct() {
 
 		// register menus
-		add_action( 'after_setup_theme', array( $this, 'register_menus' ) );
+		add_action( 'after_setup_theme', [ $this, 'register_menus' ] );
 
 		// here we can add custom menu fields, modify admin walkers etc
 
@@ -32,10 +32,10 @@ class Menu {
 	 **/
 	public function register_menus() {
 
-		register_nav_menus( array(
+		register_nav_menus( [
 			'header_menu'     => esc_html__( 'Header Menu', 'starter-kit' ),
 			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'starter-kit' ),
-		) );
+		]);
 
 	}
 

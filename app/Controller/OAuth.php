@@ -22,7 +22,7 @@ class OAuth {
 	 **/
 	public function __construct() {
 
-		add_action( 'template_redirect', array( $this, 'check_request' ) );
+		add_action( 'template_redirect', [ $this, 'check_request' ] );
 
 	}
 
@@ -35,20 +35,20 @@ class OAuth {
 			@session_start();
 		}
 
-		$allowed_methods = array(
-			'facebook' => array(
-				'auth'     => array( $this, 'auth_facebook' ),
-				'callback' => array( $this, 'callback_facebook' ),
-			),
-			'google'   => array(
-				'auth'     => array( $this, 'auth_google' ),
-				'callback' => array( $this, 'callback_google' ),
-			),
-			'twitter'  => array(
-				'auth'     => array( $this, 'auth_twitter' ),
-				'callback' => array( $this, 'callback_twitter' ),
-			),
-		);
+		$allowed_methods = [
+			'facebook' => [
+				'auth'     => [ $this, 'auth_facebook' ],
+				'callback' => [ $this, 'callback_facebook' ],
+			],
+			'google'   => [
+				'auth'     => [ $this, 'auth_google' ],
+				'callback' => [ $this, 'callback_google' ],
+			],
+			'twitter'  => [
+				'auth'     => [ $this, 'auth_twitter' ],
+				'callback' => [ $this, 'callback_twitter' ],
+			],
+		];
 
 		if ( isset( $_GET['oauth'] ) && array_key_exists( $_GET['oauth'], $allowed_methods ) ) {
 
@@ -80,9 +80,9 @@ class OAuth {
 
 		$permissions = [ 'email', 'name', 'first_name', 'last_name' ];
 
-		$redirect_url = $helper->getLoginUrl( add_query_arg( array(
+		$redirect_url = $helper->getLoginUrl( add_query_arg( [
 			'oauth-callback' => 'facebook'
-		), add_query_arg( 'oauth-callback', 'facebook', get_permalink( get_the_ID() ) ) ) );
+		], add_query_arg( 'oauth-callback', 'facebook', get_permalink( get_the_ID() ) ) ) );
 
 		wp_redirect( $redirect_url );
 
@@ -170,14 +170,14 @@ class OAuth {
 
 			$name_array = explode( ' ', $full_name );
 
-			wp_update_user( array(
+			wp_update_user( [
 				'ID'            => $user_id,
 				'first_name'    => isset( $name_array[0] ) ? $name_array[0] : $full_name,
 				'last_name'     => isset( $name_array[1] ) ? $name_array[1] : '',
 				'user_nicename' => $full_name,
 				'nickname'      => $full_name,
 				'display_name'  => $full_name,
-			) );
+			] );
 
 			update_user_meta( $user_id, 'oauth_user', 'yes' );
 
@@ -299,7 +299,9 @@ class OAuth {
 		);
 
 		$auth_url = $connection->url( "oauth/authorize",
-			array( "oauth_token" => $temporary_credentials['oauth_token'] ) );
+		[
+			"oauth_token" => $temporary_credentials['oauth_token']
+		] );
 		wp_redirect( $auth_url );
 		exit;
 
@@ -325,10 +327,10 @@ class OAuth {
 
 		$connection = new \Abraham\TwitterOAuth\TwitterOAuth( $consumer_key, $consumer_secret );
 
-		$params = array(
+		$params = [
 			'oauth_verifier' => $_GET['oauth_verifier'],
 			'oauth_token'    => $_GET['oauth_token']
-		);
+		];
 
 		$access_token = $connection->oauth( "oauth/access_token", $params );
 

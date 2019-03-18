@@ -15,20 +15,20 @@ namespace StarterKit\Controller;
  */
 class WalkerBootstrap extends \Walker_Nav_Menu {
 
-	function start_lvl( &$output, $depth = 0, $args = array() ) { // ul
+	function start_lvl( &$output, $depth = 0, $args = [] ) { // ul
 		$indent = str_repeat("\t",$depth); // indents the outputted HTML
 		$submenu = ($depth > 0) ? ' sub-menu' : '';
 		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\">\n";
 	}
 
-	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) { // li a span
+	function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) { // li a span
 
 		$indent = $depth ? str_repeat("\t",$depth) : '';
 
 		$li_attributes = '';
 		$class_names = $value = '';
 
-		$classes = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes = empty( $item->classes ) ? [] : (array) $item->classes;
 
 		$classes[] = ($args->walker->has_children) ? 'dropdown' : '';
 		$classes[] = ($item->current || $item->current_item_anchestor) ? 'active' : '';

@@ -5,120 +5,38 @@ use StarterKit\Helper\Media;
 
 get_header(); ?>
 
-	<section id="content" class="container pt-5">
+	<!--
+		Start layout
+	-->
+	<?php do_action( 'starter-kit/layout_start'); ?>
 
-		<div class="row">
-			
-			<div id="posts" class="<?php echo Front::get_grid_class(); ?>">
+		<?php do_action( 'starter-kit/before_loop'); ?>
 
-				<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
+			<?php if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
 
-				<div class="row">
+				<?php
+					$post_type = get_post_type();
+					$tpl = in_array( $post_type, [ 'post', 'page']) ? 'post' : $post_type;
+				?>
 
-					<article <?php post_class( array( 'col-sm-12' ) ); ?>>
+				<?php get_template_part( 'template-parts/loop/' . $tpl, get_post_format() ); ?>
 
-						<div class="row pb-5">
+			<?php endwhile; else: ?>
 
-							<div class="thumb pb-3 col-md-<?php echo is_sticky() ? '12' : '3'; ?>">
+				<?php get_template_part( 'template-parts/loop/no-posts' ); ?>
 
-								<a href="<?php the_permalink(); ?>">
+			<?php endif; ?>
 
-										<!-- an example how to resize image
-											<img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250 ); ?>" >
-										-->
-										<!-- an example how to print image with sizes and with srcset
-											<?php Media::the_img(array('width' => 380, 'height' => 250) ); ?>
-										-->
-										<!-- an example how to print image without sizes, but with lazy load and with srcset
-											<?php Media::the_img(array('data-width' => 380, 'data-height' => 250) ); ?>
-										-->
-										<!--
-											an example how to print image tag without srcset
-											<?php Media::the_img(array('data-width' => 380, 'data-height' => 250), array('hdmi' => false) ); ?>
-										-->
-										<!-- an example how to print image without sizes, but with lazy load if we know only width
-											<?php Media::the_img(array('data-width' => 380) ); ?>
-										-->
+		<?php do_action( 'starter-kit/after_loop'); ?>
 
-										<?php
+		<!--
+			Sidebar
+		-->
+		<?php get_sidebar(); ?>
 
-											$width      = is_sticky() ? '700' : '150';
-											$height     = is_sticky() ? '350' : '150';
+	<!--
+		End layout
+	-->
+	<?php do_action( 'starter-kit/layout_end'); ?>
 
-											$args   = array(
-												'width'     => $width,
-												'height'    => $height,
-											);
-
-											$func_args   = array(
-												'upscale'     => true,
-											);
-
-											if ( !has_post_thumbnail() ) {
-												$args['src'] = 'https://dummyimage.com/' . $width . 'x' . $height . '/eee/aaaaaa';
-												$func_args['resize'] = false;
-											}
-
-											Media::the_img($args, $func_args);
-
-										?>
-
-
-								</a>
-
-							</div>
-
-							<div class="col-md-<?php echo is_sticky() ? '12' : '9'; ?>">
-
-								<h2 class="pb-3">
-
-									<a title="<?php the_title(); ?>" href="<?php the_permalink(); ?>">
-
-										<?php the_title(); ?>
-
-									</a>
-
-								</h2>
-
-								<?php get_template_part( 'template-parts/post-data' ); ?>
-
-								<div class="excerpt">
-									<?php the_excerpt(); ?>
-								</div>
-
-								<a href="<?php the_permalink(); ?>" class="btn btn-primary col-sm-12 col-md-3">
-									<?php esc_html_e( 'Read more', 'starter-kit' ); ?>
-								</a>
-
-							</div>
-
-						</div>
-					
-					</article>
-
-				</div>
-				
-				<?php endwhile; else: ?>
-					
-					<div class="row">
-						
-						<article class="col-md-12">
-							<h2><?php esc_html_e( 'We can not find any posts by your search criteria, sorry...', 'starter-kit' ); ?></h2>
-						</article>
-					
-					</div>
-				
-				<?php endif;
-				wp_reset_postdata(); ?>
-				
-				<?php get_template_part( 'template-parts/pagination' ); ?>
-			
-			</div>
-			
-			<?php get_sidebar(); ?>
-		
-		</div>
-
-	</section>
-
-<?php get_footer();
+<?php get_footer(); ?>
