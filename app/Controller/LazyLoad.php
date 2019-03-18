@@ -20,7 +20,7 @@ class LazyLoad {
 	 **/
 	public function __construct() {
 
-		add_action( 'init', array( $this, 'run_lazy_load' ) );
+		add_action( 'init', [ $this, 'run_lazy_load' ] );
 
 	}
 
@@ -31,22 +31,22 @@ class LazyLoad {
 		// check if we need to run lazy load actions
 		if ( ! $this->skip() ) {
 
-			add_filter( 'the_content', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
-			add_filter( 'post_thumbnail_html', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
-			add_filter( 'get_avatar', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
-			add_filter( 'widget_text', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
-			add_filter( 'get_image_tag', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
-			//add_filter( 'wp_get_attachment_image_attributes', array( $this, 'process_image_attributes' ), PHP_INT_MAX );
-			add_filter( 'ff_media_img_html', array( $this, 'process_image_attributes'), PHP_INT_MAX);
+			add_filter( 'the_content', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
+			add_filter( 'post_thumbnail_html', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
+			add_filter( 'get_avatar', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
+			add_filter( 'widget_text', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
+			add_filter( 'get_image_tag', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
+			//add_filter( 'wp_get_attachment_image_attributes', [ $this, 'process_image_attributes' ], PHP_INT_MAX );
+			add_filter( 'ff_media_img_html', [ $this, 'process_image_attributes'], PHP_INT_MAX);
 
 			// Load scripts
-			add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
+			add_action( 'wp_enqueue_scripts', [ $this, 'load_assets' ] );
 
 			// Do not lazy load avatar in admin bar.
-			add_action( 'admin_bar_menu', array( $this, 'remove_filters' ), 0 );
+			add_action( 'admin_bar_menu', [ $this, 'remove_filters' ], 0 );
 
 			// Ensure that our lazy image attributes are not filtered out of image tags.
-			add_filter( 'wp_kses_allowed_html', array( $this, 'allow_lazy_attributes' ) );
+			add_filter( 'wp_kses_allowed_html', [ $this, 'allow_lazy_attributes' ] );
 
 		}
 	}
@@ -93,7 +93,7 @@ class LazyLoad {
 		}
 
 		// Find all <img> elements via regex, add lazy-load attributes.
-		$content = preg_replace_callback( '#<(img)([^>]+?)(>(.*?)</\\1>|[\/]?>)#si', array( $this, 'process_image' ), $content );
+		$content = preg_replace_callback( '#<(img)([^>]+?)(>(.*?)</\\1>|[\/]?>)#si', [ $this, 'process_image' ], $content );
 		return $content;
 
 	}
@@ -138,16 +138,16 @@ class LazyLoad {
 	 * @return array The updated image attributes array with lazy load attributes.
 	 */
 	public function process_image_attributes( $attributes) {
-		
+
 		if ( empty( $attributes['src'] ) ) {
 			return $attributes;
 		}
 		$old_attributes = $attributes;
-		
+
 		if ( ! empty( $attributes['class'] ) && $this->should_skip_image_with_blacklisted_class( $attributes['class'] ) ) {
 			return $attributes;
 		}
-		
+
 		$image_size['width'] = $min_width = (int) \StarterKit\Helper\Utils::get_option( 'lazy_img_min_width', 24 );
 		$image_size['height'] = $min_height = (int) \StarterKit\Helper\Utils::get_option( 'lazy_img_min_height', 24 );
 
@@ -178,30 +178,30 @@ class LazyLoad {
 		if ($image_size['width'] < $min_width && $image_size['height'] < $min_height) {
 			return $attributes;
 		}
-		
+
 		$attributes['src'] = $this->get_placeholder_image( $image_size['width'], $image_size['height']);
-		
+
 		// Add the lazy class to the img element.
 		$attributes['class'] = $this->set_lazy_class( $attributes );
-		
+
 		// Set data-src to the original source uri.
 		$attributes['data-src'] = $old_attributes['src'];
-		
+
 		// Process `srcset` attribute.
 		if ( ! empty( $attributes['srcset'] ) ) {
 			$attributes['data-srcset'] = $old_attributes['srcset'];
 			unset( $attributes['srcset'] );
 		}
-		
+
 		// Process `sizes` attribute.
 		if ( ! empty( $attributes['sizes'] ) ) {
 			$attributes['data-sizes'] = $old_attributes['sizes'];
 			unset( $attributes['sizes'] );
 		}
-		
+
 		return $attributes;
 	}
-	
+
 
 	/**
 	 * Append a `lazy` class to <img> elements for lazy-loading.
@@ -217,7 +217,7 @@ class LazyLoad {
 		} else {
 			$classes = 'lazy-loading';
 		}
-		
+
 		return $classes;
 	}
 
@@ -227,21 +227,21 @@ class LazyLoad {
 	 * @return string The URL to the placeholder image.
 	 */
 	function get_placeholder_image($image_width = 24, $image_height = 24) {
-		
+
 		$placeholder_color = \StarterKit\Helper\Utils::get_option('placeholder_color', '#555');
-		
-		$data = array(
+
+		$data = [
 			'width' => (int)$image_width,
 			'height' => (int)$image_height,
 			'fill' => $placeholder_color,
-		);
-		
+		];
+
 		$svg = base64_encode(Starter_Kit()->View->load('/template-parts/lazy-loading-svg', $data, true));
-		
+
 		$placeholder = "data:image/svg+xml;base64," . $svg;
 		return $placeholder;
 	}
-	
+
 	/**
 	 * Returns true when a given string of classes contains a class signifying image
 	 * should not be lazy-loaded
@@ -251,19 +251,17 @@ class LazyLoad {
 	 * @return bool
 	 */
 	public function should_skip_image_with_blacklisted_class( $classes ) {
-		$blacklisted_classes = array(
-			'skip-lazy',
-		);
-		
+		$blacklisted_classes = ['skip-lazy'];
+
 		foreach ( $blacklisted_classes as $class ) {
 			if ( false !== strpos( $classes, $class ) ) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Flatten attribute list into string.
 	 *
@@ -272,11 +270,11 @@ class LazyLoad {
 	 * @return array $flattened_attributes
 	 */
 	public function flatten_kses_hair_data( $attributes ) {
-		$flattened_attributes = array();
+		$flattened_attributes = [];
 		foreach ( $attributes as $name => $attribute ) {
 			$flattened_attributes[ $name ] = $attribute['value'];
 		}
-		
+
 		return $flattened_attributes;
 	}
 
@@ -288,7 +286,7 @@ class LazyLoad {
 	 * @return string
 	 */
 	public function build_attributes_string( $attributes ) {
-		$string = array();
+		$string = [];
 		foreach ( $attributes as $name => $value ) {
 			if ( '' === $value ) {
 				$string[] = sprintf( '%s', $name );
@@ -304,14 +302,14 @@ class LazyLoad {
 	 * Load lazy JS
 	 */
 	public function load_assets() {
-		wp_enqueue_script( 'lazy-load', Starter_Kit()->config['assets_uri'] . 'js/lazyload.js', array(), Starter_Kit()->config['cache_time'], true );
+		wp_enqueue_script( 'lazy-load', Starter_Kit()->config['assets_uri'] . 'js/lazyload.js', [], Starter_Kit()->config['cache_time'], true );
 	}
 
 	/**
 	 * Do not lazy load avatar in admin bar.
 	 */
 	public function remove_filters() {
-		remove_filter( 'get_avatar', array( $this, 'add_image_placeholders' ), PHP_INT_MAX );
+		remove_filter( 'get_avatar', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
 	}
 
 	/**
@@ -326,12 +324,13 @@ class LazyLoad {
 			return $allowed_tags;
 		}
 		// But, if images are allowed, ensure that our attributes are allowed!
-		$img_attributes      = array_merge( $allowed_tags['img'], array(
+		$img_attributes      = array_merge( $allowed_tags['img'], [
 			'data-src'    => 1,
 			'data-srcset' => 1,
 			'data-sizes'  => 1,
 			'class'       => 1,
-		) );
+		]);
+
 		$allowed_tags['img'] = $img_attributes;
 
 		return $allowed_tags;

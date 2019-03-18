@@ -35,15 +35,15 @@ class Front {
 			$content_size = 12 - $sidebar_size;
 
 			if ( $current_sidebar_position == 'full' ) {
-				$classes_string = 'col-md-12';
+				$classes_string = 'col-lg-12';
 			} elseif ( $current_sidebar_position == 'left' ) {
-				$classes_string = 'col-md-' . $content_size;
+				$classes_string = 'order-2 col-lg-' . $content_size;
 			} else {
-				$classes_string = 'col-md-' . $content_size;
+				$classes_string = 'order-1 col-lg-' . $content_size;
 			}
 
 		} else {
-			$classes_string = 'col-md-8';
+			$classes_string = 'col-lg-12';
 		}
 
 		return $classes_string;

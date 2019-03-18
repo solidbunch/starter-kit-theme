@@ -28,10 +28,10 @@ class Shortcodes {
 	public function __construct() {
 
 		if ( Utils::is_vc() ) {
-			add_action( 'vc_after_init', array( $this, 'load' ) );
+			add_action( 'vc_after_init', [$this, 'load'] );
 		} else {
-			add_action( 'init', array( $this, 'load' ) );
-			add_action( 'wp_footer', array( $this, 'footer' ) );
+			add_action( 'init', [$this, 'load'] );
+			add_action( 'wp_footer', [$this, 'footer'] );
 		}
 
 	}
@@ -83,14 +83,13 @@ class Shortcodes {
 
 		$class_name = 'StarterKitShortcode_'.str_replace('-','_',$config['base']);
 		if (class_exists($class_name)) {
-			$this->shortcodes[ $config['base'] ] = new $class_name ( array(
+			$this->shortcodes[ $config['base'] ] = new $class_name ( [
 				'config'        => $config,
 				'shortcode_dir' => $shortcode_dir,
 				'shortcode_uri' => Utils::get_shortcodes_uri(
 					!$parent ? $config['base']:$parent.'/childs/'.$config['base']
 				)
-
-			) );
+			] );
 			return $this->shortcodes[ $config['base'] ];
 		}
 	}
