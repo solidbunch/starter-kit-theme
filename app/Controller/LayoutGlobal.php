@@ -68,6 +68,8 @@ class LayoutGlobal {
 
 		get_template_part( '/template-parts/header/breadcrumbs');
 
+		get_template_part( '/template-parts/header/composer-header');
+
 	}
 
 	/**
@@ -93,6 +95,8 @@ class LayoutGlobal {
 	 * starter-kit/after_footer
 	 */
 	function after_footer() {
+
+		get_template_part( '/template-parts/header/composer-footer');
 
 	}
 
