@@ -1,7 +1,7 @@
 	<?php
-		do_action( 'starter-kit/before_footer');
-		do_action( 'starter-kit/footer');
-		do_action( 'starter-kit/after_footer');
+		do_action( 'StarterKit/before_footer');
+		do_action( 'StarterKit/footer');
+		do_action( 'StarterKit/after_footer');
 	?>
 
 </div>

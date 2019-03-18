@@ -4,6 +4,6 @@
  * Sidebar template
  **/
 
-do_action( 'starter-kit/sidebar');
+do_action( 'StarterKit/sidebar');
 
 ?>
