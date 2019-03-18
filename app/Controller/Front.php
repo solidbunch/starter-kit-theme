@@ -149,7 +149,7 @@ class Front {
 		// disable huge default JS composer styles
 		wp_dequeue_style( 'js_composer_front' );
 		wp_dequeue_style( 'animate-css' );
-		//wp_dequeue_style( 'fw-ext-breadcrumbs-add-css' );
+		wp_dequeue_style( 'fw-ext-breadcrumbs-add-css' );
 
 	}
 
