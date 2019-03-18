@@ -6830,6 +6830,12 @@ article > img {
   #sidebar ul > li > ul {
     padding-left: 15px; }
 
+.loop + #sidebar.sidebar-pos-left {
+  order: 2; }
+
+#sidebar.sidebar-pos-left {
+  order: 1; }
+
 /*------------------------------------------------------------------
 [Shortcodes styles]
 -------------------------------------------------------------------*/

@@ -37,15 +37,15 @@ class HTTP2 {
 			if ( ( $scripts || $styles ) && ! is_admin() ) {
 				$this->http2_ob_start();
 				if ( $scripts ) {
-					add_filter( 'script_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
+					add_filter( 'script_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
 				}
 
 				if ( $styles ) {
-					add_filter( 'style_loader_src', array( $this, 'http2_link_preload_header' ), PHP_INT_MAX, 1 );
+					add_filter( 'style_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
 				}
 
 				if ( $this->http2_should_render_prefetch_headers() ) {
-					add_action( 'wp_head', array( $this, 'http2_resource_hints' ), PHP_INT_MAX, 1 );
+					add_action( 'wp_head', [ $this, 'http2_resource_hints' ], PHP_INT_MAX, 1 );
 				}
 			}
 		} );
@@ -131,7 +131,7 @@ class HTTP2 {
 	 * when HTTP/2 support is lacking.
 	 */
 	public function http2_resource_hints() {
-		$resource_types = array( 'script', 'style' );
+		$resource_types = ['script', 'style'];
 		array_walk( $resource_types, function ( $resource_type ) {
 			$resources = $this->http2_get_resources( $resource_type );
 			array_walk( $resources, function ( $src ) use ( $resource_type ) {
@@ -152,11 +152,11 @@ class HTTP2 {
 		$resource_type_key = "http2_{$resource_type}_srcs";
 
 		if ( ! ( is_array( $this->assets ) && isset( $this->assets[ $resource_type_key ] ) ) ) {
-			return array();
+			return [];
 		}
 
 		if ( ! is_array( $this->assets[ $resource_type_key ] ) ) {
-			return array( $this->assets[ $resource_type_key ] );
+			return [ $this->assets[ $resource_type_key ] ];
 		}
 
 		return $this->assets[ $resource_type_key ];
