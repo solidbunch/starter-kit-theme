@@ -11,7 +11,7 @@
 <div id="main-wrapper">
 
 	<?php
-		do_action( 'starter-kit/before_header');
-		do_action( 'starter-kit/header');
-		do_action( 'starter-kit/after_header');
+		do_action( 'StarterKit/before_header');
+		do_action( 'StarterKit/header');
+		do_action( 'StarterKit/after_header');
 	?>
