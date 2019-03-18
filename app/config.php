@@ -13,7 +13,7 @@
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
  */
-return array(
+return [
 	'cache_time'          => '201812022311',
 	'assets_uri'          => get_template_directory_uri() . '/assets/',
 	'shortcodes_dir'      => get_template_directory() . '/app/Shortcodes/',
@@ -21,7 +21,7 @@ return array(
 	'shortcodes_icon_uri' => get_template_directory_uri() . '/assets/images/icon/',
 	'widgets_dir'         => get_template_directory() . '/app/Widgets/',
 	'widgets_uri'         => get_template_directory_uri() . '/app/Widgets/',
-	'social_profiles'     => array(
+	'social_profiles'     => [
 		'facebook_url'    => esc_html__( 'Facebook URL', 'starter-kit' ),
 		'twitter_url'     => esc_html__( 'Twitter URL', 'starter-kit' ),
 		'instagram_url'   => esc_html__( 'Instagram URL', 'starter-kit' ),
@@ -35,8 +35,8 @@ return array(
 		'tumblr_url'      => esc_html__( 'Tumblr URL', 'starter-kit' ),
 		'flickr_url'      => esc_html__( 'Flickr URL', 'starter-kit' ),
 		'medium_url'      => esc_html__( 'Medium URL', 'starter-kit' ),
-	),
-	'social_icons'        => array(
+	],
+	'social_icons'        => [
 		'facebook_url'    => 'fa fa-facebook',
 		'twitter_url'     => 'fa fa-twitter',
 		'instagram_url'   => 'fa fa-instagram',
@@ -50,8 +50,8 @@ return array(
 		'tumblr_url'      => 'fa fa-tumblr',
 		'flickr_url'      => 'fa fa-flickr',
 		'medium_url'      => 'fa fa-medium',
-	),
-	'animations'          => array(
+	],
+	'animations'          => [
 		'bounce'            => esc_html__( 'Bounce', 'starter-kit' ),
 		'pulse'             => esc_html__( 'Pulse', 'starter-kit' ),
 		'tada'              => esc_html__( 'Tada', 'starter-kit' ),
@@ -91,5 +91,5 @@ return array(
 		'zoomInLeft'        => esc_html__( 'Zoom In Left', 'starter-kit' ),
 		'zoomInRight'       => esc_html__( 'Zoom In Right', 'starter-kit' ),
 		'zoomInUp'          => esc_html__( 'Zoom In Up', 'starter-kit' ),
-	),
-);
+	],
+];

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 	'name'                    => esc_html__( 'Toggles', 'starter-kit' ),
 	'base'                    => 'toggles',
 	'icon'                    => Starter_Kit()->config['shortcodes_icon_uri'] . 'toggle.svg',
@@ -30,4 +30,4 @@ return array(
 		],
 	],
 	'js_view'                 => 'VcColumnView'
-);
+];

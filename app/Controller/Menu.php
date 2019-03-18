@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 /**
@@ -35,7 +36,7 @@ class Menu {
 		register_nav_menus( [
 			'header_menu'     => esc_html__( 'Header Menu', 'starter-kit' ),
 			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'starter-kit' ),
-		]);
+		] );
 
 	}
 
