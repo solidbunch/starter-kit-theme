@@ -63,8 +63,11 @@ class Shortcodes {
 			// Load shortcode
 			$this->load_shortcode( $shortcode_dir, '', $childs );
 
-
 		}
+
+		// add filter of all shortcodes list
+		$this->shortcodes = apply_filters( 'starter-kit/shortcodes', $this->shortcodes );
+
 	}
 
 	public function load_shortcode( $shortcode_dir, $parent = '', $childs = [] ) {
