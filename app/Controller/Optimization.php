@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 use StarterKit\Helper\Utils;
@@ -58,7 +59,7 @@ class Optimization {
 		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
 		remove_action( 'wp_head', 'wp_generator' );
 		if ( function_exists( 'visual_composer' ) ) {
-			remove_action( 'wp_head', [visual_composer(), 'addMetaData'] );
+			remove_action( 'wp_head', [ visual_composer(), 'addMetaData' ] );
 		}
 		remove_action( 'wp_head', 'wp_shortlink_wp_head', 10 );
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -120,7 +121,7 @@ class Optimization {
 	 * @return mixed
 	 */
 	public function clean_script_tag( $input ) {
-		return str_replace( [ "type='text/javascript' ", "'"], ['', '"'], $input );
+		return str_replace( [ "type='text/javascript' ", "'" ], [ '', '"' ], $input );
 	}
 
 	/**

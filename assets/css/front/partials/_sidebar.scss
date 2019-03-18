@@ -4,12 +4,21 @@
 [Sidebar styles]
 -------------------------------------------------------------------*/
 #sidebar {
+<<<<<<< HEAD
   @include media-breakpoint-down(sm) {
 		margin-top: 35px;
   }
 
   @include list-padding(15px);
 
+=======
+	@include media-breakpoint-down(sm) {
+		margin-top: 35px;
+	}
+	
+	@include list-padding(15px);
+	
+>>>>>>> 60825d371b4e53d234d283d47729ef6d0ed736d2
 }
 
 .loop + #sidebar.sidebar-pos-left {

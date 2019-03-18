@@ -11,28 +11,28 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, figure, figcaption,
 footer, header, menu, nav, output, ruby, section,
 summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 body {
-  margin: 0;
+	margin: 0;
 }
 
 html, body {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 *:after, *:before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 //  HTML 5 roles for ie8/eie9
@@ -50,33 +50,33 @@ menu,
 nav,
 section,
 summary {
-  display: block;
+	display: block;
 }
 
 //  Default font weight
 // -------------------------------------------------
 
 b, strong {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 //  Default font style
 // -------------------------------------------------
 
 i {
-  font-style: italic;
+	font-style: italic;
 }
 
 //  Remove link outline
 // -------------------------------------------------
 
 a {
-  outline: none;
+	outline: none;
 }
 
 //  Remove scroll in ie
 // -------------------------------------------------
 
 textarea {
-  overflow: auto;
+	overflow: auto;
 }

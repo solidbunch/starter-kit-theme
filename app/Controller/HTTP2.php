@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Controller;
 
 use StarterKit\Helper\Utils;
@@ -131,7 +132,7 @@ class HTTP2 {
 	 * when HTTP/2 support is lacking.
 	 */
 	public function http2_resource_hints() {
-		$resource_types = ['script', 'style'];
+		$resource_types = [ 'script', 'style' ];
 		array_walk( $resource_types, function ( $resource_type ) {
 			$resources = $this->http2_get_resources( $resource_type );
 			array_walk( $resources, function ( $src ) use ( $resource_type ) {

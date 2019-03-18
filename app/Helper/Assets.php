@@ -15,7 +15,7 @@ namespace StarterKit\Helper;
  * @since      Class available since Release 1.0.0
  */
 class Assets {
-
+	
 	/**
 	 * Enqueue style from dist folder
 	 *
@@ -28,13 +28,13 @@ class Assets {
 	public static function enqueue_style_dist(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
 		self::enqueue_style( $handle, 'dist/css/' . $src, $deps, $ver, $media );
 	}
-
+	
 	/**
 	 * Enqueue style
 	 *
@@ -47,7 +47,7 @@ class Assets {
 	public static function enqueue_style(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
@@ -57,12 +57,12 @@ class Assets {
 				$ver = self::add_version( $stylePath, $ver );
 				/** @var string|bool $src */
 				$src = self::is_full_url( $src );
-
+				
 			}
 		}
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 	}
-
+	
 	/**
 	 * Check is $src is url
 	 *
@@ -77,10 +77,10 @@ class Assets {
 		if ( ! $return_url ) {
 			return empty( $parsed_url['host'] ) ? false : true;
 		}
-
+		
 		return empty( $parsed_url['host'] ) ? get_stylesheet_directory_uri() . '/' . $src : $src;
 	}
-
+	
 	/**
 	 * set timestamp to $ver var if false provided
 	 *
@@ -95,10 +95,10 @@ class Assets {
 			/** @var int $ver - timestamp */
 			$ver = filemtime( $srcPath );
 		}
-
+		
 		return $ver;
 	}
-
+	
 	/**
 	 * register script for usage in future
 	 *
@@ -111,7 +111,7 @@ class Assets {
 	public static function register_script(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
@@ -124,7 +124,7 @@ class Assets {
 		}
 		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 	}
-
+	
 	/**
 	 * register style for usage in future
 	 *
@@ -137,7 +137,7 @@ class Assets {
 	public static function register_style(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
@@ -150,7 +150,7 @@ class Assets {
 		}
 		wp_register_style( $handle, $src, $deps, $ver, $media );
 	}
-
+	
 	/**
 	 * Enqueue script from dist folder
 	 *
@@ -163,13 +163,13 @@ class Assets {
 	public static function enqueue_script_dist(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
 		self::enqueue_script( $handle, 'dist/js/' . $src, $deps, $ver, $in_footer );
 	}
-
+	
 	/**
 	 * Enqueue script
 	 *
@@ -182,7 +182,7 @@ class Assets {
 	public static function enqueue_script(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
@@ -195,7 +195,7 @@ class Assets {
 		}
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
 	}
-
+	
 	/**
 	 * Add inline script
 	 *
@@ -206,7 +206,7 @@ class Assets {
 	public static function add_inline_script( $handle, $data, $position = 'after' ) {
 		wp_add_inline_script( $handle, $data, $position );
 	}
-
+	
 	/**
 	 * Localize script
 	 *
@@ -217,7 +217,7 @@ class Assets {
 	public static function localize_script( $handle, $object_name, $l10n ) {
 		wp_localize_script( $handle, $object_name, $l10n );
 	}
-
+	
 	/**
 	 * Add inline style
 	 *

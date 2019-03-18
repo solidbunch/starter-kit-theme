@@ -1861,7 +1861,7 @@ Header 6
 	.h6-nav-bar .navbar-nav .nav-link {
 		padding: 15px 15px;
 	}
-
+	
 	.h6-nav-bar .act-buttons .btn {
 		margin: 10px 0 10px 0px;
 	}
@@ -3251,17 +3251,17 @@ File: scss
 	.contact4 .contact-box {
 		padding: 80px 105px 80px 0px;
 	}
-
+	
 	.hover-dropdown .navbar-nav > .dropdown:hover > .dropdown-menu {
 		display: block;
 		margin-top: 0px;
 	}
-
+	
 	.navbar-nav > .dropdown .dropdown-menu {
 		min-width: 210px;
 		margin-top: 0px;
 	}
-
+	
 	.dropdown-submenu:hover > .dropdown-menu {
 		display: block;
 	}
@@ -3271,90 +3271,90 @@ File: scss
 	.d-flex {
 		display: block !important;
 	}
-
+	
 	.d-flex.no-block {
 		display: -webkit-box !important;
 		display: -webkit-flex !important;
 		display: -ms-flexbox !important;
 		display: flex !important;
 	}
-
+	
 	.wrap-feature30-box {
 		left: 0;
 		right: 0;
 		margin: 0 auto;
 		top: 50%;
 	}
-
+	
 	.wrap-feature31-box .right-image,
 	.contact4 .right-image,
 	.form6 .right-image {
 		position: relative;
 		bottom: -95px;
 	}
-
+	
 	.wrap-feature31-box .right-image img,
 	.contact4 .right-image img,
 	.form6 .right-image img {
 		width: 100%;
 	}
-
+	
 	.contact1 .detail-box {
 		margin-top: 40px;
 	}
-
+	
 	.contact1 .p-r-40 {
 		padding-right: 0;
 	}
-
+	
 	.contact4 .contact-box {
 		padding: 40px 0px 40px 0px;
 	}
-
+	
 	.contact3 .c-detail {
 		text-align: center;
 	}
-
+	
 	.contact3 .c-detail .m-r-20 {
 		margin-right: 0;
 	}
-
+	
 	.contact3 .c-detail h6 {
 		margin-top: 20px;
 	}
-
+	
 	.contact3 .m-l-30 {
 		margin-left: 0;
 	}
-
+	
 	.contact3 .contact-box {
 		margin-top: 30px;
 	}
-
+	
 	.wrap-feature34-box .left-image {
 		position: relative;
 		top: -90px;
 	}
-
+	
 	.po-absolute {
 		position: relative;
 	}
-
+	
 	.contact2 .bg-image {
 		margin-right: 15px;
 		margin-left: 15px;
 	}
-
+	
 	.topbar {
 		background: #316ce8;
 		position: relative;
 	}
-
+	
 	.topbar.animated {
 		-webkit-animation-duration: 0s;
 		animation-duration: 0s;
 	}
-
+	
 	.topbar.animated.slideInDown {
 		-webkit-animation-name: none;
 		animation-name: none;
@@ -3374,70 +3374,70 @@ File: scss
 		border-right: 0px;
 		border-bottom: 1px solid rgba(120, 130, 140, 0.13);
 	}
-
+	
 	.img-inline li.half-width {
 		width: 100%;
 	}
-
+	
 	.both-space {
 		margin: 10px 0;
 	}
-
+	
 	.side-content {
 		padding: 40px 20px;
 	}
-
+	
 	.general-listing.two-part li {
 		width: 100%;
 		display: block;
 	}
-
+	
 	/*This is for the feature 12*/
 	.wrap-feature-12 .uneven-box {
 		margin-top: 0px;
 	}
-
+	
 	/*This is for the feature 16*/
 	.wrap-feature-16 .with-text {
 		margin-left: 0px;
 	}
-
+	
 	/*This is for the feature 18*/
 	.wrap-feature-18 .icon-position .icon-round {
 		top: 157px;
 		right: 30px;
 	}
-
+	
 	/*This is for the feature 22*/
 	.wrap-feature-22 .text-box, .wrap-feature23-box .text-box {
 		padding: 20px 0px;
 	}
-
+	
 	.wrap-feature30-box {
 		position: relative;
 	}
-
+	
 	.contact3 .p-l-0 {
 		padding-left: 20px;
 	}
-
+	
 	.contact4 .contact-box {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-
+	
 	.modal2 .modal-bg {
 		padding: 30px;
 	}
-
+	
 	.modal3 .modal-bg {
 		padding: 50px 40px 60px;
 	}
-
+	
 	.modal4 .modal-bg {
 		padding: 40px;
 	}
-
+	
 	.dropdown-submenu > .dropdown-menu.show {
 		display: block;
 	}
