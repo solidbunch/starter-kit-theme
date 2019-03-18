@@ -27,26 +27,26 @@ class Front {
 	public function __construct() {
 
 		// add site icon
-		add_action( 'wp_head', array( $this, 'add_site_icon' ) );
+		add_action( 'wp_head', [ $this, 'add_site_icon' ] );
 
 		// load assets
-		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'load_assets' ] );
 		// remove default styles for Unyson Breadcrummbs
-		add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
-		add_action( 'wp_footer', array( $this, 'remove_assets' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'remove_assets' ], 99, 1 );
+		add_action( 'wp_footer', [ $this, 'remove_assets' ] );
 
 		// Change excerpt dots
-		add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
+		add_filter( 'excerpt_more', [ $this, 'change_excerpt_more' ] );
 
 		// remove jquery migrate for optimization reasons
-		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
+		add_filter( 'wp_default_scripts', [ $this, 'dequeue_jquery_migrate' ] );
 
 		// Anti-spam
-		add_action( 'phpmailer_init', array( $this, 'antispam_form' ) );
+		add_action( 'phpmailer_init', [ $this, 'antispam_form' ] );
 
 		// add GTM
-		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
-		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
+		add_action( 'wp_head', [ $this, 'add_gtm_head' ] );
+		add_action( 'wp_footer', [ $this, 'add_gtm_body' ] );
 
 	}
 
@@ -70,24 +70,6 @@ class Front {
 	 **/
 	public function load_assets() {
 
-		// add support for visual composer animations, row stretching, parallax etc
-		if ( function_exists( 'vc_asset_url' ) ) {
-			wp_enqueue_script(
-				'waypoints',
-				vc_asset_url( 'lib/waypoints/waypoints.min.js' ),
-				array( 'jquery' ),
-				WPB_VC_VERSION,
-				true
-			);
-			wp_enqueue_script(
-				'wpb_composer_front_js',
-				vc_asset_url( 'js/dist/js_composer_front.min.js' ),
-				array( 'jquery' ),
-				WPB_VC_VERSION,
-				true
-			);
-		}
-
 		// JS scripts
 		Assets::enqueue_script('jquery');
 		Assets::enqueue_script(
@@ -97,12 +79,12 @@ class Front {
 			false,
 			true
 		);
-		Assets::enqueue_script_dist('starter-kit-front', 'app.min.js', array( 'jquery', 'google-fonts' ));
+		Assets::enqueue_script_dist('starter-kit-front', 'app.min.js', ['jquery', 'google-fonts']);
 
-		$js_vars = array(
+		$js_vars = [
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'assetsPath' => get_template_directory_uri() . '/assets',
-		);
+		];
 
 		Assets::enqueue_script( 'starter-kit-front' );
 		wp_localize_script( 'starter-kit-front', 'themeJsVars', $js_vars );
@@ -115,9 +97,7 @@ class Front {
 			Assets::enqueue_script(
 				'starter-kit-antispam',
 				'/assets/js/antispam.js',
-				array(
-					'jquery',
-				),
+				['jquery'],
 				Starter_Kit()->config['cache_time'], true
 			);
 		}
@@ -171,7 +151,7 @@ class Front {
 	public function dequeue_jquery_migrate( $scripts ) {
 		if ( ! is_admin() ) {
 			$scripts->remove( 'jquery' );
-			$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
+			$scripts->add( 'jquery', false, ['jquery-core'], '1.10.2' );
 		}
 	}
 
@@ -204,7 +184,10 @@ class Front {
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
 			Starter_Kit()->View->load( '/template-parts/gtm',
-				array( 'head' => true, 'tag_manager_code' => $tag_manager_code ) );
+			[
+				'head' => true,
+				'tag_manager_code' => $tag_manager_code
+			] );
 
 		}
 	}
@@ -219,7 +202,10 @@ class Front {
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
 
 			Starter_Kit()->View->load( '/template-parts/gtm',
-				array( 'head' => false, 'tag_manager_code' => $tag_manager_code ) );
+			[
+				'head' => false,
+				'tag_manager_code' => $tag_manager_code
+			] );
 
 		}
 	}
