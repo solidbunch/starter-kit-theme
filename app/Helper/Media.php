@@ -48,7 +48,7 @@ class Media {
 		// If src and attachment_id is empty or if src image is post featured image, we can find out attachment_id
 		if ( ( empty( $image_atts['src'] ) && empty( $func_atts['attachment_id'] ) ) or ( ! empty( $image_atts['src'] ) && $image_atts['src'] === get_the_post_thumbnail_url( get_the_ID(), $func_atts['size'] ) ) ) {
 			
-			$is_queried_post_thumb      = true;
+			$is_queried_post_thumb = true;
 			$func_atts['attachment_id'] = get_post_thumbnail_id( get_the_ID() );
 		}
 		
@@ -84,8 +84,8 @@ class Media {
 		$orig_src = $image_atts['src'];
 		// SVG
 		$is_svg = Utils::is_attachment_svg( $func_atts['attachment_id'], $image_atts['src'] );
-		
-		if ( $func_atts['resize'] ) {
+
+		if ( $func_atts['resize'] && ! $is_svg ) {
 			
 			if ( ! empty( $image_atts['data-width'] ) ) {
 				
@@ -108,10 +108,10 @@ class Media {
 		if ( filter_var( $func_atts['hdmi'], FILTER_VALIDATE_BOOLEAN ) && ! $is_svg ) {
 			
 			if ( ! empty( $image_atts['data-width'] ) ) {
-				$double_width  = ! is_null( $image_atts['data-width'] ) ? absint( $image_atts['data-width'] ) * 2 : null;
+				$double_width = ! is_null( $image_atts['data-width'] ) ? absint( $image_atts['data-width'] ) * 2 : null;
 				$double_height = ! is_null( $image_atts['data-height'] ) ? absint( $image_atts['data-height'] ) * 2 : null;
 			} else {
-				$double_width  = ! is_null( $image_atts['width'] ) ? absint( $image_atts['width'] ) * 2 : null;
+				$double_width = ! is_null( $image_atts['width'] ) ? absint( $image_atts['width'] ) * 2 : null;
 				$double_height = ! is_null( $image_atts['height'] ) ? absint( $image_atts['height'] ) * 2 : null;
 			}
 			
@@ -122,7 +122,7 @@ class Media {
 			}
 		}
 		
-		$image_atts['width']  = absint( $image_atts['width'] );
+		$image_atts['width'] = absint( $image_atts['width'] );
 		$image_atts['height'] = absint( $image_atts['height'] );
 		
 		//Add filter to atts
