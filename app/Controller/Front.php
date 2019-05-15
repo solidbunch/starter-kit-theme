@@ -49,6 +49,10 @@ class Front {
 		add_action( 'wp_head', [ $this, 'add_gtm_head' ] );
 		add_action( 'wp_footer', [ $this, 'add_gtm_body' ] );
 
+		// add Google Analytics code to head
+		add_action( 'wp_head', [ $this, 'add_analytics_head' ] );
+
+
 	}
 
 	/**
@@ -200,14 +204,9 @@ class Front {
 	 **/
 	public function add_gtm_head() {
 		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
-		$site_url         = get_site_url();
 
-		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
+		Starter_Kit()->View->load( '/template-parts/analytics/gtm', [ 'head' => true, 'tag_manager_code' => $tag_manager_code ] );
 
-			Starter_Kit()->View->load( '/template-parts/gtm',
-				[ 'head' => true, 'tag_manager_code' => $tag_manager_code ] );
-
-		}
 	}
 
 	/**
@@ -215,14 +214,19 @@ class Front {
 	 */
 	public function add_gtm_body() {
 		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
-		$site_url         = get_site_url();
 
-		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
+		Starter_Kit()->View->load( '/template-parts/analytics/gtm', [ 'head' => false, 'tag_manager_code' => $tag_manager_code ] );
 
-			Starter_Kit()->View->load( '/template-parts/gtm',
-				[ 'head' => false, 'tag_manager_code' => $tag_manager_code ] );
+	}
 
-		}
+	/**
+	 * add Google Analytics code to head
+	 */
+	public function add_analytics_head() {
+		$analytics_code = Utils::get_option( 'analytics_code', '' );
+
+		Starter_Kit()->View->load( '/template-parts/analytics/analytics', [ 'analytics_code' => $analytics_code ] );
+
 	}
 
 }
