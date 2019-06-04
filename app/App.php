@@ -56,9 +56,6 @@ class App {
 		// Load default config
 		$this->config = require get_template_directory() . '/app/config.php';
 		
-		// Translation support
-		load_theme_textdomain( 'starter-kit', get_template_directory() . '/languages' );
-		
 		// Load core classes
 		$this->_dispatch();
 		
