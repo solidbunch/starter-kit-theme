@@ -20,6 +20,9 @@ class Init {
 	 * Constructor
 	 **/
 	public function __construct() {
+		
+		// Add theme translation support
+		add_action( 'after_setup_theme', [ $this, 'load_theme_textdomain' ] );
 
 		// add theme support
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
@@ -30,11 +33,17 @@ class Init {
 	}
 
 	/**
+	 * Add theme translation support
+	 **/
+	public function load_theme_textdomain() {
+		load_theme_textdomain( 'starter-kit', get_template_directory() . '/languages' );
+	}
+	
+	/**
 	 * Add theme support
 	 **/
 	public function add_theme_support() {
-
-		add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ] );
+ 		add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ] );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
