@@ -15,7 +15,7 @@ if ( class_exists( 'WP_CLI' ) ) {
  * If we don't have composer autoload register own PSR-4 autoload
  * Else use composer autoload
  */
-if ( ! file_exists( __DIR__ . 'vendor/autoload.php' ) ) {
+if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	if ( ! defined( 'VENDOR_DIR' ) ) {
 		define( 'VENDOR_DIR', 'vendor-custom' );
 	}
@@ -60,7 +60,7 @@ if ( ! file_exists( __DIR__ . 'vendor/autoload.php' ) ) {
 		}
 	} );
 } else {
-	require __DIR__ . 'vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
 }
 
 // https://codex.wordpress.org/Content_Width , https://developer.wordpress.com/themes/content-width/
