@@ -1,12 +1,10 @@
-<header id="top">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+<header id="top" class="bg-light">
+	<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0" role="navigation">
 
 					<div class="navbar-brand">
 
-						<h1 class="text-primary">
-							<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a>
-						</h1>
-
+						<a class="text-primary" href="<?php echo site_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a>
 						<small><?php bloginfo( 'description' ); ?></small>
 
 					</div>
@@ -31,5 +29,6 @@
 			</nav>
 
 	</nav>
+	</div>
 
 </header>
