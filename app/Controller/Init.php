@@ -30,6 +30,9 @@ class Init {
 		// register sidebars
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 
+		// add wp-bootstrap-navwalker if need
+		require_once get_template_directory() . '/vendor-custom/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
+
 	}
 
 	/**
