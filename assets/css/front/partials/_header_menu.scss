@@ -415,3 +415,7 @@
 		}
 	}
 }
+
+.menu-item-has-children:hover>.dropdown-menu {
+	display: block;
+}
