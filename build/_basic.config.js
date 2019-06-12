@@ -16,7 +16,7 @@ module.exports = function () {
 				// js minification plugin
 				new UglifyJSPlugin({
 					test: /\.js(\?.*)?$/i,
-					sourceMap: false,
+					sourceMap: true,
 					extractComments: true,
 					parallel: true,
 					uglifyOptions: {
@@ -79,10 +79,10 @@ module.exports = function () {
 						{
 							loader: 'css-loader',
 							options: {
-								sourceMap: false,
+								sourceMap: true,
 							}
 						},
-						{loader: 'sass-loader', options: {sourceMap: false}},
+						{loader: 'sass-loader', options: {sourceMap: true}},
 					]
 				},
 				//babel
@@ -102,17 +102,17 @@ module.exports = function () {
 			})
 		],
 	};
-	
+
 	const fs = require('fs');
-	
+
 	if (process.env.SYNC === "true" && fs.existsSync('./build/browser-sync.config.js') && !process.isBrowserSyncAdded) {
 		const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 		const config = require('./browser-sync.config');
-		
+
 		baseConf.plugins.push(new BrowserSyncPlugin(config));
 		process.isBrowserSyncAdded = true;
 	}
-	
-	
+
+
 	return baseConf;
 };
