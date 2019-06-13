@@ -25,6 +25,20 @@
 					) );
 					?>
 
+		<?php
+/*		wp_nav_menu([
+			'theme_location'  => 'header_menu',
+			'container'       => 'div',
+			'container_id'    => 'bs-header-navbar-collapse',
+			'container_class' => 'collapse navbar-collapse',
+			'menu_id'         => false,
+			'menu_class'      => 'navbar-nav mr-auto',
+			'depth'           => 3,
+			'fallback_cb'     => 'bs4navwalker::fallback',
+			'walker'          => new bs4navwalker()
+		]);*/
+		?>
+
 
 			</nav>
 
