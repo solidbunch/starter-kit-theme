@@ -32,6 +32,9 @@ class Init {
 
 		// add wp-bootstrap-navwalker if need
 		require_once get_template_directory() . '/vendor-custom/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
+		//require_once get_template_directory() . '/vendor-custom/bs4navwalker.php';
+
+		//add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 
 	}
 
@@ -123,4 +126,23 @@ class Init {
 
 	}
 
+	public function nav_menu_link_attributes( $atts, $item, $args, $depth ) {
+
+		if ( !empty( $atts['data-toggle'] ) ) {
+			unset( $atts['data-toggle'] );
+			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+		}
+		if ( !empty( $atts['aria-haspopup'] ) ) {
+			unset( $atts['aria-haspopup'] );
+		}
+		if ( !empty( $atts['aria-expanded'] ) ) {
+			unset( $atts['aria-expanded'] );
+		}
+		if ( !empty( $atts['id'] ) ) {
+			unset( $atts['id'] );
+		}
+
+		return $atts;
+
+	}
 }
