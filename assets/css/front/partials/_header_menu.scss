@@ -416,9 +416,12 @@
 	}
 }
 
-.menu-item-has-children:hover>.dropdown-menu {
-	display: block;
+@include media-breakpoint-up(lg) {
+	.menu-item-has-children:hover>.dropdown-menu {
+		display: block;
+	}
 }
+
 .navbar-brand {
 	a {
 		font-size: 2.5rem;

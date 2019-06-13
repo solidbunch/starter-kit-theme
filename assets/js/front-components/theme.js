@@ -45,7 +45,9 @@ export default class Theme {
 		$('.mobile-submenu-toggler').on('click', function () {
 			$(this).toggleClass('open').prev('.sub-menu').toggleClass('open');
 		});
-		
+		if ($(window).width() > 992) {
+			$('.dropdown-toggle').attr('data-toggle', '');
+		}
 	}
 	
 	/**
