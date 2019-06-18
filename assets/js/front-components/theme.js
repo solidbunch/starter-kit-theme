@@ -30,24 +30,9 @@ export default class Theme {
 	 **/
 	setupHeader() {
 		
-		// mobile menu toggles
-		$('#mobile-menu-toggler').on('click', function () {
-			
-			$(this).toggleClass('is-active');
-			$('#header ul.menu').toggleClass('open');
-			
-			return false;
-		});
-		
-		// mobile sub-menu toggler
-		$('#header .menu-item-has-children').append('<span class="mobile-submenu-toggler"></span>');
-		
-		$('.mobile-submenu-toggler').on('click', function () {
-			$(this).toggleClass('open').prev('.sub-menu').toggleClass('open');
-		});
-/*		if ($(window).width() > 992) {
+		if ($(window).width() > 992) {
 			$('.dropdown-toggle').attr('data-toggle', '');
-		}*/
+		}
 
 		$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 			if (!$(this).next().hasClass('show')) {
