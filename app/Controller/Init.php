@@ -127,7 +127,17 @@ class Init {
 
 	public function nav_menu_link_attributes( $atts, $item, $args, $depth ) {
 
-		if ( !empty( $atts['data-toggle'] ) ) {
+		if ( isset( $args->has_children ) && $args->has_children && $depth > 0 && $args->depth > 1 ) {
+			$atts['href']          = '#';
+			$atts['data-toggle']   = 'dropdown';
+			$atts['aria-haspopup'] = 'true';
+			$atts['aria-expanded'] = 'false';
+			$atts['class']         = 'dropdown-item dropdown-toggle';
+			$atts['id']            = 'menu-item-dropdown-' . $item->ID;
+		} else {
+
+		}
+/*		if ( !empty( $atts['data-toggle'] ) ) {
 			unset( $atts['data-toggle'] );
 			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
 		}
@@ -139,9 +149,10 @@ class Init {
 		}
 		if ( !empty( $atts['id'] ) ) {
 			unset( $atts['id'] );
-		}
+		}*/
 
 		return $atts;
 
 	}
+
 }
