@@ -32,9 +32,8 @@ class Init {
 
 		// add wp-bootstrap-navwalker if need
 		require_once get_template_directory() . '/vendor-custom/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
-		//require_once get_template_directory() . '/vendor-custom/bs4navwalker.php';
 
-		//add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
+		add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 
 	}
 
