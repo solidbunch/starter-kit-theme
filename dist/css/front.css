@@ -6587,7 +6587,6 @@ img {
     height: 30px;
     background-color: transparent;
     border: none;
-    cursor: pointer;
     padding: 0;
     z-index: 1000; }
     .main-header .navbar-toggler span {
@@ -6599,21 +6598,18 @@ img {
       .main-header .navbar-toggler span:before {
         margin-top: -10px;
         -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-        transition-property: margin, transform;
-        transition-duration: 0.2s;
-        transition-delay: 0.2s, 0s; }
+        transform: rotate(45deg); }
       .main-header .navbar-toggler span:after {
         margin-top: 10px;
         -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        transition-property: margin, transform;
-        transition-duration: 0.2s;
-        transition-delay: 0.2s, 0s; }
+        transform: rotate(-45deg); }
       .main-header .navbar-toggler span:before, .main-header .navbar-toggler span:after {
         content: '';
         position: absolute;
-        transform: initial; }
+        transform: initial;
+        transition-property: margin, transform;
+        transition-duration: 0.2s;
+        transition-delay: 0.2s, 0s; }
       .main-header .navbar-toggler span, .main-header .navbar-toggler span:before, .main-header .navbar-toggler span:after {
         width: 35px;
         height: 3px;
@@ -6625,16 +6621,13 @@ img {
     .main-header .navbar-toggler:not(.collapsed) span {
       background-color: rgba(0, 0, 0, 0);
       transition-delay: 0s, 0.2s; }
+      .main-header .navbar-toggler:not(.collapsed) span:before, .main-header .navbar-toggler:not(.collapsed) span:after {
+        margin-top: 0;
+        transition-delay: 0s, 0.2s; }
       .main-header .navbar-toggler:not(.collapsed) span:before {
-        margin-top: 0;
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-        transition-delay: 0s, 0.2s; }
+        transform: rotate(45deg); }
       .main-header .navbar-toggler:not(.collapsed) span:after {
-        margin-top: 0;
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        transition-delay: 0s, 0.2s; }
+        transform: rotate(-45deg); }
 
 /*------------------------------------------------------------------
 [Blog styles]
