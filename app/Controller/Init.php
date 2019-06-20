@@ -35,7 +35,7 @@ class Init {
 
 		add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 
-		//add_filter( 'walker_nav_menu_start_el', [ $this, 'walker_nav_menu_start_el' ], 10, 4 );
+		add_filter( 'walker_nav_menu_start_el', [ $this, 'walker_nav_menu_start_el' ], 10, 4 );
 
 	}
 
@@ -135,15 +135,11 @@ class Init {
 
 		if ( isset( $args->has_children ) && $args->has_children && $depth > 0 && $args->depth > 1 ) {
 			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
-			$atts['data-toggle']   = 'dropdown';
-			$atts['aria-haspopup'] = 'true';
-			$atts['aria-expanded'] = 'false';
-			$atts['class']         = 'dropdown-item dropdown-toggle dropdown-toggle-split';
-			$atts['id']            = 'menu-item-dropdown-' . $item->ID;
+			$atts['class']         = 'dropdown-item dropdown-toggle';
 		}
 
 
-/*		if ( !empty( $atts['data-toggle'] ) ) {
+		if ( !empty( $atts['data-toggle'] ) ) {
 			unset( $atts['data-toggle'] );
 			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
 		}
@@ -155,7 +151,7 @@ class Init {
 		}
 		if ( !empty( $atts['id'] ) ) {
 			unset( $atts['id'] );
-		}*/
+		}
 
 		return $atts;
 
@@ -163,7 +159,9 @@ class Init {
 
 	public function walker_nav_menu_start_el( $item_output, $item, $depth, $args ) {
 		if ( isset( $args->has_children ) && $args->has_children && $args->depth > 1 ) {
-			$item_output .='<span class="rh-arrow"></span>';
+			$item_output .= '<button  class="btn rh-arrow dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="menu-item-dropdown-' . $item->ID.'">
+				<span class="sr-only">' . __( 'Toggle Dropdown', 'starter-kit' ) . '</span>
+			</button>';
 		}
 		return $item_output;
 	}
