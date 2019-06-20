@@ -1,67 +1,30 @@
-<header id="top">
-
+<header class="main-header bg-light">
 	<div class="container">
+		<nav class="header-menu navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0" role="navigation">
 
-		<nav class="navbar">
+			<div class="navbar-brand">
 
-			<div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2">
-
-				<div class="navbar-brand">
-
-					<h1 class="text-primary">
-						<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a>
-					</h1>
-
-					<small><?php bloginfo( 'description' ); ?></small>
-
-				</div>
+				<a class="text-primary" href="<?php echo site_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a>
+				<small><?php bloginfo( 'description' ); ?></small>
 
 			</div>
 
+			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#bs-header-navbar-collapse" aria-controls="bs-header-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<?php
+			wp_nav_menu( array(
+				'theme_location'    => 'header_menu',
+				'depth'             => 4,
+				'container'         => 'div',
+				'container_class'   => 'collapse navbar-collapse',
+				'container_id'      => 'bs-header-navbar-collapse',
+				'menu_class'        => 'nav navbar-nav ml-auto',
+				'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+				'walker'            => new WP_Bootstrap_Navwalker(),
+			) );
+			?>
+
 		</nav>
-
 	</div>
-
 </header>
-
-<section class="bg-light">
-
-	<?php if ( has_nav_menu( 'header_menu' ) ) : ?>
-
-		<div class="container">
-
-			<nav id="main-nav" class="navigation-menu">
-
-				<div class="d-md-block d-lg-none order-3">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'header_menu',
-							'menu_class'     => 'mobile-menu'
-						)
-					);
-					?>
-				</div>
-
-				<div class="w-100 order-3">
-					<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'header_menu',
-							'menu_class'     => 'desktop-menu'
-						)
-					);
-					?>
-				</div>
-
-				<button class="menu-button" type="button">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-			</nav>
-
-		</div>
-
-	<?php endif; ?>
-
-</section>
