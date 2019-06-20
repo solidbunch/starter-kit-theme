@@ -3,16 +3,7 @@
 -------------------------------------------------------------------*/
 
 .main-header {
-	.navbar {
-		.navbar-brand {
-			a {
-				font-size: 2.5rem;
-				font-weight: 500;
-				line-height: 1.2;
-				display: block;
-			}
-		}
-	}
+
 	.dropdown-toggle {
 		&:after {
 			vertical-align: 0.155em;
@@ -146,6 +137,26 @@
 					transform: rotate(-45deg);
 				}
 			}
+		}
+	}
+
+	.rh-arrow {
+		position: absolute;
+		opacity: 1;
+		top: 20px;
+		right: 5%;
+		left: auto;
+		border: 6px solid transparent;
+		border-top: 6px solid $primary;
+		transform: translate(0) rotate(0deg);
+		transition: 0.2s linear;
+		cursor: pointer;
+	}
+
+	& > .rh-arrow {
+		&.active {
+			top: 16px;
+			transform: translate(0) rotate(180deg);
 		}
 	}
 

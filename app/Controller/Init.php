@@ -35,6 +35,8 @@ class Init {
 
 		add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
 
+		//add_filter( 'walker_nav_menu_start_el', [ $this, 'walker_nav_menu_start_el' ], 10, 4 );
+
 	}
 
 	/**
@@ -136,7 +138,7 @@ class Init {
 			$atts['data-toggle']   = 'dropdown';
 			$atts['aria-haspopup'] = 'true';
 			$atts['aria-expanded'] = 'false';
-			$atts['class']         = 'dropdown-item dropdown-toggle';
+			$atts['class']         = 'dropdown-item dropdown-toggle dropdown-toggle-split';
 			$atts['id']            = 'menu-item-dropdown-' . $item->ID;
 		}
 
@@ -157,6 +159,13 @@ class Init {
 
 		return $atts;
 
+	}
+
+	public function walker_nav_menu_start_el( $item_output, $item, $depth, $args ) {
+		if ( isset( $args->has_children ) && $args->has_children && $args->depth > 1 ) {
+			$item_output .='<span class="rh-arrow"></span>';
+		}
+		return $item_output;
 	}
 
 }

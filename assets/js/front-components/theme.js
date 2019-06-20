@@ -15,7 +15,6 @@ export default class Theme {
 	build() {
 		this.setupHeader();
 		this.loadGoogleFonts();
-		this.mobileMenuListener('.navigation-menu');
 	}
 	
 	/**
@@ -30,27 +29,7 @@ export default class Theme {
 	 **/
 	setupHeader() {
 
-		if ($(window).width() > 992) {
-			$('.dropdown-toggle').attr('data-toggle', '');
 
-		} else {
-
-			$('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
-				if (!$(this).next().hasClass('show')) {
-					$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-				}
-				var $subMenu = $(this).next(".dropdown-menu");
-				$subMenu.toggleClass('show');
-
-
-				$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
-					$('.dropdown-submenu .show').removeClass("show");
-				});
-
-
-				return false;
-			});
-		}
 	}
 
 	/**
@@ -89,31 +68,4 @@ export default class Theme {
 		return pattern.test(emailAddress);
 	}
 	
-	/** Mobile menu **/
-	mobileMenuListener(selector) {
-		
-		jQuery(function ($) {
-			
-			$(selector).parent().find('.mobile-menu li.menu-item-has-children').prepend('<span class="rh-arrow"></span>');
-			
-			$(selector).parent().find('.mobile-menu li.menu-item-has-children>.rh-arrow').on('click', function (e) {
-				$(this).parent().find('> .sub-menu').slideToggle("slow");
-				$(this).toggleClass('active');
-				$(this).parent().find('> a').toggleClass('active');
-			});
-			
-			$('.menu-button').on('click', function () {
-				$(this).toggleClass('active');
-				if ($(this).hasClass('active')) {
-					$(this).parent().find('.mobile-menu').show().animate({"right": "50%"}, 500);
-				} else {
-					$(this).parent().find('.mobile-menu').animate({"right": "-200%"}, 500, function () {
-						$(this).parent().find('.mobile-menu').hide()
-					});
-				}
-			});
-			
-		});
-		
-	}
 }
