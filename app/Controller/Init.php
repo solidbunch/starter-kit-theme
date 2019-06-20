@@ -30,6 +30,13 @@ class Init {
 		// register sidebars
 		add_action( 'widgets_init', [ $this, 'register_sidebars' ] );
 
+		// add wp-bootstrap-navwalker if need
+		require_once get_template_directory() . '/vendor-custom/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
+
+		add_filter( 'nav_menu_link_attributes', [ $this, 'nav_menu_link_attributes' ], 10, 4 );
+
+		add_filter( 'walker_nav_menu_start_el', [ $this, 'walker_nav_menu_start_el' ], 10, 4 );
+
 	}
 
 	/**
@@ -118,6 +125,45 @@ class Init {
 			'after_title'   => '</h4>'
 		] );
 
+	}
+
+	public function nav_menu_link_attributes( $atts, $item, $args, $depth ) {
+
+		if ( isset( $args->has_children ) && $args->has_children && 0 === $depth && $args->depth > 1 ) {
+			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+		}
+
+		if ( isset( $args->has_children ) && $args->has_children && $depth > 0 && $args->depth > 1 ) {
+			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+			$atts['class']         = 'dropdown-item dropdown-toggle';
+		}
+
+
+		if ( !empty( $atts['data-toggle'] ) ) {
+			unset( $atts['data-toggle'] );
+			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+		}
+		if ( !empty( $atts['aria-haspopup'] ) ) {
+			unset( $atts['aria-haspopup'] );
+		}
+		if ( !empty( $atts['aria-expanded'] ) ) {
+			unset( $atts['aria-expanded'] );
+		}
+		if ( !empty( $atts['id'] ) ) {
+			unset( $atts['id'] );
+		}
+
+		return $atts;
+
+	}
+
+	public function walker_nav_menu_start_el( $item_output, $item, $depth, $args ) {
+		if ( isset( $args->has_children ) && $args->has_children && $args->depth > 1 ) {
+			$item_output .= '<button  class="btn rh-arrow dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="menu-item-dropdown-' . $item->ID.'">
+				<span class="sr-only">' . __( 'Toggle Dropdown', 'starter-kit' ) . '</span>
+			</button>';
+		}
+		return $item_output;
 	}
 
 }
