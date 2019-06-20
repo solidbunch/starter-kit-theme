@@ -45,7 +45,6 @@ You can include / exclude functional using online generator tool https://solidbu
         - PostTypes.php – registering custom post types
         - Shortcodes.php – registering shortcodes
         - VisualComposer.php – settings for Page Builder
-        - WalkerBootstrap.php – add bootstrap menu walker
     - Helper/ – Helpers classes
         - Front.php - front-end page helpers
         - Media.php - media helpers

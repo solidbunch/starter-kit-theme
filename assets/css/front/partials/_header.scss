@@ -1,38 +1,15 @@
-@import "../_variables";
-
 /*------------------------------------------------------------------
 [Header styles]
 -------------------------------------------------------------------*/
-
-.navbar {
-	padding: 0.5rem 0;
+.main-header {
+  .navbar {
+    .navbar-brand {
+      a {
+        font-size: 2.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        display: block;
+      }
+    }
+  }
 }
-
-.dropdown-menu {
-	padding: 0;
-	
-	li {
-		padding: 0;
-		
-		a {
-			padding: 10px 25px;
-			border-radius: 3px;
-		}
-		
-		&:active {
-			color: $white;
-		}
-		
-		&:hover {
-			& > ul {
-				display: inline-block;
-				top: 75%;
-				left: 25%;
-			}
-		}
-	}
-	
-}
-
-
-
