@@ -6519,16 +6519,17 @@ img {
 /*------------------------------------------------------------------
 [Header styles]
 -------------------------------------------------------------------*/
+.main-header .navbar .navbar-brand a {
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  display: block; }
+
 /*------------------------------------------------------------------
 [Header Menu]
 -------------------------------------------------------------------*/
 .main-header {
   /*mixin works only on desktop*/ }
-  .main-header .navbar .navbar-brand a {
-    font-size: 2.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    display: block; }
   .main-header .dropdown-toggle:after {
     vertical-align: 0.155em; }
   @media (min-width: 576px) {
@@ -6628,6 +6629,20 @@ img {
         transform: rotate(45deg); }
       .main-header .navbar-toggler:not(.collapsed) span:after {
         transform: rotate(-45deg); }
+  .main-header .rh-arrow {
+    position: absolute;
+    opacity: 1;
+    top: 20px;
+    right: 5%;
+    left: auto;
+    border: 6px solid transparent;
+    border-top: 6px solid #eb3c00;
+    transform: translate(0) rotate(0deg);
+    transition: 0.2s linear;
+    cursor: pointer; }
+  .main-header > .rh-arrow.active {
+    top: 16px;
+    transform: translate(0) rotate(180deg); }
 
 /*------------------------------------------------------------------
 [Blog styles]
