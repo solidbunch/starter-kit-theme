@@ -14,7 +14,7 @@ if ( ! class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
 			/** Form data **/
 			$atts = shortcode_atts( [
 				'el_id'               => '',
-				'classes'             => '',
+				'classes'             => [],
 				'email_to'            => '',
 				'redirect_on_success' => '',
 				'success_message'     => '',
