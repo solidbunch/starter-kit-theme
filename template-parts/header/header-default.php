@@ -17,10 +17,10 @@
 				'theme_location'    => 'header_menu',
 				'depth'             => 4,
 				'container'         => 'div',
+				//startbootstrapmenu
 				'container_class'   => 'collapse navbar-collapse',
 				'container_id'      => 'bs-header-navbar-collapse',
 				'menu_class'        => 'nav navbar-nav ml-auto',
-				//startbootstrapmenu
 				'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
 				'walker'            => new WP_Bootstrap_Navwalker(),
 				//endbootstrapmenu
