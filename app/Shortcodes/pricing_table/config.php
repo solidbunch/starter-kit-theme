@@ -3,6 +3,7 @@
 return [
 	'name'        => esc_html__( 'Pricing Table', 'starter-kit' ),
 	'base'        => 'pricing_table',
+	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'viral-marketing.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Param Group', 'starter-kit' ),
 	'params'      => [
