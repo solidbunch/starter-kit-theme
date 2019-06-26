@@ -6519,7 +6519,7 @@ img {
 /*------------------------------------------------------------------
 [Header styles]
 -------------------------------------------------------------------*/
-.main-header .navbar .navbar-brand a {
+#header .navbar .navbar-brand a {
   font-size: 2.5rem;
   font-weight: 500;
   line-height: 1.2;
@@ -6528,131 +6528,131 @@ img {
 /*------------------------------------------------------------------
 [Header Menu]
 -------------------------------------------------------------------*/
-.main-header {
+#header {
   /*mixin works only on desktop*/ }
-  .main-header a.dropdown-toggle:after {
+  #header a.dropdown-toggle:after {
     vertical-align: 0.155em;
     display: none; }
-  .main-header .dropdown-menu {
+  #header .dropdown-menu {
     margin-top: 20px; }
-  .main-header .rh-arrow {
+  #header .rh-arrow {
     position: absolute;
     opacity: 1;
     top: -4px;
     right: 5%;
     left: auto; }
   @media (min-width: 576px) {
-    .main-header .navbar-expand-sm .dropdown:hover > .dropdown-menu {
+    #header .navbar-expand-sm .dropdown:hover > .dropdown-menu {
       display: block; }
-    .main-header .navbar-expand-sm .dropdown .dropdown-menu {
+    #header .navbar-expand-sm .dropdown .dropdown-menu {
       margin-top: 0; }
-      .main-header .navbar-expand-sm .dropdown .dropdown-menu .dropdown .dropdown-menu {
+      #header .navbar-expand-sm .dropdown .dropdown-menu .dropdown .dropdown-menu {
         top: 0;
         left: 100%; }
-      .main-header .navbar-expand-sm .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
+      #header .navbar-expand-sm .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
         left: auto;
         right: 100%; }
-      .main-header .navbar-expand-sm .dropdown .dropdown-menu .dropdown-toggle:after {
+      #header .navbar-expand-sm .dropdown .dropdown-menu .dropdown-toggle:after {
         transform: rotate(-90deg); }
-    .main-header .navbar-expand-sm .dropdown a.dropdown-toggle:after {
+    #header .navbar-expand-sm .dropdown a.dropdown-toggle:after {
       display: inline-block; }
-    .main-header .navbar-expand-sm .rh-arrow {
+    #header .navbar-expand-sm .rh-arrow {
       display: none; } }
   @media (min-width: 768px) {
-    .main-header .navbar-expand-md .dropdown:hover > .dropdown-menu {
+    #header .navbar-expand-md .dropdown:hover > .dropdown-menu {
       display: block; }
-    .main-header .navbar-expand-md .dropdown .dropdown-menu {
+    #header .navbar-expand-md .dropdown .dropdown-menu {
       margin-top: 0; }
-      .main-header .navbar-expand-md .dropdown .dropdown-menu .dropdown .dropdown-menu {
+      #header .navbar-expand-md .dropdown .dropdown-menu .dropdown .dropdown-menu {
         top: 0;
         left: 100%; }
-      .main-header .navbar-expand-md .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
+      #header .navbar-expand-md .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
         left: auto;
         right: 100%; }
-      .main-header .navbar-expand-md .dropdown .dropdown-menu .dropdown-toggle:after {
+      #header .navbar-expand-md .dropdown .dropdown-menu .dropdown-toggle:after {
         transform: rotate(-90deg); }
-    .main-header .navbar-expand-md .dropdown a.dropdown-toggle:after {
+    #header .navbar-expand-md .dropdown a.dropdown-toggle:after {
       display: inline-block; }
-    .main-header .navbar-expand-md .rh-arrow {
+    #header .navbar-expand-md .rh-arrow {
       display: none; } }
   @media (min-width: 992px) {
-    .main-header .navbar-expand-lg .dropdown:hover > .dropdown-menu {
+    #header .navbar-expand-lg .dropdown:hover > .dropdown-menu {
       display: block; }
-    .main-header .navbar-expand-lg .dropdown .dropdown-menu {
+    #header .navbar-expand-lg .dropdown .dropdown-menu {
       margin-top: 0; }
-      .main-header .navbar-expand-lg .dropdown .dropdown-menu .dropdown .dropdown-menu {
+      #header .navbar-expand-lg .dropdown .dropdown-menu .dropdown .dropdown-menu {
         top: 0;
         left: 100%; }
-      .main-header .navbar-expand-lg .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
+      #header .navbar-expand-lg .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
         left: auto;
         right: 100%; }
-      .main-header .navbar-expand-lg .dropdown .dropdown-menu .dropdown-toggle:after {
+      #header .navbar-expand-lg .dropdown .dropdown-menu .dropdown-toggle:after {
         transform: rotate(-90deg); }
-    .main-header .navbar-expand-lg .dropdown a.dropdown-toggle:after {
+    #header .navbar-expand-lg .dropdown a.dropdown-toggle:after {
       display: inline-block; }
-    .main-header .navbar-expand-lg .rh-arrow {
+    #header .navbar-expand-lg .rh-arrow {
       display: none; } }
   @media (min-width: 1200px) {
-    .main-header .navbar-expand-xl .dropdown:hover > .dropdown-menu {
+    #header .navbar-expand-xl .dropdown:hover > .dropdown-menu {
       display: block; }
-    .main-header .navbar-expand-xl .dropdown .dropdown-menu {
+    #header .navbar-expand-xl .dropdown .dropdown-menu {
       margin-top: 0; }
-      .main-header .navbar-expand-xl .dropdown .dropdown-menu .dropdown .dropdown-menu {
+      #header .navbar-expand-xl .dropdown .dropdown-menu .dropdown .dropdown-menu {
         top: 0;
         left: 100%; }
-      .main-header .navbar-expand-xl .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
+      #header .navbar-expand-xl .dropdown .dropdown-menu .dropdown.dropdown-left .dropdown-menu {
         left: auto;
         right: 100%; }
-      .main-header .navbar-expand-xl .dropdown .dropdown-menu .dropdown-toggle:after {
+      #header .navbar-expand-xl .dropdown .dropdown-menu .dropdown-toggle:after {
         transform: rotate(-90deg); }
-    .main-header .navbar-expand-xl .dropdown a.dropdown-toggle:after {
+    #header .navbar-expand-xl .dropdown a.dropdown-toggle:after {
       display: inline-block; }
-    .main-header .navbar-expand-xl .rh-arrow {
+    #header .navbar-expand-xl .rh-arrow {
       display: none; } }
-  .main-header .navbar-toggler {
+  #header .navbar-toggler {
     height: 30px;
     background-color: transparent;
     border: none;
     padding: 0;
     z-index: 1000; }
-    .main-header .navbar-toggler span {
+    #header .navbar-toggler span {
       margin: 0 auto;
       position: relative;
       transition-duration: 0s;
       transition-delay: 0.2s;
       background-size: 0; }
-      .main-header .navbar-toggler span:before {
+      #header .navbar-toggler span:before {
         margin-top: -10px;
         -ms-transform: rotate(45deg);
         transform: rotate(45deg); }
-      .main-header .navbar-toggler span:after {
+      #header .navbar-toggler span:after {
         margin-top: 10px;
         -ms-transform: rotate(-45deg);
         transform: rotate(-45deg); }
-      .main-header .navbar-toggler span:before, .main-header .navbar-toggler span:after {
+      #header .navbar-toggler span:before, #header .navbar-toggler span:after {
         content: '';
         position: absolute;
         transform: initial;
         transition-property: margin, transform;
         transition-duration: 0.2s;
         transition-delay: 0.2s, 0s; }
-      .main-header .navbar-toggler span, .main-header .navbar-toggler span:before, .main-header .navbar-toggler span:after {
+      #header .navbar-toggler span, #header .navbar-toggler span:before, #header .navbar-toggler span:after {
         width: 35px;
         height: 3px;
         background-color: #eb3c00;
         display: block;
         border-radius: 3px; }
-    .main-header .navbar-toggler:focus {
+    #header .navbar-toggler:focus {
       outline: none; }
-    .main-header .navbar-toggler:not(.collapsed) span {
+    #header .navbar-toggler:not(.collapsed) span {
       background-color: rgba(0, 0, 0, 0);
       transition-delay: 0s, 0.2s; }
-      .main-header .navbar-toggler:not(.collapsed) span:before, .main-header .navbar-toggler:not(.collapsed) span:after {
+      #header .navbar-toggler:not(.collapsed) span:before, #header .navbar-toggler:not(.collapsed) span:after {
         margin-top: 0;
         transition-delay: 0s, 0.2s; }
-      .main-header .navbar-toggler:not(.collapsed) span:before {
+      #header .navbar-toggler:not(.collapsed) span:before {
         transform: rotate(45deg); }
-      .main-header .navbar-toggler:not(.collapsed) span:after {
+      #header .navbar-toggler:not(.collapsed) span:after {
         transform: rotate(-45deg); }
 
 /*------------------------------------------------------------------
