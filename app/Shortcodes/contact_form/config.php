@@ -3,7 +3,7 @@
 return [
 	'name'                    => esc_html__( 'Contact Form', 'starter-kit' ),
 	'base'                    => 'contact_form',
-	'icon'                    => Starter_Kit()->config['shortcodes_icon_uri'] . '259550.svg',
+	'icon'                    => Starter_Kit()->config['shortcodes_icon_uri'] . 'email-send.svg',
 	'category'                => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description'             => esc_html__( 'Add contact form', 'starter-kit' ),
 	'as_parent'               => [
