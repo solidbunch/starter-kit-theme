@@ -97,7 +97,7 @@ class Front {
 		Assets::enqueue_script( 'jquery' );
 		Assets::enqueue_script(
 			'google-fonts',
-			'/assets/libs/google-fonts/webfont.js',
+			'assets/libs/google-fonts/webfont.js',
 			false,
 			false,
 			true
@@ -119,7 +119,7 @@ class Front {
 		if ( $this->antispam_enabled() === 1 ) {
 			Assets::enqueue_script(
 				'starter-kit-antispam',
-				'/assets/js/antispam.js',
+				'assets/js/antispam.js',
 				[
 					'jquery',
 				],
