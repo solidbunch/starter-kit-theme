@@ -3,12 +3,12 @@
 $options = [
 	[
 		'performance_options_tab' => [
-			'title'   => esc_html__( 'Performance Settings', 'starter-kit' ),
+			'title'   => esc_html__( 'Performance', 'starter-kit' ),
 			'type'    => 'tab',
 			'options' => [
 				
 				'img_lazy_load_box' => [
-					'title'   => esc_html__( 'Lazy Load Options', 'starter-kit' ),
+					'title'   => esc_html__( 'Images Lazy Load Options', 'starter-kit' ),
 					'type'    => 'box',
 					'attr'    => [
 						'class' => 'prevent-auto-close'
@@ -122,6 +122,32 @@ $options = [
 							],
 							'desc'         => __( 'Remove unnecessary link\'s ,Remove inline CSS and JS from WP emoji support, Remove inline CSS used by Recent Comments widget, Remove inline CSS used by posts with galleries, Remove self-closing tag', 'starter-kit' ),
 						],
+					]
+				],
+				'pingbacks' => [
+					'title'   => esc_html__( 'Ping Backs', 'starter-kit' ),
+					'type'    => 'box',
+					'attr'    => [
+						'class' => 'prevent-auto-close'
+					],
+					'options' => [
+
+						'disable_pingbacks' => [
+							'type'         => 'switch',
+							'label'        => __( 'Trackbacks/Pingbacks', 'starter-kit' ),
+							'right-choice' => [
+								'value' => '1',
+								'label' => __( 'Yes', 'starter-kit' )
+							],
+							'left-choice'  => [
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'starter-kit' )
+							],
+							'desc'         => __( 'Disables trackbacks/pingbacks', 'starter-kit' ),
+
+						],
+
 					]
 				],
 				'assets'  => [
