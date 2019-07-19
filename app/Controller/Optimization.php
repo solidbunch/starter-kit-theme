@@ -78,6 +78,7 @@ class Optimization {
 		add_filter( 'embed_oembed_html', [ $this, 'embed_wrap' ] );
 		add_filter( 'the_generator', '__return_false' );
 		add_filter( 'style_loader_tag', [ $this, 'clean_style_tag' ] );
+		add_filter( 'script_loader_tag', [ $this, 'clean_script_tag' ] );
 		add_filter( 'get_avatar', [ $this, 'remove_self_closing_tags' ] ); // <img />
 		add_filter( 'comment_id_fields', [ $this, 'remove_self_closing_tags' ] ); // <input />
 		add_filter( 'post_thumbnail_html', [ $this, 'remove_self_closing_tags' ] ); // <img />
@@ -135,7 +136,7 @@ class Optimization {
 	 * @return string
 	 */
 	public function embed_wrap( $cache ) {
-		return '<div class="entry-content-asset">' . $cache . '</div>';
+		return '<div class="embed-wrapper">' . $cache . '</div>';
 	}
 
 	/**
