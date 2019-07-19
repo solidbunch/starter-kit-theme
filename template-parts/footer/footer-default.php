@@ -36,7 +36,7 @@ use StarterKit\Helper\{Utils, Front};
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6 my-auto copyright"><?php echo Front::text_copyright_year ( Utils::get_option( 'bottom_bar_text' ) ); ?></div>
-							<nav class="col-md-6 navbar navbar-dark bg-dark" role="navigation">
+							<nav class="col-md-6 navbar navbar-dark bg-dark">
 								<?php
 									wp_nav_menu( [
 										'menu' => 'bottom_bar_menu',
