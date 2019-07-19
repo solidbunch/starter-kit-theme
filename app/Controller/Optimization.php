@@ -19,18 +19,25 @@ use StarterKit\Helper\Utils;
 class Optimization {
 
 	public function __construct() {
-
 		add_action( 'init', function () {
 			if ( Utils::get_option( 'clean_wp_head', false ) ) {
 				$this->head_cleanup();
 			}
-			if ( Utils::get_option( 'disable_trackbacks', false ) ) {
-				$this->disable_trackbacks();
+
+			if ( Utils::get_option( 'scripts_styles_cleanup', false ) ) {
+				$this->scripts_styles_cleanup();
 			}
 
 			if ( Utils::get_option( 'assets_versions', false ) ) {
-				add_filter( 'script_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
-				add_filter( 'style_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
+				$this->assets_versions();
+			}
+
+			if ( Utils::get_option( 'remove_self_closing_tags', false ) ) {
+				$this->_remove_self_closing_tags();
+			}
+
+			if ( Utils::get_option( 'add_embed_wrap', false ) ) {
+				$this->add_embed_wrap();
 			}
 		} );
 	}
@@ -75,24 +82,48 @@ class Optimization {
 		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter( 'emoji_svg_url', '__return_false' );
 		add_filter( 'show_recent_comments_widget_style', '__return_false' );
-		add_filter( 'embed_oembed_html', [ $this, 'embed_wrap' ] );
 		add_filter( 'the_generator', '__return_false' );
-		add_filter( 'style_loader_tag', [ $this, 'clean_style_tag' ] );
-		add_filter( 'get_avatar', [ $this, 'remove_self_closing_tags' ] ); // <img />
-		add_filter( 'comment_id_fields', [ $this, 'remove_self_closing_tags' ] ); // <input />
-		add_filter( 'post_thumbnail_html', [ $this, 'remove_self_closing_tags' ] ); // <img />
 		add_filter( 'get_bloginfo_rss', [ $this, 'remove_default_description' ] );
 	}
 
 	/**
-	 * Disables trackbacks/pingbacks
+	 * Add embed wrap
 	 */
-	public function disable_trackbacks() {
-		add_filter( 'xmlrpc_methods', [ $this, 'filter_xmlrpc_method' ], 10, 1 );
-		add_filter( 'wp_headers', [ $this, 'filter_headers' ], 10, 1 );
-		add_filter( 'rewrite_rules_array', [ $this, 'filter_rewrites' ] );
-		add_filter( 'bloginfo_url', [ $this, 'kill_pingback_url' ], 10, 2 );
-		add_action( 'xmlrpc_call', [ $this, 'kill_xmlrpc' ] );
+	public function add_embed_wrap() {
+
+		add_filter( 'embed_oembed_html', [ $this, 'embed_wrap' ] );
+
+	}
+
+	/**
+	 * Remove self closing tags
+	 */
+	public function _remove_self_closing_tags() {
+
+		add_filter( 'get_avatar', [ $this, 'remove_self_closing_tags' ] ); // <img />
+		add_filter( 'comment_id_fields', [ $this, 'remove_self_closing_tags' ] ); // <input />
+		add_filter( 'post_thumbnail_html', [ $this, 'remove_self_closing_tags' ] ); // <img />
+
+	}
+
+	/**
+	 * Scripts & styles cleanup
+	 */
+	public function scripts_styles_cleanup() {
+
+		add_filter( 'style_loader_tag', [ $this, 'clean_style_tag' ] );
+		add_filter( 'script_loader_tag', [ $this, 'clean_script_tag' ] );
+
+	}
+
+	/**
+	 * Remove assets versions
+	 */
+	public function assets_versions() {
+
+		add_filter( 'script_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
+		add_filter( 'style_loader_src', [ $this, 'remove_script_version' ], 15, 1 );
+
 	}
 
 	/**
@@ -135,7 +166,7 @@ class Optimization {
 	 * @return string
 	 */
 	public function embed_wrap( $cache ) {
-		return '<div class="entry-content-asset">' . $cache . '</div>';
+		return '<div class="embed-wrapper">' . $cache . '</div>';
 	}
 
 	/**

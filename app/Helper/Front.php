@@ -97,5 +97,18 @@ class Front {
 		
 		return $s;
 	}
+
+	/**
+	 * Make dynamic year in copyright
+	 *
+	 * @param string $text
+	 *
+	 * @return string
+	 */
+	public static function text_copyright_year( $text ) {
+		$text = str_replace( '{year}', date('Y'), $text );
+
+		return $text;
+	}
 	
 }
