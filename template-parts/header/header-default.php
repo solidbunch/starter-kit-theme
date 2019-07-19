@@ -1,6 +1,9 @@
+<?php
+use StarterKit\Helper\Utils;
+?>
 <header id="header" class="bg-light">
 	<div class="container">
-		<nav class="header-menu navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0" role="navigation">
+		<nav class="header-menu navbar navbar-expand-lg navbar-light bg-light <?php if ( Utils::get_option( 'fixed_header' ) ) { ?> fixed-top<?php } else {?> pl-0 pr-0<?php } ?>">
 
 			<div class="navbar-brand">
 
