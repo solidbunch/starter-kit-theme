@@ -3,7 +3,7 @@
 $options = [
 	[
 		'base_options_tab' => [
-			'title'   => esc_html__( 'Base Settings', 'starter-kit' ),
+			'title'   => esc_html__( 'General', 'starter-kit' ),
 			'type'    => 'tab',
 			'options' => [
 				
