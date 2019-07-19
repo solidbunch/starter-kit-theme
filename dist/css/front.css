@@ -6525,6 +6525,17 @@ img {
   line-height: 1.2;
   display: block; }
 
+.admin-bar .header-menu.fixed-top {
+  top: 32px; }
+
+@media only screen and (max-width: 782px) {
+  .admin-bar .header-menu.fixed-top {
+    top: 46px; } }
+
+@media only screen and (max-width: 600px) {
+  .admin-bar .header-menu.fixed-top {
+    top: 0; } }
+
 /*------------------------------------------------------------------
 [Header Menu]
 -------------------------------------------------------------------*/

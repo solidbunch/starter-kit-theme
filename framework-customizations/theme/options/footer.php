@@ -18,7 +18,7 @@ $options = [
 						'bottom_bar_text' => [
 							'type'  => 'text',
 							'label' => esc_html__( 'Bottom bar text', 'starter-kit' ),
-							'value' => ''
+							'value' => '{year} &copy; Copyright'
 						],
 					
 					]
