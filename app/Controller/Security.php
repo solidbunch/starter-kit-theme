@@ -49,5 +49,77 @@ class Security {
 		add_action( 'xmlrpc_call', [ $this, 'kill_xmlrpc' ] );
 	}
 
+	/**
+	 * Disable pingback XMLRPC method
+	 *
+	 * @param $methods
+	 *
+	 * @return mixed
+	 */
+	public function filter_xmlrpc_method( $methods ) {
+		unset( $methods['pingback.ping'] );
+
+		return $methods;
+	}
+
+	/**
+	 * Remove pingback header
+	 *
+	 * @param $headers
+	 *
+	 * @return mixed
+	 */
+	public function filter_headers( $headers ) {
+		if ( isset( $headers['X-Pingback'] ) ) {
+			unset( $headers['X-Pingback'] );
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * Kill trackback rewrite rule
+	 *
+	 * @param $rules
+	 *
+	 * @return mixed
+	 */
+	public function filter_rewrites( $rules ) {
+		foreach ( $rules as $rule => $rewrite ) {
+			if ( preg_match( '/trackback\/\?\$$/i', $rule ) ) {
+				unset( $rules[ $rule ] );
+			}
+		}
+
+		return $rules;
+	}
+
+	/**
+	 * Kill bloginfo('pingback_url')
+	 *
+	 * @param $output
+	 * @param $show
+	 *
+	 * @return string
+	 */
+	public function kill_pingback_url( $output, $show ) {
+		if ( $show === 'pingback_url' ) {
+			$output = '';
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Disable XMLRPC call
+	 *
+	 * @param $action
+	 */
+	public function kill_xmlrpc( $action ) {
+		if ( $action === 'pingback.ping' ) {
+			wp_die( 'Pingbacks are not supported', 'Not Allowed!', [ 'response' => 403 ] );
+		}
+	}
+
 
 }
