@@ -137,7 +137,7 @@ class Media {
 			
 		}
 		
-		$image_html .= '/>';
+		$image_html .= '>';
 		
 		echo $image_html;
 	}
