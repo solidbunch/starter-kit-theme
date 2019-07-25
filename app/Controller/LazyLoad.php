@@ -20,8 +20,9 @@ class LazyLoad {
 	 * Constructor
 	 **/
 	public function __construct() {
-
-		add_action( 'init', [ $this, 'run_lazy_load' ] );
+		if ( !is_admin() ) {
+			add_action( 'init', [ $this, 'run_lazy_load' ] );
+		}
 
 	}
 

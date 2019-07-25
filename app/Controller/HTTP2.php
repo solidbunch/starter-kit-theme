@@ -31,25 +31,27 @@ class HTTP2 {
 	 * http2_push constructor.
 	 */
 	public function __construct() {
-		add_action( 'init', function () {
-			$scripts = Utils::get_option( 'http2_scripts_enable', false );
-			$styles  = Utils::get_option( 'http2_styles_enable', false );
+		if ( !is_admin() ) {
+			add_action( 'init', function () {
+				$scripts = Utils::get_option( 'http2_scripts_enable', false );
+				$styles  = Utils::get_option( 'http2_styles_enable', false );
 
-			if ( ( $scripts || $styles ) && ! is_admin() ) {
-				$this->http2_ob_start();
-				if ( $scripts ) {
-					add_filter( 'script_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
-				}
+				if ( ( $scripts || $styles ) && ! is_admin() ) {
+					$this->http2_ob_start();
+					if ( $scripts ) {
+						add_filter( 'script_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
+					}
 
-				if ( $styles ) {
-					add_filter( 'style_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
-				}
+					if ( $styles ) {
+						add_filter( 'style_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
+					}
 
-				if ( $this->http2_should_render_prefetch_headers() ) {
-					add_action( 'wp_head', [ $this, 'http2_resource_hints' ], PHP_INT_MAX, 1 );
+					if ( $this->http2_should_render_prefetch_headers() ) {
+						add_action( 'wp_head', [ $this, 'http2_resource_hints' ], PHP_INT_MAX, 1 );
+					}
 				}
-			}
-		} );
+			} );
+		}
 
 	}
 
