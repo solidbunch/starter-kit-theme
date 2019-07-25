@@ -19,27 +19,29 @@ use StarterKit\Helper\Utils;
 class Optimization {
 
 	public function __construct() {
-		add_action( 'init', function () {
-			if ( Utils::get_option( 'clean_wp_head', false ) ) {
-				$this->head_cleanup();
-			}
+		if ( !is_admin() ) {
+			add_action( 'init', function () {
+				if ( Utils::get_option( 'clean_wp_head', false ) ) {
+					$this->head_cleanup();
+				}
 
-			if ( Utils::get_option( 'scripts_styles_cleanup', false ) ) {
-				$this->scripts_styles_cleanup();
-			}
+				if ( Utils::get_option( 'scripts_styles_cleanup', false ) ) {
+					$this->scripts_styles_cleanup();
+				}
 
-			if ( Utils::get_option( 'assets_versions', false ) ) {
-				$this->assets_versions();
-			}
+				if ( Utils::get_option( 'assets_versions', false ) ) {
+					$this->assets_versions();
+				}
 
-			if ( Utils::get_option( 'remove_self_closing_tags', false ) ) {
-				$this->_remove_self_closing_tags();
-			}
+				if ( Utils::get_option( 'remove_self_closing_tags', false ) ) {
+					$this->_remove_self_closing_tags();
+				}
 
-			if ( Utils::get_option( 'add_embed_wrap', false ) ) {
-				$this->add_embed_wrap();
-			}
-		} );
+				if ( Utils::get_option( 'add_embed_wrap', false ) ) {
+					$this->add_embed_wrap();
+				}
+			} );
+		}
 	}
 
 	/**
