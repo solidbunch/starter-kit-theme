@@ -48,7 +48,7 @@ module.exports = function () {
 				//images loader
 				{
 					test: /\.(png|jpg|jpeg|svg|gif)$/i,
-					exclude: path.resolve('node_modules/'),
+					exclude: [ path.resolve('node_modules/'), path.resolve('assets/fonts/') ],
 					use: [{
 						loader: 'file-loader',
 						options: {
@@ -61,13 +61,13 @@ module.exports = function () {
 				// fonts loader
 				{
 					test: /.(ttf|otf|svg|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-					include: path.resolve('node_modules/'),
+					exclude: path.resolve('assets/images/'),
 					use: [{
 						loader: 'file-loader',
 						options: {
-							name: '[name]-[hash].[ext]',
 							outputPath: './dist/fonts/',    // where the fonts will go
 							publicPath: '../fonts/'       // override the default path
+							name: '[name]-[hash].[ext]',
 						}
 					}]
 				},
