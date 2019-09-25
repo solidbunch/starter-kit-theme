@@ -58,10 +58,11 @@ class Assets {
 			if ( file_exists( $stylePath ) ) {
 
 				$ver = self::add_version( $stylePath, $ver );
-				/** @var string|bool $src */
-				$src = self::is_full_url( $src );
 
 			}
+
+			/** @var string|bool $src */
+			$src = self::is_full_url( $src );
 
 		}
 
