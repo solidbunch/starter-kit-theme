@@ -66,7 +66,7 @@ module.exports = function () {
 						loader: 'file-loader',
 						options: {
 							outputPath: './dist/fonts/',    // where the fonts will go
-							publicPath: '../fonts/'       // override the default path
+							publicPath: '../fonts/',       // override the default path
 							name: '[name]-[hash].[ext]',
 						}
 					}]
