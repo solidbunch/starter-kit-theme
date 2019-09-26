@@ -16,7 +16,7 @@ module.exports = function () {
 				// js minification plugin
 				new UglifyJSPlugin({
 					test: /\.js(\?.*)?$/i,
-					sourceMap: true,
+					sourceMap: false,
 					extractComments: true,
 					parallel: true,
 					uglifyOptions: {
