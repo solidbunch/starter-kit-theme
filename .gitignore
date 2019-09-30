@@ -51,6 +51,11 @@ access_log
 node_modules
 
 
+#==========================================#
+#       Compiled code. It should not always be tracked.       #
+#==========================================#
+#dist
+
 
 ## Use these to get more specific ##
 
