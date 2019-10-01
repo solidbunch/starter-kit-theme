@@ -65,7 +65,7 @@ if ( ! class_exists( 'StarterKitShortcode_Contact_Form' ) ) {
 				'strFormError'           => esc_html__( 'Form validation error. Please check all required fields and try again.', 'starter-kit' ),
 			] );
 			
-			Assets::enqueue_style( $this->shortcode . '-style', $this->shortcode_uri . '/assets/style.css' );
+			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 		}
 		
 		/**

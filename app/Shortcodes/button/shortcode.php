@@ -28,6 +28,8 @@ if ( ! class_exists( 'StarterKitShortcode_Button' ) ) {
 			if ( $atts['icon'] <> '' ) {
 				\StarterKit\Helper\Assets::enqueue_style( 'font-awesome' );
 			}
+
+			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 			
 			$data = $this->data( [
 				'atts'    => $atts,

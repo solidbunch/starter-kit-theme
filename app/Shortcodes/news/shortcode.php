@@ -30,8 +30,8 @@ if ( ! class_exists( 'StarterKitShortcode_News' ) ) {
 			] );
 			
 			// Add styles and scripts
+			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 			Assets::enqueue_script( $this->shortcode . '-script', $this->shortcode_uri . '/assets/scripts.js' );
-			Assets::enqueue_style( $this->shortcode . '-style', $this->shortcode_uri . '/assets/style.css' );
 			Assets::localize_script( $this->shortcode . '-script', 'shortcodeNewsJsParams', [
 				'query_vars'     => json_encode( $posts_query->query_vars ),
 				'paged'          => 1,
