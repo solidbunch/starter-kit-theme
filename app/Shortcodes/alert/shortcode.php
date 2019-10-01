@@ -22,7 +22,7 @@ if ( ! class_exists( 'StarterKitShortcode_Alert' ) ) {
 				wp_enqueue_style( 'font-awesome' );
 			}
 			
-			\StarterKit\Helper\Assets::enqueue_style( $this->shortcode . '-style', $this->shortcode_uri . '/assets/style.css' );
+			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 			
 			$data = $this->data( [
 				'atts'    => $atts,

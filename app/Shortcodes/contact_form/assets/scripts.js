@@ -22,7 +22,7 @@
 	
 	window.contact_form_init = function () {
 		
-		$('form.fw_form_fw_form').on('submit', function (e) {
+		$('form.shortcode-form-form').on('submit', function (e) {
 			e.preventDefault();
 			
 			if ($('#operation_to').val() != '') {
