@@ -7,7 +7,7 @@ return [
 	'category'                => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description'             => esc_html__( 'Add contact form', 'starter-kit' ),
 	'as_parent'               => [
-		'only' => 'vc_column_text, heading, vc_row',
+		'only' => 'form_checkbox, form_email, form_file_uploader, form_submit, form_text, form_text_datepicker, form_textarea, vc_column_text, heading, vc_row',
 	],
 	'content_element'         => true,
 	'is_container'            => true,
@@ -33,6 +33,13 @@ return [
 			'description' => esc_html__( 'This text will be used as subject message for the email', 'starter-kit' ),
 			'param_name'  => 'subject_message',
 			'value'       => esc_html__( 'New message', 'starter-kit' ),
+			'group'       => esc_html__( 'Form', 'starter-kit' ),
+		],
+		[
+			'type'       => 'textfield',
+			'heading'    => esc_html__( 'CSS classes', 'starter-kit' ),
+			'param_name' => 'classes',
+			'value'      => '',
 			'group'       => esc_html__( 'Form', 'starter-kit' ),
 		],
 		[

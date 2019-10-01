@@ -19,7 +19,7 @@ if ( ! class_exists( 'StarterKitShortcode_Tabs' ) ) {
 				'classes'  => ''
 			], $this->atts( $atts ), $this->shortcode );
 			
-			Assets::enqueue_style( $this->shortcode . '-style', $this->shortcode_uri . '/assets/style.css' );
+			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 			Assets::enqueue_script( $this->shortcode . '-script', $this->shortcode_uri . '/assets/scripts.js' );
 			
 			$data = $this->data( [
