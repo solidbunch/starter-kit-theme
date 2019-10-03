@@ -1,10 +1,12 @@
-.contact-form textarea {
-	height: 130px;
-}
+.shortcode-form {
+	textarea {
+		height: 130px;
+	}
 
-.contact-form button[type="submit"] {
-	padding-left: 77px;
-	padding-right: 77px;
+	button[type="submit"] {
+		padding-left: 77px;
+		padding-right: 77px;
+	}
 }
 
 @media (min-width: 768px) {
@@ -23,7 +25,7 @@
 	color: #f00;
 }
 
-.contact-form .form-error-msg {
+.shortcode-form .form-error-msg {
 	color: #f00;
 }
 
@@ -32,50 +34,49 @@
 	font-size: 14px
 }
 
-.contact-form .success {
+.shortcode-form .success {
 	color: #2c8593;
 }
 
-.select-coin-item .field-text-small {
-	width: 40%;
-	float: left;
-}
+.select-coin-item {
+	.field-text-small {
+		width: 40%;
+		float: left;
+	}
 
-.select-coin-item .field-text-small-label {
-	float: left;
-	margin: 0 5px;
-	color: #2c8593;
-	font-size: 14px;
-	width: calc(20% - 10px);
-	text-align: center;
-	padding: 15px 0;
+	.field-text-small-label {
+		float: left;
+		margin: 0 5px;
+		color: #2c8593;
+		font-size: 14px;
+		width: calc(20% - 10px);
+		text-align: center;
+		padding: 15px 0;
+	}
 }
 
 .form-builder-item {
 	margin-bottom: 20px;
-}
 
-.form-builder-item .datepicker {
-	border-radius: 0;
-	margin-top: 20px;
-	border: 2px solid #c3c3c3 !important;
-	margin-bottom: 20px;
-	width: 260px;
-	
-}
+	.datepicker {
+		border-radius: 0;
+		margin-top: 20px;
+		border: 2px solid #c3c3c3 !important;
+		margin-bottom: 20px;
+		width: 260px;
 
-.form-builder-item .datepicker--cell {
-	height: 25px;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-	.form-builder-item .datepicker {
-		width: 220px;
+		@media (min-width: 768px) and (max-width: 991px) {
+			width: 220px;
+		}
 	}
-	
+
+	.datepicker--cell {
+		height: 25px;
+	}
 }
 
-.sell-link-text, .buy-link-text {
+.sell-link-text,
+.buy-link-text {
 	text-decoration: none;
 	transition: color .3s;
 	color: #2c8593;
@@ -84,6 +85,10 @@
 	float: right;
 	line-height: 22px;
 	padding: 13px 0;
+
+	&:hover {
+		color: #222;
+	}
 }
 
 .buy-link-text {
@@ -92,10 +97,6 @@
 
 .button-sell {
 	float: right;
-}
-
-.sell-link-text:hover, .buy-link-text:hover {
-	color: #222;
 }
 
 .button-sell, .buy-link-text {
