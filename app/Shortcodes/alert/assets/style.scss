@@ -1,0 +1,12 @@
+.shortcode-alert {
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+	display: flex;
+
+	&-icon {
+		padding-right: 10px;
+	}
+
+	&-text {}
+}

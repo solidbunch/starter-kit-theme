@@ -1,0 +1,15 @@
+#content .news .row-header {
+  text-transform: uppercase;
+  font-size: 15px;
+  padding: 10px 0 13px;
+  color: #eb3c00; }
+
+#content .news a img {
+  max-width: 100%; }
+
+#content .news a h5 {
+  font-size: 17px;
+  max-width: 95%; }
+
+
+/*# sourceMappingURL=shortcode-news.css.map*/
