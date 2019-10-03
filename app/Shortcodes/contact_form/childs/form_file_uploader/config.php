@@ -7,7 +7,7 @@ return [
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'starter-kit' ),
 	'as_child'        => [
-		'only' => 'contact_form,vc_column_inner'
+		'only' => 'contact_form, vc_column_inner'
 	],
 	'params'          => [
 		

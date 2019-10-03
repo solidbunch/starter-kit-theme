@@ -205,7 +205,7 @@
 	right: 20px;
 	top: 50%;
 	transform: translateY(-50%);
-	background: url(../img/down.svg) center center no-repeat;
+//	background: url(../img/down.svg) center center no-repeat;
 }
 
 .starter-kit_tabs.type-accordion .starter-kit_tabs_tab.current .starter-kit-title,
@@ -218,7 +218,7 @@
 }
 
 .starter-kit_tabs.type-accordion .starter-kit_tabs_tab.active .starter-kit-title:after {
-	background-image: url(../img/up.svg);
+//	background-image: url(../img/up.svg);
 }
 
 .starter-kit_tabs.type-accordion .starter-kit_tabs_tab:last-of-type .starter-kit-tab-content {
