@@ -69,6 +69,21 @@ class Assets {
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 
 	}
+	
+	/**
+	 * Add style to critical css
+	 *
+	 * @param $path
+	 * @param int $priority
+	 */
+	public static function add_critical_style( $path, $priority = 10 ) {
+		$path = is_file( $path ) ? $path : get_template_directory() . '/dist/css/' . $path;
+		if ( is_file( $path ) && $css = file_get_contents( $path ) ) {
+			add_filter( 'StarterKit/critical_css', function ( $critical_css ) use ( $css ) {
+				return $critical_css . $css;
+			}, $priority );
+		}
+	}
 
 	/**
 	 * Check is $src is url

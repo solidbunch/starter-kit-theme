@@ -31,7 +31,7 @@ class Front {
 		add_action( 'wp_head', [ $this, 'add_site_icon' ] );
 
 		// load assets
-		add_action( 'wp_enqueue_scripts', [ $this, 'inline_critical_css' ], 1 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'inline_critical_css' ], 5 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'load_assets' ] );
 		// remove default styles for Unyson Breadcrummbs
 		add_action( 'wp_enqueue_scripts', [ $this, 'remove_assets' ], 99, 1 );
@@ -141,7 +141,7 @@ class Front {
 		if ( is_file( $path ) && $css = file_get_contents( $path ) ) {
 			wp_register_style( 'starter-kit-critical', false );
 			wp_enqueue_style( 'starter-kit-critical' );
-			wp_add_inline_style( 'starter-kit-critical', $css );
+			wp_add_inline_style( 'starter-kit-critical', apply_filters( 'StarterKit/critical_css', $css ) );
 		}
 	}
 	
