@@ -20,6 +20,7 @@ module.exports = Object.assign(
 		entry: {
 			app: './assets/js/app.js',
 			front: './assets/css/front/front.scss',
+			critical: './assets/css/front/critical.scss',
 			libs: './assets/css/front/libs.scss',
 			admin: './assets/css/admin/admin.scss',
 		},
