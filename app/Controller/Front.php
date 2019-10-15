@@ -156,6 +156,10 @@ class Front {
 		wp_dequeue_style( 'animate-css' );
 		wp_dequeue_style( 'fw-ext-breadcrumbs-add-css' );
 
+		if ( class_exists( 'Classic_Editor' ) ) {
+			wp_dequeue_style( 'wp-block-library' );
+		}
+
 	}
 
 	/**
