@@ -31,7 +31,7 @@ class Front {
 		add_action( 'wp_head', [ $this, 'add_site_icon' ] );
 
 		// load assets
-		add_action( 'wp_enqueue_scripts', [ $this, 'inline_critical_css' ], 5 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'load_critical_css' ], 5 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'load_assets' ] );
 		// remove default styles for Unyson Breadcrummbs
 		add_action( 'wp_enqueue_scripts', [ $this, 'remove_assets' ], 99, 1 );
@@ -112,15 +112,29 @@ class Front {
 	}
 	
 	
-	public function inline_critical_css() {
-		$path = get_template_directory() . '/dist/css/critical.css';
-		if ( is_file( $path ) && $css = file_get_contents( $path ) ) {
-			wp_register_style( 'starter-kit-critical', false );
-			wp_enqueue_style( 'starter-kit-critical' );
-			wp_add_inline_style( 'starter-kit-critical', apply_filters( 'StarterKit/critical_css', $css ) );
+	public function load_critical_css() {
+
+		if ( $this->inline_critical_css() === 1 ) {
+			$path = get_template_directory() . '/dist/css/critical.css';
+			if ( is_file( $path ) && $css = file_get_contents( $path ) ) {
+				wp_register_style( 'starter-kit-critical', false );
+				wp_enqueue_style( 'starter-kit-critical' );
+				wp_add_inline_style( 'starter-kit-critical', apply_filters( 'StarterKit/critical_css', $css ) );
+			}
+		} else {
+			Assets::enqueue_style_dist( 'starter-kit-critical', 'critical.css' );
 		}
 	}
 	
+	/**
+	 * Check if Inline critical css enabled in theme options
+	 *
+	 * @return int
+	 */
+	public function inline_critical_css() {
+		return (int) Utils::get_option( 'inline_critical_css', 0 );
+	}
+
 	/**
 	 * Check if anti-spam enabled in theme options
 	 *
