@@ -133,6 +133,21 @@ $options = [
 					],
 					'options' => [
 
+						'inline_critical_css' => [
+							'type'         => 'switch',
+							'label'        => __( 'Inline critical css', 'starter-kit' ),
+							'right-choice' => [
+								'value' => '1',
+								'label' => __( 'Yes', 'starter-kit' )
+							],
+							'left-choice'  => [
+								'value' => '0',
+								'color' => '#ccc',
+								'label' => __( 'No', 'starter-kit' )
+							],
+							'desc'         => __( 'Connect critical.css inline. Turn Off if WP Rocket Optimize CSS delivery is On', 'starter-kit' ),
+						],
+
 						'add_embed_wrap' => [
 							'type'         => 'switch',
 							'label'        => __( 'Add wrapper to embed code', 'starter-kit' ),
