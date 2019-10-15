@@ -94,6 +94,9 @@ class Front {
 			);
 		}
 
+		// JS scripts
+		Assets::enqueue_script( 'jquery' );
+
 		Assets::enqueue_script_dist( 'starter-kit-front', 'app.min.js', [ 'jquery', 'google-fonts' ] );
 
 		$js_vars = [
