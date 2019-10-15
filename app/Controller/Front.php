@@ -75,24 +75,6 @@ class Front {
 	 **/
 	public function load_assets() {
 
-		// add support for visual composer animations, row stretching, parallax etc
-		if ( function_exists( 'vc_asset_url' ) ) {
-			wp_enqueue_script(
-				'waypoints',
-				vc_asset_url( 'lib/waypoints/waypoints.min.js' ),
-				[ 'jquery' ],
-				WPB_VC_VERSION,
-				true
-			);
-			wp_enqueue_script(
-				'wpb_composer_front_js',
-				vc_asset_url( 'js/dist/js_composer_front.min.js' ),
-				[ 'jquery' ],
-				WPB_VC_VERSION,
-				true
-			);
-		}
-
 		// JS scripts
 		Assets::enqueue_script( 'jquery' );
 		Assets::enqueue_script(
