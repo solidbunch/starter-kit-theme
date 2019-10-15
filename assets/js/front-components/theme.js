@@ -14,7 +14,6 @@ export default class Theme {
 	 **/
 	build() {
 		this.setupHeader();
-		this.loadGoogleFonts();
 	}
 	
 	/**
@@ -32,13 +31,6 @@ export default class Theme {
 
 	}
 
-	/**
-	 * Load Google Fonts
-	 **/
-	loadGoogleFonts() {
-		WebFont.load({google: {families: ["Oswald:300,400,700", "PT+Serif:400,400i"]}});
-	}
-	
 	/** Check for mobile device **/
 	isMobile() {
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
