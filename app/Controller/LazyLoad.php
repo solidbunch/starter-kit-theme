@@ -39,7 +39,8 @@ class LazyLoad {
 			add_filter( 'widget_text', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
 			add_filter( 'get_image_tag', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
 			//add_filter( 'wp_get_attachment_image_attributes', array( $this, 'process_image_attributes' ), PHP_INT_MAX );
-			add_filter( 'ff_media_img_html', [ $this, 'process_image_attributes' ], PHP_INT_MAX );
+			add_filter( 'StarterKit/media_img/attributes', [ $this, 'process_image_attributes' ], PHP_INT_MAX );
+			add_filter( 'StarterKit/media_picture/source_attributes', [ $this, 'process_source_attributes' ], PHP_INT_MAX );
 
 			// Load scripts
 			add_action( 'wp_enqueue_scripts', [ $this, 'load_assets' ] );
@@ -142,7 +143,7 @@ class LazyLoad {
 	 */
 	public function process_image_attributes( $attributes ) {
 
-		if ( empty( $attributes['src'] ) ) {
+		if ( empty( $attributes['src'] ) || ! empty( $attributes['data-is_svg']) ) {
 			return $attributes;
 		}
 		$old_attributes = $attributes;
@@ -193,15 +194,53 @@ class LazyLoad {
 		// Process `srcset` attribute.
 		if ( ! empty( $attributes['srcset'] ) ) {
 			$attributes['data-srcset'] = $old_attributes['srcset'];
-			unset( $attributes['srcset'] );
+			if ( ! empty($attributes['data-placeholder_srcset']) ) {
+				$attributes['srcset'] = $attributes['data-placeholder_srcset'];
+				unset( $attributes['data-placeholder_srcset'] );
+			}
+			
 		}
 
 		// Process `sizes` attribute.
 		if ( ! empty( $attributes['sizes'] ) ) {
 			$attributes['data-sizes'] = $old_attributes['sizes'];
-			unset( $attributes['sizes'] );
 		}
 
+		return $attributes;
+	}
+	
+	
+	
+	
+	public function process_source_attributes( $attributes ) {
+		
+		if ( empty( $attributes['srcset'] ) || ! empty( $attributes['data-is_svg'])  ) {
+			return $attributes;
+		}
+		$old_attributes = $attributes;
+		
+		if ( ! empty( $attributes['class'] ) && $this->should_skip_image_with_blacklisted_class( $attributes['class'] ) ) {
+			return $attributes;
+		}
+		
+		// Add the lazy class to the img element.
+		$attributes['class'] = $this->set_lazy_class( $attributes );
+		
+		// Process `srcset` attribute.
+		if ( ! empty( $attributes['srcset'] ) ) {
+			$attributes['data-srcset'] = $old_attributes['srcset'];
+			if ( ! empty( $attributes['data-placeholder_srcset'] ) ) {
+				$attributes['srcset'] = $attributes['data-placeholder_srcset'];
+				unset( $attributes['data-placeholder_srcset'] );
+			}
+			
+		}
+		
+		// Process `sizes` attribute.
+		if ( ! empty( $attributes['sizes'] ) ) {
+			$attributes['data-sizes'] = $old_attributes['sizes'];
+		}
+		
 		return $attributes;
 	}
 

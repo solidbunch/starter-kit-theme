@@ -6,14 +6,16 @@
  * @link https://developers.google.com/web/fundamentals/performance/lazy-loading-guidance/images-and-video/
  */
 document.addEventListener('DOMContentLoaded', function () {
-	var lazyImages = [].slice.call(document.querySelectorAll('img.lazy-loading'));
+	var lazyImages = [].slice.call(document.querySelectorAll('img.lazy-loading, source.lazy-loading'));
 	
 	if ('IntersectionObserver' in window) {
 		var lazyImageObserver = new IntersectionObserver(function (entries, observer) {
 			entries.forEach(function (entry) {
 				if (entry.isIntersecting) {
 					var lazyImage = entry.target;
-					lazyImage.src = lazyImage.dataset.src;
+					if (lazyImage.dataset.src) {
+						lazyImage.src = lazyImage.dataset.src;
+					}
 					if (lazyImage.dataset.srcset) {
 						lazyImage.srcset = lazyImage.dataset.srcset;
 					}
@@ -44,7 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				setTimeout(function () {
 					lazyImages.forEach(function (lazyImage) {
 						if (lazyImage.getBoundingClientRect().top <= window.innerHeight && 0 <= lazyImage.getBoundingClientRect().bottom && 'none' !== getComputedStyle(lazyImage).display) {
-							lazyImage.src = lazyImage.dataset.src;
+							if (lazyImage.dataset.src) {
+								lazyImage.src = lazyImage.dataset.src;
+							}
 							if (lazyImage.dataset.srcset) {
 								lazyImage.srcset = lazyImage.dataset.srcset;
 							}

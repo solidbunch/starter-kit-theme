@@ -126,7 +126,7 @@ class Media {
 		$image_atts['height'] = absint( $image_atts['height'] );
 		
 		//Add filter to atts
-		$image_atts = apply_filters( 'ff_media_img_html', $image_atts );
+		$image_atts = apply_filters( 'StarterKit/media_img/attributes', $image_atts );
 		
 		$image_html = '<img ';
 		
@@ -173,6 +173,86 @@ class Media {
 		
 		return $src;
 		
+	}
+	
+	
+	/**
+	 * Get the placeholder svg image.
+	 *
+	 * @param int $imageWidth
+	 * @param int $imageHeight
+	 *
+	 * @return string The URL to the placeholder image.
+	 */
+	public static function getPlaceholderImage( $imageWidth = 24, $imageHeight = 24 ) {
+		$data = [
+			'width'  => (int) $imageWidth,
+			'height' => (int) $imageHeight,
+			'fill'   => Utils::get_option( 'placeholder_color', '#555' ),
+		];
+		
+		$svg = base64_encode( Starter_Kit()->View->load( '/template-parts/lazy-loading-svg', $data, true ) );
+		
+		return "data:image/svg+xml;base64," . $svg;
+	}
+	
+	
+	/**
+	 * Retrieve attachment local Path by it`s Url
+	 * 
+	 * @param $url
+	 *
+	 * @return bool|string
+	 */
+	public static function getAttachmentPathByUrl( $url ) {
+		if ( ! $url || ! is_string( $url ) ) {
+			return false;
+		}
+		// Define upload path & dir.
+		$upload_info = wp_upload_dir();
+		$upload_dir  = $upload_info['basedir'];
+		$upload_url  = $upload_info['baseurl'];
+		
+		$http_prefix     = 'http://';
+		$https_prefix    = 'https://';
+		$relative_prefix = '//'; // The protocol-relative URL
+		
+		/* if the $url scheme differs from $upload_url scheme, make them match 
+		   if the schemes differe, images don't show up. */
+		if ( ! strncmp( $url, $https_prefix, strlen( $https_prefix ) ) ) { //if url begins with https:// make $upload_url begin with https:// as well
+			$upload_url = str_replace( $http_prefix, $https_prefix, $upload_url );
+		} elseif ( ! strncmp( $url, $http_prefix, strlen( $http_prefix ) ) ) { //if url begins with http:// make $upload_url begin with http:// as well
+			$upload_url = str_replace( $https_prefix, $http_prefix, $upload_url );
+		} elseif ( ! strncmp( $url, $relative_prefix, strlen( $relative_prefix ) ) ) { //if url begins with // make $upload_url begin with // as well
+			$upload_url = str_replace( array( 0 => (string) $http_prefix, 1 => (string) $https_prefix ), $relative_prefix, $upload_url );
+		}
+		
+		
+		// Check if $img_url is local.
+		if ( false === strpos( $url, $upload_url ) ) {
+			return false;
+		}
+		
+		// Define path of image.
+		$rel_path = str_replace( $upload_url, '', $url );
+		$img_path = $upload_dir . $rel_path;
+		
+		return $img_path;
+	}
+	
+	
+	/**
+	 * @param $img_path
+	 *
+	 * @return array|false
+	 */
+	public static function getAttachmentInfoByPath( $img_path ) {
+		// Check if img path exists, and is an image indeed.
+		if ( file_exists( $img_path ) ) {
+			return getimagesize( $img_path );
+		}
+		
+		return false;
 	}
 	
 	
