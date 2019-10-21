@@ -1,5 +1,14 @@
-<?php if ( has_post_thumbnail() ): ?>
+<?php use StarterKit\Helper\Media;
+
+if ( has_post_thumbnail() ): ?>
 	<div class="thumb">
-		<img src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'full' ); ?>" alt="<?php echo esc_attr( get_the_title()); ?>">
+		<?php echo Media::pictureForPost(
+			get_the_ID(),
+			[
+				'(min-width: 1200px)' => 730,
+				'(min-width: 768px)'  => 690,
+				545,
+			]
+		); ?>
 	</div>
 <?php endif;
