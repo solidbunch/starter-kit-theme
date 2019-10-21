@@ -50,7 +50,7 @@ class Size {
 	 * @return string
 	 */
 	public function render() {
-		return $this->media ? "{$this->media} {$this->widthOfSlot}" : $this->widthOfSlot;
+		return $this->media ? "{$this->media} {$this->widthOfSlot}" : (string) $this->widthOfSlot;
 	}
 	
 	

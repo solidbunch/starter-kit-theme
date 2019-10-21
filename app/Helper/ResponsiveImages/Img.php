@@ -165,9 +165,12 @@ class Img {
 		}
 		$srcsetHtml            = rtrim( $srcsetHtml, ', ' );
 		$placeholderSrcsetHtml = rtrim( $placeholderSrcsetHtml, ', ' );
-		
-		$this->imgAttrs['srcset']                  = $srcsetHtml;
-		$this->imgAttrs['data-placeholder_srcset'] = $placeholderSrcsetHtml;
+		if ( $srcsetHtml ) {
+			$this->imgAttrs['srcset'] = $srcsetHtml;
+		}
+		if ( $placeholderSrcsetHtml ) {
+			$this->imgAttrs['data-placeholder_srcset'] = $placeholderSrcsetHtml;
+		}
 	}
 	
 	

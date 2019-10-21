@@ -86,7 +86,7 @@ class Source {
 		
 		$tagContent = '';
 		foreach ( $sourceAttrs as $attrName => $attrValue ) {
-			if ( empty( $attrValue ) && in_array( $attrName, [ 'srcset', 'sizes', 'type' ], true ) ) {
+			if ( empty( $attrValue ) && in_array( $attrName, [ 'srcset', 'sizes', 'media', 'type' ], true ) ) {
 				continue;
 			}
 			$tagContent .= $attrValue !== null ? $attrName . '="' . esc_attr( $attrValue ) . '" ' : esc_attr( $attrName ) . '" ';
@@ -124,8 +124,12 @@ class Source {
 		$srcsetHtml            = rtrim( $srcsetHtml, ', ' );
 		$placeholderSrcsetHtml = rtrim( $placeholderSrcsetHtml, ', ' );
 		
-		$this->sourceAttrs['srcset']                  = $srcsetHtml;
-		$this->sourceAttrs['data-placeholder_srcset'] = $placeholderSrcsetHtml;
+		if ( $srcsetHtml ) {
+			$this->sourceAttrs['srcset'] = $srcsetHtml;
+		}
+		if ( $placeholderSrcsetHtml ) {
+			$this->sourceAttrs['data-placeholder_srcset'] = $placeholderSrcsetHtml;
+		}
 	}
 	
 	
