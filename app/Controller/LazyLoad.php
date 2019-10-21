@@ -193,17 +193,19 @@ class LazyLoad {
 
 		// Process `srcset` attribute.
 		if ( ! empty( $attributes['srcset'] ) ) {
-			$attributes['data-srcset'] = $old_attributes['srcset'];
+			$attributes['data-srcset'] = $attributes['srcset'];
 			if ( ! empty($attributes['data-placeholder_srcset']) ) {
 				$attributes['srcset'] = $attributes['data-placeholder_srcset'];
 				unset( $attributes['data-placeholder_srcset'] );
+			} else {
+				unset( $attributes['srcset'] );
 			}
 			
 		}
 
 		// Process `sizes` attribute.
 		if ( ! empty( $attributes['sizes'] ) ) {
-			$attributes['data-sizes'] = $old_attributes['sizes'];
+			$attributes['data-sizes'] = $attributes['sizes'];
 		}
 
 		return $attributes;
@@ -228,17 +230,19 @@ class LazyLoad {
 		
 		// Process `srcset` attribute.
 		if ( ! empty( $attributes['srcset'] ) ) {
-			$attributes['data-srcset'] = $old_attributes['srcset'];
+			$attributes['data-srcset'] = $attributes['srcset'];
 			if ( ! empty( $attributes['data-placeholder_srcset'] ) ) {
 				$attributes['srcset'] = $attributes['data-placeholder_srcset'];
 				unset( $attributes['data-placeholder_srcset'] );
+			} else {
+				unset( $attributes['srcset'] );
 			}
 			
 		}
 		
 		// Process `sizes` attribute.
 		if ( ! empty( $attributes['sizes'] ) ) {
-			$attributes['data-sizes'] = $old_attributes['sizes'];
+			$attributes['data-sizes'] = $attributes['sizes'];
 		}
 		
 		return $attributes;

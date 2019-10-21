@@ -222,3 +222,89 @@ With different and custom attributes
 With no attributes, only standart WP size in post
 
     Media::the_img(array(), array('size' => 'medium') );
+    
+
+### Media::pictureForPost, Media::imgForPost
+
+Helpers `Media::pictureForPost` and `Media::imgForPost` return a Responsive &lt;picture&gt; or &lt;img&gt; tag by post id. The helpers is friendly with built-in theme Lazy Load functionality.
+
+**Usage:**
+
+    Media::pictureForPost( $postId, array $mediaQueriesWithWidth = [], $hasDoubleDevicePixelRatio = true )
+    
+    Media::imgForPost( $postId, array $mediaQueriesWithWidth = [], $hasDoubleDevicePixelRatio = true )
+    
+**Returns:**
+
+    string <picture> or <img> tag accordingly or empty string on error
+
+**Example:**
+
+```php
+echo Media::pictureForPost(
+		get_the_ID(),
+		[   // format: ['metaQuery' => widthInPx(int), ... , defaultWidthInPx(int) ]
+			'(min-width: 1200px)' => 730,
+			'(min-width: 768px)'  => 690,
+			545, // dafault width, if no media query aplied
+		],
+		false
+	);
+
+echo  Media::imgForPost(
+		get_the_ID(),
+		[
+			'(min-width: 1200px)' => 730,
+			'(min-width: 768px)'  => 690,
+			545
+		] );
+```
+
+**Also you can do any combination of parameters of Picture or Img responsive tags with StarterKit\Helper\ResponsiveImages\ classes :**
+
+```php
+if ( has_post_thumbnail( $postId ) ) {
+    try {
+        $originUrl = get_the_post_thumbnail_url( $postId, 'full' );
+        $resizer   = Resizer::makeByUrl( $originUrl );
+        $img =
+            Picture::make(
+                $originUrl, // original url for default img tag
+                'customAlt', // alt for default img tag
+                null, // width for img tag lazy load placeholder, by default as at $originUrl image 
+                null, // height for img tag lazy load placeholder, by default as at $originUrl image 
+                [     // sourses
+                    Source::make( [ // SrcsetItems
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 730 ), '1x' ),
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 730 * 2 ), '2x' ),
+                    ],
+                        [], // may add sizes
+                        '(min-width: 1200px)', // may add media
+                        'image/jpeg'  // may add image mime-type
+                    ),
+                    
+                    Source::make( [
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 690 ), '1x' ),
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 690 * 2 ), '2x' ),
+                    ],
+                        [],
+                        '(min-width: 768px)'
+                    ),
+                    
+                    Source::make( [
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 545 ), '1x' ),
+                        SrcsetItem::makeWithResize( $resizer->setWidth( 545 * 2 ), '2x' ),
+                    ] ),
+                ] )
+                   ->addPictureAttr( 'class', 'custom-picture-class' )
+                   ->addPictureAttr( 'data-some', 'custom-picture-attr' )
+                   ->addImgAttr( 'class', 'custom-img-class' )
+                   ->addImgAttr( 'data-some', 'custom-img-attr' )
+                   ->render();
+    } catch ( \Exception $ex ) {
+        error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
+        $img = '';
+    }
+    echo $img;
+} 
+```

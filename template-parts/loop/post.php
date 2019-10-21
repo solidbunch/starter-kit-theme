@@ -29,7 +29,16 @@
 
 		<div class="thumb post-thumb">
 			<a href="<?php the_permalink(); ?>" class="thumb-link">
-				<?php the_post_thumbnail( 'full'); ?>
+				<?php
+				echo StarterKit\Helper\Media::pictureForPost(
+					get_the_ID(),
+					[
+						'(min-width: 1200px)' => 730,
+						'(min-width: 768px)'  => 690,
+						545,
+					]
+				);
+				?>
 			</a>
 			<a href="<?php the_permalink(); ?>" class="post-link"><i class="icon-link"></i></a>
 		</div>

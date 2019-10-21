@@ -2,6 +2,13 @@
 
 namespace StarterKit\Helper;
 
+use StarterKit\Helper\ResponsiveImages\Img;
+use StarterKit\Helper\ResponsiveImages\Picture;
+use StarterKit\Helper\ResponsiveImages\Resizer;
+use StarterKit\Helper\ResponsiveImages\Size;
+use StarterKit\Helper\ResponsiveImages\Source;
+use StarterKit\Helper\ResponsiveImages\SrcsetItem;
+
 /**
  * Media Helper
  *
@@ -256,4 +263,103 @@ class Media {
 	}
 	
 	
+	/**
+	 * Responsive images helper
+	 * Create html tag Picture from post thumbnail
+	 * 
+	 * @param $postId
+	 * @param array $mqWithWidth , format ['metaQuery' => widthInPx(int), ..., defaultWidthInPx(int) ]
+	 * @param bool $hasDoubleDevicePixelRatio
+	 *
+	 * @return string
+	 */
+	public static function pictureForPost( $postId, array $mqWithWidth = [], $hasDoubleDevicePixelRatio = true ) {
+		$postId = (int) $postId;
+		
+		if ( ! $postId || ! has_post_thumbnail( $postId ) ) {
+			return '';
+		}
+		
+		$pictureHtml = '';
+		
+		try {
+			
+			$originUrl = get_the_post_thumbnail_url( $postId, 'full' );
+			$imgAlt    = esc_attr( strip_tags( get_the_title() ) );
+			
+			$resizer = Resizer::makeByUrl( $originUrl );
+			
+			$sources = [];
+			foreach ( $mqWithWidth as $mediaQuery => $widthToResize ) {
+				$mediaQuery = is_string( $mediaQuery) && ! empty( $mediaQuery ) ? $mediaQuery : '';
+				$widthToResize = (int) $widthToResize;
+				
+				$srcsetItems   = [];
+				$srcsetItems[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize ), '1x' );
+				if ( $hasDoubleDevicePixelRatio ) {
+					$srcsetItems[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize * 2 ), '2x' );
+				}
+				
+				$sources[] = Source::make( $srcsetItems, [], $mediaQuery );
+			}
+			
+			$pictureHtml = Picture::make( $originUrl, $imgAlt, null, null, $sources )->render();
+			
+		} catch ( \Exception $ex ) {
+			error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
+		}
+		
+		return $pictureHtml;
+	}
+	
+	
+	/** 
+	 * Responsive images helper
+	 * Create html tag Img from post thumbnail
+	 * 
+	 * @param $postId
+	 * @param array $mqWithWidth , format ['metaQuery' => widthInPx(int), ... ]
+	 * @param bool $hasDoubleDevicePixelRatio
+	 *
+	 * @return string
+	 */
+	public static function imgForPost( $postId, array $mqWithWidth = [], $hasDoubleDevicePixelRatio = true ) {
+		$postId = (int) $postId;
+		
+		if ( ! $postId || ! has_post_thumbnail( $postId ) ) {
+			return '';
+		}
+		
+		$imgHtml = '';
+		
+		try {
+			
+			$originUrl = get_the_post_thumbnail_url( $postId, 'full' );
+			$imgAlt    = esc_attr( strip_tags( get_the_title() ) );
+			
+			$resizer = Resizer::makeByUrl( $originUrl );
+			
+			$sizes = $srcset = [];
+			foreach ( $mqWithWidth as $mediaQuery => $widthToResize ) {
+				$mediaQuery = is_string( $mediaQuery) && ! empty( $mediaQuery ) ? $mediaQuery : '';
+				$widthToResize = (int) $widthToResize;
+				
+				$sizes[] = Size::make( $mediaQuery, "{$widthToResize}px" );
+				
+				$srcset[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize ), "{$widthToResize}w" );
+				if ( $hasDoubleDevicePixelRatio ) {
+					$srcset[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize * 2 ),
+						( $widthToResize * 2 ) . 'w' );
+				}
+			}
+			
+			
+			$imgHtml = Img::make( $originUrl, $imgAlt, null, null, $srcset, $sizes )->render();
+			
+		} catch ( \Exception $ex ) {
+			error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
+		}
+		
+		return $imgHtml;
+	}
 }
