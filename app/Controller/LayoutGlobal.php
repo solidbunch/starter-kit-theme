@@ -96,7 +96,7 @@ class LayoutGlobal {
 	 */
 	function after_footer() {
 
-		get_template_part( '/template-parts/header/composer-footer');
+		get_template_part( '/template-parts/footer/composer-footer');
 
 	}
 
