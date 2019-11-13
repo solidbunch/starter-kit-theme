@@ -2,6 +2,13 @@
 
 namespace StarterKit\Helper;
 
+use StarterKit\Helper\ResponsiveImages\Img;
+use StarterKit\Helper\ResponsiveImages\Picture;
+use StarterKit\Helper\ResponsiveImages\Resizer;
+use StarterKit\Helper\ResponsiveImages\Size;
+use StarterKit\Helper\ResponsiveImages\Source;
+use StarterKit\Helper\ResponsiveImages\SrcsetItem;
+
 /**
  * Media Helper
  *
@@ -126,7 +133,7 @@ class Media {
 		$image_atts['height'] = absint( $image_atts['height'] );
 		
 		//Add filter to atts
-		$image_atts = apply_filters( 'ff_media_img_html', $image_atts );
+		$image_atts = apply_filters( 'StarterKit/media_img/attributes', $image_atts );
 		
 		$image_html = '<img ';
 		
@@ -176,4 +183,183 @@ class Media {
 	}
 	
 	
+	/**
+	 * Get the placeholder svg image.
+	 *
+	 * @param int $imageWidth
+	 * @param int $imageHeight
+	 *
+	 * @return string The URL to the placeholder image.
+	 */
+	public static function getPlaceholderImage( $imageWidth = 24, $imageHeight = 24 ) {
+		$data = [
+			'width'  => (int) $imageWidth,
+			'height' => (int) $imageHeight,
+			'fill'   => Utils::get_option( 'placeholder_color', '#555' ),
+		];
+		
+		$svg = base64_encode( Starter_Kit()->View->load( '/template-parts/lazy-loading-svg', $data, true ) );
+		
+		return "data:image/svg+xml;base64," . $svg;
+	}
+	
+	
+	/**
+	 * Retrieve attachment local Path by it`s Url
+	 * 
+	 * @param $url
+	 *
+	 * @return bool|string
+	 */
+	public static function getAttachmentPathByUrl( $url ) {
+		if ( ! $url || ! is_string( $url ) ) {
+			return false;
+		}
+		// Define upload path & dir.
+		$upload_info = wp_upload_dir();
+		$upload_dir  = $upload_info['basedir'];
+		$upload_url  = $upload_info['baseurl'];
+		
+		$http_prefix     = 'http://';
+		$https_prefix    = 'https://';
+		$relative_prefix = '//'; // The protocol-relative URL
+		
+		/* if the $url scheme differs from $upload_url scheme, make them match 
+		   if the schemes differe, images don't show up. */
+		if ( ! strncmp( $url, $https_prefix, strlen( $https_prefix ) ) ) { //if url begins with https:// make $upload_url begin with https:// as well
+			$upload_url = str_replace( $http_prefix, $https_prefix, $upload_url );
+		} elseif ( ! strncmp( $url, $http_prefix, strlen( $http_prefix ) ) ) { //if url begins with http:// make $upload_url begin with http:// as well
+			$upload_url = str_replace( $https_prefix, $http_prefix, $upload_url );
+		} elseif ( ! strncmp( $url, $relative_prefix, strlen( $relative_prefix ) ) ) { //if url begins with // make $upload_url begin with // as well
+			$upload_url = str_replace( array( 0 => (string) $http_prefix, 1 => (string) $https_prefix ), $relative_prefix, $upload_url );
+		}
+		
+		
+		// Check if $img_url is local.
+		if ( false === strpos( $url, $upload_url ) ) {
+			return false;
+		}
+		
+		// Define path of image.
+		$rel_path = str_replace( $upload_url, '', $url );
+		$img_path = $upload_dir . $rel_path;
+		
+		return $img_path;
+	}
+	
+	
+	/**
+	 * @param $img_path
+	 *
+	 * @return array|false
+	 */
+	public static function getAttachmentInfoByPath( $img_path ) {
+		// Check if img path exists, and is an image indeed.
+		if ( file_exists( $img_path ) ) {
+			return getimagesize( $img_path );
+		}
+		
+		return false;
+	}
+	
+	
+	/**
+	 * Responsive images helper
+	 * Create html tag Picture from post thumbnail
+	 * 
+	 * @param $postId
+	 * @param array $mqWithWidth , format ['metaQuery' => widthInPx(int), ..., defaultWidthInPx(int) ]
+	 * @param bool $hasDoubleDevicePixelRatio
+	 *
+	 * @return string
+	 */
+	public static function pictureForPost( $postId, array $mqWithWidth = [], $hasDoubleDevicePixelRatio = true ) {
+		$postId = (int) $postId;
+		
+		if ( ! $postId || ! has_post_thumbnail( $postId ) ) {
+			return '';
+		}
+		
+		$pictureHtml = '';
+		
+		try {
+			
+			$originUrl = get_the_post_thumbnail_url( $postId, 'full' );
+			$imgAlt    = esc_attr( strip_tags( get_the_title() ) );
+			
+			$resizer = Resizer::makeByUrl( $originUrl );
+			
+			$sources = [];
+			foreach ( $mqWithWidth as $mediaQuery => $widthToResize ) {
+				$mediaQuery = is_string( $mediaQuery) && ! empty( $mediaQuery ) ? $mediaQuery : '';
+				$widthToResize = (int) $widthToResize;
+				
+				$srcsetItems   = [];
+				$srcsetItems[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize ), '1x' );
+				if ( $hasDoubleDevicePixelRatio ) {
+					$srcsetItems[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize * 2 ), '2x' );
+				}
+				
+				$sources[] = Source::make( $srcsetItems, [], $mediaQuery );
+			}
+			
+			$pictureHtml = Picture::make( $originUrl, $imgAlt, null, null, $sources )->render();
+			
+		} catch ( \Exception $ex ) {
+			error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
+		}
+		
+		return $pictureHtml;
+	}
+	
+	
+	/** 
+	 * Responsive images helper
+	 * Create html tag Img from post thumbnail
+	 * 
+	 * @param $postId
+	 * @param array $mqWithWidth , format ['metaQuery' => widthInPx(int), ... ]
+	 * @param bool $hasDoubleDevicePixelRatio
+	 *
+	 * @return string
+	 */
+	public static function imgForPost( $postId, array $mqWithWidth = [], $hasDoubleDevicePixelRatio = true ) {
+		$postId = (int) $postId;
+		
+		if ( ! $postId || ! has_post_thumbnail( $postId ) ) {
+			return '';
+		}
+		
+		$imgHtml = '';
+		
+		try {
+			
+			$originUrl = get_the_post_thumbnail_url( $postId, 'full' );
+			$imgAlt    = esc_attr( strip_tags( get_the_title() ) );
+			
+			$resizer = Resizer::makeByUrl( $originUrl );
+			
+			$sizes = $srcset = [];
+			foreach ( $mqWithWidth as $mediaQuery => $widthToResize ) {
+				$mediaQuery = is_string( $mediaQuery) && ! empty( $mediaQuery ) ? $mediaQuery : '';
+				$widthToResize = (int) $widthToResize;
+				
+				$sizes[] = Size::make( $mediaQuery, "{$widthToResize}px" );
+				
+				$srcset[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize ), "{$widthToResize}w" );
+				if ( $hasDoubleDevicePixelRatio ) {
+					$srcset[] = SrcsetItem::makeWithResize( $resizer->setWidth( $widthToResize * 2 ),
+						( $widthToResize * 2 ) . 'w' );
+				}
+			}
+			
+			
+			$imgHtml = Img::make( $originUrl, $imgAlt, null, null, $srcset, $sizes )->render();
+			
+		} catch ( \Exception $ex ) {
+			error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
+		}
+		
+		return $imgHtml;
+	}
 }
