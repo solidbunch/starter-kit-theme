@@ -4,6 +4,7 @@
 namespace StarterKit\Helper\ResponsiveImages;
 
 
+use StarterKit\Controller\LazyLoad;
 use StarterKit\Helper\Media;
 use StarterKit\Helper\Utils;
 
@@ -13,6 +14,16 @@ class Img {
 	 * @var string[]
 	 */
 	private $imgAttrs = [];
+	/**
+	 * @var bool
+	 */
+	private $skipLazyLoad;
+	/**
+	 * @var string
+	 */
+	private $skipLazyLoadCssClass = 'skip-lazy';
+	
+	
 	
 	/**
 	 * Constructor
@@ -23,6 +34,7 @@ class Img {
 	 * @param int|null $height
 	 * @param array SrcsetItem[] $srcset
 	 * @param array Size[] $sizes
+	 * @param bool $skipLazyLoad
 	 */
 	public function __construct(
 		$imgSrc,
@@ -30,7 +42,8 @@ class Img {
 		$width = null,
 		$height = null,
 		array $srcset = [],
-		array $sizes = []
+		array $sizes = [],
+		$skipLazyLoad = false
 	) {
 		$srcset = array_filter( $srcset, function ( $value ) {
 			return $value instanceof SrcsetItem;
@@ -43,6 +56,7 @@ class Img {
 		
 		$this->imgAttrs['src'] = $imgSrc;
 		$this->imgAttrs['alt'] = $imgAlt;
+		$this->skipLazyLoad    = (bool) $skipLazyLoad || LazyLoad::skip();
 		
 		$is_svg = Utils::is_attachment_svg( null, $imgSrc );
 		if ( ! $is_svg ) {
@@ -64,7 +78,8 @@ class Img {
 	 * @param int|null $width
 	 * @param int|null $height
 	 * @param array SrcsetItem[] $srcset
-	 * @param array Size[] $sizes
+	 * @param array Size[] $size
+	 * @param bool $skipLazyLoad
 	 *
 	 * @return self
 	 */
@@ -74,9 +89,10 @@ class Img {
 		$width = null,
 		$height = null,
 		array $srcset = [],
-		array $sizes = []
+		array $sizes = [],
+		$skipLazyLoad = false
 	) {
-		return new self( $imgSrc, $imgAlt, $width, $height, $srcset, $sizes );
+		return new self( $imgSrc, $imgAlt, $width, $height, $srcset, $sizes, $skipLazyLoad );
 	}
 	
 	
@@ -102,7 +118,10 @@ class Img {
 	 * @return string
 	 */
 	public function render() {
-		$imgAttrs = apply_filters( 'StarterKit/media_img/attributes', $this->imgAttrs );
+		
+		// add css skip lazy-load class if needed
+		$imgAttrs = $this->resolveSkipLazyLoadCssClass( $this->imgAttrs );
+		$imgAttrs = apply_filters( 'StarterKit/media_img/attributes', $imgAttrs );
 		
 		$tagContent = '';
 		foreach ( $imgAttrs as $attrName => $attrValue ) {
@@ -124,6 +143,29 @@ class Img {
 	
 	
 	/**
+	 * @param array $imgAttrs
+	 *
+	 * @return array
+	 */
+	private function resolveSkipLazyLoadCssClass( array $imgAttrs ) {
+		if ( $this->skipLazyLoad ) {
+			if ( empty( $imgAttrs['class'] ) ) {
+				$imgAttrs['class'] = $this->skipLazyLoadCssClass;
+			} else {
+				$classes = explode( ' ', $imgAttrs['class'] );
+				if ( ! \in_array( $this->skipLazyLoadCssClass, $classes, true ) ) {
+					$classes[]         = $this->skipLazyLoadCssClass;
+					$imgAttrs['class'] = implode( ' ', $classes );
+				}
+			}
+		}
+		
+		return $imgAttrs;
+	}
+	
+	
+	
+	/**
 	 * @param null $width
 	 * @param null $height
 	 */
@@ -135,7 +177,11 @@ class Img {
 			$this->imgAttrs['height'] = (int) $height;
 		}
 		
-		if ( empty( $this->imgAttrs['width'] ) || empty( $this->imgAttrs['height'] ) ) {
+		if (
+			( empty( $this->imgAttrs['width'] ) || empty( $this->imgAttrs['height'] ) )
+			&&
+			! $this->skipLazyLoad
+		) {
 			$attachInfo = Media::getAttachmentInfoByPath( Media::getAttachmentPathByUrl( $this->imgAttrs['src'] ) );
 			
 			$this->imgAttrs['width']  = ! empty( $attachInfo[0] ) ? (int) $attachInfo[0] : null;
@@ -159,9 +205,12 @@ class Img {
 			$srcsetHtml .= ', ';
 			
 			// srcset with placeholders
-			$placeholderUrl        = Media::getPlaceholderImage( $srcsetItem->getWidth(), $srcsetItem->getHeight() );
-			$placeholderSrcsetHtml .= $srcsetItem->getDescriptor() ? "{$placeholderUrl} {$srcsetItem->getDescriptor()}" : $placeholderUrl;
-			$placeholderSrcsetHtml .= ', ';
+			if ( ! $this->skipLazyLoad ) {
+				$placeholderUrl        = Media::getPlaceholderImage( $srcsetItem->getWidth(),
+					$srcsetItem->getHeight() );
+				$placeholderSrcsetHtml .= $srcsetItem->getDescriptor() ? "{$placeholderUrl} {$srcsetItem->getDescriptor()}" : $placeholderUrl;
+				$placeholderSrcsetHtml .= ', ';
+			}
 		}
 		$srcsetHtml            = rtrim( $srcsetHtml, ', ' );
 		$placeholderSrcsetHtml = rtrim( $placeholderSrcsetHtml, ', ' );
