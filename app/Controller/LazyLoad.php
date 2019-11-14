@@ -31,7 +31,7 @@ class LazyLoad {
 	 */
 	public function run_lazy_load() {
 		// check if we need to run lazy load actions
-		if ( ! $this->skip() ) {
+		if ( ! self::skip() ) {
 
 			add_filter( 'the_content', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
 			add_filter( 'post_thumbnail_html', [ $this, 'add_image_placeholders' ], PHP_INT_MAX );
@@ -57,7 +57,7 @@ class LazyLoad {
 	/**
 	 * Check if we need to run lazy load actions
 	 */
-	public function skip() {
+	public static function skip() {
 
 		$img_lazy_load = (int) \StarterKit\Helper\Utils::get_option( 'img_lazy_load', 0 );
 
