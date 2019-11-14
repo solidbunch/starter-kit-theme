@@ -54,7 +54,7 @@ class App {
 	public function run() {
 		
 		// Load default config
-		$this->config = require get_template_directory() . '/app/config.php';
+		$this->config = require get_template_directory() . '/app/config/config.php';
 		
 		// Load core classes
 		$this->_dispatch();
