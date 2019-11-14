@@ -4,6 +4,7 @@
 namespace StarterKit\Helper\ResponsiveImages;
 
 
+use StarterKit\Controller\LazyLoad;
 use StarterKit\Helper\Media;
 
 
@@ -13,6 +14,14 @@ class Source {
 	 * @var string[]
 	 */
 	private $sourceAttrs = [];
+	/**
+	 * @var bool
+	 */
+	private $skipLazyLoad;
+	/**
+	 * @var string
+	 */
+	private $skipLazyLoadCssClass = 'skip-lazy';
 	
 	
 	/**
@@ -22,14 +31,17 @@ class Source {
 	 * @param array Size[] $sizes
 	 * @param string $media
 	 * @param string $type
+	 * @param bool $skipLazyLoad
 	 */
-	public function __construct( array $srcset, array $sizes = [], $media = '', $type = '' ) {
+	public function __construct( array $srcset, array $sizes = [], $media = '', $type = '', $skipLazyLoad = false ) {
 		$srcset = array_filter( $srcset, function ( $value ) {
 			return $value instanceof SrcsetItem;
 		} );
 		$sizes  = array_filter( $sizes, function ( $value ) {
 			return $value instanceof Size;
 		} );
+		
+		$this->skipLazyLoad = (bool) $skipLazyLoad || LazyLoad::skip();
 		
 		$this->guard( $srcset, $sizes, $media, $type );
 		$this->sourceAttrs['media'] = $media;
@@ -47,11 +59,12 @@ class Source {
 	 * @param array Size[] $sizes
 	 * @param string $media
 	 * @param string $type
+	 * @param bool $skipLazyLoad
 	 *
 	 * @return self
 	 */
-	public static function make( array $srcset, array $sizes = [], $media = '', $type = '' ) {
-		return new self( $srcset, $sizes, $media, $type );
+	public static function make( array $srcset, array $sizes = [], $media = '', $type = '', $skipLazyLoad = false ) {
+		return new self( $srcset, $sizes, $media, $type, $skipLazyLoad );
 	}
 	
 	
@@ -78,11 +91,9 @@ class Source {
 	 */
 	public function render() {
 		
-		//error_log('$this->sourceAttrs: ' . print_r($this->sourceAttrs, true));
-		
-		$sourceAttrs = apply_filters( 'StarterKit/media_picture/source_attributes', $this->sourceAttrs );
-		
-		//error_log("\n".'$sourceAttrs: ' . print_r($sourceAttrs, true));
+		// add css skip lazy-load class if needed
+		$sourceAttrs = $this->resolveSkipLazyLoadCssClass( $this->sourceAttrs );
+		$sourceAttrs = apply_filters( 'StarterKit/media_picture/source_attributes', $sourceAttrs );
 		
 		$tagContent = '';
 		foreach ( $sourceAttrs as $attrName => $attrValue ) {
@@ -104,6 +115,29 @@ class Source {
 	
 	
 	/**
+	 * @param array $sourceAttrs
+	 *
+	 * @return array
+	 */
+	private function resolveSkipLazyLoadCssClass( array $sourceAttrs ) {
+		if ( $this->skipLazyLoad ) {
+			if ( empty( $sourceAttrs['class'] ) ) {
+				$sourceAttrs['class'] = $this->skipLazyLoadCssClass;
+			} else {
+				$classes = explode( ' ', $sourceAttrs['class'] );
+				if ( ! \in_array( $this->skipLazyLoadCssClass, $classes, true ) ) {
+					$classes[]            = $this->skipLazyLoadCssClass;
+					$sourceAttrs['class'] = implode( ' ', $classes );
+				}
+			}
+		}
+		
+		return $sourceAttrs;
+	}
+	
+	
+	
+	/**
 	 * @param array SrcsetItem[] $srcset
 	 */
 	private function resolveSrcset( array $srcset ) {
@@ -117,9 +151,12 @@ class Source {
 			$srcsetHtml .= ', ';
 			
 			// srcset with placeholders
-			$placeholderUrl        = Media::getPlaceholderImage( $srcsetItem->getWidth(), $srcsetItem->getHeight() );
-			$placeholderSrcsetHtml .= $srcsetItem->getDescriptor() ? "{$placeholderUrl} {$srcsetItem->getDescriptor()}" : $placeholderUrl;
-			$placeholderSrcsetHtml .= ', ';
+			if ( ! $this->skipLazyLoad ) {
+				$placeholderUrl        = Media::getPlaceholderImage( $srcsetItem->getWidth(),
+					$srcsetItem->getHeight() );
+				$placeholderSrcsetHtml .= $srcsetItem->getDescriptor() ? "{$placeholderUrl} {$srcsetItem->getDescriptor()}" : $placeholderUrl;
+				$placeholderSrcsetHtml .= ', ';
+			}
 		}
 		$srcsetHtml            = rtrim( $srcsetHtml, ', ' );
 		$placeholderSrcsetHtml = rtrim( $placeholderSrcsetHtml, ', ' );
