@@ -17,13 +17,10 @@ use StarterKit\View\View;
  * @version    Release: 1.0.0
  * @since      Class available since Release 1.0.0
  */
-class App {
-	
-	/** @var  $instance - self */
-	private static $instance;
+final class App extends AbstractSingleton  {
 	
 	/** @var array */
-	public $config;
+	private $config;
 	
 	/** @var \stdClass */
 	public $Controller;
@@ -34,28 +31,25 @@ class App {
 	/** @var view */
 	public $View;
 	
-	private function __construct() {
+	
+	protected function __construct() {
+		parent::__construct();
 	}
 	
-	/**
-	 * @return App Singleton
-	 */
-	public static function getInstance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-		
-		return self::$instance;
+	
+	public function getConfig() {
+		return $this->config;
 	}
+	
 	
 	/**
 	 * Run the theme
 	 **/
-	public function run() {
+	public function run( $config ) {
 		
-		// Load default config
-		$this->config = require get_template_directory() . '/app/config/config.php';
-		
+		// Load config
+		$this->config = $config;
+	
 		// Load core classes
 		$this->_dispatch();
 		
