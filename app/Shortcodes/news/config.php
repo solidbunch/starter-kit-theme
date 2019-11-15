@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'News', 'starter-kit' ),
 	'base'        => 'news',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'newspaper.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'newspaper.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'News', 'starter-kit' ),
 	'params'      => [
