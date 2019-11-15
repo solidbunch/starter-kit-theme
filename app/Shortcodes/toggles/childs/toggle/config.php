@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'            => esc_html__( 'Toggle Section', 'starter-kit' ),
 	'base'            => 'toggle',
-	'icon'            => Starter_Kit()->config['shortcodes_icon_uri'] . 'toggle.svg',
+	'icon'            => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'toggle.svg',
 	'content_element' => true,
 	'as_child'        => [ 'only' => 'toggles' ],
 	'params'          => [

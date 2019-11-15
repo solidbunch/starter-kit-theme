@@ -73,10 +73,20 @@ if ( ! isset( $content_width ) ) {
 if ( ! function_exists( 'Starter_Kit' ) ) {
 	
 	function Starter_Kit() {
-		return \StarterKit\App::getInstance();
+		return \StarterKit\App::instance();
 	}
 	
 }
 
+$config = apply_filters( 'StarterKit/config', require __DIR__ . '/app/config/config.php' );
+
 // Run the theme
-Starter_Kit()->run();
+try {
+	Starter_Kit()->run( $config );
+} catch ( Exception $exception ) {
+	wlog( $exception );
+	header( 'HTTP/1.1 503 Service Temporarily Unavailable' );
+	header( 'Status: 503 Service Temporarily Unavailable' );
+	header( 'Retry-After: 300' );// 300 seconds.
+	die();
+}
