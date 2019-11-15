@@ -2,6 +2,8 @@
 
 namespace StarterKit\Controller;
 
+use StarterKit\Helper\Utils;
+
 /**
  * Lazy Load controller
  *
@@ -351,7 +353,7 @@ class LazyLoad {
 	 * Load lazy JS
 	 */
 	public function load_assets() {
-		wp_enqueue_script( 'lazy-load', Starter_Kit()->config['assets_uri'] . 'js/lazyload.js', [], Starter_Kit()->config['cache_time'], true );
+		wp_enqueue_script( 'lazy-load', Utils::getConfigSetting( 'assets_uri' ) . 'js/lazyload.js', [], Utils::getConfigSetting( 'cache_time' ), true );
 	}
 
 	/**

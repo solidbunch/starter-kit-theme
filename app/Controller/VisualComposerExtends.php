@@ -2,6 +2,8 @@
 
 namespace StarterKit\Controller;
 
+use StarterKit\Helper\Utils;
+
 /**
  * Extend default functional of WP Bakery JS Composer Plugin
  **/
@@ -25,7 +27,7 @@ class VisualComposerExtends {
 	 **/
 	function load_assets() {
 		
-		wp_enqueue_style( 'jsc-file_picker_field', Starter_Kit()->config['assets_uri'] . '/js_composer_extends/file_picker_field.css', false, Starter_Kit()->config['cache_time'] );
+		wp_enqueue_style( 'jsc-file_picker_field', Utils::getConfigSetting( 'assets_uri' ) . '/js_composer_extends/file_picker_field.css', false, Utils::getConfigSetting( 'cache_time' ) );
 		
 	}
 	
@@ -35,7 +37,7 @@ class VisualComposerExtends {
 	function register_custom_plugin_params() {
 		
 		// file picker
-		vc_add_shortcode_param( 'file_picker', [ $this, 'create_file_picker_param' ], Starter_Kit()->config['assets_uri'] . '/js_composer_extends/file_picker_field.js' );
+		vc_add_shortcode_param( 'file_picker', [ $this, 'create_file_picker_param' ], Utils::getConfigSetting( 'assets_uri' ) . '/js_composer_extends/file_picker_field.js' );
 		
 	}
 	

@@ -100,7 +100,8 @@ class Front {
 				[
 					'jquery',
 				],
-				Starter_Kit()->config['cache_time'], true
+				Utils::getConfigSetting(  'cache_time' , ''),
+				true
 			);
 		}
 

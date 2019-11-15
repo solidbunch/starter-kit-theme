@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'Alert', 'starter-kit' ),
 	'base'        => 'alert',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'alerts.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'alerts.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Add an alert', 'starter-kit' ),
 	'params'      => [
