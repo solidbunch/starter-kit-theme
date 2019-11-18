@@ -4,7 +4,7 @@
 namespace StarterKit\Helper\ResponsiveImages;
 
 
-use StarterKit\Controller\LazyLoad;
+use StarterKit\Handlers\LazyLoad;
 use StarterKit\Helper\Media;
 use StarterKit\Helper\Utils;
 

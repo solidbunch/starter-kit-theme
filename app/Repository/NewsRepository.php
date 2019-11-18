@@ -1,82 +1,16 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Repository;
 
 /**
- * News model
- *
- * Works with news post type
+ * News Repository
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class News extends Database {
-	
-	/**
-	 * Model constructor
-	 */
-	public function __construct() {
-		
-		add_action( 'init', function () {
-			$this->register_post_type();
-		}, 5 );
-		
-	}
-	
-	/**
-	 * Register custom post type
-	 */
-	public function register_post_type() {
-		
-		register_post_type( 'news',
-			[
-				'label'             => esc_html__( 'News', 'starter-kit' ),
-				'description'       => '',
-				'public'            => true,
-				'show_ui'           => true,
-				'show_in_menu'      => true,
-				'show_in_nav_menus' => true,
-				'capability_type'   => 'post',
-				'hierarchical'      => false,
-				'supports'          => [ 'title', 'editor', 'custom-fields', 'thumbnail' ],
-				'rewrite'           => false,
-				'has_archive'       => true,
-				'query_var'         => false,
-				'menu_position'     => 1,
-				'capabilities'      => [
-					'publish_posts'       => 'edit_pages',
-					'edit_posts'          => 'edit_pages',
-					'edit_others_posts'   => 'edit_pages',
-					'delete_posts'        => 'edit_pages',
-					'delete_others_posts' => 'edit_pages',
-					'read_private_posts'  => 'edit_pages',
-					'edit_post'           => 'edit_pages',
-					'delete_post'         => 'edit_pages',
-					'read_post'           => 'edit_pages',
-				],
-				'labels'            => [
-					'name'               => esc_html__( 'News', 'starter-kit' ),
-					'singular_name'      => esc_html__( 'News Item', 'starter-kit' ),
-					'menu_name'          => esc_html__( 'News', 'starter-kit' ),
-					'add_new'            => esc_html__( 'Add News', 'starter-kit' ),
-					'add_new_item'       => esc_html__( 'Add News', 'starter-kit' ),
-					'all_items'          => esc_html__( 'All News', 'starter-kit' ),
-					'edit_item'          => esc_html__( 'Edit News', 'starter-kit' ),
-					'new_item'           => esc_html__( 'New News', 'starter-kit' ),
-					'view_item'          => esc_html__( 'View News', 'starter-kit' ),
-					'search_items'       => esc_html__( 'Search News', 'starter-kit' ),
-					'not_found'          => esc_html__( 'No News Found', 'starter-kit' ),
-					'not_found_in_trash' => esc_html__( 'No News Found in Trash', 'starter-kit' ),
-					'parent_item_colon'  => esc_html__( 'Parent News:', 'starter-kit' )
-				]
-			]
-		);
-		
-	}
+class NewsRepository {
 	
 	/**
 	 * Get news by params
@@ -85,14 +19,14 @@ class News extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_news( $args ) {
+	public static function get_news( $args ) {
 		
 		$defaults = [
 			'post_type'      => 'news',
 			'post_status'    => 'publish',
 			'posts_per_page' => 6,
 			'order'          => 'DESC',
-			'orderby'        => 'date'
+			'orderby'        => 'date',
 		];
 		
 		$args = wp_parse_args( $args, $defaults );
@@ -109,7 +43,7 @@ class News extends Database {
 						'taxonomy' => $_taxonomy_slug,
 						'field'    => 'slug',
 						'terms'    => $_taxonomy_terms,
-					]
+					],
 				];
 				
 			} elseif ( $args['tax_query_type'] === 'except' ) {
@@ -120,7 +54,7 @@ class News extends Database {
 						'field'    => 'slug',
 						'terms'    => $_taxonomy_terms,
 						'operator' => 'NOT IN',
-					]
+					],
 				];
 				
 			}
@@ -137,14 +71,14 @@ class News extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_popular_news( $limit ) {
+	public static function get_popular_news( $limit ) {
 		$args = [
 			'post_type'           => 'news',
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'order'               => 'DESC',
 			'ignore_sticky_posts' => true,
-			'orderby'             => 'comment_count'
+			'orderby'             => 'comment_count',
 		];
 		
 		return new \WP_Query( $args );
@@ -157,13 +91,13 @@ class News extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_recent_news( $limit ) {
+	public static function get_recent_news( $limit ) {
 		$args = [
 			'post_type'           => 'news',
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'order'               => 'DESC',
-			'ignore_sticky_posts' => true
+			'ignore_sticky_posts' => true,
 		];
 		
 		return new \WP_Query( $args );
@@ -179,7 +113,7 @@ class News extends Database {
 	 *
 	 * @return bool|\WP_Query
 	 */
-	public function get_related_news( $primary_news_id, $limit, $taxonomy = 'category', $with_thumbnail_only = false ) {
+	public static function get_related_news( $primary_news_id, $limit, $taxonomy = 'category', $with_thumbnail_only = false ) {
 		
 		$terms = wp_get_post_terms( $primary_news_id, $taxonomy );
 		
@@ -207,14 +141,14 @@ class News extends Database {
 					[
 						'taxonomy' => $taxonomy,
 						'field'    => 'id',
-						'terms'    => $post_terms_ids
-					]
-				]
+						'terms'    => $post_terms_ids,
+					],
+				],
 			];
 			
 			if ( $with_thumbnail_only ) {
 				$args['meta_query'][] = [
-					'key' => '_thumbnail_id'
+					'key' => '_thumbnail_id',
 				];
 			}
 			
@@ -233,22 +167,21 @@ class News extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_random_news( $limit, $with_thumbnail_only = false ) {
+	public static function get_random_news( $limit, $with_thumbnail_only = false ) {
 		$args = [
 			'post_type'           => 'news',
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'ignore_sticky_posts' => true,
-			'orderby'             => 'rand'
+			'orderby'             => 'rand',
 		];
 		
 		if ( $with_thumbnail_only ) {
 			$args['meta_query'][] = [
-				'key' => '_thumbnail_id'
+				'key' => '_thumbnail_id',
 			];
 		}
 		
 		return new \WP_Query( $args );
 	}
-	
 }

@@ -4,7 +4,8 @@
  * Tab Shortcode
  **/
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Tab' ) ) {
 	class StarterKitShortcode_Tab extends Shortcode {
@@ -22,7 +23,7 @@ if ( ! class_exists( 'StarterKitShortcode_Tab' ) ) {
 				'content' => $content
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

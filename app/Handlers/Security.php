@@ -1,11 +1,11 @@
 <?php
 
-namespace StarterKit\Controller;
+namespace StarterKit\Handlers;
 
 use StarterKit\Helper\Utils;
 
 /**
- * Class security
+ * Security
  *
  * Provides some security options
  *
@@ -13,31 +13,26 @@ use StarterKit\Helper\Utils;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.1.0
- * @since      Class available since Release 1.1.0
  */
 class Security {
-
-	public function __construct() {
-
-		add_action( 'init', function () {
-			if ( ! Utils::get_option( 'enable_xmlrpc', false ) ) {
-				$this->disable_xmlrpc();
-			}
-
-			if ( Utils::get_option( 'disable_trackbacks', false ) ) {
-				$this->disable_trackbacks();
-			}
-		} );
+	
+	public function init() {
+		if ( ! Utils::get_option( 'enable_xmlrpc', false ) ) {
+			$this->disable_xmlrpc();
+		}
+		
+		if ( Utils::get_option( 'disable_trackbacks', false ) ) {
+			$this->disable_trackbacks();
+		}
 	}
-
+	
 	/**
 	 * Disables xmlrpc
 	 */
 	public function disable_xmlrpc() {
 		add_filter( 'xmlrpc_enabled', '__return_false' );
 	}
-
+	
 	/**
 	 * Disables trackbacks/pingbacks
 	 */
@@ -48,7 +43,7 @@ class Security {
 		add_filter( 'bloginfo_url', [ $this, 'kill_pingback_url' ], 10, 2 );
 		add_action( 'xmlrpc_call', [ $this, 'kill_xmlrpc' ] );
 	}
-
+	
 	/**
 	 * Disable pingback XMLRPC method
 	 *
@@ -58,10 +53,10 @@ class Security {
 	 */
 	public function filter_xmlrpc_method( $methods ) {
 		unset( $methods['pingback.ping'] );
-
+		
 		return $methods;
 	}
-
+	
 	/**
 	 * Remove pingback header
 	 *
@@ -73,10 +68,10 @@ class Security {
 		if ( isset( $headers['X-Pingback'] ) ) {
 			unset( $headers['X-Pingback'] );
 		}
-
+		
 		return $headers;
 	}
-
+	
 	/**
 	 * Kill trackback rewrite rule
 	 *
@@ -90,10 +85,10 @@ class Security {
 				unset( $rules[ $rule ] );
 			}
 		}
-
+		
 		return $rules;
 	}
-
+	
 	/**
 	 * Kill bloginfo('pingback_url')
 	 *
@@ -106,10 +101,10 @@ class Security {
 		if ( $show === 'pingback_url' ) {
 			$output = '';
 		}
-
+		
 		return $output;
 	}
-
+	
 	/**
 	 * Disable XMLRPC call
 	 *
@@ -120,6 +115,4 @@ class Security {
 			wp_die( 'Pingbacks are not supported', 'Not Allowed!', [ 'response' => 403 ] );
 		}
 	}
-
-
 }
