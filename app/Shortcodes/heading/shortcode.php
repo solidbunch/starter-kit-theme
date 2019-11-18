@@ -5,7 +5,8 @@
  **/
 
 use StarterKit\Helper\Assets;
-use StarterKit\Model\Shortcode;
+use StarterKit\Helper\View;
+use StarterKit\Base\Shortcode;
 
 if ( ! class_exists( 'StarterKitShortcode_Heading' ) ) {
 	class StarterKitShortcode_Heading extends Shortcode {
@@ -99,7 +100,7 @@ if ( ! class_exists( 'StarterKitShortcode_Heading' ) ) {
 				'content' => $content
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

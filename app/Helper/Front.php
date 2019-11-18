@@ -5,14 +5,12 @@ namespace StarterKit\Helper;
 /**
  * Front Helper
  *
- * Helper functions for templates and front controllers
+ * Helper functions for templates and front handler
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Front {
 	

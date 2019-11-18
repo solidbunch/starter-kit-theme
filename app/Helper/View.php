@@ -1,6 +1,8 @@
 <?php
 
-namespace StarterKit\View;
+namespace StarterKit\Helper;
+
+use StarterKit\Repository\ComposerLayoutRepository;
 
 /**
  * View Class
@@ -12,11 +14,9 @@ namespace StarterKit\View;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class View {
-
+	
 	/**
 	 * Load view. Used on back-end side
 	 *
@@ -27,12 +27,12 @@ class View {
 	 *
 	 * @return false|string
 	 */
-	public function load( $path = '', array $data = [], $return = false, $base = null ) {
-
+	public static function load( $path = '', array $data = [], $return = false, $base = null ) {
+		
 		if ( $base === null ) {
 			$base = get_stylesheet_directory();
 		}
-
+		
 		if ( is_child_theme() ) {
 			$full_path = $base . $path;
 			if ( ! file_exists( $full_path ) ) {
@@ -42,32 +42,32 @@ class View {
 		} else {
 			$full_path = $base . $path . '.php';
 		}
-
+		
 		if ( $return ) {
 			ob_start();
 		}
-
+		
 		try {
 			if ( file_exists( $full_path ) ) {
-
+				
 				require $full_path;
-
+				
 			} else {
 				throw new \RuntimeException( 'The view path ' . $full_path . ' can not be found.' );
 			}
 		} catch ( \Exception $e ) {
 			trigger_error( $e->getMessage(), E_USER_ERROR );
 		}
-
-
+		
+		
 		if ( $return ) {
 			return ob_get_clean();
 		}
-
+		
 	}
-
+	
 	//startcomposerlayout
-
+	
 	/**
 	 * Load layout for header / footer built through Visual Composer
 	 *
@@ -75,12 +75,12 @@ class View {
 	 *
 	 * @return string
 	 */
-	public function load_composer_layout( $layout_type = 'header' ) {
+	public static function load_composer_layout( $layout_type = 'header' ) {
 		global $post;
 		$default_layout = '';
-
+		
 		$post_id = is_home() ? get_option( 'page_for_posts' ) : ( $post ? $post->ID : 0 );
-
+		
 		if ( $post_id
 		     && ( is_singular() || is_home() )
 		     && ( $this_layout_id = get_post_meta( $post_id, '_this_' . $layout_type, true ) )
@@ -92,66 +92,66 @@ class View {
 			if ( $layout && $layout->post_status === 'publish' ) {
 				return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 			} else {
-
-				$default_layout_query = Starter_Kit()->Model->Layout->get_default_layout( $layout_type );
-
+				
+				$default_layout_query = ComposerLayoutRepository::get_default_layout( $layout_type );
+				
 				if ( $default_layout_query->posts && $default_layout_query->posts[0]->post_status === 'publish' ) {
 					return do_shortcode( apply_filters( 'the_content',
 						$default_layout_query->posts[0]->post_content ) );
 				}
-
+				
 			}
-
+			
 		} else {
-
-			$layouts = Starter_Kit()->Model->Layout->get_layouts( $layout_type );
-
+			
+			$layouts = ComposerLayoutRepository::get_layouts( $layout_type );
+			
 			if ( $layouts->posts ) {
 				foreach ( $layouts->posts as $layout ) {
 					$_appointment = get_post_meta( $layout->ID, '_appointment', true );
-
+					
 					if ( ( $post_id && ( $post_type = get_post_type( $post_id ) ) && $_appointment === $post_type && is_singular() ) ||  // appointment: Any from Post Types (compatibility:post)
 					     ( $_appointment === 'is-home' && is_home() ) ||  // appointment: is-home
 					     ( $_appointment === 'is-search' && is_search() ) ||  // appointment: is-search
 					     ( $_appointment === 'is-archive' && is_archive() ) ||  // appointment: is-archive
 					     ( $_appointment === 'is-404' && is_404() )             // appointment: is-404
-
+					
 					) {
 						return do_shortcode( apply_filters( 'the_content', $layout->post_content ) );
 					} elseif ( $_appointment === 'default' ) {  // appointment: default
 						$default_layout = $layout;
 					}
 				}
-
+				
 				if ( $default_layout ) {
 					return do_shortcode( apply_filters( 'the_content', $default_layout->post_content ) );
 				}
-
+				
 			}
 		}
-
+		
 		return '';
 	}
-
+	
 	//endcomposerlayout
-
+	
 	/**
 	 * Remove wpautop
-	 *
-	 * @see  wp_js_remove_wpautop()
 	 *
 	 * @param $content
 	 * @param bool $autop
 	 *
 	 * @return string
+	 * @see  wp_js_remove_wpautop()
+	 *
 	 */
-	public function js_remove_wpautop( $content, $autop = false ) {
-
+	public static function js_remove_wpautop( $content, $autop = false ) {
+		
 		if ( $autop ) {
 			$content = wpautop( preg_replace( '/<\/?p\>/', "\n", $content ) . "\n" );
 		}
-
+		
 		return do_shortcode( shortcode_unautop( $content ) );
 	}
-
+	
 }

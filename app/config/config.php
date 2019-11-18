@@ -19,7 +19,7 @@ return [
 	'shortcodes_icon_uri' => get_template_directory_uri() . '/assets/images/icon/',
 	'widgets_dir'         => get_template_directory() . '/app/Widgets/',
 	'widgets_uri'         => get_template_directory_uri() . '/app/Widgets/',
-	'social_profiles'     => include 'social_profiles.php',
-	'social_icons'        => include 'social_icons.php',
-	'animations'          => include 'animations.php',
+	'social_profiles'     => include '_social_profiles.php',
+	'social_icons'        => include '_social_icons.php',
+	'animations'          => include '_animations.php',
 ];
