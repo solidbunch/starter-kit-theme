@@ -5,7 +5,8 @@
  *
  **/
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Button' ) ) {
 	class StarterKitShortcode_Button extends Shortcode {
@@ -36,7 +37,7 @@ if ( ! class_exists( 'StarterKitShortcode_Button' ) ) {
 				'content' => $content
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

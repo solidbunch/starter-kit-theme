@@ -4,9 +4,9 @@
  * Tabs Container / Tabs Shortcode
  **/
 
-use StarterKit\Model\Shortcode;
-
-use \StarterKit\Helper\Assets;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\Assets;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Tabs' ) ) {
 	class StarterKitShortcode_Tabs extends Shortcode {
@@ -19,7 +19,7 @@ if ( ! class_exists( 'StarterKitShortcode_Tabs' ) ) {
 				'classes'  => ''
 			], $this->atts( $atts ), $this->shortcode );
 			
-			\StarterKit\Helper\Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
+			Assets::enqueue_style_dist( 'shortcode-' . $this->shortcode . '-style', 'shortcode-' . $this->shortcode . '.css' );
 			Assets::enqueue_script( $this->shortcode . '-script', $this->shortcode_uri . '/assets/scripts.js' );
 			
 			$data = $this->data( [
@@ -27,7 +27,7 @@ if ( ! class_exists( 'StarterKitShortcode_Tabs' ) ) {
 				'content' => $content
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

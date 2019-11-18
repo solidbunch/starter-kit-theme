@@ -1,37 +1,18 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Handlers\PostTypes;
 
 /**
- * Team Members model
- *
- * Works with team members post type
+ * Team Members
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class TeamMembers extends Database {
+class TeamMembers {
 	
-	/**
-	 * Model constructor
-	 */
-	public function __construct() {
-		
-		add_action( 'init', function () {
-			$this->register_post_type();
-			$this->register_taxonomy();
-		}, 5 );
-		
-	}
-	
-	/**
-	 * Register custom post type
-	 */
-	public function register_post_type() {
+	public static function register_post_type() {
 		
 		register_post_type( 'team_members',
 			[
@@ -43,7 +24,7 @@ class TeamMembers extends Database {
 				'show_in_nav_menus' => true,
 				'capability_type'   => 'post',
 				'hierarchical'      => false,
-				'supports'          => [ 'title', 'editor', 'custom-fields', 'thumbnail' ],
+				'supports'          => [ 'title', 'editor', 'thumbnail' ],
 				'rewrite'           => false,
 				'has_archive'       => false,
 				'query_var'         => false,
@@ -76,16 +57,13 @@ class TeamMembers extends Database {
 				]
 			]
 		);
-		
 	}
 	
-	/**
-	 * Register custom post type
-	 */
-	public function register_taxonomy() {
+	
+	public static function register_taxonomy() {
 		
 		register_taxonomy( 'team_members_cat',
-			'team',
+			'team_members',
 			[
 				'hierarchical'      => true,
 				'show_ui'           => true,
@@ -108,7 +86,5 @@ class TeamMembers extends Database {
 				]
 			]
 		);
-		
 	}
-	
 }

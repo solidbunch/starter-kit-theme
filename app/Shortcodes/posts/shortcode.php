@@ -4,8 +4,10 @@
  *
  **/
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
 use StarterKit\Helper\Assets;
+use StarterKit\Helper\View;
+use StarterKit\Repository\PostRepository;
 
 if ( ! class_exists( 'StarterKitShortcode_Posts' ) ) {
 	class StarterKitShortcode_Posts extends Shortcode {
@@ -36,7 +38,7 @@ if ( ! class_exists( 'StarterKitShortcode_Posts' ) ) {
 			], $this->atts( $atts ), $this->shortcode );
 			
 			// Query news
-			$posts_query = Starter_Kit()->Model->Post->get_posts( $atts );
+			$posts_query = PostRepository::get_posts( $atts );
 			
 			
 			// Add styles and scripts
@@ -54,7 +56,7 @@ if ( ! class_exists( 'StarterKitShortcode_Posts' ) ) {
 				'query'   => $posts_query
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 	}
 }

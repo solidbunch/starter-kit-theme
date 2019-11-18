@@ -1,34 +1,18 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Handlers\PostTypes;
 
 /**
- * Layout model
+ * ComposerLayout
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class Layout {
+class ComposerLayout {
 	
-	/**
-	 * Model constructor
-	 */
-	public function __construct() {
-		
-		add_action( 'init', function () {
-			$this->register_post_type();
-		}, 5 );
-		
-	}
-	
-	/**
-	 * Register custom post type
-	 */
-	public function register_post_type() {
+	public static function register_post_type() {
 		
 		register_post_type( 'composerlayout', [
 			'label'               => esc_html__( 'Header / Footer', 'starter-kit' ),
@@ -61,67 +45,8 @@ class Layout {
 				'search_items'       => esc_html__( 'Search Header / Footer', 'starter-kit' ),
 				'not_found'          => esc_html__( 'No Header / Footer Found', 'starter-kit' ),
 				'not_found_in_trash' => esc_html__( 'No Header / Footer Found in Trash', 'starter-kit' ),
-				'parent'             => esc_html__( 'Parent Header / Footer', 'starter-kit' )
-			]
-		] );
-		
-	}
-	
-	/**
-	 * Get default composer layout
-	 *
-	 * @param string $layout_type
-	 *
-	 * @return \WP_Query
-	 */
-	public function get_default_layout( $layout_type = 'header' ) {
-		$args                 = [
-			'post_type'      => 'composerlayout',
-			'posts_per_page' => 1,
-			'post_status'    => 'publish',
-			'meta_query'     => [
-				'relation' => 'AND',
-				[
-					'key'   => '_layouttype',
-					'value' => $layout_type,
-				],
-				[
-					'key'   => '_appointment',
-					'value' => 'default',
-				],
-			
-			]
-		];
-		$default_layout_query = new \WP_Query( $args );
-		wp_reset_query();
-		
-		return $default_layout_query;
-	}
-	
-	/**
-	 * Get all composer layouts
-	 *
-	 * @param string $layout_type
-	 *
-	 * @return \WP_Query
-	 */
-	public function get_layouts( $layout_type = 'header' ) {
-		
-		$args    = [
-			'post_type'      => 'composerlayout',
-			'posts_per_page' => - 1,
-			'post_status'    => 'publish',
-			'meta_query'     => [
-				'composerlayout_layouttype' => [
-					'key'   => '_layouttype',
-					'value' => $layout_type,
-				],
+				'parent'             => esc_html__( 'Parent Header / Footer', 'starter-kit' ),
 			],
-			'order'          => 'ASC',
-		];
-		$layouts = new \WP_Query( $args );
-		wp_reset_query();
-		
-		return $layouts;
+		] );
 	}
 }

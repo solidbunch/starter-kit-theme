@@ -11,7 +11,7 @@ if ( class_exists( 'WPBakeryShortCode' ) ) {
 			
 			$atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 			
-			return Starter_Kit()->Controller->Shortcodes->content( $this->settings['base'], $atts, $content );
+			return Starter_Kit()->getShortcodesManager()->content( $this->settings['base'], $atts, $content );
 		}
 		
 	}
