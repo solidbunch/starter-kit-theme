@@ -5,7 +5,8 @@
  **/
 
 use StarterKit\Helper\Assets;
-use StarterKit\Model\Shortcode;
+use StarterKit\Helper\View;
+use StarterKit\Base\Shortcode;
 
 if ( ! class_exists( 'StarterKitShortcode_Form_Text_Datepicker' ) ) {
 	class StarterKitShortcode_Form_Text_Datepicker extends Shortcode {
@@ -35,7 +36,7 @@ if ( ! class_exists( 'StarterKitShortcode_Form_Text_Datepicker' ) ) {
 				'attributes' => $attributes
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 		/**

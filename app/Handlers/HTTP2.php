@@ -1,23 +1,20 @@
 <?php
 
-namespace StarterKit\Controller;
+namespace StarterKit\Handlers;
 
 use StarterKit\Helper\Utils;
 
 /**
- * Class HTTP2
- *
- * Controller which add supports of HTTP2 server push functionality
+ * HTTP2
+ * add supports of HTTP2 server push functionality
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class HTTP2 {
-
+	
 	/**
 	 * Cloudflare gives an HTTP 520 error when more than 8k of headers are present. Limiting $this
 	 * plugin's output to 4k should keep those errors away.
@@ -26,35 +23,32 @@ class HTTP2 {
 	protected $http2_header_size_accumulator = 0;
 	/** @var array */
 	protected $assets = [];
-
+	
 	/**
 	 * http2_push constructor.
 	 */
-	public function __construct() {
-		if ( !is_admin() ) {
-			add_action( 'init', function () {
-				$scripts = Utils::get_option( 'http2_scripts_enable', false );
-				$styles  = Utils::get_option( 'http2_styles_enable', false );
-
-				if ( ( $scripts || $styles ) && ! is_admin() ) {
-					$this->http2_ob_start();
-					if ( $scripts ) {
-						add_filter( 'script_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
-					}
-
-					if ( $styles ) {
-						add_filter( 'style_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
-					}
-
-					if ( $this->http2_should_render_prefetch_headers() ) {
-						add_action( 'wp_head', [ $this, 'http2_resource_hints' ], PHP_INT_MAX, 1 );
-					}
+	public function http2_init() {
+		if ( ! is_admin() ) {
+			$scripts = Utils::get_option( 'http2_scripts_enable', false );
+			$styles  = Utils::get_option( 'http2_styles_enable', false );
+			
+			if ( $scripts || $styles ) {
+				$this->http2_ob_start();
+				if ( $scripts ) {
+					add_filter( 'script_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
 				}
-			} );
+				
+				if ( $styles ) {
+					add_filter( 'style_loader_src', [ $this, 'http2_link_preload_header' ], PHP_INT_MAX, 1 );
+				}
+				
+				if ( $this->http2_should_render_prefetch_headers() ) {
+					add_action( 'wp_head', [ $this, 'http2_resource_hints' ], PHP_INT_MAX, 1 );
+				}
+			}
 		}
-
 	}
-
+	
 	/**
 	 * Determine if the plugin should render its own resource hints, or defer to WordPress.
 	 * WordPress natively supports resource hints since 4.6. Can be overridden with
@@ -64,7 +58,7 @@ class HTTP2 {
 	public function http2_should_render_prefetch_headers() {
 		return apply_filters( 'http2_render_resource_hints', ! function_exists( 'wp_resource_hints' ) );
 	}
-
+	
 	/**
 	 * Start an output buffer so this plugin can call header() later without errors.
 	 * Need to use a function here instead of calling ob_start in the template_redirect
@@ -74,7 +68,7 @@ class HTTP2 {
 	public function http2_ob_start() {
 		ob_start();
 	}
-
+	
 	/**
 	 * @param string $src URL
 	 *
@@ -94,15 +88,15 @@ class HTTP2 {
 					$this->http2_header_size_accumulator += strlen( $header );
 					header( $header, false );
 				}
-
+				
 				$this->assets[ 'http2_' . $this->http2_link_resource_hint_as( current_filter() ) . '_srcs' ][] = $this->http2_link_url_to_relative_path( $preload_src );
-
+				
 			}
 		}
-
+		
 		return $src;
 	}
-
+	
 	/**
 	 * Convert an URL with authority to a relative path
 	 *
@@ -114,10 +108,10 @@ class HTTP2 {
 		if ( strpos( $src, '//' ) === 0 ) {
 			return preg_replace( '/^\/\/([^\/]*)\//', '/', $src );
 		}
-
+		
 		return preg_replace( '/^http(s)?:\/\/[^\/]*/', '', $src );
 	}
-
+	
 	/**
 	 * Maps a WordPress hook to an "as" parameter in a resource hint
 	 *
@@ -128,7 +122,7 @@ class HTTP2 {
 	public function http2_link_resource_hint_as( $current_hook ) {
 		return 'style_loader_src' === $current_hook ? 'style' : 'script';
 	}
-
+	
 	/**
 	 * Render "resource hints" in the <head> section of the page. These encourage preload/prefetch behavior
 	 * when HTTP/2 support is lacking.
@@ -142,7 +136,7 @@ class HTTP2 {
 			} );
 		} );
 	}
-
+	
 	/**
 	 * Get resources of a certain type that have been enqueued through the WordPress API.
 	 * Needed because some plugins mangle these global values
@@ -153,15 +147,15 @@ class HTTP2 {
 	 */
 	public function http2_get_resources( $resource_type ) {
 		$resource_type_key = "http2_{$resource_type}_srcs";
-
+		
 		if ( ! ( is_array( $this->assets ) && isset( $this->assets[ $resource_type_key ] ) ) ) {
 			return [];
 		}
-
+		
 		if ( ! is_array( $this->assets[ $resource_type_key ] ) ) {
 			return [ $this->assets[ $resource_type_key ] ];
 		}
-
+		
 		return $this->assets[ $resource_type_key ];
 	}
 }

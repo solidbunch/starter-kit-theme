@@ -1,69 +1,44 @@
 <?php
 
-namespace StarterKit\Controller;
+namespace StarterKit\Handlers;
 
 use StarterKit\Helper\Assets;
 
 /**
- * Backend controller
- *
- * Controller which loading only on backend (admin panel)
- * contains all needed additional hooks,methods
+ * Backend handlers
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Backend {
-
-	/**
-	 * Constructor - add all needed actions
-	 *
-	 * @return void
-	 **/
-	public function __construct() {
-
-		// load admin assets
-		add_action( 'admin_enqueue_scripts', [ $this, 'load_assets' ] );
-
-		// install required plugins
-		require_once get_template_directory() . '/vendor-custom/tgm/class-tgm-plugin-activation.php';
-		add_action( 'tgmpa_register', [ $this, 'tgmpa_register' ] );
-
-		// Change theme options default menu position
-		add_action( 'fw_backend_add_custom_settings_menu', [ $this, 'add_theme_options_menu' ] );
-
-	}
-
-
+	
 	/**
 	 * Load admin assets
 	 *
 	 * @return void
 	 **/
-	public function load_assets() {
+	public static function load_assets() {
 		Assets::enqueue_style_dist( 'starter-kit-backend', 'admin.css' );
 	}
-
-
+	
+	
 	/**
 	 * Install required plugins
 	 *
 	 * @return void
 	 **/
-	public function tgmpa_register() {
-
+	public static function tgmpa_register() {
+		
 		$plugins = [
-
+			
 			[
 				'name'     => 'Unyson',
 				'slug'     => 'unyson',
-				'required' => false
+				'required' => false,
 			],
-
+			
 			[
 				'name'         => 'WPBakery Page Builder',
 				'slug'         => 'js_composer',
@@ -72,15 +47,15 @@ class Backend {
 				'version'      => '',
 				'external_url' => '',
 			],
-
+		
 		];
-
+		
 		// it is not necessary to provide custom language config for TGM, so just leave it default
 		tgmpa( $plugins );
-
+		
 	}
-
-
+	
+	
 	/**
 	 * Add Website Options Menu
 	 *
@@ -88,8 +63,8 @@ class Backend {
 	 *
 	 * @return void
 	 */
-	public function add_theme_options_menu( array $data ) {
-
+	public static function add_theme_options_menu( array $data ) {
+		
 		add_theme_page(
 			esc_html__( 'Website Settings', 'starter-kit' ),
 			esc_html__( 'Website Settings', 'starter-kit' ),
@@ -97,7 +72,6 @@ class Backend {
 			$data['slug'],
 			$data['content_callback']
 		);
-
+		
 	}
-
 }

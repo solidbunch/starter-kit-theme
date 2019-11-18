@@ -1,9 +1,9 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Repository;
 
 /**
- * Posts model
+ * Posts
  *
  * Works with default posts
  *
@@ -11,10 +11,8 @@ namespace StarterKit\Model;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class Post extends Database {
+class PostRepository {
 	
 	/**
 	 * Get posts by params
@@ -23,7 +21,7 @@ class Post extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_posts( $args ) {
+	public static function get_posts( $args ) {
 		
 		$defaults = [
 			'post_type'      => 'post',
@@ -31,7 +29,7 @@ class Post extends Database {
 			'posts_per_page' => get_option( 'posts_per_page' ),
 			'paged'          => 1,
 			'order'          => 'DESC',
-			'orderby'        => 'date'
+			'orderby'        => 'date',
 		];
 		
 		$args = wp_parse_args( $args, $defaults );
@@ -48,7 +46,7 @@ class Post extends Database {
 						'taxonomy' => $_taxonomy_slug,
 						'field'    => 'slug',
 						'terms'    => $_taxonomy_terms,
-					]
+					],
 				];
 				
 			} elseif ( $args['tax_query_type'] === 'except' ) {
@@ -59,7 +57,7 @@ class Post extends Database {
 						'field'    => 'slug',
 						'terms'    => $_taxonomy_terms,
 						'operator' => 'NOT IN',
-					]
+					],
 				];
 				
 			}
@@ -77,14 +75,14 @@ class Post extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_popular_posts( $post_type, $limit ) {
+	public static function get_popular_posts( $post_type, $limit ) {
 		$args = [
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'order'               => 'DESC',
 			'ignore_sticky_posts' => true,
-			'orderby'             => 'comment_count'
+			'orderby'             => 'comment_count',
 		];
 		
 		return new \WP_Query( $args );
@@ -98,13 +96,13 @@ class Post extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_recent_posts( $post_type, $limit ) {
+	public static function get_recent_posts( $post_type, $limit ) {
 		$args = [
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'order'               => 'DESC',
-			'ignore_sticky_posts' => true
+			'ignore_sticky_posts' => true,
 		];
 		
 		return new \WP_Query( $args );
@@ -120,7 +118,7 @@ class Post extends Database {
 	 *
 	 * @return bool|\WP_Query
 	 */
-	public function get_related_posts(
+	public static function get_related_posts(
 		$primary_post_id,
 		$limit,
 		$taxonomy = 'category',
@@ -153,14 +151,14 @@ class Post extends Database {
 					[
 						'taxonomy' => $taxonomy,
 						'field'    => 'id',
-						'terms'    => $post_terms_ids
-					]
-				]
+						'terms'    => $post_terms_ids,
+					],
+				],
 			];
 			
 			if ( $with_thumbnail_only ) {
 				$args['meta_query'][] = [
-					'key' => '_thumbnail_id'
+					'key' => '_thumbnail_id',
 				];
 			}
 			
@@ -180,18 +178,18 @@ class Post extends Database {
 	 *
 	 * @return \WP_Query
 	 */
-	public function get_random_posts( $post_type, $limit, $with_thumbnail_only = false ) {
+	public static function get_random_posts( $post_type, $limit, $with_thumbnail_only = false ) {
 		$args = [
 			'post_type'           => $post_type,
 			'post_status'         => 'publish',
 			'posts_per_page'      => $limit,
 			'ignore_sticky_posts' => true,
-			'orderby'             => 'rand'
+			'orderby'             => 'rand',
 		];
 		
 		if ( $with_thumbnail_only ) {
 			$args['meta_query'][] = [
-				'key' => '_thumbnail_id'
+				'key' => '_thumbnail_id',
 			];
 		}
 		

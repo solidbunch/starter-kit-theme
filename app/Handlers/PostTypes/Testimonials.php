@@ -1,37 +1,18 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Handlers\PostTypes;
 
 /**
- * Testimonials model
- *
- * Works with testimonials post type
+ * Testimonials
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class Testimonials extends Database {
+class Testimonials {
 	
-	/**
-	 * Model constructor
-	 */
-	public function __construct() {
-		
-		add_action( 'init', function () {
-			$this->register_post_type();
-			$this->register_taxonomy();
-		}, 5 );
-		
-	}
-	
-	/**
-	 * Register custom post type
-	 */
-	public function register_post_type() {
+	public static function register_post_type() {
 		
 		register_post_type( 'testimonials',
 			[
@@ -43,7 +24,7 @@ class Testimonials extends Database {
 				'show_in_nav_menus' => true,
 				'capability_type'   => 'post',
 				'hierarchical'      => false,
-				'supports'          => [ 'title', 'editor', 'custom-fields', 'thumbnail' ],
+				'supports'          => [ 'title', 'editor', 'thumbnail' ],
 				'rewrite'           => false,
 				'has_archive'       => false,
 				'query_var'         => false,
@@ -72,17 +53,14 @@ class Testimonials extends Database {
 					'search_items'       => esc_html__( 'Search Testimonials', 'starter-kit' ),
 					'not_found'          => esc_html__( 'No Testimonials Found', 'starter-kit' ),
 					'not_found_in_trash' => esc_html__( 'No Testimonials Found in Trash', 'starter-kit' ),
-					'parent_item_colon'  => esc_html__( 'Parent Testimonial:', 'starter-kit' )
-				]
+					'parent_item_colon'  => esc_html__( 'Parent Testimonial:', 'starter-kit' ),
+				],
 			]
 		);
-		
 	}
 	
-	/**
-	 * Register custom post type
-	 */
-	public function register_taxonomy() {
+	
+	public static function register_taxonomy() {
 		
 		register_taxonomy( 'testimonial_cat',
 			'testimonials',
@@ -94,21 +72,17 @@ class Testimonials extends Database {
 				'rewrite'           => false,
 				'show_admin_column' => true,
 				'labels'            => [
-					'name'          => _x( 'Testimonials Categories', 'taxonomy general name',
-						'starter-kit' ),
-					'singular_name' => _x( 'Testimonials Category', 'taxonomy singular name',
-						'starter-kit' ),
+					'name'          => _x( 'Testimonials Categories', 'taxonomy general name', 'starter-kit' ),
+					'singular_name' => _x( 'Testimonials Category', 'taxonomy singular name', 'starter-kit' ),
 					'search_items'  => esc_html__( 'Search in categories', 'starter-kit' ),
 					'all_items'     => esc_html__( 'All Categories', 'starter-kit' ),
 					'edit_item'     => esc_html__( 'Edit Category', 'starter-kit' ),
 					'update_item'   => esc_html__( 'Update Category', 'starter-kit' ),
 					'add_new_item'  => esc_html__( 'Add New Category', 'starter-kit' ),
 					'new_item_name' => esc_html__( 'New Category', 'starter-kit' ),
-					'menu_name'     => esc_html__( 'Categories', 'starter-kit' )
-				]
+					'menu_name'     => esc_html__( 'Categories', 'starter-kit' ),
+				],
 			]
 		);
-		
 	}
-	
 }

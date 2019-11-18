@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Controller;
+namespace StarterKit\Handlers;
 
 /**
  * Visual Composer
@@ -11,8 +11,6 @@ namespace StarterKit\Controller;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class VisualComposer {
 
@@ -33,7 +31,7 @@ class VisualComposer {
 	/**
 	 * Set Bootstrap 4 classes for VC Grid
 	 **/
-	public function custom_css_classes_for_vc_grid( $class_string, $tag ) {
+	public static function custom_css_classes_for_vc_grid( $class_string, $tag ) {
 
 		if ( $tag == 'vc_row' || $tag == 'vc_row_inner' ) {
 			$class_string = str_replace( 'vc_row-fluid', 'row-fluid', $class_string );
@@ -58,7 +56,7 @@ class VisualComposer {
 	/**
 	 * Remove default VC shortcodes and some unused options
 	 **/
-	public function setup_vc() {
+	public static function setup_vc() {
 
 		if ( function_exists( 'vc_set_default_editor_post_types' ) ) {
 			$list = [

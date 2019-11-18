@@ -204,7 +204,7 @@ class Media {
 			'fill'   => Utils::get_option( 'placeholder_color', '#555' ),
 		];
 		
-		$svg = base64_encode( Starter_Kit()->View->load( '/template-parts/lazy-loading-svg', $data, true ) );
+		$svg = base64_encode( View::load( '/template-parts/lazy-loading-svg', $data, true ) );
 		
 		return "data:image/svg+xml;base64," . $svg;
 	}

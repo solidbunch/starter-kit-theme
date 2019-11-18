@@ -1,19 +1,17 @@
 <?php
 
-namespace StarterKit\Model;
+namespace StarterKit\Base;
 
 use StarterKit\Helper\Assets;
 use StarterKit\Helper\Utils;
 
 /**
- * Shortcode model
+ * Shortcode
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Shortcode {
 	
@@ -69,12 +67,10 @@ class Shortcode {
 	public function vc_shortcode() {
 		
 		if (
-			
 			class_exists( 'WPBakeryShortCode' )
-			&& file_exists( $this->shortcode_dir . '/vc.php' ) 
+			&& file_exists( $this->shortcode_dir . '/vc.php' )
 			&& file_exists( $this->shortcode_dir . '/config.php' )
-
-			) {
+		) {
 			// Add shortcode map
 			vc_lean_map( $this->shortcode, null, $this->shortcode_dir . '/config.php' );
 			
@@ -108,7 +104,7 @@ class Shortcode {
 			} else {
 				$css_class = $this->custom_css_class( $atts['css'] );
 				if ( ! empty( $css_class ) ) {
-					Starter_Kit()->Controller->Shortcodes->custom_css[] = $atts['css'];
+					Starter_Kit()->getShortcodesManager()->custom_css[] = $atts['css'];
 				}
 			}
 			$atts['classes'] = $css_class . ' ' . trim( ! empty( $atts['classes'] ) && trim( $atts['classes'] ) ? $atts['classes'] : '' );
@@ -143,11 +139,11 @@ class Shortcode {
 	/**
 	 * Parse param group atts
 	 *
-	 * @see vc_param_group_parse_atts()
-	 *
 	 * @param $atts_string
 	 *
 	 * @return array|mixed
+	 * @see vc_param_group_parse_atts()
+	 *
 	 */
 	function param_group_parse_atts( $atts_string ) {
 		return json_decode( urldecode( $atts_string ), true );
@@ -156,13 +152,14 @@ class Shortcode {
 	/**
 	 * Enqueue shortcode style
 	 *
-	 * @see Assets::enqueue_style
-	 *
 	 * @param $handle
 	 * @param string $src
 	 * @param array $deps
 	 * @param mixed $ver
 	 * @param string $media
+	 *
+	 * @see Assets::enqueue_style
+	 *
 	 */
 	public function enqueue_style( $handle, $src = '', $deps = [], $ver = false, $media = 'all' ) {
 		//wp_enqueue_style( $handle, $src, $deps, $ver, $media );
@@ -172,13 +169,14 @@ class Shortcode {
 	/**
 	 * Enqueue shortcode script
 	 *
-	 * @see Assets::enqueue_script
-	 *
 	 * @param $handle
 	 * @param string $src
 	 * @param array $deps
 	 * @param mixed $ver
 	 * @param bool $in_footer
+	 *
+	 * @see Assets::enqueue_script
+	 *
 	 */
 	public function enqueue_script( $handle, $src = '', $deps = [], $ver = false, $in_footer = false ) {
 		//wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
@@ -188,11 +186,12 @@ class Shortcode {
 	/**
 	 * Wrapper for Assets::localize_script
 	 *
-	 * @see Assets::localize_script
-	 *
 	 * @param $handle
 	 * @param $object_name
 	 * @param $l10n
+	 *
+	 * @see Assets::localize_script
+	 *
 	 */
 	public function localize_script( $handle, $object_name, $l10n ) {
 		Assets::localize_script( $handle, $object_name, $l10n );
@@ -201,11 +200,12 @@ class Shortcode {
 	/**
 	 * Wrapper for Assets::add_inline_style
 	 *
-	 * @see Assets::add_inline_script
-	 *
 	 * @param $handle
 	 * @param $data
 	 * @param string $position
+	 *
+	 * @see Assets::add_inline_script
+	 *
 	 */
 	public function add_inline_script( $handle, $data, $position = 'after' ) {
 		Assets::add_inline_script( $handle, $data, $position );
