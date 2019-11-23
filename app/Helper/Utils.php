@@ -11,52 +11,230 @@ namespace StarterKit\Helper;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Utils {
 	
 	/**
-	 * Get Global Option
+	 * Get Theme Option
 	 *
-	 * @param $option_name
-	 * @param null $default_value
+	 * @param string $option_name
+	 * @param mixed $default_value
 	 *
-	 * @return string|array|object|null
+	 * @return mixed
 	 */
 	public static function get_option( $option_name, $default_value = null ) {
-		return function_exists( '\fw_get_db_settings_option' )
-			? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_option( $prefix . $option_name, $default_value );
+		
+		return $value ?? $default_value;
 	}
 	
+	
+	
 	/**
-	 * Get Post Option
+	 * Get Theme Option with framework functionality
+	 * for specific cases, reduce performance
+	 *
+	 * @param string $option_name
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_option_fw( $option_name, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_theme_option( $prefix . $option_name );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Network Theme Option
+	 *
+	 * @param int $site_id
+	 * @param string $option_name
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_network_option( $site_id, $option_name, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_network_option( $site_id, $prefix . $option_name, $default_value );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Network Theme Option with framework functionality
+	 * for specific cases, reduce performance
+	 *
+	 * @param int $site_id
+	 * @param string $option_name
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_network_option_fw( $site_id, $option_name, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_network_option( $site_id, $prefix . $option_name );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Post Meta
 	 *
 	 * @param $post_id
-	 * @param $option_name
-	 * @param null $default_value
+	 * @param string $meta_key
+	 * @param mixed $default_value
 	 *
-	 * @return string|array|object|null
+	 * @return mixed
 	 */
-	public static function get_post_option( $post_id, $option_name, $default_value = null ) {
-		return function_exists( '\fw_get_db_post_option' )
-			? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
+	public static function get_post_meta( $post_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_post_meta( $post_id, $prefix . $meta_key, true );
+		
+		return $value ?? $default_value;
 	}
 	
+	
+	
 	/**
-	 * Get Term Option
+	 * Get Post Meta with framework functionality
+	 *
+	 * @param $post_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_post_meta_fw( $post_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_post_meta( $post_id, $prefix . $meta_key );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Term Meta
 	 *
 	 * @param $term_id
-	 * @param $taxonomy
-	 * @param $option_name
-	 * @param null $default_value
+	 * @param string $meta_key
+	 * @param mixed $default_value
 	 *
-	 * @return string|array|object|null
+	 * @return mixed
 	 */
-	public static function get_term_option( $term_id, $taxonomy, $option_name, $default_value = null ) {
-		return function_exists( '\fw_get_db_term_option' )
-			? \fw_get_db_term_option( $term_id, $taxonomy, $option_name, $default_value ) : $default_value;
+	public static function get_term_meta( $term_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_term_meta( $term_id, $prefix . $meta_key, true );
+		
+		return $value ?? $default_value;
 	}
+	
+	
+	
+	/**
+	 * Get Term Meta with framework functionality
+	 *
+	 * @param $term_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_term_meta_fw( $term_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_term_meta( $term_id, $prefix . $meta_key );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Comment Meta
+	 *
+	 * @param $comment_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_comment_meta( $comment_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_comment_meta( $comment_id, $prefix . $meta_key, true );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get Comment Meta with framework functionality
+	 *
+	 * @param $comment_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_comment_meta_fw( $comment_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_comment_meta( $comment_id, $prefix . $meta_key );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get User Meta
+	 *
+	 * @param $user_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_user_meta( $user_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		$value  = \get_user_meta( $user_id, $prefix . $meta_key, true );
+		
+		return $value ?? $default_value;
+	}
+	
+	
+	
+	/**
+	 * Get User Meta with framework functionality
+	 *
+	 * @param $user_id
+	 * @param string $meta_key
+	 * @param mixed $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_user_meta_fw( $user_id, $meta_key, $default_value = null ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$value  = \carbon_get_user_meta( $user_id, $prefix . $meta_key );
+		
+		return $value ?? $default_value;
+	}
+	
+	
 	
 	/**
 	 * Autoload PHP files in directory
@@ -113,11 +291,10 @@ class Utils {
 	}
 	
 	/**
-	 * Make sure that Unyson Framework plugin is active
+	 * Make sure that Carbon_Fields Framework is exists
 	 **/
-	public static function is_unyson() {
-		return in_array( 'unyson/unyson.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ),
-			true );
+	public static function is_carbon_fields() {
+		return class_exists( \Carbon_Fields\Carbon_Fields::class );
 	}
 	
 	/**
@@ -176,24 +353,6 @@ class Utils {
 		return trailingslashit( self::getConfigSetting( 'widgets_dir' ) ) . $widget_name . '/' . $path;
 	}
 	
-	/**
-	 * Get Unyson Framework config for available social icons
-	 **/
-	public static function get_social_cfg_usyon() {
-		
-		$config = [];
-		
-		foreach ( self::getConfigSetting( 'social_profiles' ) as $k => $v ) {
-			$config[ $k ] = [
-				'type'  => 'text',
-				'label' => $v,
-				'value' => '',
-			];
-		}
-		
-		return $config;
-		
-	}
 	
 	/**
 	 * Sanitize text params from array

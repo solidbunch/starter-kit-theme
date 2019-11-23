@@ -18,8 +18,6 @@ use StarterKit\Helper\ResponsiveImages\SrcsetItem;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Media {
 	

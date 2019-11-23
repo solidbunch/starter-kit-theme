@@ -34,12 +34,6 @@ class Backend {
 		$plugins = [
 			
 			[
-				'name'     => 'Unyson',
-				'slug'     => 'unyson',
-				'required' => false,
-			],
-			
-			[
 				'name'         => 'WPBakery Page Builder',
 				'slug'         => 'js_composer',
 				'source'       => 'https://solidbunch.com/required_plugins/js_composer.zip',

@@ -76,7 +76,6 @@ class ShortcodesManager {
 			$config['as_parent']['only'] = implode( ',', $only );
 		}
 		
-		//dump($config);
 		require_once( $shortcode_dir . '/shortcode.php' );
 		
 		$class_name = 'StarterKitShortcode_' . str_replace( '-', '_', $config['base'] );

@@ -2,6 +2,10 @@
 // helper functions for developers
 require_once __DIR__ . '/app/dev.php';
 
+if ( PHP_VERSION_ID < 70200 ) {
+	wp_die( sprintf( __( 'Theme require at least PHP 7.2.0 ( You are using PHP %s ) ' ), PHP_VERSION ) );
+}
+
 if ( class_exists( 'WP_CLI' ) ) {
 	//define theme root directory for future commands
 	define( 'THEME_ROOT_DIRECTORY', __DIR__ );
