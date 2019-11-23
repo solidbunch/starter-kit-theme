@@ -2,6 +2,8 @@
 
 namespace StarterKit\Repository;
 
+use StarterKit\Helper\Utils;
+
 /**
  * ComposerLayout Repository
  *
@@ -20,6 +22,9 @@ class ComposerLayoutRepository {
 	 * @return \WP_Query
 	 */
 	public static function get_default_layout( $layout_type = 'header' ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
+		
 		$args                 = [
 			'post_type'      => 'composerlayout',
 			'posts_per_page' => 1,
@@ -27,11 +32,11 @@ class ComposerLayoutRepository {
 			'meta_query'     => [
 				'relation' => 'AND',
 				[
-					'key'   => '_layouttype',
+					'key'   => $prefix . '_layouttype',
 					'value' => $layout_type,
 				],
 				[
-					'key'   => '_appointment',
+					'key'   => $prefix . '_appointment',
 					'value' => 'default',
 				],
 			
@@ -51,6 +56,8 @@ class ComposerLayoutRepository {
 	 * @return \WP_Query
 	 */
 	public static function get_layouts( $layout_type = 'header' ) {
+		$prefix = Utils::getConfigSetting( 'settings_prefix', '' );
+		$prefix = "_{$prefix}";
 		
 		$args    = [
 			'post_type'      => 'composerlayout',
@@ -58,7 +65,7 @@ class ComposerLayoutRepository {
 			'post_status'    => 'publish',
 			'meta_query'     => [
 				'composerlayout_layouttype' => [
-					'key'   => '_layouttype',
+					'key'   => $prefix . '_layouttype',
 					'value' => $layout_type,
 				],
 			],

@@ -8,7 +8,7 @@
 
 **Requirements**
  
- 1. PHP5.6+
+ 1. PHP7.2+
  2. NodeJs (v10 +) (optional)
 	
 **StarterKit Generator**
@@ -32,29 +32,31 @@ You can include / exclude functional using online generator tool https://solidbu
     - To use browser sync make sure that you copied **`build/broswer-sync.config.js.sample`** to  `build/broswer-sync.config.js` - and configured your local domain
 
 # Sturcture
- - app/ – main theme files 
-    - Controller/
+ - app/ – main theme files
+    - Base/
+        - Hooks.php - base hooks functionality for the theme
+        - Settings.php - theme settings framework initialization
+        - ShortcodesManager.php – registering shortcodes
+    - Handlers/
+        - Settings/ThemeSettings.php – theme settings creation
+        - PostTypes/* – registering custom post types
+        - PostMeta/*  – registering meta fields
         - Backend.php – wp-admin functions
         - Front.php – front-end functions
         - HTTP2.php – HTTP2 support
-        - Init.php – theme initialization
+        - SetupTheme.php – Theme setup
         - LazyLoad.php – lazy load for images
         - Menu.php – menu registration hooks and methods
         - OAuth.php – Oauth support
         - Optimization.php – removes unnecessary tags
-        - PostTypes.php – registering custom post types
-        - Shortcodes.php – registering shortcodes
         - VisualComposer.php – settings for Page Builder
     - Helper/ – Helpers classes
         - Front.php - front-end page helpers
         - Media.php - media helpers
         - Utils.php - other useful functions
-    - Model/ – models to work with database
-        - Database.php - DB model
-        - Layout.php - page layout model
-        - News.php - posts model
-        - Post.php - news post type model
-        - Shortcode.php - shortcode model
+        - Assets.php - Helper to work with assets processed by webpack
+        - View.php - works with templates
+    - Repository/* - Repositories, help to receive data from DB
     - Shortcodes/ – shortcodes library (works with/without WPBakery Page Builder)
         - Alert - alert block (icon, styling)
         - Button - button element (icon, link, layout, styling)
@@ -68,8 +70,8 @@ You can include / exclude functional using online generator tool https://solidbu
         - Social Login - login using social networks Facebook, Twitter, Google 
         - Tabs - tabs shortcode 
         - Toggles - accordion shortcode
-    - View/ – templates (included in controller)
-    - Widgets/ – widgets (included in controller)
+    - templates/ – html or other templates
+    - Widgets/ – Theme widgets
  - assets/ – theme assets
    - css/
    - fonts/
@@ -77,7 +79,6 @@ You can include / exclude functional using online generator tool https://solidbu
    - js/
    - libs/
  - build - webpack configs 
- - framework-customizations/ – Unyson customization (see https://github.com/ThemeFuse/Scratch-Theme)
  - template-parts/ – default WordPress templates (included in files below)
  - vendor-custom/ – third-party development
  - 404.php
