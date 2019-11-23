@@ -23,7 +23,7 @@ echo wp_kses_post( $args['before_widget'] );
 	<div class="round-social light">
 		
 		<?php foreach ( Utils::getConfigSetting( 'social_profiles' ) as $option_name => $label ):
-			$link_url = Utils::get_option( $option_name );
+			$link_url = Utils::get_option( $option_name, '' );
 			$class_name = str_replace( [ '_url', '_' ], [ '', '-' ], $option_name );
 			if ( $link_url !== '' ):
 				?>

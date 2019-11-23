@@ -44,7 +44,7 @@ class Hooks {
 		// load assets
 		add_action( 'wp_enqueue_scripts', [ Handlers\Front::class, 'load_critical_css' ], 5 );
 		add_action( 'wp_enqueue_scripts', [ Handlers\Front::class, 'load_assets' ] );
-		// remove default styles for Unyson Breadcrummbs
+		// remove default some styles 
 		add_action( 'wp_enqueue_scripts', [ Handlers\Front::class, 'remove_assets' ], 99, 1 );
 		add_action( 'wp_footer', [ Handlers\Front::class, 'remove_assets' ] );
 		
@@ -233,9 +233,19 @@ class Hooks {
 		
 		
 		/************************************
-		 *             PostMeta
+		 *          Theme Settings
 		 ************************************/
 		
+		add_action( 'carbon_fields_register_fields', [ Handlers\Settings\ThemeSettings::class, 'make' ] );
 		
+		
+		/************************************
+		 *            Meta Fields
+		 ************************************/
+		
+		add_action( 'carbon_fields_register_fields', [ Handlers\PostMeta\ThemeLayoutsSidebars::class, 'make' ] );
+		add_action( 'carbon_fields_register_fields', [ Handlers\PostMeta\Composerlayout::class, 'make' ] );
+		add_action( 'carbon_fields_register_fields', [ Handlers\PostMeta\Page::class, 'make' ] );
+		add_action( 'carbon_fields_register_fields', [ Handlers\PostMeta\Portfolio::class, 'make' ] );
 	}
 }

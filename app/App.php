@@ -2,8 +2,10 @@
 
 namespace StarterKit;
 
-use StarterKit\Helper\Utils;
+use StarterKit\Base\Hooks;
+use StarterKit\Base\Settings;
 use StarterKit\Base\ShortcodesManager;
+use StarterKit\Helper\Utils;
 
 /**
  * Application Singleton
@@ -37,8 +39,11 @@ final class App extends AbstractSingleton {
 		// Load config
 		$this->config = $config;
 		
+		// Settings & Meta framework
+		Settings::init();
+		
 		// Main Hooks functionality for the theme
-		Base\Hooks::runHooks();
+		Hooks::runHooks();
 		
 		// WPBakery shortcodes functionality
 		$this->shortcodesManager = new ShortcodesManager();

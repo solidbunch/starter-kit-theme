@@ -8,11 +8,10 @@
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 return [
 	'cache_time'          => '201812022311',
+	'settings_prefix'     => 'sk_',
 	'assets_uri'          => get_template_directory_uri() . '/assets/',
 	'shortcodes_dir'      => get_template_directory() . '/app/Shortcodes/',
 	'shortcodes_uri'      => get_template_directory_uri() . '/app/Shortcodes/',
