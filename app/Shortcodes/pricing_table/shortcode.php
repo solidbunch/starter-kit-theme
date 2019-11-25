@@ -26,7 +26,9 @@ if ( ! class_exists( 'StarterKitShortcode_Pricing_Table' ) ) {
 				'button_border_color'     => '',
 				'border_radius'           => '',
 				'border_width'            => '',
-				'button_border_width'     => ''
+				'button_border_width'     => '',
+				'el_classes'              => '',
+				'el_id'                   => '',
 			
 			], $this->atts( $atts ), $this->shortcode );
 			

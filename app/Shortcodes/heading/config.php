@@ -48,9 +48,6 @@ return [
 			'type'        => 'el_id',
 			'heading'     => esc_html__( 'Element ID', 'starter-kit' ),
 			'param_name'  => 'el_id',
-			'settings'    => [
-				'auto_generate' => true,
-			],
 			'group'       => esc_html__( 'Header Attributes', 'starter-kit' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'starter-kit' ),
 		],
