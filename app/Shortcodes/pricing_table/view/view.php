@@ -1,12 +1,20 @@
 <?php
 
-//dump($data);
-
 $atts = $data['atts'];
+
+$attributes = $classes = [];
+
+$classes[] = 'starter-kit-pricing-tables';
+if ( ! empty( $atts['el_classes'] ) ) {
+	$classes[] = esc_html( $atts['el_classes'] );
+}
+
+$attributes[] = ! empty( $atts['el_id'] ) ? 'id="' . $atts['el_id'] . '"' : '';
+$attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"' : '';
 
 ?>
 
-<div id="starter-kit-pricing-table-<?php echo $atts['id']; ?>" class="starter-kit-pricing-tables">
+<div <?php echo implode( ' ', $attributes ); ?>>
 	<div class="row">
 		
 		<?php foreach ( $data['columns'] as $column ) : ?>
@@ -14,7 +22,7 @@ $atts = $data['atts'];
 			<div class="starter-kit-col col">
 				
 				<div class="starter-kit-pricing-table">
-					<h4 class="starter-kit-title" style="<?php echo $bcolor; ?>"><?php echo $column['title']; ?></h4>
+					<h4 class="starter-kit-title"><?php echo $column['title']; ?></h4>
 					
 					<div class="starter-kit-features">
 						<?php
@@ -53,7 +61,7 @@ $atts = $data['atts'];
 	
 	<?php if ( !empty( $atts['border_radius'] ) ) : ?>
 	.starter-kit-pricing-table {
-		border-radius: <?php echo $atts['border_radius']; ?>px !important;
+		border-radius: <?php echo (int) $atts['border_radius']; ?>px !important;
 	}
 	
 	<?php endif; ?>
@@ -61,7 +69,7 @@ $atts = $data['atts'];
 	<?php if ( !empty( $atts['border_width'] ) ) : ?>
 	.starter-kit-pricing-table,
 	.starter-kit-pricing-table .starter-kit-title {
-		border-width: <?php echo $atts['border_width']; ?>px !important;
+		border-width: <?php echo (int) $atts['border_width']; ?>px !important;
 	}
 	
 	<?php endif; ?>
@@ -117,7 +125,7 @@ $atts = $data['atts'];
 	
 	<?php if ( !empty( $atts['button_border_width'] ) ) : ?>
 	.starter-kit-pricing-table .starter-kit-button {
-		border-width: <?php echo $atts['button_border_width']; ?>px !important;
+		border-width: <?php echo (int) $atts['button_border_width']; ?>px !important;
 	}
 	
 	<?php endif; ?>
