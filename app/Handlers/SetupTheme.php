@@ -2,6 +2,8 @@
 
 namespace StarterKit\Handlers;
 
+use StarterKit\Helper\Utils;
+
 /**
  *  Setup Theme handlers
  *
@@ -97,5 +99,20 @@ class SetupTheme {
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>',
 		] );
+	}
+	
+	/**
+	 * Filtering image sizes by theme settings
+	 **/
+	public static function filter_image_sizes( $image_sizes ) {
+		$sizes_for_disabling = Utils::get_option_fw( 'disable_img_sizes', [] );
+		
+		foreach ( $image_sizes as $index => $image_size ) {
+			if ( in_array( $image_size, $sizes_for_disabling, true ) ) {
+				unset( $image_sizes[ $index ] );
+			}
+		}
+		
+		return $image_sizes;
 	}
 }

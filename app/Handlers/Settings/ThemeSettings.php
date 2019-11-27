@@ -4,6 +4,7 @@ namespace StarterKit\Handlers\Settings;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
+use StarterKit\Helper\Media;
 use StarterKit\Helper\Utils;
 
 class ThemeSettings {
@@ -141,6 +142,19 @@ class ThemeSettings {
 				     ->set_default_value( '' )
 				     ->set_help_text( __( 'Try to get image sizes with getimagesize() if there is no width and heght attributes.
 						 Attantion! php function getimagesize() can significantly slow down your site speed. Use neatly', 'starter-kit' ) ),
+				//-----------------------------------------------------------------------
+				
+				Field::make( 'separator', 'sep_image_sizes', __( 'Image sizes', 'starter-kit' ) ),
+				Field::make( 'set', $prefix . 'disable_img_sizes', __( 'Check image sizes to disable', 'starter-kit' ) )
+				     ->set_options( Media::getAllInitedImageSizesFormatted() )
+				     ->set_default_value(
+					     array_filter(
+						     array_keys( Media::getAllInitedImageSizesFormatted() ),
+						     function ( $value ) {
+							     return ! in_array( $value, [ 'thumbnail', 'medium' ], true );
+						     } )
+				     ),
+				
 				//-----------------------------------------------------------------------
 				
 				Field::make( 'separator', $prefix . 'sep_performance_http2', __( 'HTTP/2 Preload Options', 'starter-kit' ) ),
