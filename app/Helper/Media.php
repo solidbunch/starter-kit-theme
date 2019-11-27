@@ -435,4 +435,69 @@ class Media {
 		
 		return $imgHtml;
 	}
+	
+	
+	
+	/**
+	 * Get size information for all registered image sizes. Even they was removed by filters
+	 *
+	 * @return array Data for all registered image sizes (width, height, crop, name).
+	 */
+	public static function getAllInitedImageSizes() {
+		$sizes = [];
+		
+		$default_sizes    = [ 'thumbnail', 'medium', 'medium_large', 'large' ];
+		$additional_sizes = wp_get_additional_image_sizes();
+		
+		if ( ! empty( $additional_sizes ) ) {
+			$default_sizes = array_merge( $default_sizes, array_keys( $additional_sizes ) );
+		}
+		
+		foreach ( $default_sizes as $size_name ) {
+			$sizes[ $size_name ] = [
+				'width'  => '',
+				'height' => '',
+				'crop'   => false,
+				'name'   => $size_name,
+			];
+			
+			$sizes[ $size_name ]['width'] = isset( $additional_sizes[ $size_name ]['width'] )
+				? (int) $additional_sizes[ $size_name ]['width']  // // For theme-added sizes.
+				: (int) get_option( "{$size_name}_size_w" ); // For default sizes set in options.
+			
+			
+			$sizes[ $size_name ]['height'] = isset( $additional_sizes[ $size_name ]['height'] )
+				? (int) $additional_sizes[ $size_name ]['height']  // // For theme-added sizes.
+				: (int) get_option( "{$size_name}_size_h" ); // For default sizes set in options.
+			
+			
+			$sizes[ $size_name ]['crop'] = isset( $additional_sizes[ $size_name ]['crop'] )
+				? (int) $additional_sizes[ $size_name ]['crop']  // // For theme-added sizes.
+				: (int) get_option( "{$size_name}_crop" ); // For default sizes set in options.
+		}
+		
+		return $sizes;
+	}
+	
+	
+	
+	/**
+	 * Get the image sizes (formatted strings). Uses for settings
+	 *
+	 * @return array A list of image sizes in the form of 'medium' => 'medium - 300 × 300'.
+	 */
+	public static function getAllInitedImageSizesFormatted() {
+		$sizes = self::getAllInitedImageSizes();
+		
+		foreach ( $sizes as $size_key => $size_data ) {
+			$sizes[ $size_key ] = sprintf(
+				'%s - %d x %d (crop = %s)', esc_html( stripslashes( $size_data['name'] ) ),
+				$size_data['width'],
+				$size_data['height'],
+				$size_data['crop']
+			);
+		}
+		
+		return $sizes;
+	}
 }

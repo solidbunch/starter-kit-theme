@@ -85,6 +85,9 @@ class Hooks {
 		// register sidebars
 		add_action( 'widgets_init', [ Handlers\SetupTheme::class, 'register_sidebars' ] );
 		
+		// filter image sizes
+		add_filter( 'intermediate_image_sizes', [ Handlers\SetupTheme::class, 'filter_image_sizes' ] );
+		
 		
 		/************************************
 		 *          LayoutGlobal
