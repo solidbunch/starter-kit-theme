@@ -28,7 +28,7 @@
 					try {
 						var $form = $(this),
 							d = new Date(),
-							code = d.getUTCHours() * d.getUTCDate() * (d.getUTCMonth() +1) * d.getUTCFullYear(),
+							code = (d.getUTCHours() + 1)  * d.getUTCDate() * (d.getUTCMonth() +1) * d.getUTCFullYear(),
 							name = 'a' + 's' + String.fromCharCode(95) + 'co' + 'de',
 							insert = function () {
 								if ($form.find('input[name="' + name + '"]').length === 0) {

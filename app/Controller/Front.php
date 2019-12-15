@@ -198,7 +198,7 @@ class Front {
 
 		$date_utc = new \DateTime("now", new \DateTimeZone("UTC"));
 
-		$code = $date_utc->format('H') * $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
+		$code = ($date_utc->format('H') +1) * $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
 
 		if ( ! empty( $_POST ) && ! empty($_POST['as_code']) && $_POST['as_code'] == $code )  {
 			return null;
