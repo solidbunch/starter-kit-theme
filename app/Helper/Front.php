@@ -44,7 +44,7 @@ class Front {
 			}
 			
 		} else {
-			$classes_string = 'col-lg-12';
+			$classes_string = 'col-lg-' . ( 12 - $sidebar_size );
 		}
 		
 		return $classes_string;
