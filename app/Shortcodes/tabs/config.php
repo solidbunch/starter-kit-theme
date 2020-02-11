@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'                    => esc_html__( 'Tabs', 'starter-kit' ),
 	'base'                    => 'tabs',
-	'icon'                    => Starter_Kit()->config['shortcodes_icon_uri'] . 'tabs.svg',
+	'icon'                    => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'tabs.svg',
 	'category'                => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description'             => esc_html__( 'Add Tabs', 'starter-kit' ),
 	'as_parent'               => [ 'only' => 'tab' ],

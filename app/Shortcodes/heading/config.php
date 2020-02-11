@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'Heading', 'starter-kit' ),
 	'base'        => 'heading',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'heading.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'heading.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Add a heading', 'starter-kit' ),
 	'params'      => [
@@ -46,9 +48,6 @@ return [
 			'type'        => 'el_id',
 			'heading'     => esc_html__( 'Element ID', 'starter-kit' ),
 			'param_name'  => 'el_id',
-			'settings'    => [
-				'auto_generate' => true,
-			],
 			'group'       => esc_html__( 'Header Attributes', 'starter-kit' ),
 			'description' => esc_html__( 'Unique identifier of this element', 'starter-kit' ),
 		],

@@ -4,8 +4,10 @@
  *
  **/
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
 use StarterKit\Helper\Assets;
+use StarterKit\Helper\View;
+use StarterKit\Repository\NewsRepository;
 
 if ( ! class_exists( 'StarterKitShortcode_News' ) ) {
 	class StarterKitShortcode_News extends Shortcode {
@@ -24,7 +26,7 @@ if ( ! class_exists( 'StarterKitShortcode_News' ) ) {
 			
 			// Query news
 			
-			$posts_query = Starter_Kit()->Model->News->get_news( [
+			$posts_query = NewsRepository::get_news( [
 				'order'   => $atts['order'],
 				'orderby' => $atts['orderby'],
 			] );
@@ -45,7 +47,7 @@ if ( ! class_exists( 'StarterKitShortcode_News' ) ) {
 				'query'   => $posts_query
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 	}
 }

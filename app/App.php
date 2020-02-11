@@ -2,118 +2,64 @@
 
 namespace StarterKit;
 
+use StarterKit\Base\Hooks;
+use StarterKit\Base\Settings;
+use StarterKit\Base\ShortcodesManager;
 use StarterKit\Helper\Utils;
-use StarterKit\View\View;
 
 /**
  * Application Singleton
- *
- * Primary application controller
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
-class App {
-	
-	/** @var  $instance - self */
-	private static $instance;
+final class App extends AbstractSingleton {
 	
 	/** @var array */
-	public $config;
+	private $config;
 	
-	/** @var \stdClass */
-	public $Controller;
+	/** @var ShortcodesManager */
+	private $shortcodesManager;
 	
-	/** @var \stdClass */
-	public $Model;
 	
-	/** @var view */
-	public $View;
-	
-	private function __construct() {
+	protected function __construct() {
+		parent::__construct();
 	}
 	
-	/**
-	 * @return App Singleton
-	 */
-	public static function getInstance() {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-		
-		return self::$instance;
-	}
 	
 	/**
 	 * Run the theme
-	 **/
-	public function run() {
+	 *
+	 * @param array $config
+	 */
+	public function run( array $config ) {
 		
-		// Load default config
-		$this->config = require get_template_directory() . '/app/config.php';
+		// Load config
+		$this->config = $config;
 		
-		// Load core classes
-		$this->_dispatch();
+		// Settings & Meta framework
+		Settings::init();
 		
-	}
-	
-	/**
-	 * Load and instantiate all application
-	 * classes necessary for this theme
-	 **/
-	private function _dispatch() {
+		// Main Hooks functionality for the theme
+		Hooks::runHooks();
 		
-		$this->Controller = new \stdClass();
-		$this->Model      = new \stdClass();
+		// WPBakery shortcodes functionality
+		$this->shortcodesManager = new ShortcodesManager();
+		$this->shortcodesManager->init();
 		
-		// load dependency classes first
-		// View
-		$this->View = new View();
-		
-		// Autoload models
-		$this->_load_modules( 'Model', '/' );
-		
-		// Autoload controllers
-		$this->_load_modules( 'Controller', '/' );
-		
-		// Autoload widgets
+		// Load widgets
 		Utils::autoload_dir( $this->config['widgets_dir'], 1 );
 	}
 	
-	/**
-	 * Autoload core modules in a specific directory
-	 *
-	 * @param string
-	 * @param string
-	 * @param bool
-	 **/
-	private function _load_modules( $layer, $dir = '/' ) {
-		
-		$directory = get_template_directory() . '/app/' . $layer . $dir;
-		$handle    = opendir( $directory );
-		
-		while ( false !== ( $file = readdir( $handle ) ) ) {
-			
-			if ( is_file( $directory . $file ) ) {
-				// Figure out class name from file name
-				$class = str_replace( '.php', '', $file );
-				
-				// Avoid recursion
-				if ( $class !== get_class( $this ) ) {
-					$classPath            = "\\StarterKit\\{$layer}\\{$class}";
-					$this->$layer->$class = new $classPath();
-				}
-				
-			}
-		}
-		
+	
+	public function getConfig(): array {
+		return $this->config;
 	}
 	
-	private function __clone() {
-	}
 	
+	public function getShortcodesManager(): ShortcodesManager {
+		return $this->shortcodesManager;
+	}
 }

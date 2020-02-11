@@ -1,7 +1,5 @@
-// import bootstrap functions
-@import "~bootstrap/scss/functions";
-// rewrite bootstrap variables
-@import 'variables';
+@import "bootstrap_dependencies";
+
 @import "bootstrap_additional";
 // custom theme styles here
 @import 'partials/global';
