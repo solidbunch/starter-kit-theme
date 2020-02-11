@@ -5,14 +5,12 @@ namespace StarterKit\Helper;
 /**
  * Front Helper
  *
- * Helper functions for templates and front controllers
+ * Helper functions for templates and front handler
  *
  * @category   Wordpress
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Front {
 	
@@ -27,17 +25,16 @@ class Front {
 		
 		$classes_string = '';
 		
-		// If Unyson Framework plugin is active
-		if ( function_exists( '\fw_ext_sidebars_get_current_position' ) ) {
+		// If Carbon_Fields Framework is active
+		if ( Utils::is_carbon_fields() ) {
 			
-			$current_sidebar_position = \fw_ext_sidebars_get_current_position();
-			$current_sidebar_position = is_null( $current_sidebar_position ) ? 'right' : $current_sidebar_position;
+			$current_sidebar_position = Utils::get_post_meta( get_the_ID(), 'webpage_layout', 'full' );
 			
 			$content_size = 12 - $sidebar_size;
 			
-			if ( $current_sidebar_position == 'full' ) {
+			if ( $current_sidebar_position === 'full' ) {
 				$classes_string = 'col-lg-12';
-			} elseif ( $current_sidebar_position == 'left' ) {
+			} elseif ( $current_sidebar_position === 'left' ) {
 				$classes_string = 'order-2 col-lg-' . $content_size;
 			} else {
 				$classes_string = 'order-1 col-lg-' . $content_size;

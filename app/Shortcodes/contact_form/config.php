@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'                    => esc_html__( 'Contact Form', 'starter-kit' ),
 	'base'                    => 'contact_form',
-	'icon'                    => Starter_Kit()->config['shortcodes_icon_uri'] . 'email-send.svg',
+	'icon'                    => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'email-send.svg',
 	'category'                => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description'             => esc_html__( 'Add contact form', 'starter-kit' ),
 	'as_parent'               => [

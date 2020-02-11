@@ -4,8 +4,9 @@
  *
  */
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
 use StarterKit\Helper\Assets;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Social_Login' ) ) {
 	class StarterKitShortcode_Social_Login extends Shortcode {
@@ -25,7 +26,7 @@ if ( ! class_exists( 'StarterKitShortcode_Social_Login' ) ) {
 				'content' => $content,
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

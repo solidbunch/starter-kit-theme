@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'            => esc_html__( 'Form Submit', 'starter-kit' ),
 	'base'            => 'form_submit',
-	'icon'            => Starter_Kit()->config['shortcodes_icon_uri'] . 'enter.svg',
+	'icon'            => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'enter.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'starter-kit' ),
 	'as_child'        => [

@@ -2,6 +2,9 @@
 
 namespace StarterKit\Shortcodes\posts;
 
+use StarterKit\Helper\View;
+use StarterKit\Repository\PostRepository;
+
 add_action( 'wp_ajax_shortcode_load_posts', __NAMESPACE__ . '\\load_posts' );
 add_action( 'wp_ajax_nopriv_shortcode_load_posts', __NAMESPACE__ . '\\load_posts' );
 
@@ -20,12 +23,12 @@ function load_posts() {
 	$query_vars = \StarterKit\Helper\Utils::sanitize_array_text_params( $query_vars );
 	
 	// query for posts
-	$query = Starter_Kit()->Model->Post->get_posts( $query_vars );
+	$query = PostRepository::get_posts( $query_vars );
 	
 	// display posts
 	while ( $query->have_posts() ): $query->the_post();
 		
-		Starter_Kit()->View->load( '/view/loop_item', [
+		View::load( '/view/loop_item', [
 			'atts' => $shortcode_atts
 		], false, dirname( __FILE__ ) );
 	
