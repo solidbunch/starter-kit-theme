@@ -4,7 +4,8 @@
  *
  */
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Pricing_Table' ) ) {
 	class StarterKitShortcode_Pricing_Table extends Shortcode {
@@ -25,7 +26,9 @@ if ( ! class_exists( 'StarterKitShortcode_Pricing_Table' ) ) {
 				'button_border_color'     => '',
 				'border_radius'           => '',
 				'border_width'            => '',
-				'button_border_width'     => ''
+				'button_border_width'     => '',
+				'el_classes'              => '',
+				'el_id'                   => '',
 			
 			], $this->atts( $atts ), $this->shortcode );
 			
@@ -42,7 +45,7 @@ if ( ! class_exists( 'StarterKitShortcode_Pricing_Table' ) ) {
 				'columns' => $columns
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 		/**

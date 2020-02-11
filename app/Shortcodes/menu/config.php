@@ -1,5 +1,7 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 $menus_raw = get_terms( 'nav_menu', [ 'hide_empty' => true ] );
 $menus     = [];
 
@@ -10,7 +12,7 @@ foreach ( $menus_raw as $menu ) {
 return [
 	'name'        => esc_html__( 'Menu', 'starter-kit' ),
 	'base'        => 'menu',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'menu.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'menu.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Add a menu', 'starter-kit' ),
 	'params'      => [

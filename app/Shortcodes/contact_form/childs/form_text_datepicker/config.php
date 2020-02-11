@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'            => esc_html__( 'Form Text Field with Datepicker', 'starter-kit' ),
 	'base'            => 'form_text_datepicker',
-	'icon'            => Starter_Kit()->config['shortcodes_icon_uri'] . 'calendar.svg',
+	'icon'            => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'calendar.svg',
 	'content_element' => true,
 	'category'        => esc_html__( 'Form Fields', 'starter-kit' ),
 	'as_child'        => [

@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'Button', 'starter-kit' ),
 	'base'        => 'button',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'button.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'button.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Add a button', 'starter-kit' ),
 	'params'      => [
