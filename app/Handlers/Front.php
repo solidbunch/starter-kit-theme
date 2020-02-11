@@ -150,16 +150,22 @@ class Front {
 	 *
 	 * @return null|\PHPMailer
 	 */
-	public static function antispam_form( \PHPMailer $phpmailer ) {
-		
-		if ( self::antispam_enabled() !== 1 ) {
+	public function antispam_form( \PHPMailer $phpmailer ) {
+
+		if ( $this->antispam_enabled() !== 1 ) {
 			return null;
 		}
-		
-		if ( ! empty( $_POST ) && empty( $_POST['as_code'] ) ) {
-			$phpmailer->clearAllRecipients();
+
+		$date_utc = new \DateTime("now", new \DateTimeZone("UTC"));
+
+		$code = ($date_utc->format('H') +1) * $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
+
+		if ( ! empty( $_POST ) && ! empty($_POST['as_code']) && $_POST['as_code'] == $code )  {
+			return null;
 		}
-		
+
+		$phpmailer->clearAllRecipients();
+
 		return $phpmailer;
 	}
 	
