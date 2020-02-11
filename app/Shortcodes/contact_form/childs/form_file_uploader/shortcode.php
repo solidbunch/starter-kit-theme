@@ -4,7 +4,8 @@
  *
  **/
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Form_File_Uploader' ) ) {
 	class StarterKitShortcode_Form_File_Uploader extends Shortcode {
@@ -33,7 +34,7 @@ if ( ! class_exists( 'StarterKitShortcode_Form_File_Uploader' ) ) {
 				'attributes' => $attributes
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 		/**

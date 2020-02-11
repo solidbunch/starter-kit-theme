@@ -4,7 +4,8 @@
  *
  */
 
-use StarterKit\Model\Shortcode;
+use StarterKit\Base\Shortcode;
+use StarterKit\Helper\View;
 
 if ( ! class_exists( 'StarterKitShortcode_Alert' ) ) {
 	class StarterKitShortcode_Alert extends Shortcode {
@@ -29,7 +30,7 @@ if ( ! class_exists( 'StarterKitShortcode_Alert' ) ) {
 				'content' => $content,
 			] );
 			
-			return Starter_Kit()->View->load( '/view/view', $data, true, $this->shortcode_dir );
+			return View::load( '/view/view', $data, true, $this->shortcode_dir );
 		}
 		
 	}

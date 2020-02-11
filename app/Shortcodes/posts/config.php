@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'Posts', 'starter-kit' ),
 	'base'        => 'posts',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'post-it.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'post-it.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Any post type with pagination', 'starter-kit' ),
 	'params'      => [

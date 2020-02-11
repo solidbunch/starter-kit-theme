@@ -1,9 +1,11 @@
 <?php
 
+use StarterKit\Helper\Utils;
+
 return [
 	'name'        => esc_html__( 'Pricing Table', 'starter-kit' ),
 	'base'        => 'pricing_table',
-	'icon'        => Starter_Kit()->config['shortcodes_icon_uri'] . 'viral-marketing.svg',
+	'icon'        => Utils::getConfigSetting( 'shortcodes_icon_uri' ) . 'viral-marketing.svg',
 	'category'    => esc_html__( 'Theme Elements', 'starter-kit' ),
 	'description' => esc_html__( 'Param Group', 'starter-kit' ),
 	'params'      => [
@@ -195,24 +197,42 @@ return [
 		
 		[
 			'type'       => 'textfield',
-			'heading'    => esc_html__( 'Border Radius', 'starter-kit' ),
+			'heading'    => esc_html__( 'Border Radius, px', 'starter-kit' ),
 			'param_name' => 'border_radius',
 			'value'      => '',
 			'group'      => esc_html__( 'Borders', 'starter-kit' ),
 		],
 		[
 			'type'       => 'textfield',
-			'heading'    => esc_html__( 'Border Width', 'starter-kit' ),
+			'heading'    => esc_html__( 'Border Width, px', 'starter-kit' ),
 			'param_name' => 'border_width',
 			'value'      => '',
 			'group'      => esc_html__( 'Borders', 'starter-kit' ),
 		],
 		[
 			'type'       => 'textfield',
-			'heading'    => esc_html__( 'Button Border Width', 'starter-kit' ),
+			'heading'    => esc_html__( 'Button Border Width, px', 'starter-kit' ),
 			'param_name' => 'button_border_width',
 			'value'      => '',
 			'group'      => esc_html__( 'Borders', 'starter-kit' ),
-		]
-	]
+		],
+		
+		/**
+		 * Other
+		 */
+		[
+			'type'       => 'textfield',
+			'heading'    => esc_html__( 'CSS classes', 'starter-kit' ),
+			'param_name' => 'el_classes',
+			'value'      => '',
+			'group'      => esc_html__( 'Other', 'starter-kit' ),
+		],
+		[
+			'type'       => 'el_id',
+			'heading'    => esc_html__( 'CSS id', 'starter-kit' ),
+			'param_name' => 'el_id',
+			'value'      => '',
+			'group'      => esc_html__( 'Other', 'starter-kit' ),
+		],
+	],
 ];

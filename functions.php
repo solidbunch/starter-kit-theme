@@ -2,6 +2,10 @@
 // helper functions for developers
 require_once __DIR__ . '/app/dev.php';
 
+if ( PHP_VERSION_ID < 70200 ) {
+	wp_die( sprintf( __( 'Theme require at least PHP 7.2.0 ( You are using PHP %s ) ' ), PHP_VERSION ) );
+}
+
 if ( class_exists( 'WP_CLI' ) ) {
 	//define theme root directory for future commands
 	define( 'THEME_ROOT_DIRECTORY', __DIR__ );
@@ -73,10 +77,20 @@ if ( ! isset( $content_width ) ) {
 if ( ! function_exists( 'Starter_Kit' ) ) {
 	
 	function Starter_Kit() {
-		return \StarterKit\App::getInstance();
+		return \StarterKit\App::instance();
 	}
 	
 }
 
+$config = apply_filters( 'StarterKit/config', require __DIR__ . '/app/config/config.php' );
+
 // Run the theme
-Starter_Kit()->run();
+try {
+	Starter_Kit()->run( $config );
+} catch ( Exception $exception ) {
+	wlog( $exception );
+	header( 'HTTP/1.1 503 Service Temporarily Unavailable' );
+	header( 'Status: 503 Service Temporarily Unavailable' );
+	header( 'Retry-After: 300' );// 300 seconds.
+	die();
+}

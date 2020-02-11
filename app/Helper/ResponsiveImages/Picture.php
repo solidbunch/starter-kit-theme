@@ -2,6 +2,7 @@
 
 namespace StarterKit\Helper\ResponsiveImages;
 
+use StarterKit\Handlers\LazyLoad;
 use StarterKit\Helper\Media;
 use StarterKit\Helper\Utils;
 
@@ -19,6 +20,14 @@ class Picture {
 	 * @var string[]
 	 */
 	private $pictureAttrs = [];
+	/**
+	 * @var bool
+	 */
+	private $skipLazyLoad;
+	/**
+	 * @var string
+	 */
+	private $skipLazyLoadCssClass = 'skip-lazy';
 	
 	/**
 	 * Constructor
@@ -28,8 +37,16 @@ class Picture {
 	 * @param int|null $width
 	 * @param int|null $height
 	 * @param array $sources Source[]
+	 * @param bool $skipLazyLoad
 	 */
-	public function __construct( $imgSrc, $imgAlt = '', $width = null, $height = null, array $sources = [] ) {
+	public function __construct(
+		$imgSrc,
+		$imgAlt = '',
+		$width = null,
+		$height = null,
+		array $sources = [],
+		$skipLazyLoad = false
+	) {
 		$sources = array_filter( $sources, function ( $value ) {
 			return $value instanceof Source;
 		} );
@@ -38,6 +55,8 @@ class Picture {
 		
 		$this->imgAttrs['src'] = $imgSrc;
 		$this->imgAttrs['alt'] = $imgAlt;
+		
+		$this->skipLazyLoad = (bool) $skipLazyLoad || LazyLoad::skip();
 		
 		$is_svg = Utils::is_attachment_svg( null, $imgSrc );
 		if ( ! $is_svg ) {
@@ -58,11 +77,19 @@ class Picture {
 	 * @param int|null $width
 	 * @param int|null $height
 	 * @param array $sources Source[]
+	 * @param bool $skipLazyLoad
 	 *
 	 * @return self
 	 */
-	public static function make( $imgSrc, $imgAlt = '', $width = null, $height = null, array $sources = [] ) {
-		return new self( $imgSrc, $imgAlt, $width, $height, $sources );
+	public static function make(
+		$imgSrc,
+		$imgAlt = '',
+		$width = null,
+		$height = null,
+		array $sources = [],
+		$skipLazyLoad = false
+	) {
+		return new self( $imgSrc, $imgAlt, $width, $height, $sources, $skipLazyLoad );
 	}
 	
 	
@@ -107,8 +134,11 @@ class Picture {
 		
 		$img = $this->renderImg();
 		
+		// add css skip lazy-load class if needed
+		$pictureAttrs = $this->resolveSkipLazyLoadCssClass( $this->pictureAttrs );
+		
 		$tagContent = '';
-		foreach ( $this->pictureAttrs as $attrName => $attrValue ) {
+		foreach ( $pictureAttrs as $attrName => $attrValue ) {
 			$tagContent .= $attrValue !== null ? $attrName . '="' . esc_attr( $attrValue ) . '" ' : esc_attr( $attrName ) . '" ';
 		}
 		
@@ -122,7 +152,10 @@ class Picture {
 	 * @return string
 	 */
 	public function renderImg() {
-		$imgAttrs = apply_filters( 'StarterKit/media_img/attributes', $this->imgAttrs );
+		
+		// add css skip lazy-load class if needed
+		$imgAttrs = $this->resolveSkipLazyLoadCssClass( $this->imgAttrs );
+		$imgAttrs = apply_filters( 'StarterKit/media_img/attributes', $imgAttrs );
 		
 		$tagContent = '';
 		foreach ( $imgAttrs as $attrName => $attrValue ) {
@@ -144,6 +177,29 @@ class Picture {
 	
 	
 	/**
+	 * @param array $imgAttrs
+	 *
+	 * @return array
+	 */
+	private function resolveSkipLazyLoadCssClass( array $imgAttrs ) {
+		if ( $this->skipLazyLoad ) {
+			if ( empty( $imgAttrs['class'] ) ) {
+				$imgAttrs['class'] = $this->skipLazyLoadCssClass;
+			} else {
+				$classes = explode( ' ', $imgAttrs['class'] );
+				if ( ! \in_array( $this->skipLazyLoadCssClass, $classes, true ) ) {
+					$classes[]         = $this->skipLazyLoadCssClass;
+					$imgAttrs['class'] = implode( ' ', $classes );
+				}
+			}
+		}
+		
+		return $imgAttrs;
+	}
+	
+	
+	
+	/**
 	 * @param null $width
 	 * @param null $height
 	 */
@@ -155,7 +211,11 @@ class Picture {
 			$this->imgAttrs['height'] = (int) $height;
 		}
 		
-		if ( empty( $this->imgAttrs['width'] ) || empty( $this->imgAttrs['height'] ) ) {
+		if (
+			( empty( $this->imgAttrs['width'] ) || empty( $this->imgAttrs['height'] ) )
+			&&
+			! $this->skipLazyLoad
+		) {
 			$attachInfo = Media::getAttachmentInfoByPath( Media::getAttachmentPathByUrl( $this->imgAttrs['src'] ) );
 			
 			$this->imgAttrs['width']  = ! empty( $attachInfo[0] ) ? (int) $attachInfo[0] : null;
