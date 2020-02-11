@@ -57,10 +57,12 @@ class Assets {
 
 				$ver = self::add_version( $stylePath, $ver );
 
-			}
+				/** @var string|bool $src */
+				$src = self::is_full_url( $src );
 
-			/** @var string|bool $src */
-			$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
+			}
 
 		}
 
@@ -137,9 +139,11 @@ class Assets {
 	) {
 		if ( ! self::is_full_url( $src, false ) ) {
 			$scriptPath = get_stylesheet_directory() . '/' . $src;
-			$ver        = self::add_version( $scriptPath, $ver );
 			if ( file_exists( $scriptPath ) ) {
+				$ver = self::add_version( $scriptPath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
@@ -166,6 +170,8 @@ class Assets {
 			if ( file_exists( $stylePath ) ) {
 				$ver = self::add_version( $stylePath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_register_style( $handle, $src, $deps, $ver, $media );
@@ -211,6 +217,8 @@ class Assets {
 			if ( file_exists( $scriptPath ) ) {
 				$ver = self::add_version( $scriptPath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );
