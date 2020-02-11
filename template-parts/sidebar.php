@@ -57,7 +57,7 @@ if ( Utils::is_carbon_fields() ) {
 	
 	if ( is_active_sidebar( 'sidebar-right' ) ) {
 		?>
-		<aside id="sidebar" class="col-md-3">
+		<aside id="sidebar" class="col-lg-4">
 			<?php dynamic_sidebar( 'sidebar-right' ); ?>
 		</aside>
 		<?php
