@@ -19,13 +19,14 @@ $display_thumb = has_post_thumbnail() && filter_var( $data['atts']['display_thum
 				<?php if ( $data['atts']['thumbs_dimensions'] == 'crop' ): ?>
 					
 					<?php
-					media::the_img( [
-						'width'  => absint( $data['atts']['thumb_width'] ),
-						'height' => absint( $data['atts']['thumb_height'] ),
-					], [
-						'crop' => true,
-					] );
+					$image_src = Media::img_resize(
+						get_the_post_thumbnail_url( get_the_ID(), 'full' ),
+						$data['atts']['thumb_width'],
+						$data['atts']['thumb_height']
+					);
 					?>
+
+					<img src="<?php echo $image_src; ?>" alt="<?php the_title(); ?>">
 				
 				<?php else: ?>
 					

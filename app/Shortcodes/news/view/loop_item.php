@@ -19,8 +19,6 @@ $display_thumb = filter_var( $data['atts']['display_thumb'], FILTER_VALIDATE_BOO
 			
 			<?php if ( has_post_thumbnail() ) : ?>
 				<?php the_post_thumbnail( [ 100 ] ); ?>
-			<?php else : ?>
-				<?php media::the_img( [ 'src' => 'https://dummyimage.com/100x100/eee/aaa', 'data-width' => 100, 'data-height' => 100 ] ); ?>
 			<?php endif; ?>
 		
 		<?php endif; ?>
