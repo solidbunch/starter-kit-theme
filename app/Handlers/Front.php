@@ -150,7 +150,7 @@ class Front {
 	 *
 	 * @return null|\PHPMailer
 	 */
-	public static function antispam_form( \PHPMailer $phpmailer ) {
+	public static function antispam_form( $phpmailer ) {
 		
 		if ( self::antispam_enabled() !== 1 ) {
 			return null;
