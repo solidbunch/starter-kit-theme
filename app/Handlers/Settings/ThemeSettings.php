@@ -191,12 +191,7 @@ class ThemeSettings {
 				     ->set_option_value( '1' )->set_default_value( '' )
 				     ->set_help_text( __( 'In HTML5 it is not strictly necessary to close certain HTML tags. &lt;img /&gt;, &lt;input /&gt; etc.',
 					     'starter-kit' ) ),
-				
-				Field::make( 'checkbox', $prefix . 'scripts_styles_cleanup', __( 'Clean scripts & styles', 'starter-kit' ) )
-				     ->set_option_value( '1' )->set_default_value( '' )
-				     ->set_help_text( __( 'Remove unnecessary "type=", "id=", "media=" attributes',
-					     'starter-kit' ) ),
-				
+
 				Field::make( 'checkbox', $prefix . 'assets_versions', __( 'Remove Versions', 'starter-kit' ) )
 				     ->set_option_value( '1' )->set_default_value( '' )
 				     ->set_help_text( __( 'Resources with a "?" in the URL are not cached by some proxy caching servers.',
