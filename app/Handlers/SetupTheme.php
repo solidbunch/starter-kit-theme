@@ -25,11 +25,21 @@ class SetupTheme {
 	 * Add theme support
 	 **/
 	public static function add_theme_support() {
-		add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ] );
+		add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'script', 'style' ] );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'automatic-feed-links' );
+		//add_theme_support( 'automatic-feed-links' );
+/*		add_theme_support( 'starter-content', [
+			'options'     => '',
+			'theme_mods'  => '',
+			'widgets'     => '',
+			'nav_menus'   => '',
+			'attachments' => '',
+			'posts'       => '',
+		] );*/
+		//add_theme_support( 'align-wide' ); //Gutenberg images wide
+		//remove_theme_support( 'core-block-patterns' );
 	}
 	
 	/**
