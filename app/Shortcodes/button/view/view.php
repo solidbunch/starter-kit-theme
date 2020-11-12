@@ -23,21 +23,42 @@ if ( isset( $atts['button_size'] ) && $atts['button_size'] <> '' ) {
 	$css_class .= ' ' . $atts['button_size'];
 }
 
-
 ?>
+
 <?php if ( $atts['button_align'] <> '' ): ?>
-	<div class="align-<?php echo esc_attr( $atts['button_align'] ); ?>">
+
+<!-- shortcode-button -->
+<div class="shortcode-button shortcode-button__<?php echo esc_attr( $atts['button_align'] ); ?>">
+
 <?php endif; ?>
-	<a href="<?php echo esc_attr( $atts['link'] ); ?>" id="<?php echo esc_attr( $data['id'] ); ?>"
-	   class="btn <?php echo esc_attr( trim($css_class.' '.$atts['classes']) ); ?>">
 
-        <?php echo wp_kses_post( $atts['title'] ); ?>
+	<!-- shortcode-button-item -->
+	<a id="<?php echo esc_attr( $data['id'] ); ?>"
+	   href="<?php echo esc_attr( $atts['link'] ); ?>"
+	   class="shortcode-button-item btn <?php echo esc_attr( trim( $css_class . ' ' . $atts['classes'] ) ); ?>">
+		
+		<!-- shortcode-button-item-text -->
+		<span class="shortcode-button-item-text">
+			<?php echo wp_kses_post( $atts['title'] ); ?>
+		</span>
+		<!-- end of shortcode-button-item-text -->
+		
+		<?php if ( $atts['icon'] <> '' ): ?>
 
-        <?php if ( $atts['icon'] <> '' ): ?>
-            <i class="<?php echo esc_attr( $atts['icon'] ); ?>"></i>
-        <?php endif; ?>
+		<!-- shortcode-button-item-icon -->
+		<span class="shortcode-button-item-icon">
+			<i class="<?php echo esc_attr( $atts['icon'] ); ?>"></i>
+		</span>
+		<!-- end of shortcode-button-item-icon -->
 
+		<?php endif; ?>
+	
 	</a>
+	<!-- end of shortcode-button-item -->
+
 <?php if ( $atts['button_align'] <> '' ): ?>
-	</div>
+
+</div>
+<!-- end of shortcode-button -->
+
 <?php endif;

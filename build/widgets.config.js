@@ -18,7 +18,7 @@ let assetsObject = stylesArray.reduce((acc, item) => {
 //read all scripts.js from widgets
 const scriptsArray = glob.sync(pathTo + '**/assets/scripts.js');
 scriptsArray.reduce((acc, item) => {
-
+	
 	let name = item.replace(pathTo, '');
 	name = name.replace('/assets/scripts.js', '');
 	if (Array.isArray(assetsObject[name]) === true) {

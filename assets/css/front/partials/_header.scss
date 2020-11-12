@@ -1,38 +1,40 @@
-@import "../_variables";
-
 /*------------------------------------------------------------------
 [Header styles]
 -------------------------------------------------------------------*/
-
-.navbar {
-  padding: 0.5rem 0;
-}
-
-.dropdown-menu {
-  padding: 0;
-
-  li {
-    padding: 0;
-
-    a {
-      padding: 10px 25px;
-      border-radius: 3px;
-    }
-
-    &:active {
-      color: $white;
-    }
-
-    &:hover {
-      & > ul{
-        display: inline-block;
-        top: 75%;
-        left: 25%;
+#header {
+  .navbar {
+    .navbar-brand {
+      a {
+        font-size: 2.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        display: block;
       }
     }
   }
-
 }
-
-
-
+.admin-bar {
+  .header-menu {
+    &.fixed-top {
+      top:32px;
+    }
+  }
+}
+@media only screen and (max-width: 782px) {
+  .admin-bar {
+    .header-menu {
+      &.fixed-top {
+        top:46px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .admin-bar {
+    .header-menu {
+      &.fixed-top {
+        top:0;
+      }
+    }
+  }
+}

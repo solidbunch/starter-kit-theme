@@ -1,41 +1,62 @@
 <?php
-/**
- * The page template file
- */
+	/**
+	 * The page template file
+	 */
+	use StarterKit\Helper\Front;
+	use StarterKit\Helper\Utils;
 
-use StarterKit\Helper\Front;
-use StarterKit\Helper\Utils;
+	get_header();
+	the_post();
+?>
 
-get_header();
+	<!--
+		Start layout
+	-->
+	<?php do_action( 'StarterKit/layout_start'); ?>
 
-the_post(); ?>
-	
-	<div id="content" class="container pt-5">
+		<?php do_action( 'StarterKit/before_single_post'); ?>
 
-        <?php
-        $reversed = '';
-        if ( Utils::is_unyson() && function_exists( 'fw_ext_sidebars_get_current_position' ) ) {
+		<article <?php post_class(); ?>>
 
-            $current_position = fw_ext_sidebars_get_current_position();
-            $reversed = $current_position === 'left' ? 'reversed' : '';
-        }
+			<!--
+				Page title
+			-->
+			<?php
+				do_action( 'StarterKit/before_single_post_title');
+				do_action( 'StarterKit/single_post_title');
+				do_action( 'StarterKit/after_single_post_title');
+			?>
 
-        ?>
+			<!--
+				Page content
+			-->
+			<?php
+				do_action( 'StarterKit/before_single_post_content');
+				do_action( 'StarterKit/single_post_content');
+				do_action( 'StarterKit/after_single_post_content');
+			?>
 
-		<div class="row <?php echo $reversed; ?>">
+			<!--
+				Page comments
+			-->
+			<?php
+				do_action( 'StarterKit/before_single_post_comments');
+				do_action( 'StarterKit/single_post_comments');
+				do_action( 'StarterKit/after_single_post_comments');
+			?>
 
-            <article class="<?php echo Front::get_grid_class(4); ?>">
+		</article>
 
-                <h1><?php the_title(); ?></h1>
+		<?php do_action( 'StarterKit/after_single_post'); ?>
 
-                <?php the_content(); ?>
+		<!--
+			Sidebar
+		-->
+		<?php get_sidebar(); ?>
 
-            </article>
-
-            <?php get_sidebar(); ?>
-
-		</div>
-
-	</div>
+	<!--
+		End layout
+	-->
+	<?php do_action( 'StarterKit/layout_end'); ?>
 
 <?php get_footer();
