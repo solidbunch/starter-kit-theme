@@ -11,8 +11,6 @@ namespace StarterKit\Helper;
  * @package    Starter Kit Backend
  * @author     SolidBunch
  * @link       https://solidbunch.com
- * @version    Release: 1.0.0
- * @since      Class available since Release 1.0.0
  */
 class Assets {
 
@@ -28,7 +26,7 @@ class Assets {
 	public static function enqueue_style_dist(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
@@ -47,20 +45,44 @@ class Assets {
 	public static function enqueue_style(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
 		if ( ! self::is_full_url( $src, false ) ) {
+
 			$stylePath = get_stylesheet_directory() . '/' . $src;
+
 			if ( file_exists( $stylePath ) ) {
+
 				$ver = self::add_version( $stylePath, $ver );
+
 				/** @var string|bool $src */
 				$src = self::is_full_url( $src );
 
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
+
 		}
+
 		wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+
+	}
+	
+	/**
+	 * Add style to critical css
+	 *
+	 * @param $path
+	 * @param int $priority
+	 */
+	public static function add_critical_style( $path, $priority = 10 ) {
+		$path = is_file( $path ) ? $path : get_template_directory() . '/dist/css/' . $path;
+		if ( is_file( $path ) && $css = file_get_contents( $path ) ) {
+			add_filter( 'StarterKit/critical_css', function ( $critical_css ) use ( $css ) {
+				return $critical_css . $css;
+			}, $priority );
+		}
 	}
 
 	/**
@@ -111,15 +133,17 @@ class Assets {
 	public static function register_script(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
 		if ( ! self::is_full_url( $src, false ) ) {
 			$scriptPath = get_stylesheet_directory() . '/' . $src;
-			$ver        = self::add_version( $scriptPath, $ver );
 			if ( file_exists( $scriptPath ) ) {
+				$ver = self::add_version( $scriptPath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_register_script( $handle, $src, $deps, $ver, $in_footer );
@@ -137,7 +161,7 @@ class Assets {
 	public static function register_style(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$media = 'all'
 	) {
@@ -146,6 +170,8 @@ class Assets {
 			if ( file_exists( $stylePath ) ) {
 				$ver = self::add_version( $stylePath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_register_style( $handle, $src, $deps, $ver, $media );
@@ -163,7 +189,7 @@ class Assets {
 	public static function enqueue_script_dist(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
@@ -182,7 +208,7 @@ class Assets {
 	public static function enqueue_script(
 		$handle,
 		$src = '',
-		$deps = array(),
+		$deps = [],
 		$ver = false,
 		$in_footer = false
 	) {
@@ -191,6 +217,8 @@ class Assets {
 			if ( file_exists( $scriptPath ) ) {
 				$ver = self::add_version( $scriptPath, $ver );
 				$src = self::is_full_url( $src );
+			} else {
+				$src = self::is_full_url( '' ) . $src;
 			}
 		}
 		wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );

@@ -1,18 +1,13 @@
 <?php get_header(); ?>
-	
-	<section id="content" class="container">
-		<div class="row">
-			<article class="col-12">
-				
-				<h1><?php esc_html_e( 'Unfortunately, we can not find requested page.', 'starter-kit' ); ?></h1>
-				
-				<h4><?php esc_html_e( 'Try to find something else using a form below.', 'starter-kit' ); ?></h4>
-				
-				<?php get_search_form(); ?>
-			
-			</article>
-		
-		</div>
-	</section>
 
-<?php get_footer();
+	<?php do_action( 'StarterKit/layout_start'); ?>
+
+		<?php
+			do_action( 'StarterKit/before_page_404_content');
+			do_action( 'StarterKit/page_404_content');
+			do_action( 'StarterKit/after_page_404_content');
+		?>
+
+	<?php do_action( 'StarterKit/layout_end'); ?>
+
+<?php get_footer(); ?>

@@ -6,7 +6,7 @@ var config = {
 		prefix: 'StarterKit',		// Change theme prefix
 		singleton: 'Starter_Kit',	// Change theme main class
 		textdomain: 'starter-kit',	// Change textdomain
-		styles: 'starter-kit',		// Change CSS styles refix
+		styles: 'starter-kit',		// Change CSS styles prefix
 		author: 'SolidBunch',		// Change author
 		theme_uri: 'https://github.com/SolidBunch/Starter-Kit', 	// Change theme URI
 		author_uri: 'https://solidbunch.com',	// Change author URI

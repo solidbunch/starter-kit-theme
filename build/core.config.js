@@ -9,7 +9,7 @@ baseConfig.plugins.push(
 	new MiniCssExtractPlugin({
 		filename: './dist/css/[name].css',
 	}),
-	new CleanWebpackPlugin(path.resolve('dist') , {
+	new CleanWebpackPlugin(path.resolve('dist'), {
 		root: path.resolve()
 	}),
 );
@@ -20,6 +20,7 @@ module.exports = Object.assign(
 		entry: {
 			app: './assets/js/app.js',
 			front: './assets/css/front/front.scss',
+			critical: './assets/css/front/critical.scss',
 			libs: './assets/css/front/libs.scss',
 			admin: './assets/css/admin/admin.scss',
 		},

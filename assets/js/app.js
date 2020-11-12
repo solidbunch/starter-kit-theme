@@ -1,5 +1,8 @@
 import $ from 'jquery';
 import Theme from './front-components/theme'
+//startbootstrapmenu
+import HeaderMenu from './front-components/header-menu'
+//endbootstrapmenu
 
 require('popper.js');
 require('bootstrap'); // full bootstrap
@@ -7,4 +10,5 @@ require('bootstrap'); // full bootstrap
 
 $(document).ready(() => {
 	new Theme();
+	new HeaderMenu();
 });

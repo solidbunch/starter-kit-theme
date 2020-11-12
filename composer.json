@@ -14,7 +14,8 @@
         }
     ],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.2.0",
+        "htmlburger/carbon-fields": "^3.1.7",
         "google/apiclient": "^2.0",
         "abraham/twitteroauth": "^1.0",
         "facebook/graph-sdk": "^5.7"
