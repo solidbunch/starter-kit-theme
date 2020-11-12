@@ -3,7 +3,7 @@ return [
 	'name'            => esc_html__( 'Tab', 'starter-kit' ),
 	'base'            => 'tab',
 	'content_element' => true,
-	'as_child'        => [ 'only' => 'tabs'	],
+	'as_child'        => [ 'only' => 'tabs' ],
 	'params'          => [
 		[
 			'type'        => 'textfield',
@@ -19,15 +19,15 @@ return [
 			'value'       => '',
 			'description' => esc_html__( 'Enter your content.', 'starter-kit' )
 		],
-		array(
+		[
 			'type'       => 'iconpicker',
 			'heading'    => esc_html__( 'Icon', 'starter-kit' ),
 			'param_name' => 'icon',
-			'settings'   => array(
+			'settings'   => [
 				'emptyIcon' => true,
 				'type'      => 'fontawesome',
-			)
-		)
+			]
+		]
 	]
 ];
 

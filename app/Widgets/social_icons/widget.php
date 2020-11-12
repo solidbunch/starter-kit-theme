@@ -2,6 +2,8 @@
 
 namespace StarterKit\Widgets\social_icons;
 
+use StarterKit\Helper\View;
+
 class widget extends \WP_Widget {
 	
 	/**
@@ -27,7 +29,7 @@ class widget extends \WP_Widget {
 			$control_ops
 		);
 		
-		add_action( 'wp_enqueue_scripts', array( $this, 'add_styles' ) );
+		add_action( 'wp_enqueue_scripts', [ $this, 'add_styles' ] );
 		
 	}
 	
@@ -58,7 +60,7 @@ class widget extends \WP_Widget {
 	 **/
 	function form( $instance ) {
 		
-		Starter_Kit()->View->load(
+		View::load(
 			'/view/backend',
 			[
 				'widget'   => $this,
@@ -75,7 +77,7 @@ class widget extends \WP_Widget {
 	 **/
 	function widget( $args, $instance ) {
 		
-		Starter_Kit()->View->load(
+		View::load(
 			'/view/frontend',
 			[
 				'args'     => $args,

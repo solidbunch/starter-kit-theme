@@ -18,17 +18,17 @@ $big                = 9999999;
 $base               = $permalinks_enabled && ! is_search() ? $base = str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ) : $base = @add_query_arg( 'paged', '%#%' );
 ?>
 <nav class="pagination-nav pt-5" aria-label="Pagination">
-		<?php
-			echo paginate_links( array(
-				'format'    => $format,
-				'base'      => $base,
-				'current'   => max( 1, $paged ),
-				'total'     => $max_num_pages,
-				'prev_text' => '<i class="fa fa-angle-left"></i>',
-				'next_text' => '<i class="fa fa-angle-right"></i>',
-				//'before_page_number' => '<li class="page-item"><span class="page-link" href="#">',
-				//'after_page_number'  => '</span></li>',
-				'type' => 'list'
-			) );
-		?>
+	<?php
+	echo paginate_links( [
+		'format'    => $format,
+		'base'      => $base,
+		'current'   => max( 1, $paged ),
+		'total'     => $max_num_pages,
+		'prev_text' => '<i class="fa fa-angle-left"></i>',
+		'next_text' => '<i class="fa fa-angle-right"></i>',
+		//'before_page_number' => '<li class="page-item"><span class="page-link" href="#">',
+		//'after_page_number'  => '</span></li>',
+		'type'      => 'list'
+	] );
+	?>
 </nav>

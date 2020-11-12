@@ -3,25 +3,96 @@
 **/
 
 #menu-posts-video .wp-menu-image:before {
-  content: '\f126';
+	content: '\f126';
+	color: #39e4ff !important;
+}
+
+#menu-posts-news .wp-menu-image:before {
+	color: #39e4ff !important;
 }
 
 #menu-posts-team_members .wp-menu-image:before {
-  content: '\f110';
+	content: '\f110';
+	color: #39e4ff !important;
 }
 
 #menu-posts-portfolio .wp-menu-image:before {
-  content: '\f322';
+	content: '\f322';
+	color: #39e4ff !important;
 }
 
 #menu-posts-testimonials .wp-menu-image:before {
-  content: '\f130';
+	content: '\f130';
+	color: #39e4ff !important;
 }
 
 #menu-posts-composerlayout .wp-menu-image:before {
-  content: '\f134';
-} 
+	content: '\f134';
+	color: #39e4ff !important;
+}
 
 .fw-brz-dismiss {
-  display: none;
+	display: none;
 }
+
+// Carbon Fields
+.webpage_layout_container .cf-radio-image .cf-radio__list-item {
+	flex-basis: 25%;
+}
+
+.cf-container__tabs {
+	background-color: transparent !important;
+	border-bottom: 1px solid #afb3b7 !important;
+}
+
+.cf-container__tabs-item {
+	font-size: 14px !important;
+	font-weight: 500;
+	margin-bottom: 40px;
+	border-bottom-color: #AFB3B7 !important;
+	background-color: #f5f5f5!important;
+	color: #44444c;
+}
+
+.cf-container__tabs-item--current {
+	font-weight: 700;
+	font-size: 15px !important;
+	color: #ff5473;
+	border-left-color: #AFB3B7!important;
+	border-top-color: #AFB3B7!important;
+	border-right-color: #AFB3B7!important;
+	border-bottom-color: transparent!important;
+	background-color: #f1f1f1!important;
+}
+
+
+#carbon_fields_container_theme_settings {
+	background: transparent !important;
+	border: none !important;
+}
+
+.cf-container__fields {
+	background-color: transparent !important;
+}
+
+.cf-field {
+	background-color: #fff;
+	padding: 20px !important;
+	border: none!important;
+	outline: 1px solid #ccd0d4!important;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04) !important;
+	
+	&.cf-separator {
+		margin-top: 15px;
+		padding: 10px !important;
+		
+		.cf-field__body {
+			h3 {
+				margin: 0;
+				font-size: 1.2em;
+			}
+		}
+	}
+}
+
+// Carbon Fields END
