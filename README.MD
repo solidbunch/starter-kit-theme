@@ -1,35 +1,126 @@
-# Starter Kit Theme
+<!--suppress HtmlDeprecatedAttribute -->
+<p align="center">
 
-[![TotalDownloads](https://img.shields.io/github/downloads/SolidBunch/starter-kit/total.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/releases)
-[![Release](https://img.shields.io/github/release/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/releases)
-[![GitHub Issues](https://img.shields.io/github/issues/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/issues)
-[![License](https://img.shields.io/github/license/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/blob/master/LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/SolidBunch/starter-kit.svg?style=plastic)](https://github.com/SolidBunch/starter-kit/)
+  <img alt="Starter Kit Foundation" src="https://starter-kit.io/images/logo.png" height="100">
 
-**Requirements**
+</p>
+
+<p align="center">
+
+  <a href="LICENSE.md">
+    <img alt="GitHub" src="https://img.shields.io/github/license/solidbunch/starter-kit-theme">
+  </a>
+
+  <a href="https://github.com/solidbunch/starter-kit-theme/releases">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/solidbunch/starter-kit-theme?color=blueviolet">
+  </a>
+
+</p>
+
+<p align="center">
+<strong>Starter Kit Theme - is a WordPress starter theme for fast and easy launch projects with a modern structure, improved configuration.</strong>
+
+</p>
+
+## Requirements
+
+- [PHP](https://secure.php.net/manual/en/install.php) 7.2+
+- [WordPress](https://wordpress.org/) 5.4+
+- [Node.js](http://nodejs.org/) 10+ (optional) or [Yarn](https://yarnpkg.com/en/docs/install)
  
- 1. PHP7.2+
- 2. NodeJs (v10 +) (optional)
 	
-**StarterKit Generator**
+## StarterKit Generator
 
 You can include / exclude functional using online generator tool https://solidbunch.github.io/starter-kit-generator/
 
-# Setup
- 
- 1. clone repo
- 
- 2. run `npm i` or  `yarn`  command (setup node depencies)
- 
- 3. to replace names use command
-    - > `npm run replaceNames` - doing replacement by config object (edit first in gulpfile.js)
- 
- 3. to run webpack use next commands
-     - > `npm run prod`  or  `yarn prod` - build minified assets
-     - > `npm run dev` or `yarn dev`- build assets with source maps (for development) 
-     - > `npm run watch`  or `yarn watch`- start watcher 
-     - > `npm run browser-sync` or `yarn browser-sync` - to start watcher with broser sync
-    - To use browser sync make sure that you copied **`build/broswer-sync.config.js.sample`** to  `build/broswer-sync.config.js` - and configured your local domain
+## How to use
+
+### Installation
+
+1. Create a new theme directory:
+
+```bash
+mkdir you-theme-dir && cd you-theme-dir
+```
+
+2. Install Starter Kit Theme:
+
+```bash
+git clone --depth=1 git@github.com:solidbunch/starter-kit-theme.git . && rm -rf .git
+```
+
+3. Setup node dependencies
+
+```bash
+npm i
+```
+
+or
+
+```bash
+yarn
+```
+
+4. Edit theme config object in `gulpfile.js`. Change theme name, theme prefix, main class, etc.
+
+
+5. Run replace names command
+
+```bash
+npm run replaceNames
+```
+
+### Build commands
+
+- Build minified assets for production
+
+```bash
+npm run prod
+```
+
+or
+
+```bash
+yarn prod
+```
+
+- Build assets with source maps for development
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+yarn dev
+```
+
+- Start watcher for development
+
+```bash
+npm run watch
+```
+
+or
+
+```bash
+yarn watch
+```
+
+- Start watcher with browser sync for development 
+
+Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, edit it and configure your local domain
+
+```bash
+npm run browser-sync
+```
+
+or
+
+```bash
+npm run browser-sync
+```
 
 # Sturcture
  - app/ – main theme files
