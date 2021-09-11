@@ -1,7 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
 
-  <img alt="Starter Kit Foundation" src="https://starter-kit.io/images/logo.png" height="100">
+  <img alt="Starter Kit Theme" src="https://starter-kit.io/images/logo.png" height="100">
 
 </p>
 
@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-<strong>Starter Kit Theme - is a WordPress starter theme for fast and easy launch projects with a modern structure, improved configuration.</strong>
+<strong>This is a WordPress starter theme with a modern development stack for launching projects faster and easily.</strong>
 
 </p>
 
@@ -26,7 +26,7 @@
 
 - [PHP](https://secure.php.net/manual/en/install.php) 7.2+
 - [WordPress](https://wordpress.org/) 5.4+
-- [Node.js](http://nodejs.org/) 10+ (optional) or [Yarn](https://yarnpkg.com/en/docs/install)
+- [Node.js](http://nodejs.org/) 10+ (optional) or [Yarn](https://yarnpkg.com/en/docs/install) (optional)
  
 	
 ## StarterKit Generator
@@ -49,22 +49,16 @@ mkdir you-theme-dir && cd you-theme-dir
 git clone --depth=1 git@github.com:solidbunch/starter-kit-theme.git . && rm -rf .git
 ```
 
-3. Setup node dependencies
+3. Setup node dependencies:
 
 ```bash
 npm i
 ```
 
-or
-
-```bash
-yarn
-```
-
 4. Edit theme config object in `gulpfile.js`. Change theme name, theme prefix, main class, etc.
 
 
-5. Run replace names command
+5. Run replace names command:
 
 ```bash
 npm run replaceNames
@@ -72,57 +66,33 @@ npm run replaceNames
 
 ### Build commands
 
-- Build minified assets for production
+- Build minified assets for production:
 
 ```bash
 npm run prod
 ```
 
-or
-
-```bash
-yarn prod
-```
-
-- Build assets with source maps for development
+- Build assets with source maps for development:
 
 ```bash
 npm run dev
 ```
 
-or
-
-```bash
-yarn dev
-```
-
-- Start watcher for development
+- Start watcher for development:
 
 ```bash
 npm run watch
 ```
 
-or
-
-```bash
-yarn watch
-```
-
 - Start watcher with browser sync for development 
 
-Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, edit it and configure your local domain
+Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, edit it, and configure your local domain. After that run:
 
 ```bash
 npm run browser-sync
 ```
 
-or
-
-```bash
-npm run browser-sync
-```
-
-# Sturcture
+## Sturcture
  - app/ – main theme files
     - Base/
         - Hooks.php - base hooks functionality for the theme
