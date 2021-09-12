@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-<strong>This is a WordPress starter theme with a modern development stack for launching projects faster and easily.</strong>
+<strong>WordPress starter theme with a modern development stack for launching projects faster and easily.</strong>
 
 </p>
 
@@ -92,74 +92,111 @@ Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, ed
 npm run browser-sync
 ```
 
-## Sturcture
- - app/ – main theme files
-    - Base/
-        - Hooks.php - base hooks functionality for the theme
-        - Settings.php - theme settings framework initialization
-        - ShortcodesManager.php – registering shortcodes
-    - Handlers/
-        - Settings/ThemeSettings.php – theme settings creation
-        - PostTypes/* – registering custom post types
-        - PostMeta/*  – registering meta fields
-        - Backend.php – wp-admin functions
-        - Front.php – front-end functions
-        - HTTP2.php – HTTP2 support
-        - SetupTheme.php – Theme setup
-        - LazyLoad.php – lazy load for images
-        - Menu.php – menu registration hooks and methods
-        - OAuth.php – Oauth support
-        - Optimization.php – removes unnecessary tags
-        - VisualComposer.php – settings for Page Builder
-    - Helper/ – Helpers classes
-        - Front.php - front-end page helpers
-        - Media.php - media helpers
-        - Utils.php - other useful functions
-        - Assets.php - Helper to work with assets processed by webpack
-        - View.php - works with templates
-    - Repository/* - Repositories, help to receive data from DB
-    - Shortcodes/ – shortcodes library (works with/without WPBakery Page Builder)
-        - Alert - alert block (icon, styling)
-        - Button - button element (icon, link, layout, styling)
-        - Contact Form - form and form elements (checkbox, email, file uploader, text, datepicker and other)
-        - Google Map
-        - Heading - heading h1,h2,h3,h4,h5,h6 (font styling, layout)
-        - Menu - custom menu with desktop and mobile devices support
-        - News - news block
-        - Posts - posts block (pagination, styling)
-        - Pricing Table - pricing table (price settings, styling)
-        - Social Login - login using social networks Facebook, Twitter, Google 
-        - Tabs - tabs shortcode 
-        - Toggles - accordion shortcode
-    - templates/ – html or other templates
-    - Widgets/ – Theme widgets
- - assets/ – theme assets
-   - css/
-   - fonts/
-   - images/
-   - js/
-   - libs/
- - build - webpack configs 
- - template-parts/ – default WordPress templates (included in files below)
- - vendor-custom/ – third-party development
- - 404.php
- - comments.php
- - footer.php
- - functions.php
- - gulpfile.js
- - header.php
- - index.php
- - package.json
- - page.php
- - page-tpl-no-sidebar.php
- - postcss.config.css
- - screenshot.png
- - sidebar.php
- - single.php
- - style.css
- - webpack.config.js
+<details>
+  <summary>Yarn commands</summary>
+
+- `yarn` - setup node dependencies;
+- `yarn prod` - build minified assets;
+- `yarn dev`- build assets with source maps (for development);
+- `yarn watch`- start watcher;
+- `yarn browser-sync` - start watcher with browser sync;
+
+</details>
+
+## Structure
+
+```
+── app/                                # Main theme files
+   ├── Base/                           # Base theme functions 
+   │   ├──Hooks.php                    # Hooks functionality for the theme
+   │   ├──Settings.php                 # Theme settings framework initialization
+   │   ├──Shortcode.php                # Typical shortcode configuration 
+   │   └──ShortcodesManager.php        # Registering shortcodes
+   ├── config/                         # Base theme configuration
+   │   ├──_animations.php              # CSS animations declaration
+   │   ├──_social_icons.php            # Social CSS classes settings. Font Awesome default
+   │   ├──_social_profiles.php         # Register social profiles meta for website options 
+   │   └──config.php                   # Bootstrap config file
+   ├── Handlers/                       #
+   │   ├──PostMeta/                    # registering meta fields
+   │   ├──PostTypes/                   # registering custom post types
+   │   ├──Settings/                    #
+   │   │  └──ThemeSettings.php/        # Theme settings creation
+   │   ├──Backend.php                  # wp-admin functions
+   │   ├──Front.php                    # front-end functions
+   │   ├──HTTP2.php                    # HTTP2 support
+   │   ├──LayoutGlobal.php             #
+   │   ├──LayoutSingle.php             #
+   │   ├──LazyLoad.php                 # lazy load for images
+   │   ├──Menu.php                     # menu registration hooks and methods
+   │   ├──OAuth.php                    # Oauth support
+   │   ├──Optimization.php             # removes unnecessary tags
+   │   ├──Security.php                 #
+   │   ├──SetupTheme.php               # Theme setup
+   │   ├──VisualComposer.php           # settings for Page Builder
+   │   └──VisualComposerExtends.php    # Extend default functional of WPBakery Page Builder
+   ├── Helper/                         # Helpers classes
+   │   ├──ResponsiveImages/            #
+   │   ├──Assets.php                   # Helper to work with assets processed by webpack
+   │   ├──Front.php                    # front-end page helpers
+   │   ├──Media.php                    # media helpers
+   │   ├──Utils.php                    # other useful functions
+   │   └──View.php                     # works with templates
+   ├── Repository/                     # Repositories, help to receive data from DB
+   │   └──*.php                        #
+   ├── Shortcodes/                     # shortcodes library (works with/without WPBakery Page Builder)
+   │   ├── alert/                      # Alert block (icon, styling)
+   │   ├── button/                     # Button element (icon, link, layout, styling)
+   │   ├── contact_form/               # form and form elements (checkbox, email, file uploader, text, datepicker and other)
+   │   ├── google_map/                 #
+   │   ├── heading/                    # heading h1,h2,h3,h4,h5,h6 (font styling, layout)
+   │   ├── menu/                       # custom menu with desktop and mobile devices support
+   │   ├── news/                       # news block
+   │   ├── posts/                      # posts block (pagination, styling)
+   │   ├── pricing_table/              # pricing table (price settings, styling)
+   │   ├── social_login/               # login using social networks Facebook, Twitter, Google 
+   │   ├── tabs/                       # tabs shortcode 
+   │   └── toggles/                    # accordion shortcode
+   ├── templates/                      # html or other templates
+   ├── Widgets/                        # Theme widgets
+   ├── AbstractSingleton.php           #
+   ├── App.php                         #
+   └── dev.php                         #
+── assets/                             # Theme assets
+   ├── css/
+   ├── fonts/
+   ├── images/
+   ├── js/
+   └── libs/
+── build/                              # Webpack configs
+── dist/                               # 
+── template-parts/                     # Front templates
+── vendor-custom/                      # Third-party development
+   ├── aq_resizer/                     #
+   ├── carbon-fields/                  #
+   ├── oauth/                          #
+   ├── tgm/                            #
+   └── wp-bootstrap-navwalker/         #
+── 404.php
+── comments.php
+── footer.php
+── functions.php
+── gulpfile.js
+── header.php
+── index.php
+── package.json
+── page.php
+── page-tpl-no-sidebar.php
+── postcss.config.css
+── screenshot.png
+── sidebar.php
+── single.php
+── style.css
+── webpack.config.js
+
+```
  
-# Naming conventions
+## Naming conventions
 
 **shortcodes | widgets**
  
@@ -171,7 +208,7 @@ npm run browser-sync
  
  4. enqueue in shortcode  - `style.css` and `scritps.min.js`
  
-# Shortcodes
+## Shortcodes
  
  Shortcodes in the shortcodes folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
  
@@ -193,117 +230,3 @@ npm run browser-sync
  - config.php – shortcode config
  - shortcode.php – shortcode controller
  - vc.php - WPBakery Page Builder support
-
-# Helpers usage
-
-## Media
-
-Media helper contains functions for working with images. 
-
-### img_resize()
-
-The `img_resize()` function returns a link to the modified image according to the passed parameters. You can see examples in index.php.
-
-**Usage:**
-
-     <img src="<?php echo Media::img_resize( $url, $width, $height, $crop ); ?>" >
-
-
-- `$url` - URL to image file to resize
-- `$width` - width value, integer 
-- `$height` - height value, integer
-- `$crop` - bool flag crop or not
-    
-**Returns:**
-`string` resized image path
-
-**Example:**
-
-    use StarterKit\Helper\Media;
-    
-    <img src="<?php echo Media::img_resize( get_the_post_thumbnail_url( get_the_ID(), 'full' ), 380, 250, false ); ?>" >
-
-### Media::pictureForPost, Media::imgForPost
-
-Helpers `Media::pictureForPost` and `Media::imgForPost` return a Responsive &lt;picture&gt; or &lt;img&gt; tag by post id. The helpers is friendly with built-in theme Lazy Load functionality.
-
-**Usage:**
-
-    Media::pictureForPost( $postId, array $mediaQueriesWithWidth = [], $hasDoubleDevicePixelRatio = true )
-    
-    Media::imgForPost( $postId, array $mediaQueriesWithWidth = [], $hasDoubleDevicePixelRatio = true )
-    
-**Returns:**
-
-    string <picture> or <img> tag accordingly or empty string on error
-
-**Example:**
-
-```php
-echo Media::pictureForPost(
-		get_the_ID(),
-		[   // format: ['metaQuery' => widthInPx(int), ... , defaultWidthInPx(int) ]
-			'(min-width: 1200px)' => 730,
-			'(min-width: 768px)'  => 690,
-			545, // dafault width, if no media query aplied
-		],
-		false
-	);
-
-echo  Media::imgForPost(
-		get_the_ID(),
-		[
-			'(min-width: 1200px)' => 730,
-			'(min-width: 768px)'  => 690,
-			545
-		] );
-```
-
-**Also you can do any combination of parameters of Picture or Img responsive tags with StarterKit\Helper\ResponsiveImages\ classes :**
-
-```php
-if ( has_post_thumbnail( $postId ) ) {
-    try {
-        $originUrl = get_the_post_thumbnail_url( $postId, 'full' );
-        $resizer   = Resizer::makeByUrl( $originUrl );
-        $img =
-            Picture::make(
-                $originUrl, // original url for default img tag
-                'customAlt', // alt for default img tag
-                null, // width for img tag lazy load placeholder, by default as at $originUrl image 
-                null, // height for img tag lazy load placeholder, by default as at $originUrl image 
-                [     // sourses
-                    Source::make( [ // SrcsetItems
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 730 ), '1x' ),
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 730 * 2 ), '2x' ),
-                    ],
-                        [], // may add sizes
-                        '(min-width: 1200px)', // may add media
-                        'image/jpeg'  // may add image mime-type
-                    ),
-                    
-                    Source::make( [
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 690 ), '1x' ),
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 690 * 2 ), '2x' ),
-                    ],
-                        [],
-                        '(min-width: 768px)'
-                    ),
-                    
-                    Source::make( [
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 545 ), '1x' ),
-                        SrcsetItem::makeWithResize( $resizer->setWidth( 545 * 2 ), '2x' ),
-                    ] ),
-                ] )
-                   ->addPictureAttr( 'class', 'custom-picture-class' )
-                   ->addPictureAttr( 'data-some', 'custom-picture-attr' )
-                   ->addImgAttr( 'class', 'custom-img-class' )
-                   ->addImgAttr( 'data-some', 'custom-img-attr' )
-                   ->render();
-    } catch ( \Exception $ex ) {
-        error_log( "\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n" );
-        $img = '';
-    }
-    echo $img;
-} 
-```
