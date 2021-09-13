@@ -42,7 +42,7 @@ class ShortcodesManager {
 			
 			$parent = basename( $shortcode_dir );
 			
-			// Load childs shortcodes if exist
+			// Load child's shortcodes if exist
 			$childs = [];
 			if ( is_dir( $shortcode_dir . '/childs' ) ) {
 				$dirs_childs = glob( $shortcode_dir . '/childs/*', GLOB_ONLYDIR );
