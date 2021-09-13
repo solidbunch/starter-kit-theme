@@ -32,7 +32,7 @@
 
 ### Installation
 
-1. Create a new theme directory:
+1. Create a new theme directory in wp-content/themes:
 
 ```bash
 mkdir you-theme-dir && cd you-theme-dir
@@ -88,7 +88,7 @@ npm run browser-sync
 ```
 
 <details>
-  <summary>Yarn commands***</summary>
+  <summary>Yarn commands</summary>
 
 - `yarn` - setup node dependencies;
 - `yarn prod` - build minified assets;
@@ -174,6 +174,7 @@ npm run browser-sync
 ── build/                              # Webpack configs
 ── dist/                               # The compiled assets
 ── template-parts/                     # Front templates
+
 ── vendor-custom/                      # Third-party development
    ├── aq_resizer/                     # Resizes WordPress images on the fly
    ├── carbon-fields/                  # Developer-oriented library for WordPress custom fields for all types of WordPress content
