@@ -201,35 +201,28 @@ npm run browser-sync
 
 ```
  
-## Naming conventions
-
-**shortcodes | widgets**
- 
- 1. all styles and scripts files should be in `{Shortcodes|Widgets}/assets` - folder
- 
- 2. styles should be named  - `style.scss`
- 
- 3. JS files should be named - `scripts.js`
- 
- 4. enqueue in the shortcode  - `style.css` and `scritps.min.js`
- 
 ## Shortcodes
+
+### Overview
  
- Shortcodes in the shortcodes folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
+ Shortcodes in the `app/Shortcodes` folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
  
  Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder. 
  
- In the future, you can connect the plugin combining styles and scripts to optimize the number of requests (or connect scripts via defer).The folder structure can be any, you can add your files, but here are two files ajax.php and shortcode.php - loaded autoloader
+### Structure
 
-**File structure**
- 
- - assets/ – all assets (styles, scripts, fonts, etc)
-    - assets/style.scss - styles
-    - assets/scripts.js - scripts
-    - assets/images/ - images
- - childs/ – nested shortcodes, have the same structure as another shortcodes     
- - view/ – shortcode templates    
- - ajax.php – backend for ajax queries (optional)
- - config.php – shortcode config
- - shortcode.php – shortcode controller
- - vc.php - WPBakery Page Builder support
+The file structure can be any, you can add your files, but here are three files `config.php`, `ajax.php` and `shortcode.php` - loads by the autoloader.
+
+``` 
+── assets/              # All assets (styles, scripts, fonts, etc)
+   ├── style.scss
+   ├── scripts.js
+   └── images/
+── childs/              # Nested shortcodes, have the same structure    
+── view/                # Shortcode templates    
+── ajax.php             # Backend functions for ajax queries 
+── config.php           # Shortcode config (required file)
+── shortcode.php        # Shortcode controller (required file)
+── vc.php               # WPBakery Page Builder support
+
+```
