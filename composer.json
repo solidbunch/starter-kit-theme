@@ -1,27 +1,46 @@
 {
-    "name": "solidbunch/starter-kit",
-    "description": "Wordpress theme boilerplate",
-    "type": "project",
-    "license": "GPL-2.0",
+    "name": "solidbunch/starter-kit-theme",
+    "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
+    "type": "wordpress-theme",
+    "license": "MIT",
+    "homepage": "https://starter-kit.io",
     "authors": [
         {
             "name": "SolidBunch Team",
-            "email": "contact@solidbunch.com"
+            "email": "contact@solidbunch.com",
+            "homepage": "https://solidbunch.com"
         },
         {
-            "name": "Nikita Bolotov",
-            "email": "zyv4yk@gmail.com"
+            "name": "Yurii Pavlov"
+        },
+        {
+            "name": "Valerii Vasyliev"
+        },
+        {
+            "name": "Nikita Bolotov"
+        },
+        {
+            "name": "Viktor Sedzialo"
+        },
+        {
+            "name": "Dmytro Kudleichuk"
+        },
+        {
+            "name": "Nikolay Kravchenko"
         }
     ],
+    "keywords": [
+        "wordpress", "starter", "theme"
+    ],
+    "support": {
+        "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
+    },
     "require": {
-        "php": ">=7.2.0",
-        "htmlburger/carbon-fields": "^3.1.7",
-        "google/apiclient": "^2.0",
-        "abraham/twitteroauth": "^1.0",
-        "facebook/graph-sdk": "^5.7"
+        "php": ">=8.1",
+        "htmlburger/carbon-fields": "3.6.*"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {
