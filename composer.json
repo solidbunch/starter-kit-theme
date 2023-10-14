@@ -2,6 +2,7 @@
     "name": "solidbunch/starter-kit-theme",
     "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
     "type": "wordpress-theme",
+    "minimum-stability": "dev",
     "license": "MIT",
     "homepage": "https://starter-kit.io",
     "authors": [
