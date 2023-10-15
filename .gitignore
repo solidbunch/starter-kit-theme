@@ -1,24 +1,3 @@
-###############################################################################
-##                                                                            #
-##		GIT IGNORE FOR WORDPRESS SITES     		                              #
-##		------------------------------     									  #
-##		Adapted from: http://bigwilliam.com/gitignore-for-wordpress-projects/ #
-##                                                                            #
-###############################################################################
-
-###############################################################################
-##                                                                            #
-##       NOTE: TO STOP TRACKING A FILE AFTER IGNORING IT,                     #
-##             USE THESE GIT COMMANDS:                                        #
-##                                                                            #
-##             git rm --cached <file>                                         #
-##             git add . # or git add <file>                                  #
-##                                                                            #
-###############################################################################
-
-
-## OS and Utility Stuff ##
-
 #==================#
 #     OS Files     #
 #==================#
@@ -31,11 +10,22 @@
 ehthumbs.db
 *[Tt]humbs.db
 *.Trashes
-.idea
 
-#==================#
-#    Log files     #
-#==================#
+
+#===================#
+#     IDE Files     #
+#===================#
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+*.codekit3
+
+
+#===================================#
+#    Log, map files, secret .env    #
+#===================================#
 *.log
 error_log
 access_log
@@ -43,25 +33,22 @@ access_log
 *.css.map
 *.js.map
 *.LICENSE
+*.lck
 
 
 #===================================#
-#       Config. and npm Files       #
+#       Vendor and npm Files        #
 #===================================#
 node_modules
+vendor
+composer.lock
+package-lock.json
+mix-manifest.json
 
 
-#==========================================#
+#=============================================================#
 #       Compiled code. It should not always be tracked.       #
-#==========================================#
-#dist
-
-
-## Use these to get more specific ##
-
-#===========================#
-#      Specific Plugins     #
-#===========================#
-build/broswer-sync.config.js
-#Additionals
-/vendor/
+#=============================================================#
+assets/build/*
+blocks/**/build/*
+!blocks/**/build/*asset.php
