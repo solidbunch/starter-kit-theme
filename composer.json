@@ -1,54 +1,57 @@
 {
-    "name": "solidbunch/starter-kit-theme",
-    "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
-    "type": "wordpress-theme",
-    "minimum-stability": "dev",
-    "license": "MIT",
-    "homepage": "https://starter-kit.io",
-    "authors": [
-        {
-            "name": "SolidBunch Team",
-            "email": "contact@solidbunch.com",
-            "homepage": "https://solidbunch.com"
-        },
-        {
-            "name": "Yurii Pavlov"
-        },
-        {
-            "name": "Valerii Vasyliev"
-        },
-        {
-            "name": "Nikita Bolotov"
-        },
-        {
-            "name": "Viktor Sedzialo"
-        },
-        {
-            "name": "Dmytro Kudleichuk"
-        },
-        {
-            "name": "Nikolay Kravchenko"
-        }
-    ],
-    "keywords": [
-        "wordpress", "starter", "theme"
-    ],
-    "support": {
-        "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
+  "name": "solidbunch/starter-kit-theme",
+  "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
+  "type": "wordpress-theme",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "homepage": "https://starter-kit.io",
+  "authors": [
+    {
+      "name": "SolidBunch Team",
+      "email": "contact@solidbunch.com",
+      "homepage": "https://solidbunch.com"
     },
-    "require": {
-        "php": ">=8.1",
-        "htmlburger/carbon-fields": "3.6.*"
+    {
+      "name": "Yurii Pavlov"
     },
-    "require-dev": {
-        "roave/security-advisories": "dev-latest"
+    {
+      "name": "Valerii Vasyliev"
     },
-    "autoload": {
-        "psr-4": {
-            "StarterKit\\": "app/"
-        }
+    {
+      "name": "Nikita Bolotov"
     },
-    "config": {
-        "optimize-autoloader": true
+    {
+      "name": "Viktor Sedzialo"
+    },
+    {
+      "name": "Dmytro Kudleichuk"
+    },
+    {
+      "name": "Nikolay Kravchenko"
     }
+  ],
+  "keywords": [
+    "wordpress",
+    "starter",
+    "theme"
+  ],
+  "support": {
+    "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
+  },
+  "require": {
+    "php": ">=8.1",
+    "htmlburger/carbon-fields": "3.6.*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "StarterKit\\": "src/",
+      "StarterKitBlocks\\": "blocks/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
 }
