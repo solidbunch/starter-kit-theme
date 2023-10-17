@@ -20,6 +20,9 @@ if (PHP_VERSION_ID < 80100) {
     }
 } else {
     try {
+        // helper debug functions for developers
+        require_once __DIR__ . '/src/dev.php';
+        // psr-4 autoload
         require_once __DIR__ . '/vendor/autoload.php';
 
         $AppContainer = new AppContainer();
