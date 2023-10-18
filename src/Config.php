@@ -45,8 +45,6 @@ class Config
             'postTypePortfolioSlug'    => 'portfolio',
             'postTypeTeamMembersID'    => 'team_members',
             'postTypeTeamMembersSlug'  => 'team-members',
-            'postTypeTestimonialsID'   => 'testimonials',
-            'postTypeTestimonialsSlug' => 'testimonials',
             'postTypeServicesID'       => 'services',
         ];
     }

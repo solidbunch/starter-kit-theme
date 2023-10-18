@@ -28,6 +28,7 @@ class Services
                 'description'       => '',
                 'public'            => false,
                 'show_ui'           => true,
+                'show_in_rest'      => false, // Use Gutenberg editor
                 'show_in_menu'      => true,
                 'show_in_nav_menus' => true,
                 'capability_type'   => 'post',
