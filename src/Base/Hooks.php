@@ -49,5 +49,9 @@ class Hooks
         add_action('init', [Handlers\PostTypes\TeamMembers::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Services::class, 'registerPostType'], 5);
 
+        /************************************
+         *         Taxonomies admin
+         ************************************/
+        add_action('restrict_manage_posts', [Handlers\AdminColumns::class, 'addNewsCategoryFilter'], 10, 2);
     }
 }

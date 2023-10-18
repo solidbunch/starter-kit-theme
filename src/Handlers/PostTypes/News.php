@@ -31,7 +31,8 @@ class News
             'show_in_nav_menus' => true,
             'capability_type'   => 'post',
             'hierarchical'      => false,
-            'supports'          => ['title', 'editor', 'thumbnail', 'page-attributes'],
+            'supports'          => ['title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'],
+            'taxonomies'        => ['news-category'],
             'rewrite'           => ['slug' => Config::get('postTypeNewsSlug')],
             'has_archive'       => true,
             'query_var'         => false,
@@ -79,12 +80,13 @@ class News
     {
         register_taxonomy(
             Config::get('postTypeNewsTaxonomyID'), Config::get('postTypeNewsID'), [
-                'hierarchical'      => true,
-                'show_ui'           => true,
                 'public'            => true,
-                'query_var'         => true,
+                'show_ui'           => true,
                 'show_in_nav_menus' => true,
+                'show_in_rest'      => true,
+                'hierarchical'      => true,
                 'rewrite'           => true,
+                'query_var'         => true,
                 'show_admin_column' => true,
                 'capabilities'      => [
                     'manage_terms' => 'manage_categories',
@@ -116,12 +118,13 @@ class News
     {
         register_taxonomy(
             Config::get('postTypeNewsTagID'), Config::get('postTypeNewsID'), [
-                'hierarchical'      => true,
-                'show_ui'           => true,
                 'public'            => true,
-                'query_var'         => true,
+                'show_ui'           => true,
                 'show_in_nav_menus' => true,
+                'show_in_rest'      => true,
+                'hierarchical'      => true,
                 'rewrite'           => true,
+                'query_var'         => true,
                 'show_admin_column' => true,
                 'capabilities'      => [
                     'manage_terms' => 'manage_categories',
