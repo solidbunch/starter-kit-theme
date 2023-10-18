@@ -19,12 +19,13 @@ class Config
     private static function main(): array
     {
         return [
-            'settingsPrefix'   => 'skt_',
-            'restApiNamespace' => 'skt/v1',
-            'assetsUri'        => '/assets/',
-            'blocksDir'        => get_template_directory() . '/blocks/',
-            'blocksCategory'   => 'starter-kit',
-            'blocksViewDir'    => 'view/',
+            'settingsPrefix'      => 'skt_',
+            'restApiNamespace'    => 'skt/v1',
+            'assetsUri'           => '/assets/',
+            'blocksDir'           => get_template_directory() . '/blocks/',
+            'blocksCategorySlug'  => 'starter-kit',
+            'blocksCategoryTitle' => 'StarterKit Blocks',
+            'blocksViewDir'       => 'view/',
         ];
     }
 
@@ -36,10 +37,17 @@ class Config
     private static function postTypes(): array
     {
         return [
-            'postTypeID'               => 'post_type',
-            'postTypeSlug'             => 'post_types',
-            'postTypeTaxonomyID'       => 'post_type-category',
-            'postTypeTagID'            => 'post_type-tag',
+            'postTypeNewsID'           => 'news',
+            'postTypeNewsSlug'         => 'news',
+            'postTypeNewsTaxonomyID'   => 'news-category',
+            'postTypeNewsTagID'        => 'news-tag',
+            'postTypePortfolioID'      => 'portfolio',
+            'postTypePortfolioSlug'    => 'portfolio',
+            'postTypeTeamMembersID'    => 'team_members',
+            'postTypeTeamMembersSlug'  => 'team-members',
+            'postTypeTestimonialsID'   => 'testimonials',
+            'postTypeTestimonialsSlug' => 'testimonials',
+            'postTypeServicesID'       => 'services',
         ];
     }
 
@@ -65,7 +73,8 @@ class Config
     {
         return [
             'cleanWpHead'               => true,
-            'removeBlocksDefaultStyles' => true,
+            'removeDefaultBlocksStyles' => true,
+            'removeDefaultBlocks'       => true,
             'cleanBodyClass'            => true,
             'removeAssetsAttributes'    => true,
             'disableComments'           => true,
