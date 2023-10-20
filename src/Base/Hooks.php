@@ -53,5 +53,14 @@ class Hooks
          *         Taxonomies admin
          ************************************/
         add_action('restrict_manage_posts', [Handlers\AdminColumns::class, 'addNewsCategoryFilter'], 10, 2);
+
+        /************************************
+         *            Post Meta Fields
+         ************************************/
+        add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\News::class, 'make']);
+        add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
+        add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
+        add_filter('manage_posts_columns', [Handlers\AdminColumns::class, 'addImgColumn']);
+        add_filter('manage_posts_custom_column', [Handlers\AdminColumns::class, 'manageImgColumn'], 10, 2);
     }
 }
