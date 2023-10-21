@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 use StarterKit\AppContainer;
 
 /**
- * StarterKit Theme bootstrap file
+ * Theme bootstrap file
  *
  * @package    Starter Kit
  */
