@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use StarterKit\Config;
-use StarterKit\Repository\CountryRepository;
+use StarterKit\Repository\CarBrandsRepository;
 use StarterKit\Repository\ServicesRepository;
 
 /**
@@ -24,8 +24,7 @@ class News
         $services = ServicesRepository::getAllList(['posts_per_page' => 1000]);
         asort($services);
 
-        $countries = CountryRepository::getCountries();
-
+        $carBrands = CarBrandsRepository::getCarBrands();
 
         Container::make('post_meta', __('News Data fields', 'starter-kit'))
                  ->where('post_type', '=', Config::get('postTypeNewsID'))
@@ -71,11 +70,11 @@ class News
                           ->set_collapsed(true),
                      Field::make('multiselect', $metaPrefix . 'services', __('Services', 'starter-kit'))
                           ->set_options($services)
-                          ->set_help_text(__('Country', 'starter-kit'))
+                          ->set_help_text(__('Select one or few Services', 'starter-kit'))
                           ->set_width(30),
-                     Field::make('multiselect', $metaPrefix . 'countries', __('Countries', 'starter-kit'))
-                          ->set_options($countries)
-                          ->set_help_text(__('Country', 'starter-kit'))
+                     Field::make('multiselect', $metaPrefix . 'car_brands', __('Car Brands', 'starter-kit'))
+                          ->set_options($carBrands)
+                          ->set_help_text(__('Select one or few Car Brands', 'starter-kit'))
                           ->set_width(30),
 
                  ]);
