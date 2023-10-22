@@ -4,8 +4,8 @@ namespace StarterKit\Base;
 
 defined('ABSPATH') || exit;
 
-use StarterKitBlocks;
 use StarterKit\Handlers;
+use StarterKitBlocks;
 
 /**
  * Hooks functionality for the theme.
@@ -75,5 +75,14 @@ class Hooks
         // GTM
         add_action('wp_head', [Handlers\Front::class, 'addGTMHead']);
         add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
+
+        /************************************
+         *       Security and CleanUp
+         ************************************/
+        add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
+        add_action('init', [Handlers\Security\CleanUp::class, 'headCleanup'], 999);
+        add_action('init', [Handlers\Security\Optimization::class, 'init']);
+        add_action('init', [Handlers\Security\Comments::class, 'disableComments']);
+        add_action('init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace'], 2);
     }
 }
