@@ -3,8 +3,6 @@
  */
 const mix = require('laravel-mix');
 const glob = require('glob');
-const dotenv = require('dotenv');
-dotenv.config();
 
 /**
  * Setup options
@@ -29,8 +27,10 @@ console.log('APP_NAME', process.env.APP_NAME);
 const allAssets = glob.sync('assets/src/**/!(_)*.@(scss|js|jsx)')
   .concat(glob.sync('blocks/**/src/!(_)*.@(scss|js|jsx)'));
 
+/**
+ * Run Preprocessing
+ */
 allAssets.forEach(assetPath => {
-
   if (assetPath.endsWith('.scss')) {
     mix.sass(assetPath, assetPath.replace(/\/src\//, '/build/').replace(/\.(scss)$/, '.css'));
   } else if (assetPath.endsWith('.js') || assetPath.endsWith('.jsx')) {
@@ -38,8 +38,10 @@ allAssets.forEach(assetPath => {
   }
 });
 
+/**
+ * Stop here if production
+ */
 if (mix.inProduction()) {
-  // stop here if production
   console.log('Cannot run BrowserSync in production mode.');
   return;
 }

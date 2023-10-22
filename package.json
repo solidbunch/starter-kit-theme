@@ -6,25 +6,22 @@
     "npm": ">=9 <10"
   },
   "dependencies": {
+    "@wordpress/babel-preset-default": "7.28.0",
     "bootstrap": "5.3.2",
-    "font-awesome": "4.7.0"
+    "font-awesome": "4.7.0",
+    "glob": "10.0.*",
+    "laravel-mix": "6.0.49",
+    "sass": "1.69.4",
+    "sass-loader": "13.3.2"
   },
   "devDependencies": {
-    "@wordpress/babel-preset-default": "7.16.*",
-    "@wordpress/icons": "9.23.*",
-    "@babel/plugin-proposal-class-properties": "7.18.*",
-    "browser-sync": "^2.29.3",
-    "browser-sync-webpack-plugin": "^2.3.0",
-    "glob": "10.0.*",
-    "dotenv": "16.3.*",
-    "laravel-mix": "6.0.*",
-    "sass": "1.61.*",
-    "sass-loader": "12.6.*"
+    "browser-sync": "2.29.3",
+    "browser-sync-webpack-plugin": "2.3.0"
   },
   "scripts": {
     "replaceNames": "",
     "install-dev": "npm install && npm run dev",
-    "install-prod": "npm install && npm run prod",
+    "install-prod": "npm install --only=production && npm run prod",
     "dev": "npm run development",
     "development": "mix",
     "watch": "mix watch",
