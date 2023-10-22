@@ -83,8 +83,8 @@ mix.browserSync({
   port: 3000,
   open: false,
   files: [
-    '*.php',
-    '*.twig',
+    '**/*.php',
+    '**/*.twig',
     '**/src/**/*.@(scss|js|jsx)'
   ],
 });

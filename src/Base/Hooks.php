@@ -62,5 +62,18 @@ class Hooks
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
         add_filter('manage_posts_columns', [Handlers\AdminColumns::class, 'addImgColumn']);
         add_filter('manage_posts_custom_column', [Handlers\AdminColumns::class, 'manageImgColumn'], 10, 2);
+
+        /************************************
+         *            Front
+         ************************************/
+        add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
+        add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
+        add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
+        add_action('enqueue_block_editor_assets', [Handlers\Front::class, 'enqueueBlockEditorAssets']);
+        add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
+        add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
+        // GTM
+        add_action('wp_head', [Handlers\Front::class, 'addGTMHead']);
+        add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
     }
 }

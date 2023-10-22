@@ -1,40 +1,3 @@
-/**
- * Add custom icons for custom post types
-**/
-
-#menu-posts-video .wp-menu-image:before {
-	content: '\f126';
-	color: #39e4ff !important;
-}
-
-#menu-posts-news .wp-menu-image:before {
-	color: #39e4ff !important;
-}
-
-#menu-posts-team_members .wp-menu-image:before {
-	content: '\f110';
-	color: #39e4ff !important;
-}
-
-#menu-posts-portfolio .wp-menu-image:before {
-	content: '\f322';
-	color: #39e4ff !important;
-}
-
-#menu-posts-testimonials .wp-menu-image:before {
-	content: '\f130';
-	color: #39e4ff !important;
-}
-
-#menu-posts-composerlayout .wp-menu-image:before {
-	content: '\f134';
-	color: #39e4ff !important;
-}
-
-.fw-brz-dismiss {
-	display: none;
-}
-
 // Carbon Fields
 .webpage_layout_container .cf-radio-image .cf-radio__list-item {
 	flex-basis: 25%;
@@ -81,11 +44,11 @@
 	border: none!important;
 	outline: 1px solid #ccd0d4!important;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, .04) !important;
-	
+
 	&.cf-separator {
 		margin-top: 15px;
 		padding: 10px !important;
-		
+
 		.cf-field__body {
 			h3 {
 				margin: 0;
