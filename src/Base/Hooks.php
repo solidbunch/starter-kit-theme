@@ -83,6 +83,6 @@ class Hooks
         add_action('init', [Handlers\Security\CleanUp::class, 'headCleanup'], 999);
         add_action('init', [Handlers\Security\Optimization::class, 'init']);
         add_action('init', [Handlers\Security\Comments::class, 'disableComments']);
-        add_action('init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace'], 2);
+        add_action('rest_api_init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace']);
     }
 }
