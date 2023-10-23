@@ -23,6 +23,7 @@ class Config
             'restApiNamespace'    => 'skt/v1',
             'assetsUri'           => '/assets/',
             'blocksDir'           => get_template_directory() . '/blocks/',
+            'blocksIcons'         => '',
             'blocksCategorySlug'  => 'starter-kit',
             'blocksCategoryTitle' => 'StarterKit Blocks',
             'blocksViewDir'       => 'view/',
@@ -37,15 +38,15 @@ class Config
     private static function postTypes(): array
     {
         return [
-            'postTypeNewsID'           => 'news',
-            'postTypeNewsSlug'         => 'news',
-            'postTypeNewsTaxonomyID'   => 'news-category',
-            'postTypeNewsTagID'        => 'news-tag',
-            'postTypePortfolioID'      => 'portfolio',
-            'postTypePortfolioSlug'    => 'portfolio',
-            'postTypeTeamMembersID'    => 'team_members',
-            'postTypeTeamMembersSlug'  => 'team-members',
-            'postTypeServicesID'       => 'services',
+            'postTypeNewsID'          => 'news',
+            'postTypeNewsSlug'        => 'news',
+            'postTypeNewsTaxonomyID'  => 'news-category',
+            'postTypeNewsTagID'       => 'news-tag',
+            'postTypePortfolioID'     => 'portfolio',
+            'postTypePortfolioSlug'   => 'portfolio',
+            'postTypeTeamMembersID'   => 'team_members',
+            'postTypeTeamMembersSlug' => 'team-members',
+            'postTypeServicesID'      => 'services',
         ];
     }
 
