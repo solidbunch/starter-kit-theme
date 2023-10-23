@@ -72,9 +72,13 @@ class Hooks
         add_action('enqueue_block_editor_assets', [Handlers\Front::class, 'enqueueBlockEditorAssets']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
+        // Change excerpt dots
+        add_filter( 'excerpt_more', [ Handlers\Front::class, 'changeExcerptMore' ] );
         // GTM
         add_action('wp_head', [Handlers\Front::class, 'addGTMHead']);
         add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
+        // add Google Analytics code to head
+        add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
 
         /************************************
          *       Security and CleanUp

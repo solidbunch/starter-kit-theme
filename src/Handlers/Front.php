@@ -4,6 +4,8 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
+use Exception;
+use PHPMailer;
 use StarterKit\Config;
 use StarterKit\Helper\Utils;
 
@@ -153,5 +155,56 @@ class Front
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
         <?php
+    }
+
+    /**
+     * add Google Analytics code to head
+     *
+     * @return void
+     */
+    public static function addAnalyticsHead(): void
+    {
+        $analytics_code = Utils::getOption('analytics_code', '');
+
+        if (!empty($analytics_code)) {
+            View::load('/template-parts/analytics/analytics', ['analytics_code' => $analytics_code]);
+        }
+    }
+
+    /**
+     * Change excerpt More text
+     *
+     * @param $more
+     *
+     * @return string
+     */
+    public static function changeExcerptMore($more): string
+    {
+        return '…';
+    }
+
+    /**
+     * @param  PHPMailer  $phpmailer
+     *
+     * @return null|PHPMailer
+     * @throws Exception
+     */
+    public static function antispamForm(PHPMailer $phpmailer): null|PHPMailer
+    {
+        if (self::antispam_enabled() !== 1) {
+            return null;
+        }
+
+        $date_utc = new \DateTime("now", new \DateTimeZone("UTC"));
+
+        $code = ($date_utc->format('H') + 1) * $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
+
+        if (!empty($_POST) && !empty($_POST['as_code']) && $_POST['as_code'] == $code) {
+            return null;
+        }
+
+        $phpmailer->clearAllRecipients();
+
+        return $phpmailer;
     }
 }
