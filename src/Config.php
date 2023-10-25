@@ -73,7 +73,7 @@ class Config
     {
         return [
             'cleanWpHead'               => true,
-            'removeDefaultBlocksStyles' => true,
+            'removeDefaultBlocksStyles' => false,
             'removeDefaultBlocks'       => true,
             'cleanBodyClass'            => true,
             'removeAssetsAttributes'    => true,
