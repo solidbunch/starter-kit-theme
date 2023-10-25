@@ -1,0 +1,8 @@
+.wp-block-starter-kit-column {
+  outline: 1px dashed #949494;
+
+  // Column background on hover to make it visible
+  &:not(.is-selected):not(.has-child-selected):hover {
+    //background-color: rgba(255, 255, 255, 0.7);
+  }
+}

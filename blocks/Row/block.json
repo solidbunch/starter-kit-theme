@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "starter-kit/row",
+  "title": "Row",
+  "category": "starter-kit",
+  "icon": "columns",
+  "description": "Bootstrap parent block for columns",
+  "keywords": [
+    "Row",
+    "Container",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "string",
+      "default": "row"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/editor.css",
+  "style": ""
+}

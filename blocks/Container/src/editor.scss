@@ -1,0 +1,7 @@
+.wp-block-starter-kit-container {
+  // Container background on hover to make it visible
+  &:not(.is-selected):not(.has-child-selected):hover {
+    //background-color: rgba(220, 220, 220, 0.5);
+    outline: 1px dashed #6c757d;
+  }
+}

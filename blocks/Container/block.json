@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "starter-kit/container",
+  "title": "Container",
+  "category": "starter-kit",
+  "icon": "layout",
+  "description": "Bootstrap Centered Container",
+  "keywords": [
+    "Container",
+    "Centered",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "string",
+      "default": "container-xxl"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/editor.css",
+  "style": ""
+}
