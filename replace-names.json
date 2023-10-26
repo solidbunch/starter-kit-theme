@@ -1,0 +1,15 @@
+{
+  "theme": {
+    "name": "Starter Kit",
+    "namespace": "StarterKit",
+    "singleton": "Starter_Kit",
+    "hookPrefix": "starter_kit",
+    "textDomain": "starter-kit",
+    "styles": "starter-kit",
+    "settingsPrefix": "skt_",
+    "restApiNamespace": "skt/v1",
+    "author": "SolidBunch",
+    "themeUri": "https://github.com/solidbunch/starter-kit-theme",
+    "authorUri": "https://solidbunch.com"
+  }
+}
