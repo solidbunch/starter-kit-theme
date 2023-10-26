@@ -1,0 +1,12 @@
+.editor-styles-wrapper {
+  @import "utils/variables";
+  @import "utils/mixins";
+
+  @import "layout/fonts";
+
+  @import "layout/header";
+  @import "layout/footer";
+
+  font-family: 'Poppins', sans-serif;
+
+}
