@@ -1,0 +1,26 @@
+{
+  "apiVersion": 2,
+  "name": "starter-kit/news",
+  "title": "News",
+  "category": "starter-kit",
+  "icon": "excerpt-view",
+  "description": "Show News post type",
+  "keywords": [
+    "News",
+    "Post"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "category": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "viewScript": "file:build/view.js",
+  "editorStyle": "file:build/editor.css",
+  "style": "file:build/style.css"
+}

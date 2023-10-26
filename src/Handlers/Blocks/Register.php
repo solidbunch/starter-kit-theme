@@ -49,6 +49,10 @@ class Register
         foreach ($blocks as $blockPath) {
             $blockName = basename($blockPath);
 
+            if (str_starts_with($blockName, '_')) {
+                continue;
+            }
+
             $blockMetaPath = $blockPath . '/block.json';
 
             $blockClass = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';

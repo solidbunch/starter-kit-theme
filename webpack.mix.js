@@ -22,10 +22,16 @@ if (!mix.inProduction()) {
 console.log('APP_NAME', process.env.APP_NAME);
 
 /**
- * Read the folders and look for assets files
+ * Read the folders and look for assets files.
+ *
+ * Files with names start with '_' will be ignored
+ * For example, 'partials/_body.scss' just need to include to main file
+ *
+ * Block folders that names start with '_' will be ignored too.
+ * Example, '_StarterBlock' - should not be registered
  */
 const allAssets = glob.sync('assets/src/**/!(_)*.@(scss|js|jsx)')
-  .concat(glob.sync('blocks/**/src/!(_)*.@(scss|js|jsx)'));
+  .concat(glob.sync('blocks/!(_)**/src/!(_)*.@(scss|js|jsx)'));
 
 /**
  * Run Preprocessing

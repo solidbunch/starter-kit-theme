@@ -1,7 +1,7 @@
 /**
  * Block dependencies
  */
-import metadata from '../_block.json';
+import metadata from '../block.json';
 
 /**
  * Internal block libraries

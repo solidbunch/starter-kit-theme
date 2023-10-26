@@ -19,11 +19,11 @@ import FrontendModule from "./Handlers/FrontendModule";
    */
   function blockInit() {
 
-    const blankBlocks = document.getElementsByClassName('blank-block');
+    const starterBlocks = document.getElementsByClassName('starter-block');
 
-    if (blankBlocks.length > 0) {
-      for (let blankBlock of blankBlocks) {
-        new FrontendModule(blankBlock);
+    if (starterBlocks.length > 0) {
+      for (let starterBlock of starterBlocks) {
+        new FrontendModule(starterBlock);
       }
     }
   }

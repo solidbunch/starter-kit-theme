@@ -6,13 +6,13 @@ export default class FrontendModule {
   /**
    * Constructor
    *
-   * @param {Element} blankBlock
+   * @param {Element} starterBlock
    */
-  constructor(blankBlock) {
-    this.blankBlock = blankBlock;
-    this.someThingInner = blankBlock.querySelector(".some-class");
+  constructor(starterBlock) {
+    this.starterBlock = starterBlock;
+    this.someThingInner = starterBlock.querySelector(".some-class");
 
-    console.log('BlankBlock FrontendModule loaded');
+    console.log('StarterBlock FrontendModule loaded');
 
     this.doSomething(this.someThingInner)
 
@@ -22,8 +22,8 @@ export default class FrontendModule {
     const self = this;
 
     // Using 'self' to access the class instance inside the event listener
-    console.log(self.blankBlock);
-    console.log('BlankBlock FrontendModule Something happened');
+    console.log(self.starterBlock);
+    console.log('StarterBlock FrontendModule Something happened');
     // Do something
   }
 
