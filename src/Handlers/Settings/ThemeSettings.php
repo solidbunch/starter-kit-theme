@@ -43,7 +43,7 @@ class ThemeSettings
         );
 
         $container->set_page_parent('options-general.php'); // id of the "Appearance" admin section
-        $container->set_page_menu_title('Site Settings');
+        $container->set_page_menu_title('Theme Settings');
 
 
         /** General */
@@ -59,14 +59,48 @@ class ThemeSettings
             __('Analytics', 'starter-kit'), [
                 Field::make('separator', $prefix . 'sep_analytics_google', __('Google', 'starter-kit')),
 
-                Field::make('text', $prefix . 'tag_manager_code', __('Tag Manager Code', 'starter-kit'))->set_attribute('placeholder', 'GTM-XXXXXXX')->set_width(50),
+                Field::make('text', $prefix . 'tag_manager_code', __('Tag Manager Code', 'starter-kit'))
+                     ->set_attribute('placeholder', 'GTM-XXXXXXX')
+                     ->set_width(50),
 
-                Field::make('text', $prefix . 'analytics_code', __('Analytics Code', 'starter-kit'))->set_attribute('placeholder', 'UA-XXXXXXXXX-X')->set_help_text(
-                    __(
-                        'For a better speed performance, please insert the analytics code through the tag manager. Turn on google Analytics Scripts Local Load option',
-                        'starter-kit'
-                    )
-                )->set_width(50),
+                Field::make('text', $prefix . 'analytics_code', __('Analytics Code', 'starter-kit'))
+                     ->set_attribute('placeholder', 'UA-XXXXXXXXX-X')
+                     ->set_help_text(
+                         __(
+                             'For a better speed performance, please insert the analytics code through the tag manager. Turn on google Analytics Scripts Local Load option',
+                             'starter-kit'
+                         )
+                     )
+                     ->set_width(50),
+            ]
+        );
+
+        /** Security */
+        $container->add_tab(
+            __('Security', 'starter-kit'), [
+                Field::make('separator', $prefix . 'sep_security_antispam', __('Antispam', 'starter-kit')),
+
+                Field::make('checkbox', $prefix . 'forms_antispam', __('Antispam', 'starter-kit'))
+                     ->set_option_value('1')
+                     ->set_default_value('')
+                     ->set_help_text(__('Antispam for all Email Forms', 'starter-kit')),
+            ]
+        );
+
+        /** Security */
+        $container->add_tab(
+            __('Performance', 'starter-kit'), [
+                Field::make('separator', 'sep_image_sizes', __('Image sizes', 'starter-kit')),
+                // ToDo connect Media helper first
+                /*Field::make('set', $prefix . 'disable_img_sizes', __('Check image sizes to disable', 'starter-kit'))
+                     ->set_options(Media::getAllInitedImageSizesFormatted())
+                     ->set_default_value(
+                         array_filter(
+                             array_keys(Media::getAllInitedImageSizesFormatted()), function ($value) {
+                             return !in_array($value, ['thumbnail', 'medium'], true);
+                         }
+                         )
+                     ),*/
             ]
         );
     }
