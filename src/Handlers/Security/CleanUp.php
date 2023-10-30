@@ -125,7 +125,6 @@ class CleanUp
      */
     public static function cleanAndObAndClean(): void
     {
-        // Remove all 'generator' tags
         echo preg_replace('/<meta name(.*)=(.*)"generator"(.*)>/i', '', ob_get_clean());
     }
 

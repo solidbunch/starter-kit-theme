@@ -5,7 +5,7 @@ namespace StarterKitBlocks\News;
 defined('ABSPATH') || exit;
 
 use StarterKit\Config;
-use StarterKit\Handlers\Blocks\AbstractBlock;
+use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Repository\NewsRepository;
 use WP_Error;
 use WP_HTTP_Response;
@@ -17,7 +17,7 @@ use WP_REST_Response;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends AbstractBlock
+class BlockRenderer extends BlockAbstract
 {
     /**
      * Block server side render callback

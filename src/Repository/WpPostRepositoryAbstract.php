@@ -12,7 +12,7 @@ use WP_Post;
  *
  * @package    Starter Kit
  */
-abstract class AbstractWpPostRepository implements WpPostRepositoryInterface
+abstract class WpPostRepositoryAbstract implements WpPostRepositoryInterface
 {
 
     abstract public static function getPostTypeID(): string;

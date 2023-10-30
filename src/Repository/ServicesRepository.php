@@ -11,7 +11,7 @@ use StarterKit\Config;
  *
  * @package    Starter Kit
  */
-class ServicesRepository extends AbstractWpPostRepository
+class ServicesRepository extends WpPostRepositoryAbstract
 {
 
     public static function getPostTypeID(): string
