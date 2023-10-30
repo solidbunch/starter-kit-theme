@@ -9,15 +9,8 @@ defined('ABSPATH') || exit;
  *
  * @package    Starter Kit
  */
-class CarBrandsRepository extends AbstractWpPostRepository
+class CarBrandsRepository
 {
-
-    public static function getPostTypeID(): string
-    {
-        // Car brands is not post type
-        return '';
-    }
-
     /**
      * Get Car Brands array
      *
