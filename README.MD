@@ -1,9 +1,4 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<p align="center">
-
-  <img alt="Starter Kit Theme" src="https://starter-kit.io/images/logo.png" height="100">
-
-</p>
 
 <p align="center">
 
@@ -27,7 +22,7 @@
 - [PHP](https://secure.php.net/manual/en/install.php) 7.2+
 - [WordPress](https://wordpress.org/) 5.4+
 - [Node.js](http://nodejs.org/) 10+ (optional) or [Yarn](https://yarnpkg.com/en/docs/install) (optional)
- 
+
 ## How to use
 
 ### Installation
@@ -79,7 +74,7 @@ npm run dev
 npm run watch
 ```
 
-- Start watcher with browser sync for development 
+- Start watcher with browser sync for development
 
 Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, edit it, and configure your local domain. After that run:
 
@@ -111,7 +106,7 @@ npm run browser-sync
    ├── config/                         # Base theme configuration
    │   ├──_animations.php              # CSS animations declaration
    │   ├──_social_icons.php            # Social CSS classes settings. Font Awesome default
-   │   ├──_social_profiles.php         # Register social profiles meta for website options 
+   │   ├──_social_profiles.php         # Register social profiles meta for website options
    │   └──config.php                   # Bootstrap config file
    │
    ├── Handlers/                       # Theme hook handlers, main functionality
@@ -154,8 +149,8 @@ npm run browser-sync
    │   ├── news/                       # News block
    │   ├── posts/                      # Posts block (pagination, styling)
    │   ├── pricing_table/              # Pricing table (price settings, styling)
-   │   ├── social_login/               # Login using social networks Facebook, Twitter, Google 
-   │   ├── tabs/                       # Tabs shortcode 
+   │   ├── social_login/               # Login using social networks Facebook, Twitter, Google
+   │   ├── tabs/                       # Tabs shortcode
    │   └── toggles/                    # Accordion shortcode
    │
    ├── templates/                      # HTML or other templates
@@ -163,14 +158,14 @@ npm run browser-sync
    ├── AbstractSingleton.php           # Abstract Class for creating Singleton Classes
    ├── App.php                         # Application Singleton. Entrypoint
    └── dev.php                         # Some developers functions for debug, logging, etc
-   
+
 ── assets/                             # Theme assets
    ├── css/
    ├── fonts/
    ├── images/
    ├── js/
    └── libs/
-   
+
 ── build/                              # Webpack configs
 ── dist/                               # The compiled assets
 ── template-parts/                     # Front templates
@@ -181,7 +176,7 @@ npm run browser-sync
    ├── oauth/                          # Facebook, Google, Twitter libs for OAuth
    ├── tgm/                            # Required plugin installation
    └── wp-bootstrap-navwalker/         # Make awesome bootstrap menu
-   
+
 ── 404.php
 ── comments.php
 ── footer.php
@@ -200,27 +195,27 @@ npm run browser-sync
 ── webpack.config.js
 
 ```
- 
+
 ## Shortcodes
 
 ### Overview
- 
- Shortcodes in the `app/Shortcodes` folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
- 
- Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder. 
- 
+
+ Shortcodes in the `app/Shortcodes` folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available.
+
+ Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder.
+
 ### Structure
 
 The file structure can be any, you can add your files, but here are three files `config.php`, `ajax.php` and `shortcode.php` - loads by the autoloader.
 
-``` 
+```
 ── assets/              # All assets (styles, scripts, fonts, etc)
    ├── style.scss
    ├── scripts.js
    └── images/
-── childs/              # Nested shortcodes, have the same structure    
-── view/                # Shortcode templates    
-── ajax.php             # Backend functions for ajax queries 
+── childs/              # Nested shortcodes, have the same structure
+── view/                # Shortcode templates
+── ajax.php             # Backend functions for ajax queries
 ── config.php           # Shortcode config (required file)
 ── shortcode.php        # Shortcode controller (required file)
 ── vc.php               # WPBakery Page Builder support
