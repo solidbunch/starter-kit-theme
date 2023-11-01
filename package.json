@@ -20,6 +20,7 @@
   },
   "scripts": {
     "replaceNames": "",
+    "install-local": "npm run install-dev",
     "install-dev": "npm install && npm run development",
     "install-stage": "npm run install-prod",
     "install-prod": "npm ci --only=production && npm run production",
