@@ -67,7 +67,7 @@ class BlockRenderer extends BlockAbstract
         if (empty($requestData)) {
             status_header(404);
             nocache_headers();
-            get_404_template();
+            // ToDo return 404 template
             exit;
         }
         $params        = $requestData['params'];

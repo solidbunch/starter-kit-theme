@@ -41,6 +41,12 @@ access_log
 #===================================#
 node_modules
 vendor
+# If we are using custom dependency we should run composer update everywhere
+# to update to last changes without lock file
+#composer.lock
+# Same for npm, if we need to use last version of custom package, we shoul ignore lock
+#package-lock.json
+#mix-manifest.json
 
 
 #=============================================================#

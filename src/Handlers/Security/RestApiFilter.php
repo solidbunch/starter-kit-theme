@@ -38,7 +38,7 @@ class RestApiFilter
             if (!str_starts_with($requestUri, $allowedRestUri) || $requestUri === $allowedRestUri) {
                 status_header(404);
                 nocache_headers();
-                get_404_template();
+                // ToDo return 404 template
                 exit;
             }
         }
