@@ -38,8 +38,7 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "hot": "mix watch --hot",
     "prod": "npm run production",
-    "production": "mix --production",
-    "lint:css": "stylelint 'assets/src/**/*.scss'"
+    "production": "mix --production"
   },
   "browserslist": [
     "> 1%",

@@ -58,7 +58,7 @@ if (!mix.inProduction()) {
           configFile: '.stylelintrc.json',
           failOnError: false,
           files: [
-            //'assets/src/**/*.scss',
+            'assets/src/**/*.scss',
             'blocks/!(_)**/src/*.scss'
           ],
           cache: true,
