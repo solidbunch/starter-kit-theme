@@ -15,7 +15,7 @@ mix.disableNotifications();
 
 /**
  * Setup options for dev mode
- * In main config we can use 'overrides' for special files. For example:
+ * In main ESLint config we can use 'overrides' for special files. For example:
  *     'overrides': [
  *         {
  *             'env': {
@@ -38,6 +38,7 @@ mix.disableNotifications();
  */
 if (!mix.inProduction()) {
   const ESLintPlugin = require('eslint-webpack-plugin');
+  const StylelintPlugin = require('stylelint-webpack-plugin');
 
   mix
     .sourceMaps()
@@ -47,10 +48,21 @@ if (!mix.inProduction()) {
         new ESLintPlugin({
           fix: false,
           extensions: ['js', 'jsx'],
-          overrideConfigFile: 'eslintrc.json',
+          overrideConfigFile: '.eslintrc.json',
           failOnError: false,
-          cache: false
-        })
+          cache: true
+        }),
+        new StylelintPlugin({
+          fix: false,
+          extensions: ['scss'],
+          configFile: '.stylelintrc.json',
+          failOnError: false,
+          files: [
+            //'assets/src/**/*.scss',
+            'blocks/!(_)**/src/*.scss'
+          ],
+          cache: true,
+        }),
       ]
     });
 }
