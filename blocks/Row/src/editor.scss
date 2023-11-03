@@ -28,7 +28,9 @@
     &[data-col-#{$size}="0"] {
       @include make-grid-columns($current-size-index + 1);
     }
-  } @else {
+  }
+
+  @else {
     flex-grow: 1;
     flex-basis: 0;
   }

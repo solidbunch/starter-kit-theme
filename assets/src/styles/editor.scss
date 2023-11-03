@@ -2,11 +2,10 @@
   @import "utils/variables";
   @import "utils/mixins";
 
+  /* Layout */
   @import "layout/fonts";
-
   @import "layout/header";
   @import "layout/footer";
 
   font-family: 'Poppins', sans-serif;
-
 }

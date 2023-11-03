@@ -1,12 +1,12 @@
 @import "utils/variables";
 @import "utils/mixins";
 
+/* Bootstrap */
 @import "utils/bootstrap_utils";
 @import "bootstrap";
 
+/* Layout */
 @import "layout/fonts";
 @import "layout/typography";
 @import "layout/header";
 @import "layout/footer";
-
-
