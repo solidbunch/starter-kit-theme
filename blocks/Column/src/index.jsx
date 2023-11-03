@@ -9,9 +9,9 @@ import metadata from '../block.json';
 const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
-const {PanelBody, SelectControl, RadioControl, RangeControl} = wp.components;
+const {PanelBody, SelectControl, RangeControl} = wp.components;
 
-const sizeOptions = ['sm', 'md', 'lg', 'xl', 'xxl'];
+//const sizeOptions = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
 
 registerBlockType(
@@ -21,7 +21,7 @@ registerBlockType(
 
       const data = {
         'data-col-lg': attributes.size ?? 'default'
-      }
+      };
 
       if (attributes.size === 'custom') {
         data['data-col-lg'] = attributes.modification.lg ?? 6;
@@ -45,10 +45,10 @@ registerBlockType(
       });
 
       //const blockClassName = 'col-xs-' + attributes.modification.xs + ' col-lg-' + attributes.modification.lg;
-      const blockClassName = className;
+      //const blockClassName = className;
 
       return [
-        <InspectorControls>
+        <InspectorControls key="settings">
           <PanelBody title="Column settings">
             <SelectControl
               label="Size"

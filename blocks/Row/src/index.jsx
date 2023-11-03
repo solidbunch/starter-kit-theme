@@ -16,7 +16,7 @@ registerBlockType(
   metadata,
   {
     edit: props => {
-      const {attributes, clientId} = props;
+      const {clientId} = props;
 
       const blockProps = useBlockProps();
 
@@ -30,14 +30,14 @@ registerBlockType(
 
       return [
         <div {...blockProps} key="blockControls">
-            <InnerBlocks
-              allowedBlocks={allowedBlocks}
-              renderAppender={
-                hasChildBlocks
-                  ? undefined
-                  : () => <InnerBlocks.ButtonBlockAppender/>
-              }
-            />
+          <InnerBlocks
+            allowedBlocks={allowedBlocks}
+            renderAppender={
+              hasChildBlocks
+                ? undefined
+                : () => <InnerBlocks.ButtonBlockAppender/>
+            }
+          />
         </div>
       ];
     },

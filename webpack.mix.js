@@ -13,13 +13,47 @@ mix.options({
 });
 mix.disableNotifications();
 
+/**
+ * Setup options for dev mode
+ * In main config we can use 'overrides' for special files. For example:
+ *     'overrides': [
+ *         {
+ *             'env': {
+ *                 'node': true
+ *             },
+ *             'files': [
+ *                 'some-file.{js,jsx}'
+ *             ],
+ *             'parserOptions': {
+ *                 'sourceType': 'script'
+ *             },
+ *            'rules': {
+ *              'indent': [
+ *                'error',
+ *                4
+ *              ]
+ *            }
+ *         }
+ *     ]
+ */
 if (!mix.inProduction()) {
+  const ESLintPlugin = require('eslint-webpack-plugin');
+
   mix
     .sourceMaps()
-    .webpackConfig({devtool: 'inline-source-map'});
+    .webpackConfig({
+      devtool: 'inline-source-map',
+      plugins: [
+        new ESLintPlugin({
+          fix: false,
+          extensions: ['js', 'jsx'],
+          overrideConfigFile: 'eslintrc.json',
+          failOnError: false,
+          cache: false
+        })
+      ]
+    });
 }
-
-console.log('APP_NAME', process.env.APP_NAME);
 
 /**
  * Read the folders and look for assets files.
@@ -51,6 +85,8 @@ if (mix.inProduction()) {
   console.log('Cannot run BrowserSync in production mode.');
   return;
 }
+
+console.log('APP_NAME', process.env.APP_NAME);
 
 /**
  * BrowserSync
