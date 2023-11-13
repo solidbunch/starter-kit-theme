@@ -12,6 +12,7 @@ class GeneratorWizard
         = [
             'theme_name'      => 'Starter Kit Theme',
             'package'         => 'Starter Kit',
+            'theme_slug_'     => 'starter-kit-theme',
             'theme_slug'      => 'starter-kit',
             'theme_namespace' => 'StarterKit',
             'hooks_prefix'    => 'starter_kit',
@@ -81,6 +82,9 @@ class GeneratorWizard
 
         foreach (self::$replaceNames as $key => $value) {
             $formData[$key] = isset($_POST[$key]) ? sanitize_text_field($_POST[$key]) : '';
+            if ($key == 'theme_slug_') {
+                $formData[$key] = isset($_POST['theme_slug']) ? sanitize_text_field($_POST['theme_slug']) : '';
+            }
             if (empty($formData[$key])) {
                 echo "<strong>Error: " . $formData[$key] . " is empty</strong>";
 
@@ -95,10 +99,10 @@ class GeneratorWizard
 
     private static function searchAndReplaceInTheme($newThemeDirectory, $formData): void
     {
-        // Process the new theme directory
         $iterator = new RecursiveDirectoryIterator($newThemeDirectory);
         foreach (new RecursiveIteratorIterator($iterator) as $file) {
-            if ($file->isFile()) {
+            // Skip 'node_modules', 'vendor' directories, and image files
+            if ($file->isFile() && !self::isImageFile($file->getFilename())) {
                 $content = file_get_contents($file);
 
                 foreach ($formData as $key => $replace_with) {
@@ -108,10 +112,14 @@ class GeneratorWizard
                 }
 
                 file_put_contents($file, $content); // Write the new content back to the file
-
                 echo "<p>File " . $file->getPathname() . " done </p>";
             }
         }
+    }
+
+    private static function isImageFile($filename): bool
+    {
+        return preg_match('/\.(jpg|jpeg|png|gif|bmp|svg|webp)$/i', $filename);
     }
 
     private static function copyTheme($themeSlug): string
@@ -125,10 +133,25 @@ class GeneratorWizard
 
         $iterator = new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS);
         foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::SELF_FIRST) as $item) {
+            // Construct the relative path
+            $relativePath = str_replace($source, '', $item->getPathname());
+
+            if ($item->getFileName() == 'GeneratorWizard.php') {
+                continue;
+            }
+
+            // Skip 'node_modules', 'vendor', and '.git' directories
+            if (str_contains($relativePath, '/node_modules') || str_contains($relativePath, '/vendor') || str_contains($relativePath, '/.git')) {
+                continue;
+            }
+
+            // Construct the destination path
+            $destPath = $destination . $relativePath;
+
             if ($item->isDir()) {
-                mkdir($destination . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                mkdir($destPath, 0755, true);
             } else {
-                copy($item, $destination . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                copy($item->getPathname(), $destPath);
             }
         }
 
