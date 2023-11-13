@@ -88,5 +88,8 @@ class Hooks
         add_action('init', [Handlers\Security\Optimization::class, 'init']);
         add_action('init', [Handlers\Security\Comments::class, 'disableComments']);
         add_action('rest_api_init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace']);
+
+        // Generator wizard
+        add_action('admin_menu', [Handlers\Settings\GeneratorWizard::class, 'addMenuItem']);
     }
 }
