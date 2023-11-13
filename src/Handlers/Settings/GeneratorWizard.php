@@ -107,6 +107,10 @@ class GeneratorWizard
             if ($file->isFile() && !self::isImageFile($file->getFilename())) {
                 $content = file_get_contents($file);
 
+                if ($file->getFilename() == 'Hooks.php') {
+                    $content = str_ireplace("add_action('admin_menu', [Handlers\Settings\GeneratorWizard::class, 'addMenuItem']);", "", $content);
+                }
+
                 foreach ($formData as $key => $replace_with) {
                     if (!empty($replace_with) && str_contains($content, self::$replaceNames[$key])) {
                         $content = str_ireplace(self::$replaceNames[$key], $replace_with, $content);
