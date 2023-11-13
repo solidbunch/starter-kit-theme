@@ -4,7 +4,7 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 
 /**
  * Add custom columns to admin post list

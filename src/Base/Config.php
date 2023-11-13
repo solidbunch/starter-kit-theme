@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit;
+namespace StarterKit\Base;
 
 defined('ABSPATH') || exit;
 

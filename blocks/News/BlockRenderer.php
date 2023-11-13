@@ -4,7 +4,7 @@ namespace StarterKitBlocks\News;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Repository\NewsRepository;
 use WP_Error;

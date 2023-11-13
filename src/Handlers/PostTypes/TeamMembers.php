@@ -2,7 +2,7 @@
 
 namespace StarterKit\Handlers\PostTypes;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 
 defined('ABSPATH') || exit;
 

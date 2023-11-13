@@ -5,7 +5,7 @@ namespace StarterKit\Handlers\Blocks;
 defined('ABSPATH') || exit;
 
 use RuntimeException;
-use StarterKit\Config;
+use StarterKit\Base\Config;
 use StarterKit\Helper\Utils;
 use Throwable;
 

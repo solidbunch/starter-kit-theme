@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use PHPMailer;
-use StarterKit\Config;
+use StarterKit\Base\Config;
 use StarterKit\Helper\Utils;
 
 /**
