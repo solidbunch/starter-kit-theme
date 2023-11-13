@@ -38,7 +38,9 @@ class GeneratorWizard
                 return;
             }
             ?>
+            <p>Add data to generate new theme</p>
             <form method="post" action="">
+                <h2>Replace Names</h2>
                 <table class="form-table">
                     <tr>
                         <th scope="row"><label for="theme_name"><?php _e('Theme Name:', 'starter-kit'); ?></label></th>
