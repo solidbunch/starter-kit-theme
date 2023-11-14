@@ -11,7 +11,7 @@ const { useSelect } = wp.data;
 const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
 
-const bootstrapBreakpoints = ['sm', 'md', 'lg', 'xl', 'xxl'];
+const bootstrapBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
 
 registerBlockType(
@@ -46,7 +46,7 @@ registerBlockType(
       return [
         <InspectorControls key="settings">
           <PanelBody title="Column settings">
-            <SelectControl
+            {/* <SelectControl
               label="Size"
               value={attributes.size}
               options={[
@@ -62,26 +62,27 @@ registerBlockType(
                 value={attributes.modification.lg}
                 onChange={value => {
                   const modificationObject = { ...attributes.modification };
-                  modificationObject.lg = value;
+                  modificationObject.xs = value;
                   setAttributes({ ...attributes, modification: modificationObject });
                 }}
                 min={1}
                 max={numberOfGrid}
                 {...props}
               />
-            }
-            {bootstrapBreakpoints.map((breakpoint) => (
-              <div key={breakpoint} title={`Column settings - ${breakpoint}`}>
+            } */}
+            {bootstrapBreakpoints.map((btStep) => (
+              <div key={btStep} title={`Column settings - ${btStep}`}>
                 <CheckboxControl
-                  label={`Enable ${breakpoint}`}
-                  checked={attributes.breakpoints && attributes.breakpoints[breakpoint]}
+                  label={`Enable ${btStep}`}
+                  checked={attributes.breakpoints && attributes.breakpoints[btStep]}
                   onChange={(isChecked) => {
                     const breakpointsObject = { ...attributes.breakpoints };
-                    breakpointsObject[breakpoint] = isChecked;
+                    breakpointsObject[btStep] = isChecked;
                     setAttributes({ ...attributes, breakpoints: breakpointsObject });
+                    console.log();
                   }}
                 />
-                {attributes.breakpoints && attributes.breakpoints[breakpoint] && (
+                {attributes.breakpoints && attributes.breakpoints[btStep] && (
                   <>
                     <SelectControl
                       label="Size"
@@ -96,10 +97,10 @@ registerBlockType(
                     {attributes.size === 'custom' &&
                       <RangeControl
                         label="Width"
-                        value={attributes.modification[breakpoint]}
+                        value={attributes.modification[btStep]}
                         onChange={value => {
                           const modificationObject = { ...attributes.modification };
-                          modificationObject[breakpoint] = value;
+                          modificationObject[btStep] = value;
                           setAttributes({ ...attributes, modification: modificationObject });
                         }}
                         min={1}
@@ -138,7 +139,15 @@ registerBlockType(
       }
 
       if (attributes.size === 'custom') {
-        blockClassName = 'col-sm-' + attributes.modification.sm + ' col-lg-' + attributes.modification.lg;
+        // blockClassName = 'col-sm-' + attributes.modification.sm + ' col-lg-' + attributes.modification.lg;
+        blockClassName = `
+        col-${attributes.modification.xs}
+        col-sm-${attributes.modification.sm}
+        col-md-${attributes.modification.md}
+        col-lg-${attributes.modification.lg}
+        col-xl-${attributes.modification.xl}
+        col-xxl-${attributes.modification.xxl}`
+          ;
       }
 
       if (blockClassName) {

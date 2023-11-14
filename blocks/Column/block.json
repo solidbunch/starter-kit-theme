@@ -19,13 +19,18 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "size": {
-      "type": "string",
-      "default": "default"
-    },
-    "modification": {
+    "breakpoints": {
       "type": "object",
-      "default": {}
+      "default": {
+        "mod": {
+          "type": "object",
+          "default": {}
+        },
+        "size": {
+          "type": "number",
+          "default": 1
+        }
+      }
     }
   },
   "editorScript": "file:build/index.js",
