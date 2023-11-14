@@ -20,27 +20,30 @@ class CloneTheme
 
     /**
      * Search values
+     *
      * @var array
      */
     public static array $searchNames = [];
 
     /**
      * Values to be replaced with
+     *
      * @var array
      */
     public static array $replaceNames = [];
 
     /**
      * Run the command
+     *
      * @throws ExitException
      */
     public static function run(): void
     {
-        $searchNames['themeName']      = Config::get('themeName');
-        $searchNames['package']        = Config::get('package');
-        $searchNames['themeSlug']      = Config::get('themeSlug');
-        $searchNames['themeNamespace'] = Config::get('themeNamespace');
-        $searchNames['hooksPrefix']    = Config::get('hooksPrefix');
+        $searchNames['themeName']        = Config::get('themeName');
+        $searchNames['package']          = Config::get('package');
+        $searchNames['themeSlug']        = Config::get('themeSlug');
+        $searchNames['themeNamespace']   = Config::get('themeNamespace');
+        $searchNames['hooksPrefix']      = Config::get('hooksPrefix');
         $searchNames['settingsPrefix']   = Config::get('settingsPrefix');
         $searchNames['restApiNamespace'] = Config::get('restApiNamespace');
 
@@ -156,7 +159,10 @@ class CloneTheme
             $relativePath = str_replace($source, '', $item->getPathname());
 
             // Skip 'node_modules', 'vendor', and '.git' directories
-            if (str_contains($relativePath, '/node_modules') || str_contains($relativePath, '/vendor') || str_contains($relativePath, '/.git')) {
+            if ($relativePath == '/node_modules' || $relativePath == '/vendor' || $relativePath == '/.git') {
+                continue;
+            }
+            if (str_contains($relativePath, '/node_modules/') || str_contains($relativePath, '/vendor/') || str_contains($relativePath, '/.git/')) {
                 continue;
             }
 
