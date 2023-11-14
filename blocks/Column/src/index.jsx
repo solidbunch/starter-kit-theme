@@ -6,19 +6,18 @@ import metadata from '../block.json';
 /**
  * Internal block libraries
  */
-const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
-const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
-const {PanelBody, SelectControl, RangeControl} = wp.components;
+const { registerBlockType } = wp.blocks;
+const { useSelect } = wp.data;
+const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
+const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
 
-//const sizeOptions = ['sm', 'md', 'lg', 'xl', 'xxl'];
+const bootstrapBreakpoints = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
 
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-
       const data = {
         'data-col-lg': attributes.size ?? 'default'
       };
@@ -31,21 +30,18 @@ registerBlockType(
     },
 
     edit: props => {
-      const {attributes, setAttributes, clientId, className} = props;
+      const { attributes, setAttributes, clientId, className } = props;
       const blockProps = useBlockProps({
-        className: [className]
+        className: [className],
       });
 
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
+      const { hasChildBlocks } = useSelect((select) => {
+        const { getBlockOrder } = select('core/block-editor');
 
         return {
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
-
-      //const blockClassName = 'col-xs-' + attributes.modification.xs + ' col-lg-' + attributes.modification.lg;
-      //const blockClassName = className;
 
       return [
         <InspectorControls key="settings">
@@ -54,34 +50,77 @@ registerBlockType(
               label="Size"
               value={attributes.size}
               options={[
-                {label: 'default', value: 'default'},
-                {label: 'auto', value: 'auto'},
-                {label: 'custom', value: 'custom'},
+                { label: 'default', value: 'default' },
+                { label: 'auto', value: 'auto' },
+                { label: 'custom', value: 'custom' },
               ]}
-              onChange={(size) => setAttributes({size})}
+              onChange={(size) => setAttributes({ size })}
             />
             {attributes.size === 'custom' &&
               <RangeControl
                 label="Width"
                 value={attributes.modification.lg}
                 onChange={value => {
-                  const modificationObject = {...attributes.modification};
+                  const modificationObject = { ...attributes.modification };
                   modificationObject.lg = value;
-                  setAttributes({...attributes, modification: modificationObject});
+                  setAttributes({ ...attributes, modification: modificationObject });
                 }}
                 min={1}
                 max={numberOfGrid}
                 {...props}
               />
             }
+            {bootstrapBreakpoints.map((breakpoint) => (
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`}>
+                <CheckboxControl
+                  label={`Enable ${breakpoint}`}
+                  checked={attributes.breakpoints && attributes.breakpoints[breakpoint]}
+                  onChange={(isChecked) => {
+                    const breakpointsObject = { ...attributes.breakpoints };
+                    breakpointsObject[breakpoint] = isChecked;
+                    setAttributes({ ...attributes, breakpoints: breakpointsObject });
+                  }}
+                />
+                {attributes.breakpoints && attributes.breakpoints[breakpoint] && (
+                  <>
+                    <SelectControl
+                      label="Size"
+                      value={attributes.size}
+                      options={[
+                        { label: 'default', value: 'default' },
+                        { label: 'auto', value: 'auto' },
+                        { label: 'custom', value: 'custom' },
+                      ]}
+                      onChange={(size) => setAttributes({ size })}
+                    />
+                    {attributes.size === 'custom' &&
+                      <RangeControl
+                        label="Width"
+                        value={attributes.modification[breakpoint]}
+                        onChange={value => {
+                          const modificationObject = { ...attributes.modification };
+                          modificationObject[breakpoint] = value;
+                          setAttributes({ ...attributes, modification: modificationObject });
+                        }}
+                        min={1}
+                        max={numberOfGrid}
+                        {...props}
+                      />
+                    }
+                  </>
+                )}
+              </div>
+            ))}
           </PanelBody>
+
+
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
           <InnerBlocks
             renderAppender={
               hasChildBlocks
                 ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender/>
+                : () => <InnerBlocks.ButtonBlockAppender />
             }
           />
         </div>
@@ -89,7 +128,7 @@ registerBlockType(
     },
 
     save: props => {
-      const {attributes} = props;
+      const { attributes } = props;
 
       let blockClassName = 'col';
       const combinedClass = [];
@@ -113,8 +152,9 @@ registerBlockType(
       const classNameString = combinedClass.join(" ");
       return (
         <div className={classNameString}>
-          <InnerBlocks.Content/>
+          <InnerBlocks.Content />
         </div>
       );
     },
-  });
+  }
+);

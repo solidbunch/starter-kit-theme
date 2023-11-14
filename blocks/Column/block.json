@@ -3,7 +3,9 @@
   "name": "starter-kit/column",
   "title": "Column",
   "category": "starter-kit",
-  "parent": ["starter-kit/row"],
+  "parent": [
+    "starter-kit/row"
+  ],
   "icon": "info",
   "description": "Bootstrap column",
   "keywords": [
@@ -23,13 +25,10 @@
     },
     "modification": {
       "type": "object",
-      "default": {
-        "sm": 12,
-        "lg": 6
-      }
+      "default": {}
     }
   },
   "editorScript": "file:build/index.js",
   "editorStyle": "file:build/editor.css",
-  "style": ""
+  "style": "file:build/style.css"
 }
