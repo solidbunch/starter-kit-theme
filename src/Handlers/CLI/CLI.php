@@ -8,6 +8,11 @@ use StarterKit\Helper\Utils;
 use Throwable;
 use WP_CLI;
 
+/**
+ * Container for custom WP-CLI commands
+ *
+ * @package    Starter Kit
+ */
 class CLI
 {
 
