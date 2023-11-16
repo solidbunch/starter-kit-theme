@@ -11,7 +11,7 @@ const { useSelect } = wp.data;
 const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
 
-const bootstrapBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
+// const bootstrapBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
 
 registerBlockType(
@@ -46,72 +46,86 @@ registerBlockType(
       return [
         <InspectorControls key="settings">
           <PanelBody title="Column settings">
-            {/* <SelectControl
-              label="Size"
-              value={attributes.size}
-              options={[
-                { label: 'default', value: 'default' },
-                { label: 'auto', value: 'auto' },
-                { label: 'custom', value: 'custom' },
-              ]}
-              onChange={(size) => setAttributes({ size })}
-            />
-            {attributes.size === 'custom' &&
-              <RangeControl
-                label="Width"
-                value={attributes.modification.lg}
-                onChange={value => {
-                  const modificationObject = { ...attributes.modification };
-                  modificationObject.xs = value;
-                  setAttributes({ ...attributes, modification: modificationObject });
-                }}
-                min={1}
-                max={numberOfGrid}
-                {...props}
-              />
-            } */}
-            {bootstrapBreakpoints.map((btStep) => (
-              <div key={btStep} title={`Column settings - ${btStep}`}>
+
+
+            {Object.keys(attributes.size).map((breakpoint) => (
+
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`}>
+
                 <CheckboxControl
-                  label={`Enable ${btStep}`}
-                  checked={attributes.breakpoints && attributes.breakpoints[btStep]}
+                  label={`Enable ${breakpoint}`}
+                  // checked={attributes.size && attributes.size[breakpoint]}
+                  checked={
+                    attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
+                  }
+
                   onChange={(isChecked) => {
-                    const breakpointsObject = { ...attributes.breakpoints };
-                    breakpointsObject[btStep] = isChecked;
-                    setAttributes({ ...attributes, breakpoints: breakpointsObject });
-                    console.log();
+                    const sizeObject = { ...attributes.size };
+                    // sizeObject[breakpoint] = isChecked;
+                    if (isChecked) {
+                      sizeObject[breakpoint].mod = "default";
+                    } else {
+                      sizeObject[breakpoint].mod = "";
+                    }
+
+                    setAttributes({ ...attributes, size: sizeObject });
+                    // console.log();
                   }}
                 />
-                {attributes.breakpoints && attributes.breakpoints[btStep] && (
+                {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
                   <>
                     <SelectControl
                       label="Size"
-                      value={attributes.size}
+                      value={attributes.size[breakpoint].mod}
                       options={[
                         { label: 'default', value: 'default' },
                         { label: 'auto', value: 'auto' },
-                        { label: 'custom', value: 'custom' },
+                        { label: 'custom', value: "custom" },
                       ]}
-                      onChange={(size) => setAttributes({ size })}
+                      onChange={(value) => {
+                        const sizeObject = { ...attributes.size };
+
+
+                        sizeObject[breakpoint].mod = value;
+                        setAttributes({ ...attributes, size: sizeObject });
+                        // console.log(Number(attributes.size[breakpoint]));
+                      }}
                     />
-                    {attributes.size === 'custom' &&
+                    {attributes.size[breakpoint].mod === "custom" &&
                       <RangeControl
+
                         label="Width"
-                        value={attributes.modification[btStep]}
+                        value={
+                          (() => {
+                            if (attributes.size[breakpoint]?.valueRange !== undefined) {
+                              return attributes.size[breakpoint].valueRange;
+                            } else {
+                              return attributes.size[breakpoint].valueRange = 6;
+                            }
+                          })()
+
+                        }
+
                         onChange={value => {
-                          const modificationObject = { ...attributes.modification };
-                          modificationObject[btStep] = value;
-                          setAttributes({ ...attributes, modification: modificationObject });
+
+
+                          const sizeObject = { ...attributes.size };
+                          sizeObject[breakpoint].valueRange = value;
+                          // console.log(sizeObject[breakpoint]);
+                          // console.log(attributes.size);
+                          setAttributes({ ...attributes, size: sizeObject });
                         }}
                         min={1}
                         max={numberOfGrid}
                         {...props}
                       />
+
                     }
                   </>
                 )}
               </div>
             ))}
+
           </PanelBody>
 
 
@@ -127,31 +141,52 @@ registerBlockType(
         </div>
       ];
     },
-
+    // {console.log(attributes.size.xs.mod)}
+    // {console.log(attributes.size.xs.valueRange)}
     save: props => {
       const { attributes } = props;
 
-      let blockClassName = 'col';
       const combinedClass = [];
 
-      if (attributes.size === 'auto') {
-        blockClassName = 'col-auto';
-      }
+      // if (attributes.size === 'auto') {
+      //   blockClassName = 'col-auto';
+      // }
 
-      if (attributes.size === 'custom') {
-        // blockClassName = 'col-sm-' + attributes.modification.sm + ' col-lg-' + attributes.modification.lg;
-        blockClassName = `
-        col-${attributes.modification.xs}
-        col-sm-${attributes.modification.sm}
-        col-md-${attributes.modification.md}
-        col-lg-${attributes.modification.lg}
-        col-xl-${attributes.modification.xl}
-        col-xxl-${attributes.modification.xxl}`
-          ;
-      }
+      // if (attributes.size === 'custom') {
+      //   blockClassName = `
+      //   col-${attributes.size.xs}
+      //   col-sm-${attributes.size.sm}
+      //   col-md-${attributes.size.md}
+      //   col-lg-${attributes.size.lg}
+      //   col-xl-${attributes.size.xl}
+      //   col-xxl-${attributes.size.xxl}`;
+      // }
 
-      if (blockClassName) {
-        combinedClass.push(blockClassName);
+
+      let resultClass = "";
+      Object.keys(attributes.size).forEach((breakpoint) => {
+        let mod = attributes.size[breakpoint].mod;
+        let valueRange = attributes.size[breakpoint].valueRange;
+        if (mod) {
+          if (mod === "auto") {
+            resultClass += `col-${breakpoint}-auto `;
+          }
+          if (mod === "default") {
+            resultClass += `col-${breakpoint} `;
+          }
+          if (mod === "custom") {
+            resultClass += `col-${breakpoint}-${valueRange} `;
+          }
+        }
+      });
+      console.log(resultClass);
+      // console.log(attributes.size);
+
+
+
+
+      if (resultClass) {
+        combinedClass.push(resultClass);
       }
 
       if (attributes.className) {
@@ -160,7 +195,7 @@ registerBlockType(
 
       const classNameString = combinedClass.join(" ");
       return (
-        <div className={classNameString}>
+        <div className={resultClass}>
           <InnerBlocks.Content />
         </div>
       );

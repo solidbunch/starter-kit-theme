@@ -19,17 +19,15 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "breakpoints": {
+    "size": {
       "type": "object",
       "default": {
-        "mod": {
-          "type": "object",
-          "default": {}
-        },
-        "size": {
-          "type": "number",
-          "default": 1
-        }
+        "xs": {},
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
       }
     }
   },
