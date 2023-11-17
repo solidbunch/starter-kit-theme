@@ -148,38 +148,42 @@ registerBlockType(
 
       const combinedClass = [];
 
-      // if (attributes.size === 'auto') {
-      //   blockClassName = 'col-auto';
-      // }
-
-      // if (attributes.size === 'custom') {
-      //   blockClassName = `
-      //   col-${attributes.size.xs}
-      //   col-sm-${attributes.size.sm}
-      //   col-md-${attributes.size.md}
-      //   col-lg-${attributes.size.lg}
-      //   col-xl-${attributes.size.xl}
-      //   col-xxl-${attributes.size.xxl}`;
-      // }
 
 
       let resultClass = "";
       Object.keys(attributes.size).forEach((breakpoint) => {
         let mod = attributes.size[breakpoint].mod;
         let valueRange = attributes.size[breakpoint].valueRange;
+        let bootstrapFive = true;
+        let noXsBreakpoint = bootstrapFive && breakpoint == 'xs';
         if (mod) {
+
           if (mod === "auto") {
-            resultClass += `col-${breakpoint}-auto `;
+            if (noXsBreakpoint) {
+              resultClass += `col-auto `;
+            } else {
+              resultClass += `col-${breakpoint}-auto `;
+            }
           }
+
           if (mod === "default") {
-            resultClass += `col-${breakpoint} `;
+            if (noXsBreakpoint) {
+              resultClass += `col `;
+            } else {
+              resultClass += `col-${breakpoint} `;
+            }
           }
+
           if (mod === "custom") {
-            resultClass += `col-${breakpoint}-${valueRange} `;
+            if (noXsBreakpoint) {
+              resultClass += `col-${valueRange} `;
+            } else {
+              resultClass += `col-${breakpoint}-${valueRange} `;
+            }
           }
         }
       });
-      console.log(resultClass);
+      // console.log(resultClass);
       // console.log(attributes.size);
 
 
