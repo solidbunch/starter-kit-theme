@@ -1,7 +1,7 @@
 @use "sass:math";
 
 @mixin make-grid-columns($current-size-index: 1, $sizes: ("lg"), $grid-columns: 12) {
-  @if $current-size-index <= length($sizes) {
+  @if $current-size-index <=length($sizes) {
     $size: nth($sizes, $current-size-index);
 
     // Default column size is equivalent to class="col"
@@ -25,6 +25,7 @@
         max-width: percentage(math.div($i, $grid-columns));
       }
     }
+
     &[data-col-#{$size}="0"] {
       @include make-grid-columns($current-size-index + 1);
     }
@@ -37,18 +38,19 @@
 }
 
 .wp-block-starter-kit-row {
+
   // Row background on hover to make it visible
   &:not(.is-selected):not(.has-child-selected):hover {
     //background-color: rgba(220, 220, 220, 0.5);
     outline: 1px dashed #6c757d;
   }
 
-  & > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  &>.block-editor-inner-blocks>.block-editor-block-list__layout {
     display: flex;
     flex-wrap: wrap;
     box-sizing: border-box;
 
-    > .wp-block-starter-kit-column {
+    >.wp-block-starter-kit-column {
       margin: 0;
       box-sizing: border-box;
 
@@ -61,7 +63,7 @@
     }
 
     // Set block list appender width to use full width of container to wrap to new line
-    > .block-list-appender {
+    >.block-list-appender {
       width: 100%;
     }
   }

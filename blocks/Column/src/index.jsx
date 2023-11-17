@@ -17,14 +17,29 @@ const numberOfGrid = 12;
 registerBlockType(
   metadata,
   {
+    // getEditWrapperProps(attributes) {
+    //   const data = {
+    //     'data-col-lg': attributes.size ?? 'default'
+    //   };
+
+    //   if (attributes.size === 'custom') {
+    //     data['data-col-lg'] = attributes.modification.lg ?? 6;
+    //   }
+
+    //   return data;
+    // },
+
+
     getEditWrapperProps(attributes) {
       const data = {
-        'data-col-lg': attributes.size ?? 'default'
+        'data-col-sm': attributes.size?.sm.valueRange || 'default',
+        'data-col-lg': attributes.size?.lg.valueRange || 'default',
+        'data-col-sm': attributes.size?.sm.valueRange || 'default',
       };
 
-      if (attributes.size === 'custom') {
-        data['data-col-lg'] = attributes.modification.lg ?? 6;
-      }
+      // if (attributes.size.xl === 'custom') {
+      //   data['data-col-lg'] = attributes.modification.lg ?? 6;
+      // }
 
       return data;
     },
@@ -57,6 +72,11 @@ registerBlockType(
                   // checked={attributes.size && attributes.size[breakpoint]}
                   checked={
                     attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
+                    // (() => {
+                    //   console.log(attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "");
+                    //   console.log('etc');
+                    //   return attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
+                    // })()
                   }
 
                   onChange={(isChecked) => {
@@ -143,43 +163,49 @@ registerBlockType(
     },
     // {console.log(attributes.size.xs.mod)}
     // {console.log(attributes.size.xs.valueRange)}
-    save: props => {
-      const { attributes } = props;
+    save: ({ attributes }) => {
+      const blockProps = useBlockProps.save({
+        className: resultClass
+      });
+      console.log(blockProps);
+      // console.log(attributes);
 
+
+      // const { attributes } = props;
+      // console.log(attributes);
       const combinedClass = [];
 
 
 
       let resultClass = "";
       Object.keys(attributes.size).forEach((breakpoint) => {
+
         let mod = attributes.size[breakpoint].mod;
         let valueRange = attributes.size[breakpoint].valueRange;
         let bootstrapFive = true;
         let noXsBreakpoint = bootstrapFive && breakpoint == 'xs';
-        if (mod) {
 
-          if (mod === "auto") {
-            if (noXsBreakpoint) {
-              resultClass += `col-auto `;
-            } else {
-              resultClass += `col-${breakpoint}-auto `;
-            }
+        if (mod === "auto") {
+          if (noXsBreakpoint) {
+            resultClass += `col-auto `;
+          } else {
+            resultClass += `col-${breakpoint}-auto `;
           }
+        }
 
-          if (mod === "default") {
-            if (noXsBreakpoint) {
-              resultClass += `col `;
-            } else {
-              resultClass += `col-${breakpoint} `;
-            }
+        if (mod === "default") {
+          if (noXsBreakpoint) {
+            resultClass += `col `;
+          } else {
+            resultClass += `col-${breakpoint} `;
           }
+        }
 
-          if (mod === "custom") {
-            if (noXsBreakpoint) {
-              resultClass += `col-${valueRange} `;
-            } else {
-              resultClass += `col-${breakpoint}-${valueRange} `;
-            }
+        if (mod === "custom") {
+          if (noXsBreakpoint) {
+            resultClass += `col-${valueRange} `;
+          } else {
+            resultClass += `col-${breakpoint}-${valueRange} `;
           }
         }
       });
@@ -198,8 +224,11 @@ registerBlockType(
       }
 
       const classNameString = combinedClass.join(" ");
+
+      // console.log(blockProps);
+
       return (
-        <div className={resultClass}>
+        <div className={classNameString}>
           <InnerBlocks.Content />
         </div>
       );
