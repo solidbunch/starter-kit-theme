@@ -65,7 +65,7 @@ registerBlockType(
 
             {Object.keys(attributes.size).map((breakpoint) => (
 
-              <div key={breakpoint} title={`Column settings - ${breakpoint}`}>
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
 
                 <CheckboxControl
                   label={`Enable ${breakpoint}`}
@@ -84,6 +84,7 @@ registerBlockType(
                     // sizeObject[breakpoint] = isChecked;
                     if (isChecked) {
                       sizeObject[breakpoint].mod = "default";
+                      sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: "default" };
                     } else {
                       sizeObject[breakpoint].mod = "";
                     }
@@ -95,7 +96,7 @@ registerBlockType(
                 {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
                   <>
                     <SelectControl
-                      label="Size"
+                      label={`Size ${breakpoint}`}
                       value={attributes.size[breakpoint].mod}
                       options={[
                         { label: 'default', value: 'default' },
@@ -106,7 +107,8 @@ registerBlockType(
                         const sizeObject = { ...attributes.size };
 
 
-                        sizeObject[breakpoint].mod = value;
+                        // sizeObject[breakpoint].mod = value;
+                        sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: value };
                         setAttributes({ ...attributes, size: sizeObject });
                         // console.log(Number(attributes.size[breakpoint]));
                       }}
@@ -122,6 +124,7 @@ registerBlockType(
                             } else {
                               return attributes.size[breakpoint].valueRange = 6;
                             }
+
                           })()
 
                         }
@@ -130,7 +133,8 @@ registerBlockType(
 
 
                           const sizeObject = { ...attributes.size };
-                          sizeObject[breakpoint].valueRange = value;
+                          // sizeObject[breakpoint].valueRange = value;
+                          sizeObject[breakpoint] = { ...sizeObject[breakpoint], valueRange: value };
                           // console.log(sizeObject[breakpoint]);
                           // console.log(attributes.size);
                           setAttributes({ ...attributes, size: sizeObject });
@@ -167,8 +171,9 @@ registerBlockType(
       const blockProps = useBlockProps.save({
         className: resultClass
       });
-      console.log(blockProps);
+
       // console.log(attributes);
+
 
 
       // const { attributes } = props;
