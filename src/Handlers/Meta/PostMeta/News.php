@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Config;
+use StarterKit\Base\Config;
 use StarterKit\Repository\CarBrandsRepository;
 use StarterKit\Repository\ServicesRepository;
 

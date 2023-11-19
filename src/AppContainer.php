@@ -5,6 +5,7 @@ namespace StarterKit;
 defined('ABSPATH') || exit;
 
 use StarterKit\Base\Hooks;
+use StarterKit\Handlers\CLI\CLI;
 
 /**
  * Application main class
@@ -25,6 +26,9 @@ final class AppContainer
     {
         // Main Hooks functionality
         Hooks::initHooks();
+
+        // WP_CLI functionality
+        CLI::addCommands();
     }
 
 }

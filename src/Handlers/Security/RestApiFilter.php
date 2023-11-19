@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 
 /**
  * Allow only defined REST API requests from FrontEnd

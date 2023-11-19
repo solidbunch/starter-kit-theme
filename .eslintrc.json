@@ -52,6 +52,10 @@
         "int32Hint": false
       }
     ],
+    "object-curly-spacing": [
+      "error",
+      "never"
+    ],
     "prefer-const": 0,
     "prettier/prettier": 0,
     "jsdoc/require-returns-description": 0,

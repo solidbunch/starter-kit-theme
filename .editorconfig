@@ -1,8 +1,11 @@
 # EditorConfig helps keep your project formatting consistent.
 # See https://EditorConfig.org
 #
-# PHP PSR-2 Coding Standards
-# http://www.php-fig.org/psr/psr-2/
+# PHP PSR-12 Extended Coding Style Guide
+# https://www.php-fig.org/psr/psr-12/
+#
+# Use WordPress JavaScript Coding Standards with some changes in .eslintrc.json
+# https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/
 
 root = true
 

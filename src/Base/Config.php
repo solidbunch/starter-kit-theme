@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit;
+namespace StarterKit\Base;
 
 defined('ABSPATH') || exit;
 
@@ -19,6 +19,11 @@ class Config
     private static function main(): array
     {
         return [
+            'themeName'           => 'Starter Kit Theme',
+            'package'             => 'Starter Kit',
+            'themeSlug'           => 'starter-kit',
+            'themeNamespace'      => 'StarterKit',
+            'hooksPrefix'         => 'starter_kit',
             'settingsPrefix'      => 'skt_',
             'restApiNamespace'    => 'skt/v1',
             'assetsUri'           => '/assets/',

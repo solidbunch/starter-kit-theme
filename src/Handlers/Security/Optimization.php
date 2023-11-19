@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 
 /**
  * Optimization Handlers

@@ -4,7 +4,7 @@ namespace StarterKit\Helper;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Config;
+use StarterKit\Base\Config;
 
 /**
  * Utilities
@@ -178,6 +178,16 @@ class Utils
     {
         return str_starts_with($name, $prefix);
     }
+
+    /**
+     * Determines whether the current request is a WP_CLI request.
+     *
+     * @return bool True if it's a WP_CLI request, false otherwise.
+     */
+    public static function isDoingWPCLI(): bool {
+        return defined( 'WP_CLI' ) && WP_CLI;
+    }
+
 
 
     /**
