@@ -6,10 +6,10 @@ import metadata from '../block.json';
 /**
  * Internal block libraries
  */
-const { registerBlockType } = wp.blocks;
-const { useSelect } = wp.data;
-const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
-const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
+const {registerBlockType} = wp.blocks;
+const {useSelect} = wp.data;
+const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
+const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
 // const bootstrapBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
@@ -29,7 +29,6 @@ registerBlockType(
     //   return data;
     // },
 
-
     getEditWrapperProps(attributes) {
       const data = {
         'data-col-xs': attributes.size?.xs.mod || attributes.size?.xs.valueRange || 'default',
@@ -48,25 +47,22 @@ registerBlockType(
     },
 
     edit: props => {
-      const { attributes, setAttributes, clientId, className } = props;
+      const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
 
-      const { hasChildBlocks } = useSelect((select) => {
-        const { getBlockOrder } = select('core/block-editor');
+      const {hasChildBlocks} = useSelect((select) => {
+        const {getBlockOrder} = select('core/block-editor');
 
         return {
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
 
-
-
       return [
         <InspectorControls key="settings">
           <PanelBody title="Column settings">
-
 
             {Object.keys(attributes.size).map((breakpoint) => (
 
@@ -85,16 +81,16 @@ registerBlockType(
                   }
 
                   onChange={(isChecked) => {
-                    const sizeObject = { ...attributes.size };
+                    const sizeObject = {...attributes.size};
                     // sizeObject[breakpoint] = isChecked;
                     if (isChecked) {
                       sizeObject[breakpoint].mod = "default";
-                      sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: "default" };
+                      sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: "default"};
                     } else {
                       sizeObject[breakpoint].mod = "";
                     }
 
-                    setAttributes({ ...attributes, size: sizeObject });
+                    setAttributes({...attributes, size: sizeObject});
                     // console.log();
                   }}
                 />
@@ -104,17 +100,16 @@ registerBlockType(
                       label={`Size ${breakpoint}`}
                       value={attributes.size[breakpoint].mod}
                       options={[
-                        { label: 'default', value: 'default' },
-                        { label: 'auto', value: 'auto' },
-                        { label: 'custom', value: "custom" },
+                        {label: 'default', value: 'default'},
+                        {label: 'auto', value: 'auto'},
+                        {label: 'custom', value: "custom"},
                       ]}
                       onChange={(value) => {
-                        const sizeObject = { ...attributes.size };
-
+                        const sizeObject = {...attributes.size};
 
                         // sizeObject[breakpoint].mod = value;
-                        sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: value };
-                        setAttributes({ ...attributes, size: sizeObject });
+                        sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: value};
+                        setAttributes({...attributes, size: sizeObject});
                         // console.log(Number(attributes.size[breakpoint]));
                       }}
                     />
@@ -126,9 +121,8 @@ registerBlockType(
                           (() => {
                             if (attributes.size[breakpoint]?.valueRange !== undefined) {
                               return attributes.size[breakpoint].valueRange;
-                            } else {
-                              return attributes.size[breakpoint].valueRange = 6;
                             }
+                            return attributes.size[breakpoint].valueRange = 6;
 
                           })()
 
@@ -136,13 +130,12 @@ registerBlockType(
 
                         onChange={value => {
 
-
-                          const sizeObject = { ...attributes.size };
+                          const sizeObject = {...attributes.size};
                           // sizeObject[breakpoint].valueRange = value;
-                          sizeObject[breakpoint] = { ...sizeObject[breakpoint], valueRange: value };
+                          sizeObject[breakpoint] = {...sizeObject[breakpoint], valueRange: value};
                           // console.log(sizeObject[breakpoint]);
                           // console.log(attributes.size);
-                          setAttributes({ ...attributes, size: sizeObject });
+                          setAttributes({...attributes, size: sizeObject});
                         }}
                         min={1}
                         max={numberOfGrid}
@@ -156,7 +149,6 @@ registerBlockType(
             ))}
 
           </PanelBody>
-
 
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
@@ -172,20 +164,16 @@ registerBlockType(
     },
     // {console.log(attributes.size.xs.mod)}
     // {console.log(attributes.size.xs.valueRange)}
-    save: ({ attributes }) => {
+    save: ({attributes}) => {
       const blockProps = useBlockProps.save({
         className: resultClass
       });
 
       // console.log(attributes);
 
-
-
       // const { attributes } = props;
       // console.log(attributes);
       const combinedClass = [];
-
-
 
       let resultClass = "";
       Object.keys(attributes.size).forEach((breakpoint) => {
@@ -221,9 +209,6 @@ registerBlockType(
       });
       // console.log(resultClass);
       // console.log(attributes.size);
-
-
-
 
       if (resultClass) {
         combinedClass.push(resultClass);
