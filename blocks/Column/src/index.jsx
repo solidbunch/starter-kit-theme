@@ -32,7 +32,7 @@ registerBlockType(
 
     getEditWrapperProps(attributes) {
       const data = {
-        'data-col-xs': attributes.size?.xs.valueRange || 'default',
+        'data-col-xs': attributes.size?.xs.mod || attributes.size?.xs.valueRange || 'default',
         'data-col-sm': attributes.size?.sm.valueRange || 'default',
         'data-col-md': attributes.size?.md.valueRange || 'default',
         'data-col-lg': attributes.size?.lg.valueRange || 'default',
