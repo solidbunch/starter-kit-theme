@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Theme PRS12 Coding Standards">
+<ruleset name="PHP_CodeSniffer configuration">
   <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
+  <!-- See https://github.com/PHPCompatibility/PHPCompatibilityWP -->
 
   <description>A custom set of code standard rules to check for WordPress Theme based on PRS12</description>
+
+  <!--
+  #############################################################################
+  CONFIGS
+  #############################################################################
+  -->
+
+  <!-- PHP version uses at PHPCompatibility -->
+  <config name="testVersion" value="8.1"/>
 
   <!--
   #############################################################################
@@ -54,13 +64,7 @@
     <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
   </rule>
 
-  <!-- Example of a custom rule -->
-  <!-- <rule ref="Generic.Files.LineLength">
-    <properties>
-      <property name="lineLimit" value="120"/>
-      <property name="absoluteLineLimit" value="150"/>
-    </properties>
-  </rule>
-  -->
+  <!-- Use PHPCompatibilityWP standard -->
+  <rule ref="PHPCompatibilityWP"/>
 
 </ruleset>
