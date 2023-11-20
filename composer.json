@@ -48,6 +48,11 @@
     "phpcompatibility/phpcompatibility-wp": "2.1.4",
     "roave/security-advisories": "dev-latest"
   },
+  "scripts": {
+    "lint": [
+      "phpcs --standard=phpcs.xml"
+    ]
+  },
   "autoload": {
     "psr-4": {
       "StarterKit\\": "src/",

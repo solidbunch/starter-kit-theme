@@ -56,13 +56,14 @@
   #############################################################################
   -->
 
-  <!-- Include the whole PSR-12 standard -->
-  <rule ref="PSR12"/>
-
+  <!-- Include the PSR-1 standard -->
   <!-- https://www.php-fig.org/psr/psr-1/#23-side-effects Excluding Side Effects in the PHP class file for defined('ABSPATH') || exit; -->
   <rule ref="PSR1">
     <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
   </rule>
+
+  <!-- Include the whole PSR-12 standard -->
+  <rule ref="PSR12"/>
 
   <!-- Use PHPCompatibilityWP standard -->
   <rule ref="PHPCompatibilityWP"/>
