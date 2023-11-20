@@ -62,5 +62,4 @@ class CarBrandsRepository
             'volvo' => __('Volvo', 'starter-kit'),
         ];
     }
-
 }

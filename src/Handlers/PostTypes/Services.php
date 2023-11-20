@@ -13,7 +13,6 @@ use StarterKit\Base\Config;
  */
 class Services
 {
-
     /**
      * Register post type Services
      * Reference type without frontend output
@@ -23,7 +22,8 @@ class Services
     public static function registerPostType(): void
     {
         register_post_type(
-            Config::get('postTypeServicesID'), [
+            Config::get('postTypeServicesID'),
+            [
                 'label'             => esc_html__('Services', 'starter-kit'),
                 'description'       => '',
                 'public'            => false,
@@ -67,5 +67,4 @@ class Services
             ]
         );
     }
-
 }

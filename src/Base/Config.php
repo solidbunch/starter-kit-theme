@@ -117,5 +117,4 @@ class Config
 
         return apply_filters('starter_kit/config', $config);
     }
-
 }

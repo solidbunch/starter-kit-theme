@@ -13,7 +13,6 @@ use StarterKit\Base\Config;
  */
 class Portfolio
 {
-
     /**
      * Register post type
      *

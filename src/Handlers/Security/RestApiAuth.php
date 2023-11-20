@@ -12,19 +12,19 @@ class RestApiAuth
 
         $salt = 248;
 
-        $expirationTimestampInHours = intval( time() / 3600 ) + $expirationHours;
+        $expirationTimestampInHours = intval(time() / 3600) + $expirationHours;
 
         $saltToSign = $expirationTimestampInHours * $salt;
 
         // Use hash_hmac to generate a token using the shared secret
-        return hash_hmac( 'sha256', $saltToSign, Config::get( 'restApiKey' ) );
+        return hash_hmac('sha256', $saltToSign, Config::get('restApiKey'));
     }
 
-    public static function validateToken( $receivedToken ): bool
+    public static function validateToken($receivedToken): bool
     {
         $expectedToken = self::generateToken();
 
-        if ( $receivedToken === $expectedToken ) {
+        if ($receivedToken === $expectedToken) {
             // Token is valid
             return true;
         } else {

@@ -30,7 +30,10 @@ class RestApiFilter
 
         if (defined('REST_REQUEST')) {
             // Allow access for editors and administrators only from the admin panel
-            if ((current_user_can('editor') || current_user_can('administrator')) && str_starts_with($referer, site_url('/') . 'wp-admin/')) {
+            if (
+                (current_user_can('editor') || current_user_can('administrator')) &&
+                str_starts_with($referer, site_url('/') . 'wp-admin/')
+            ) {
                 return;
             }
 

@@ -14,7 +14,6 @@ use StarterKitBlocks;
  */
 class Register
 {
-
     /**
      * Add Gutenberg block category
      *
@@ -134,6 +133,4 @@ class Register
             ]);
         });
     }
-
-
 }

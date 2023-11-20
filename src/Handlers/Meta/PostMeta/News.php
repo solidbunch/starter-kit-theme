@@ -49,7 +49,9 @@ class News
                           ->set_width(10),
                      Field::make('complex', $metaPrefix . 'related_data', __('Related Data', 'starter-kit'))
                           ->add_fields(
-                              'item', __('Item', 'starter-kit'), [
+                              'item',
+                              __('Item', 'starter-kit'),
+                              [
                                   Field::make('text', 'text', __('Text', 'starter-kit')),
                                   Field::make('select', 'type', __('Type', 'starter-kit'))
                                        ->set_options([

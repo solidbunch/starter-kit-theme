@@ -111,8 +111,12 @@ class Utils
      *
      * @return mixed
      */
-    public static function getPostMeta(int $postId, string $metaKey, mixed $default = null, bool $usePrefix = true): mixed
-    {
+    public static function getPostMeta(
+        int $postId,
+        string $metaKey,
+        mixed $default = null,
+        bool $usePrefix = true
+    ): mixed {
         $metaKey = $usePrefix ? self::addPrefix($metaKey) : $metaKey;
         $value   = \carbon_get_post_meta($postId, $metaKey);
 
@@ -135,8 +139,12 @@ class Utils
      *
      * @return mixed
      */
-    public static function getTermMeta(int $termId, string $metaKey, mixed $default = null, bool $usePrefix = true): mixed
-    {
+    public static function getTermMeta(
+        int $termId,
+        string $metaKey,
+        mixed $default = null,
+        bool $usePrefix = true
+    ): mixed {
         $metaKey = $usePrefix ? self::addPrefix($metaKey) : $metaKey;
         $value   = \carbon_get_term_meta($termId, $metaKey);
 
@@ -179,16 +187,16 @@ class Utils
         return str_starts_with($name, $prefix);
     }
 
+
     /**
      * Determines whether the current request is a WP_CLI request.
      *
      * @return bool True if it's a WP_CLI request, false otherwise.
      */
-    public static function isDoingWPCLI(): bool {
-        return defined( 'WP_CLI' ) && WP_CLI;
+    public static function isDoingWPCLI(): bool
+    {
+        return defined('WP_CLI') && WP_CLI;
     }
-
-
 
     /**
      * Error Handler function
@@ -199,11 +207,13 @@ class Utils
      */
     public static function errorHandler($throwable): void
     {
-        $error_message = 'PHP error: ' . $throwable->getMessage() . ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
+        $error_message = 'PHP error: ' .
+                         $throwable->getMessage() .
+                         ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
+
         $error_message .= PHP_EOL . 'Stack trace:';
         $error_message .= PHP_EOL . $throwable->getTraceAsString();
 
         error_log($error_message);
     }
-
 }

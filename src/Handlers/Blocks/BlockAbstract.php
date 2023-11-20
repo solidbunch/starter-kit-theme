@@ -60,5 +60,4 @@ abstract class BlockAbstract implements BlockInterface
 
         return array_slice($blockNamespace, -2, 1)[0] ?? '';
     }
-
 }
