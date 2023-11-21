@@ -11,7 +11,7 @@ require('laravel-mix-clean');
  * https://laravel-mix.com/docs/6.0/api#optionsoptions
  */
 mix.options({
-  processCssUrls: false
+  processCssUrls: false,
 });
 mix.disableNotifications();
 
@@ -42,9 +42,7 @@ if (!mix.inProduction()) {
   const ESLintPlugin = require('eslint-webpack-plugin');
   const StylelintPlugin = require('stylelint-webpack-plugin');
 
-  mix
-  .sourceMaps()
-  .webpackConfig({
+  mix.sourceMaps().webpackConfig({
     devtool: 'inline-source-map',
     plugins: [
       new ESLintPlugin({
@@ -52,7 +50,7 @@ if (!mix.inProduction()) {
         extensions: ['js', 'jsx'],
         overrideConfigFile: '.eslintrc.json',
         failOnError: false,
-        cache: true
+        cache: true,
       }),
       new StylelintPlugin({
         fix: false,
@@ -61,11 +59,11 @@ if (!mix.inProduction()) {
         failOnError: false,
         files: [
           'assets/src/**/*.scss',
-          'blocks/!(_)**/src/*.scss'
+          'blocks/!(_)**/src/*.scss',
         ],
         cache: true,
       }),
-    ]
+    ],
   });
 }
 
@@ -78,7 +76,12 @@ mix.clean({
   cleanStaleWebpackAssets: false, // Automatically remove all unused webpack assets on rebuild
   protectWebpackAssets: false, // Do not allow removal of current webpack assets
   //Removes files once prior to Webpack compilation Not included in rebuilds (watch mode)
-  cleanOnceBeforeBuildPatterns: ['**/build/**/*.{css,js}', '!vendor/**', '!vendor-custom/**', '!node_modules/**']
+  cleanOnceBeforeBuildPatterns: [
+    '**/build/**/*.{css,js}',
+    '!vendor/**',
+    '!vendor-custom/**',
+    '!node_modules/**',
+  ],
 });
 
 /**
@@ -102,14 +105,14 @@ allAssets.forEach(assetPath => {
       assetPath,
       assetPath.replace(/\/src\//, '/build/')
       .replace(/\\src\\/, '\\build\\')
-      .replace(/\.(scss)$/, '.css')
+      .replace(/\.(scss)$/, '.css'),
     );
   } else if (assetPath.endsWith('.js') || assetPath.endsWith('.jsx')) {
     mix.js(
       assetPath,
       assetPath.replace(/\/src\//, '/build/')
       .replace(/\\src\\/, '\\build\\')
-      .replace(/\.(jsx)$/, '.js')
+      .replace(/\.(jsx)$/, '.js'),
     );
   }
 });
@@ -163,6 +166,6 @@ mix.browserSync({
   files: [
     '**/*.php',
     '**/*.twig',
-    '**/src/**/*.@(scss|js|jsx)'
+    '**/src/**/*.@(scss|js|jsx)',
   ],
 });
