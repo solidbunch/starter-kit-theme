@@ -68,41 +68,46 @@
       max-width: 100%;
     }
 
-    &[data-col-#{$size}="0"] {
-      @include make-grid-columns($current-size-index + 1);
-    }
+    // &[data-col-#{$size}="0"] {
+    //   @include make-grid-columns($current-size-index + 1);
+    // }
+    @include make-grid-columns($current-size-index + 1);
   }
 
   @else {
-    flex-grow: 1;
-    flex-basis: 0;
+    // flex-grow: 1;
+    // flex-basis: 0;
+    content: "else";
   }
 }
 
 // @include media-breakpoint-up(md) { ... }
-[data-type="starter-kit/row"] {
-  @media screen and (min-width: 400px) {
-    >.block-editor-inner-blocks>.block-editor-block-list__layout {
-      display: flex;
-      flex-wrap: wrap;
-      box-sizing: border-box;
+// [data-type="starter-kit/row"] {
+//   @media screen and (min-width: 400px) {
+//     >.block-editor-inner-blocks>.block-editor-block-list__layout {
+//       display: flex;
+//       flex-wrap: wrap;
+//       box-sizing: border-box;
 
-      >[data-type="starter-kit/column"] {
-        margin: 0;
-        box-sizing: border-box;
-        // Grid implementation
-        @include make-grid-columns();
+//       >[data-type="starter-kit/column"] {
+//         margin: 0;
+//         box-sizing: border-box;
+//         // Grid implementation
+//         @include make-grid-columns();
 
-        // Prevent long unbroken words from overflowing.
-        word-break: break-word; // For back-compat.
-        overflow-wrap: break-word; // New standard.
-      }
+//         // Prevent long unbroken words from overflowing.
+//         word-break: break-word; // For back-compat.
+//         overflow-wrap: break-word; // New standard.
+//       }
 
-      >.block-list-appender {
-        width: 100%;
-      }
-    }
-  }
+//       >.block-list-appender {
+//         width: 100%;
+//       }
+//     }
+//   }
+// }
+.test {
+  @include make-grid-columns();
 }
 
 .wp-block-starter-kit-row {
@@ -113,26 +118,26 @@
     outline: 1px dashed #6c757d;
   }
 
-  // &>.block-editor-inner-blocks>.block-editor-block-list__layout {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  //   box-sizing: border-box;
+  &>.block-editor-inner-blocks>.block-editor-block-list__layout {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 
-  //   >.wp-block-starter-kit-column {
-  //     margin: 0;
-  //     box-sizing: border-box;
+    >.wp-block-starter-kit-column {
+      margin: 0;
+      box-sizing: border-box;
 
-  //     // Grid implementation
-  //     @include make-grid-columns();
+      // Grid implementation
+      // @include make-grid-columns();
 
-  //     // Prevent long unbroken words from overflowing.
-  //     word-break: break-word; // For back-compat.
-  //     overflow-wrap: break-word; // New standard.
-  //   }
+      // Prevent long unbroken words from overflowing.
+      word-break: break-word; // For back-compat.
+      overflow-wrap: break-word; // New standard.
+    }
 
-  //   // Set block list appender width to use full width of container to wrap to new line
-  //   >.block-list-appender {
-  //     width: 100%;
-  //   }
-  // }
+    // Set block list appender width to use full width of container to wrap to new line
+    >.block-list-appender {
+      width: 100%;
+    }
+  }
 }

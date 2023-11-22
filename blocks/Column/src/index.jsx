@@ -1,49 +1,74 @@
 /**
  * Block dependencies
  */
+
 import metadata from '../block.json';
 
 /**
  * Internal block libraries
  */
+
 const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
-// const bootstrapBreakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
 
 registerBlockType(
   metadata,
   {
-    // getEditWrapperProps(attributes) {
-    //   const data = {
-    //     'data-col-lg': attributes.size ?? 'default'
-    //   };
-
-    //   if (attributes.size === 'custom') {
-    //     data['data-col-lg'] = attributes.modification.lg ?? 6;
-    //   }
-
-    //   return data;
-    // },
-
     getEditWrapperProps(attributes) {
-      const data = {
-        'data-col-xs': attributes.size?.xs.mod || attributes.size?.xs.valueRange || 'default',
-        'data-col-sm': attributes.size?.sm.valueRange || 'default',
-        'data-col-md': attributes.size?.md.valueRange || 'default',
-        'data-col-lg': attributes.size?.lg.valueRange || 'default',
-        'data-col-xl': attributes.size?.xl.valueRange || 'default',
-        'data-col-xxl': attributes.size?.xxl.valueRange || 'default',
-      };
+      const {size} = attributes;
+      const classes = [];
 
-      // if (attributes.size.xl === 'custom') {
-      //   data['data-col-lg'] = attributes.modification.lg ?? 6;
-      // }
+      // Object.keys(size).forEach((breakpoint) => {
+      //   if(breakpoint === 'xs'){
+      //     if (size[breakpoint].mod === 'default') {
+      //       classes.push(`col`);
+      //     } else if (size[breakpoint].mod === 'auto') {
+      //       classes.push(`col-auto`);
+      //     }else if (size[breakpoint].mod === 'custom') {
+      //       if (size[breakpoint]?.valueRange !== undefined) {
+      //         return classes.push(`col-${size[breakpoint].valueRange}`);
+      //       }
+            
+      //       return classes.push(`col-6`);
+      //     }
+      //   } else if (size[breakpoint].mod === 'default') {
+      //     classes.push(`col-${breakpoint}`);
+      //   } else if (size[breakpoint].mod === 'auto') {
+      //     classes.push(`col-${breakpoint}-auto`);
+      //   }else if (size[breakpoint].mod === 'custom') {
+      //     if (size[breakpoint]?.valueRange !== undefined) {
+      //       return classes.push(`col-${breakpoint}-${size[breakpoint].valueRange}`);
+      //     }
+      //     console.log(classes);
+      //     return classes.push(`col-${breakpoint}-6`);
+      //   }
+        
+      // });
+      Object.keys(size).forEach((breakpoint) => {
+        const {mod, valueRange} = size[breakpoint];
+      
+        if (breakpoint === 'xs') {
+          if (mod === 'default') {
+            classes.push('col');
+          } else if (mod === 'auto') {
+            classes.push('col-auto');
+          } else if (mod === 'custom') {
+            classes.push(valueRange !== undefined ? `col-${valueRange}` : 'col-6');
+          }
+        } else if (mod === 'default') {
+          classes.push(`col-${breakpoint}`);
+        } else if (mod === 'auto') {
+          classes.push(`col-${breakpoint}-auto`);
+        } else if (mod === 'custom') {
+          classes.push(valueRange !== undefined ? `col-${breakpoint}-${valueRange}` : `col-${breakpoint}-6`);
+        }
+      });
 
-      return data;
+      return {className: classes.join(' ')};
     },
 
     edit: props => {
@@ -51,7 +76,7 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-
+     
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -70,28 +95,20 @@ registerBlockType(
 
                 <CheckboxControl
                   label={`Enable ${breakpoint}`}
-                  // checked={attributes.size && attributes.size[breakpoint]}
                   checked={
                     attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
-                    // (() => {
-                    //   console.log(attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "");
-                    //   console.log('etc');
-                    //   return attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
-                    // })()
                   }
 
                   onChange={(isChecked) => {
                     const sizeObject = {...attributes.size};
-                    // sizeObject[breakpoint] = isChecked;
                     if (isChecked) {
                       sizeObject[breakpoint].mod = "default";
                       sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: "default"};
+                      
                     } else {
                       sizeObject[breakpoint].mod = "";
                     }
-
                     setAttributes({...attributes, size: sizeObject});
-                    // console.log();
                   }}
                 />
                 {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
@@ -107,10 +124,8 @@ registerBlockType(
                       onChange={(value) => {
                         const sizeObject = {...attributes.size};
 
-                        // sizeObject[breakpoint].mod = value;
                         sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: value};
                         setAttributes({...attributes, size: sizeObject});
-                        // console.log(Number(attributes.size[breakpoint]));
                       }}
                     />
                     {attributes.size[breakpoint].mod === "custom" &&
@@ -131,10 +146,7 @@ registerBlockType(
                         onChange={value => {
 
                           const sizeObject = {...attributes.size};
-                          // sizeObject[breakpoint].valueRange = value;
                           sizeObject[breakpoint] = {...sizeObject[breakpoint], valueRange: value};
-                          // console.log(sizeObject[breakpoint]);
-                          // console.log(attributes.size);
                           setAttributes({...attributes, size: sizeObject});
                         }}
                         min={1}
@@ -162,17 +174,8 @@ registerBlockType(
         </div>
       ];
     },
-    // {console.log(attributes.size.xs.mod)}
-    // {console.log(attributes.size.xs.valueRange)}
     save: ({attributes}) => {
-      const blockProps = useBlockProps.save({
-        className: resultClass
-      });
-
-      // console.log(attributes);
-
-      // const { attributes } = props;
-      // console.log(attributes);
+     
       const combinedClass = [];
 
       let resultClass = "";
@@ -207,8 +210,6 @@ registerBlockType(
           }
         }
       });
-      // console.log(resultClass);
-      // console.log(attributes.size);
 
       if (resultClass) {
         combinedClass.push(resultClass);
@@ -219,11 +220,11 @@ registerBlockType(
       }
 
       const classNameString = combinedClass.join(" ");
-
-      // console.log(blockProps);
-
+      const blockProps = useBlockProps.save({
+        className: classNameString
+      });
       return (
-        <div className={classNameString}>
+        <div {...blockProps}>
           <InnerBlocks.Content />
         </div>
       );
