@@ -21,33 +21,6 @@ registerBlockType(
     getEditWrapperProps(attributes) {
       const {size} = attributes;
       const classes = [];
-
-      // Object.keys(size).forEach((breakpoint) => {
-      //   if(breakpoint === 'xs'){
-      //     if (size[breakpoint].mod === 'default') {
-      //       classes.push(`col`);
-      //     } else if (size[breakpoint].mod === 'auto') {
-      //       classes.push(`col-auto`);
-      //     }else if (size[breakpoint].mod === 'custom') {
-      //       if (size[breakpoint]?.valueRange !== undefined) {
-      //         return classes.push(`col-${size[breakpoint].valueRange}`);
-      //       }
-            
-      //       return classes.push(`col-6`);
-      //     }
-      //   } else if (size[breakpoint].mod === 'default') {
-      //     classes.push(`col-${breakpoint}`);
-      //   } else if (size[breakpoint].mod === 'auto') {
-      //     classes.push(`col-${breakpoint}-auto`);
-      //   }else if (size[breakpoint].mod === 'custom') {
-      //     if (size[breakpoint]?.valueRange !== undefined) {
-      //       return classes.push(`col-${breakpoint}-${size[breakpoint].valueRange}`);
-      //     }
-      //     console.log(classes);
-      //     return classes.push(`col-${breakpoint}-6`);
-      //   }
-        
-      // });
       Object.keys(size).forEach((breakpoint) => {
         const {mod, valueRange} = size[breakpoint];
       
@@ -76,7 +49,6 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-     
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -85,12 +57,53 @@ registerBlockType(
         };
       });
 
+      // const {size} = attributes;
+      // console.log(size);
+      // const classes = [];
+      // Object.keys(size).forEach((breakpoint) => {
+      //   const {mod, valueRange} = size[breakpoint];
+      
+      //   if (breakpoint === 'xs') {
+      //     if (mod === 'default') {
+      //       classes.push('col');
+      //     } else if (mod === 'auto') {
+      //       classes.push('col-auto');
+      //     } else if (mod === 'custom') {
+      //       classes.push(valueRange !== undefined ? `col-${valueRange}` : 'col-6');
+      //     }
+      //   } else if (mod === 'default') {
+      //     classes.push(`col-${breakpoint}`);
+      //   } else if (mod === 'auto') {
+      //     classes.push(`col-${breakpoint}-auto`);
+      //   } else if (mod === 'custom') {
+      //     classes.push(valueRange !== undefined ? `col-${breakpoint}-${valueRange}` : `col-${breakpoint}-6`);
+      //   }
+        
+      // });
+    
+      // console.log(blockProps.className);
+      // const isCheckboxChecked = (a,index,breakpoint) => {
+        
+      //   const sizeObject = {...a.size};
+      //   if (index === 0) {
+                      
+      //     sizeObject[breakpoint].mod = "default";
+                      
+      //     // sizeObject.xs = {...sizeObject.xs, mod: "default"};
+      //     // setAttributes({...a, size: sizeObject});
+      //     console.log(sizeObject);
+      //     // return true;
+      //   } 
+      //   // sizeObject[breakpoint].mod = "";
+      //   return attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "";
+        
+      // };
       return [
         <InspectorControls key="settings">
           <PanelBody title="Column settings">
-
-            {Object.keys(attributes.size).map((breakpoint) => (
-
+            
+            {Object.keys(attributes.size).map((breakpoint,index) => (
+              
               <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
 
                 <CheckboxControl
@@ -98,19 +111,25 @@ registerBlockType(
                   checked={
                     attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
                   }
+                  // checked={isCheckboxChecked(attributes.size[breakpoint],index)}
+                  // checked={isCheckboxChecked(attributes,index,breakpoint)}
 
                   onChange={(isChecked) => {
                     const sizeObject = {...attributes.size};
                     if (isChecked) {
+                      
                       sizeObject[breakpoint].mod = "default";
+                      
                       sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: "default"};
                       
                     } else {
                       sizeObject[breakpoint].mod = "";
                     }
+                    
                     setAttributes({...attributes, size: sizeObject});
                   }}
                 />
+
                 {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
                   <>
                     <SelectControl
@@ -175,7 +194,7 @@ registerBlockType(
       ];
     },
     save: ({attributes}) => {
-     
+      console.log(attributes);
       const combinedClass = [];
 
       let resultClass = "";

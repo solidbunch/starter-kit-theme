@@ -22,7 +22,9 @@
     "size": {
       "type": "object",
       "default": {
-        "xs": {},
+        "xs": {
+          "mod": "default"
+        },
         "sm": {},
         "md": {},
         "lg": {},
