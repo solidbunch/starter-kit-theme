@@ -56,7 +56,7 @@ registerBlockType(
         <InspectorControls key="settings">
           <PanelBody title="Column settings">
             
-            {Object.keys(attributes.size).map((breakpoint,index) => (
+            {Object.keys(attributes.size).map((breakpoint) => (
               
               <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
                 <CheckboxControl
@@ -67,10 +67,9 @@ registerBlockType(
                   onChange={(isChecked) => {
                     const sizeObject = {...attributes.size};
                     if (isChecked) {
-                      // sizeObject[breakpoint].mod = "default";
                       sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: "default"};
                     } else {
-                      sizeObject[breakpoint].mod = "";
+                      sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: ""};
                     }
                     setAttributes({...attributes, size: sizeObject});
                   }}
