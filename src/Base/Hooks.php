@@ -16,7 +16,6 @@ use StarterKitBlocks;
  */
 class Hooks
 {
-
     public static function initHooks(): void
     {
         /************************************
