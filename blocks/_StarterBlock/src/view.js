@@ -6,7 +6,6 @@ import FrontendModule from "./Handlers/FrontendModule";
 (function () {
   "use strict";
 
-
   /**
    * Init block on load
    */

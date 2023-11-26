@@ -12,9 +12,10 @@ export default class FrontendModule {
     this.starterBlock = starterBlock;
     this.someThingInner = starterBlock.querySelector(".some-class");
 
+    // eslint-disable-next-line no-console
     console.log('StarterBlock FrontendModule loaded');
 
-    this.doSomething(this.someThingInner)
+    this.doSomething(this.someThingInner);
 
   }
 
@@ -22,8 +23,10 @@ export default class FrontendModule {
     const self = this;
 
     // Using 'self' to access the class instance inside the event listener
+    // eslint-disable-next-line no-console
     console.log(self.starterBlock);
-    console.log('StarterBlock FrontendModule Something happened');
+    // eslint-disable-next-line no-console
+    console.log('StarterBlock FrontendModule Something happened' + someThingInner);
     // Do something
   }
 
