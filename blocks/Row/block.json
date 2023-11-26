@@ -18,6 +18,40 @@
     "modification": {
       "type": "string",
       "default": "row"
+    },
+    "properties": {
+      "type": "object",
+      "default": {
+        "xs": {
+          "justifyContent": "start"
+        },
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
+      }
+    },
+    "justifyContent": {
+      "type": "object",
+      "default": [
+        "start",
+        "end",
+        "center",
+        "between",
+        "around",
+        "evenly"
+      ]
+    },
+    "alignItems": {
+      "type": "object",
+      "default": [
+        "start",
+        "end",
+        "center",
+        "baseline",
+        "stretch"
+      ]
     }
   },
   "editorScript": "file:build/index.js",

@@ -23,7 +23,7 @@ registerBlockType(
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps();
-      // const {justifyContent} = attributes;
+      const {justifyContent} = attributes.alignment;
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -35,44 +35,32 @@ registerBlockType(
       return [
         <InspectorControls key="settings">
           <PanelBody title="alignment x"  initialOpen={ true }>
-            {Object.keys(attributes.properties).map((breakpoint) => (
+            <div  title={`Column settings`} className={`box_breakpoint `}>
+
+              <SelectControl
+                label={`alignment xs`}
+                value={""}
+                options={justifyContent.const.reduce((options, value) => {
+                  options[value] = {label: value, value};
+                  return options;
+                }, {})}
+                onChange={(value) => {
+                  let alignmentObj = {...attributes.alignment};
+                  const justifyContentObj = {...justifyContent, valueN:value};
+                  alignmentObj = {...alignmentObj,justifyContent: justifyContentObj};
+                  setAttributes({...attributes, size: alignmentObj});
+                  
+                }}
+              >
+                {justifyContent.const.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+                
+              </SelectControl> 
               
-              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint `}>
-                <CheckboxControl
-                  label={`Enable ${breakpoint}`}
-                  checked={
-                    attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== ""
-                  }
-                  onChange={(isChecked) => {
-                    const sizeObject = {...attributes.properties};
-                    if (isChecked) {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: "start"};
-                    } else {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: ""};
-                    }
-                    setAttributes({...attributes, properties: sizeObject});
-                    
-                  }}
-                />
-                
-                {attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== "" && (
-                  <SelectControl
-                    label={`Size ${breakpoint}`}
-                    value={attributes.properties[breakpoint].justifyContent}
-                    options={attributes.justifyContent.map((value) => ({
-                      label: value,
-                      value,
-                    }))}
-                    onChange={(value) => {
-                      const propObject = {...attributes.properties};
-                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: value};
-                      setAttributes({...attributes, properties: propObject});
-                    }}
-                  />
-                
-                )}
-              </div>
-            ))}
+            </div>
             
           </PanelBody>
         </InspectorControls>,

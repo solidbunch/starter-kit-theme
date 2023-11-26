@@ -54,7 +54,7 @@ registerBlockType(
       });
       return [
         <InspectorControls key="settings">
-          <PanelBody title="Column settings">
+          <PanelBody title="Column width" initialOpen={ false }>
             
             {Object.keys(attributes.size).map((breakpoint) => (
               
@@ -117,9 +117,12 @@ registerBlockType(
               </div>
             ))}
           </PanelBody>
+          {/* <PanelBody title="test"  initialOpen={ false }>
+            <h2>dsdsd</h2>
+          </PanelBody> */}
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
-          <InnerBlocks
+          <InnerBlocks 
             renderAppender={
               hasChildBlocks
                 ? undefined
