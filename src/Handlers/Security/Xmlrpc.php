@@ -13,7 +13,6 @@ defined('ABSPATH') || exit;
  */
 class Xmlrpc
 {
-
     /**
      * Disables trackbacks/pingbacks
      * In general xmlrpc.php should be closed in nginx/apache config

@@ -17,7 +17,6 @@ use WP_CLI\ExitException;
  */
 class CloneTheme
 {
-
     /**
      * Search values
      *
@@ -162,7 +161,11 @@ class CloneTheme
             if ($relativePath == '/node_modules' || $relativePath == '/vendor' || $relativePath == '/.git') {
                 continue;
             }
-            if (str_contains($relativePath, '/node_modules/') || str_contains($relativePath, '/vendor/') || str_contains($relativePath, '/.git/')) {
+            if (
+                str_contains($relativePath, '/node_modules/') ||
+                str_contains($relativePath, '/vendor/') ||
+                str_contains($relativePath, '/.git/')
+            ) {
                 continue;
             }
 
@@ -178,5 +181,4 @@ class CloneTheme
 
         return $destination;
     }
-
 }

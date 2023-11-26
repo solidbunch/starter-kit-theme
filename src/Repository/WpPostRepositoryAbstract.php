@@ -14,7 +14,6 @@ use WP_Post;
  */
 abstract class WpPostRepositoryAbstract implements WpPostRepositoryInterface
 {
-
     abstract public static function getPostTypeID(): string;
 
     /**

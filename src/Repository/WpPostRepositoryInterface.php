@@ -14,7 +14,6 @@ use WP_Post;
  */
 interface WpPostRepositoryInterface
 {
-
     /**
      * Get query by specific args
      *

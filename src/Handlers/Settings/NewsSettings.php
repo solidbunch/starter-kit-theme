@@ -15,7 +15,6 @@ use StarterKit\Base\Config;
  */
 class NewsSettings
 {
-
     /**
      * Make Carbon Fields
      *
@@ -31,18 +30,19 @@ class NewsSettings
             __('News Settings', 'starter-kit') // desc
         );
 
-        $container->set_page_parent('edit.php?post_type=' . Config::get('postTypeNewsID')); // id of the "Appearance" admin section
+        $container->set_page_parent('edit.php?post_type=' . Config::get('postTypeNewsID'));
         $container->set_page_menu_title('News Settings');
         $container->set_icon('dashicons-carrot');
 
-
-        /** General */
+        /** Example */
         $container->add_tab(
-            __('Settings', 'starter-kit'), [
+            __('Settings', 'starter-kit'),
+            [
                 Field::make('separator', $prefix . 'sep_general_header', __('Example', 'starter-kit')),
-                Field::make('checkbox', $prefix . 'example_option', __('Example option', 'starter-kit'))->set_option_value('1')->set_default_value(''),
+                Field::make('checkbox', $prefix . 'example_option', __('Example option', 'starter-kit'))
+                     ->set_option_value('1')
+                     ->set_default_value(''),
             ]
         );
     }
-
 }

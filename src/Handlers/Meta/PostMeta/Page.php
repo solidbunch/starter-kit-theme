@@ -32,5 +32,4 @@ class Page
                           ->set_width(30),
                  ]);
     }
-
 }

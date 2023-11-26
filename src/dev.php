@@ -18,8 +18,16 @@ if (!function_exists('wlog')) {
             $messageType = 3;
             $lineEnd     = PHP_EOL;
         }
-        error_log('[' . date('H:i:s') . ']' . '-------------------------' . $lineEnd, $messageType, $logFileDestination);
-        error_log('[' . date('H:i:s') . '] ' . $desc . ' : ' . print_r($var, true) . $lineEnd, $messageType, $logFileDestination);
+        error_log(
+            '[' . date('H:i:s') . ']' . '-------------------------' . $lineEnd,
+            $messageType,
+            $logFileDestination
+        );
+        error_log(
+            '[' . date('H:i:s') . '] ' . $desc . ' : ' . print_r($var, true) . $lineEnd,
+            $messageType,
+            $logFileDestination
+        );
     }
 }
 
@@ -61,7 +69,10 @@ if (!function_exists('_var_dump')) {
             $func($param);
             $data = ob_get_clean();
 
-            echo '<pre class="_var_dump" style="text-align: left; font-family: \'Courier New\'; font-size: 12px;line-height: 20px;background: #efefef;border: 1px solid #777;border-radius: 5px;color: #333;padding: 10px;margin:0;overflow: auto;">';
+            echo '
+<pre class="_var_dump" style="text-align: left; font-family: \'Courier New\',serif;font-size: 12px;
+line-height: 20px;background: #efefef;border: 1px solid #777;border-radius: 5px;
+color: #333;padding: 10px;margin:0;overflow: auto;">';
             highlight_string("<?php" . $data . "?>");
             echo '</pre>';
         }

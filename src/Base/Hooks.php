@@ -29,7 +29,10 @@ class Hooks
          ************************************/
         add_action('after_setup_theme', [Handlers\Settings\ThemeSettings::class, 'boot']);
         add_action('carbon_fields_register_fields', [Handlers\Settings\ThemeSettings::class, 'make']);
-        add_action('carbon_fields_theme_options_container_saved', [Handlers\Settings\ThemeSettings::class, 'updateFaviconFromThemeOptions']);
+        add_action(
+            'carbon_fields_theme_options_container_saved',
+            [Handlers\Settings\ThemeSettings::class, 'updateFaviconFromThemeOptions']
+        );
 
         /************************************
          *         Gutenberg blocks
@@ -73,7 +76,7 @@ class Hooks
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
         // Change excerpt dots
-        add_filter( 'excerpt_more', [ Handlers\Front::class, 'changeExcerptMore' ] );
+        add_filter('excerpt_more', [Handlers\Front::class, 'changeExcerptMore']);
         // GTM
         add_action('wp_head', [Handlers\Front::class, 'addGTMHead']);
         add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);

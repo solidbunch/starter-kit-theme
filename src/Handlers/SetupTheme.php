@@ -11,7 +11,6 @@ defined('ABSPATH') || exit;
  */
 class SetupTheme
 {
-
     /**
      * Add theme support
      **/
@@ -30,5 +29,4 @@ class SetupTheme
             'bottom_menu' => esc_html__('Bottom Menu', 'starter-kit'),
         ]);
     }
-
 }

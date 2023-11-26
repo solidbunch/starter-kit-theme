@@ -15,7 +15,6 @@ use StarterKit\Base\Config;
  */
 class CleanUp
 {
-
     /**
      * Clean up wp_head()
      *
@@ -35,9 +34,9 @@ class CleanUp
         /************************************
          *            Disable feed
          ************************************/
-        // <link rel="alternate" type="application/rss+xml" title="WP Site &raquo; Feed" href="https://example.com/feed/" />
+        // <link rel="alternate" type="application/rss+xml" title="WP Site Feed" href="https://example.com/feed/"/>
         remove_action('wp_head', 'feed_links', 2);
-        // <link rel="alternate" type="application/rss+xml" title="WP Site &raquo; Comments Feed" href="https://example.com/comments/feed/" />
+        // <link rel="alternate" type="application/rss+xml" title="Comments" href="https://example.com/comments/feed/"/>
         remove_action('wp_head', 'feed_links_extra', 3);
         add_filter('feed_links_show_comments_feed', '__return_false');
         add_filter('the_generator', '__return_false');
@@ -55,7 +54,7 @@ class CleanUp
         /************************************
          *    Remove Windows Live Writer
          ************************************/
-        // <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://example.com/wp-includes/wlwmanifest.xml" />
+        // <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"/>
         remove_action('wp_head', 'wlwmanifest_link');
 
         /************************************
@@ -175,5 +174,4 @@ class CleanUp
             'embed',
         ));
     }
-
 }

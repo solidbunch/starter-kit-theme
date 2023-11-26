@@ -18,6 +18,7 @@
     "@wordpress/eslint-plugin": "17.2.0",
     "browser-sync": "2.29.3",
     "browser-sync-webpack-plugin": "2.3.0",
+    "clean-webpack-plugin": "4.0.0",
     "eslint": "8.52.0",
     "eslint-webpack-plugin": "4.0.1",
     "stylelint": "13.11.0",
@@ -38,7 +39,12 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "hot": "mix watch --hot",
     "prod": "npm run production",
-    "production": "mix --production"
+    "production": "mix --production",
+    "lint": "npm run lint:style; npm run lint:js",
+    "lint:js": "eslint '**/*.@(js|jsx)' --config .eslintrc.json",
+    "lint:js:fix": "eslint '**/*.@(js|jsx)' --config .eslintrc.json --fix",
+    "lint:style": "stylelint 'assets/src/**/*.scss' 'blocks/!(_)**/src/*.scss' --config .stylelintrc.json",
+    "lint:style:fix": "stylelint 'assets/src/**/*.scss' 'blocks/!(_)**/src/*.scss' --config .stylelintrc.json --fix"
   },
   "browserslist": [
     "> 1%",

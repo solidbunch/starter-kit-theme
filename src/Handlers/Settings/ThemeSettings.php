@@ -48,7 +48,8 @@ class ThemeSettings
 
         /** General */
         $container->add_tab(
-            __('General', 'starter-kit'), [
+            __('General', 'starter-kit'),
+            [
                 Field::make('separator', $prefix . 'sep_general_identity', __('Identity', 'starter-kit')),
                 Field::make('image', $prefix . 'favicon_image', __('Favicon Image', 'starter-kit')),
             ]
@@ -56,7 +57,8 @@ class ThemeSettings
 
         /** Analytics */
         $container->add_tab(
-            __('Analytics', 'starter-kit'), [
+            __('Analytics', 'starter-kit'),
+            [
                 Field::make('separator', $prefix . 'sep_analytics_google', __('Google', 'starter-kit')),
 
                 Field::make('text', $prefix . 'tag_manager_code', __('Tag Manager Code', 'starter-kit'))
@@ -67,7 +69,8 @@ class ThemeSettings
                      ->set_attribute('placeholder', 'UA-XXXXXXXXX-X')
                      ->set_help_text(
                          __(
-                             'For a better speed performance, please insert the analytics code through the tag manager. Turn on google Analytics Scripts Local Load option',
+                             'For a better speed performance, please insert the analytics code through the tag manager.
+                             Turn on google Analytics Scripts Local Load option',
                              'starter-kit'
                          )
                      )
@@ -77,7 +80,8 @@ class ThemeSettings
 
         /** Security */
         $container->add_tab(
-            __('Security', 'starter-kit'), [
+            __('Security', 'starter-kit'),
+            [
                 Field::make('separator', $prefix . 'sep_security_antispam', __('Antispam', 'starter-kit')),
 
                 Field::make('checkbox', $prefix . 'forms_antispam', __('Antispam', 'starter-kit'))
@@ -89,7 +93,8 @@ class ThemeSettings
 
         /** Security */
         $container->add_tab(
-            __('Performance', 'starter-kit'), [
+            __('Performance', 'starter-kit'),
+            [
                 Field::make('separator', 'sep_image_sizes', __('Image sizes', 'starter-kit')),
                 // ToDo connect Media helper first
                 /*Field::make('set', $prefix . 'disable_img_sizes', __('Check image sizes to disable', 'starter-kit'))
@@ -116,5 +121,4 @@ class ThemeSettings
         update_option('site_icon', $faviconImageId);
         wp_cache_flush();
     }
-
 }

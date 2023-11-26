@@ -21,5 +21,4 @@ interface BlockInterface
      * @return string
      */
     public static function blockServerSideCallback($attributes, $content, $block): string;
-
 }
