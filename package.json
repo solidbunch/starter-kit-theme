@@ -38,7 +38,12 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "hot": "mix watch --hot",
     "prod": "npm run production",
-    "production": "mix --production"
+    "production": "mix --production",
+    "lint": "npm run lint:style; npm run lint:js",
+    "lint:js": "eslint '**/*.@(js|jsx)' --config .eslintrc.json",
+    "lint:js:fix": "eslint '**/*.@(js|jsx)' --config .eslintrc.json --fix",
+    "lint:style": "stylelint 'assets/src/**/*.scss' 'blocks/!(_)**/src/*.scss' --config .stylelintrc.json",
+    "lint:style:fix": "stylelint 'assets/src/**/*.scss' 'blocks/!(_)**/src/*.scss' --config .stylelintrc.json --fix"
   },
   "browserslist": [
     "> 1%",

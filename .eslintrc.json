@@ -8,17 +8,22 @@
   },
   "env": {
     "browser": true,
-    "es2023": true,
-    "node": true
+    "es2024": true
   },
   "parserOptions": {
     "ecmaFeatures": {
       "impliedStrict": true,
-      "objectLiteralDuplicateProperties": false
+      "objectLiteralDuplicateProperties": false,
+      "jsx": true
     },
-    "ecmaVersion": 2023,
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "node_modules/",
+    "vendor/",
+    "assets/libs/",
+    "**/build/"
+  ],
   "rules": {
     "comma-dangle": "off",
     "no-var": 2,
@@ -62,5 +67,21 @@
     "react-hooks/rules-of-hooks": 0,
     "eqeqeq": 0,
     "@wordpress/no-global-event-listener": 0
-  }
+  },
+  "overrides": [
+    {
+      "env": {
+        "node": true
+      },
+      "files": [
+        "webpack.mix.js"
+      ],
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
 }
