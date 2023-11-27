@@ -40,46 +40,46 @@
 
 
 
-@mixin make-grid-columns($current-size-index: 1, $sizes: ("xxl", "xl", "lg", "md", "sm", "xs"), $grid-columns: 12) {
-  @if $current-size-index <=length($sizes) {
-    $size: nth($sizes, $current-size-index);
+// @mixin make-grid-columns($current-size-index: 1, $sizes: ("xxl", "xl", "lg", "md", "sm", "xs"), $grid-columns: 12) {
+//   @if $current-size-index <=length($sizes) {
+//     $size: nth($sizes, $current-size-index);
 
-    @for $i from 1 through $grid-columns {
-      &[data-col-#{$size}="#{$i}"] {
-        flex: 0 0 percentage(math.div($i, $grid-columns));
-        // Add a `max-width` to ensure content within each column does not blow out
-        // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
-        // do not appear to require this.
-        max-width: percentage(math.div($i, $grid-columns));
-      }
-    }
+//     @for $i from 1 through $grid-columns {
+//       &[data-col-#{$size}="#{$i}"] {
+//         flex: 0 0 percentage(math.div($i, $grid-columns));
+//         // Add a `max-width` to ensure content within each column does not blow out
+//         // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+//         // do not appear to require this.
+//         max-width: percentage(math.div($i, $grid-columns));
+//       }
+//     }
 
-    // Default column size is equivalent to class="col"
-    &[data-col-#{$size}="default"] {
-      flex: 1 0 0%;
-      width: 100%;
-      max-width: 100%;
-    }
+//     // Default column size is equivalent to class="col"
+//     &[data-col-#{$size}="default"] {
+//       flex: 1 0 0%;
+//       width: 100%;
+//       max-width: 100%;
+//     }
 
-    // // Auto column size is equivalent to class="col-auto"
-    &[data-col-#{$size}="auto"] {
-      flex: 0 0 auto;
-      width: auto;
-      max-width: 100%;
-    }
+//     // // Auto column size is equivalent to class="col-auto"
+//     &[data-col-#{$size}="auto"] {
+//       flex: 0 0 auto;
+//       width: auto;
+//       max-width: 100%;
+//     }
 
-    // &[data-col-#{$size}="0"] {
-    //   @include make-grid-columns($current-size-index + 1);
-    // }
-    @include make-grid-columns($current-size-index + 1);
-  }
+//     // &[data-col-#{$size}="0"] {
+//     //   @include make-grid-columns($current-size-index + 1);
+//     // }
+//     @include make-grid-columns($current-size-index + 1);
+//   }
 
-  @else {
-    // flex-grow: 1;
-    // flex-basis: 0;
-    content: "else";
-  }
-}
+//   @else {
+//     // flex-grow: 1;
+//     // flex-basis: 0;
+//     content: "else";
+//   }
+// }
 
 // @include media-breakpoint-up(md) { ... }
 // [data-type="starter-kit/row"] {
@@ -106,9 +106,9 @@
 //     }
 //   }
 // }
-.test {
-  @include make-grid-columns();
-}
+// .test {
+//   @include make-grid-columns();
+// }
 
 .wp-block-starter-kit-row {
 

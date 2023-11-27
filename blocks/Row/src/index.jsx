@@ -20,10 +20,30 @@ const allowedBlocks = ['starter-kit/column'];
 registerBlockType(
   metadata,
   {
+    getEditWrapperProps(attributes) {
+      const {modification, properties} = attributes;
+      const classes = [modification]; // Начинаем с класса modification
+    
+      Object.keys(properties).forEach((breakpoint) => {
+        const {justifyContent} = properties[breakpoint];
+        const justifyContentText = "justify-content";
+        const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+        // Добавляем класс только если justifyContent имеет значение
+        if (justifyContent) {
+          classes.push(`${justifyContentText}${breakpointSuffix}-${justifyContent}`);
+        }
+      });
+    
+      return {className: classes.join(' ')};
+    },    
     edit: props => {
+      
       const {attributes, setAttributes, clientId, className} = props;
-      const blockProps = useBlockProps();
-      // const {justifyContent} = attributes;
+      const blockProps = useBlockProps({
+        className: [className],
+      });
+      
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -31,7 +51,6 @@ registerBlockType(
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
-      // console.log(justifyContent);
       return [
         <InspectorControls key="settings">
           <PanelBody title="alignment x"  initialOpen={ true }>
@@ -44,13 +63,13 @@ registerBlockType(
                     attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== ""
                   }
                   onChange={(isChecked) => {
-                    const sizeObject = {...attributes.properties};
+                    const propObject = {...attributes.properties};
                     if (isChecked) {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: "start"};
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: "start"};
                     } else {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: ""};
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: ""};
                     }
-                    setAttributes({...attributes, properties: sizeObject});
+                    setAttributes({...attributes, properties: propObject});
                     
                   }}
                 />
@@ -91,23 +110,33 @@ registerBlockType(
 
     save: props => {
       const {attributes} = props;
-      console.log(attributes);
-      const combinedClass = [];
-
-      if (attributes.modification) {
-        combinedClass.push(attributes.modification);
-      }
-
+      const combinedClass = [attributes.modification]; // Начинаем с класса modification
+    
+      const {properties} = attributes;
+      Object.keys(properties).forEach((breakpoint) => {
+        const {justifyContent} = properties[breakpoint];
+        const justifyContentText = "justify-content";
+        const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+        if (justifyContent) {
+          combinedClass.push(`${justifyContentText}${breakpointSuffix}-${justifyContent}`);
+        }
+      });
+    
       if (attributes.className) {
         combinedClass.push(attributes.className);
       }
-
+    
       const classNameString = combinedClass.join(" ");
-
+      const blockProps = useBlockProps.save({
+        className: classNameString
+      });
+    
       return (
-        <div className={classNameString}>
+        <div {...blockProps}>
           <InnerBlocks.Content/>
         </div>
       );
     }
+    
   });
