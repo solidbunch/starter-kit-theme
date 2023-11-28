@@ -12,83 +12,91 @@ import metadata from '../block.json';
  */
 const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
-const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
-const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
+const {InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} = wp.blockEditor;
+const {PanelBody, SelectControl, CheckboxControl} = wp.components;
 
 const allowedBlocks = ['starter-kit/column'];
-
+function getClasses(params) {
+  
+}
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-      const {properties} = attributes;
-      const classes = [];
+      const {modification, properties} = attributes;
+      const classes = [modification]; // Начинаем с класса modification (row)
+      
+      // Object.keys(properties).forEach((breakpoint) => {
+      //   const {justifyContent} = properties[breakpoint];
+      //   const justifyContentText = "justify-content";
+      //   const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+      //   // Добавляем класс только если justifyContent имеет значение
+      //   if (justifyContent) {
+      //     classes.push(`${justifyContentText}${breakpointSuffix}-${justifyContent}`);
+      //   }
+      // });
+
+      // Object.keys(properties).forEach((breakpoint) => {
+      //   const {alignItems} = properties[breakpoint];
+      //   const alignItemsText = "align-items";
+      //   const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+      //   // Добавляем класс только если justifyContent имеет значение
+      //   if (alignItems) {
+      //     classes.push(`${alignItemsText}${breakpointSuffix}-${alignItems}`);
+      //   }
+      // });
       Object.keys(properties).forEach((breakpoint) => {
-        const {justifyContent} = properties[breakpoint];
-        const justifyContentText = "justify-content";
-        if(breakpoint === "xs"){
-          if(justifyContent === "start"){
-            classes.push(`${justifyContentText}-start`);
-          } else if(justifyContent === "end"){
-            classes.push(`${justifyContentText}-end`);
-          }else if(justifyContent === "center"){
-            classes.push(`${justifyContentText}-center`);
-          }else if(justifyContent === "between"){
-            classes.push(`${justifyContentText}-between`);
-          }else if(justifyContent === "around"){
-            classes.push(`${justifyContentText}-around`);
-          }else if(justifyContent === "evenly"){
-            classes.push(`${justifyContentText}-evenly`);
-          }
-        }else if(justifyContent === "start"){
-          classes.push(`${justifyContentText}-${breakpoint}-start`);
-        }else if(justifyContent === "end"){
-          classes.push(`${justifyContentText}-${breakpoint}-end`);
-        }else if(justifyContent === "center"){
-          classes.push(`${justifyContentText}-${breakpoint}-center`);
-        }else if(justifyContent === "between"){
-          classes.push(`${justifyContentText}-${breakpoint}-between`);
-        }else if(justifyContent === "around"){
-          classes.push(`${justifyContentText}-${breakpoint}-around`);
-        }else if(justifyContent === "evenly"){
-          classes.push(`${justifyContentText}-${breakpoint}-evenly`);
+        const {justifyContent, alignItems} = properties[breakpoint];
+        const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+      
+        if (justifyContent) {
+          classes.push(`justify-content${breakpointSuffix}-${justifyContent}`);
+        }
+      
+        if (alignItems) {
+          classes.push(`align-items${breakpointSuffix}-${alignItems}`);
         }
       });
+      
       return {className: classes.join(' ')};
-    },
+    },    
     edit: props => {
+      
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
-      // const {justifyContent} = attributes;
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
 
-        return {
-          hasChildBlocks: getBlockOrder(clientId).length > 0,
-        };
+      blockProps.className = blockProps.className.replace('wp-block ', '');
+      
+      const TEMPLATE = [['starter-kit/column']];
+
+      const innerBlocksProps = useInnerBlocksProps(blockProps, {
+        allowedBlocks: TEMPLATE,
+        template: TEMPLATE,
+        templateLock: false
       });
-      // console.log(justifyContent);
       return [
         <InspectorControls key="settings">
-          <PanelBody title="alignment x"  initialOpen={ true }>
+          <PanelBody title="alignment x"  initialOpen={ false }>
             {Object.keys(attributes.properties).map((breakpoint) => (
               
               <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint `}>
                 <CheckboxControl
-                  label={`Enable ${breakpoint}`}
+                  label={`${breakpoint} alignment`}
                   checked={
                     attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== ""
                   }
                   onChange={(isChecked) => {
-                    const sizeObject = {...attributes.properties};
+                    const propObject = {...attributes.properties};
                     if (isChecked) {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: "start"};
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: "start"};
                     } else {
-                      sizeObject[breakpoint] = {...sizeObject[breakpoint], justifyContent: ""};
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: ""};
                     }
-                    setAttributes({...attributes, properties: sizeObject});
+                    setAttributes({...attributes, properties: propObject});
                     
                   }}
                 />
@@ -113,75 +121,103 @@ registerBlockType(
             ))}
             
           </PanelBody>
+          <PanelBody title="alignment Y"  initialOpen={ false }>
+            {Object.keys(attributes.properties).map((breakpoint) => (
+              
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint `}>
+                <CheckboxControl
+                  label={`${breakpoint} alignment`}
+                  checked={
+                    attributes.properties && attributes.properties[breakpoint].alignItems !== undefined && attributes.properties[breakpoint].alignItems !== ""
+                  }
+                  onChange={(isChecked) => {
+                    const propObject = {...attributes.properties};
+                    if (isChecked) {
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: "start"};
+                    } else {
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: ""};
+                    }
+                    setAttributes({...attributes, properties: propObject});
+                    
+                  }}
+                />
+                
+                {attributes.properties && attributes.properties[breakpoint].alignItems !== undefined && attributes.properties[breakpoint].alignItems !== "" && (
+                  <SelectControl
+                    label={`Size ${breakpoint}`}
+                    value={attributes.properties[breakpoint].alignItems}
+                    options={attributes.alignItems.map((value) => ({
+                      label: value,
+                      value,
+                    }))}
+                    onChange={(value) => {
+                      const propObject = {...attributes.properties};
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: value};
+                      setAttributes({...attributes, properties: propObject});
+                    }}
+                  />
+                
+                )}
+              </div>
+            ))}
+            
+          </PanelBody>
         </InspectorControls>,
-        <div {...blockProps} key="blockControls">
-          <InnerBlocks
-            allowedBlocks={allowedBlocks}
-            renderAppender={
-              hasChildBlocks
-                ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender/>
-            }
-          />
+        <div {...innerBlocksProps} key="blockControls">
+          
         </div>
       ];
     },
 
     save: props => {
       const {attributes} = props;
-      // console.log(attributes);
-      const combinedClass = [];
-
+      const classes = [attributes.modification]; // Начинаем с класса modification
+    
       const {properties} = attributes;
-      const classes = [];
+      // Object.keys(properties).forEach((breakpoint) => {
+      //   const {justifyContent} = properties[breakpoint];
+      //   const justifyContentText = "justify-content";
+      //   const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+      //   if (justifyContent) {
+      //     combinedClass.push(`${justifyContentText}${breakpointSuffix}-${justifyContent}`);
+      //   }
+      // });
+      // Object.keys(properties).forEach((breakpoint) => {
+      //   const {alignItems} = properties[breakpoint];
+      //   const alignItemsText = "align-items";
+      //   const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    
+      //   if (alignItems) {
+      //     combinedClass.push(`${alignItemsText}${breakpointSuffix}-${alignItems}`);
+      //   }
+      // });
       Object.keys(properties).forEach((breakpoint) => {
-        const {justifyContent} = properties[breakpoint];
-        const justifyContentText = "justify-content";
-        if(breakpoint === "xs"){
-          if(justifyContent === "start"){
-            classes.push(`${justifyContentText}-start`);
-          } else if(justifyContent === "end"){
-            classes.push(`${justifyContentText}-end`);
-          }else if(justifyContent === "center"){
-            classes.push(`${justifyContentText}-center`);
-          }else if(justifyContent === "between"){
-            classes.push(`${justifyContentText}-between`);
-          }else if(justifyContent === "around"){
-            classes.push(`${justifyContentText}-around`);
-          }else if(justifyContent === "evenly"){
-            classes.push(`${justifyContentText}-evenly`);
-          }
-        }else if(justifyContent === "start"){
-          classes.push(`${justifyContentText}-${breakpoint}-start`);
-        }else if(justifyContent === "end"){
-          classes.push(`${justifyContentText}-${breakpoint}-end`);
-        }else if(justifyContent === "center"){
-          classes.push(`${justifyContentText}-${breakpoint}-center`);
-        }else if(justifyContent === "between"){
-          classes.push(`${justifyContentText}-${breakpoint}-between`);
-        }else if(justifyContent === "around"){
-          classes.push(`${justifyContentText}-${breakpoint}-around`);
-        }else if(justifyContent === "evenly"){
-          classes.push(`${justifyContentText}-${breakpoint}-evenly`);
+        const {justifyContent, alignItems} = properties[breakpoint];
+        const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+      
+        if (justifyContent) {
+          classes.push(`justify-content${breakpointSuffix}-${justifyContent}`);
+        }
+      
+        if (alignItems) {
+          classes.push(`align-items${breakpointSuffix}-${alignItems}`);
         }
       });
-
-      if (classes) {
-        combinedClass.push(classes);
-      }
       if (attributes.className) {
-        combinedClass.push(attributes.className);
+        classes.push(attributes.className);
       }
-      const classNameString = combinedClass.join(" ");
+    
+      const classNameString = classes.join(" ");
       const blockProps = useBlockProps.save({
         className: classNameString
       });
-
+    
       return (
-        // {...blockProps}
-        <div >
+        <div {...blockProps}>
           <InnerBlocks.Content/>
         </div>
       );
     }
+    
   });

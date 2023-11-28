@@ -46,6 +46,7 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
+      blockProps.className = blockProps.className.replace('wp-block ', '');
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
         return {
