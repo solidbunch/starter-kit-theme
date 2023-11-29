@@ -11,11 +11,9 @@ import metadata from '../block.json';
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
+
 const {InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl} = wp.components;
-
-const allowedBlocks = ['starter-kit/column'];
 
 function getClasses(attributes) {
   const {modification, properties} = attributes;
@@ -35,6 +33,15 @@ function getClasses(attributes) {
   });
   return classes.join(' ');
 }
+// remove Restricted Classes
+function removeRestrictedClasses(inputStr, excludeArray) {
+  // Split the string into words
+  const words = inputStr.split(/\s+/);
+  // Remove matches from the list of words
+  const filteredWords = words.filter(word => !excludeArray.includes(word));
+  return filteredWords.join(' ');
+}
+
 registerBlockType(
   metadata,
   {
@@ -44,12 +51,13 @@ registerBlockType(
     },    
     edit: props => {
       
-      const {attributes, setAttributes, clientId, className} = props;
+      const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
 
-      blockProps.className = blockProps.className.replace('wp-block ', '');
+      // blockProps.className = blockProps.className.replace('wp-block ', '');
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
       
       const TEMPLATE = [['starter-kit/column']];
 
@@ -155,7 +163,7 @@ registerBlockType(
       const blockProps = useBlockProps.save({
         className: getClasses(attributes)
       });
-    
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
       return (
         <div {...blockProps}>
           <InnerBlocks.Content/>

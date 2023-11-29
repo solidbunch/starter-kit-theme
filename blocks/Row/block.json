@@ -15,6 +15,13 @@
   "supports": {},
   "example": {},
   "attributes": {
+    "excludeClasses": {
+      "type": "object",
+      "default": [
+        "wp-block",
+        "wp-block-starter-kit-row"
+      ]
+    },
     "modification": {
       "type": "string",
       "default": "row"

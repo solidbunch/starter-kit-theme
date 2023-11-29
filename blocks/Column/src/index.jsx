@@ -14,7 +14,14 @@ const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
 const numberOfGrid = 12;
-
+// remove Restricted Classes
+function removeRestrictedClasses(inputStr, excludeArray) {
+  // Split the string into words
+  const words = inputStr.split(/\s+/);
+  // Remove matches from the list of words
+  const filteredWords = words.filter(word => !excludeArray.includes(word));
+  return filteredWords.join(' ');
+}
 registerBlockType(
   metadata,
   {
@@ -46,7 +53,7 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      blockProps.className = blockProps.className.replace('wp-block ', '');
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
         return {
@@ -118,9 +125,6 @@ registerBlockType(
               </div>
             ))}
           </PanelBody>
-          {/* <PanelBody title="test"  initialOpen={ false }>
-            <h2>dsdsd</h2>
-          </PanelBody> */}
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
           <InnerBlocks 
@@ -174,6 +178,7 @@ registerBlockType(
       const blockProps = useBlockProps.save({
         className: classNameString
       });
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
       return (
         <div {...blockProps}>
           <InnerBlocks.Content />
