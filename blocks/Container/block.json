@@ -18,6 +18,17 @@
     "modification": {
       "type": "string",
       "default": "container-xxl"
+    },
+    "size": {
+      "type": "object",
+      "default": {
+        "xs": {},
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
+      }
     }
   },
   "editorScript": "file:build/index.js",
