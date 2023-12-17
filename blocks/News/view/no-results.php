@@ -12,4 +12,4 @@ $data = $data ?? [];
 
 ?>
 
-<div class="no-results"><?php  _e( 'No results found', 'starter-kit' ); ?></div>
+<div class="no-results"><?php  _e('No results found', 'starter-kit'); ?></div>

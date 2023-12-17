@@ -13,7 +13,6 @@ defined('ABSPATH') || exit;
  */
 class TeamMembers
 {
-
     /**
      * Register post type
      * Reference type without frontend output
@@ -23,7 +22,8 @@ class TeamMembers
     public static function registerPostType(): void
     {
         register_post_type(
-            Config::get('postTypeTeamMembersID'), [
+            Config::get('postTypeTeamMembersID'),
+            [
                 'label'             => esc_html__('Team Members', 'starter-kit'),
                 'description'       => '',
                 'public'            => false,

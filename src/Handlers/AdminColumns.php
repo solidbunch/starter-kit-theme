@@ -49,5 +49,4 @@ class AdminColumns
             echo '<input type="hidden" name="taxonomy" value="' . $taxonomy . '">';
         }
     }
-
 }

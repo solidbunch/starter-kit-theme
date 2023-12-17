@@ -28,7 +28,9 @@ if (PHP_VERSION_ID < 80100) {
         $AppContainer = new AppContainer();
         $AppContainer->run();
     } catch (Throwable $throwable) {
-        $error_message = 'PHP error: ' . $throwable->getMessage() . ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
+        $error_message = 'PHP error: ' .
+                         $throwable->getMessage() .
+                         ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
         $error_message .= PHP_EOL . 'Stack trace:';
         $error_message .= PHP_EOL . $throwable->getTraceAsString();
 

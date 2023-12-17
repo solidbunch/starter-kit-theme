@@ -15,7 +15,6 @@ use WP_CLI;
  */
 class CLI
 {
-
     /**
      * Adds WP_CLI commands
      *
@@ -33,6 +32,4 @@ class CLI
             Utils::errorHandler($throwable);
         }
     }
-
-
 }

@@ -15,7 +15,6 @@ use StarterKit\Base\Config;
  */
 class NewsCategory
 {
-
     public static function make(): void
     {
         $metaPrefix = Config::get('settingsPrefix') . Config::get('postTypeNewsTaxonomyID') . '_';

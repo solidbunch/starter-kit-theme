@@ -14,7 +14,6 @@ use StarterKit\Handlers\CLI\CLI;
  */
 final class AppContainer
 {
-
     public function __construct()
     {
     }
@@ -30,5 +29,4 @@ final class AppContainer
         // WP_CLI functionality
         CLI::addCommands();
     }
-
 }

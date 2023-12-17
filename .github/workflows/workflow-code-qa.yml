@@ -1,0 +1,95 @@
+name: Code Quality Check
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - develop
+  workflow_dispatch: {}
+
+env:
+  PHP_VERSION: '8.1'
+  NODE_VERSION: '18'
+
+jobs:
+  php-code-sniffer:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo '${{ secrets.SSH_KEY }}' > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Install Composer Dependencies
+        run: composer update
+
+      - name: Run PHP CodeSniffer
+        run: composer lint
+
+      - name: Save Composer Built cache
+        uses: actions/cache@v3
+        with:
+          path: .
+          key: composer-build-cache-${{ github.run_number }}
+
+  stylelint:
+    runs-on: ubuntu-22.04
+
+    needs: [ php-code-sniffer ]
+
+    steps:
+      - name: Use Composer Built cache
+        uses: actions/cache@v3
+        with:
+          path: .
+          key: composer-build-cache-${{ github.run_number }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install npm Dependencies
+        run: npm run install-dev
+
+      - name: Run Stylelint
+        run: npm run lint:style
+
+      - name: Save Node Built cache
+        uses: actions/cache@v3
+        with:
+          path: .
+          key: composer-node-build-cache-${{ github.run_number }}
+
+  eslint:
+    runs-on: ubuntu-22.04
+
+    needs: [php-code-sniffer, stylelint]
+
+    steps:
+      - name: Use Node Built cache
+        uses: actions/cache@v3
+        with:
+          path: .
+          key: composer-node-build-cache-${{ github.run_number }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Run ESLint
+        run: npm run lint:js
+
+

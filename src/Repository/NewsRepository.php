@@ -13,7 +13,6 @@ use StarterKit\Base\Config;
  */
 class NewsRepository extends WpPostRepositoryAbstract
 {
-
     public static function getPostTypeID(): string
     {
         return Config::get('postTypeNewsID');
@@ -66,6 +65,4 @@ class NewsRepository extends WpPostRepositoryAbstract
             default => ['title' => 'No Power', 'color' => 'gray'],
         };
     }
-
-
 }

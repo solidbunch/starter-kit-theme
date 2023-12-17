@@ -13,10 +13,8 @@ use StarterKit\Base\Config;
  */
 class ServicesRepository extends WpPostRepositoryAbstract
 {
-
     public static function getPostTypeID(): string
     {
         return Config::get('postTypeServicesID');
     }
-
 }

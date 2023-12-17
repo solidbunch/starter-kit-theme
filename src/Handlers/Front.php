@@ -106,7 +106,10 @@ class Front
 
         $style = $registered_styles[$handle] ?? '';
 
-        if (empty($style) || !empty($style->ver) || empty($style->extra['path']) || !file_exists($style->extra['path'])) {
+        if (
+            empty($style) || !empty($style->ver) ||
+            empty($style->extra['path']) || !file_exists($style->extra['path'])
+        ) {
             return $src;
         }
 
@@ -127,7 +130,7 @@ class Front
         }
 
         ?>
-        <script>(function (w, d, s, l, i) {
+        <script>(function(w, d, s, l, i) {
                 w[l] = w[l] || [];
                 w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
                 var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
