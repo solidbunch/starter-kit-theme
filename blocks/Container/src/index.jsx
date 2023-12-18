@@ -10,12 +10,24 @@ const { registerBlockType } = wp.blocks;
 const { useSelect } = wp.data;
 const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
-const numberOfGrid = 6;
+const numberOfGrid = 5;
 const spacers = ['m', 'p'];
 const spacersName = ['t', 'b', 'e', 's'];
 registerBlockType(
   metadata,
   {
+    getEditWrapperProps(attributes) {
+      const { size } = attributes;
+      const classes = [];
+      Object.values(size).forEach((item) => {
+        if (item.valueRange) {
+          Object.keys(item.valueRange).forEach(i => {
+            classes.push(`${i}-${item.valueRange[i]}`);
+          });
+        }
+      });
+      return { className: classes.join(' ') };
+    },
     edit: props => {
       const { attributes, setAttributes, clientId } = props;
 
@@ -28,7 +40,7 @@ registerBlockType(
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
-      console.log(attributes);
+
       return [
         <InspectorControls key="controls">
           <PanelBody title="Container responsive type">
@@ -53,24 +65,25 @@ registerBlockType(
           <PanelBody title="Spacers">
             {Object.keys(attributes.size).map((breakpoint) => (
 
-              <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
+              <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== '' ? 'active' : ''}`}>
                 <CheckboxControl
                   label={`Enable ${breakpoint}`}
                   checked={
-                    attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
+                    attributes.size && attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== ""
                   }
                   onChange={(isChecked) => {
                     const sizeObject = { ...attributes.size };
                     if (isChecked) {
-                      sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: "default" };
+                      sizeObject[breakpoint] = { ...sizeObject[breakpoint], valueRange: {} };
                     } else {
-                      sizeObject[breakpoint] = { ...sizeObject[breakpoint], mod: "" };
+                      // sizeObject[breakpoint] = { ...sizeObject[breakpoint], valueRange: "" };
+                      delete sizeObject[breakpoint].valueRange;
                     }
                     setAttributes({ ...attributes, size: sizeObject });
                   }}
                 />
 
-                {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
+                {attributes.size && attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== "" && (
                   <>
                     {spacers.map((spacer, index) => (
                       spacersName.map((spacerName, innerIndex) => {
@@ -78,28 +91,55 @@ registerBlockType(
                         return (
                           <RangeControl
                             key={uniqueKey}
-                            label={`${spacer}${spacerName}`}
-                            value={
+                            allowReset={false}
+                            label={
                               (() => {
-                                if (attributes.size[breakpoint]?.valueRange !== undefined) {
-                                  return attributes.size[breakpoint].valueRange[uniqueKey] || 0;
+                                let labelValue;
+                                if (attributes.size[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
+                                  if (attributes.size[breakpoint].valueRange[uniqueKey] === (numberOfGrid + 1)) {
+                                    labelValue = "auto";
+                                  } else {
+                                    labelValue = attributes.size[breakpoint].valueRange[uniqueKey];
+                                  }
+                                } else {
+                                  labelValue = "none";
                                 }
-                                return attributes.size[breakpoint].valueRange = { [uniqueKey]: 0 };
+                                return `${uniqueKey}-${labelValue}`;
                               })()
                             }
+
+
+                            value={
+                              (() => {
+                                if (attributes.size[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
+                                  return attributes.size[breakpoint].valueRange[uniqueKey];
+                                }
+                                return -1;
+                              })()
+                            }
+
                             onChange={value => {
                               const sizeObject = { ...attributes.size };
-                              sizeObject[breakpoint] = {
-                                ...sizeObject[breakpoint],
-                                valueRange: {
-                                  ...sizeObject[breakpoint].valueRange,
-                                  [uniqueKey]: value,
-                                },
-                              };
+
+                              if (value === -1) {
+
+                                delete sizeObject[breakpoint].valueRange[uniqueKey];
+                              } else {
+
+                                sizeObject[breakpoint] = {
+                                  ...sizeObject[breakpoint],
+                                  valueRange: {
+                                    ...sizeObject[breakpoint].valueRange,
+
+                                    [uniqueKey]: value,
+                                  },
+                                };
+                              }
                               setAttributes({ ...attributes, size: sizeObject });
                             }}
-                            min={0}
-                            max={numberOfGrid}
+
+                            min={-1}
+                            max={numberOfGrid + 1}
                             {...props}
                           />
                         );
