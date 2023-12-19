@@ -11,18 +11,24 @@ const { useSelect } = wp.data;
 const { InspectorControls, useBlockProps, InnerBlocks } = wp.blockEditor;
 const { PanelBody, SelectControl, RangeControl, CheckboxControl } = wp.components;
 const numberOfGrid = 5;
+
 const spacers = ['m', 'p'];
 const spacersName = ['t', 'b', 'e', 's'];
+
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
       const { size } = attributes;
       const classes = [];
+      // console.log(attributes.size);
       Object.values(size).forEach((item) => {
         if (item.valueRange) {
           Object.keys(item.valueRange).forEach(i => {
-            classes.push(`${i}-${item.valueRange[i]}`);
+
+            const modifiedClass = `${i}-${item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i]}`.replace('-xs', '');
+
+            classes.push(modifiedClass);
           });
         }
       });
@@ -88,6 +94,8 @@ registerBlockType(
                     {spacers.map((spacer, index) => (
                       spacersName.map((spacerName, innerIndex) => {
                         const uniqueKey = `${spacer}${spacerName}-${breakpoint}`;
+                        const maxGrid = spacer === 'p' ? numberOfGrid : numberOfGrid + 1;
+
                         return (
                           <RangeControl
                             key={uniqueKey}
@@ -139,7 +147,7 @@ registerBlockType(
                             }}
 
                             min={-1}
-                            max={numberOfGrid + 1}
+                            max={maxGrid}
                             {...props}
                           />
                         );
