@@ -14,31 +14,45 @@ const numberOfGrid = 5;
 
 const spacers = ['m', 'p'];
 const spacersName = ['t', 'b', 'e', 's'];
+// remove Restricted Classes
+function removeRestrictedClasses(inputStr, excludeArray) {
+  // Split the string into words
+  const words = inputStr.split(/\s+/);
+  // Remove matches from the list of words
+  const filteredWords = words.filter(word => !excludeArray.includes(word));
+  return filteredWords.join(' ');
+}
+function generateClasses(attributes, numberOfGrid) {
+  const { size, modification } = attributes;
+  const classes = [modification]; // Начинаем с класса modification (container)
+
+  Object.values(size).forEach((item) => {
+    if (item.valueRange) {
+      Object.keys(item.valueRange).forEach(i => {
+        const modifiedValue = item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i];
+        const modifiedClass = `${i}-${modifiedValue}`.replace('-xs', '');
+        classes.push(modifiedClass);
+      });
+    }
+  });
+
+  return classes.join(' ');
+}
 
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-      const { size } = attributes;
-      const classes = [];
-      // console.log(attributes.size);
-      Object.values(size).forEach((item) => {
-        if (item.valueRange) {
-          Object.keys(item.valueRange).forEach(i => {
 
-            const modifiedClass = `${i}-${item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i]}`.replace('-xs', '');
-
-            classes.push(modifiedClass);
-          });
-        }
-      });
-      return { className: classes.join(' ') };
+      return { className: generateClasses(attributes, numberOfGrid) };
     },
     edit: props => {
-      const { attributes, setAttributes, clientId } = props;
+      const { attributes, setAttributes, clientId, className } = props;
 
-      const blockProps = useBlockProps();
-
+      const blockProps = useBlockProps({
+        className: [className],
+      });
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
       const { hasChildBlocks } = useSelect((select) => {
         const { getBlockOrder } = select('core/block-editor');
 
@@ -174,24 +188,16 @@ registerBlockType(
         </div>
       ];
     },
-
     save: props => {
       const { attributes } = props;
 
-      const combinedClass = [];
-
-      if (attributes.modification) {
-        combinedClass.push(attributes.modification);
-      }
-
-      if (attributes.className) {
-        combinedClass.push(attributes.className);
-      }
-
-      const classNameString = combinedClass.join(" ");
-
+      const blockProps = useBlockProps.save({
+        className: generateClasses(attributes, numberOfGrid)
+      });
+      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
+      console.log(blockProps.className);
       return (
-        <div className={classNameString}>
+        <div {...blockProps}>
           <InnerBlocks.Content />
         </div>
       );

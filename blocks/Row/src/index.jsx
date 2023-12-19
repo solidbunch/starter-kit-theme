@@ -10,23 +10,23 @@ import metadata from '../block.json';
 /**
  * Internal block libraries
  */
-const {registerBlockType} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
-const {InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} = wp.blockEditor;
-const {PanelBody, SelectControl, CheckboxControl} = wp.components;
+const { InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps } = wp.blockEditor;
+const { PanelBody, SelectControl, CheckboxControl } = wp.components;
 
 function getClasses(attributes) {
-  const {modification, properties} = attributes;
+  const { modification, properties } = attributes;
   const classes = [modification]; // Начинаем с класса modification (row)
-  
+
   Object.keys(properties).forEach((breakpoint) => {
-    const {justifyContent, alignItems} = properties[breakpoint];
+    const { justifyContent, alignItems } = properties[breakpoint];
     const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
-  
+
     if (justifyContent) {
       classes.push(`justify-content${breakpointSuffix}-${justifyContent}`);
     }
-  
+
     if (alignItems) {
       classes.push(`align-items${breakpointSuffix}-${alignItems}`);
     }
@@ -46,19 +46,19 @@ registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-      
-      return {className: getClasses(attributes)};
-    },    
+
+      return { className: getClasses(attributes) };
+    },
     edit: props => {
-      
-      const {attributes, setAttributes, className} = props;
+
+      const { attributes, setAttributes, className } = props;
       const blockProps = useBlockProps({
         className: [className],
       });
 
       // blockProps.className = blockProps.className.replace('wp-block ', '');
       blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
-      
+
       const TEMPLATE = [['starter-kit/column']];
 
       const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -68,9 +68,9 @@ registerBlockType(
       });
       return [
         <InspectorControls key="settings">
-          <PanelBody title="alignment x"  initialOpen={ false }>
+          <PanelBody title="alignment x" initialOpen={false}>
             {Object.keys(attributes.properties).map((breakpoint) => (
-              
+
               <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint `}>
                 <CheckboxControl
                   label={`${breakpoint} alignment`}
@@ -78,17 +78,17 @@ registerBlockType(
                     attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== ""
                   }
                   onChange={(isChecked) => {
-                    const propObject = {...attributes.properties};
+                    const propObject = { ...attributes.properties };
                     if (isChecked) {
-                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: "start"};
+                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: "start" };
                     } else {
-                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: ""};
+                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: "" };
                     }
-                    setAttributes({...attributes, properties: propObject});
-                    
+                    setAttributes({ ...attributes, properties: propObject });
+
                   }}
                 />
-                
+
                 {attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== "" && (
                   <SelectControl
                     label={`Size ${breakpoint}`}
@@ -98,20 +98,20 @@ registerBlockType(
                       value,
                     }))}
                     onChange={(value) => {
-                      const propObject = {...attributes.properties};
-                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: value};
-                      setAttributes({...attributes, properties: propObject});
+                      const propObject = { ...attributes.properties };
+                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: value };
+                      setAttributes({ ...attributes, properties: propObject });
                     }}
                   />
-                
+
                 )}
               </div>
             ))}
-            
+
           </PanelBody>
-          <PanelBody title="alignment Y"  initialOpen={ false }>
+          <PanelBody title="alignment Y" initialOpen={false}>
             {Object.keys(attributes.properties).map((breakpoint) => (
-              
+
               <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint `}>
                 <CheckboxControl
                   label={`${breakpoint} alignment`}
@@ -119,17 +119,17 @@ registerBlockType(
                     attributes.properties && attributes.properties[breakpoint].alignItems !== undefined && attributes.properties[breakpoint].alignItems !== ""
                   }
                   onChange={(isChecked) => {
-                    const propObject = {...attributes.properties};
+                    const propObject = { ...attributes.properties };
                     if (isChecked) {
-                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: "start"};
+                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: "start" };
                     } else {
-                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: ""};
+                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: "" };
                     }
-                    setAttributes({...attributes, properties: propObject});
-                    
+                    setAttributes({ ...attributes, properties: propObject });
+
                   }}
                 />
-                
+
                 {attributes.properties && attributes.properties[breakpoint].alignItems !== undefined && attributes.properties[breakpoint].alignItems !== "" && (
                   <SelectControl
                     label={`Size ${breakpoint}`}
@@ -139,36 +139,37 @@ registerBlockType(
                       value,
                     }))}
                     onChange={(value) => {
-                      const propObject = {...attributes.properties};
-                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: value};
-                      setAttributes({...attributes, properties: propObject});
+                      const propObject = { ...attributes.properties };
+                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: value };
+                      setAttributes({ ...attributes, properties: propObject });
                     }}
                   />
-                
+
                 )}
               </div>
             ))}
-            
+
           </PanelBody>
         </InspectorControls>,
         <div {...innerBlocksProps} key="blockControls">
-          
+
         </div>
       ];
     },
 
     save: props => {
-      const {attributes} = props;
+      const { attributes } = props;
 
       const blockProps = useBlockProps.save({
         className: getClasses(attributes)
       });
       blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
+
       return (
         <div {...blockProps}>
-          <InnerBlocks.Content/>
+          <InnerBlocks.Content />
         </div>
       );
     }
-    
+
   });
