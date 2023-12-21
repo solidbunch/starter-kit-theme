@@ -1,4 +1,5 @@
 {
+    "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
     "/assets/build/js/front-components/_theme.js": "/assets/build/js/front-components/_theme.js",
     "/blocks/Row/build/index_test.js": "/blocks/Row/build/index_test.js",
