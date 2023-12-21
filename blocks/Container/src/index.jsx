@@ -177,15 +177,13 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
-          <div className={attributes.modification}>
-            <InnerBlocks
-              renderAppender={
-                hasChildBlocks
-                  ? undefined
-                  : () => <InnerBlocks.ButtonBlockAppender />
-              }
-            />
-          </div>
+          <InnerBlocks
+            renderAppender={
+              hasChildBlocks
+                ? undefined
+                : () => <InnerBlocks.ButtonBlockAppender />
+            }
+          />
         </div>
       ];
     },
@@ -196,7 +194,7 @@ registerBlockType(
         className: generateClasses(attributes, numberOfGrid)
       });
       blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
-      console.log(blockProps.className);
+      // console.log(blockProps.className);
       return (
         <div {...blockProps}>
           <InnerBlocks.Content />
