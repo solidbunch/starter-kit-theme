@@ -47,22 +47,6 @@ class Front
     }
 
     /**
-     * Load assets in editor
-     *
-     * @return void
-     */
-    public static function enqueueBlockEditorAssets(): void
-    {
-        $style = Config::get('assetsUri') . 'build/styles/editor.css';
-
-        $styleUri  = get_template_directory_uri() . $style;
-        $stylePath = get_template_directory() . $style;
-
-        wp_enqueue_style('theme-editor-style', $styleUri, [], filemtime($stylePath));
-    }
-
-
-    /**
      * Load additional JS data variables
      *
      * @return void
