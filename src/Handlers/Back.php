@@ -2,13 +2,17 @@
 
 namespace StarterKit\Handlers;
 
-use StarterKit\Base\Config;
-
 defined('ABSPATH') || exit;
 
+use StarterKit\Base\Config;
+
+/**
+ * Back End handler
+ *
+ * @package    Starter Kit
+ */
 class Back
 {
-
     /**
      * Load assets in editor
      *
@@ -30,5 +34,4 @@ class Back
 
         wp_enqueue_script('theme-editor-script', $editorScriptUri, [], filemtime($editorScriptPath), true);
     }
-
 }
