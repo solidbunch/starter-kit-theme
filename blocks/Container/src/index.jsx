@@ -162,6 +162,7 @@ registerBlockType(
 
                             min={-1}
                             max={maxGrid}
+                            withInputField={false}
                             {...props}
                           />
                         );
