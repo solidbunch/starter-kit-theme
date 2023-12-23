@@ -6,14 +6,7 @@ const {PanelBody, RangeControl, CheckboxControl} = wp.components;
 
 const numberOfGrid = 5;
 // const excludeClasses=['wp-block','wp-block-starter-kit-container'];
-const spacers = {
-  "xs": {},
-  "sm": {},
-  "md": {},
-  "lg": {},
-  "xl": {},
-  "xxl": {}
-};
+
 const spacersTypes = ['m', 'p'];
 const spacersDirection = ['t', 'b', 'e', 's'];
 
@@ -27,16 +20,16 @@ function removeRestrictedClasses(inputStr, excludeArray) {
 }
 
 // add classes
-function generateClasses(attributes, numberOfGrid) {
-  const {modification } = attributes;
-  const classes = [modification]; // Начинаем с класса modification (container)
-
-  Object.values(spacers).forEach((item) => {
+function generateClasses(attributes) {
+  const classes = []; // Начинаем с класса modification (container)
+console.log(attributes.spacers);
+  Object.values(attributes.spacers).forEach((item) => {
     if (item.valueRange) {
       Object.keys(item.valueRange).forEach(i => {
         const modifiedValue = item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i];
         const modifiedClass = `${i}-${modifiedValue}`.replace('-xs', '');
         classes.push(modifiedClass);
+        console.log(classes);
       });
     }
   });
@@ -48,32 +41,33 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
     const {attributes, setAttributes, clientId, className}= props;
     if (props.name.startsWith('starter-kit/')) {
+
       return (
         <>
           <BlockEdit {...props} />
           <InspectorControls key="controls">
             <PanelBody title="Spacers from EDITOR file">
-              {Object.keys(spacers).map((breakpoint) => (
+              {Object.keys(attributes.spacers).map((breakpoint) => (
 
-                <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== '' ? 'active' : ''}`}>
+                <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== '' ? 'active' : ''}`}>
                   <CheckboxControl
                     label={`Enable ${breakpoint}`}
                     checked={
-                      attributes.size && attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== ""
+                      attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== ""
                     }
                     onChange={(isChecked) => {
-                      const sizeObject = {...attributes.size};
+                      const spacersObject = {...attributes.spacers};
                       if (isChecked) {
-                        sizeObject[breakpoint] = {...sizeObject[breakpoint], valueRange: {}};
+                        spacersObject[breakpoint] = {...spacersObject[breakpoint], valueRange: {}};
                       } else {
-                        // sizeObject[breakpoint] = { ...sizeObject[breakpoint], valueRange: "" };
-                        delete sizeObject[breakpoint].valueRange;
+                        // spacersObject[breakpoint] = { ...spacersObject[breakpoint], valueRange: "" };
+                        delete spacersObject[breakpoint].valueRange;
                       }
-                      setAttributes({...attributes, size: sizeObject});
+                      setAttributes({...attributes, spacers: spacersObject});
                     }}
                   />
 
-                  {attributes.size && attributes.size[breakpoint].valueRange !== undefined && attributes.size[breakpoint].valueRange !== "" && (
+                  {attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== "" && (
                     <>
                       {spacersTypes.map((spacerType, index) => (
                         spacersDirection.map((spacerDirection, innerIndex) => {
@@ -87,11 +81,11 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                               label={
                                 (() => {
                                   let labelValue;
-                                  if (attributes.size[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
-                                    if (attributes.size[breakpoint].valueRange[uniqueKey] === (numberOfGrid + 1)) {
+                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
+                                    if (attributes.spacers[breakpoint].valueRange[uniqueKey] === (numberOfGrid + 1)) {
                                       labelValue = "auto";
                                     } else {
-                                      labelValue = attributes.size[breakpoint].valueRange[uniqueKey];
+                                      labelValue = attributes.spacers[breakpoint].valueRange[uniqueKey];
                                     }
                                   } else {
                                     labelValue = "none";
@@ -102,31 +96,31 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
 
                               value={
                                 (() => {
-                                  if (attributes.size[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
-                                    return attributes.size[breakpoint].valueRange[uniqueKey];
+                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
+                                    return attributes.spacers[breakpoint].valueRange[uniqueKey];
                                   }
                                   return -1;
                                 })()
                               }
 
                               onChange={value => {
-                                const sizeObject = {...attributes.size};
+                                const spacersObject = {...attributes.spacers};
 
                                 if (value === -1) {
 
-                                  delete sizeObject[breakpoint].valueRange[uniqueKey];
+                                  delete spacersObject[breakpoint].valueRange[uniqueKey];
                                 } else {
 
-                                  sizeObject[breakpoint] = {
-                                    ...sizeObject[breakpoint],
+                                  spacersObject[breakpoint] = {
+                                    ...spacersObject[breakpoint],
                                     valueRange: {
-                                      ...sizeObject[breakpoint].valueRange,
+                                      ...spacersObject[breakpoint].valueRange,
 
                                       [uniqueKey]: value,
                                     },
                                   };
                                 }
-                                setAttributes({...attributes, size: sizeObject});
+                                setAttributes({...attributes, spacers: spacersObject});
                               }}
 
                               min={-1}
@@ -141,7 +135,7 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                   )}
                 </div>
               ))}
-              
+
             </PanelBody>
           </InspectorControls>
         </>
@@ -156,12 +150,31 @@ const modifyBlockWrapperClass = (settings, name) => {
   if (name.startsWith('starter-kit/')) {
     const originalGetEditWrapperProps = settings.getEditWrapperProps;
 
+    const spacerAttributes = {
+      spacers: {
+        type: 'string',
+        default: {
+          "xs": {},
+          "sm": {},
+          "md": {},
+          "lg": {},
+          "xl": {},
+          "xxl": {}
+        },
+      },
+    };
+
+    settings.attributes = {
+      ...settings.attributes,
+      ...spacerAttributes,
+    };
+
     settings.getEditWrapperProps = (attributes) => {
       // Call original getEditWrapperProps if it exists
       let props = originalGetEditWrapperProps ? originalGetEditWrapperProps(attributes) : {};
 
       // Add or modify the className
-      props.className = generateClasses(attributes, numberOfGrid);;
+      props.className = generateClasses(attributes);
       return props;
     };
   }
@@ -169,14 +182,44 @@ const modifyBlockWrapperClass = (settings, name) => {
   return settings;
 };
 
-const saveSpacerClasses = (extraProps, blockType, attributes) => {
+const saveSpacerClasses = (props, blockType, attributes) => {
   if (blockType.name.startsWith('starter-kit/')) {
-
-    extraProps.className = generateClasses(attributes, numberOfGrid);
+    props.className = generateClasses(attributes);
+    console.log('hook');
   }
-  
-  return extraProps;
+
+
+  return props;
 };
+
+function addSpacerAttribute(settings, name) {
+  // Check if the block is from the starter-kit
+  if (name.startsWith('starter-kit/')) {
+    // Define your custom attribute
+    const spacerAttributes = {
+      spacers: {
+        type: 'string',
+        default: {
+          "xs": {},
+          "sm": {},
+          "md": {},
+          "lg": {},
+          "xl": {},
+          "xxl": {}
+        },
+      },
+    };
+
+    // Merge the custom attribute with existing attributes
+    settings.attributes = {
+      ...settings.attributes,
+      ...spacerAttributes,
+    };
+  }
+
+  return settings;
+}
+
 addFilter(
   'editor.BlockEdit',
   'starter_kit/edit-spacers-classes',
@@ -192,3 +235,11 @@ addFilter(
   'starter_kit/edit-spacers-classes-wrapper',
   modifyBlockWrapperClass
 );
+
+/*
+addFilter(
+  'blocks.registerBlockType',
+  'starter_kit/add-spacers-attribute',
+  addSpacerAttribute
+);
+*/

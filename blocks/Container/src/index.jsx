@@ -35,12 +35,6 @@ registerBlockType(
               label="Container width"
               value={attributes.modification}
               options={[
-                // ToDo - add breakpoints options
-                // { label: 'container', value: 'container' },
-                // { label: 'container-sm', value: 'container-sm' },
-                // { label: 'container-md', value: 'container-md' },
-                // { label: 'container-lg', value: 'container-lg' },
-                // { label: 'container-xl', value: 'container-xl' },
                 { label: 'Fixed width', value: 'container-xxl' },
                 { label: 'Full width', value: 'container-fluid' }
               ]}
@@ -59,9 +53,15 @@ registerBlockType(
         </div>
       ];
     },
-    save: () => {
+    save: props => {
+      const {attributes} = props;
 
-      const blockProps = useBlockProps.save();
+      const containerClass = [attributes.modification];
+
+      const blockProps = useBlockProps.save({
+        //className: props.className ? props.className + ' ' + containerClass : containerClass
+      });
+console.log('block');
       return (
         <div {...blockProps}>
           <InnerBlocks.Content />
