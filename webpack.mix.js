@@ -125,26 +125,28 @@ allAssets.forEach(assetPath => {
 /**
  * BrowserSync runs on dev mode only
  */
-mix.browserSync({
-  /**
-   * Proxying to nginx container with alias APP_DOMAIN
-   * Proxy should be the same as WP_SITEURL in wp-config.php
-   */
-  proxy: getAppUrl(),
-  /**
-   * Set external host network IP.
-   * If hostIp is undefined, just find your local network IP in your system
-   * and use it in your other devices browser to sync with BrowserSync.
-   */
-  host: getHostIp(),
-  port: 3000,
-  open: false,
-  files: [
-    '**/*.php',
-    '**/*.twig',
-    '**/src/**/*.@(scss|js|jsx)',
-  ],
-});
+if (!mix.inProduction()) {
+  mix.browserSync({
+    /**
+     * Proxying to nginx container with alias APP_DOMAIN
+     * Proxy should be the same as WP_SITEURL in wp-config.php
+     */
+    proxy: getAppUrl(),
+    /**
+     * Set external host network IP.
+     * If hostIp is undefined, just find your local network IP in your system
+     * and use it in your other devices browser to sync with BrowserSync.
+     */
+    host: getHostIp(),
+    port: 3000,
+    open: false,
+    files: [
+      '**/*.php',
+      '**/*.twig',
+      '**/src/**/*.@(scss|js|jsx)',
+    ],
+  });
+}
 
 function getAppUrl() {
   const appProtocol = process.env.APP_PROTOCOL;
