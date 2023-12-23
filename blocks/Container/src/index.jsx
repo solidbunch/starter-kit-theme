@@ -17,7 +17,6 @@ registerBlockType(
   {
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
-      console.log(attributes);
       const blockProps = useBlockProps({
         className: [className],
       });
