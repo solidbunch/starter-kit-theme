@@ -72,7 +72,6 @@ class Hooks
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
-        add_action('enqueue_block_editor_assets', [Handlers\Front::class, 'enqueueBlockEditorAssets']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
         // Change excerpt dots
@@ -82,6 +81,11 @@ class Hooks
         add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
         // add Google Analytics code to head
         add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
+
+        /************************************
+         *               Back
+         ************************************/
+        add_action('enqueue_block_editor_assets', [Handlers\Back::class, 'enqueueBlockEditorAssets']);
 
         /************************************
          *       Security and CleanUp

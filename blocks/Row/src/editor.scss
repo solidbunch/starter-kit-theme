@@ -1,68 +1,10 @@
 @use "sass:math";
 
-@mixin make-grid-columns($current-size-index: 1, $sizes: ("lg"), $grid-columns: 12) {
-  @if $current-size-index <= length($sizes) {
-    $size: nth($sizes, $current-size-index);
-
-    // Default column size is equivalent to class="col"
-    &[data-col-#{$size}="default"] {
-      flex: 1 0 0;
-    }
-
-    // Auto column size is equivalent to class="col-auto"
-    &[data-col-#{$size}="auto"] {
-      flex: 0 0 auto;
-      width: auto;
-    }
-
-    // Grid column sizes are equivalent to class="col-[size]-1 .. 12"
-    @for $i from 1 through $grid-columns {
-      &[data-col-#{$size}="#{$i}"] {
-        flex: 0 0 percentage(math.div($i, $grid-columns));
-        // Add a `max-width` to ensure content within each column does not blow out
-        // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
-        // do not appear to require this.
-        max-width: percentage(math.div($i, $grid-columns));
-      }
-    }
-    &[data-col-#{$size}="0"] {
-      @include make-grid-columns($current-size-index + 1);
-    }
-  }
-
-  @else {
-    flex-grow: 1;
-    flex-basis: 0;
-  }
-}
-
 .wp-block-starter-kit-row {
+
   // Row background on hover to make it visible
   &:not(.is-selected):not(.has-child-selected):hover {
     //background-color: rgba(220, 220, 220, 0.5);
     outline: 1px dashed #6c757d;
-  }
-
-  & > .block-editor-inner-blocks > .block-editor-block-list__layout {
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-
-    > .wp-block-starter-kit-column {
-      margin: 0;
-      box-sizing: border-box;
-
-      // Grid implementation
-      @include make-grid-columns();
-
-      // Prevent long unbroken words from overflowing.
-      word-break: break-word; // For back-compat.
-      overflow-wrap: break-word; // New standard.
-    }
-
-    // Set block list appender width to use full width of container to wrap to new line
-    > .block-list-appender {
-      width: 100%;
-    }
   }
 }

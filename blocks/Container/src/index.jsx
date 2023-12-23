@@ -10,15 +10,16 @@ const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl} = wp.components;
+const {applyFilters} = wp.hooks;
 
 registerBlockType(
   metadata,
   {
     edit: props => {
-      const {attributes, setAttributes, clientId} = props;
-
-      const blockProps = useBlockProps();
-
+      const {attributes, setAttributes, clientId, className} = props;
+      const blockProps = useBlockProps({
+        className: [className],
+      });
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -34,12 +35,6 @@ registerBlockType(
               label="Container width"
               value={attributes.modification}
               options={[
-                // ToDo - add breakpoints options
-                //{label: 'container', value: 'container'},
-                //{label: 'container-sm', value: 'container-sm'},
-                //{label: 'container-md', value: 'container-md'},
-                //{label: 'container-lg', value: 'container-lg'},
-                //{label: 'container-xl', value: 'container-xl'},
                 {label: 'Fixed width', value: 'container-xxl'},
                 {label: 'Full width', value: 'container-fluid'}
               ]}
@@ -48,37 +43,29 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
-          <div className={attributes.modification}>
-            <InnerBlocks
-              renderAppender={
-                hasChildBlocks
-                  ? undefined
-                  : () => <InnerBlocks.ButtonBlockAppender/>
-              }
-            />
-          </div>
+          <InnerBlocks
+            renderAppender={
+              hasChildBlocks
+                ? undefined
+                : () => <InnerBlocks.ButtonBlockAppender />
+            }
+          />
         </div>
       ];
     },
-
     save: props => {
       const {attributes} = props;
 
-      const combinedClass = [];
+      const blockClasses = [attributes.modification];
+      const modifiedClass = applyFilters('starter_kit.updateBlockClasses', props, blockClasses);
 
-      if (attributes.modification) {
-        combinedClass.push(attributes.modification);
-      }
-
-      if (attributes.className) {
-        combinedClass.push(attributes.className);
-      }
-
-      const classNameString = combinedClass.join(" ");
+      const blockProps = useBlockProps.save({
+        className: modifiedClass
+      });
 
       return (
-        <div className={classNameString}>
-          <InnerBlocks.Content/>
+        <div {...blockProps}>
+          <InnerBlocks.Content />
         </div>
       );
     }

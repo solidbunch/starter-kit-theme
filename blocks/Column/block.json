@@ -3,7 +3,9 @@
   "name": "starter-kit/column",
   "title": "Column",
   "category": "starter-kit",
-  "parent": ["starter-kit/row"],
+  "parent": [
+    "starter-kit/row"
+  ],
   "icon": "info",
   "description": "Bootstrap column",
   "keywords": [
@@ -17,19 +19,28 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "size": {
-      "type": "string",
-      "default": "default"
+    "excludeClasses": {
+      "type": "object",
+      "default": [
+        "wp-block",
+        "wp-block-starter-kit-column"
+      ]
     },
-    "modification": {
+    "size": {
       "type": "object",
       "default": {
-        "sm": 12,
-        "lg": 6
+        "xs": {
+          "mod": "default"
+        },
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
       }
     }
   },
   "editorScript": "file:build/index.js",
   "editorStyle": "file:build/editor.css",
-  "style": ""
+  "style": "file:build/style.css"
 }
