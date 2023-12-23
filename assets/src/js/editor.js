@@ -22,14 +22,13 @@ function removeRestrictedClasses(inputStr, excludeArray) {
 // add classes
 function generateClasses(attributes) {
   const classes = []; // Начинаем с класса modification (container)
-console.log(attributes.spacers);
+
   Object.values(attributes.spacers).forEach((item) => {
     if (item.valueRange) {
       Object.keys(item.valueRange).forEach(i => {
         const modifiedValue = item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i];
         const modifiedClass = `${i}-${modifiedValue}`.replace('-xs', '');
         classes.push(modifiedClass);
-        console.log(classes);
       });
     }
   });
@@ -185,9 +184,7 @@ const modifyBlockWrapperClass = (settings, name) => {
 const saveSpacerClasses = (props, blockType, attributes) => {
   if (blockType.name.startsWith('starter-kit/')) {
     props.className = generateClasses(attributes);
-    console.log('hook');
   }
-
 
   return props;
 };
@@ -220,26 +217,38 @@ function addSpacerAttribute(settings, name) {
   return settings;
 }
 
+function addSpacersClasses(props, blockClasses) {
+  const spacersClasses = generateClasses(props.attributes);
+  blockClasses = blockClasses ? blockClasses + ' ' + spacersClasses : spacersClasses;
+
+  return blockClasses;
+}
+
 addFilter(
   'editor.BlockEdit',
   'starter_kit/edit-spacers-classes',
   editSpacerClasses,
 );
-addFilter(
+/*addFilter(
   'blocks.getSaveContent.extraProps',
   'starter_kit/save-spacers-classes',
   saveSpacerClasses
-);
+);*/
 addFilter(
   'blocks.registerBlockType',
   'starter_kit/edit-spacers-classes-wrapper',
   modifyBlockWrapperClass
 );
 
-/*
+addFilter(
+  'starter_kit.updateBlockClasses',
+  'starter_kit/add-spacers-classes',
+  addSpacersClasses
+);
+
 addFilter(
   'blocks.registerBlockType',
   'starter_kit/add-spacers-attribute',
   addSpacerAttribute
 );
-*/
+
