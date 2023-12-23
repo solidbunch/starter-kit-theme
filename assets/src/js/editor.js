@@ -38,17 +38,21 @@ function generateClasses(attributes) {
 
 const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
+    
     const {attributes, setAttributes} = props;
     if (props.name.startsWith('starter-kit/')) {
 
       return (
+        
         <>
+          
           <BlockEdit {...props} />
           <InspectorControls key="controls">
             <PanelBody title="Spacers from EDITOR file">
               {Object.keys(attributes.spacers).map((breakpoint) => (
-
+                
                 <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== '' ? 'active' : ''}`}>
+                  
                   <CheckboxControl
                     label={`Enable ${breakpoint}`}
                     checked={
@@ -65,7 +69,7 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                       setAttributes({...attributes, spacers: spacersObject});
                     }}
                   />
-
+                  
                   {attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== "" && (
                     <>
                       {spacersTypes.map((spacerType) => (
@@ -132,12 +136,14 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                       ))}
                     </>
                   )}
+                  
                 </div>
               ))}
 
             </PanelBody>
           </InspectorControls>
         </>
+        
       );
     }
     return <BlockEdit {...props} />;
@@ -151,7 +157,7 @@ const modifyBlockWrapperClass = (settings, name) => {
 
     const spacerAttributes = {
       spacers: {
-        type: 'string',
+        type: 'object',
         default: {
           "xs": {},
           "sm": {},
@@ -181,41 +187,46 @@ const modifyBlockWrapperClass = (settings, name) => {
   return settings;
 };
 
-function addSpacerAttribute(settings, name) {
-  // Check if the block is from the starter-kit
-  if (name.startsWith('starter-kit/')) {
-    // Define your custom attribute
-    const spacerAttributes = {
-      spacers: {
-        type: 'string',
-        default: {
-          "xs": {},
-          "sm": {},
-          "md": {},
-          "lg": {},
-          "xl": {},
-          "xxl": {}
-        },
-      },
-    };
+// function addSpacerAttribute(settings, name) {
+//   // Check if the block is from the starter-kit
+//   if (name.startsWith('starter-kit/')) {
+//     // Define your custom attribute
+//     const spacerAttributes = {
+//       spacers: {
+//         type: 'string',
+//         default: {
+//           "xs": {},
+//           "sm": {},
+//           "md": {},
+//           "lg": {},
+//           "xl": {},
+//           "xxl": {}
+//         },
+//       },
+//     };
 
-    // Merge the custom attribute with existing attributes
-    settings.attributes = {
-      ...settings.attributes,
-      ...spacerAttributes,
-    };
-  }
+//     // Merge the custom attribute with existing attributes
+//     settings.attributes = {
+//       ...settings.attributes,
+//       ...spacerAttributes,
+//     };
+//   }
 
-  return settings;
-}
+//   return settings;
+// }
 
 function addSpacersClasses(props, blockClasses) {
+  
   const spacersClasses = generateClasses(props.attributes);
   blockClasses = blockClasses ? blockClasses + ' ' + spacersClasses : spacersClasses;
 
   return blockClasses;
 }
-
+addFilter(
+  'blocks.registerBlockType',
+  'starter_kit/edit-spacers-classes-wrapper',
+  modifyBlockWrapperClass
+);
 addFilter(
   'editor.BlockEdit',
   'starter_kit/edit-spacers-classes',
@@ -226,11 +237,6 @@ addFilter(
   'starter_kit/save-spacers-classes',
   saveSpacerClasses
 );*/
-addFilter(
-  'blocks.registerBlockType',
-  'starter_kit/edit-spacers-classes-wrapper',
-  modifyBlockWrapperClass
-);
 
 addFilter(
   'starter_kit.updateBlockClasses',
@@ -238,9 +244,9 @@ addFilter(
   addSpacersClasses
 );
 
-addFilter(
-  'blocks.registerBlockType',
-  'starter_kit/add-spacers-attribute',
-  addSpacerAttribute
-);
+// addFilter(
+//   'blocks.registerBlockType',
+//   'starter_kit/add-spacers-attribute',
+//   addSpacerAttribute
+// );
 
