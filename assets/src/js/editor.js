@@ -11,13 +11,13 @@ const spacersTypes = ['m', 'p'];
 const spacersDirection = ['t', 'b', 'e', 's'];
 
 // remove Restricted Classes
-function removeRestrictedClasses(inputStr, excludeArray) {
-  // Split the string into words
-  const words = inputStr.split(/\s+/);
-  // Remove matches from the list of words
-  const filteredWords = words.filter(word => !excludeArray.includes(word));
-  return filteredWords.join(' ');
-}
+// function removeRestrictedClasses(inputStr, excludeArray) {
+//   // Split the string into words
+//   const words = inputStr.split(/\s+/);
+//   // Remove matches from the list of words
+//   const filteredWords = words.filter(word => !excludeArray.includes(word));
+//   return filteredWords.join(' ');
+// }
 
 // add classes
 function generateClasses(attributes) {
@@ -38,7 +38,7 @@ function generateClasses(attributes) {
 
 const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
-    const {attributes, setAttributes, clientId, className}= props;
+    const {attributes, setAttributes} = props;
     if (props.name.startsWith('starter-kit/')) {
 
       return (
@@ -68,8 +68,8 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
 
                   {attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== "" && (
                     <>
-                      {spacersTypes.map((spacerType, index) => (
-                        spacersDirection.map((spacerDirection, innerIndex) => {
+                      {spacersTypes.map((spacerType) => (
+                        spacersDirection.map((spacerDirection) => {
                           const uniqueKey = `${spacerType}${spacerDirection}-${breakpoint}`;
                           const maxGrid = spacerType === 'p' ? numberOfGrid : numberOfGrid + 1;
 
@@ -179,14 +179,6 @@ const modifyBlockWrapperClass = (settings, name) => {
   }
 
   return settings;
-};
-
-const saveSpacerClasses = (props, blockType, attributes) => {
-  if (blockType.name.startsWith('starter-kit/')) {
-    props.className = generateClasses(attributes);
-  }
-
-  return props;
 };
 
 function addSpacerAttribute(settings, name) {

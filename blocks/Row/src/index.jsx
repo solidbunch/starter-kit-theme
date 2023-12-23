@@ -10,17 +10,17 @@ import metadata from '../block.json';
 /**
  * Internal block libraries
  */
-const { registerBlockType } = wp.blocks;
+const {registerBlockType} = wp.blocks;
 
-const { InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps } = wp.blockEditor;
-const { PanelBody, SelectControl, CheckboxControl } = wp.components;
+const {InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} = wp.blockEditor;
+const {PanelBody, SelectControl, CheckboxControl} = wp.components;
 
 function getClasses(attributes) {
-  const { modification, properties } = attributes;
+  const {modification, properties} = attributes;
   const classes = [modification]; // Начинаем с класса modification (row)
 
   Object.keys(properties).forEach((breakpoint) => {
-    const { justifyContent, alignItems } = properties[breakpoint];
+    const {justifyContent, alignItems} = properties[breakpoint];
     const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
 
     if (justifyContent) {
@@ -47,11 +47,11 @@ registerBlockType(
   {
     getEditWrapperProps(attributes) {
 
-      return { className: getClasses(attributes) };
+      return {className: getClasses(attributes)};
     },
     edit: props => {
 
-      const { attributes, setAttributes, className } = props;
+      const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
@@ -78,13 +78,13 @@ registerBlockType(
                     attributes.properties && attributes.properties[breakpoint].justifyContent !== undefined && attributes.properties[breakpoint].justifyContent !== ""
                   }
                   onChange={(isChecked) => {
-                    const propObject = { ...attributes.properties };
+                    const propObject = {...attributes.properties};
                     if (isChecked) {
-                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: "start" };
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: "start"};
                     } else {
-                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: "" };
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: ""};
                     }
-                    setAttributes({ ...attributes, properties: propObject });
+                    setAttributes({...attributes, properties: propObject});
 
                   }}
                 />
@@ -98,9 +98,9 @@ registerBlockType(
                       value,
                     }))}
                     onChange={(value) => {
-                      const propObject = { ...attributes.properties };
-                      propObject[breakpoint] = { ...propObject[breakpoint], justifyContent: value };
-                      setAttributes({ ...attributes, properties: propObject });
+                      const propObject = {...attributes.properties};
+                      propObject[breakpoint] = {...propObject[breakpoint], justifyContent: value};
+                      setAttributes({...attributes, properties: propObject});
                     }}
                   />
 
@@ -119,13 +119,13 @@ registerBlockType(
                     attributes.properties && attributes.properties[breakpoint].alignItems !== undefined && attributes.properties[breakpoint].alignItems !== ""
                   }
                   onChange={(isChecked) => {
-                    const propObject = { ...attributes.properties };
+                    const propObject = {...attributes.properties};
                     if (isChecked) {
-                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: "start" };
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: "start"};
                     } else {
-                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: "" };
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: ""};
                     }
-                    setAttributes({ ...attributes, properties: propObject });
+                    setAttributes({...attributes, properties: propObject});
 
                   }}
                 />
@@ -139,9 +139,9 @@ registerBlockType(
                       value,
                     }))}
                     onChange={(value) => {
-                      const propObject = { ...attributes.properties };
-                      propObject[breakpoint] = { ...propObject[breakpoint], alignItems: value };
-                      setAttributes({ ...attributes, properties: propObject });
+                      const propObject = {...attributes.properties};
+                      propObject[breakpoint] = {...propObject[breakpoint], alignItems: value};
+                      setAttributes({...attributes, properties: propObject});
                     }}
                   />
 
@@ -158,7 +158,7 @@ registerBlockType(
     },
 
     save: props => {
-      const { attributes } = props;
+      const {attributes} = props;
 
       const blockProps = useBlockProps.save({
         className: getClasses(attributes)
