@@ -10,7 +10,6 @@ const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl} = wp.components;
-const {applyFilters} = wp.hooks;
 
 registerBlockType(
   metadata,
@@ -56,11 +55,10 @@ registerBlockType(
     save: props => {
       const {attributes} = props;
 
-      const blockClasses = [attributes.modification];
-      const modifiedClass = applyFilters('starter_kit.updateBlockClasses', props, blockClasses);
+      const blockClass = attributes.modification;
 
       const blockProps = useBlockProps.save({
-        className: modifiedClass
+        className: blockClass
       });
 
       return (

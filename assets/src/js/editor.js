@@ -26,7 +26,9 @@ function generateClasses(attributes) {
   Object.values(attributes.spacers).forEach((item) => {
     if (item.valueRange) {
       Object.keys(item.valueRange).forEach(i => {
-        const modifiedValue = item.valueRange[i] === (numberOfGrid + 1) ? 'auto' : item.valueRange[i];
+        const modifiedValue = item.valueRange[i] === (numberOfGrid + 1)
+          ? 'auto'
+          : item.valueRange[i];
         const modifiedClass = `${i}-${modifiedValue}`.replace('-xs', '');
         classes.push(modifiedClass);
       });
@@ -38,30 +40,35 @@ function generateClasses(attributes) {
 
 const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
   return (props) => {
-    
+
     const {attributes, setAttributes} = props;
     if (props.name.startsWith('starter-kit/')) {
 
       return (
-        
+
         <>
-          
+
           <BlockEdit {...props} />
           <InspectorControls key="controls">
             <PanelBody title="Spacers from EDITOR file">
               {Object.keys(attributes.spacers).map((breakpoint) => (
-                
+
                 <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== '' ? 'active' : ''}`}>
-                  
+
                   <CheckboxControl
                     label={`Enable ${breakpoint}`}
                     checked={
-                      attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== ""
+                      attributes.spacers &&
+                      attributes.spacers[breakpoint].valueRange !== undefined &&
+                      attributes.spacers[breakpoint].valueRange !== ''
                     }
                     onChange={(isChecked) => {
                       const spacersObject = {...attributes.spacers};
                       if (isChecked) {
-                        spacersObject[breakpoint] = {...spacersObject[breakpoint], valueRange: {}};
+                        spacersObject[breakpoint] = {
+                          ...spacersObject[breakpoint],
+                          valueRange: {},
+                        };
                       } else {
                         // spacersObject[breakpoint] = { ...spacersObject[breakpoint], valueRange: "" };
                         delete spacersObject[breakpoint].valueRange;
@@ -69,13 +76,15 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                       setAttributes({...attributes, spacers: spacersObject});
                     }}
                   />
-                  
-                  {attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== "" && (
+
+                  {attributes.spacers && attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== '' && (
                     <>
                       {spacersTypes.map((spacerType) => (
                         spacersDirection.map((spacerDirection) => {
                           const uniqueKey = `${spacerType}${spacerDirection}-${breakpoint}`;
-                          const maxGrid = spacerType === 'p' ? numberOfGrid : numberOfGrid + 1;
+                          const maxGrid = spacerType === 'p'
+                            ? numberOfGrid
+                            : numberOfGrid + 1;
 
                           return (
                             <RangeControl
@@ -84,14 +93,16 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                               label={
                                 (() => {
                                   let labelValue;
-                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
-                                    if (attributes.spacers[breakpoint].valueRange[uniqueKey] === (numberOfGrid + 1)) {
-                                      labelValue = "auto";
+                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !==
+                                    undefined) {
+                                    if (attributes.spacers[breakpoint].valueRange[uniqueKey] ===
+                                      (numberOfGrid + 1)) {
+                                      labelValue = 'auto';
                                     } else {
                                       labelValue = attributes.spacers[breakpoint].valueRange[uniqueKey];
                                     }
                                   } else {
-                                    labelValue = "none";
+                                    labelValue = 'none';
                                   }
                                   return `${uniqueKey}-${labelValue}`;
                                 })()
@@ -99,7 +110,8 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
 
                               value={
                                 (() => {
-                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !== undefined) {
+                                  if (attributes.spacers[breakpoint]?.valueRange?.[uniqueKey] !==
+                                    undefined) {
                                     return attributes.spacers[breakpoint].valueRange[uniqueKey];
                                   }
                                   return -1;
@@ -123,7 +135,8 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                                     },
                                   };
                                 }
-                                setAttributes({...attributes, spacers: spacersObject});
+                                setAttributes(
+                                  {...attributes, spacers: spacersObject});
                               }}
 
                               min={-1}
@@ -136,14 +149,14 @@ const editSpacerClasses = createHigherOrderComponent((BlockEdit) => {
                       ))}
                     </>
                   )}
-                  
+
                 </div>
               ))}
 
             </PanelBody>
           </InspectorControls>
         </>
-        
+
       );
     }
     return <BlockEdit {...props} />;
@@ -155,28 +168,10 @@ const modifyBlockWrapperClass = (settings, name) => {
   if (name.startsWith('starter-kit/')) {
     const originalGetEditWrapperProps = settings.getEditWrapperProps;
 
-    const spacerAttributes = {
-      spacers: {
-        type: 'object',
-        default: {
-          "xs": {},
-          "sm": {},
-          "md": {},
-          "lg": {},
-          "xl": {},
-          "xxl": {}
-        },
-      },
-    };
-
-    settings.attributes = {
-      ...settings.attributes,
-      ...spacerAttributes,
-    };
-
     settings.getEditWrapperProps = (attributes) => {
       // Call original getEditWrapperProps if it exists
-      let props = originalGetEditWrapperProps ? originalGetEditWrapperProps(attributes) : {};
+      let props = originalGetEditWrapperProps ? originalGetEditWrapperProps(
+        attributes) : {};
 
       // Add or modify the className
       props.className = generateClasses(attributes);
@@ -187,66 +182,86 @@ const modifyBlockWrapperClass = (settings, name) => {
   return settings;
 };
 
-// function addSpacerAttribute(settings, name) {
-//   // Check if the block is from the starter-kit
-//   if (name.startsWith('starter-kit/')) {
-//     // Define your custom attribute
-//     const spacerAttributes = {
-//       spacers: {
-//         type: 'string',
-//         default: {
-//           "xs": {},
-//           "sm": {},
-//           "md": {},
-//           "lg": {},
-//           "xl": {},
-//           "xxl": {}
-//         },
-//       },
-//     };
+function addSpacerAttribute(settings, name) {
+  // Check if the block is from the starter-kit
+  if (name.startsWith('starter-kit/')) {
+    // Define your custom attribute
+    const spacerAttributes = {
+      spacers: {
+        type: 'object',
+        default: {
+          'xs': {},
+          'sm': {},
+          'md': {},
+          'lg': {},
+          'xl': {},
+          'xxl': {},
+        },
+      },
+    };
 
-//     // Merge the custom attribute with existing attributes
-//     settings.attributes = {
-//       ...settings.attributes,
-//       ...spacerAttributes,
-//     };
-//   }
+    // Merge the custom attribute with existing attributes
+    settings.attributes = {
+      ...settings.attributes,
+      ...spacerAttributes,
+    };
+  }
 
-//   return settings;
-// }
-
-function addSpacersClasses(props, blockClasses) {
-  
-  const spacersClasses = generateClasses(props.attributes);
-  blockClasses = blockClasses ? blockClasses + ' ' + spacersClasses : spacersClasses;
-
-  return blockClasses;
+  return settings;
 }
+
 addFilter(
   'blocks.registerBlockType',
   'starter_kit/edit-spacers-classes-wrapper',
-  modifyBlockWrapperClass
+  modifyBlockWrapperClass,
 );
+
+addFilter(
+  'blocks.registerBlockType',
+  'starter_kit/add-spacers-attribute',
+  addSpacerAttribute,
+);
+
 addFilter(
   'editor.BlockEdit',
   'starter_kit/edit-spacers-classes',
   editSpacerClasses,
 );
-/*addFilter(
-  'blocks.getSaveContent.extraProps',
-  'starter_kit/save-spacers-classes',
-  saveSpacerClasses
-);*/
+
+function saveSpacerClasses(props, blockType, attributes) {
+
+  if (blockType.name.startsWith('starter-kit/')) {
+    const spacersClasses = generateClasses(attributes);
+
+    props.className = [props.className, spacersClasses].filter(Boolean).join(' ');
+  }
+
+  return props;
+};
 
 addFilter(
-  'starter_kit.updateBlockClasses',
-  'starter_kit/add-spacers-classes',
-  addSpacersClasses
+  'blocks.getSaveContent.extraProps',
+  'starter_kit/save-spacers-classes',
+  saveSpacerClasses,
 );
 
-// addFilter(
-//   'blocks.registerBlockType',
-//   'starter_kit/add-spacers-attribute',
-//   addSpacerAttribute
-// );
+/**
+ * Filter to remove blocks default class name like 'wp-block-custom-block'
+ * @param {string} className
+ * @param {string} blockName
+ *
+ * @return {string}
+ */
+function modifyBlockDefaultClassName(className, blockName) {
+  if (blockName.startsWith('starter-kit/')) {
+    return ''; // Return an empty string to remove the default class.
+  }
+  return className; // Return the original class name for other blocks.
+}
+
+addFilter(
+  'blocks.getBlockDefaultClassName',
+  'my-plugin/modify-block-default-class-name',
+  modifyBlockDefaultClassName,
+);
 
