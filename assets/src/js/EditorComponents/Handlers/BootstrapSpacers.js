@@ -87,7 +87,7 @@ export default class BootstrapSpacers {
 
             <BlockEdit {...props} />
             <InspectorControls key="controls">
-              <PanelBody title="Spacers from EDITOR file">
+              <PanelBody title="Spacers" initialOpen={false}>
                 {Object.keys(attributes.spacers).map((breakpoint) => (
 
                   <div key={breakpoint} title={`breakpoint settings - ${breakpoint}`} className={`box_breakpoint ${attributes.spacers[breakpoint].valueRange !== undefined && attributes.spacers[breakpoint].valueRange !== '' ? 'active' : ''}`}>

@@ -1,7 +1,10 @@
 {
     "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
-    "/assets/build/js/front-components/_theme.js": "/assets/build/js/front-components/_theme.js",
+    "/assets/build/js/FrontComponents/_theme.js": "/assets/build/js/FrontComponents/_theme.js",
+    "/assets/build/js/EditorComponents/Hooks.js": "/assets/build/js/EditorComponents/Hooks.js",
+    "/assets/build/js/EditorComponents/Handlers/BootstrapSpacers.js": "/assets/build/js/EditorComponents/Handlers/BootstrapSpacers.js",
+    "/assets/build/js/EditorComponents/Handlers/BlockHandlers.js": "/assets/build/js/EditorComponents/Handlers/BlockHandlers.js",
     "/blocks/Row/build/index.js": "/blocks/Row/build/index.js",
     "/blocks/News/build/index.js": "/blocks/News/build/index.js",
     "/blocks/News/build/_edit.js": "/blocks/News/build/_edit.js",

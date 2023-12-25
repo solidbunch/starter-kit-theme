@@ -14,52 +14,53 @@ const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
 const numberOfGrid = 12;
-// remove Restricted Classes
-function removeRestrictedClasses(inputStr, excludeArray) {
-  // Split the string into words
-  const words = inputStr.split(/\s+/);
-  // Remove matches from the list of words
-  const filteredWords = words.filter(word => !excludeArray.includes(word));
-  return filteredWords.join(' ');
+
+function generateSizeClasses(attributes) {
+  const {size} = attributes;
+  const classes = [];
+  Object.keys(size).forEach((breakpoint) => {
+    const {mod, valueRange} = size[breakpoint];
+    if (breakpoint === 'xs') {
+      if (mod === 'default') {
+        classes.push('col');
+      } else if (mod === 'auto') {
+        classes.push('col-auto');
+      } else if (mod === 'custom') {
+        classes.push(valueRange !== undefined ? `col-${valueRange}` : 'col-6');
+      }
+    } else if (mod === 'default') {
+      classes.push(`col-${breakpoint}`);
+    } else if (mod === 'auto') {
+      classes.push(`col-${breakpoint}-auto`);
+    } else if (mod === 'custom') {
+      classes.push(valueRange !== undefined ? `col-${breakpoint}-${valueRange}` : `col-${breakpoint}-6`);
+    }
+  });
+
+  return classes.join(' ');
 }
+
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-      const {size} = attributes;
-      const classes = [];
-      Object.keys(size).forEach((breakpoint) => {
-        const {mod, valueRange} = size[breakpoint];
-        if (breakpoint === 'xs') {
-          if (mod === 'default') {
-            classes.push('col');
-          } else if (mod === 'auto') {
-            classes.push('col-auto');
-          } else if (mod === 'custom') {
-            classes.push(valueRange !== undefined ? `col-${valueRange}` : 'col-6');
-          }
-        } else if (mod === 'default') {
-          classes.push(`col-${breakpoint}`);
-        } else if (mod === 'auto') {
-          classes.push(`col-${breakpoint}-auto`);
-        } else if (mod === 'custom') {
-          classes.push(valueRange !== undefined ? `col-${breakpoint}-${valueRange}` : `col-${breakpoint}-6`);
-        }
-      });
-      return {className: classes.join(' ')};
+
+      const blockClass = generateSizeClasses(attributes);
+      return {className: blockClass};
     },
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
-      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
+
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
         return {
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
+
       return [
         <InspectorControls key="settings">
           <PanelBody title="Column width" initialOpen={false}>
@@ -137,48 +138,15 @@ registerBlockType(
         </div>
       ];
     },
-    save: ({attributes}) => {
-      const combinedClass = [];
-      let resultClass = "";
-      Object.keys(attributes.size).forEach((breakpoint) => {
-        let mod = attributes.size[breakpoint].mod;
-        let valueRange = attributes.size[breakpoint].valueRange;
-        let bootstrapFive = true;
-        let noXsBreakpoint = bootstrapFive && breakpoint == 'xs';
+    save: props => {
+      const {attributes} = props;
 
-        if (mod === "auto") {
-          if (noXsBreakpoint) {
-            resultClass += `col-auto `;
-          } else {
-            resultClass += `col-${breakpoint}-auto `;
-          }
-        }
-        if (mod === "default") {
-          if (noXsBreakpoint) {
-            resultClass += `col `;
-          } else {
-            resultClass += `col-${breakpoint} `;
-          }
-        }
-        if (mod === "custom") {
-          if (noXsBreakpoint) {
-            resultClass += `col-${valueRange} `;
-          } else {
-            resultClass += `col-${breakpoint}-${valueRange} `;
-          }
-        }
-      });
-      if (resultClass) {
-        combinedClass.push(resultClass);
-      }
-      if (attributes.className) {
-        combinedClass.push(attributes.className);
-      }
-      const classNameString = combinedClass.join(" ");
+      const blockClass = generateSizeClasses(attributes);
+
       const blockProps = useBlockProps.save({
-        className: classNameString
+        className: blockClass
       });
-      blockProps.className = removeRestrictedClasses(blockProps.className, attributes.excludeClasses);
+
       return (
         <div {...blockProps}>
           <InnerBlocks.Content />
