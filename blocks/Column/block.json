@@ -19,13 +19,6 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "excludeClasses": {
-      "type": "object",
-      "default": [
-        "wp-block",
-        "wp-block-starter-kit-column"
-      ]
-    },
     "size": {
       "type": "object",
       "default": {
