@@ -14,6 +14,10 @@ const {PanelBody, SelectControl} = wp.components;
 registerBlockType(
   metadata,
   {
+    getEditWrapperProps(attributes) {
+      const blockClass = attributes.modification;
+      return {className: blockClass};
+    },
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
@@ -67,4 +71,5 @@ registerBlockType(
         </div>
       );
     }
-  });
+  }
+);
