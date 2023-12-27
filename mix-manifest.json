@@ -14,11 +14,11 @@
     "/blocks/Row/build/style.css": "/blocks/Row/build/style.css",
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
-    "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
     "/blocks/Column/build/editor.css": "/blocks/Column/build/editor.css",
     "/blocks/Column/build/style.css": "/blocks/Column/build/style.css",
     "/blocks/Container/build/editor.css": "/blocks/Container/build/editor.css",
     "/blocks/Container/build/style.css": "/blocks/Container/build/style.css",
     "/blocks/News/build/editor.css": "/blocks/News/build/editor.css",
-    "/blocks/News/build/style.css": "/blocks/News/build/style.css"
+    "/blocks/News/build/style.css": "/blocks/News/build/style.css",
+    "/assets/build/styles/theme.css": "/assets/build/styles/theme.css"
 }
