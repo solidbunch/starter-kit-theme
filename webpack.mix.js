@@ -42,7 +42,7 @@ if (!mix.inProduction()) {
   const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
   mix.sourceMaps().webpackConfig({
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map', // or 'source-map'
     plugins: [
       /**
        * Remove assets files(css, js) from build folders
@@ -54,7 +54,7 @@ if (!mix.inProduction()) {
         protectWebpackAssets: false, // Do not allow removal of current webpack assets
         //Removes files once prior to Webpack compilation Not included in rebuilds (watch mode)
         cleanOnceBeforeBuildPatterns: [
-          '**/build/**/*.{css,js}',
+          '**/build/**/*.{css,js,map,txt}',
           '!vendor/**',
           '!vendor-custom/**',
           '!node_modules/**',
@@ -95,7 +95,7 @@ if (!mix.inProduction()) {
  * Example, '_StarterBlock' - should not be registered
  */
 const allAssets = glob.sync(
-  '{assets/src/**/!(_)*.scss,assets/src/**/*.{js,jsx}}')
+  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 
