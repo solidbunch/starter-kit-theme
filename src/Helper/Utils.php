@@ -4,7 +4,7 @@ namespace StarterKit\Helper;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Utilities
