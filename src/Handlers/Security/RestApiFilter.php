@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Allow only defined REST API requests from FrontEnd
@@ -21,7 +21,7 @@ class RestApiFilter
      */
     public static function allowOnlyThemeNamespace(): void
     {
-        if (!Config::get('allowOnlyThemeRestNamespace')) {
+        if (!Config::get('security/allowOnlyThemeRestNamespace')) {
             return;
         }
         $requestUri     = $_SERVER['REQUEST_URI'];

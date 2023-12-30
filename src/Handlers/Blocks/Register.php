@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKitBlocks;
 
 /**

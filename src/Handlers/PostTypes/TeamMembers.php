@@ -2,7 +2,7 @@
 
 namespace StarterKit\Handlers\PostTypes;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 defined('ABSPATH') || exit;
 
@@ -22,7 +22,7 @@ class TeamMembers
     public static function registerPostType(): void
     {
         register_post_type(
-            Config::get('postTypeTeamMembersID'),
+            Config::get('postTypes/TeamMembersID'),
             [
                 'label'             => esc_html__('Team Members', 'starter-kit'),
                 'description'       => '',

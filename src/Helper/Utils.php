@@ -197,23 +197,4 @@ class Utils
     {
         return defined('WP_CLI') && WP_CLI;
     }
-
-    /**
-     * Error Handler function
-     *
-     * @param $throwable
-     *
-     * @return void
-     */
-    public static function errorHandler($throwable): void
-    {
-        $error_message = 'PHP error: ' .
-                         $throwable->getMessage() .
-                         ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
-
-        $error_message .= PHP_EOL . 'Stack trace:';
-        $error_message .= PHP_EOL . $throwable->getTraceAsString();
-
-        error_log($error_message);
-    }
 }

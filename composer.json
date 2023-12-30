@@ -40,13 +40,18 @@
   },
   "require": {
     "php": ">=8.1",
-    "htmlburger/carbon-fields": "3.6.2"
+    "htmlburger/carbon-fields": "3.6.2",
+    "laminas/laminas-config-aggregator": "1.15.x-dev",
+    "monolog/monolog": "3.x-dev",
+    "php-di/php-di": "7.0.6"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "3.7.2",
     "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
+    "filp/whoops": "2.15",
     "phpcompatibility/phpcompatibility-wp": "2.1.4",
-    "roave/security-advisories": "dev-latest"
+    "phpunit/phpunit": "10.5.3",
+    "roave/security-advisories": "dev-latest",
+    "squizlabs/php_codesniffer": "3.7.2"
   },
   "scripts": {
     "lint": [
@@ -54,12 +59,20 @@
     ],
     "lintfix": [
       "phpcbf --standard=phpcs.xml"
+    ],
+    "tests": [
+      "vendor/bin/phpunit -c phpunit.xml --colors=always --testdox"
     ]
   },
   "autoload": {
     "psr-4": {
       "StarterKit\\": "src/",
       "StarterKitBlocks\\": "blocks/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "StarterKitTests\\": "tests/"
     }
   },
   "config": {

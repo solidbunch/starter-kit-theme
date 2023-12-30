@@ -5,8 +5,8 @@ namespace StarterKit\Handlers\Blocks;
 defined('ABSPATH') || exit;
 
 use RuntimeException;
-use StarterKit\Base\Config;
-use StarterKit\Helper\Utils;
+use StarterKit\Helper\Config;
+use StarterKit\Handlers\Errors\ErrorHandler;
 use Throwable;
 
 /**
@@ -42,7 +42,7 @@ abstract class BlockAbstract implements BlockInterface
                 throw new RuntimeException('The view path ' . $viewFilePath . ' can not be found.');
             }
         } catch (Throwable $throwable) {
-            Utils::errorHandler($throwable);
+            ErrorHandler::handleThrowable($throwable);
         }
 
         return ob_get_clean();

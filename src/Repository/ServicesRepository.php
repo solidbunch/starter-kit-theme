@@ -4,7 +4,7 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Repository for post type objects
@@ -15,6 +15,6 @@ class ServicesRepository extends WpPostRepositoryAbstract
 {
     public static function getPostTypeID(): string
     {
-        return Config::get('postTypeServicesID');
+        return Config::get('postTypes/ServicesID');
     }
 }

@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use PHPMailer;
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKit\Helper\Utils;
 
 /**
@@ -87,7 +87,7 @@ class Front
      */
     public static function addNoCacheHeaders(): void
     {
-        if (Config::get('addNoCacheHeaders') === true) {
+        if (Config::get('optimization/addNoCacheHeaders') === true) {
             nocache_headers();
         }
     }

@@ -5,6 +5,7 @@ namespace StarterKit\Handlers\CLI;
 defined('ABSPATH') || exit;
 
 use StarterKit\Helper\Utils;
+use StarterKit\Handlers\Errors\ErrorHandler;
 use Throwable;
 use WP_CLI;
 
@@ -29,7 +30,7 @@ class CLI
         try {
             WP_CLI::add_command('clone-theme', [Commands\CloneTheme::class, 'run']);
         } catch (Throwable $throwable) {
-            Utils::errorHandler($throwable);
+            ErrorHandler::handleThrowable($throwable);
         }
     }
 }

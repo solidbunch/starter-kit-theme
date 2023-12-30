@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('wlog')) {
+if (!function_exists('_ilog')) {
     /**
      * Nice logging function
      *
@@ -10,7 +10,7 @@ if (!function_exists('wlog')) {
      *
      * @return void
      */
-    function wlog(mixed $var, string $desc = ' >> ', string $logFileDestination = ''): void
+    function _ilog(mixed $var, string $desc = ' >> ', string $logFileDestination = ''): void
     {
         $messageType = 0;
         $lineEnd = '';
@@ -47,8 +47,45 @@ if (!function_exists('ilog')) {
         if (defined('APP_INFO_LOG') and !empty(APP_INFO_LOG)) {
             $logFileDestination = APP_INFO_LOG;
         }
-        wlog($var, $desc, $logFileDestination);
+        _ilog($var, $desc, $logFileDestination);
     }
+}
+
+if ( ! function_exists( 'wlog' ) ) {
+	function wlog( $var, $desc = ' >> ', $clear_log = false ) {
+		$upload     = wp_upload_dir();
+		$upload_dir = $upload['basedir'];
+		$log_dir    = $upload_dir . '/SK/logs';
+
+		// resolve dir
+		if ( ! is_dir( $log_dir ) ) {
+			@mkdir( $log_dir, 0775, true );
+		}
+
+		// resolve htaccess
+		if ( ! is_dir( $log_dir ) ) {
+			return null;
+		}
+
+		$htaccess_path = trailingslashit( $log_dir ) . '.htaccess';
+
+		if ( ! is_file( $htaccess_path ) ) {
+			$content = <<<EOT
+order deny,allow
+deny from all
+EOT;
+			file_put_contents( $htaccess_path, $content, LOCK_EX );
+		}
+
+		// logging
+		$log_file_destination = $log_dir . '/SK.log';
+
+		if ( $clear_log || ! file_exists( $log_file_destination ) ) {
+			file_put_contents( $log_file_destination, '' );
+		}
+		error_log( '[' . date( 'H:i:s' ) . ']' . '-------------------------' . PHP_EOL, 3, $log_file_destination );
+		error_log( '[' . date( 'H:i:s' ) . ']' . $desc . ' : ' . print_r( $var, true ) . PHP_EOL, 3, $log_file_destination );
+	}
 }
 
 if (!function_exists('_var_dump')) {

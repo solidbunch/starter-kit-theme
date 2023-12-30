@@ -39,7 +39,7 @@ class Hooks
          ************************************/
         add_action('block_categories_all', [Handlers\Blocks\Register::class, 'registerBlocksCategories']);
         add_action('init', [Handlers\Blocks\Register::class, 'registerBlocks']);
-        // ToDo deactivate default blocks if Config removeDefaultBlocks
+        // ToDo deactivate default blocks if Config optimization/removeDefaultBlocks
 
         /************************************
          *     PostTypes with Taxonomies

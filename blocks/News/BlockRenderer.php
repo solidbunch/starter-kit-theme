@@ -4,7 +4,7 @@ namespace StarterKitBlocks\News;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Repository\NewsRepository;
 use WP_Error;
@@ -74,7 +74,7 @@ class BlockRenderer extends BlockAbstract
         $requestedPage = $requestData['page'] ?? 1;
         //$nonce         = $requestData['nonce'];
 
-        $metaPrefix = Config::get('settingsPrefix') . Config::get('postTypeNewsID') . '_';
+        $metaPrefix = Config::get('settingsPrefix') . Config::get('postTypes/NewsID') . '_';
 
         $args = [];
 
