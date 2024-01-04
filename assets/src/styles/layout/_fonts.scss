@@ -6,8 +6,9 @@ $font-path: "../../fonts/roboto/";
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: url('#{$font-path}roboto-v30-latin-regular.woff2') format('woff2'),
-  url('#{$font-path}roboto-v30-latin-regular.ttf') format('truetype');
+  src:
+    url('#{$font-path}roboto-v30-latin-regular.woff2') format('woff2'),
+    url('#{$font-path}roboto-v30-latin-regular.ttf') format('truetype');
 }
 
 /* roboto-500 - latin */
@@ -16,6 +17,7 @@ $font-path: "../../fonts/roboto/";
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: url('#{$font-path}roboto-v30-latin-500.woff2') format('woff2'),
-  url('#{$font-path}roboto-v30-latin-500.ttf') format('truetype');
+  src:
+    url('#{$font-path}roboto-v30-latin-500.woff2') format('woff2'),
+    url('#{$font-path}roboto-v30-latin-500.ttf') format('truetype');
 }
