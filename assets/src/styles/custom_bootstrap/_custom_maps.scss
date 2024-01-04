@@ -1,0 +1,9 @@
+// // Create your own map
+// $custom-colors: (
+// 	"custom_color": #900
+// );
+
+// // Merge the maps
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+
+$theme-colors: map-remove($theme-colors, "primary", "secondary", "success", "info", "warning", "light", "dark");

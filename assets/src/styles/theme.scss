@@ -1,12 +1,15 @@
-@import "utils/variables";
-@import "utils/mixins";
-
-/* Bootstrap */
 @import "utils/bootstrap_utils";
-@import "bootstrap";
+
+// all bootstrap
+// @import "bootstrap";
+
+// custom include bootstrap
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+// Utilities
+@import "~bootstrap/scss/utilities/api";
 
 /* Layout */
 @import "layout/fonts";
-@import "layout/typography";
 @import "layout/header";
 @import "layout/footer";
