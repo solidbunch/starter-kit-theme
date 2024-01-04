@@ -6,4 +6,4 @@
 // // Merge the maps
 // $theme-colors: map-merge($theme-colors, $custom-colors);
 
-// $theme-colors: map-remove($theme-colors, "secondary", "success", "danger", "warning");
+$theme-colors: map-remove($theme-colors, "primary", "secondary", "success", "info", "warning", "light", "dark");

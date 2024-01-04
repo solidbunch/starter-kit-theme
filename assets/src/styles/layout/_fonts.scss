@@ -1,21 +1,21 @@
 $font-path: "../../fonts/roboto/";
 
-/* roboto-regular - cyrillic_latin */
+/* roboto-regular - latin */
 @font-face {
   font-display: swap;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: url('#{$font-path}roboto-v30-cyrillic_latin-regular.woff2') format('woff2'),
-  url('#{$font-path}roboto-v30-cyrillic_latin-regular.ttf') format('truetype');
+  src: url('#{$font-path}roboto-v30-latin-regular.woff2') format('woff2'),
+  url('#{$font-path}roboto-v30-latin-regular.ttf') format('truetype');
 }
 
-/* roboto-500 - cyrillic_latin */
+/* roboto-500 - latin */
 @font-face {
   font-display: swap;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: url('#{$font-path}roboto-v30-cyrillic_latin-500.woff2') format('woff2'),
-  url('#{$font-path}roboto-v30-cyrillic_latin-500.ttf') format('truetype');
+  src: url('#{$font-path}roboto-v30-latin-500.woff2') format('woff2'),
+  url('#{$font-path}roboto-v30-latin-500.ttf') format('truetype');
 }

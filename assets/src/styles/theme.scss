@@ -6,6 +6,8 @@
 // custom include bootstrap
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
+// Utilities
+@import "~bootstrap/scss/utilities/api";
 
 /* Layout */
 @import "layout/fonts";
