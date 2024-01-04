@@ -4,6 +4,7 @@ namespace StarterKitBlocks\Navigation;
 
 defined('ABSPATH') || exit;
 
+use StarterKit\Base\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 
 /**
@@ -27,8 +28,66 @@ class BlockRenderer extends BlockAbstract
     {
         $templateData = [];
 
-        //$templateData['menuItems'] = wp_get_nav_menu_items($attributes['menuId']);
+        $templateData['menuItems'] = wp_get_nav_menu_items($attributes['menuId']);
 
-        return self::loadBlockView('nav-layout', $templateData);
+        if (!empty($templateData['menuItems'])) {
+            $data = self::loadBlockView('nav-layout', $templateData);
+        } else {
+            $data = self::loadBlockView('no-data', $templateData);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Register rest api endpoints
+     * Runs by Blocks Register Handler
+     *
+     * @return void
+     */
+    public static function blockRestApiEndpoints(): void
+    {
+        register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
+            'methods'             => 'GET',
+            'callback'            => [self::class, 'getMenus'],
+            'permission_callback' => [self::class, 'getMenusPermissionCheck'],
+        ]);
+    }
+
+    /**
+     * Get all menus from database
+     *
+     * @return array
+     */
+    public static function getMenus(): array
+    {
+        $menus = [];
+
+        $menusObjects = wp_get_nav_menus(
+            [
+                'taxonomy'   => 'nav_menu',
+                'hide_empty' => false,
+                'orderby'    => 'name',
+            ]
+        );
+
+        foreach ($menusObjects as $menuObject) {
+            $menus[] = [
+                'id'   => $menuObject->term_id,
+                'name' => $menuObject->name,
+            ];
+        }
+
+        return $menus;
+    }
+
+    /**
+     * Allow only backend users to get menus data
+     *
+     * @return bool
+     */
+    public static function getMenusPermissionCheck(): bool
+    {
+        return current_user_can('edit_posts');
     }
 }

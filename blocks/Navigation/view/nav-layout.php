@@ -12,6 +12,11 @@ $data = $data ?? [];
 
 ?>
 
-<div class="navigation-block">
-
-</div>
+<nav>
+    <?php foreach ($data['menuItems'] as $menuItem) { ?>
+        <a href="<?php echo esc_url($menuItem->url); ?>">
+            <?php echo esc_html($menuItem->title); ?>
+        </a>
+    <?php
+    }; ?>
+</nav>

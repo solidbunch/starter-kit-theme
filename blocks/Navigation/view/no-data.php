@@ -12,4 +12,4 @@ $data = $data ?? [];
 
 ?>
 
-<div class="no-results"><?php  _e('No menus found', 'starter-kit'); ?></div>
+<div class="no-results"><?php  _e('No menu items found', 'starter-kit'); ?></div>

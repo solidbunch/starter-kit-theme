@@ -14,7 +14,7 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "modification": {
+    "menuId": {
       "type": "string",
       "default": ""
     }
