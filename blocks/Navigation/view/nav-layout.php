@@ -17,6 +17,5 @@ $data = $data ?? [];
         <a href="<?php echo esc_url($menuItem->url); ?>">
             <?php echo esc_html($menuItem->title); ?>
         </a>
-    <?php
-    }; ?>
+    <?php }; ?>
 </nav>
