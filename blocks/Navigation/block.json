@@ -17,6 +17,10 @@
     "menuId": {
       "type": "string",
       "default": ""
+    },
+    "expand": {
+      "type": "string",
+      "default": "navbar-expand-lg"
     }
   },
   "editorScript": "file:build/index.js",

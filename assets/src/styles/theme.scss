@@ -2,8 +2,10 @@
 
 // all bootstrap
 // @import "bootstrap";
-
-// custom include bootstrap
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+// 
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 // Utilities

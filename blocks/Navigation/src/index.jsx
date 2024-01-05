@@ -7,70 +7,75 @@ import metadata from '../block.json';
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
-const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
-const {PanelBody, SelectControl} = wp.components;
+const {InspectorControls, useBlockProps} = wp.blockEditor;
+const {PanelBody, SelectControl, Spinner} = wp.components;
+const {serverSideRender: ServerSideRender} = wp;
+const {useState, useEffect} = wp.element;
 
 registerBlockType(
   metadata,
   {
-    getEditWrapperProps(attributes) {
-      const blockClass = attributes.modification;
-      return {className: blockClass};
-    },
     edit: props => {
-      const {attributes, setAttributes, clientId, className} = props;
+      const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
 
-        return {
-          hasChildBlocks: getBlockOrder(clientId).length > 0,
-        };
-      });
+      const [menus, setMenus] = useState([]);
 
-      return [
+      useEffect(() => {
+        wp.apiFetch({path: '/skt/v1/get-menus'})
+          .then(fetchedMenus => {
+            setMenus(fetchedMenus);
+          })
+          .catch(error => {
+            // eslint-disable-next-line no-console
+            console.error('Error fetching menus:', error);
+          });
+      }, []); // Empty dependency array ensures this runs only once when the component mounts
+
+      const renderControls = (
         <InspectorControls key="controls">
-          <PanelBody title="Container responsive type">
+          <PanelBody title="Navigation Options">
             <h1>NAV</h1>
-            <SelectControl
-              label="Container width"
-              value={attributes.modification}
-              options={[
-                {label: 'Fixed width', value: 'container-xxl'},
-                {label: 'Full width', value: 'container-fluid'}
-              ]}
-              onChange={(modification) => setAttributes({modification})}
-            />
-          </PanelBody>
-        </InspectorControls>,
-        <div {...blockProps} key="blockControls">
-          <InnerBlocks
-            renderAppender={
-              hasChildBlocks
-                ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender />
+            {menus.length < 1
+              ? <Spinner key="siteSpinner"/>
+              : <SelectControl
+                label="Select Menu"
+                value={attributes.menuId}
+                options={[
+                  {label: 'Select a menu', value: ''},
+                  ...menus.map(menu => ({
+                    label: menu.name,
+                    value: menu.id,
+                  })),
+                ]}
+                onChange={(menuId) => {
+                  setAttributes({menuId});
+                }}
+              />
             }
+          </PanelBody>
+        </InspectorControls>
+      );
+
+      const renderOutput = (
+        <div {...blockProps} key="blockControls">
+          <ServerSideRender
+            block={metadata.name}
+            attributes={attributes}
           />
         </div>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
-    save: props => {
-      const {attributes} = props;
-
-      const blockClass = attributes.modification;
-
-      const blockProps = useBlockProps.save({
-        className: blockClass
-      });
-
-      return (
-        <div {...blockProps}>
-          <InnerBlocks.Content />
-        </div>
-      );
-    }
-  }
+    save: () => {
+      // Rendering in PHP
+      return null;
+    },
+  },
 );
