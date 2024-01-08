@@ -22,7 +22,7 @@ registerBlockType(
       });
 
       const [menus, setMenus] = useState([]);
-
+      
       useEffect(() => {
         wp.apiFetch({path: '/skt/v1/get-menus'})
           .then(fetchedMenus => {
@@ -37,24 +37,44 @@ registerBlockType(
       const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Navigation Options">
-            <h1>NAV</h1>
             {menus.length < 1
               ? <Spinner key="siteSpinner"/>
-              : <SelectControl
-                label="Select Menu"
-                value={attributes.menuId}
-                options={[
-                  {label: 'Select a menu', value: ''},
-                  ...menus.map(menu => ({
-                    label: menu.name,
-                    value: menu.id,
-                  })),
-                ]}
-                onChange={(menuId) => {
-                  setAttributes({menuId});
-                }}
-              />
+              : (
+                <>
+                  <SelectControl
+                    label="Select Menu"
+                    value={attributes.menuId}
+                    options={[
+                      {label: 'Select a menu', value: ''},
+                      ...menus.map(menu => ({
+                        label: menu.name,
+                        value: menu.id,
+                      })),
+                    ]}
+                    onChange={(menuId) => {
+                      setAttributes({menuId});
+                    }}
+                  />
+                  {attributes.menuId && (
+                    <SelectControl
+                      label={`Expand menu:`}
+                      value={attributes.expand}
+                      options={[
+                        {label: 'No responsive', value: 'navbar-expand'},
+                        {label: 'SM and under', value: 'navbar-expand-sm'},
+                        {label: 'MD and under', value: 'navbar-expand-md'},
+                        {label: 'LG and under', value: 'navbar-expand-lg'},
+                        {label: 'XL and under', value: 'navbar-expand-xl'},
+                        {label: 'XXL and under', value: 'navbar-expand-xxl'},
+                        {label: 'Always expand', value: ''}
+                      ]}
+                      onChange={(expand) => setAttributes({expand})}
+                    />
+                  )}
+                </>
+              )
             }
+
           </PanelBody>
         </InspectorControls>
       );
@@ -67,7 +87,7 @@ registerBlockType(
           />
         </div>
       );
-
+      console.log(props);
       return [
         renderControls,
         renderOutput,

@@ -1,6 +1,11 @@
 //bootstrap
-$danger: #dc3545;
-$body-color: #212529;
-$headings-color: $danger;
-$body-bg: #f0f3f7;
+$primary: #dc3545;
+$black: #212529;
+$white: #f0f3f7;
+$body-color: $black;
+$headings-color: $primary;
+$body-bg: $white;
+// $enable-dark-mode: false;
+// $dropdown-link-hover-color: red;
+// $dropdown-link-hover-bg: $white;
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;
