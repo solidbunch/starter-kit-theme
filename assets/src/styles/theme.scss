@@ -1,19 +1,16 @@
 @import "utils/bootstrap_utils";
-
 // all bootstrap
 // @import "bootstrap";
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/reboot";
-// 
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 // Helpers
 @import "~bootstrap/scss/helpers";
 // Utilities
 @import "~bootstrap/scss/utilities/api";
-
-/* Layout */
+// Layout
 @import "layout/fonts";
 @import "layout/header";
 @import "layout/footer";

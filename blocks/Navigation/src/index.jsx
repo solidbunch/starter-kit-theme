@@ -87,7 +87,6 @@ registerBlockType(
           />
         </div>
       );
-      console.log(props);
       return [
         renderControls,
         renderOutput,
