@@ -12,15 +12,8 @@ $data = $data ?? [];
 
 ?>
 
-<!-- <nav>
-    <?php foreach ($data['menuItems'] as $menuItem) { ?>
-        <a href="<?php echo esc_url($menuItem->url); ?>">
-            <?php echo esc_html($menuItem->title); ?>
-        </a>
-    <?php }; ?>
-</nav> -->
 <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-  <div class="container">
+  <div class="container-fluid px-0">
     <!-- <a class="navbar-brand" href="#">Offcanvas navbar</a> -->
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
