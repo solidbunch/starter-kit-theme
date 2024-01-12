@@ -41,7 +41,6 @@ registerBlockType(
         <InspectorControls key="controls">
           <PanelBody title="Section styles">
             <h1>Section</h1>
-            {console.log(attributes)}
             <SelectControl
               label="Select Tag"
               value={attributes.modification.tagName || 'section'} // Устанавливаем значение по умолчанию, если не выбрано
@@ -50,6 +49,7 @@ registerBlockType(
                 {label: '<div>', value: 'div'},
                 {label: '<article>', value: 'article'},
                 {label: '<aside>', value: 'aside'},
+                {label: '<main>', value: 'main'},
               ]}
               onChange={(tagName) =>
                 setAttributes({
