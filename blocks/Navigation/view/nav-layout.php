@@ -12,7 +12,7 @@ $data = $data ?? [];
 
 ?>
 
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid px-0">
     <!-- <a class="navbar-brand" href="#">Offcanvas navbar</a> -->
     <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
