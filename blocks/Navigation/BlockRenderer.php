@@ -26,17 +26,63 @@ class BlockRenderer extends BlockAbstract
      */
     public static function blockServerSideCallback($attributes, $content, $block): string
     {
-        $templateData = [];
-
-        $templateData['menuItems'] = wp_get_nav_menu_items($attributes['menuId']);
-
-        if (!empty($templateData['menuItems'])) {
-            $data = self::loadBlockView('nav-layout', $templateData);
-        } else {
-            $data = self::loadBlockView('no-data', $templateData);
+        // Check for menuId and handle the 'no menu selected' case
+        if (empty($attributes['menuId'])) {
+            return self::loadBlockView('no-data', ['message' => __('No menu selected', 'starter-kit')]);
         }
 
-        return $data;
+        // Get menu items and handle the 'no menu items found' case
+        $menuItems = wp_get_nav_menu_items($attributes['menuId']);
+        if (empty($menuItems)) {
+            return self::loadBlockView('no-data', ['message' => __('No menu items found', 'starter-kit')]);
+        }
+
+        // Add 'current' property and classes to menu item objects
+        _wp_menu_item_classes_by_context($menuItems);
+
+        //wlog($menuItems);
+        // Prepare template data
+        $templateData = [
+            'attributes'   => $attributes,
+            'menuTemplate' => self::loadBlockView('nav-menu', [
+                'menuTree' => self::buildMenuTree($menuItems),
+            ]),
+        ];
+
+        // Render the main navigation layout
+        return self::loadBlockView('nav-layout', $templateData);
+    }
+
+    private static function buildMenuTree($menuItems): array
+    {
+        $menuTree = [];
+        foreach ($menuItems as $item) {
+            // Remove empty classes
+            $item->classes = array_filter($item->classes);
+
+            // Update item classes
+            if (!empty($item->current)) {
+                $item->classes[] = 'active';
+            }
+
+            // Add child items
+            if (empty($item->menu_item_parent)) {
+                $item->children = [];
+                array_unshift($item->classes, 'nav-link');
+
+                $menuTree[$item->ID] = $item;
+            } else {
+                // Add dropdown-item class to child items
+                array_unshift($item->classes, 'dropdown-item');
+
+                $menuTree[$item->menu_item_parent]->children[$item->ID] = $item;
+
+                // Add class to item if it has children
+                $menuTree[$item->menu_item_parent]->classes[] = 'dropdown-toggle';
+            }
+        }
+
+        return $menuTree;
     }
 
     /**
