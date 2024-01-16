@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28ec3edefd6d945067c27f8681180d37",
+    "content-hash": "6b77407cc2c6a6432f1f898020e90c17",
     "packages": [
         {
             "name": "htmlburger/carbon-fields",
@@ -148,16 +148,16 @@
         },
         {
             "name": "vvv3/wp-responsive-images",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vvv3/wp-responsive-images.git",
-                "reference": "1aee1ac820622890664639d0c75741d9579e9b1a"
+                "reference": "c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vvv3/wp-responsive-images/zipball/1aee1ac820622890664639d0c75741d9579e9b1a",
-                "reference": "1aee1ac820622890664639d0c75741d9579e9b1a",
+                "url": "https://api.github.com/repos/vvv3/wp-responsive-images/zipball/c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf",
+                "reference": "c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf",
                 "shasum": ""
             },
             "require": {
@@ -187,9 +187,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vvv3/wp-responsive-images/issues",
-                "source": "https://github.com/vvv3/wp-responsive-images/tree/1.0.0"
+                "source": "https://github.com/vvv3/wp-responsive-images/tree/1.0.1"
             },
-            "time": "2024-01-13T19:25:04+00:00"
+            "time": "2024-01-16T22:37:41+00:00"
         }
     ],
     "packages-dev": [
@@ -451,12 +451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c892bcc085a40eaa63e195cabdab5a7558c1b1c0"
+                "reference": "b7a13fc786f4fc7204a1b302e29a44bc6542bdd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c892bcc085a40eaa63e195cabdab5a7558c1b1c0",
-                "reference": "c892bcc085a40eaa63e195cabdab5a7558c1b1c0",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/b7a13fc786f4fc7204a1b302e29a44bc6542bdd0",
+                "reference": "b7a13fc786f4fc7204a1b302e29a44bc6542bdd0",
                 "shasum": ""
             },
             "conflict": {
@@ -578,6 +578,7 @@
                 "drupal/drupal": ">=6,<6.38|>=7,<7.80|>=8,<8.9.16|>=9,<9.1.12|>=9.2,<9.2.4",
                 "duncanmcclean/guest-entries": "<3.1.2",
                 "dweeves/magmi": "<=0.7.24",
+                "ec-cube/ec-cube": "<2.4.4",
                 "ecodev/newsletter": "<=4",
                 "ectouch/ectouch": "<=2.7.2",
                 "elefant/cms": "<2.0.7",
@@ -685,6 +686,7 @@
                 "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
                 "illuminate/view": "<6.20.42|>=7,<7.30.6|>=8,<8.75",
                 "impresscms/impresscms": "<=1.4.5",
+                "impresspages/impresspages": "<=1.0.12",
                 "in2code/femanager": "<5.5.3|>=6,<6.3.4|>=7,<7.2.3",
                 "in2code/ipandlanguageredirect": "<5.1.2",
                 "in2code/lux": "<17.6.1|>=18,<24.0.2",
@@ -786,8 +788,8 @@
                 "neorazorx/facturascripts": "<2022.04",
                 "neos/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "neos/form": ">=1.2,<4.3.3|>=5,<5.0.9|>=5.1,<5.1.3",
+                "neos/media-browser": "<7.3.19|>=8,<8.0.16|>=8.1,<8.1.11|>=8.2,<8.2.11|>=8.3,<8.3.9",
                 "neos/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.9.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<5.3.10|>=7,<7.0.9|>=7.1,<7.1.7|>=7.2,<7.2.6|>=7.3,<7.3.4|>=8,<8.0.2",
-                "neos/neos-ui": "<=8.3.3",
                 "neos/swiftmailer": ">=4.1,<4.1.99|>=5.4,<5.4.5",
                 "netgen/tagsbundle": ">=3.4,<3.4.11|>=4,<4.0.15",
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
@@ -1172,7 +1174,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-12T17:04:19+00:00"
+            "time": "2024-01-16T18:04:59+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
