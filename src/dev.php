@@ -1,12 +1,12 @@
 <?php
 
-if (!function_exists('_ilog')) {
+if (! function_exists('_ilog')) {
     /**
      * Nice logging function
      *
-     * @param  mixed   $var
-     * @param  string  $desc
-     * @param  string  $logFileDestination
+     * @param mixed  $var
+     * @param string $desc
+     * @param string $logFileDestination
      *
      * @return void
      */
@@ -14,9 +14,9 @@ if (!function_exists('_ilog')) {
     {
         $messageType = 0;
         $lineEnd = '';
-        if (!empty($logFileDestination)) {
+        if (! empty($logFileDestination)) {
             $messageType = 3;
-            $lineEnd     = PHP_EOL;
+            $lineEnd = PHP_EOL;
         }
         error_log(
             '[' . date('H:i:s') . ']' . '-------------------------' . $lineEnd,
@@ -31,68 +31,69 @@ if (!function_exists('_ilog')) {
     }
 }
 
-if (!function_exists('ilog')) {
+if (! function_exists('ilog')) {
     /**
      * Write to info log
      * Wrapper for wlog() function with info log destination
      *
-     * @param  mixed   $var
-     * @param  string  $desc
+     * @param mixed  $var
+     * @param string $desc
      *
      * @return void
      */
     function ilog(mixed $var, string $desc = ' >> '): void
     {
         $logFileDestination = '';
-        if (defined('APP_INFO_LOG') and !empty(APP_INFO_LOG)) {
+        if (defined('APP_INFO_LOG') and ! empty(APP_INFO_LOG)) {
             $logFileDestination = APP_INFO_LOG;
         }
         _ilog($var, $desc, $logFileDestination);
     }
 }
 
-if ( ! function_exists( 'wlog' ) ) {
-	function wlog( $var, $desc = ' >> ', $clear_log = false ) {
-		$upload     = wp_upload_dir();
-		$upload_dir = $upload['basedir'];
-		$log_dir    = $upload_dir . '/SK/logs';
+if (! function_exists('wlog')) {
+    function wlog($var, $desc = ' >> ', $clear_log = false)
+    {
+        $upload = wp_upload_dir();
+        $upload_dir = $upload['basedir'];
+        $log_dir = $upload_dir . '/SK/logs';
 
-		// resolve dir
-		if ( ! is_dir( $log_dir ) ) {
-			@mkdir( $log_dir, 0775, true );
-		}
+        // resolve dir
+        if (! is_dir($log_dir)) {
+            @mkdir($log_dir, 0775, true);
+        }
 
-		// resolve htaccess
-		if ( ! is_dir( $log_dir ) ) {
-			return null;
-		}
+        // resolve htaccess
+        if (! is_dir($log_dir)) {
+            return null;
+        }
 
-		$htaccess_path = trailingslashit( $log_dir ) . '.htaccess';
+        $htaccess_path = trailingslashit($log_dir) . '.htaccess';
 
-		if ( ! is_file( $htaccess_path ) ) {
-			$content = <<<EOT
+        if (! is_file($htaccess_path)) {
+            $content = <<<EOT
 order deny,allow
 deny from all
 EOT;
-			file_put_contents( $htaccess_path, $content, LOCK_EX );
-		}
+            file_put_contents($htaccess_path, $content, LOCK_EX);
+        }
 
-		// logging
-		$log_file_destination = $log_dir . '/SK.log';
+        // logging
+        $log_file_destination = $log_dir . '/SK.log';
 
-		if ( $clear_log || ! file_exists( $log_file_destination ) ) {
-			file_put_contents( $log_file_destination, '' );
-		}
-		error_log( '[' . date( 'H:i:s' ) . ']' . '-------------------------' . PHP_EOL, 3, $log_file_destination );
-		error_log( '[' . date( 'H:i:s' ) . ']' . $desc . ' : ' . print_r( $var, true ) . PHP_EOL, 3, $log_file_destination );
-	}
+        if ($clear_log || ! file_exists($log_file_destination)) {
+            file_put_contents($log_file_destination, '');
+        }
+        error_log('[' . date('H:i:s') . ']' . '-------------------------' . PHP_EOL, 3, $log_file_destination);
+        error_log('[' . date('H:i:s') . ']' . $desc . ' : ' . print_r($var, true) . PHP_EOL, 3, $log_file_destination);
+    }
 }
 
-if (!function_exists('_var_dump')) {
+if (! function_exists('_var_dump')) {
     /**
      * Nice dump function
      *
-     * @param  bool  $detailed
+     * @param bool   $detailed
      * @param        ...$params
      *
      * @return void
@@ -126,21 +127,21 @@ color: #333;padding: 10px;margin:0;overflow: auto;">';
     }
 }
 
-if (!function_exists('wp_dump')) {
+if (! function_exists('wp_dump')) {
     function wp_dump(...$params): void
     {
         _var_dump(false, ...$params);
     }
 }
 
-if (!function_exists('wp_dump_ext')) {
+if (! function_exists('wp_dump_ext')) {
     function wp_dump_ext(...$params): void
     {
         _var_dump(true, ...$params);
     }
 }
 
-if (!function_exists('wp_dd')) {
+if (! function_exists('wp_dd')) {
     function wp_dd(...$params): void
     {
         wp_dump(...$params);
@@ -148,7 +149,7 @@ if (!function_exists('wp_dd')) {
     }
 }
 
-if (!function_exists('wp_dd_ext')) {
+if (! function_exists('wp_dd_ext')) {
     function wp_dd_ext(...$params): void
     {
         wp_dump_ext(...$params);
@@ -156,7 +157,7 @@ if (!function_exists('wp_dd_ext')) {
     }
 }
 
-if (!function_exists('debug_backtrace_string')) {
+if (! function_exists('debug_backtrace_string')) {
     /**
      * Backtrace function
      * usage: wlog( debug_backtrace_string(), 'debug_backtrace >>' );
@@ -166,13 +167,13 @@ if (!function_exists('debug_backtrace_string')) {
     function debug_backtrace_string(): string
     {
         $stack = '';
-        $i     = 1;
+        $i = 1;
         $trace = debug_backtrace();
         unset($trace[0]); //Remove call to this function from stack trace
         foreach ($trace as $node) {
-            $file     = $node['file'] ?? '';
-            $line     = $node['line'] ?? '';
-            $class    = $node['class'] ?? '';
+            $file = $node['file'] ?? '';
+            $line = $node['line'] ?? '';
+            $class = $node['class'] ?? '';
             $function = $node['function'] ?? '';
 
             if ($file) {
@@ -203,9 +204,9 @@ if (!function_exists('debug_backtrace_string')) {
  * $time_diff   = stTimeFormatted( stGetTime( $begin_time ) );
  * $memory_diff = stMemoryFormatted( stGetMemory( $begin_memory ) );
  */
-if (!function_exists('stGetTime')) {
+if (! function_exists('stGetTime')) {
     /**
-     * @param  bool  $time
+     * @param bool $time
      *
      * @return float
      */
@@ -217,9 +218,9 @@ if (!function_exists('stGetTime')) {
     }
 }
 
-if (!function_exists('stGetMemory')) {
+if (! function_exists('stGetMemory')) {
     /**
-     * @param  bool  $memory
+     * @param bool $memory
      *
      * @return float
      */
@@ -231,9 +232,9 @@ if (!function_exists('stGetMemory')) {
     }
 }
 
-if (!function_exists('stMemoryFormatted')) {
+if (! function_exists('stMemoryFormatted')) {
     /**
-     * @param  float  $size
+     * @param float $size
      *
      * @return string
      */
@@ -245,9 +246,9 @@ if (!function_exists('stMemoryFormatted')) {
     }
 }
 
-if (!function_exists('stTimeFormatted')) {
+if (! function_exists('stTimeFormatted')) {
     /**
-     * @param  float  $size
+     * @param float $size
      *
      * @return string
      */

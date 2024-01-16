@@ -1,18 +1,12 @@
 <?php
-/**
- * Abstract Class for creating Singleton Classes
- *
- */
 
 namespace StarterKit;
 
 /**
- * Class AbstractSingleton
- *
+ *Abstract Class for creating Singleton Classes
  */
 abstract class AbstractSingleton
 {
-
     /**
      * Call this method to get singleton
      */
@@ -27,13 +21,16 @@ abstract class AbstractSingleton
     }
 
     /**
-     * Make constructor private, so nobody can call "new Class".
+     * Make constructor protected, so nobody can call "new Class".
      */
-    protected function __construct() { }
+    protected function __construct()
+    {
+    }
 
     /**
-     * Make clone magic method private, so nobody can clone instance.
+     * Make clone magic method protected, so nobody can clone instance.
      */
-    protected function __clone() { }
-
+    protected function __clone()
+    {
+    }
 }

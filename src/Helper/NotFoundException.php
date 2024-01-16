@@ -1,4 +1,5 @@
 <?php
+
 namespace StarterKit\Helper;
 
 use Psr\Container\NotFoundExceptionInterface;

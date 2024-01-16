@@ -16,7 +16,6 @@ use Psr\Log\LogLevel;
  */
 class Logger
 {
-
     /**
      * @var LoggerInterface
      */
@@ -24,7 +23,7 @@ class Logger
 
     public static function instance(): LoggerInterface
     {
-        if ( ! static::$logger instanceof LoggerInterface) {
+        if (! static::$logger instanceof LoggerInterface) {
             static::$logger = App::container()->get(LoggerInterface::class);
         }
 

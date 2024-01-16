@@ -17,7 +17,6 @@ use Psr\Container\ContainerInterface;
  */
 final class App extends AbstractSingleton
 {
-
     /** @var ContainerInterface  Dependency Injection Container */
     private ?ContainerInterface $container = null;
 

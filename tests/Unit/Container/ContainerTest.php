@@ -6,10 +6,14 @@ use DI\Container;
 use DI\Definition\Exception\InvalidDefinition;
 use Psr\Container\NotFoundExceptionInterface;
 use PHPUnit\Framework\TestCase;
+use StarterKitTests\Unit\Container\Fixtures\Outer;
+use StarterKitTests\Unit\Container\Fixtures\Middle;
+use StarterKitTests\Unit\Container\Fixtures\Inner;
+use StarterKitTests\Unit\Container\Fixtures\ScalarWithArrayAndDefault;
+use StarterKitTests\Unit\Container\Fixtures\ScalarWithOutDefault;
 
 class ContainerTest extends TestCase
 {
-
     protected static $container;
 
     protected function setUp(): void
@@ -139,65 +143,3 @@ class ContainerTest extends TestCase
         $container->get('email');
     }
 }
-
-
-class Outer
-{
-
-    public $middle;
-
-    public function __construct(Middle $middle)
-    {
-        $this->middle = $middle;
-    }
-}
-
-
-class Middle
-{
-
-    public $inner;
-
-    public function __construct(Inner $inner)
-    {
-        $this->inner = $inner;
-    }
-}
-
-
-class Inner
-{
-
-}
-
-
-class ScalarWithArrayAndDefault
-{
-
-    public $inner;
-    public $array;
-    public $default;
-
-    public function __construct(Inner $inner, array $array = [], $default = 10)
-    {
-        $this->inner = $inner;
-        $this->array = $array;
-        $this->default = $default;
-    }
-}
-
-
-class ScalarWithOutDefault
-{
-
-    public $inner;
-    public $some;
-
-    public function __construct(Inner $inner, $some)
-    {
-        $this->inner = $inner;
-        $this->some = $some;
-    }
-}
-
-

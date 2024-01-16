@@ -14,7 +14,6 @@ use StarterKit\Helper\Logger;
 
 class ErrorHandler
 {
-
     public static function handleThrowable(\Throwable $throwable): void
     {
         $error_message = 'PHP error: ' .
@@ -62,25 +61,30 @@ class ErrorHandler
         ob_start(); // Don`t display WP markup before whoops.
     }
 
+
     private static function hideErrors(): bool
     {
         return ! static::isDebug() || ! static::isDebugDisplay() || static::isProdEnvironment();
     }
+
 
     private static function isDebug(): bool
     {
         return defined('WP_DEBUG') && WP_DEBUG;
     }
 
+
     private static function isDebugDisplay(): bool
     {
         return defined('WP_DEBUG_DISPLAY') && WP_DEBUG_DISPLAY;
     }
 
+
     private static function isProdEnvironment(): bool
     {
         return 'production' === wp_get_environment_type();
     }
+
 
     private static function getTables(): array
     {
@@ -88,7 +92,7 @@ class ErrorHandler
             '$wp'       => function () {
                 global $wp;
 
-                if ( ! $wp instanceof \WP) {
+                if (! $wp instanceof \WP) {
                     return [];
                 }
 
@@ -101,7 +105,7 @@ class ErrorHandler
             '$wp_query' => function () {
                 global $wp_query;
 
-                if ( ! $wp_query instanceof \WP_Query) {
+                if (! $wp_query instanceof \WP_Query) {
                     return [];
                 }
 
@@ -115,7 +119,7 @@ class ErrorHandler
             '$post'     => function () {
                 $post = get_post();
 
-                if ( ! $post instanceof \WP_Post) {
+                if (! $post instanceof \WP_Post) {
                     return [];
                 }
 
@@ -125,6 +129,7 @@ class ErrorHandler
 
         return $tables;
     }
+
 
     private static function getPrettyHandler(): \Whoops\Handler\HandlerInterface
     {

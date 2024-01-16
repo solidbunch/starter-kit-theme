@@ -17,7 +17,6 @@ use StarterKit\Helper\NotFoundException;
  */
 class Config
 {
-
     /**
      * Get config value by key
      *
@@ -31,7 +30,7 @@ class Config
 
         $config = App::container()->get('config');
 
-        if ( ! isset($config[$parts[0]])) {
+        if (! isset($config[$parts[0]])) {
             throw new NotFoundException("No entry found for '$key'");
         }
 

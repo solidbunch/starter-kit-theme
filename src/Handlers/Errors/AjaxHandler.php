@@ -14,7 +14,6 @@ use Whoops\Util\Misc;
  */
 class AjaxHandler extends JsonResponseHandler
 {
-
     private function isAjaxRequest(): bool
     {
         return defined('DOING_AJAX') && DOING_AJAX;
@@ -23,7 +22,7 @@ class AjaxHandler extends JsonResponseHandler
 
     public function handle(): int
     {
-        if ( ! $this->isAjaxRequest()) {
+        if (! $this->isAjaxRequest()) {
             return Handler::DONE;
         }
 

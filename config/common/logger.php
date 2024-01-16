@@ -25,7 +25,7 @@ return [
             $log->pushHandler((new StreamHandler('php://stderr', $level))->setFormatter($formatter));
         }
 
-        if ( ! empty($configLogger['file'])) {
+        if (! empty($configLogger['file'])) {
             $log->pushHandler((new StreamHandler($configLogger['file'], $level))->setFormatter($formatter));
         }
 

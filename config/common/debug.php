@@ -21,4 +21,3 @@ return [
         'isProdEnvironment'    => 'production' === $environment_type,
     ],
 ];
-
