@@ -1,11 +1,8 @@
-// Bootstrap containers connected in theme styles
-
-/*
-@import "../../../assets/src/styles/utils/variables";
-@import "../../../assets/src/styles/utils/mixins";
-@import "../../../assets/src/styles/utils/icons";
-
 @import "../../../assets/src/styles/utils/bootstrap_utils";
-
-@import "~bootstrap/scss/containers";
-*/
+@import "~bootstrap/scss/offcanvas";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
