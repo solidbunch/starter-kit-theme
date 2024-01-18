@@ -1,12 +1,15 @@
-body.admin-bar header.sticky-top,
-body.admin-bar .offcanvas {
-  top: 32px;
+body.admin-bar {
+  header.sticky-top,
+  .offcanvas {
+    top: 32px;
+  }
 }
 
 @media all and (max-width: 782px) {
-
-  body.admin-bar header.sticky-top,
-  body.admin-bar .offcanvas {
-    top: 46px;
+  body.admin-bar {
+    header.sticky-top,
+    .offcanvas {
+      top: 46px;
+    }
   }
 }
