@@ -17,8 +17,6 @@ registerBlockType(
   {
     getEditWrapperProps(attributes) {
       const {backgroundColor, textColor} = attributes.modification || {};
-
-      // Комбинируем значения backgroundColor и textColor в одну строку
       const blockClass = `${backgroundColor || ''} ${textColor || ''}`.trim();
 
       return {className: blockClass};
@@ -40,10 +38,9 @@ registerBlockType(
       return [
         <InspectorControls key="controls">
           <PanelBody title="Section styles">
-            <h1>Section</h1>
             <SelectControl
               label="Select Tag"
-              value={attributes.modification.tagName || 'section'} // Устанавливаем значение по умолчанию, если не выбрано
+              value={attributes.modification.tagName || 'section'}
               options={[
                 {label: '<section>', value: 'section'},
                 {label: '<div>', value: 'div'},
