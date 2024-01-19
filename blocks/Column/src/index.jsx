@@ -1,79 +1,130 @@
 /**
  * Block dependencies
  */
+
 import metadata from '../block.json';
 
 /**
  * Internal block libraries
  */
+
 const {registerBlockType} = wp.blocks;
 const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
-const {PanelBody, SelectControl, RangeControl} = wp.components;
+const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
-//const sizeOptions = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const numberOfGrid = 12;
+
+function generateSizeClasses(attributes) {
+  const {size} = attributes;
+  const classes = [];
+  Object.keys(size).forEach((breakpoint) => {
+    const {mod, valueRange} = size[breakpoint];
+    if (breakpoint === 'xs') {
+      if (mod === 'default') {
+        classes.push('col');
+      } else if (mod === 'auto') {
+        classes.push('col-auto');
+      } else if (mod === 'custom') {
+        classes.push(valueRange !== undefined ? `col-${valueRange}` : 'col-6');
+      }
+    } else if (mod === 'default') {
+      classes.push(`col-${breakpoint}`);
+    } else if (mod === 'auto') {
+      classes.push(`col-${breakpoint}-auto`);
+    } else if (mod === 'custom') {
+      classes.push(valueRange !== undefined ? `col-${breakpoint}-${valueRange}` : `col-${breakpoint}-6`);
+    }
+  });
+
+  return classes.join(' ');
+}
 
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
 
-      const data = {
-        'data-col-lg': attributes.size ?? 'default'
-      };
-
-      if (attributes.size === 'custom') {
-        data['data-col-lg'] = attributes.modification.lg ?? 6;
-      }
-
-      return data;
+      const blockClass = generateSizeClasses(attributes);
+      return {className: blockClass};
     },
-
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
-        className: [className]
+        className: [className],
       });
 
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
-
         return {
           hasChildBlocks: getBlockOrder(clientId).length > 0,
         };
       });
 
-      //const blockClassName = 'col-xs-' + attributes.modification.xs + ' col-lg-' + attributes.modification.lg;
-      //const blockClassName = className;
-
       return [
         <InspectorControls key="settings">
-          <PanelBody title="Column settings">
-            <SelectControl
-              label="Size"
-              value={attributes.size}
-              options={[
-                {label: 'default', value: 'default'},
-                {label: 'auto', value: 'auto'},
-                {label: 'custom', value: 'custom'},
-              ]}
-              onChange={(size) => setAttributes({size})}
-            />
-            {attributes.size === 'custom' &&
-              <RangeControl
-                label="Width"
-                value={attributes.modification.lg}
-                onChange={value => {
-                  const modificationObject = {...attributes.modification};
-                  modificationObject.lg = value;
-                  setAttributes({...attributes, modification: modificationObject});
-                }}
-                min={1}
-                max={numberOfGrid}
-                {...props}
-              />
-            }
+          <PanelBody title="Column width" initialOpen={false}>
+
+            {Object.keys(attributes.size).map((breakpoint) => (
+
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
+                <CheckboxControl
+                  label={`Enable ${breakpoint}`}
+                  checked={
+                    attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== ""
+                  }
+                  onChange={(isChecked) => {
+                    const sizeObject = {...attributes.size};
+                    if (isChecked) {
+                      sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: "default"};
+                    } else {
+                      sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: ""};
+                    }
+                    setAttributes({...attributes, size: sizeObject});
+                  }}
+                />
+                {attributes.size && attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== "" && (
+                  <>
+                    <SelectControl
+                      label={`Size ${breakpoint}`}
+                      value={attributes.size[breakpoint].mod}
+                      options={[
+                        {label: 'default', value: 'default'},
+                        {label: 'auto', value: 'auto'},
+                        {label: 'custom', value: "custom"},
+                      ]}
+                      onChange={(value) => {
+                        const sizeObject = {...attributes.size};
+
+                        sizeObject[breakpoint] = {...sizeObject[breakpoint], mod: value};
+                        setAttributes({...attributes, size: sizeObject});
+                      }}
+                    />
+                    {attributes.size[breakpoint].mod === "custom" &&
+                      <RangeControl
+                        label="Width"
+                        value={
+                          (() => {
+                            if (attributes.size[breakpoint]?.valueRange !== undefined) {
+                              return attributes.size[breakpoint].valueRange;
+                            }
+                            return attributes.size[breakpoint].valueRange = 6;
+                          })()
+                        }
+                        onChange={value => {
+                          const sizeObject = {...attributes.size};
+                          sizeObject[breakpoint] = {...sizeObject[breakpoint], valueRange: value};
+                          setAttributes({...attributes, size: sizeObject});
+                        }}
+                        min={1}
+                        max={numberOfGrid}
+                        {...props}
+                      />
+                    }
+                  </>
+                )}
+              </div>
+            ))}
           </PanelBody>
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
@@ -81,40 +132,26 @@ registerBlockType(
             renderAppender={
               hasChildBlocks
                 ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender/>
+                : () => <InnerBlocks.ButtonBlockAppender />
             }
           />
         </div>
       ];
     },
-
     save: props => {
       const {attributes} = props;
 
-      let blockClassName = 'col';
-      const combinedClass = [];
+      const blockClass = generateSizeClasses(attributes);
 
-      if (attributes.size === 'auto') {
-        blockClassName = 'col-auto';
-      }
+      const blockProps = useBlockProps.save({
+        className: blockClass
+      });
 
-      if (attributes.size === 'custom') {
-        blockClassName = 'col-sm-' + attributes.modification.sm + ' col-lg-' + attributes.modification.lg;
-      }
-
-      if (blockClassName) {
-        combinedClass.push(blockClassName);
-      }
-
-      if (attributes.className) {
-        combinedClass.push(attributes.className);
-      }
-
-      const classNameString = combinedClass.join(" ");
       return (
-        <div className={classNameString}>
-          <InnerBlocks.Content/>
+        <div {...blockProps}>
+          <InnerBlocks.Content />
         </div>
       );
     },
-  });
+  }
+);

@@ -1,14 +1,14 @@
 @import "~bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-//@import "bootstrap_variables";
+@import "../custom_bootstrap/custom_variables";
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/variables-dark";
 
 //  !!!!!!!!!!!!!!!!!! 4. Include any default map overrides here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // only map !!!
-
+@import "../custom_bootstrap/custom_maps";
 // 5. Include remainder of required parts
 @import "~bootstrap/scss/maps";
 @import "~bootstrap/scss/mixins";

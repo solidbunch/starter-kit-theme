@@ -42,7 +42,7 @@ if (!mix.inProduction()) {
   const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
   mix.sourceMaps().webpackConfig({
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map', // or 'source-map'
     plugins: [
       /**
        * Remove assets files(css, js) from build folders
@@ -54,7 +54,7 @@ if (!mix.inProduction()) {
         protectWebpackAssets: false, // Do not allow removal of current webpack assets
         //Removes files once prior to Webpack compilation Not included in rebuilds (watch mode)
         cleanOnceBeforeBuildPatterns: [
-          '**/build/**/*.{css,js}',
+          '**/build/**/*.{css,js,map,txt}',
           '!vendor/**',
           '!vendor-custom/**',
           '!node_modules/**',
@@ -95,7 +95,7 @@ if (!mix.inProduction()) {
  * Example, '_StarterBlock' - should not be registered
  */
 const allAssets = glob.sync(
-  '{assets/src/**/!(_)*.scss,assets/src/**/*.{js,jsx}}')
+  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 
@@ -125,26 +125,28 @@ allAssets.forEach(assetPath => {
 /**
  * BrowserSync runs on dev mode only
  */
-mix.browserSync({
-  /**
-   * Proxying to nginx container with alias APP_DOMAIN
-   * Proxy should be the same as WP_SITEURL in wp-config.php
-   */
-  proxy: getAppUrl(),
-  /**
-   * Set external host network IP.
-   * If hostIp is undefined, just find your local network IP in your system
-   * and use it in your other devices browser to sync with BrowserSync.
-   */
-  host: getHostIp(),
-  port: 3000,
-  open: false,
-  files: [
-    '**/*.php',
-    '**/*.twig',
-    '**/src/**/*.@(scss|js|jsx)',
-  ],
-});
+if (!mix.inProduction()) {
+  mix.browserSync({
+    /**
+     * Proxying to nginx container with alias APP_DOMAIN
+     * Proxy should be the same as WP_SITEURL in wp-config.php
+     */
+    proxy: getAppUrl(),
+    /**
+     * Set external host network IP.
+     * If hostIp is undefined, just find your local network IP in your system
+     * and use it in your other devices browser to sync with BrowserSync.
+     */
+    host: getHostIp(),
+    port: 3000,
+    open: false,
+    files: [
+      '**/*.php',
+      '**/*.twig',
+      '**/src/**/*.@(scss|js|jsx)',
+    ],
+  });
+}
 
 function getAppUrl() {
   const appProtocol = process.env.APP_PROTOCOL;

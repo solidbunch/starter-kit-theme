@@ -1,0 +1,30 @@
+{
+  "apiVersion": 2,
+  "name": "starter-kit/navigation",
+  "title": "Navigation",
+  "category": "starter-kit",
+  "icon": "layout",
+  "description": "Bootstrap navigation",
+  "keywords": [
+    "Navigation",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "menuId": {
+      "type": "string",
+      "default": ""
+    },
+    "expand": {
+      "type": "string",
+      "default": "navbar-expand"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "viewScript": "file:build/view.js",
+  "editorStyle": "",
+  "style": "file:build/style.css"
+}

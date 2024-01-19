@@ -39,7 +39,8 @@ class Hooks
          ************************************/
         add_action('block_categories_all', [Handlers\Blocks\Register::class, 'registerBlocksCategories']);
         add_action('init', [Handlers\Blocks\Register::class, 'registerBlocks']);
-        // ToDo deactivate default blocks if Config optimization/removeDefaultBlocks
+        add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
+        // ToDo deactivate default blocks if Config removeDefaultBlocks
 
         /************************************
          *     PostTypes with Taxonomies
@@ -72,7 +73,6 @@ class Hooks
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
-        add_action('enqueue_block_editor_assets', [Handlers\Front::class, 'enqueueBlockEditorAssets']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
         // Change excerpt dots
@@ -82,6 +82,11 @@ class Hooks
         add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
         // add Google Analytics code to head
         add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
+
+        /************************************
+         *               Back
+         ************************************/
+        add_action('enqueue_block_editor_assets', [Handlers\Back::class, 'enqueueBlockEditorAssets']);
 
         /************************************
          *       Security and CleanUp

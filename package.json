@@ -3,7 +3,7 @@
   "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
   "engines": {
     "node": ">=18.0.0 <19",
-    "npm": ">=9 <10"
+    "npm": ">=9 <11"
   },
   "dependencies": {
     "@wordpress/babel-preset-default": "7.28.0",
@@ -48,6 +48,8 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 2 versions",
+    "not IE > 0",
+    "not dead"
   ]
 }

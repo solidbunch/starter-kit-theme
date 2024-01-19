@@ -1,0 +1,65 @@
+// Bootstrap custom variables
+
+// Color system
+
+// scss-docs-start gray-color-variables
+$white:    #f0f3f7;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #78828a;
+$gray-700: #4f565e;
+$gray-800: #383d44;
+$gray-900: #2f3134;
+$black:    #212529;
+
+// scss-docs-start theme-color-variables
+$primary:       #dc3545;
+$secondary:     #212529;
+$success:       #198754;
+$info:          #0dcaf0;
+$warning:       #ffc107;
+$danger:        #dc3545;
+$light:         $gray-100;
+$dark:          $gray-900;
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+$min-contrast-ratio:   4;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-color:                $black;
+$body-bg:                   $white;
+
+$body-secondary-color:      rgba($body-color, .75);
+$body-secondary-bg:         $gray-200;
+
+$body-tertiary-color:       rgba($body-color, .5);
+$body-tertiary-bg:          $gray-100;
+
+$body-emphasis-color:       $black;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color:                              $primary;
+$link-decoration:                         underline;
+$link-shade-percentage:                   20%;
+$link-hover-color:                        $secondary;
+$link-hover-decoration:                   null;
+
+// scss-docs-start headings-variables
+$headings-font-family:        null;
+$headings-font-style:         null;
+$headings-font-weight:        500;
+$headings-line-height:        1.2;
+$headings-color:              $primary;
+
+// scss-docs-start font-variables
+$font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;

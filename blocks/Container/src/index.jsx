@@ -14,11 +14,15 @@ const {PanelBody, SelectControl} = wp.components;
 registerBlockType(
   metadata,
   {
+    getEditWrapperProps(attributes) {
+      const blockClass = attributes.modification;
+      return {className: blockClass};
+    },
     edit: props => {
-      const {attributes, setAttributes, clientId} = props;
-
-      const blockProps = useBlockProps();
-
+      const {attributes, setAttributes, clientId, className} = props;
+      const blockProps = useBlockProps({
+        className: [className],
+      });
       const {hasChildBlocks} = useSelect((select) => {
         const {getBlockOrder} = select('core/block-editor');
 
@@ -34,12 +38,6 @@ registerBlockType(
               label="Container width"
               value={attributes.modification}
               options={[
-                // ToDo - add breakpoints options
-                //{label: 'container', value: 'container'},
-                //{label: 'container-sm', value: 'container-sm'},
-                //{label: 'container-md', value: 'container-md'},
-                //{label: 'container-lg', value: 'container-lg'},
-                //{label: 'container-xl', value: 'container-xl'},
                 {label: 'Fixed width', value: 'container-xxl'},
                 {label: 'Full width', value: 'container-fluid'}
               ]}
@@ -48,38 +46,30 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>,
         <div {...blockProps} key="blockControls">
-          <div className={attributes.modification}>
-            <InnerBlocks
-              renderAppender={
-                hasChildBlocks
-                  ? undefined
-                  : () => <InnerBlocks.ButtonBlockAppender/>
-              }
-            />
-          </div>
+          <InnerBlocks
+            renderAppender={
+              hasChildBlocks
+                ? undefined
+                : () => <InnerBlocks.ButtonBlockAppender />
+            }
+          />
         </div>
       ];
     },
-
     save: props => {
       const {attributes} = props;
 
-      const combinedClass = [];
+      const blockClass = attributes.modification;
 
-      if (attributes.modification) {
-        combinedClass.push(attributes.modification);
-      }
-
-      if (attributes.className) {
-        combinedClass.push(attributes.className);
-      }
-
-      const classNameString = combinedClass.join(" ");
+      const blockProps = useBlockProps.save({
+        className: blockClass
+      });
 
       return (
-        <div className={classNameString}>
-          <InnerBlocks.Content/>
+        <div {...blockProps}>
+          <InnerBlocks.Content />
         </div>
       );
     }
-  });
+  }
+);
