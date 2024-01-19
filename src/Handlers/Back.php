@@ -4,7 +4,7 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Back End handler
