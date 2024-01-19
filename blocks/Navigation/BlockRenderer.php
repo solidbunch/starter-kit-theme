@@ -4,7 +4,7 @@ namespace StarterKitBlocks\Navigation;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 
 /**

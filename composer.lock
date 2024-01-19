@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cff0f4b3bd332bc9f042b7af601cb8d5",
+    "content-hash": "e927414223e914f27c3d45339ec9b53b",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -197,16 +197,16 @@
         },
         {
             "name": "laminas/laminas-config-aggregator",
-            "version": "1.15.x-dev",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-config-aggregator.git",
-                "reference": "8d2f4af7dcf281ca01e9134bc336bbd18cea3e5f"
+                "reference": "6a15ae9ad1cb48f73bf19774df095932695d51f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-config-aggregator/zipball/8d2f4af7dcf281ca01e9134bc336bbd18cea3e5f",
-                "reference": "8d2f4af7dcf281ca01e9134bc336bbd18cea3e5f",
+                "url": "https://api.github.com/repos/laminas/laminas-config-aggregator/zipball/6a15ae9ad1cb48f73bf19774df095932695d51f2",
+                "reference": "6a15ae9ad1cb48f73bf19774df095932695d51f2",
                 "shasum": ""
             },
             "require": {
@@ -221,18 +221,18 @@
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~2.5.0",
-                "laminas/laminas-config": "^3.9.0",
-                "laminas/laminas-servicemanager": "^3.22.1",
-                "phpunit/phpunit": "^10.5.5",
+                "laminas/laminas-config": "^3.8.0",
+                "laminas/laminas-servicemanager": "^3.20",
+                "nikic/php-parser": "^4.17.1",
+                "phpunit/phpunit": "^9.6.13",
                 "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.18"
+                "vimeo/psalm": "^5.15"
             },
             "suggest": {
                 "laminas/laminas-config": "Allows loading configuration from XML, INI, YAML, and JSON files",
                 "laminas/laminas-config-aggregator-modulemanager": "Allows loading configuration from laminas-mvc Module classes",
                 "laminas/laminas-config-aggregator-parameters": "Allows usage of templated parameters within your configuration"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -263,20 +263,20 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-01-15T01:47:15+00:00"
+            "time": "2023-09-19T12:35:37+00:00"
         },
         {
             "name": "laminas/laminas-stdlib",
-            "version": "3.19.x-dev",
+            "version": "3.20.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-stdlib.git",
-                "reference": "de2503afada3e0d77d020813e72ec7285f0e1f33"
+                "reference": "6a192dd0882b514e45506f533b833b623b78fff3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/de2503afada3e0d77d020813e72ec7285f0e1f33",
-                "reference": "de2503afada3e0d77d020813e72ec7285f0e1f33",
+                "url": "https://api.github.com/repos/laminas/laminas-stdlib/zipball/6a192dd0882b514e45506f533b833b623b78fff3",
+                "reference": "6a192dd0882b514e45506f533b833b623b78fff3",
                 "shasum": ""
             },
             "require": {
@@ -287,10 +287,10 @@
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "^2.5",
-                "phpbench/phpbench": "^1.2.14",
-                "phpunit/phpunit": "^10.3.3",
+                "phpbench/phpbench": "^1.2.15",
+                "phpunit/phpunit": "^10.5.8",
                 "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.15.0"
+                "vimeo/psalm": "^5.20.0"
             },
             "default-branch": true,
             "type": "library",
@@ -323,7 +323,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-01-15T01:46:45+00:00"
+            "time": "2024-01-19T12:39:49+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -778,6 +778,51 @@
             "time": "2021-07-14T16:46:02+00:00"
         },
         {
+            "name": "vvv3/wp-responsive-images",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vvv3/wp-responsive-images.git",
+                "reference": "c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vvv3/wp-responsive-images/zipball/c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf",
+                "reference": "c2326c5e965e304ea2f6a60ee8f2e7255bd7eeaf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WPRI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Valerii Vasyliev",
+                    "email": "test.vvv@ukr.net"
+                }
+            ],
+            "description": "WordPress responsive images easily",
+            "homepage": "https://github.com/vvv3/wp-responsive-images#readme",
+            "keywords": [
+                "Responsive Images",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/vvv3/wp-responsive-images/issues",
+                "source": "https://github.com/vvv3/wp-responsive-images/tree/1.0.1"
+            },
+            "time": "2024-01-16T22:37:41+00:00"
+        },
+        {
             "name": "webimpress/safe-writer",
             "version": "dev-develop",
             "source": {
@@ -918,16 +963,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.15.0",
+            "version": "2.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "3e8aebbca9f0ae6f618962c4ad514077fd365ab3"
+                "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/3e8aebbca9f0ae6f618962c4ad514077fd365ab3",
-                "reference": "3e8aebbca9f0ae6f618962c4ad514077fd365ab3",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a139776fa3f5985a50b509f2a02ff0f709d2a546",
+                "reference": "a139776fa3f5985a50b509f2a02ff0f709d2a546",
                 "shasum": ""
             },
             "require": {
@@ -977,7 +1022,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.15.0"
+                "source": "https://github.com/filp/whoops/tree/2.15.4"
             },
             "funding": [
                 {
@@ -985,7 +1030,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-03T12:00:00+00:00"
+            "time": "2023-11-03T12:00:00+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1771,12 +1816,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "c892bcc085a40eaa63e195cabdab5a7558c1b1c0"
+                "reference": "f81bd7cb90f5f30d3b246e342843ae905947158f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c892bcc085a40eaa63e195cabdab5a7558c1b1c0",
-                "reference": "c892bcc085a40eaa63e195cabdab5a7558c1b1c0",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f81bd7cb90f5f30d3b246e342843ae905947158f",
+                "reference": "f81bd7cb90f5f30d3b246e342843ae905947158f",
                 "shasum": ""
             },
             "conflict": {
@@ -1898,6 +1943,7 @@
                 "drupal/drupal": ">=6,<6.38|>=7,<7.80|>=8,<8.9.16|>=9,<9.1.12|>=9.2,<9.2.4",
                 "duncanmcclean/guest-entries": "<3.1.2",
                 "dweeves/magmi": "<=0.7.24",
+                "ec-cube/ec-cube": "<2.4.4",
                 "ecodev/newsletter": "<=4",
                 "ectouch/ectouch": "<=2.7.2",
                 "elefant/cms": "<2.0.7",
@@ -2005,6 +2051,7 @@
                 "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
                 "illuminate/view": "<6.20.42|>=7,<7.30.6|>=8,<8.75",
                 "impresscms/impresscms": "<=1.4.5",
+                "impresspages/impresspages": "<=1.0.12",
                 "in2code/femanager": "<5.5.3|>=6,<6.3.4|>=7,<7.2.3",
                 "in2code/ipandlanguageredirect": "<5.1.2",
                 "in2code/lux": "<17.6.1|>=18,<24.0.2",
@@ -2106,8 +2153,8 @@
                 "neorazorx/facturascripts": "<2022.04",
                 "neos/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "neos/form": ">=1.2,<4.3.3|>=5,<5.0.9|>=5.1,<5.1.3",
+                "neos/media-browser": "<7.3.19|>=8,<8.0.16|>=8.1,<8.1.11|>=8.2,<8.2.11|>=8.3,<8.3.9",
                 "neos/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.9.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<5.3.10|>=7,<7.0.9|>=7.1,<7.1.7|>=7.2,<7.2.6|>=7.3,<7.3.4|>=8,<8.0.2",
-                "neos/neos-ui": "<=8.3.3",
                 "neos/swiftmailer": ">=4.1,<4.1.99|>=5.4,<5.4.5",
                 "netgen/tagsbundle": ">=3.4,<3.4.11|>=4,<4.0.15",
                 "nette/application": ">=2,<2.0.19|>=2.1,<2.1.13|>=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
@@ -2230,8 +2277,8 @@
                 "serluck/phpwhois": "<=4.2.6",
                 "sfroemken/url_redirect": "<=1.2.1",
                 "sheng/yiicms": "<=1.2",
-                "shopware/core": "<=6.4.20",
-                "shopware/platform": "<=6.4.20",
+                "shopware/core": "<=6.5.7.3",
+                "shopware/platform": "<=6.5.7.3",
                 "shopware/production": "<=6.3.5.2",
                 "shopware/shopware": "<=5.7.17",
                 "shopware/storefront": "<=6.4.8.1",
@@ -2492,7 +2539,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-12T17:04:19+00:00"
+            "time": "2024-01-17T21:04:22+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -3542,7 +3589,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "laminas/laminas-config-aggregator": 20,
         "monolog/monolog": 20,
         "roave/security-advisories": 20
     },
