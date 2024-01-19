@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKit\Repository\CarBrandsRepository;
 use StarterKit\Repository\ServicesRepository;
 
@@ -19,7 +19,7 @@ class News
 {
     public static function make(): void
     {
-        $metaPrefix = Config::get('settingsPrefix') . Config::get('postTypeNewsID') . '_';
+        $metaPrefix = Config::get('settingsPrefix') . Config::get('postTypes/NewsID') . '_';
 
         $services = ServicesRepository::getAllList(['posts_per_page' => 1000]);
         asort($services);
@@ -27,7 +27,7 @@ class News
         $carBrands = CarBrandsRepository::getCarBrands();
 
         Container::make('post_meta', __('News Data fields', 'starter-kit'))
-                 ->where('post_type', '=', Config::get('postTypeNewsID'))
+                 ->where('post_type', '=', Config::get('postTypes/NewsID'))
                  ->set_priority('default')
                  ->add_fields([
                      Field::make('text', $metaPrefix . 'data', __('Data', 'starter-kit')),

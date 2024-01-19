@@ -4,7 +4,8 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Logger;
+use StarterKit\Helper\Config;
 
 /**
  * Post type class
@@ -20,7 +21,7 @@ class News
      */
     public static function registerPostType(): void
     {
-        register_post_type(Config::get('postTypeNewsID'), [
+        register_post_type(Config::get('postTypes/NewsID'), [
             'label'             => esc_html__('News', 'starter-kit'),
             'description'       => '',
             'public'            => true,
@@ -40,7 +41,7 @@ class News
                 'page-attributes'
             ],
             'taxonomies'        => ['news-category'],
-            'rewrite'           => ['slug' => Config::get('postTypeNewsSlug')],
+            'rewrite'           => ['slug' => Config::get('postTypes/NewsSlug')],
             'has_archive'       => true,
             'query_var'         => false,
             'menu_position'     => 5,
@@ -83,8 +84,8 @@ class News
     public static function registerCategoryTaxonomy(): void
     {
         register_taxonomy(
-            Config::get('postTypeNewsTaxonomyID'),
-            Config::get('postTypeNewsID'),
+            Config::get('postTypes/NewsTaxonomyID'),
+            Config::get('postTypes/NewsID'),
             [
                 'public'            => true,
                 'show_ui'           => true,
@@ -123,8 +124,8 @@ class News
     public static function registerTagTaxonomy(): void
     {
         register_taxonomy(
-            Config::get('postTypeNewsTagID'),
-            Config::get('postTypeNewsID'),
+            Config::get('postTypes/NewsTagID'),
+            Config::get('postTypes/NewsID'),
             [
                 'public'            => true,
                 'show_ui'           => true,

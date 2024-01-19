@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Post type class
@@ -20,7 +20,7 @@ class Portfolio
      */
     public static function registerPostType(): void
     {
-        register_post_type(Config::get('postTypePortfolioID'), [
+        register_post_type(Config::get('postTypes/PortfolioID'), [
             'label'             => esc_html__('Portfolio', 'starter-kit'),
             'description'       => '',
             'public'            => true,
@@ -31,7 +31,7 @@ class Portfolio
             'capability_type'   => 'post',
             'hierarchical'      => false,
             'supports'          => ['title', 'editor', 'thumbnail', 'page-attributes'],
-            'rewrite'           => ['slug' => Config::get('postTypePortfolioSlug')],
+            'rewrite'           => ['slug' => Config::get('postTypes/PortfolioSlug')],
             'has_archive'       => true,
             'query_var'         => false,
             'menu_position'     => 5,

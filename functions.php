@@ -2,7 +2,11 @@
 
 defined('ABSPATH') || exit;
 
-use StarterKit\AppContainer;
+use StarterKit\App;
+use StarterKit\Helper\Utils;
+use StarterKit\Helper\Config;
+use StarterKit\Handlers\Errors\ErrorHandler;
+use Psr\Container\ContainerInterface;
 
 /**
  * Theme bootstrap file
@@ -11,7 +15,7 @@ use StarterKit\AppContainer;
  */
 
 if (PHP_VERSION_ID < 80100) {
-    $activeTheme        = wp_get_theme();
+    $activeTheme = wp_get_theme();
     $requiredPhpVersion = $activeTheme->get('RequiresPHP');
 
     error_log(sprintf(__('Theme requires at least PHP %s (You are using PHP %s) '), $requiredPhpVersion, PHP_VERSION));
@@ -25,15 +29,11 @@ if (PHP_VERSION_ID < 80100) {
         // psr-4 autoload
         require_once __DIR__ . '/vendor/autoload.php';
 
-        $AppContainer = new AppContainer();
-        $AppContainer->run();
-    } catch (Throwable $throwable) {
-        $error_message = 'PHP error: ' .
-                         $throwable->getMessage() .
-                         ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
-        $error_message .= PHP_EOL . 'Stack trace:';
-        $error_message .= PHP_EOL . $throwable->getTraceAsString();
+        /** @var ContainerInterface $container */
+        $container = apply_filters('sk/container', require __DIR__ . '/config/container.php');
 
-        error_log($error_message);
+        App::instance()->run($container);
+    } catch (Throwable $throwable) {
+        ErrorHandler::handleThrowable($throwable);
     }
 }

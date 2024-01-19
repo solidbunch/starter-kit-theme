@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Optimization Handlers
@@ -27,7 +27,7 @@ class CleanUp
      */
     public static function headCleanup(): void
     {
-        if (empty(Config::get('cleanWpHead'))) {
+        if (empty(Config::get('optimization/cleanWpHead'))) {
             return;
         }
 

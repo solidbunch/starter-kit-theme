@@ -2,7 +2,7 @@
 
 namespace StarterKit\Handlers\Security;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 class RestApiAuth
 {

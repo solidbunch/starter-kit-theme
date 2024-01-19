@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use StarterKit\Helper\Utils;
 
 /**

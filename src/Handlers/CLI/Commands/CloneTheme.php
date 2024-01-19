@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 use WP_CLI;
 use WP_CLI\ExitException;
 

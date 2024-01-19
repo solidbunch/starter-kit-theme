@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Services post type
@@ -22,7 +22,7 @@ class Services
     public static function registerPostType(): void
     {
         register_post_type(
-            Config::get('postTypeServicesID'),
+            Config::get('postTypes/ServicesID'),
             [
                 'label'             => esc_html__('Services', 'starter-kit'),
                 'description'       => '',

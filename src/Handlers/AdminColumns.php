@@ -4,7 +4,7 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Add custom columns to admin post list
@@ -31,8 +31,8 @@ class AdminColumns
 
     public static function addNewsCategoryFilter($currentPostType, $which): void
     {
-        $postType = Config::get('postTypeNewsID');
-        $taxonomy = Config::get('postTypeNewsTaxonomyID');
+        $postType = Config::get('postTypes/NewsID');
+        $taxonomy = Config::get('postTypes/NewsTaxonomyID');
 
         if ($currentPostType == $postType) {
             wp_dropdown_categories([

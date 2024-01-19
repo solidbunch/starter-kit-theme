@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Completely remove comments support
@@ -16,7 +16,7 @@ class Comments
 {
     public static function disableComments(): void
     {
-        if (empty(Config::get('disableComments'))) {
+        if (empty(Config::get('optimization/disableComments'))) {
             return;
         }
 

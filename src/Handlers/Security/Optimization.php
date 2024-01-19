@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Config;
+use StarterKit\Helper\Config;
 
 /**
  * Optimization Handlers
@@ -21,15 +21,15 @@ class Optimization
             return;
         }
 
-        if (!empty(Config::get('removeDefaultBlocksStyles'))) {
+        if (!empty(Config::get('optimization/removeDefaultBlocksStyles'))) {
             self::removeDefaultBlocksStyles();
         }
 
-        if (!empty(Config::get('cleanBodyClass'))) {
+        if (!empty(Config::get('optimization/cleanBodyClass'))) {
             add_filter('body_class', [self::class, 'cleanBodyClass']);
         }
 
-        if (!empty(Config::get('removeAssetsAttributes'))) {
+        if (!empty(Config::get('optimization/removeAssetsAttributes'))) {
             add_filter('style_loader_tag', [self::class, 'removeAssetsAttributes'], 10, 2);
             add_filter('script_loader_tag', [self::class, 'removeAssetsAttributes'], 10, 2);
         }
