@@ -14,12 +14,17 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "modification": {
+    "menuId": {
       "type": "string",
       "default": ""
+    },
+    "expand": {
+      "type": "string",
+      "default": "navbar-expand"
     }
   },
   "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
+  "viewScript": "file:build/view.js",
+  "editorStyle": "",
   "style": "file:build/style.css"
 }

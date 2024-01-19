@@ -43,7 +43,7 @@ class Front
         $bootstrapBundleUri  = get_template_directory_uri() . $bootstrapBundle;
         $bootstrapBundlePath = get_template_directory() . $bootstrapBundle;
 
-        wp_enqueue_script('bootstrap-bundle', $bootstrapBundleUri, [], filemtime($bootstrapBundlePath), true);
+       // wp_enqueue_script('bootstrap-bundle', $bootstrapBundleUri, [], filemtime($bootstrapBundlePath), true);
     }
 
     /**

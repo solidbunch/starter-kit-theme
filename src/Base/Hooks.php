@@ -39,6 +39,7 @@ class Hooks
          ************************************/
         add_action('block_categories_all', [Handlers\Blocks\Register::class, 'registerBlocksCategories']);
         add_action('init', [Handlers\Blocks\Register::class, 'registerBlocks']);
+        add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
         // ToDo deactivate default blocks if Config removeDefaultBlocks
 
         /************************************
