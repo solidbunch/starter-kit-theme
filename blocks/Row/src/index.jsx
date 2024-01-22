@@ -10,6 +10,8 @@ const {registerBlockType} = wp.blocks;
 
 const {InspectorControls, useBlockProps, InnerBlocks, useInnerBlocksProps} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl} = wp.components;
+const blocksAllowed = ['starter-kit/column'];
+const blockTemplate = [['starter-kit/column'], ['starter-kit/column']];
 
 function getClasses(attributes) {
   const {modification, properties} = attributes;
@@ -44,14 +46,7 @@ registerBlockType(
         className: [className],
       });
 
-      const TEMPLATE = [['starter-kit/column']];
-
-      const innerBlocksProps = useInnerBlocksProps(blockProps, {
-        allowedBlocks: TEMPLATE,
-        template: TEMPLATE,
-        templateLock: false
-      });
-      return [
+      const renderControls = (
         <InspectorControls key="settings">
           <PanelBody title="alignment x" initialOpen={false}>
             {Object.keys(attributes.properties).map((breakpoint) => (
@@ -135,10 +130,24 @@ registerBlockType(
             ))}
 
           </PanelBody>
-        </InspectorControls>,
-        <div {...innerBlocksProps} key="blockControls">
+        </InspectorControls>
+      );
 
+      // Use innerBlocksProps instead of <InnerBlocks> to prevent render inner wrapper div inside row
+      const innerBlocksProps = useInnerBlocksProps(blockProps, {
+        allowedBlocks: blocksAllowed,
+        template: blockTemplate,
+        templateLock: false
+      });
+
+      const renderOutput = (
+        <div {...innerBlocksProps} key="blockControls">
         </div>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
 
