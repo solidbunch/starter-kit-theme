@@ -25,7 +25,7 @@ registerBlockType(metadata, {
 
     const {category} = attributes;
 
-    return [
+    const renderControls = (
       <InspectorControls key="News Controlls">
         <PanelBody title="Settings" initialOpen={true}>
           <SelectControl
@@ -38,13 +38,21 @@ registerBlockType(metadata, {
             onChange={(val) => setAttributes({category: val})}
           />
         </PanelBody>
-      </InspectorControls>,
+      </InspectorControls>
+    );
+
+    const renderOutput = (
       <div {...blockProps} key="serverRender">
         <ServerSideRender
           block={metadata.name}
           attributes={attributes}
         />
-      </div>,
+      </div>
+    );
+
+    return [
+      renderControls,
+      renderOutput,
     ];
   }, // end edit
   save: () => {

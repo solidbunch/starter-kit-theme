@@ -7,9 +7,13 @@ import metadata from '../block.json';
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl} = wp.components;
+
+function checkHasChildBlocks(clientId) {
+  const {getBlockOrder} = wp.data.select('core/block-editor');
+  return getBlockOrder(clientId).length > 0;
+}
 
 registerBlockType(
   metadata,
@@ -23,15 +27,8 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
 
-        return {
-          hasChildBlocks: getBlockOrder(clientId).length > 0,
-        };
-      });
-
-      return [
+      const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Container responsive type">
             <SelectControl
@@ -39,21 +36,29 @@ registerBlockType(
               value={attributes.modification}
               options={[
                 {label: 'Fixed width', value: 'container-xxl'},
-                {label: 'Full width', value: 'container-fluid'}
+                {label: 'Full width', value: 'container-fluid'},
               ]}
               onChange={(modification) => setAttributes({modification})}
             />
           </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
+      );
+
+      const renderOutput = (
         <div {...blockProps} key="blockControls">
           <InnerBlocks
             renderAppender={
-              hasChildBlocks
+              checkHasChildBlocks(clientId)
                 ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender />
+                : () => <InnerBlocks.ButtonBlockAppender/>
             }
           />
         </div>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
     save: props => {
@@ -62,14 +67,14 @@ registerBlockType(
       const blockClass = attributes.modification;
 
       const blockProps = useBlockProps.save({
-        className: blockClass
+        className: blockClass,
       });
 
       return (
         <div {...blockProps}>
-          <InnerBlocks.Content />
+          <InnerBlocks.Content/>
         </div>
       );
-    }
-  }
+    },
+  },
 );

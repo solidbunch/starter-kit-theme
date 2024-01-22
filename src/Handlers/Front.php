@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 use Exception;
 use PHPMailer;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 
 /**
@@ -20,12 +21,13 @@ class Front
      * Load critical assets before blocks assets
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function enqueueCriticalAssets(): void
     {
         $style = Config::get('assetsUri') . 'build/styles/theme.css';
 
-        $styleUri  = get_template_directory_uri() . $style;
+        $styleUri = get_template_directory_uri() . $style;
         $stylePath = get_template_directory() . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
@@ -35,21 +37,32 @@ class Front
      * Load regular theme assets after blocks assets
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function enqueueThemeAssets(): void
     {
         $bootstrapBundle = Config::get('assetsUri') . 'libs/bootstrap/bootstrap.bundle.min.js';
 
-        $bootstrapBundleUri  = get_template_directory_uri() . $bootstrapBundle;
+        $bootstrapBundleUri = get_template_directory_uri() . $bootstrapBundle;
         $bootstrapBundlePath = get_template_directory() . $bootstrapBundle;
-
-       // wp_enqueue_script('bootstrap-bundle', $bootstrapBundleUri, [], filemtime($bootstrapBundlePath), true);
+        /*
+        wp_enqueue_script(
+            'bootstrap-bundle',
+            $bootstrapBundleUri,
+            [],
+            filemtime($bootstrapBundlePath),
+            [
+                'in_footer' => true,
+                'strategy'  => 'async',
+            ]
+        );*/
     }
 
     /**
      * Load additional JS data variables
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function loadFrontendJsData(): void
     {
@@ -68,6 +81,7 @@ class Front
      * Completely disable browser HTML cache
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function addNoCacheHeaders(): void
     {
