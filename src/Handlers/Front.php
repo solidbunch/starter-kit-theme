@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 use Exception;
 use PHPMailer;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 
 /**
@@ -20,6 +21,7 @@ class Front
      * Load critical assets before blocks assets
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function enqueueCriticalAssets(): void
     {
@@ -35,6 +37,7 @@ class Front
      * Load regular theme assets after blocks assets
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function enqueueThemeAssets(): void
     {
@@ -42,7 +45,6 @@ class Front
 
         $bootstrapBundleUri = get_template_directory_uri() . $bootstrapBundle;
         $bootstrapBundlePath = get_template_directory() . $bootstrapBundle;
-
         /*
         wp_enqueue_script(
             'bootstrap-bundle',
@@ -60,15 +62,16 @@ class Front
      * Load additional JS data variables
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function loadFrontendJsData(): void
     {
         wp_register_script('front-vars', '', [], '', true);
         wp_enqueue_script('front-vars');
         $frontendData = [
-            'restApiUrl' => get_rest_url(),
+            'restApiUrl'    => get_rest_url(),
             'restNamespace' => Config::get('restApiNamespace'),
-            'restNonce' => wp_create_nonce('theme_rest_nonce'),
+            'restNonce'     => wp_create_nonce('theme_rest_nonce'),
         ];
 
         wp_localize_script('front-vars', 'frontendData', $frontendData);
@@ -78,6 +81,7 @@ class Front
      * Completely disable browser HTML cache
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function addNoCacheHeaders(): void
     {
