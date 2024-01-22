@@ -8,9 +8,13 @@ import metadata from '../block.json';
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl} = wp.components;
+
+function checkHasChildBlocks(clientId) {
+  const {getBlockOrder} = wp.data.select('core/block-editor');
+  return getBlockOrder(clientId).length > 0;
+}
 
 registerBlockType(
   metadata,
@@ -27,15 +31,12 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
 
-        return {
-          hasChildBlocks: getBlockOrder(clientId).length > 0,
-        };
-      });
-      const dataBsThemeAttribute = attributes.modification.colorTheme ? {'data-bs-theme': attributes.modification.colorTheme} : {};
-      return [
+      const dataBsThemeAttribute = attributes.modification.colorTheme
+        ? {'data-bs-theme': attributes.modification.colorTheme}
+        : {};
+
+      const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Section styles">
             <SelectControl
@@ -111,16 +112,24 @@ registerBlockType(
               }
             />
           </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
+      );
+
+      const renderOutput = (
         <attributes.modification.tagName {...blockProps} {...dataBsThemeAttribute} key="blockControls">
           <InnerBlocks
             renderAppender={
-              hasChildBlocks
+              checkHasChildBlocks(clientId)
                 ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender />
+                : () => <InnerBlocks.ButtonBlockAppender/>
             }
           />
         </attributes.modification.tagName>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
 
@@ -130,7 +139,9 @@ registerBlockType(
 
       const {backgroundColor, textColor} = attributes.modification || {};
       const blockClass = `${backgroundColor || ''} ${textColor || ''} ${className}`.trim();
-      const dataBsThemeAttribute = attributes.modification.colorTheme ? {'data-bs-theme': attributes.modification.colorTheme} : {};
+      const dataBsThemeAttribute = attributes.modification.colorTheme
+        ? {'data-bs-theme': attributes.modification.colorTheme}
+        : {};
 
       // Create a new object for the attributes, excluding the 'class' attribute if it's empty
       const blockProps = {
@@ -143,9 +154,9 @@ registerBlockType(
 
       return (
         <attributes.modification.tagName {...blockProps} >
-          <InnerBlocks.Content />
+          <InnerBlocks.Content/>
         </attributes.modification.tagName>
       );
     },
-  }
+  },
 );

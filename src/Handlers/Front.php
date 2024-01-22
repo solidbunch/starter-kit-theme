@@ -25,7 +25,7 @@ class Front
     {
         $style = Config::get('assetsUri') . 'build/styles/theme.css';
 
-        $styleUri  = get_template_directory_uri() . $style;
+        $styleUri = get_template_directory_uri() . $style;
         $stylePath = get_template_directory() . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
@@ -40,10 +40,20 @@ class Front
     {
         $bootstrapBundle = Config::get('assetsUri') . 'libs/bootstrap/bootstrap.bundle.min.js';
 
-        $bootstrapBundleUri  = get_template_directory_uri() . $bootstrapBundle;
+        $bootstrapBundleUri = get_template_directory_uri() . $bootstrapBundle;
         $bootstrapBundlePath = get_template_directory() . $bootstrapBundle;
 
-       // wp_enqueue_script('bootstrap-bundle', $bootstrapBundleUri, [], filemtime($bootstrapBundlePath), ['in_footer' => true, 'strategy'  => 'async',]);
+        /*
+        wp_enqueue_script(
+            'bootstrap-bundle',
+            $bootstrapBundleUri,
+            [],
+            filemtime($bootstrapBundlePath),
+            [
+                'in_footer' => true,
+                'strategy'  => 'async',
+            ]
+        );*/
     }
 
     /**
@@ -56,9 +66,9 @@ class Front
         wp_register_script('front-vars', '', [], '', true);
         wp_enqueue_script('front-vars');
         $frontendData = [
-            'restApiUrl'    => get_rest_url(),
+            'restApiUrl' => get_rest_url(),
             'restNamespace' => Config::get('restApiNamespace'),
-            'restNonce'     => wp_create_nonce('theme_rest_nonce'),
+            'restNonce' => wp_create_nonce('theme_rest_nonce'),
         ];
 
         wp_localize_script('front-vars', 'frontendData', $frontendData);

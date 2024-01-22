@@ -22,7 +22,7 @@ registerBlockType(
       });
 
       const [menus, setMenus] = useState([]);
-      
+
       useEffect(() => {
         wp.apiFetch({path: '/skt/v1/get-menus'})
           .then(fetchedMenus => {
@@ -66,7 +66,7 @@ registerBlockType(
                         {label: 'LG and under', value: 'navbar-expand-lg'},
                         {label: 'XL and under', value: 'navbar-expand-xl'},
                         {label: 'XXL and under', value: 'navbar-expand-xxl'},
-                        {label: 'Always expand', value: ''}
+                        {label: 'Always expand', value: ''},
                       ]}
                       onChange={(expand) => setAttributes({expand})}
                     />
@@ -87,6 +87,7 @@ registerBlockType(
           />
         </div>
       );
+
       return [
         renderControls,
         renderOutput,

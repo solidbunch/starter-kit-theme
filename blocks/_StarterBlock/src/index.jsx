@@ -23,10 +23,10 @@ registerBlockType(
       const {className} = props;
 
       const blockProps = useBlockProps({
-        className: [blockMainCssClass, className]
+        className: [blockMainCssClass, className],
       });
 
-      return [
+      const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Starter Block Settings">
             <TextControl
@@ -40,7 +40,7 @@ registerBlockType(
               options={[
                 {label: 'Label1', value: 'value1'},
                 {label: 'Label2', value: 'value2'},
-                {label: 'Label3', value: 'value3'}
+                {label: 'Label3', value: 'value3'},
               ]}
               onChange={(attribute2) => setAttributes({attribute2})}
             />
@@ -50,9 +50,12 @@ registerBlockType(
               onChange={(attribute3) => setAttributes({attribute3})}
             />
           </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
+      );
+
+      const renderOutput = (
         <div {...blockProps} key="blockControls">
-          <div className='some-class'>
+          <div className="some-class">
             <RichText
               tagName="h4"
               multiline={false}
@@ -66,13 +69,18 @@ registerBlockType(
             <i className="icon"></i>
           </div>
           <div className="some-class1">{attributes.attribute2}</div>
-          <div className='some-class2'>
+          <div className="some-class2">
             <InnerBlocks
               allowedBlocks={allowedBlocks}
               orientation="vertical"
             />
           </div>
         </div>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
 
@@ -81,7 +89,7 @@ registerBlockType(
 
       return (
         <div className={blockMainCssClass}>
-          <div className='some-class'>
+          <div className="some-class">
             <RichText.Content
               tagName="h4"
               multiline={false}
@@ -90,10 +98,10 @@ registerBlockType(
             <i className="icon"></i>
           </div>
           <div className="some-class1">{attributes.attribute2}</div>
-          <div className='some-class2'>
+          <div className="some-class2">
             <InnerBlocks.Content/>
           </div>
         </div>
       );
-    }
+    },
   });

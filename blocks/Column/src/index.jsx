@@ -9,11 +9,15 @@ import metadata from '../block.json';
  */
 
 const {registerBlockType} = wp.blocks;
-const {useSelect} = wp.data;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl, RangeControl, CheckboxControl} = wp.components;
 
 const numberOfGrid = 12;
+
+function checkHasChildBlocks(clientId) {
+  const {getBlockOrder} = wp.data.select('core/block-editor');
+  return getBlockOrder(clientId).length > 0;
+}
 
 function generateSizeClasses(attributes) {
   const {size} = attributes;
@@ -54,14 +58,7 @@ registerBlockType(
         className: [className],
       });
 
-      const {hasChildBlocks} = useSelect((select) => {
-        const {getBlockOrder} = select('core/block-editor');
-        return {
-          hasChildBlocks: getBlockOrder(clientId).length > 0,
-        };
-      });
-
-      return [
+      const renderControls = (
         <InspectorControls key="settings">
           <PanelBody title="Column width" initialOpen={false}>
 
@@ -126,16 +123,24 @@ registerBlockType(
               </div>
             ))}
           </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
+      );
+
+      const renderOutput = (
         <div {...blockProps} key="blockControls">
           <InnerBlocks
             renderAppender={
-              hasChildBlocks
+              checkHasChildBlocks(clientId)
                 ? undefined
                 : () => <InnerBlocks.ButtonBlockAppender />
             }
           />
         </div>
+      );
+
+      return [
+        renderControls,
+        renderOutput,
       ];
     },
     save: props => {
