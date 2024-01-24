@@ -1,6 +1,9 @@
 const mix = require('laravel-mix');
 const glob = require('glob');
-const WebFontsPlugin = require('webfonts-loader');
+const path = require('path');
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const outPutPath = "assets/fonts/block-icons";
 
 /**
  * Настройки Mix
@@ -10,27 +13,45 @@ mix.options({
 });
 mix.disableNotifications();
 
-/**
- * Настройки для dev-режима
- */
 mix.webpackConfig({
+  entry: [
+    './entry.js'
+  ],
+  output: {
+    path: path.resolve(__dirname, outPutPath),
+    publicPath: '/',
+    filename: 'app.bundle.js'
+  },
+  performance: {
+    hints: false
+  },
   module: {
     rules: [
       {
         test: /\.font\.js/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               url: false
             }
           },
-          'webfonts-loader'
+          require.resolve('webfonts-loader') // Replace this line with require('webfonts-loader')
         ]
-      },
-    ],
+      }
+    ]
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'app.bundle.[contenthash].css'
+    })
+  ]
 });
+
+/**
+ * Настройки для dev-режима
+ */
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const ESLintWebpackPlugin = require('eslint-webpack-plugin');
@@ -110,7 +131,6 @@ allAssets.forEach(assetPath => {
 /**
  * Настройка генерации SVG шрифтов с использованием webfonts-loader
  */
-const fontAssets = glob.sync('path/to/your/svg/icons/*.svg'); // Замените путь на реальный
 
 /**
  * BrowserSync на dev-режиме
