@@ -93,11 +93,22 @@ class BlockRenderer extends BlockAbstract
      */
     public static function blockRestApiEndpoints(): void
     {
+        register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
+            'methods'             => 'GET',
+            'callback'            => [self::class, 'getMenuLocations'],
+            'permission_callback' => [self::class, 'getMenusPermissionCheck'],
+        ]);
+
         register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
             'methods'             => 'GET',
             'callback'            => [self::class, 'getMenus'],
             'permission_callback' => [self::class, 'getMenusPermissionCheck'],
         ]);
+    }
+
+    public static function getMenuLocations(): array
+    {
+        return get_registered_nav_menus();
     }
 
     /**

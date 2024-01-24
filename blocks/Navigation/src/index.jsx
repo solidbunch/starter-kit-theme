@@ -21,9 +21,22 @@ registerBlockType(
         className: [className],
       });
 
+      const [menuLocations, setMenuLocations] = useState([]);
       const [menus, setMenus] = useState([]);
 
+      // eslint-disable-next-line no-console
+      console.log(menuLocations);
+
       useEffect(() => {
+        wp.apiFetch({path: '/skt/v1/get-menu-locations'})
+          .then(fetchedMenuLocations => {
+            setMenuLocations(fetchedMenuLocations);
+          })
+          .catch(error => {
+            // eslint-disable-next-line no-console
+            console.error('Error fetching menu locations:', error);
+          });
+
         wp.apiFetch({path: '/skt/v1/get-menus'})
           .then(fetchedMenus => {
             setMenus(fetchedMenus);
@@ -32,7 +45,7 @@ registerBlockType(
             // eslint-disable-next-line no-console
             console.error('Error fetching menus:', error);
           });
-      }, []); // Empty dependency array ensures this runs only once when the component mounts
+      }, []); // The empty dependency array ensures this effect runs only once when the component mounts
 
       const renderControls = (
         <InspectorControls key="controls">
