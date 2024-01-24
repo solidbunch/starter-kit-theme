@@ -1,0 +1,234 @@
+@font-face {
+  font-family: 'custom_icons';
+  src:
+    url('custom_icons.ttf?28e4m9') format('truetype'),
+    url('custom_icons.woff?28e4m9') format('woff'),
+    url('custom_icons.svg?28e4m9#custom_icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.sk {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'custom_icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: var(--bs-primary);
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sk-alerts:before {
+  content: "\e900";
+  color: #4a4a4a;
+}
+
+.sk-analytics:before {
+  content: "\e901";
+}
+
+.sk-arroba:before {
+  content: "\e902";
+}
+
+.sk-backup:before {
+  content: "\e903";
+}
+
+.sk-bar-chart:before {
+  content: "\e904";
+}
+
+.sk-blogging:before {
+  content: "\e905";
+}
+
+.sk-browser:before {
+  content: "\e906";
+}
+
+.sk-browser-2:before {
+  content: "\e907";
+}
+
+.sk-button:before {
+  content: "\e908";
+}
+
+.sk-calendar:before {
+  content: "\e909";
+}
+
+.sk-checked:before {
+  content: "\e90a";
+}
+
+.sk-cloud-computing:before {
+  content: "\e90b";
+}
+
+.sk-coding:before {
+  content: "\e90c";
+}
+
+.sk-digital-marketing:before {
+  content: "\e90d";
+}
+
+.sk-domain-registration:before {
+  content: "\e90e";
+}
+
+.sk-email:before {
+  content: "\e90f";
+}
+
+.sk-email-send:before {
+  content: "\e910";
+}
+
+.sk-file:before {
+  content: "\e911";
+}
+
+.sk-folder:before {
+  content: "\e912";
+}
+
+.sk-font:before {
+  content: "\e913";
+}
+
+.sk-heading:before {
+  content: "\e914";
+}
+
+.sk-help:before {
+  content: "\e915";
+}
+
+.sk-image:before {
+  content: "\e916";
+}
+
+.sk-keywords:before {
+  content: "\e917";
+}
+
+.sk-link:before {
+  content: "\e918";
+}
+
+.sk-login:before {
+  content: "\e919";
+}
+
+.sk-monitoring:before {
+  content: "\e91a";
+}
+
+.sk-newspaper:before {
+  content: "\e91b";
+}
+
+.sk-online-shop:before {
+  content: "\e91c";
+}
+
+.sk-planning:before {
+  content: "\e91d";
+}
+
+.sk-post-it:before {
+  content: "\e91e";
+}
+
+.sk-programming:before {
+  content: "\e91f";
+}
+
+.sk-quality:before {
+  content: "\e920";
+}
+
+.sk-round-toggle:before {
+  content: "\e921";
+}
+
+.sk-screen:before {
+  content: "\e922";
+}
+
+.sk-search:before {
+  content: "\e923";
+}
+
+.sk-search-1:before {
+  content: "\e924";
+}
+
+.sk-search-engine:before {
+  content: "\e925";
+}
+
+.sk-server:before {
+  content: "\e926";
+}
+
+.sk-stats:before {
+  content: "\e927";
+}
+
+.sk-switch:before {
+  content: "\e928";
+}
+
+.sk-tabs:before {
+  content: "\e929";
+}
+
+.sk-tags:before {
+  content: "\e92a";
+}
+
+.sk-targeting:before {
+  content: "\e92b";
+}
+
+.sk-text-field:before {
+  content: "\e92c";
+}
+
+.sk-toggle:before {
+  content: "\e92d";
+}
+
+.sk-translation:before {
+  content: "\e92e";
+}
+
+.sk-transparency:before {
+  content: "\e92f";
+}
+
+.sk-typewriter:before {
+  content: "\e930";
+}
+
+.sk-video:before {
+  content: "\e931";
+}
+
+.sk-viral-marketing:before {
+  content: "\e932";
+}
+
+.sk-web-design:before {
+  content: "\e933";
+}

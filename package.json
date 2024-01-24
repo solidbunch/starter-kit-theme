@@ -25,7 +25,8 @@
     "stylelint-config-recommended-scss": "4.2.0",
     "stylelint-config-standard": "20.0.0",
     "stylelint-scss": "3.19.0",
-    "stylelint-webpack-plugin": "2.2.0"
+    "stylelint-webpack-plugin": "2.2.0",
+    "webfonts-loader": "8.0.1"
   },
   "scripts": {
     "replaceNames": "",
