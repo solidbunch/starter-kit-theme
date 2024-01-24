@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>block-icons</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			padding: 10px 20px;
+		}
+
+		.preview {
+			line-height: 2em;
+		}
+
+		.preview__icon {
+			display: inline-block;
+			width: 32px;
+			text-align: center;
+		}
+
+		.sk {
+			display: inline-block;
+			font-size: 16px;
+		}
+
+		@font-face {
+	font-family: "block-icons";
+	font-display: swap;
+	src: url("app.block-icons.eot?#iefix") format("embedded-opentype"),
+url("app.block-icons.woff") format("woff"),
+url("app.block-icons.woff2") format("woff2"),
+url("app.block-icons.ttf") format("truetype"),
+url("app.block-icons.svg#block-icons") format("svg");
+}
+
+.sk {
+	line-height: 1;
+	color:red;
+}
+
+.sk:before {
+	font-family: block-icons !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.sk-alert:before {
+	content: "\f101";
+}
+.sk-arrow-down:before {
+	content: "\f102";
+}
+.sk-arrow-left:before {
+	content: "\f103";
+}
+.sk-arrow-right:before {
+	content: "\f104";
+}
+.sk-arrow-small-down:before {
+	content: "\f105";
+}
+.sk-arrow-small-left:before {
+	content: "\f106";
+}
+.sk-iiiiiiiiii:before {
+	content: "\f107";
+}
+
+	</style>
+</head>
+<body>
+	<h1>block-icons</h1>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-alert"></span>
+		</span>
+		<span>alert</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-arrow-down"></span>
+		</span>
+		<span>arrow-down</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-arrow-left"></span>
+		</span>
+		<span>arrow-left</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-arrow-right"></span>
+		</span>
+		<span>arrow-right</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-arrow-small-down"></span>
+		</span>
+		<span>arrow-small-down</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-arrow-small-left"></span>
+		</span>
+		<span>arrow-small-left</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<span class="sk sk-iiiiiiiiii"></span>
+		</span>
+		<span>iiiiiiiiii</span>
+	</div>
+</body>
+</html>

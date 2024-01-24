@@ -19,7 +19,7 @@ mix.webpackConfig({
   ],
   output: {
     path: path.resolve(__dirname, outPutPath),
-    publicPath: '/',
+    publicPath: ' ',
     filename: 'app.bundle.js'
   },
   performance: {
@@ -44,7 +44,8 @@ mix.webpackConfig({
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'app.bundle.[contenthash].css'
+      //add hash
+      // filename: 'app.bundle.[contenthash].css'
     })
   ]
 });
