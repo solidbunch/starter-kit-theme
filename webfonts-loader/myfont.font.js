@@ -1,6 +1,6 @@
 module.exports = {
   'files': [
-    './assets/images/block-icons/*.svg'
+    '../assets/images/block-icons/*.svg'
   ],
   'html':true,
   'cssTemplate':'template-css.hbs',

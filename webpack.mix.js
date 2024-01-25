@@ -15,7 +15,7 @@ mix.disableNotifications();
 
 mix.webpackConfig({
   entry: [
-    './entry.js'
+    './webfonts-loader/entry.js'
   ],
   output: {
     path: path.resolve(__dirname, outPutPath),
