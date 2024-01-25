@@ -56,5 +56,6 @@ vendor
 #       Compiled code. It should not always be tracked.       #
 #=============================================================#
 assets/build/*
+assets/fonts/**/*.js
 blocks/**/build/*
 !blocks/**/build/*asset.php
