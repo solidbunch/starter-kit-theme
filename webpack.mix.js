@@ -1,3 +1,6 @@
+/**
+ * Connect dependencies
+ */
 const mix = require('laravel-mix');
 const glob = require('glob');
 const path = require('path');
@@ -5,11 +8,37 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const outPutPath = "assets/fonts/block-icons";
 
+/**
+ * Setup options
+ * https://laravel-mix.com/docs/6.0/api#optionsoptions
+ */
 mix.options({
   processCssUrls: false,
 });
 mix.disableNotifications();
-
+/**
+ * Setup options for dev mode
+ * In main ESLint config we can use 'overrides' for special files. For example:
+ *     'overrides': [
+ *         {
+ *             'env': {
+ *                 'node': true
+ *             },
+ *             'files': [
+ *                 'some-file.{js,jsx}'
+ *             ],
+ *             'parserOptions': {
+ *                 'sourceType': 'script'
+ *             },
+ *            'rules': {
+ *              'indent': [
+ *                'error',
+ *                4
+ *              ]
+ *            }
+ *         }
+ *     ]
+ */
 mix.webpackConfig({
   entry: [
     './webfonts-loader/entry.js'
@@ -53,14 +82,17 @@ if (!mix.inProduction()) {
   const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 
   mix.sourceMaps().webpackConfig({
-    devtool: 'inline-source-map',
+    devtool: 'inline-source-map', // or 'source-map'
     plugins: [
-      // Очистка build-файлов
+      /**
+       *Remove assets files(css, js) from build folders
+       */
       new CleanWebpackPlugin({
-        verbose: true,
-        dry: false,
-        cleanStaleWebpackAssets: false,
-        protectWebpackAssets: false,
+        verbose: true,// Write Logs to Console (Always enabled when dry is true)
+        dry: false,// Simulate the removal of files
+        cleanStaleWebpackAssets: false,// Automatically remove all unused webpack assets on rebuild
+        protectWebpackAssets: false,// Do not allow removal of current webpack assets
+        //Removes files once prior to Webpack compilation Not included in rebuilds (watch mode)
         cleanOnceBeforeBuildPatterns: [
           '**/build/**/*.{css,js,map,txt}',
           '!vendor/**',
@@ -68,7 +100,9 @@ if (!mix.inProduction()) {
           '!node_modules/**',
         ],
       }),
-     
+      /**
+       * Code QA
+       */
       new ESLintWebpackPlugin({
         fix: false,
         extensions: ['js', 'jsx'],
@@ -76,7 +110,7 @@ if (!mix.inProduction()) {
         failOnError: false,
         cache: true,
       }),
-      
+      // Проверка стилей на соответствие стандартам Stylelint
       new StylelintWebpackPlugin({
         fix: false,
         extensions: ['scss'],
@@ -92,11 +126,23 @@ if (!mix.inProduction()) {
   });
 }
 
+/**
+ * Read the folders and look for assets files.
+ *
+ * Files with names start with '_' will be ignored
+ * For example, 'partials/_body.scss' just need to include to main file
+ *
+ * Block folders that names start with '_' will be ignored too.
+ * Example, '_StarterBlock' - should not be registered
+ */
 const allAssets = glob.sync(
   '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 
+/**
+ * Run Preprocessing
+ */
 allAssets.forEach(assetPath => {
   if (assetPath.endsWith('.scss')) {
     mix.sass(
@@ -117,9 +163,21 @@ allAssets.forEach(assetPath => {
   }
 });
 
+/**
+ * BrowserSync runs on dev mode only
+ */
 if (!mix.inProduction()) {
   mix.browserSync({
+    /**
+     * Proxying to nginx container with alias APP_DOMAIN
+     * Proxy should be the same as WP_SITEURL in wp-config.php
+     */
     proxy: getAppUrl(),
+    /**
+     * Set external host network IP.
+     * If hostIp is undefined, just find your local network IP in your system
+     * and use it in your other devices browser to sync with BrowserSync.
+     */
     host: getHostIp(),
     port: 3000,
     open: false,
