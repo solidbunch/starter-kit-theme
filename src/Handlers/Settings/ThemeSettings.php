@@ -9,6 +9,7 @@ use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\Utils;
+use WPRI\ImgUtils;
 
 /**
  * Theme settings handler
@@ -91,21 +92,20 @@ class ThemeSettings
             ]
         );
 
-        /** Security */
+        /** Performance */
         $container->add_tab(
             __('Performance', 'starter-kit'),
             [
                 Field::make('separator', 'sep_image_sizes', __('Image sizes', 'starter-kit')),
-                // ToDo connect Media helper first
-                /*Field::make('set', $prefix . 'disable_img_sizes', __('Check image sizes to disable', 'starter-kit'))
-                     ->set_options(Media::getAllInitedImageSizesFormatted())
+                Field::make('set', $prefix . 'disable_img_sizes', __('Check image sizes to disable', 'starter-kit'))
+                     ->set_options($imageSizes = ImgUtils::getAllInitedImageSizesFormatted())
                      ->set_default_value(
                          array_filter(
-                             array_keys(Media::getAllInitedImageSizesFormatted()), function ($value) {
-                             return !in_array($value, ['thumbnail', 'medium'], true);
-                         }
+                             array_keys($imageSizes),
+                             // @codingStandardsIgnoreLine
+                             function ($value) { return !in_array($value, ['thumbnail', 'medium'], true); }
                          )
-                     ),*/
+                     ),
             ]
         );
     }
