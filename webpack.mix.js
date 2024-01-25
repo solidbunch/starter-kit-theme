@@ -5,9 +5,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const outPutPath = "assets/fonts/block-icons";
 
-/**
- * Настройки Mix
- */
 mix.options({
   processCssUrls: false,
 });
@@ -50,9 +47,6 @@ mix.webpackConfig({
   ]
 });
 
-/**
- * Настройки для dev-режима
- */
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const ESLintWebpackPlugin = require('eslint-webpack-plugin');
@@ -74,7 +68,7 @@ if (!mix.inProduction()) {
           '!node_modules/**',
         ],
       }),
-      // Проверка кода на соответствие стандартам ESLint
+     
       new ESLintWebpackPlugin({
         fix: false,
         extensions: ['js', 'jsx'],
@@ -82,7 +76,7 @@ if (!mix.inProduction()) {
         failOnError: false,
         cache: true,
       }),
-      // Проверка стилей на соответствие стандартам Stylelint
+      
       new StylelintWebpackPlugin({
         fix: false,
         extensions: ['scss'],
@@ -98,17 +92,11 @@ if (!mix.inProduction()) {
   });
 }
 
-/**
- * Чтение файлов и поиск ассетов
- */
 const allAssets = glob.sync(
   '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 
-/**
- * Запуск предварительной обработки
- */
 allAssets.forEach(assetPath => {
   if (assetPath.endsWith('.scss')) {
     mix.sass(
@@ -129,13 +117,6 @@ allAssets.forEach(assetPath => {
   }
 });
 
-/**
- * Настройка генерации SVG шрифтов с использованием webfonts-loader
- */
-
-/**
- * BrowserSync на dev-режиме
- */
 if (!mix.inProduction()) {
   mix.browserSync({
     proxy: getAppUrl(),
@@ -150,9 +131,6 @@ if (!mix.inProduction()) {
   });
 }
 
-/**
- * Вспомогательные функции
- */
 function getAppUrl() {
   const appProtocol = process.env.APP_PROTOCOL;
   const appDomain = process.env.APP_DOMAIN;
