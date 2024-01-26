@@ -23,6 +23,8 @@ class Hooks
          ************************************/
         add_action('after_setup_theme', [Handlers\SetupTheme::class, 'addThemeSupport']);
         add_action('after_setup_theme', [Handlers\SetupTheme::class, 'registerMenus']);
+        // filter image sizes
+        add_filter('intermediate_image_sizes', [Handlers\SetupTheme::class, 'filterImageSizes']);
 
         /************************************
          *          Theme Settings
