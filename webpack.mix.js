@@ -3,6 +3,10 @@
  */
 const mix = require('laravel-mix');
 const glob = require('glob');
+const path = require('path');
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const outPutPath = "assets/build/fonts/block-icons";
 
 /**
  * Setup options
@@ -12,7 +16,6 @@ mix.options({
   processCssUrls: false,
 });
 mix.disableNotifications();
-
 /**
  * Setup options for dev mode
  * In main ESLint config we can use 'overrides' for special files. For example:
@@ -36,6 +39,43 @@ mix.disableNotifications();
  *         }
  *     ]
  */
+mix.webpackConfig({
+  entry: [
+    './webfonts-loader/entry.js'
+  ],
+  output: {
+    path: path.resolve(__dirname, outPutPath),
+    publicPath: ' ',
+    filename: 'app.bundle.js'
+  },
+  performance: {
+    hints: false
+  },
+  module: {
+    rules: [
+      {
+        test: /\.font\.js/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
+          require.resolve('webfonts-loader') // Replace this line with require('webfonts-loader')
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      //add hash
+      // filename: 'app.bundle.[contenthash].css'
+    })
+  ]
+});
+
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const ESLintWebpackPlugin = require('eslint-webpack-plugin');
@@ -45,13 +85,13 @@ if (!mix.inProduction()) {
     devtool: 'inline-source-map', // or 'source-map'
     plugins: [
       /**
-       * Remove assets files(css, js) from build folders
+       *Remove assets files(css, js) from build folders
        */
       new CleanWebpackPlugin({
-        verbose: true,  // Write Logs to Console (Always enabled when dry is true)
-        dry: false, // Simulate the removal of files
-        cleanStaleWebpackAssets: false, // Automatically remove all unused webpack assets on rebuild
-        protectWebpackAssets: false, // Do not allow removal of current webpack assets
+        verbose: true,// Write Logs to Console (Always enabled when dry is true)
+        dry: false,// Simulate the removal of files
+        cleanStaleWebpackAssets: false,// Automatically remove all unused webpack assets on rebuild
+        protectWebpackAssets: false,// Do not allow removal of current webpack assets
         //Removes files once prior to Webpack compilation Not included in rebuilds (watch mode)
         cleanOnceBeforeBuildPatterns: [
           '**/build/**/*.{css,js,map,txt}',
