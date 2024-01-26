@@ -25,8 +25,7 @@ if (!function_exists('elog')) {
             $lineEnd = PHP_EOL;
         } elseif (defined('WP_DEBUG') && WP_DEBUG) {
             $lineEnd = PHP_EOL;
-        }
-        else {
+        } else {
             // Apply color only if logging to the console
             $colorStart = $ColorCode;
             $colorEnd = $resetCode;
