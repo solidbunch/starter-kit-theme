@@ -6,7 +6,7 @@ const glob = require('glob');
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const outPutPath = "assets/fonts/block-icons";
+const outPutPath = "assets/build/fonts/block-icons";
 
 /**
  * Setup options
