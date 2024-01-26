@@ -23,7 +23,10 @@ if (!function_exists('elog')) {
         if (!empty($logFileDestination)) {
             $messageType = 3;
             $lineEnd = PHP_EOL;
-        } else {
+        } elseif (defined('WP_DEBUG') && WP_DEBUG) {
+            $lineEnd = PHP_EOL;
+        }
+        else {
             // Apply color only if logging to the console
             $colorStart = $ColorCode;
             $colorEnd = $resetCode;
