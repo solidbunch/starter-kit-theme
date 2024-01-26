@@ -110,7 +110,6 @@ if (!mix.inProduction()) {
         failOnError: false,
         cache: true,
       }),
-      // Проверка стилей на соответствие стандартам Stylelint
       new StylelintWebpackPlugin({
         fix: false,
         extensions: ['scss'],
