@@ -19,7 +19,7 @@ mix.options({
 });
 mix.disableNotifications();
 
-mix.js('webfonts-loader/myfont.font.js', 'public')
+mix.js('webfonts-loader/myfont.font.js', 'MyTest')
   .webpackConfig({
     module: {
       rules: [
@@ -29,7 +29,7 @@ mix.js('webfonts-loader/myfont.font.js', 'public')
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: '../',
+                // publicPath: '../',
               },
             },
             // 'css-loader',
@@ -42,10 +42,7 @@ mix.js('webfonts-loader/myfont.font.js', 'public')
             {
               loader: 'webfonts-loader',
               options: {
-                dest: 'public',
-                publicPath: '',
-                // cssDest:path.join('')
-                // outputPath: '',
+                
               },
             },
           ],
