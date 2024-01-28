@@ -6,75 +6,58 @@ const glob = require('glob');
 const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const outPutPath = "assets/build/fonts/block-icons";
+// const WebfontsWebpackPlugin = require('webfonts-loader');
 
+const outPutPath = "assets/build/fonts/block-icons";
 /**
  * Setup options
  * https://laravel-mix.com/docs/6.0/api#optionsoptions
  */
+
 mix.options({
   processCssUrls: false,
 });
 mix.disableNotifications();
-/**
- * Setup options for dev mode
- * In main ESLint config we can use 'overrides' for special files. For example:
- *     'overrides': [
- *         {
- *             'env': {
- *                 'node': true
- *             },
- *             'files': [
- *                 'some-file.{js,jsx}'
- *             ],
- *             'parserOptions': {
- *                 'sourceType': 'script'
- *             },
- *            'rules': {
- *              'indent': [
- *                'error',
- *                4
- *              ]
- *            }
- *         }
- *     ]
- */
-mix.webpackConfig({
-  entry: [
-    './webfonts-loader/entry.js'
-  ],
-  output: {
-    path: path.resolve(__dirname, outPutPath),
-    publicPath: ' ',
-    filename: 'app.bundle.js'
-  },
-  performance: {
-    hints: false
-  },
-  module: {
-    rules: [
-      {
-        test: /\.font\.js/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              url: false
-            }
-          },
-          require.resolve('webfonts-loader') // Replace this line with require('webfonts-loader')
-        ]
-      }
-    ]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      //add hash
-      // filename: 'app.bundle.[contenthash].css'
-    })
-  ]
-});
+
+mix.js('webfonts-loader/myfont.font.js', 'public')
+  .webpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.font\.js$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                publicPath: '../',
+              },
+            },
+            // 'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+              },
+            },
+            {
+              loader: 'webfonts-loader',
+              options: {
+                dest: 'public',
+                publicPath: '',
+                // cssDest:path.join('')
+                // outputPath: '',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
+    ],
+  });
 
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
@@ -83,6 +66,29 @@ if (!mix.inProduction()) {
 
   mix.sourceMaps().webpackConfig({
     devtool: 'inline-source-map', // or 'source-map'
+    // module: {
+    //   rules: [
+    //     {
+    //       // test: /\.font\.js/,
+    //       test: /\/webfonts-loader\/myfont\.font\.js$/,
+    //       use: [
+    //         {
+    //           loader: MiniCssExtractPlugin.loader,
+    //           options: {
+
+    //           },
+    //         },
+    //         {
+    //           loader: 'css-loader',
+    //           options: {
+    //             url: false
+    //           }
+    //         },
+    //         require.resolve('webfonts-loader') // Replace this line with require('webfonts-loader')
+    //       ]
+    //     }
+    //   ]
+    // },
     plugins: [
       /**
        *Remove assets files(css, js) from build folders
@@ -121,6 +127,7 @@ if (!mix.inProduction()) {
         ],
         cache: true,
       }),
+      // new MiniCssExtractPlugin({ })
     ],
   });
 }

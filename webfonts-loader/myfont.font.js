@@ -9,5 +9,6 @@ module.exports = {
   'baseSelector': '.sk',
   'types': ['eot', 'woff', 'woff2', 'ttf', 'svg'],
   'fixedWidth': true,
-  'fileName': 'app.[fontname].[ext]'
+  'fileName': 'app.[fontname].[ext]',
+  // 'outputPath': '../public'
 };

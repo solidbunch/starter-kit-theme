@@ -1,4 +1,21 @@
 {
-    "/main.css": "/main.css",
-    "/app.bundle.js": "/app.bundle.js"
+    "/public/myfont.font.css": "/public/myfont.font.css",
+    "/public/myfont.font.js": "/public/myfont.font.js",
+    "/assets/build/js/editor.js": "/assets/build/js/editor.js",
+    "/assets/build/js/app.js": "/assets/build/js/app.js",
+    "/blocks/Section/build/index.js": "/blocks/Section/build/index.js",
+    "/blocks/Row/build/index.js": "/blocks/Row/build/index.js",
+    "/blocks/News/build/index.js": "/blocks/News/build/index.js",
+    "/blocks/News/build/_edit.js": "/blocks/News/build/_edit.js",
+    "/blocks/Navigation/build/view.js": "/blocks/Navigation/build/view.js",
+    "/blocks/Navigation/build/index.js": "/blocks/Navigation/build/index.js",
+    "/blocks/Container/build/index.js": "/blocks/Container/build/index.js",
+    "/blocks/Column/build/index.js": "/blocks/Column/build/index.js",
+    "/blocks/News/build/style.css": "/blocks/News/build/style.css",
+    "/blocks/Row/build/editor.css": "/blocks/Row/build/editor.css",
+    "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
+    "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
+    "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
+    "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
+    "/blocks/News/build/editor.css": "/blocks/News/build/editor.css"
 }
