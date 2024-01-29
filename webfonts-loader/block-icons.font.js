@@ -2,12 +2,12 @@ module.exports = {
   'files': [
     '../assets/images/block-icons/*.svg'
   ],
-  'html':true,
   'cssTemplate':'template-css.hbs',
   'fontName': 'block-icons',
   'classPrefix': 'sk-',
   'baseSelector': '.sk',
-  'types': ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+  'types': ['eot', 'woff2'],
   'fixedWidth': true,
-  'fileName': 'app.[fontname].[ext]'
+  'fileName': 'app.[fontname].[ext]',
+  'embed':true
 };
