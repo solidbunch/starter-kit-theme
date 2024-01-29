@@ -17,6 +17,7 @@ mix.disableNotifications();
 
 mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
   .webpackConfig({
+    devtool: false,
     module: {
       rules: [
         {
@@ -29,10 +30,11 @@ mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
               loader: 'css-loader',
               options: {
                 url: false,
+                sourceMap: false,
               },
             },
             {
-              loader: 'webfonts-loader',
+              loader: 'webfonts-loader'
             },
           ],
         },
