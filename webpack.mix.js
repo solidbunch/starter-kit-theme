@@ -3,7 +3,7 @@
  */
 const mix = require('laravel-mix');
 const glob = require('glob');
-const path = require('path');
+// const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const WebfontsWebpackPlugin = require('webfonts-loader');
@@ -19,7 +19,7 @@ mix.options({
 });
 mix.disableNotifications();
 
-mix.js('webfonts-loader/myfont.font.js', 'MyTest')
+mix.js('webfonts-loader/myfont.font.js', outPutPath)
   .webpackConfig({
     module: {
       rules: [

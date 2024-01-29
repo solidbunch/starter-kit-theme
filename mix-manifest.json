@@ -1,6 +1,6 @@
 {
-    "/MyTest/myfont.font.css": "/MyTest/myfont.font.css",
-    "/MyTest/myfont.font.js": "/MyTest/myfont.font.js",
+    "/assets/build/fonts/block-icons/myfont.font.css": "/assets/build/fonts/block-icons/myfont.font.css",
+    "/assets/build/fonts/block-icons/myfont.font.js": "/assets/build/fonts/block-icons/myfont.font.js",
     "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
     "/blocks/Section/build/index.js": "/blocks/Section/build/index.js",

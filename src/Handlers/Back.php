@@ -35,7 +35,7 @@ class Back
         wp_enqueue_script('theme-editor-script', $editorScriptUri, [], filemtime($editorScriptPath), true);
 
 
-        $style = Config::get('assetsUri') . 'build/fonts/block-icons/main.css';
+        $style = Config::get('assetsUri') . 'build/fonts/block-icons/myfont.font.css';
 
         $styleUri = get_template_directory_uri() . $style;
         $stylePath = get_template_directory() . $style;
