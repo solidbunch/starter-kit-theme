@@ -19,7 +19,7 @@ mix.options({
 });
 mix.disableNotifications();
 
-mix.js('webfonts-loader/myfont.font.js', outPutPath)
+mix.js('webfonts-loader/block-icons.font.js', outPutPath)
   .webpackConfig({
     module: {
       rules: [
@@ -63,29 +63,6 @@ if (!mix.inProduction()) {
 
   mix.sourceMaps().webpackConfig({
     devtool: 'inline-source-map', // or 'source-map'
-    // module: {
-    //   rules: [
-    //     {
-    //       // test: /\.font\.js/,
-    //       test: /\/webfonts-loader\/myfont\.font\.js$/,
-    //       use: [
-    //         {
-    //           loader: MiniCssExtractPlugin.loader,
-    //           options: {
-
-    //           },
-    //         },
-    //         {
-    //           loader: 'css-loader',
-    //           options: {
-    //             url: false
-    //           }
-    //         },
-    //         require.resolve('webfonts-loader') // Replace this line with require('webfonts-loader')
-    //       ]
-    //     }
-    //   ]
-    // },
     plugins: [
       /**
        *Remove assets files(css, js) from build folders
