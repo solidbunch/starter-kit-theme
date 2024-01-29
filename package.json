@@ -12,7 +12,9 @@
     "glob": "10.0.0",
     "laravel-mix": "6.0.49",
     "sass": "1.69.4",
-    "sass-loader": "13.3.2"
+    "sass-loader": "13.3.2",
+    "webfonts-loader": "8.0.1",
+    "mini-css-extract-plugin": "^1.6.2"
   },
   "devDependencies": {
     "@wordpress/eslint-plugin": "17.2.0",

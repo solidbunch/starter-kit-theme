@@ -6,7 +6,7 @@
   "parent": [
     "starter-kit/row"
   ],
-  "icon": "info",
+  "icon": " sk sk-column",
   "description": "Bootstrap column",
   "keywords": [
     "Column",
