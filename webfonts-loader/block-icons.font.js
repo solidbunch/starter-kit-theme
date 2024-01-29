@@ -5,7 +5,7 @@ module.exports = {
   'cssTemplate':'template-css.hbs',
   'fontName': 'block-icons',
   'classPrefix': 'sk-',
-  'baseSelector': '.sk',
+  'baseSelector': '.dashicons-sk',
   'types': ['eot', 'woff2'],
   'fixedWidth': true,
   'fileName': 'app.[fontname].[ext]',

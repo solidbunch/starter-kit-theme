@@ -20,7 +20,7 @@ mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
     module: {
       rules: [
         {
-          test: /\.font\.js$/,
+          test: /webfonts-loader\/.*\.font\.js$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -37,14 +37,32 @@ mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
           ],
         },
       ],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
-    ],
+    }
   });
 
+/**
+ * Setup options for dev mode
+ * In main ESLint config we can use 'overrides' for special files. For example:
+ *     'overrides': [
+ *         {
+ *             'env': {
+ *                 'node': true
+ *             },
+ *             'files': [
+ *                 'some-file.{js,jsx}'
+ *             ],
+ *             'parserOptions': {
+ *                 'sourceType': 'script'
+ *             },
+ *            'rules': {
+ *              'indent': [
+ *                'error',
+ *                4
+ *              ]
+ *            }
+ *         }
+ *     ]
+ */
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const ESLintWebpackPlugin = require('eslint-webpack-plugin');

@@ -1,23 +1,23 @@
 @font-face {
-	font-family: "{{fontName}}";
-	font-display: swap;
-	src: {{{src}}};
+  font-family: "{{fontName}}";
+  font-display: swap;
+  src: {{{src}}};
 }
 
 {{baseSelector}} {
-	line-height: 1;
-	color:red;
+  line-height: 1;
+  color: #e2384a;
 }
 
 {{baseSelector}}:before {
-	font-family: {{fontName}} !important;
-	font-style: normal;
-	font-weight: normal !important;
-	vertical-align: top;
+  font-family: {{fontName}} !important;
+  font-style: normal;
+  font-weight: normal !important;
+  vertical-align: top;
 }
 
 {{#each codepoints}}
 .{{../classPrefix}}{{@key}}:before {
-	content: "\\{{this}}";
+  content: "\\{{this}}";
 }
 {{/each}}
