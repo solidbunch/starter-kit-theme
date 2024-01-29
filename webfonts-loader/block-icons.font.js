@@ -2,7 +2,6 @@ module.exports = {
   'files': [
     '../assets/images/block-icons/*.svg'
   ],
-  'html':true,
   'cssTemplate':'template-css.hbs',
   'fontName': 'block-icons',
   'classPrefix': 'sk-',

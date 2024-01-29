@@ -3,12 +3,7 @@
  */
 const mix = require('laravel-mix');
 const glob = require('glob');
-// const path = require('path');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const WebfontsWebpackPlugin = require('webfonts-loader');
-
-const outPutPath = "assets/build/fonts/block-icons";
 /**
  * Setup options
  * https://laravel-mix.com/docs/6.0/api#optionsoptions
@@ -19,7 +14,7 @@ mix.options({
 });
 mix.disableNotifications();
 
-mix.js('webfonts-loader/block-icons.font.js', outPutPath)
+mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
   .webpackConfig({
     module: {
       rules: [
@@ -28,11 +23,7 @@ mix.js('webfonts-loader/block-icons.font.js', outPutPath)
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-              options: {
-                // publicPath: '../',
-              },
             },
-            // 'css-loader',
             {
               loader: 'css-loader',
               options: {
@@ -41,9 +32,6 @@ mix.js('webfonts-loader/block-icons.font.js', outPutPath)
             },
             {
               loader: 'webfonts-loader',
-              options: {
-                
-              },
             },
           ],
         },
@@ -101,7 +89,6 @@ if (!mix.inProduction()) {
         ],
         cache: true,
       }),
-      // new MiniCssExtractPlugin({ })
     ],
   });
 }
