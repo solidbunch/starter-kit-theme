@@ -46,7 +46,6 @@
     "vvv3/wp-responsive-images": "1.0.1"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "3.7.2",
     "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
     "filp/whoops": "2.15.4",
     "phpcompatibility/phpcompatibility-wp": "2.1.4",
@@ -55,6 +54,18 @@
     "squizlabs/php_codesniffer": "3.7.2"
   },
   "scripts": {
+    "install-dev": [
+      "composer install"
+    ],
+    "install-prod": [
+      "composer install --no-dev --no-interaction --optimize-autoloader"
+    ],
+    "update-dev": [
+      "composer update"
+    ],
+    "update-prod": [
+      "composer update --no-dev --no-interaction --optimize-autoloader"
+    ],
     "lint": [
       "phpcs --standard=phpcs.xml"
     ],
