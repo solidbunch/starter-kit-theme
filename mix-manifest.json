@@ -9,6 +9,10 @@
     "/blocks/News/build/_edit.js": "/blocks/News/build/_edit.js",
     "/blocks/Navigation/build/view.js": "/blocks/Navigation/build/view.js",
     "/blocks/Navigation/build/index.js": "/blocks/Navigation/build/index.js",
+    "/blocks/FaqSingle/build/index.js": "/blocks/FaqSingle/build/index.js",
+    "/blocks/FaqSection/build/view.js": "/blocks/FaqSection/build/view.js",
+    "/blocks/FaqSection/build/index.js": "/blocks/FaqSection/build/index.js",
+    "/blocks/FaqSection/build/Edit.js": "/blocks/FaqSection/build/Edit.js",
     "/blocks/Container/build/index.js": "/blocks/Container/build/index.js",
     "/blocks/Column/build/index.js": "/blocks/Column/build/index.js",
     "/blocks/News/build/style.css": "/blocks/News/build/style.css",
@@ -16,6 +20,10 @@
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
     "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
+    "/blocks/FaqSection/build/editor.css": "/blocks/FaqSection/build/editor.css",
+    "/blocks/FaqSection/build/style.css": "/blocks/FaqSection/build/style.css",
+    "/blocks/FaqSingle/build/editor.css": "/blocks/FaqSingle/build/editor.css",
+    "/blocks/FaqSingle/build/style.css": "/blocks/FaqSingle/build/style.css",
     "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
     "/blocks/News/build/editor.css": "/blocks/News/build/editor.css"
 }

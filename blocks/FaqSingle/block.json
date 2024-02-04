@@ -1,0 +1,47 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/faq-single",
+  "title": "Blexr faq single",
+  "category": "starter-kit",
+  "parent": [
+    "starter-kit/faq-section"
+  ],
+  "icon": " sk sk-news",
+  "description": "Single faq block.",
+  "keywords": [
+    "FAQ",
+    "Question",
+    "Answer"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {
+    "attributes": {
+      "preview": false
+    }
+  },
+  "attributes": {
+    "markQuestion": {
+      "type": "string",
+      "default": "Q."
+    },
+    "question": {
+      "type": "string",
+      "source": "html",
+      "selector": ".blnb-faq__headline"
+    },
+    "markAnswer": {
+      "type": "string",
+      "default": "A."
+    },
+    "answer": {
+      "type": "string",
+      "source": "html",
+      "selector": ".blnb-faq__answer-text"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "",
+  "style": "file:build/style.css"
+}

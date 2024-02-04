@@ -1,0 +1,29 @@
+{
+	"apiVersion": 3,
+	"name": "starter-kit/faq-section",
+	"title": "faq section",
+	"category": "starter-kit",
+	"icon": " sk sk-faq",
+	"description": "Faq block",
+	"keywords": [
+		"FAQ",
+		"Question",
+		"Answer"
+	],
+	"textdomain": "",
+	"styles": [],
+	"supports": {},
+	"example": {},
+	"attributes": {
+		"data": {
+			"type": "array"
+		},
+		"enableSchema": {
+			"type": "string",
+			"default": "enabled"
+		}
+	},
+	"editorScript": "file:build/index.js",
+	"editorStyle": "file:build/editor.css",
+	"style": ""
+}
