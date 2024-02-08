@@ -22,23 +22,26 @@
     }
   },
   "attributes": {
+    "accordionItemId": {
+      "type": "string"
+    },
     "markQuestion": {
       "type": "string",
-      "default": "Q."
+      "default": "Question:"
     },
     "question": {
       "type": "string",
       "source": "html",
-      "selector": ".blnb-faq__headline"
+      "selector": ".accordion-button"
     },
     "markAnswer": {
       "type": "string",
-      "default": "A."
+      "default": "Answer:"
     },
     "answer": {
       "type": "string",
       "source": "html",
-      "selector": ".blnb-faq__answer-text"
+      "selector": ".__answer-text"
     }
   },
   "editorScript": "file:build/index.js",

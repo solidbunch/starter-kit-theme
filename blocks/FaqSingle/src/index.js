@@ -17,14 +17,18 @@ const {
   TextControl
 } = wp.components;
 
-const blockMainCssClass = 'blnb-faq';
+const blockMainCssClass = 'accordion-item';
 
 registerBlockType(
   blockMetadata,
   {
     edit: props => {
-      const {attributes, className, setAttributes} = props;
+      const {attributes, className, setAttributes, clientId} = props;
 
+      const {accordionItemId} = attributes;
+      if (!accordionItemId) {
+        setAttributes( {accordionItemId: `accordion-item-${clientId}`} );
+      }
       // https://make.wordpress.org/core/2020/11/18/block-api-version-2/
       const blockProps = useBlockProps( {
         className: [blockMainCssClass, className]
@@ -46,29 +50,29 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>,
         <section {...blockProps} key="blockControls">
-          <div className={blockMainCssClass + '__question'}>
-            <span className={blockMainCssClass + '__question-mark'}>
+          <div className={'accordion-header d-flex'}>
+            <span className={'col-auto pe-2'}>
               {attributes.markQuestion}
             </span>
             <RichText
               tagName="h4"
               multiline={false}
-              className={blockMainCssClass + '__headline'}
+              className={'col'}
               format="string"
               placeholder="Question here?"
               onChange={question => {setAttributes({question});}}
               value={attributes.question}
             />
           </div>
-          <div className={blockMainCssClass + '__answer'}>
-            <div className={blockMainCssClass + '__answer-wrapper'}>
-              <span className={blockMainCssClass + '__answer-mark'}>
+          <div className={'accordion-collapse'}>
+            <div className={'accordion-body d-flex'}>
+              <span className={'col-auto pe-2'}>
                 {attributes.markAnswer}
               </span>
               <RichText
                 tagName="div"
                 multiline={false}
-                className={blockMainCssClass + '__answer-text'}
+                className={'col'}
                 format="string"
                 placeholder="Answer here?"
                 onChange={answer => {setAttributes({answer});}}
@@ -81,7 +85,7 @@ registerBlockType(
     }, // end edit
     save: props => {
       const {attributes} = props;
-
+      const {accordionItemId} = attributes;
       // https://make.wordpress.org/core/2020/11/18/block-api-version-2/
       const blockProps = useBlockProps.save({
         className: blockMainCssClass
@@ -89,26 +93,24 @@ registerBlockType(
 
       return (
         <section {...blockProps}>
-          <div className={blockMainCssClass + '__question'}>
-            <span className={blockMainCssClass + '__question-mark'}>
-              {attributes.markQuestion}
-            </span>
+          <h2 className={'accordion-header'}>
             <RichText.Content
-              tagName="h4"
+              tagName="button"
               multiline={false}
-              className={blockMainCssClass + '__headline'}
+              type="button"
+              className={'accordion-button collapsed'}
+              data-bs-toggle="collapse"
+              data-bs-target={`#${accordionItemId}`}
+              aria-expanded="false"
               value={ attributes.question }
             />
-          </div>
+          </h2>
 
-          <div className={blockMainCssClass + '__answer'}>
-            <div className={blockMainCssClass + '__answer-wrapper'}>
-              <span className={blockMainCssClass + '__answer-mark'}>
-                {attributes.markAnswer}
-              </span>
+          <div className={'accordion-collapse collapse'} id={accordionItemId}>
+            <div className={'accordion-body'}>
               <RichText.Content
-                tagName="div"
-                className={blockMainCssClass + '__answer-text'}
+                tagName="p"
+                className={'__answer-text'}
                 multiline={false}
                 value={attributes.answer}
               />

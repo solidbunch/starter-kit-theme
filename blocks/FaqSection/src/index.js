@@ -2,7 +2,6 @@
  * Block dependecies
  */
 import Edit from './Edit';
-import SchemaOrgEditorGenerator from "./modules/schemaOrgEditorGenerator";
 import blockMetadata from '../block.json';
 
 /**
@@ -20,7 +19,7 @@ const {
   SelectControl
 } = wp.components;
 
-const blockMainCssClass = 'blnb-faq-section';
+const blockMainCssClass = 'accordion';
 
 registerBlockType(
   blockMetadata,
@@ -56,7 +55,7 @@ registerBlockType(
             />
           </PanelBody>
         </InspectorControls>,
-        <Edit {...props} blockprops={blockProps} cssclass={blockMainCssClass + '__wrapper'} enableSchema={ attributes.enableSchema } key="blockControls" />
+        <Edit {...props} blockprops={blockProps} cssclass={blockMainCssClass} enableSchema={ attributes.enableSchema } key="blockControls" />
       ];
     },
     save: (props) => {
@@ -65,14 +64,12 @@ registerBlockType(
         className: blockMainCssClass
       });
 
-      const schemaOrg = attributes.data && attributes.enableSchema == 'enabled' ? <SchemaOrgEditorGenerator data={attributes.data} /> : null;
-
       return (
         <div {...blockProps}>
-          <div className={blockMainCssClass + '__wrapper'}>
+          <div className={blockMainCssClass}>
             <InnerBlocks.Content />
           </div>
-          {schemaOrg}
+          
         </div>
       );
     }

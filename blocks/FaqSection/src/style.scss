@@ -1,10 +1,2 @@
-// @import "../../../../assets/scss/common/utils/variables";
-// @import "../../../../assets/scss/common/utils/mixins";
-
-// .blnb-faq-section {
-//   position: relative;
-
-//   .blnb-faq:last-child {
-//     margin-bottom: 0;
-//   }
-// }
+@import "../../../assets/src/styles/utils/bootstrap_utils";
+@import "~bootstrap/scss/_accordion";

@@ -24,6 +24,7 @@
 		}
 	},
 	"editorScript": "file:build/index.js",
+	"viewScript": "file:build/view.js",
 	"editorStyle": "file:build/editor.css",
-	"style": ""
+	"style": "file:build/style.css"
 }
