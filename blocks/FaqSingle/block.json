@@ -46,5 +46,5 @@
   },
   "editorScript": "file:build/index.js",
   "editorStyle": "",
-  "style": "file:build/style.css"
+  "style": ""
 }

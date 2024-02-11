@@ -14,17 +14,8 @@
 	"styles": [],
 	"supports": {},
 	"example": {},
-	"attributes": {
-		"data": {
-			"type": "array"
-		},
-		"enableSchema": {
-			"type": "string",
-			"default": "enabled"
-		}
-	},
 	"editorScript": "file:build/index.js",
 	"viewScript": "file:build/view.js",
-	"editorStyle": "file:build/editor.css",
+	"editorStyle": "",
 	"style": "file:build/style.css"
 }
