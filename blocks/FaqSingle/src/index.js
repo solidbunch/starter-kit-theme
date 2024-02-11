@@ -29,7 +29,7 @@ registerBlockType(
       if (!accordionItemId) {
         setAttributes( {accordionItemId: `accordion-item-${clientId}`} );
       }
-      // https://make.wordpress.org/core/2020/11/18/block-api-version-2/
+
       const blockProps = useBlockProps( {
         className: [blockMainCssClass, className]
       });
@@ -94,13 +94,13 @@ registerBlockType(
     save: props => {
       const {attributes} = props;
       const {accordionItemId} = attributes;
-      // https://make.wordpress.org/core/2020/11/18/block-api-version-2/
+
       const blockProps = useBlockProps.save({
         className: blockMainCssClass
       });
 
       return (
-        <section {...blockProps}>
+        <section {...blockProps} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
           <h2 className={'accordion-header'}>
             <RichText.Content
               tagName="button"
@@ -110,16 +110,18 @@ registerBlockType(
               data-bs-toggle="collapse"
               data-bs-target={`#${accordionItemId}`}
               aria-expanded="false"
+              itemProp="name"
               value={ attributes.question }
             />
           </h2>
 
           <div className={'accordion-collapse collapse'} id={accordionItemId}>
-            <div className={'accordion-body'}>
+            <div className={'accordion-body'} itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
               <RichText.Content
                 tagName="p"
                 className={'__answer-text mb-0'}
                 multiline={false}
+                itemProp="text"
                 value={attributes.answer}
               />
             </div>

@@ -1,7 +1,6 @@
 /**
  * Block dependecies
  */
-// import Edit from './Edit';
 import blockMetadata from '../block.json';
 const blocksAllowed = ['starter-kit/faq-single'];
 const blockTemplate = [
@@ -33,7 +32,7 @@ registerBlockType(
           <InnerBlocks
             allowedBlocks={blocksAllowed}
             template= {blockTemplate}
-            templateLock= 'false'
+            templateLock= {false}
             orientation="vertical"
           />
         </div>
@@ -48,7 +47,7 @@ registerBlockType(
       });
 
       return (
-        <div {...blockProps}>
+        <div {...blockProps} itemScope itemType="https://schema.org/FAQPage">
           <InnerBlocks.Content />
         </div>
       );
