@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/faq-single",
-  "title": "Blexr faq single",
+  "title": "starter-kit faq single",
   "category": "starter-kit",
   "parent": [
     "starter-kit/faq-section"

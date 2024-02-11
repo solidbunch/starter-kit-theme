@@ -34,7 +34,7 @@ registerBlockType(
         className: [blockMainCssClass, className]
       });
 
-      return [
+      const renderControls = (
         <InspectorControls key="inspectorControls">
           <PanelBody title="Additional settings">
             <TextControl
@@ -48,7 +48,10 @@ registerBlockType(
               onChange={ markAnswer => {setAttributes({markAnswer});} }
             />
           </PanelBody>
-        </InspectorControls>,
+        </InspectorControls>
+      );
+
+      const renderOutput = (
         <section {...blockProps} key="blockControls">
           <div className={'accordion-header d-flex'}>
             <span className={'col-auto pe-2'}>
@@ -81,6 +84,11 @@ registerBlockType(
             </div>
           </div>
         </section>
+      );
+
+      return [
+        renderControls,
+        renderOutput
       ];
     }, // end edit
     save: props => {
@@ -110,7 +118,7 @@ registerBlockType(
             <div className={'accordion-body'}>
               <RichText.Content
                 tagName="p"
-                className={'__answer-text'}
+                className={'__answer-text mb-0'}
                 multiline={false}
                 value={attributes.answer}
               />
