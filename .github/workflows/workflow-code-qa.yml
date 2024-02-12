@@ -38,7 +38,7 @@ jobs:
         run: composer lint
 
       - name: Save Composer Built cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .
           key: composer-build-cache-${{ github.run_number }}
@@ -50,13 +50,13 @@ jobs:
 
     steps:
       - name: Use Composer Built cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .
           key: composer-build-cache-${{ github.run_number }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -67,7 +67,7 @@ jobs:
         run: npm run lint:style
 
       - name: Save Node Built cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .
           key: composer-node-build-cache-${{ github.run_number }}
@@ -79,13 +79,13 @@ jobs:
 
     steps:
       - name: Use Node Built cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .
           key: composer-node-build-cache-${{ github.run_number }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 

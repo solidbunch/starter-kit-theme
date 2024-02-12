@@ -3,8 +3,8 @@
   "name": "starter-kit/section",
   "title": "Section",
   "category": "starter-kit",
-  "icon": " sk sk-section",
-  "description": "Bootstrap Section",
+  "icon": "sk sk-section",
+  "description": "Section",
   "keywords": [
     "Section",
     "Bootstrap"

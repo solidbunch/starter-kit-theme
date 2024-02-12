@@ -1,17 +1,18 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/faq-single",
-  "title": "starter-kit faq single",
+  "title": "Faq Single",
   "category": "starter-kit",
   "parent": [
     "starter-kit/faq-section"
   ],
-  "icon": " sk sk-news",
-  "description": "Single faq block.",
+  "icon": "sk sk-news",
+  "description": "Single faq child block.",
   "keywords": [
     "FAQ",
     "Question",
-    "Answer"
+    "Answer",
+    "Single"
   ],
   "textdomain": "",
   "styles": [],

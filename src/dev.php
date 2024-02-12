@@ -1,6 +1,6 @@
 <?php
 
-if (! function_exists('_ilog')) {
+if (!function_exists('elog')) {
     /**
      * Nice logging function
      *
@@ -10,28 +10,41 @@ if (! function_exists('_ilog')) {
      *
      * @return void
      */
-    function _ilog(mixed $var, string $desc = ' >> ', string $logFileDestination = ''): void
+    function elog(mixed $var, string $desc = ' >> ', string $logFileDestination = ''): void
     {
+        $ColorCode = "\033[1;36m"; // ANSI color code for red
+        $resetCode = "\033[0m"; // ANSI reset code
+
         $messageType = 0;
         $lineEnd = '';
-        if (! empty($logFileDestination)) {
+        $colorStart = '';
+        $colorEnd = '';
+
+        if (!empty($logFileDestination)) {
             $messageType = 3;
             $lineEnd = PHP_EOL;
+        } elseif (defined('WP_DEBUG') && WP_DEBUG) {
+            $lineEnd = PHP_EOL;
+        } else {
+            // Apply color only if logging to the console
+            $colorStart = $ColorCode;
+            $colorEnd = $resetCode;
         }
+
         error_log(
-            '[' . date('H:i:s') . ']' . '-------------------------' . $lineEnd,
+            $colorStart . '[' . date('H:i:s') . ']' . '-------------------------' . $lineEnd . $colorEnd,
             $messageType,
             $logFileDestination
         );
         error_log(
-            '[' . date('H:i:s') . '] ' . $desc . ' : ' . print_r($var, true) . $lineEnd,
+            $colorStart . '[' . date('H:i:s') . '] ' . $desc . ' : ' . print_r($var, true) . $lineEnd . $colorEnd,
             $messageType,
             $logFileDestination
         );
     }
 }
 
-if (! function_exists('ilog')) {
+if (!function_exists('ilog')) {
     /**
      * Write to info log
      * Wrapper for wlog() function with info log destination
@@ -44,14 +57,14 @@ if (! function_exists('ilog')) {
     function ilog(mixed $var, string $desc = ' >> '): void
     {
         $logFileDestination = '';
-        if (defined('APP_INFO_LOG') and ! empty(APP_INFO_LOG)) {
+        if (defined('APP_INFO_LOG') and !empty(APP_INFO_LOG)) {
             $logFileDestination = APP_INFO_LOG;
         }
-        _ilog($var, $desc, $logFileDestination);
+        elog($var, $desc, $logFileDestination);
     }
 }
 
-if (! function_exists('wlog')) {
+if (!function_exists('wlog')) {
     function wlog($var, $desc = ' >> ', $clear_log = false)
     {
         $upload = wp_upload_dir();
@@ -59,18 +72,18 @@ if (! function_exists('wlog')) {
         $log_dir = $upload_dir . '/SK/logs';
 
         // resolve dir
-        if (! is_dir($log_dir)) {
+        if (!is_dir($log_dir)) {
             @mkdir($log_dir, 0775, true);
         }
 
         // resolve htaccess
-        if (! is_dir($log_dir)) {
+        if (!is_dir($log_dir)) {
             return null;
         }
 
         $htaccess_path = trailingslashit($log_dir) . '.htaccess';
 
-        if (! is_file($htaccess_path)) {
+        if (!is_file($htaccess_path)) {
             $content = <<<EOT
 order deny,allow
 deny from all
@@ -81,7 +94,7 @@ EOT;
         // logging
         $log_file_destination = $log_dir . '/SK.log';
 
-        if ($clear_log || ! file_exists($log_file_destination)) {
+        if ($clear_log || !file_exists($log_file_destination)) {
             file_put_contents($log_file_destination, '');
         }
         error_log('[' . date('H:i:s') . ']' . '-------------------------' . PHP_EOL, 3, $log_file_destination);
@@ -89,7 +102,7 @@ EOT;
     }
 }
 
-if (! function_exists('_var_dump')) {
+if (!function_exists('_var_dump')) {
     /**
      * Nice dump function
      *
@@ -127,21 +140,21 @@ color: #333;padding: 10px;margin:0;overflow: auto;">';
     }
 }
 
-if (! function_exists('wp_dump')) {
+if (!function_exists('wp_dump')) {
     function wp_dump(...$params): void
     {
         _var_dump(false, ...$params);
     }
 }
 
-if (! function_exists('wp_dump_ext')) {
+if (!function_exists('wp_dump_ext')) {
     function wp_dump_ext(...$params): void
     {
         _var_dump(true, ...$params);
     }
 }
 
-if (! function_exists('wp_dd')) {
+if (!function_exists('wp_dd')) {
     function wp_dd(...$params): void
     {
         wp_dump(...$params);
@@ -149,7 +162,7 @@ if (! function_exists('wp_dd')) {
     }
 }
 
-if (! function_exists('wp_dd_ext')) {
+if (!function_exists('wp_dd_ext')) {
     function wp_dd_ext(...$params): void
     {
         wp_dump_ext(...$params);
@@ -157,7 +170,7 @@ if (! function_exists('wp_dd_ext')) {
     }
 }
 
-if (! function_exists('debug_backtrace_string')) {
+if (!function_exists('debug_backtrace_string')) {
     /**
      * Backtrace function
      * usage: wlog( debug_backtrace_string(), 'debug_backtrace >>' );
@@ -204,7 +217,7 @@ if (! function_exists('debug_backtrace_string')) {
  * $time_diff   = stTimeFormatted( stGetTime( $begin_time ) );
  * $memory_diff = stMemoryFormatted( stGetMemory( $begin_memory ) );
  */
-if (! function_exists('stGetTime')) {
+if (!function_exists('stGetTime')) {
     /**
      * @param bool $time
      *
@@ -218,7 +231,7 @@ if (! function_exists('stGetTime')) {
     }
 }
 
-if (! function_exists('stGetMemory')) {
+if (!function_exists('stGetMemory')) {
     /**
      * @param bool $memory
      *
@@ -232,7 +245,7 @@ if (! function_exists('stGetMemory')) {
     }
 }
 
-if (! function_exists('stMemoryFormatted')) {
+if (!function_exists('stMemoryFormatted')) {
     /**
      * @param float $size
      *
@@ -246,7 +259,7 @@ if (! function_exists('stMemoryFormatted')) {
     }
 }
 
-if (! function_exists('stTimeFormatted')) {
+if (!function_exists('stTimeFormatted')) {
     /**
      * @param float $size
      *

@@ -28,6 +28,11 @@ class SetupTheme
     public static function registerMenus(): void
     {
         add_theme_support('menus');
+
+        register_nav_menus([
+            'header_menu' => esc_html__('Header Menu', 'starter-kit'),
+            'bottom_menu' => esc_html__('Bottom Menu', 'starter-kit'),
+        ]);
     }
 
 

@@ -12,14 +12,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 mix.options({
   processCssUrls: false,
 });
+
 mix.disableNotifications();
 
 mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
   .webpackConfig({
+    devtool: false,
     module: {
       rules: [
         {
-          test: /\.font\.js$/,
+          test: /webfonts-loader\/.*\.font\.js$/,
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
@@ -28,28 +30,50 @@ mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
               loader: 'css-loader',
               options: {
                 url: false,
+                sourceMap: false,
               },
             },
             {
-              loader: 'webfonts-loader',
+              loader: 'webfonts-loader'
             },
           ],
         },
       ],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-      }),
-    ],
+    }
   });
 
+/**
+ * Setup options for dev mode
+ * In main ESLint config we can use 'overrides' for special files. For example:
+ *     'overrides': [
+ *         {
+ *             'env': {
+ *                 'node': true
+ *             },
+ *             'files': [
+ *                 'some-file.{js,jsx}'
+ *             ],
+ *             'parserOptions': {
+ *                 'sourceType': 'script'
+ *             },
+ *            'rules': {
+ *              'indent': [
+ *                'error',
+ *                4
+ *              ]
+ *            }
+ *         }
+ *     ]
+ */
 if (!mix.inProduction()) {
   const {CleanWebpackPlugin} = require('clean-webpack-plugin');
   const ESLintWebpackPlugin = require('eslint-webpack-plugin');
   const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
+  const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
-  mix.sourceMaps().webpackConfig({
+  mix.sourceMaps();
+
+  mix.webpackConfig({
     devtool: 'inline-source-map', // or 'source-map'
     plugins: [
       /**
@@ -67,6 +91,28 @@ if (!mix.inProduction()) {
           '!vendor-custom/**',
           '!node_modules/**',
         ],
+      }),
+      /**
+       * BrowserSync runs on dev mode only
+       */
+      new BrowserSyncPlugin({
+        /**
+         * Proxying to nginx container with alias APP_DOMAIN
+         * Proxy should be the same as WP_SITEURL in wp-config.php
+         */
+        proxy: getAppUrl(),
+        /**
+         * Set external host network IP.
+         * If hostIp is undefined, just find your local network IP in your system
+         * and use it in your other devices browser to sync with BrowserSync.
+         */
+        host: getHostIp(),
+        port: 3000,
+        open: false,
+        /**
+         * No files will be tracked, browser reloads after assets was build.
+         */
+        files: [],
       }),
       /**
        * Code QA
@@ -91,6 +137,31 @@ if (!mix.inProduction()) {
       }),
     ],
   });
+
+  function getAppUrl() {
+    const appProtocol = process.env.APP_PROTOCOL;
+    const appDomain = process.env.APP_DOMAIN;
+
+    let appPort = '';
+
+    if (appProtocol === 'https') {
+      appPort = process.env.APP_HTTPS_PORT;
+    } else {
+      appPort = process.env.APP_HTTP_PORT;
+    }
+
+    let appUrl = appProtocol + '://' + appDomain;
+
+    if (appPort !== '80' && appPort !== '443') {
+      appUrl += ':' + appPort;
+    }
+
+    return appUrl;
+  }
+
+  function getHostIp() {
+    return process.env.HOST_IP || 'your.local.network.ip';
+  }
 }
 
 /**
@@ -129,54 +200,3 @@ allAssets.forEach(assetPath => {
     );
   }
 });
-
-/**
- * BrowserSync runs on dev mode only
- */
-if (!mix.inProduction()) {
-  mix.browserSync({
-    /**
-     * Proxying to nginx container with alias APP_DOMAIN
-     * Proxy should be the same as WP_SITEURL in wp-config.php
-     */
-    proxy: getAppUrl(),
-    /**
-     * Set external host network IP.
-     * If hostIp is undefined, just find your local network IP in your system
-     * and use it in your other devices browser to sync with BrowserSync.
-     */
-    host: getHostIp(),
-    port: 3000,
-    open: false,
-    files: [
-      '**/*.php',
-      '**/*.twig',
-      '**/src/**/*.@(scss|js|jsx)',
-    ],
-  });
-}
-
-function getAppUrl() {
-  const appProtocol = process.env.APP_PROTOCOL;
-  const appDomain = process.env.APP_DOMAIN;
-
-  let appPort = '';
-
-  if (appProtocol === 'https') {
-    appPort = process.env.APP_HTTPS_PORT;
-  } else {
-    appPort = process.env.APP_HTTP_PORT;
-  }
-
-  let appUrl = appProtocol + '://' + appDomain;
-
-  if (appPort !== '80' && appPort !== '443') {
-    appUrl += ':' + appPort;
-  }
-
-  return appUrl;
-}
-
-function getHostIp() {
-  return process.env.HOST_IP || 'undefined';
-}
