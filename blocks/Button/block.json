@@ -1,0 +1,27 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/button",
+  "title": "Button",
+  "category": "starter-kit",
+  "icon": "sk sk-button",
+  "description": "Button",
+  "keywords": [
+    "Button",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "object",
+      "default": {
+        "buttonText": "Text of Button",
+        "tagName": "button",
+        "defaultClass": "btn"
+      }
+    }
+  },
+  "editorScript": "file:build/index.js"
+}
