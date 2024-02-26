@@ -14,6 +14,7 @@
     "/blocks/FaqSection/build/index.js": "/blocks/FaqSection/build/index.js",
     "/blocks/Container/build/index.js": "/blocks/Container/build/index.js",
     "/blocks/Column/build/index.js": "/blocks/Column/build/index.js",
+    "/blocks/Button/build/index.js": "/blocks/Button/build/index.js",
     "/blocks/News/build/style.css": "/blocks/News/build/style.css",
     "/blocks/Row/build/editor.css": "/blocks/Row/build/editor.css",
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
