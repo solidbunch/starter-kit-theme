@@ -19,23 +19,19 @@ const sizeOptions = [
   {label: 'btn-lg', value: 'btn-lg'},
   {label: 'btn-sm', value: 'btn-sm'},
 ];
-function checkHasChildBlocks(clientId) {
-  const {getBlockOrder} = wp.data.select('core/block-editor');
-  return getBlockOrder(clientId).length > 0;
-}
 
 registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
       const {defaultClass, buttonColor, buttonSize} = attributes.modification || {};
-      const blockClass = `${defaultClass || ''} ${buttonColor || ''} ${buttonSize || ''}`.trim();
+      const blockClass = `${defaultClass || ''} ${buttonColor || 'btn-primary'} ${buttonSize || ''}`.trim();
 
       return {className: blockClass};
     },
 
     edit: props => {
-      const {attributes, setAttributes, clientId, className} = props;
+      const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],
       });
@@ -59,7 +55,7 @@ registerBlockType(
                 })
               }
             />
-            {/* Добавляем TextControl для управления текстом кнопки */}
+            {/* add TextControl for text in button */}
             {attributes.modification.tagName === 'a' && (
               <>
                 <TextControl
@@ -103,7 +99,7 @@ registerBlockType(
             />
             <SelectControl
               label="Button Color"
-              value={attributes.modification.buttonColor || ''}
+              value={attributes.modification.buttonColor || 'btn-primary'}
               options={colorOptions}
               onChange={(buttonColor) =>
                 setAttributes({
@@ -134,13 +130,6 @@ registerBlockType(
       const renderOutput = (
         <attributes.modification.tagName {...blockProps} key="blockControls">
           { attributes.modification.buttonText }
-          <InnerBlocks
-            renderAppender={
-              checkHasChildBlocks(clientId)
-                ? undefined
-                : () => <InnerBlocks.ButtonBlockAppender/>
-            }
-          />
         </attributes.modification.tagName>
       );
 
@@ -155,7 +144,7 @@ registerBlockType(
       const {className} = useBlockProps.save();
 
       const {defaultClass, buttonColor,buttonSize} = attributes.modification || {};
-      const blockClass = `${defaultClass || ''} ${buttonColor || ''} ${buttonSize || ''} ${className}`.trim();
+      const blockClass = `${defaultClass || ''} ${buttonColor || 'btn-primary'} ${buttonSize || ''} ${className}`.trim();
       // Create a new object for the attributes, excluding the 'class' attribute if it's empty
       const blockProps = {};
 
