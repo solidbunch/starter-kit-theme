@@ -8,12 +8,7 @@ import metadata from '../block.json';
  */
 const {registerBlockType} = wp.blocks;
 const {InspectorControls, useBlockProps, InnerBlocks, MediaPlaceholder} = wp.blockEditor;
-const {PanelBody, SelectControl , Placeholder} = wp.components;
-
-function checkHasChildBlocks(clientId) {
-  const {getBlockOrder} = wp.data.select('core/block-editor');
-  return getBlockOrder(clientId).length > 0;
-}
+const {PanelBody, SelectControl , Placeholder ,CheckboxControl, TextControl} = wp.components;
 
 registerBlockType(
   metadata,
@@ -27,16 +22,32 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-
+      const handleCheckboxChange = (breakpoint, checked, imageUrl) => {
+        setAttributes({
+          srcSet: {
+            ...attributes.srcSet,
+            [breakpoint]: {
+              ...attributes.srcSet[breakpoint],
+              imageUrl: checked ? imageUrl : '',
+            }
+          }
+        });
+      };
       const renderControls = (
         <InspectorControls key="controls">
-          <PanelBody title="sdsdf">
-            <h1>sdsdf</h1>
-            
+          <PanelBody title="Select Sizes">
+            {Object.keys(attributes.srcSet).map((breakpoint) => (
+              <CheckboxControl
+                key={breakpoint}
+                label={breakpoint.toUpperCase()}
+                checked={!!attributes.srcSet[breakpoint].imageUrl}
+                onChange={(checked) => handleCheckboxChange(breakpoint, checked, attributes.imageUrl)}
+              />
+            ))}
           </PanelBody>
         </InspectorControls>
       );
-
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.imageUrl ? (
@@ -71,8 +82,8 @@ registerBlockType(
 
       return (
         <figure {...blockProps}>
-          {console.log(attributes)}
-          <img src={attributes.imageUrl} alt="Saved "/>
+          
+          <img src={attributes.imageUrl} alt="Saved"  />
         </figure>
       );
     },

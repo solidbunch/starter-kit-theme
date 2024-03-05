@@ -16,30 +16,30 @@
   "attributes": {
     "modification": {
       "type": "string",
+      "default": "img-fluid"
+    },
+    "imageUrl": {
+      "type": "string",
       "default": ""
     },
     "srcSet": {
       "type": "object",
       "default": {
-        "xs": {
-          "imageUrl": "",
-          "viewPort": "10w"
-        },
         "sm": {
           "imageUrl": "",
-          "viewPort": "140w"
+          "viewPort": "576w"
         },
         "md": {
           "imageUrl": "",
-          "viewPort": "14w"
+          "viewPort": "768w"
         },
         "lg": {
           "imageUrl": "",
-          "viewPort": "100w"
+          "viewPort": "992w"
         },
         "xl": {
           "imageUrl": "",
-          "viewPort": "1400w"
+          "viewPort": "1200w"
         },
         "xxl": {
           "imageUrl": "",
