@@ -22,6 +22,31 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
+
+      const handleImageUpload = (breakpoint, media) => {
+        setAttributes({
+          srcSet: {
+            ...attributes.srcSet,
+            [breakpoint]: {
+              ...attributes.srcSet[breakpoint],
+              imageUrl: media.url,
+            }
+          }
+        });
+      };
+
+      const handleResetImage = (breakpoint) => {
+        setAttributes({
+          srcSet: {
+            ...attributes.srcSet,
+            [breakpoint]: {
+              ...attributes.srcSet[breakpoint],
+              imageUrl: attributes.src
+            }
+          }
+        });
+      };
+      
       const handleCheckboxChange = (breakpoint, checked, imageUrl) => {
         setAttributes({
           srcSet: {
@@ -37,28 +62,41 @@ registerBlockType(
         <InspectorControls key="controls">
           <PanelBody title="Select Sizes">
             {Object.keys(attributes.srcSet).map((breakpoint) => (
-              <CheckboxControl
-                key={breakpoint}
-                label={breakpoint.toUpperCase()}
-                checked={!!attributes.srcSet[breakpoint].imageUrl}
-                onChange={(checked) => handleCheckboxChange(breakpoint, checked, attributes.imageUrl)}
-              />
+              <div key={breakpoint}>
+                <CheckboxControl
+                  key={breakpoint}
+                  label={breakpoint.toUpperCase()}
+                  checked={!!attributes.srcSet[breakpoint].imageUrl}
+                  onChange={(checked) => handleCheckboxChange(breakpoint, checked, attributes.src)}
+                />
+                {attributes.srcSet[breakpoint].imageUrl &&
+                  <div>
+                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" className="img-fluid"/>
+                    <MediaPlaceholder
+                      labels={{title: 'Change Image'}}
+                      onSelect={(media) => handleImageUpload(breakpoint, media)}
+                    />
+                    <button className='btn btn-danger' onClick={() => handleResetImage(breakpoint)}>Default Image</button>
+                  </div>
+                }
+              </div>
             ))}
           </PanelBody>
         </InspectorControls>
       );
-      { console.log(attributes.srcSet); }
+      // { console.log(attributes.srcSet); }
+      // { console.log(attributes.src); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
-          {attributes.imageUrl ? (
-            <img src={attributes.imageUrl} alt="Uploaded" />
+          {attributes.src ? (
+            <img src={attributes.src} alt="Uploaded" />
           ) : (
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
               onSelect={(media) => {
                 setAttributes({
-                  imageUrl: media.url
+                  src: media.url
                 });
               }}
             />
@@ -73,19 +111,29 @@ registerBlockType(
     },
     save: props => {
       const {attributes} = props;
-
+      const {src, srcSet} = attributes;
+    
+      // Фильтрация и сбор значений imageUrl и viewPort для всех srcSet,
+      // у которых imageUrl не пустая строка
+      const srcsetValues = Object.entries(srcSet)
+        .filter(([breakpoint, data]) => data.imageUrl !== '')
+        .map(([breakpoint, data]) => `${data.imageUrl} ${data.viewPort}w`);
+    
+      // Создание строки srcset, объединяя значения через запятую
+      const srcset = srcsetValues.join(', ');
+    
       const blockClass = attributes.modification;
-
+    
       const blockProps = useBlockProps.save({
         className: blockClass,
       });
-
+    
       return (
         <figure {...blockProps}>
-          
-          <img src={attributes.imageUrl} alt="Saved"  />
+          <img src={src} alt="Saved" srcSet={srcset} />
         </figure>
       );
     },
+    
   },
 );

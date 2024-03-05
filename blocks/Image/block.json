@@ -18,7 +18,7 @@
       "type": "string",
       "default": "img-fluid"
     },
-    "imageUrl": {
+    "src": {
       "type": "string",
       "default": ""
     },
@@ -27,23 +27,23 @@
       "default": {
         "sm": {
           "imageUrl": "",
-          "viewPort": "576w"
+          "viewPort": "576"
         },
         "md": {
           "imageUrl": "",
-          "viewPort": "768w"
+          "viewPort": "768"
         },
         "lg": {
           "imageUrl": "",
-          "viewPort": "992w"
+          "viewPort": "992"
         },
         "xl": {
           "imageUrl": "",
-          "viewPort": "1200w"
+          "viewPort": "1200"
         },
         "xxl": {
           "imageUrl": "",
-          "viewPort": "1400w"
+          "viewPort": "1400"
         }
       }
     }
