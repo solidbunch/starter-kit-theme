@@ -1,0 +1,40 @@
+// Styles for Blocks Editor only
+.setting_box {
+	padding: 2px;
+	background: #ccc;
+	position: relative;
+	margin-top: 10px;
+	.components-placeholder__fieldset {
+		flex-direction: row !important;
+	}
+	.btn_reset {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}
+.row_image {
+	box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	.components-base-control__field,
+	.components-base-control {
+		margin-bottom: 0 !important;
+	}
+	.components-placeholder {
+		border: 0 !important;
+		box-shadow: none !important;
+	}
+}
+.components-tab-panel__tabs {
+	button {
+		border-radius: 0;
+		&:first-child {
+			border-radius: 3px 0 0 3px;
+		}
+		&:last-child {
+			border-radius: 0 3px 3px 0;
+		}
+	}
+}

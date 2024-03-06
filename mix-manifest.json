@@ -22,6 +22,7 @@
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
     "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
     "/blocks/FaqSection/build/style.css": "/blocks/FaqSection/build/style.css",
+    "/blocks/Image/build/editor.css": "/blocks/Image/build/editor.css",
     "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
     "/blocks/News/build/editor.css": "/blocks/News/build/editor.css"
 }

@@ -18,9 +18,21 @@
       "type": "string",
       "default": "img-fluid"
     },
+    "fetchPriority": {
+      "type": "string",
+      "default": "auto"
+    },
+    "loadingLazy": {
+      "type": "boolean",
+      "default": false
+    },
     "src": {
       "type": "string",
       "default": ""
+    },
+    "altText": {
+      "type": "string",
+      "default": "Image"
     },
     "srcSet": {
       "type": "object",
@@ -48,5 +60,6 @@
       }
     }
   },
-  "editorScript": "file:build/index.js"
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/editor.css"
 }
