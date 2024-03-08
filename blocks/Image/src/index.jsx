@@ -112,7 +112,11 @@ registerBlockType(
                             </div>
                           }
                         </div>
+                        
                       ))}
+                      <div className="image-dimensions">
+                        
+                      </div>
                     </div>
                   }
                   {tab.name === 'tab2' &&
@@ -156,7 +160,7 @@ registerBlockType(
         </InspectorControls>
       );
       // { console.log(attributes.srcSet); }
-      { console.log(attributes.fetchPriority); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.src ? (
