@@ -1,9 +1,7 @@
 // Styles for Blocks Editor only
 .setting_box {
-	padding: 2px;
-	background: #ccc;
 	position: relative;
-	margin-top: 10px;
+	// margin-top: 10px;
 	.components-placeholder__fieldset {
 		flex-direction: row !important;
 	}
@@ -30,11 +28,25 @@
 .components-tab-panel__tabs {
 	button {
 		border-radius: 0;
+		border-right-width: 0;
+		+button {}
 		&:first-child {
 			border-radius: 3px 0 0 3px;
 		}
 		&:last-child {
 			border-radius: 0 3px 3px 0;
+			border-right-width: 1px;
+		}
+	}
+}
+.image-dimensions {
+	display: flex;
+
+}
+.custom_tab {
+	.components-tab-panel__tabs {
+		button {
+			font-size: 12px;
 		}
 	}
 }
