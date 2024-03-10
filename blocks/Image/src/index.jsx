@@ -50,7 +50,7 @@ registerBlockType(
             ...attributes.srcSet,
             [breakpoint]: {
               ...attributes.srcSet[breakpoint],
-              imageUrl: attributes.src
+              imageUrl: attributes.mainImage.src
             }
           }
         });
@@ -81,11 +81,11 @@ registerBlockType(
       }
       const renderControls = (
         <InspectorControls key="controls">
-          <PanelBody title="Image Properties">
+          <PanelBody title="Image Properties" className="image_container">
             <TabPanel className="custom_tab" activeClass="btn-secondary text-white" tabs={[
               {
                 name: 'tab1',
-                title: 'Main Image',
+                title: 'Responsive',
                 className: 'col btn btn-sm btn-outline-secondary',
               },
               {
@@ -93,81 +93,96 @@ registerBlockType(
                 title: 'Settings',
                 className: 'col btn btn-sm btn-outline-secondary',
               },
-              {
-                name: 'tab3',
-                title: 'SrcSet',
-                className: 'col btn btn-sm btn-outline-secondary',
-              },
             ]}>
               {(tab) => (
-                <div>
+                <div className='custom_panel'>
                   {tab.name === 'tab1' &&
                     <div className='pt-4'>
-                      <div className="row_image">
-                        <div className='setting_box'>
-                          {attributes.mainImage.src && (
-                            <img src={attributes.mainImage.src} alt="Uploaded"  />
-                          )}
-                          <MediaPlaceholder
-                            icon="format-image"
-                            labels={{title: 'Add Image'}}
-                            // onSelect={(media) => {
-                            //   const {url, width, height} = media;
-                            //   const updatedSrcSet = {...attributes.srcSet};
-                            //   Object.keys(updatedSrcSet).forEach((size) => {
-                            //     updatedSrcSet[size].imageUrl = url;
-                            //   });
-                            //   setAttributes({
-                            //     mainImage: {
-                            //       src:url,
-                            //       width,
-                            //       height,
-                            //     },
-                            //     srcSet: updatedSrcSet
-                            //   });
-                            // }}
-                            onSelect={(media) => {
-                              setAttributes({
-                                mainImage: {
-                                  src: media.url,
-                                  width: media.width,
-                                  height: media.height,
-                                }
-                              });
-                            }}
-                          />
-                          {attributes.mainImage.width && attributes.mainImage.height && (
-                            <div className="image-dimensions row g-2">
-                              <TextControl
-                                label="width"
-                                type="text"
-                                className="col"
-                                value={attributes.mainImage.width}
-                                onChange={(event) => {
-                                  const newWidth = event.replace(/\D/g, '');
-                                  handleDimensionChange({width: newWidth});
+                      {!attributes.mainImage.src ? (
+                        <div className="px-3">
+                          <div className="row_image">
+                            <div className='setting_box'>
+                              <MediaPlaceholder
+                                icon="format-image"
+                                labels={{title: 'Add Image'}}
+                                onSelect={(media) => {
+                                  const {url, width, height} = media;
+                                  const updatedSrcSet = {...attributes.srcSet};
+                                  Object.keys(updatedSrcSet).forEach((size) => {
+                                    updatedSrcSet[size].imageUrl = url;
+                                  });
+                                  setAttributes({
+                                    mainImage: {
+                                      src:url,
+                                      width,
+                                      height,
+                                    },
+                                    srcSet: updatedSrcSet
+                                  });
                                 }}
-                                inputMode="numeric"
-                              />
-                              <TextControl
-                                label="height"
-                                type="text"
-                                className="col"
-                                value={attributes.mainImage.height}
-                                onChange={(event) => {
-                                  const newHeight = event.replace(/\D/g, '');
-                                  handleDimensionChange({height: newHeight});
-                                }}
-                                inputMode="numeric"
                               />
                             </div>
-                          )}
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div>
+                          {Object.keys(attributes.srcSet)
+                            .reverse()
+                            .map((breakpoint, index) => (
+                              <PanelBody
+                                title={`SrcSet: ${breakpoint.toUpperCase()}`}
+                                key={breakpoint}
+                                initialOpen={index === 0}
+                              >
+                                <div className='row_image'>
+                                  <div className='setting_box'>
+                                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
+                                    <MediaPlaceholder
+                                      labels={{title: 'Change Image'}}
+                                      onSelect={(media) => handleImageUpload(breakpoint, media)}
+                                    />
+                                    {attributes.srcSet[breakpoint].imageUrl !== attributes.mainImage.src && (
+                                      <button
+                                        className='btn btn-danger btn-sm btn_reset'
+                                        onClick={() => handleResetImage(breakpoint)}
+                                      >
+                                        Reset to Default Image
+                                      </button>
+                                    )}
+                                    <div className="image-dimensions row g-2">
+                                      <TextControl
+                                        label="width"
+                                        type="text"
+                                        className="col"
+                                        value={attributes.mainImage.width}
+                                        onChange={(event) => {
+                                          const newWidth = event.replace(/\D/g, '');
+                                          handleDimensionChange({width: newWidth});
+                                        }}
+                                        inputMode="numeric"
+                                      />
+                                      <TextControl
+                                        label="height"
+                                        type="text"
+                                        className="col"
+                                        value={attributes.mainImage.height}
+                                        onChange={(event) => {
+                                          const newHeight = event.replace(/\D/g, '');
+                                          handleDimensionChange({height: newHeight});
+                                        }}
+                                        inputMode="numeric"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </PanelBody>
+                            ))}
+                        </div>
+                      )}
                     </div>
                   }
                   {tab.name === 'tab2' &&
-                    <div className='pt-4'>
+                    <div className='pt-4 px-3'>
                       <TextareaControl 
                         label="Alt Text"
                         value={attributes.altText}
@@ -200,50 +215,45 @@ registerBlockType(
                       </div>
                     </div>
                   }
-                  {tab.name === 'tab3' &&
-                    <div className='pt-4'>
-                      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta totam, ullam quos rem perferendis optio vel accusamus eveniet illum ratione rerum, deserunt reiciendis harum. Rerum dolores exercitationem sint praesentium enim.  </p>
-                    </div>
-                  }
                 </div>
               )}
             </TabPanel>
-          </PanelBody>
-          <PanelBody title="SrcSets" key="sw" initialOpen={ false }>
-            {Object.keys(attributes.srcSet).map((breakpoint) => (
-              <PanelBody title={`${breakpoint.toUpperCase()}`} key={breakpoint} initialOpen={ false }>
-                <div className='setting_box'>
-                  <img src={attributes.mainImage.src} alt="Uploaded"  />
-                  <MediaPlaceholder
-                    labels={{title: 'Change Image'}}
-                    onSelect={(media) => handleImageUpload(breakpoint, media)}
-                  />
-                  {attributes.srcSet[breakpoint].imageUrl !== attributes.src &&
-                    <button className='btn btn-danger btn-sm btn_reset' onClick={() => handleResetImage(breakpoint)}>Reset to Default Image</button>
-                  }
-                </div>
-              </PanelBody>
-            ))}
           </PanelBody>
         </InspectorControls>
       );
       // { console.log(attributes.srcSet); }
       { console.log(attributes.mainImage); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
-            <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width}/>
+            <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
           ) : (
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
+              // onSelect={(media) => {
+              //   setAttributes({
+              //     mainImage: {
+              //       src: media.url,
+              //       width: media.width,
+              //       height: media.height,
+              //     }
+              //   });
+              // }}
               onSelect={(media) => {
+                const {url, width, height} = media;
+                const updatedSrcSet = {...attributes.srcSet};
+                Object.keys(updatedSrcSet).forEach((size) => {
+                  updatedSrcSet[size].imageUrl = url;
+                });
                 setAttributes({
                   mainImage: {
-                    src: media.url,
-                    width: media.width,
-                    height: media.height,
-                  }
+                    src:url,
+                    width,
+                    height,
+                  },
+                  srcSet: updatedSrcSet
                 });
               }}
             />
