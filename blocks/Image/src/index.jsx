@@ -24,26 +24,38 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      const handleDimensionChange = (updatedAttributes) => {
+      // width/ height
+      const handleDimensionChange = (index, breakpoint, updatedAttributes) => {
         setAttributes({
-          mainImage: {
-            ...attributes.mainImage,
-            ...updatedAttributes,
-          },
+          ...(index === 0
+            ? {mainImage: {...attributes.mainImage, ...updatedAttributes}}
+            : {
+              srcSet: {
+                ...attributes.srcSet,
+                [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
+              },
+            }),
         });
       };
-      const handleImageUpload = (breakpoint, media) => {
+      const handleImageUpload = (index, breakpoint, media) => {
         setAttributes({
-          srcSet: {
-            ...attributes.srcSet,
-            [breakpoint]: {
-              ...attributes.srcSet[breakpoint],
-              imageUrl: media.url,
+          ...(index === 0
+            ? {
+              mainImage: {...attributes.mainImage, src: media.url},
+              srcSet: {
+                ...attributes.srcSet,
+                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url},
+              },
             }
-          }
+            : {
+              srcSet: {
+                ...attributes.srcSet,
+                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url},
+              },
+            }),
         });
       };
-
+      
       const handleResetImage = (breakpoint) => {
         setAttributes({
           srcSet: {
@@ -56,17 +68,6 @@ registerBlockType(
         });
       };
       
-      const handleCheckboxChange = (breakpoint, checked, imageUrl) => {
-        setAttributes({
-          srcSet: {
-            ...attributes.srcSet,
-            [breakpoint]: {
-              ...attributes.srcSet[breakpoint],
-              imageUrl: checked ? imageUrl : '',
-            }
-          }
-        });
-      };
       function getPriorityText(value) {
         switch (value) {
         case 'auto':
@@ -109,15 +110,17 @@ registerBlockType(
                                   const {url, width, height} = media;
                                   const updatedSrcSet = {...attributes.srcSet};
                                   Object.keys(updatedSrcSet).forEach((size) => {
+                                    updatedSrcSet[size] = {...updatedSrcSet[size]};
                                     updatedSrcSet[size].imageUrl = url;
                                   });
+                                  console.log(media);
                                   setAttributes({
                                     mainImage: {
-                                      src:url,
+                                      src: url,
                                       width,
                                       height,
                                     },
-                                    srcSet: updatedSrcSet
+                                    srcSet: updatedSrcSet,
                                   });
                                 }}
                               />
@@ -136,10 +139,13 @@ registerBlockType(
                               >
                                 <div className='row_image'>
                                   <div className='setting_box'>
-                                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
+                                    <img src={
+                                      index === 0 ? attributes.mainImage.src : attributes.srcSet[breakpoint].imageUrl
+                                    } alt="Uploaded" />
+
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
-                                      onSelect={(media) => handleImageUpload(breakpoint, media)}
+                                      onSelect={(media) => handleImageUpload(index,breakpoint, media)}
                                     />
                                     {attributes.srcSet[breakpoint].imageUrl !== attributes.mainImage.src && (
                                       <button
@@ -154,10 +160,10 @@ registerBlockType(
                                         label="width"
                                         type="text"
                                         className="col"
-                                        value={attributes.mainImage.width}
+                                        value={index === 0 ? attributes.mainImage.width : attributes.srcSet[breakpoint].width}
                                         onChange={(event) => {
                                           const newWidth = event.replace(/\D/g, '');
-                                          handleDimensionChange({width: newWidth});
+                                          handleDimensionChange(index, breakpoint, {width: newWidth});
                                         }}
                                         inputMode="numeric"
                                       />
@@ -165,10 +171,10 @@ registerBlockType(
                                         label="height"
                                         type="text"
                                         className="col"
-                                        value={attributes.mainImage.height}
+                                        value={index === 0 ? attributes.mainImage.height : attributes.srcSet[breakpoint].height}
                                         onChange={(event) => {
                                           const newHeight = event.replace(/\D/g, '');
-                                          handleDimensionChange({height: newHeight});
+                                          handleDimensionChange(index, breakpoint, {height: newHeight});
                                         }}
                                         inputMode="numeric"
                                       />
@@ -221,9 +227,8 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>
       );
-      // { console.log(attributes.srcSet); }
-      { console.log(attributes.mainImage); }
       { console.log(attributes.srcSet); }
+      
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
@@ -232,28 +237,20 @@ registerBlockType(
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
-              // onSelect={(media) => {
-              //   setAttributes({
-              //     mainImage: {
-              //       src: media.url,
-              //       width: media.width,
-              //       height: media.height,
-              //     }
-              //   });
-              // }}
               onSelect={(media) => {
                 const {url, width, height} = media;
                 const updatedSrcSet = {...attributes.srcSet};
                 Object.keys(updatedSrcSet).forEach((size) => {
+                  updatedSrcSet[size] = {...updatedSrcSet[size]};
                   updatedSrcSet[size].imageUrl = url;
                 });
                 setAttributes({
                   mainImage: {
-                    src:url,
+                    src: url,
                     width,
                     height,
                   },
-                  srcSet: updatedSrcSet
+                  srcSet: updatedSrcSet,
                 });
               }}
             />
@@ -268,27 +265,25 @@ registerBlockType(
     },
     save: props => {
       const {attributes} = props;
-      const {mainImage, srcSet,altText,loadingLazy,fetchPriority} = attributes;
-      const srcsetValues = Object.entries(srcSet)
-        .filter(([breakpoint, data]) => data.imageUrl !== '')
-        .map(([breakpoint, data]) => `${data.imageUrl} ${data.viewPort}w`);
-    
-      // Создание строки srcset, объединяя значения через запятую
-      const srcset = srcsetValues.join(', ');
+      const {mainImage, srcSet, altText, loadingLazy, fetchPriority} = attributes;
+      
+      const srcSetString = Object.keys(srcSet)
+        .map(size => `${srcSet[size].imageUrl} ${srcSet[size].viewPort}w`)
+        .join(', ');
     
       const blockClass = attributes.modification;
     
       const blockProps = useBlockProps.save({
         className: blockClass,
       });
-    
+      
       return (
         <figure {...blockProps}>
           <img
             sizes="100vw"
             {...(fetchPriority !== 'auto' ? {fetchpriority: fetchPriority} : {})}
             {...(loadingLazy ? {loading: 'lazy'} : {})}
-            {...(srcset ? {srcSet: srcset} : {})}
+            srcSet={srcSetString}
             src={mainImage.src}
             alt={altText}
             className='img-fluid'

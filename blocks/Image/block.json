@@ -26,10 +26,6 @@
       "type": "boolean",
       "default": false
     },
-    "src": {
-      "type": "string",
-      "default": ""
-    },
     "altText": {
       "type": "string",
       "default": "Image"
