@@ -35,7 +35,8 @@
       "default": {
         "src": "",
         "width": "",
-        "height": ""
+        "height": "",
+        "id": ""
       }
     },
     "srcSet": {
@@ -43,23 +44,28 @@
       "default": {
         "sm": {
           "imageUrl": "",
-          "viewPort": "576"
+          "viewPort": "576",
+          "id": ""
         },
         "md": {
           "imageUrl": "",
-          "viewPort": "768"
+          "viewPort": "768",
+          "id": ""
         },
         "lg": {
           "imageUrl": "",
-          "viewPort": "992"
+          "viewPort": "992",
+          "id": ""
         },
         "xl": {
           "imageUrl": "",
-          "viewPort": "1200"
+          "viewPort": "1200",
+          "id": ""
         },
         "xxl": {
           "imageUrl": "",
-          "viewPort": "1400"
+          "viewPort": "1400",
+          "id": ""
         }
       }
     }

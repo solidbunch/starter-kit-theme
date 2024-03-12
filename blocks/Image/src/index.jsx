@@ -37,20 +37,41 @@ registerBlockType(
             }),
         });
       };
+      // upload
       const handleImageUpload = (index, breakpoint, media) => {
+        const updatedSrcSet = {...attributes.srcSet};
+        
+        Object.keys(updatedSrcSet).forEach((size) => {
+          updatedSrcSet[size] = {...updatedSrcSet[size]};
+          updatedSrcSet[size].imageUrl = media.url;
+          updatedSrcSet[size].id = media.id;
+          delete updatedSrcSet[size].height;
+          delete updatedSrcSet[size].width;
+        });
+        // Object.keys(updatedSrcSet).forEach((size) => {
+        //   updatedSrcSet[size] = {
+        //     ...updatedSrcSet[size],
+        //     imageUrl: media.url,
+        //     id: media.id,
+        //   };
+        // });
         setAttributes({
           ...(index === 0
             ? {
-              mainImage: {...attributes.mainImage, src: media.url},
-              srcSet: {
-                ...attributes.srcSet,
-                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url},
+              
+              mainImage: {
+                ...attributes.mainImage,
+                src: media.url,
+                width: media.width,
+                height: media.height,
+                id: media.id,
               },
+              srcSet: updatedSrcSet,
             }
             : {
               srcSet: {
                 ...attributes.srcSet,
-                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url},
+                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url, id: media.id},
               },
             }),
         });
@@ -62,7 +83,8 @@ registerBlockType(
             ...attributes.srcSet,
             [breakpoint]: {
               ...attributes.srcSet[breakpoint],
-              imageUrl: attributes.mainImage.src
+              imageUrl: attributes.mainImage.src,
+              id: attributes.mainImage.id,
             }
           }
         });
@@ -107,18 +129,19 @@ registerBlockType(
                                 icon="format-image"
                                 labels={{title: 'Add Image'}}
                                 onSelect={(media) => {
-                                  const {url, width, height} = media;
+                                  const {url, width, height,id} = media;
                                   const updatedSrcSet = {...attributes.srcSet};
                                   Object.keys(updatedSrcSet).forEach((size) => {
                                     updatedSrcSet[size] = {...updatedSrcSet[size]};
                                     updatedSrcSet[size].imageUrl = url;
+                                    updatedSrcSet[size].id = id;
                                   });
-                                  console.log(media);
                                   setAttributes({
                                     mainImage: {
                                       src: url,
                                       width,
                                       height,
+                                      id
                                     },
                                     srcSet: updatedSrcSet,
                                   });
@@ -147,7 +170,7 @@ registerBlockType(
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => handleImageUpload(index,breakpoint, media)}
                                     />
-                                    {attributes.srcSet[breakpoint].imageUrl !== attributes.mainImage.src && (
+                                    {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
                                       <button
                                         className='btn btn-danger btn-sm btn_reset'
                                         onClick={() => handleResetImage(breakpoint)}
@@ -227,8 +250,9 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>
       );
-      { console.log(attributes.srcSet); }
       
+      { console.log(attributes.mainImage); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
@@ -238,17 +262,19 @@ registerBlockType(
               icon="format-image"
               labels={{title: 'Add Image'}}
               onSelect={(media) => {
-                const {url, width, height} = media;
+                const {url, width, height,id} = media;
                 const updatedSrcSet = {...attributes.srcSet};
                 Object.keys(updatedSrcSet).forEach((size) => {
                   updatedSrcSet[size] = {...updatedSrcSet[size]};
                   updatedSrcSet[size].imageUrl = url;
+                  updatedSrcSet[size].id = id;
                 });
                 setAttributes({
                   mainImage: {
                     src: url,
                     width,
                     height,
+                    id
                   },
                   srcSet: updatedSrcSet,
                 });
