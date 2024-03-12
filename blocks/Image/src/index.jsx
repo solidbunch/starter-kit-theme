@@ -41,20 +41,23 @@ registerBlockType(
       const handleImageUpload = (index, breakpoint, media) => {
         const updatedSrcSet = {...attributes.srcSet};
         
-        Object.keys(updatedSrcSet).forEach((size) => {
-          updatedSrcSet[size] = {...updatedSrcSet[size]};
-          updatedSrcSet[size].imageUrl = media.url;
-          updatedSrcSet[size].id = media.id;
-          delete updatedSrcSet[size].height;
-          delete updatedSrcSet[size].width;
-        });
         // Object.keys(updatedSrcSet).forEach((size) => {
-        //   updatedSrcSet[size] = {
-        //     ...updatedSrcSet[size],
-        //     imageUrl: media.url,
-        //     id: media.id,
-        //   };
+        //   updatedSrcSet[size] = {...updatedSrcSet[size]};
+        //   updatedSrcSet[size].imageUrl = media.url;
+        //   updatedSrcSet[size].id = media.id;
+        //   updatedSrcSet[size].height = "";
+        //   updatedSrcSet[size].width = "";
         // });
+        Object.keys(updatedSrcSet).forEach((size) => {
+          updatedSrcSet[size] = {
+            ...updatedSrcSet[size],
+            imageUrl: media.url,
+            id: media.id,
+            height: "",
+            width: ""
+          };
+        });
+        
         setAttributes({
           ...(index === 0
             ? {
@@ -251,8 +254,8 @@ registerBlockType(
         </InspectorControls>
       );
       
-      { console.log(attributes.mainImage); }
-      { console.log(attributes.srcSet); }
+      // { console.log(attributes.mainImage); }
+      // { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (

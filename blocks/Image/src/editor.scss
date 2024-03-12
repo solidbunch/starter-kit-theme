@@ -1,7 +1,5 @@
-// Styles for Blocks Editor only
 .setting_box {
 	position: relative;
-	// margin-top: 10px;
 	.components-placeholder__fieldset {
 		flex-direction: row !important;
 	}
@@ -16,10 +14,12 @@
 	padding: 10px;
 	border-radius: 4px;
 	margin-bottom: 10px;
+
 	.components-base-control__field,
 	.components-base-control {
 		margin-bottom: 0 !important;
 	}
+
 	.components-placeholder {
 		border: 0 !important;
 		box-shadow: none !important;
@@ -29,10 +29,10 @@
 	button {
 		border-radius: 0;
 		border-right-width: 0;
-		+button {}
 		&:first-child {
 			border-radius: 3px 0 0 3px;
 		}
+
 		&:last-child {
 			border-radius: 0 3px 3px 0;
 			border-right-width: 1px;
@@ -41,7 +41,6 @@
 }
 .image-dimensions {
 	display: flex;
-
 }
 .custom_tab {
 	.components-tab-panel__tabs {
@@ -53,11 +52,4 @@
 .custom_panel {
 	margin-left: -16px;
 	margin-right: -16px;
-	.components-panel__body {
-		// padding-left: 0;
-		// padding-right: 0;
-	}
 }
-// .image_container {
-// 	background: #ccc;
-// }
