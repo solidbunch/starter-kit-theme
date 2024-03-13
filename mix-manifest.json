@@ -1,12 +1,11 @@
 {
-    "/assets/build/fonts/block-icons/block-icons.font.css": "/assets/build/fonts/block-icons/block-icons.font.css",
     "/assets/build/fonts/block-icons/block-icons.font.js": "/assets/build/fonts/block-icons/block-icons.font.js",
     "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
     "/blocks/Section/build/index.js": "/blocks/Section/build/index.js",
     "/blocks/Row/build/index.js": "/blocks/Row/build/index.js",
-    "/blocks/News/build/index.js": "/blocks/News/build/index.js",
     "/blocks/News/build/_edit.js": "/blocks/News/build/_edit.js",
+    "/blocks/News/build/index.js": "/blocks/News/build/index.js",
     "/blocks/Navigation/build/view.js": "/blocks/Navigation/build/view.js",
     "/blocks/Navigation/build/index.js": "/blocks/Navigation/build/index.js",
     "/blocks/Image/build/index.js": "/blocks/Image/build/index.js",

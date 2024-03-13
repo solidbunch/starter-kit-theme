@@ -40,7 +40,7 @@ registerBlockType(
       // upload
       const handleImageUpload = (index, breakpoint, media) => {
         const updatedSrcSet = {...attributes.srcSet};
-        
+
         Object.keys(updatedSrcSet).forEach((brPoint) => {
           const viewport = updatedSrcSet[brPoint].viewPort;
           const ratio = media.width / media.height;
@@ -53,7 +53,7 @@ registerBlockType(
             ratio
           };
         });
-        
+
         setAttributes({
           ...(index === 0
             ? {
@@ -82,7 +82,7 @@ registerBlockType(
             }),
         });
       };
-      
+
       const handleResetImage = (breakpoint) => {
         setAttributes({
           srcSet: {
@@ -98,7 +98,7 @@ registerBlockType(
           }
         });
       };
-      
+
       function getPriorityText(value) {
         switch (value) {
         case 'auto':
@@ -226,7 +226,7 @@ registerBlockType(
                   }
                   {tab.name === 'tab2' &&
                     <div className='pt-4 px-3'>
-                      <TextareaControl 
+                      <TextareaControl
                         label="Alt Text"
                         value={attributes.altText}
                         onChange={(value) => {
@@ -264,7 +264,7 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>
       );
-      
+
       { console.log(attributes.mainImage); }
       { console.log(attributes.srcSet); }
       const renderOutput = (
@@ -301,42 +301,16 @@ registerBlockType(
           )}
         </div>
       );
-      
+
       return [
         renderControls,
         renderOutput,
       ];
     },
-    save: props => {
-      const {attributes} = props;
-      const {mainImage, srcSet, altText, loadingLazy, fetchPriority} = attributes;
-      
-      const srcSetString = Object.keys(srcSet)
-        .map(size => `${srcSet[size].imageUrl} ${srcSet[size].viewPort}w`)
-        .join(', ');
-    
-      const blockClass = attributes.modification;
-    
-      const blockProps = useBlockProps.save({
-        className: blockClass,
-      });
-      
-      return (
-        <figure {...blockProps}>
-          <img
-            sizes="100vw"
-            {...(fetchPriority !== 'auto' ? {fetchpriority: fetchPriority} : {})}
-            {...(loadingLazy ? {loading: 'lazy'} : {})}
-            srcSet={srcSetString}
-            src={mainImage.src}
-            alt={altText}
-            className='img-fluid'
-            width={mainImage.width}
-            height={mainImage.height}
-          />
-        </figure>
-      );
+    save: () => {
+      // Rendering in PHP
+      return null;
     },
-    
+
   },
 );
