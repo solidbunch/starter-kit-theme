@@ -36,7 +36,8 @@
         "src": "",
         "width": "",
         "height": "",
-        "id": ""
+        "id": "",
+        "ratio": ""
       }
     },
     "srcSet": {
@@ -44,28 +45,33 @@
       "default": {
         "sm": {
           "imageUrl": "",
-          "viewPort": "576",
-          "id": ""
+          "viewPort": 576,
+          "id": "",
+          "ratio": ""
         },
         "md": {
           "imageUrl": "",
-          "viewPort": "768",
-          "id": ""
+          "viewPort": 768,
+          "id": "",
+          "ratio": ""
         },
         "lg": {
           "imageUrl": "",
-          "viewPort": "992",
-          "id": ""
+          "viewPort": 992,
+          "id": "",
+          "ratio": ""
         },
         "xl": {
           "imageUrl": "",
-          "viewPort": "1200",
-          "id": ""
+          "viewPort": 1200,
+          "id": "",
+          "ratio": ""
         },
         "xxl": {
           "imageUrl": "",
-          "viewPort": "1400",
-          "id": ""
+          "viewPort": 1400,
+          "id": "",
+          "ratio": ""
         }
       }
     }

@@ -41,40 +41,43 @@ registerBlockType(
       const handleImageUpload = (index, breakpoint, media) => {
         const updatedSrcSet = {...attributes.srcSet};
         
-        // Object.keys(updatedSrcSet).forEach((size) => {
-        //   updatedSrcSet[size] = {...updatedSrcSet[size]};
-        //   updatedSrcSet[size].imageUrl = media.url;
-        //   updatedSrcSet[size].id = media.id;
-        //   updatedSrcSet[size].height = "";
-        //   updatedSrcSet[size].width = "";
-        // });
-        Object.keys(updatedSrcSet).forEach((size) => {
-          updatedSrcSet[size] = {
-            ...updatedSrcSet[size],
+        Object.keys(updatedSrcSet).forEach((brPoint) => {
+          const viewport = updatedSrcSet[brPoint].viewPort;
+          const ratio = media.width / media.height;
+          updatedSrcSet[brPoint] = {
+            ...updatedSrcSet[brPoint],
             imageUrl: media.url,
             id: media.id,
-            height: "",
-            width: ""
+            width: viewport,
+            height: Math.trunc(viewport / ratio),
+            ratio
           };
         });
         
         setAttributes({
           ...(index === 0
             ? {
-              
               mainImage: {
                 ...attributes.mainImage,
                 src: media.url,
                 width: media.width,
                 height: media.height,
                 id: media.id,
+                ratio:media.width / media.height
               },
               srcSet: updatedSrcSet,
             }
             : {
               srcSet: {
                 ...attributes.srcSet,
-                [breakpoint]: {...attributes.srcSet[breakpoint], imageUrl: media.url, id: media.id},
+                [breakpoint]: {
+                  ...attributes.srcSet[breakpoint],
+                  imageUrl: media.url,
+                  id: media.id,
+                  width:updatedSrcSet[breakpoint].viewPort,
+                  ratio: media.width / media.height,
+                  height: Math.trunc(updatedSrcSet[breakpoint].viewPort / (media.width / media.height)),
+                },
               },
             }),
         });
@@ -88,6 +91,9 @@ registerBlockType(
               ...attributes.srcSet[breakpoint],
               imageUrl: attributes.mainImage.src,
               id: attributes.mainImage.id,
+              ratio:attributes.mainImage.ratio,
+              width:attributes.srcSet[breakpoint].viewPort,
+              height:attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio,
             }
           }
         });
@@ -132,24 +138,29 @@ registerBlockType(
                                 icon="format-image"
                                 labels={{title: 'Add Image'}}
                                 onSelect={(media) => {
-                                  const {url, width, height,id} = media;
+                                  const {url, width, height, id} = media;
+                                  const ratio = width / height;
                                   const updatedSrcSet = {...attributes.srcSet};
-                                  Object.keys(updatedSrcSet).forEach((size) => {
-                                    updatedSrcSet[size] = {...updatedSrcSet[size]};
-                                    updatedSrcSet[size].imageUrl = url;
-                                    updatedSrcSet[size].id = id;
+
+                                  Object.keys(updatedSrcSet).forEach((brPoint) => {
+                                    const viewport = updatedSrcSet[brPoint].viewPort;
+                                    updatedSrcSet[brPoint] = {
+                                      ...updatedSrcSet[brPoint], // Keep other properties intact
+                                      imageUrl: url,
+                                      id,
+                                      ratio,
+                                      width: viewport,
+                                      height: Math.trunc(viewport / ratio)
+                                    };
                                   });
+
                                   setAttributes({
-                                    mainImage: {
-                                      src: url,
-                                      width,
-                                      height,
-                                      id
-                                    },
-                                    srcSet: updatedSrcSet,
+                                    mainImage: {src: url, width, height, id, ratio},
+                                    srcSet: updatedSrcSet
                                   });
                                 }}
                               />
+
                             </div>
                           </div>
                         </div>
@@ -188,7 +199,7 @@ registerBlockType(
                                         className="col"
                                         value={index === 0 ? attributes.mainImage.width : attributes.srcSet[breakpoint].width}
                                         onChange={(event) => {
-                                          const newWidth = event.replace(/\D/g, '');
+                                          const newWidth = parseInt(event.replace(/\D/g, ''), 10);
                                           handleDimensionChange(index, breakpoint, {width: newWidth});
                                         }}
                                         inputMode="numeric"
@@ -199,7 +210,7 @@ registerBlockType(
                                         className="col"
                                         value={index === 0 ? attributes.mainImage.height : attributes.srcSet[breakpoint].height}
                                         onChange={(event) => {
-                                          const newHeight = event.replace(/\D/g, '');
+                                          const newHeight = parseInt(event.replace(/\D/g, ''), 10);
                                           handleDimensionChange(index, breakpoint, {height: newHeight});
                                         }}
                                         inputMode="numeric"
@@ -254,8 +265,8 @@ registerBlockType(
         </InspectorControls>
       );
       
-      // { console.log(attributes.mainImage); }
-      // { console.log(attributes.srcSet); }
+      { console.log(attributes.mainImage); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
@@ -265,21 +276,25 @@ registerBlockType(
               icon="format-image"
               labels={{title: 'Add Image'}}
               onSelect={(media) => {
-                const {url, width, height,id} = media;
+                const {url, width, height, id} = media;
+                const ratio = width / height;
                 const updatedSrcSet = {...attributes.srcSet};
-                Object.keys(updatedSrcSet).forEach((size) => {
-                  updatedSrcSet[size] = {...updatedSrcSet[size]};
-                  updatedSrcSet[size].imageUrl = url;
-                  updatedSrcSet[size].id = id;
+
+                Object.keys(updatedSrcSet).forEach((brPoint) => {
+                  const viewport = updatedSrcSet[brPoint].viewPort;
+                  updatedSrcSet[brPoint] = {
+                    ...updatedSrcSet[brPoint], // Keep other properties intact
+                    imageUrl: url,
+                    id,
+                    ratio,
+                    width: viewport,
+                    height: Math.trunc(viewport / ratio)
+                  };
                 });
+
                 setAttributes({
-                  mainImage: {
-                    src: url,
-                    width,
-                    height,
-                    id
-                  },
-                  srcSet: updatedSrcSet,
+                  mainImage: {src: url, width, height, id, ratio},
+                  srcSet: updatedSrcSet
                 });
               }}
             />
