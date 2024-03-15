@@ -24,62 +24,61 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      // width/ height
-      const handleDimensionChange = (index, breakpoint, updatedAttributes) => {
+      const changeMainDimension = (updatedAttributes) => {
+        setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
+      };
+      const changeSrcSetDimension = (breakpoint, updatedAttributes) => {
         setAttributes({
-          ...(index === 0
-            ? {mainImage: {...attributes.mainImage, ...updatedAttributes}}
-            : {
-              srcSet: {
-                ...attributes.srcSet,
-                [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
-              },
-            }),
+          srcSet: {
+            ...attributes.srcSet,
+            [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
+          },
         });
       };
-      // upload
-      const handleImageUpload = (index, breakpoint, media) => {
+      // Upload/Change main Image
+      const changeMainImage = (media) => {
+        const {url, width, height, id} = media;
+        const ratio = width / height;
         const updatedSrcSet = {...attributes.srcSet};
-
+      
+        // Update srcSet for all breakpoints
         Object.keys(updatedSrcSet).forEach((brPoint) => {
           const viewport = updatedSrcSet[brPoint].viewPort;
-          const ratio = media.width / media.height;
           updatedSrcSet[brPoint] = {
             ...updatedSrcSet[brPoint],
-            imageUrl: media.url,
-            id: media.id,
+            imageUrl: url,
+            id,
+            ratio,
             width: viewport,
-            height: Math.trunc(viewport / ratio),
-            ratio
+            height: Math.trunc(viewport / ratio)
           };
         });
-
+      
+        // Update mainImage and srcSet attributes
         setAttributes({
-          ...(index === 0
-            ? {
-              mainImage: {
-                ...attributes.mainImage,
-                src: media.url,
-                width: media.width,
-                height: media.height,
-                id: media.id,
-                ratio:media.width / media.height
-              },
-              srcSet: updatedSrcSet,
-            }
-            : {
-              srcSet: {
-                ...attributes.srcSet,
-                [breakpoint]: {
-                  ...attributes.srcSet[breakpoint],
-                  imageUrl: media.url,
-                  id: media.id,
-                  width:updatedSrcSet[breakpoint].viewPort,
-                  ratio: media.width / media.height,
-                  height: Math.trunc(updatedSrcSet[breakpoint].viewPort / (media.width / media.height)),
-                },
-              },
-            }),
+          mainImage: {src: url, width, height, id, ratio},
+          srcSet: updatedSrcSet
+        });
+      };
+      const changeSrcSetImage = (breakpoint, media) => {
+        const updatedSrcSet = {...attributes.srcSet};
+      
+        // Calculate ratio
+        const ratio = media.width / media.height;
+      
+        // Update srcSet for the selected breakpoint
+        updatedSrcSet[breakpoint] = {
+          ...updatedSrcSet[breakpoint],
+          imageUrl: media.url,
+          id: media.id,
+          width: updatedSrcSet[breakpoint].viewPort,
+          ratio,
+          height: Math.trunc(updatedSrcSet[breakpoint].viewPort / ratio)
+        };
+      
+        // Update attributes
+        setAttributes({
+          srcSet: updatedSrcSet
         });
       };
 
@@ -137,28 +136,7 @@ registerBlockType(
                               <MediaPlaceholder
                                 icon="format-image"
                                 labels={{title: 'Add Image'}}
-                                onSelect={(media) => {
-                                  const {url, width, height, id} = media;
-                                  const ratio = width / height;
-                                  const updatedSrcSet = {...attributes.srcSet};
-
-                                  Object.keys(updatedSrcSet).forEach((brPoint) => {
-                                    const viewport = updatedSrcSet[brPoint].viewPort;
-                                    updatedSrcSet[brPoint] = {
-                                      ...updatedSrcSet[brPoint], // Keep other properties intact
-                                      imageUrl: url,
-                                      id,
-                                      ratio,
-                                      width: viewport,
-                                      height: Math.trunc(viewport / ratio)
-                                    };
-                                  });
-
-                                  setAttributes({
-                                    mainImage: {src: url, width, height, id, ratio},
-                                    srcSet: updatedSrcSet
-                                  });
-                                }}
+                                onSelect={changeMainImage}
                               />
 
                             </div>
@@ -166,23 +144,57 @@ registerBlockType(
                         </div>
                       ) : (
                         <div>
+                          <div className='px-4 mb-5'>
+                            <div className='row_image'>
+                              <div className='setting_box'>
+                                <img src={attributes.mainImage.src} alt="Uploaded" />
+
+                                <MediaPlaceholder
+                                  labels={{title: 'Main Image'}}
+                                  onSelect={changeMainImage}
+                                />
+                                <div className="image-dimensions row g-2">
+                                  <TextControl
+                                    label="width"
+                                    type="text"
+                                    className="col"
+                                    value={attributes.mainImage.width}
+                                    onChange={(event) => {
+                                      const newWidth = parseInt(event.replace(/\D/g, ''), 10);
+                                      changeMainDimension({width: newWidth});
+                                    }}
+                                    inputMode="numeric"
+                                  />
+                                  <TextControl
+                                    label="height"
+                                    type="text"
+                                    className="col"
+                                    value={attributes.mainImage.height}
+                                    onChange={(event) => {
+                                      const newHeight = parseInt(event.replace(/\D/g, ''), 10);
+                                      changeMainDimension({height: newHeight});
+                                    }}
+                                    inputMode="numeric"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           {Object.keys(attributes.srcSet)
                             .reverse()
-                            .map((breakpoint, index) => (
+                            .map((breakpoint) => (
                               <PanelBody
                                 title={`SrcSet: ${breakpoint.toUpperCase()}`}
                                 key={breakpoint}
-                                initialOpen={index === 0}
+                                initialOpen={false}
                               >
                                 <div className='row_image'>
                                   <div className='setting_box'>
-                                    <img src={
-                                      index === 0 ? attributes.mainImage.src : attributes.srcSet[breakpoint].imageUrl
-                                    } alt="Uploaded" />
+                                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
 
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
-                                      onSelect={(media) => handleImageUpload(index,breakpoint, media)}
+                                      onSelect={(media) => changeSrcSetImage(breakpoint, media)}
                                     />
                                     {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
                                       <button
@@ -197,10 +209,10 @@ registerBlockType(
                                         label="width"
                                         type="text"
                                         className="col"
-                                        value={index === 0 ? attributes.mainImage.width : attributes.srcSet[breakpoint].width}
+                                        value={attributes.srcSet[breakpoint].width}
                                         onChange={(event) => {
                                           const newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                          handleDimensionChange(index, breakpoint, {width: newWidth});
+                                          changeSrcSetDimension(breakpoint, {width: newWidth});
                                         }}
                                         inputMode="numeric"
                                       />
@@ -208,10 +220,10 @@ registerBlockType(
                                         label="height"
                                         type="text"
                                         className="col"
-                                        value={index === 0 ? attributes.mainImage.height : attributes.srcSet[breakpoint].height}
+                                        value={attributes.srcSet[breakpoint].height}
                                         onChange={(event) => {
                                           const newHeight = parseInt(event.replace(/\D/g, ''), 10);
-                                          handleDimensionChange(index, breakpoint, {height: newHeight});
+                                          changeSrcSetDimension(breakpoint, {height: newHeight});
                                         }}
                                         inputMode="numeric"
                                       />
@@ -275,28 +287,7 @@ registerBlockType(
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
-              onSelect={(media) => {
-                const {url, width, height, id} = media;
-                const ratio = width / height;
-                const updatedSrcSet = {...attributes.srcSet};
-
-                Object.keys(updatedSrcSet).forEach((brPoint) => {
-                  const viewport = updatedSrcSet[brPoint].viewPort;
-                  updatedSrcSet[brPoint] = {
-                    ...updatedSrcSet[brPoint], // Keep other properties intact
-                    imageUrl: url,
-                    id,
-                    ratio,
-                    width: viewport,
-                    height: Math.trunc(viewport / ratio)
-                  };
-                });
-
-                setAttributes({
-                  mainImage: {src: url, width, height, id, ratio},
-                  srcSet: updatedSrcSet
-                });
-              }}
+              onSelect={changeMainImage}
             />
           )}
         </div>
