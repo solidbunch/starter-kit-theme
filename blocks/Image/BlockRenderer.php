@@ -29,7 +29,7 @@ class BlockRenderer extends BlockAbstract {
      */
     public static function blockServerSideCallback( $attributes, $content, $block ): string {
         $imgAlt        = ! empty( $attributes['altText'] ) ? esc_attr( $attributes['altText'] ) : '';
-        $className     = ! empty( $attributes['className'] ) ? esc_attr( $attributes['className'] ) : '';
+        $className     = ! empty( $attributes['defaultClass'] ) ? esc_attr( $attributes['defaultClass'] ) : '';
         $fetchPriority = ! empty( $attributes['fetchPriority'] ) ? esc_attr( $attributes['fetchPriority'] ) : 'auto';
         $lazy          = ! empty( $attributes['loadingLazy'] ) ? true : false;
 

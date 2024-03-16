@@ -14,7 +14,7 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "modification": {
+    "defaultClass": {
       "type": "string",
       "default": "img-fluid"
     },

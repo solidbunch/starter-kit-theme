@@ -15,7 +15,7 @@ registerBlockType(
   metadata,
   {
     getEditWrapperProps(attributes) {
-      const blockClass = attributes.modification;
+      const blockClass = attributes.defaultClass;
       return {className: blockClass};
     },
     edit: props => {
@@ -27,6 +27,7 @@ registerBlockType(
       const changeMainDimension = (updatedAttributes) => {
         setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
       };
+      // console.log(blockProps);
       const changeSrcSetDimension = (breakpoint, updatedAttributes) => {
         setAttributes({
           srcSet: {
@@ -281,6 +282,7 @@ registerBlockType(
       { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
+          { console.log(blockProps) }
           {attributes.mainImage.src ? (
             <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
           ) : (
