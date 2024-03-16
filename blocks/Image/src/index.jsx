@@ -27,7 +27,7 @@ registerBlockType(
       const changeMainDimension = (updatedAttributes) => {
         setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
       };
-      // console.log(blockProps);
+
       const changeSrcSetDimension = (breakpoint, updatedAttributes) => {
         setAttributes({
           srcSet: {
@@ -57,7 +57,7 @@ registerBlockType(
       
         // Update mainImage and srcSet attributes
         setAttributes({
-          mainImage: {src: url, width, height, id, ratio},
+          mainImage: {src: url, width, startWidth: width, height, id, ratio},
           srcSet: updatedSrcSet
         });
       };
@@ -160,9 +160,19 @@ registerBlockType(
                                     type="text"
                                     className="col"
                                     value={attributes.mainImage.width}
+                                    // placeholder={attributes.mainImage.width}
                                     onChange={(event) => {
-                                      const newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                      changeMainDimension({width: newWidth});
+                                      let newWidth = parseInt(event.replace(/\D/g, ''), 10);
+                                      // isNaN(newWidth)
+                                      if (isNaN(newWidth)) {
+                                        newWidth = "";
+                                        // newHeight = "";
+                                      }
+                                      if (newWidth > attributes.mainImage.startWidth) {
+                                        newWidth = attributes.mainImage.startWidth;
+                                      }
+                                      let newHeight = Math.trunc(newWidth / attributes.mainImage.ratio);
+                                      changeMainDimension({width: newWidth, height: newHeight});
                                     }}
                                     inputMode="numeric"
                                   />
@@ -171,11 +181,7 @@ registerBlockType(
                                     type="text"
                                     className="col"
                                     value={attributes.mainImage.height}
-                                    onChange={(event) => {
-                                      const newHeight = parseInt(event.replace(/\D/g, ''), 10);
-                                      changeMainDimension({height: newHeight});
-                                    }}
-                                    inputMode="numeric"
+                                    disabled 
                                   />
                                 </div>
                               </div>
@@ -226,7 +232,7 @@ registerBlockType(
                                           const newHeight = parseInt(event.replace(/\D/g, ''), 10);
                                           changeSrcSetDimension(breakpoint, {height: newHeight});
                                         }}
-                                        inputMode="numeric"
+                                        disabled
                                       />
                                     </div>
                                   </div>
@@ -279,10 +285,9 @@ registerBlockType(
       );
 
       { console.log(attributes.mainImage); }
-      { console.log(attributes.srcSet); }
+      // { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
-          { console.log(blockProps) }
           {attributes.mainImage.src ? (
             <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
           ) : (
