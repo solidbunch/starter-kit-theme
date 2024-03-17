@@ -11,6 +11,8 @@ const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
 const {useState} = wp.element;
 
+const setDisabledBreakpoint = true;
+
 registerBlockType(
   metadata,
   {
@@ -21,9 +23,17 @@ registerBlockType(
     edit: props => {
       const {attributes, setAttributes, className} = props;
       const [priorityText, setPriorityText] = useState(getPriorityText(attributes.fetchPriority));
+      // const [state, setState] = useState({thatImage: true});
       const blockProps = useBlockProps({
         className: [className],
       });
+      // letter protection
+      const handleKeyPress = (event) => {
+        const allowedCharacters = /[0-9]/;
+        if (!allowedCharacters.test(event.key)) {
+          event.preventDefault();
+        }
+      };
       const changeMainDimension = (updatedAttributes) => {
         setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
       };
@@ -41,10 +51,11 @@ registerBlockType(
         const {url, width, height, id} = media;
         const ratio = width / height;
         const updatedSrcSet = {...attributes.srcSet};
-      
+        {console.log(media);}
         // Update srcSet for all breakpoints
         Object.keys(updatedSrcSet).forEach((brPoint) => {
           const viewport = updatedSrcSet[brPoint].viewPort;
+          const validateSize = setDisabledBreakpoint ? (width >= viewport) : undefined;
           updatedSrcSet[brPoint] = {
             ...updatedSrcSet[brPoint],
             imageUrl: url,
@@ -53,6 +64,9 @@ registerBlockType(
             width: viewport,
             height: Math.trunc(viewport / ratio)
           };
+          if (validateSize !== undefined) {
+            updatedSrcSet[brPoint].validateSize = validateSize;
+          }
         });
       
         // Update mainImage and srcSet attributes
@@ -157,16 +171,21 @@ registerBlockType(
                                 <div className="image-dimensions row g-2">
                                   <TextControl
                                     label="width"
-                                    type="text"
+                                    type="number"
                                     className="col"
                                     value={attributes.mainImage.width}
-                                    // placeholder={attributes.mainImage.width}
+                                    placeholder={attributes.mainImage.startWidth}
+                                    onKeyPress={handleKeyPress}
+                                    onBlur={(event) => {
+                                      if (event.target.value === "") {
+                                        const newHeight = Math.trunc(attributes.mainImage.startWidth / attributes.mainImage.ratio);
+                                        changeMainDimension({width: attributes.mainImage.startWidth, height: newHeight});
+                                      }
+                                    }}
                                     onChange={(event) => {
                                       let newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                      // isNaN(newWidth)
                                       if (isNaN(newWidth)) {
                                         newWidth = "";
-                                        // newHeight = "";
                                       }
                                       if (newWidth > attributes.mainImage.startWidth) {
                                         newWidth = attributes.mainImage.startWidth;
@@ -175,7 +194,10 @@ registerBlockType(
                                       changeMainDimension({width: newWidth, height: newHeight});
                                     }}
                                     inputMode="numeric"
+                                    min="0"
+                                    max={attributes.mainImage.startWidth}
                                   />
+
                                   <TextControl
                                     label="height"
                                     type="text"
@@ -210,6 +232,9 @@ registerBlockType(
                                       >
                                         Reset to Default Image
                                       </button>
+                                    )}
+                                    {!attributes.srcSet[breakpoint].validateSize && (
+                                      <p className='test_alert'>BAD SIZE</p>
                                     )}
                                     <div className="image-dimensions row g-2">
                                       <TextControl
@@ -284,8 +309,9 @@ registerBlockType(
         </InspectorControls>
       );
 
-      { console.log(attributes.mainImage); }
+      // { console.log(attributes.mainImage); }
       // { console.log(attributes.srcSet); }
+      // console.log(100 > 600);
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
@@ -297,6 +323,7 @@ registerBlockType(
               onSelect={changeMainImage}
             />
           )}
+          
         </div>
       );
 
