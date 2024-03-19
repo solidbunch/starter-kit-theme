@@ -11,6 +11,7 @@ const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
 const {useState} = wp.element;
 
+// setDisabledBreakpoint  ---  toggler for hide breakpoints , when image with small size
 const setDisabledBreakpoint = true;
 
 registerBlockType(
@@ -23,10 +24,10 @@ registerBlockType(
     edit: props => {
       const {attributes, setAttributes, className} = props;
       const [priorityText, setPriorityText] = useState(getPriorityText(attributes.fetchPriority));
-      // const [state, setState] = useState({thatImage: true});
       const blockProps = useBlockProps({
         className: [className],
       });
+
       // letter protection
       const handleKeyPress = (event) => {
         const allowedCharacters = /[0-9]/;
@@ -50,25 +51,36 @@ registerBlockType(
       const changeMainImage = (media) => {
         const {url, width, height, id} = media;
         const ratio = width / height;
+
+        // const originalSrcSet = {...attributes.srcSet};
         const updatedSrcSet = {...attributes.srcSet};
-        {console.log(media);}
+
         // Update srcSet for all breakpoints
         Object.keys(updatedSrcSet).forEach((brPoint) => {
           const viewport = updatedSrcSet[brPoint].viewPort;
-          const validateSize = setDisabledBreakpoint ? (width >= viewport) : undefined;
+          const validateSize = width >= viewport;
           updatedSrcSet[brPoint] = {
             ...updatedSrcSet[brPoint],
             imageUrl: url,
             id,
             ratio,
             width: viewport,
-            height: Math.trunc(viewport / ratio)
+            height: Math.trunc(viewport / ratio),
+            validateSize
           };
-          if (validateSize !== undefined) {
-            updatedSrcSet[brPoint].validateSize = validateSize;
+        });
+        Object.keys(updatedSrcSet).forEach((brPoint) => {
+          if (setDisabledBreakpoint && width < updatedSrcSet[brPoint].viewPort) {
+            // delete updatedSrcSet[brPoint];
+            updatedSrcSet[brPoint] = {
+              ...updatedSrcSet[brPoint],
+              imageUrl: '',
+              height: '',
+              width: ''
+            };
           }
         });
-      
+        console.log(attributes.srcSet);
         // Update mainImage and srcSet attributes
         setAttributes({
           mainImage: {src: url, width, startWidth: width, height, id, ratio},
@@ -212,58 +224,63 @@ registerBlockType(
                           {Object.keys(attributes.srcSet)
                             .reverse()
                             .map((breakpoint) => (
-                              <PanelBody
-                                title={`SrcSet: ${breakpoint.toUpperCase()}`}
-                                key={breakpoint}
-                                initialOpen={false}
-                              >
-                                <div className='row_image'>
-                                  <div className='setting_box'>
-                                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
-
-                                    <MediaPlaceholder
-                                      labels={{title: 'Change Image'}}
-                                      onSelect={(media) => changeSrcSetImage(breakpoint, media)}
-                                    />
-                                    {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
-                                      <button
-                                        className='btn btn-danger btn-sm btn_reset'
-                                        onClick={() => handleResetImage(breakpoint)}
-                                      >
-                                        Reset to Default Image
-                                      </button>
-                                    )}
-                                    {!attributes.srcSet[breakpoint].validateSize && (
-                                      <p className='test_alert'>BAD SIZE</p>
-                                    )}
-                                    <div className="image-dimensions row g-2">
-                                      <TextControl
-                                        label="width"
-                                        type="text"
-                                        className="col"
-                                        value={attributes.srcSet[breakpoint].width}
-                                        onChange={(event) => {
-                                          const newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                          changeSrcSetDimension(breakpoint, {width: newWidth});
-                                        }}
-                                        inputMode="numeric"
+                              !setDisabledBreakpoint || attributes.srcSet[breakpoint].validateSize !== false ? (
+                                <PanelBody
+                                  title={`SrcSet: ${breakpoint.toUpperCase()}`}
+                                  key={breakpoint}
+                                  initialOpen={false}
+                                >
+                                  <div className='row_image' key={breakpoint}>
+                                    <div className='setting_box'>
+                                      <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
+                                      {!attributes.srcSet[breakpoint].validateSize && (
+                                        <div className='test_alert'
+                                        >
+                                          Bad Image Size
+                                        </div>
+                                      )}
+                                      <MediaPlaceholder
+                                        labels={{title: 'Change Image'}}
+                                        onSelect={(media) => changeSrcSetImage(breakpoint, media)}
                                       />
-                                      <TextControl
-                                        label="height"
-                                        type="text"
-                                        className="col"
-                                        value={attributes.srcSet[breakpoint].height}
-                                        onChange={(event) => {
-                                          const newHeight = parseInt(event.replace(/\D/g, ''), 10);
-                                          changeSrcSetDimension(breakpoint, {height: newHeight});
-                                        }}
-                                        disabled
-                                      />
+                                      {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
+                                        <button
+                                          className='btn btn-danger btn-sm btn_reset'
+                                          onClick={() => handleResetImage(breakpoint)}
+                                        >
+                                          Reset to Default Image
+                                        </button>
+                                      )}
+                                      <div className="image-dimensions row g-2">
+                                        <TextControl
+                                          label="width"
+                                          type="text"
+                                          className="col"
+                                          value={attributes.srcSet[breakpoint].width}
+                                          onChange={(event) => {
+                                            const newWidth = parseInt(event.replace(/\D/g, ''), 10);
+                                            changeSrcSetDimension(breakpoint, {width: newWidth});
+                                          }}
+                                          inputMode="numeric"
+                                        />
+                                        <TextControl
+                                          label="height"
+                                          type="text"
+                                          className="col"
+                                          value={attributes.srcSet[breakpoint].height}
+                                          onChange={(event) => {
+                                            const newHeight = parseInt(event.replace(/\D/g, ''), 10);
+                                            changeSrcSetDimension(breakpoint, {height: newHeight});
+                                          }}
+                                          disabled
+                                        />
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </PanelBody>
+                                </PanelBody>
+                              ) : null
                             ))}
+
                         </div>
                       )}
                     </div>
@@ -309,9 +326,8 @@ registerBlockType(
         </InspectorControls>
       );
 
-      // { console.log(attributes.mainImage); }
-      // { console.log(attributes.srcSet); }
-      // console.log(100 > 600);
+      { console.log(attributes.mainImage); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
