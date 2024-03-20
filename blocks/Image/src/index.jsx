@@ -80,7 +80,6 @@ registerBlockType(
             };
           }
         });
-        console.log(attributes.srcSet);
         // Update mainImage and srcSet attributes
         setAttributes({
           mainImage: {src: url, width, startWidth: width, height, id, ratio},
@@ -89,16 +88,16 @@ registerBlockType(
       };
       const changeSrcSetImage = (breakpoint, media) => {
         const updatedSrcSet = {...attributes.srcSet};
-      
+
         // Calculate ratio
         const ratio = media.width / media.height;
-      
         // Update srcSet for the selected breakpoint
         updatedSrcSet[breakpoint] = {
           ...updatedSrcSet[breakpoint],
           imageUrl: media.url,
           id: media.id,
           width: updatedSrcSet[breakpoint].viewPort,
+          startWidth: media.width,
           ratio,
           height: Math.trunc(updatedSrcSet[breakpoint].viewPort / ratio)
         };
@@ -117,6 +116,7 @@ registerBlockType(
               ...attributes.srcSet[breakpoint],
               imageUrl: attributes.mainImage.src,
               id: attributes.mainImage.id,
+              startWidth:'',
               ratio:attributes.mainImage.ratio,
               width:attributes.srcSet[breakpoint].viewPort,
               height:attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio,
@@ -195,7 +195,9 @@ registerBlockType(
                                       }
                                     }}
                                     onChange={(event) => {
+                                      
                                       let newWidth = parseInt(event.replace(/\D/g, ''), 10);
+                                      
                                       if (isNaN(newWidth)) {
                                         newWidth = "";
                                       }
@@ -254,25 +256,45 @@ registerBlockType(
                                       <div className="image-dimensions row g-2">
                                         <TextControl
                                           label="width"
-                                          type="text"
+                                          type="number"
                                           className="col"
                                           value={attributes.srcSet[breakpoint].width}
+                                          placeholder={attributes.srcSet[breakpoint].width}
+                                          onKeyPress={handleKeyPress}
+                                          onBlur={(event) => {
+                                            if (event.target.value === "") {
+                                              const newHeight = Math.trunc(attributes.srcSet[breakpoint].viewPort / attributes.srcSet[breakpoint].ratio);
+                                              changeSrcSetDimension(breakpoint, {width: attributes.srcSet[breakpoint].viewPort, height: newHeight});
+                                            }
+                                          }}
                                           onChange={(event) => {
-                                            const newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                            changeSrcSetDimension(breakpoint, {width: newWidth});
+                                            
+                                            let newWidth = parseInt(event.replace(/\D/g, ''), 10);
+                                            if (isNaN(newWidth)) {
+                                              newWidth = "";
+                                            }
+                                            const idValidation = attributes.mainImage.id === attributes.srcSet[breakpoint].id;
+                                            if (!idValidation) {
+                                              if (newWidth > attributes.srcSet[breakpoint].startWidth) {
+                                                newWidth = attributes.srcSet[breakpoint].startWidth;
+                                              }
+                                            } else if (newWidth > attributes.mainImage.startWidth) {
+                                              newWidth = attributes.mainImage.startWidth;
+                                            }
+                                            
+                                            let newHeight = Math.trunc(newWidth / attributes.srcSet[breakpoint].ratio);
+                                            changeSrcSetDimension(breakpoint, {width: newWidth, height: newHeight});
                                           }}
                                           inputMode="numeric"
+                                          min="0"
+                                          max={attributes.mainImage.startWidth}
                                         />
                                         <TextControl
                                           label="height"
                                           type="text"
                                           className="col"
                                           value={attributes.srcSet[breakpoint].height}
-                                          onChange={(event) => {
-                                            const newHeight = parseInt(event.replace(/\D/g, ''), 10);
-                                            changeSrcSetDimension(breakpoint, {height: newHeight});
-                                          }}
-                                          disabled
+                                          disabled 
                                         />
                                       </div>
                                     </div>
