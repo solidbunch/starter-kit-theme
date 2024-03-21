@@ -146,29 +146,67 @@ registerBlockType(
       //   });
       // };
       
-      const changeSrcSetImage = (breakpoint, media) => {
-        const updatedSrcSet = {...attributes.srcSet};
+      // const changeSrcSetImage = (breakpoint, media) => {
+      //   const updatedSrcSet = {...attributes.srcSet};
 
-        // Calculate ratio
-        const ratio = media.width / media.height;
-        let width = (media.width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : media.width;
-        // Update srcSet for the selected breakpoint
-        updatedSrcSet[breakpoint] = {
-          ...updatedSrcSet[breakpoint],
-          imageUrl: media.url,
-          id: media.id,
-          width,
-          startWidth: media.width,
-          ratio,
-          height: Math.trunc(width / ratio)
-        };
+      //   // Calculate ratio
+      //   const ratio = media.width / media.height;
+      //   let width = (media.width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : media.width;
+      //   // Update srcSet for the selected breakpoint
+      //   updatedSrcSet[breakpoint] = {
+      //     ...updatedSrcSet[breakpoint],
+      //     imageUrl: media.url,
+      //     id: media.id,
+      //     width,
+      //     startWidth: media.width,
+      //     ratio,
+      //     height: Math.trunc(width / ratio)
+      //   };
       
-        // Update attributes
-        setAttributes({
-          srcSet: updatedSrcSet
+      //   // Update attributes
+      //   setAttributes({
+      //     srcSet: updatedSrcSet
+      //   });
+      // };
+      const changeSrcSetImage = (breakpoint, media) => {
+        return new Promise((resolve, reject) => {
+          if (media.id) {
+            resolve(media);
+          } else {
+            const waitForData = setInterval(() => {
+              if (media.id) {
+                clearInterval(waitForData);
+                resolve(media);
+              }
+            }, 100); // reload 100
+      
+            // reject
+          }
+        }).then((fullMedia) => {
+          // console.log(fullMedia);
+          const updatedSrcSet = {...attributes.srcSet};
+          const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
+          const ratio = width / height;
+          const widthInInput = (width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
+      
+          updatedSrcSet[breakpoint] = {
+            ...updatedSrcSet[breakpoint],
+            imageUrl: fullMedia.url,
+            id: fullMedia.id,
+            width:widthInInput,
+            startWidth: width,
+            ratio,
+            height: Math.trunc(width / ratio)
+          };
+          // Update attributes
+          setAttributes({
+            srcSet: updatedSrcSet
+          });
+        }).catch((error) => {
+          // Errors
+          console.error("Errors:", error);
         });
       };
-
       const handleResetImage = (breakpoint) => {
         setAttributes({
           srcSet: {
