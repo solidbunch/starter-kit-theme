@@ -48,70 +48,104 @@ registerBlockType(
         });
       };
 
-      // const handleMediaSelect = (media) => {
-      //   return new Promise((resolve, reject) => {
-      //     // Проверяем наличие URL в объекте media,
-      //     // чтобы убедиться, что файл был загружен
-      //     if (media && media.media_details) {
-      //       console.log('Полный объект файла:', media);
-      //       resolve(media); // Передаем полный объект media в качестве результата промиса
-      //     } else {
-      //       reject(new Error('Ошибка при загрузке файла.')); // В случае ошибки вызываем reject
+      const changeMainImage = (media) => {
+        return new Promise((resolve, reject) => {
+          if (media.id) {
+            resolve(media);
+          } else {
+            const waitForData = setInterval(() => {
+              if (media.id) {
+                clearInterval(waitForData);
+                resolve(media);
+              }
+            }, 100); // reload 100
+      
+            // reject
+          }
+        }).then((fullMedia) => {
+          console.log(fullMedia);
+          const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
+  
+          const updatedSrcSet = {...attributes.srcSet};
+      
+          // Update srcSet for all breakpoints
+          Object.keys(updatedSrcSet).forEach((brPoint) => {
+            const viewport = updatedSrcSet[brPoint].viewPort;
+            const validateSize = width >= viewport;
+            updatedSrcSet[brPoint] = {
+              ...updatedSrcSet[brPoint],
+              imageUrl: fullMedia.url,
+              id: fullMedia.id,
+              ratio: width / height,
+              width: viewport,
+              height: Math.trunc(viewport / (width / height)),
+              validateSize
+            };
+          });
+      
+          // Check and update disabled breakpoints
+          Object.keys(updatedSrcSet).forEach((brPoint) => {
+            if (setDisabledBreakpoint && width < updatedSrcSet[brPoint].viewPort) {
+              updatedSrcSet[brPoint] = {
+                ...updatedSrcSet[brPoint],
+                imageUrl: '',
+                height: '',
+                width: ''
+              };
+            }
+          });
+      
+          // Update mainImage and srcSet attributes
+          setAttributes({
+            mainImage: {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
+            srcSet: updatedSrcSet
+          });
+        }).catch((error) => {
+          // Errors
+          console.error("Errors:", error);
+        });
+      };
+      
+      // Upload/Change main Image
+      // const changeMainImage = (media) => {
+      //   const {url, width, height, id} = media;
+      //   const ratio = width / height;
+      //   // console.log(media);
+      //   // console.log(media.media_details);
+
+      //   const updatedSrcSet = {...attributes.srcSet};
+
+      //   // Update srcSet for all breakpoints
+      //   Object.keys(updatedSrcSet).forEach((brPoint) => {
+      //     const viewport = updatedSrcSet[brPoint].viewPort;
+      //     const validateSize = width >= viewport;
+      //     updatedSrcSet[brPoint] = {
+      //       ...updatedSrcSet[brPoint],
+      //       imageUrl: url,
+      //       id,
+      //       ratio,
+      //       width: viewport,
+      //       height: Math.trunc(viewport / ratio),
+      //       validateSize
+      //     };
+      //   });
+      //   Object.keys(updatedSrcSet).forEach((brPoint) => {
+      //     if (setDisabledBreakpoint && width < updatedSrcSet[brPoint].viewPort) {
+      //       updatedSrcSet[brPoint] = {
+      //         ...updatedSrcSet[brPoint],
+      //         imageUrl: '',
+      //         height: '',
+      //         width: ''
+      //       };
       //     }
+      //   });
+      //   // Update mainImage and srcSet attributes
+      //   setAttributes({
+      //     mainImage: {src: url, width, startWidth: width, height, id, ratio},
+      //     srcSet: updatedSrcSet
       //   });
       // };
       
-      // // Использование промиса
-      // handleMediaSelect(media)
-      //   .then((fullMediaObject) => {
-      //     // Здесь можно выполнять дальнейшие действия с полным объектом файла
-      //     console.log('Дальнейшие действия с полным объектом файла:', fullMediaObject);
-      //   })
-      //   .catch((error) => {
-      //     // Обработка ошибки при загрузке файла
-      //     console.error(error);
-      //   });
-
-      // Upload/Change main Image
-      const changeMainImage = (media) => {
-        const {url, width, height, id} = media;
-        const ratio = width / height;
-        // console.log(media);
-        // console.log(media.media_details);
-
-        const updatedSrcSet = {...attributes.srcSet};
-
-        // Update srcSet for all breakpoints
-        Object.keys(updatedSrcSet).forEach((brPoint) => {
-          const viewport = updatedSrcSet[brPoint].viewPort;
-          const validateSize = width >= viewport;
-          updatedSrcSet[brPoint] = {
-            ...updatedSrcSet[brPoint],
-            imageUrl: url,
-            id,
-            ratio,
-            width: viewport,
-            height: Math.trunc(viewport / ratio),
-            validateSize
-          };
-        });
-        Object.keys(updatedSrcSet).forEach((brPoint) => {
-          if (setDisabledBreakpoint && width < updatedSrcSet[brPoint].viewPort) {
-            // delete updatedSrcSet[brPoint];
-            updatedSrcSet[brPoint] = {
-              ...updatedSrcSet[brPoint],
-              imageUrl: '',
-              height: '',
-              width: ''
-            };
-          }
-        });
-        // Update mainImage and srcSet attributes
-        setAttributes({
-          mainImage: {src: url, width, startWidth: width, height, id, ratio},
-          srcSet: updatedSrcSet
-        });
-      };
       const changeSrcSetImage = (breakpoint, media) => {
         const updatedSrcSet = {...attributes.srcSet};
 
@@ -375,8 +409,8 @@ registerBlockType(
         </InspectorControls>
       );
 
-      // { console.log(attributes.mainImage); }
-      // { console.log(attributes.srcSet); }
+      { console.log(attributes.mainImage); }
+      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
