@@ -47,12 +47,38 @@ registerBlockType(
           },
         });
       };
+
+      // const handleMediaSelect = (media) => {
+      //   return new Promise((resolve, reject) => {
+      //     // Проверяем наличие URL в объекте media,
+      //     // чтобы убедиться, что файл был загружен
+      //     if (media && media.media_details) {
+      //       console.log('Полный объект файла:', media);
+      //       resolve(media); // Передаем полный объект media в качестве результата промиса
+      //     } else {
+      //       reject(new Error('Ошибка при загрузке файла.')); // В случае ошибки вызываем reject
+      //     }
+      //   });
+      // };
+      
+      // // Использование промиса
+      // handleMediaSelect(media)
+      //   .then((fullMediaObject) => {
+      //     // Здесь можно выполнять дальнейшие действия с полным объектом файла
+      //     console.log('Дальнейшие действия с полным объектом файла:', fullMediaObject);
+      //   })
+      //   .catch((error) => {
+      //     // Обработка ошибки при загрузке файла
+      //     console.error(error);
+      //   });
+
       // Upload/Change main Image
       const changeMainImage = (media) => {
         const {url, width, height, id} = media;
         const ratio = width / height;
+        // console.log(media);
+        // console.log(media.media_details);
 
-        // const originalSrcSet = {...attributes.srcSet};
         const updatedSrcSet = {...attributes.srcSet};
 
         // Update srcSet for all breakpoints
@@ -91,15 +117,16 @@ registerBlockType(
 
         // Calculate ratio
         const ratio = media.width / media.height;
+        let width = (media.width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : media.width;
         // Update srcSet for the selected breakpoint
         updatedSrcSet[breakpoint] = {
           ...updatedSrcSet[breakpoint],
           imageUrl: media.url,
           id: media.id,
-          width: updatedSrcSet[breakpoint].viewPort,
+          width,
           startWidth: media.width,
           ratio,
-          height: Math.trunc(updatedSrcSet[breakpoint].viewPort / ratio)
+          height: Math.trunc(width / ratio)
         };
       
         // Update attributes
@@ -348,8 +375,8 @@ registerBlockType(
         </InspectorControls>
       );
 
-      { console.log(attributes.mainImage); }
-      { console.log(attributes.srcSet); }
+      // { console.log(attributes.mainImage); }
+      // { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
