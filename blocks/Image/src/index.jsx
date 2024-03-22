@@ -49,7 +49,7 @@ registerBlockType(
       };
 
       const changeMainImage = (media) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           if (media.id) {
             resolve(media);
           } else {
@@ -101,6 +101,7 @@ registerBlockType(
           });
         }).catch((error) => {
           // Errors
+          // eslint-disable-next-line no-console
           console.error("Errors:", error);
         });
       };
@@ -120,7 +121,6 @@ registerBlockType(
             // reject
           }
         }).then((fullMedia) => {
-          // console.log(fullMedia);
           const updatedSrcSet = {...attributes.srcSet};
           const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
           const ratio = width / height;
@@ -141,6 +141,7 @@ registerBlockType(
           });
         }).catch((error) => {
           // Errors
+          // eslint-disable-next-line no-console
           console.error("Errors:", error);
         });
       };
