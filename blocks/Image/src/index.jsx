@@ -107,7 +107,7 @@ registerBlockType(
       };
       
       const changeSrcSetImage = (breakpoint, media) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           if (media.id) {
             resolve(media);
           } else {
