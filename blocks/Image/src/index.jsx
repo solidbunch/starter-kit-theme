@@ -66,28 +66,17 @@ registerBlockType(
             const validateSize = width >= viewPort;
             const ratio = width / height;
             const newHeight = Math.trunc(viewPort / ratio);
-
+            const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
+            //The process involves checking for a condition if hiding breakpoints and if the width is less than the viewport.
             updatedSrcSet[brPoint] = {
               ...updatedSrcSet[brPoint],
-              imageUrl: fullMedia.url,
-              id: fullMedia.id,
-              ratio,
-              width: viewPort,
-              height: newHeight,
+              imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
+              id: shouldDisableBreakpoint ? '' : fullMedia.id,
+              ratio: shouldDisableBreakpoint ? '' : ratio,
+              width: shouldDisableBreakpoint ? '' : viewPort,
+              height: shouldDisableBreakpoint ? '' : newHeight,
               validateSize
             };
-
-            // Check and update disabled breakpoints
-            if (setDisabledBreakpoint && width < viewPort) {
-              updatedSrcSet[brPoint] = {
-                ...updatedSrcSet[brPoint],
-                imageUrl: '',
-                height: '',
-                width: '',
-                id: '',
-                ratio:''
-              };
-            }
           });
       
           // Update mainImage and srcSet attributes
