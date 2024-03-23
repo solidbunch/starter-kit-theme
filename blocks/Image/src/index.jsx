@@ -89,6 +89,63 @@ registerBlockType(
       
         setAttributes(newAttributes);
       };
+      const changeImage = (media, breakpoint = null) => {
+        return new Promise((resolve) => {
+          if (media.id) {
+            resolve(media);
+          } else {
+            const waitForData = setInterval(() => {
+              if (media.id) {
+                clearInterval(waitForData);
+                resolve(media);
+              }
+            }, 100); // reload 100
+          }
+        }).then((fullMedia) => {
+          const updatedSrcSet = {...attributes.srcSet};
+          const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
+          const ratio = width / height;
+          const widthInInput = (breakpoint && width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
+      
+          if (breakpoint) {
+            updatedSrcSet[breakpoint] = {
+              ...updatedSrcSet[breakpoint],
+              imageUrl: fullMedia.url,
+              id: fullMedia.id,
+              width: widthInInput,
+              startWidth: width,
+              ratio,
+              height: Math.trunc(width / ratio)
+            };
+          } else {
+            Object.keys(updatedSrcSet).forEach(brPoint => {
+              const {viewPort} = updatedSrcSet[brPoint];
+              const validateSize = width >= viewPort;
+              const newHeight = Math.trunc(viewPort / ratio);
+              const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
+      
+              updatedSrcSet[brPoint] = {
+                ...updatedSrcSet[brPoint],
+                imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
+                id: shouldDisableBreakpoint ? '' : fullMedia.id,
+                ratio: shouldDisableBreakpoint ? '' : ratio,
+                width: shouldDisableBreakpoint ? '' : viewPort,
+                height: shouldDisableBreakpoint ? '' : newHeight,
+                validateSize
+              };
+            });
+          }
+      
+          // Update attributes
+          setAttributes({
+            mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
+            srcSet: updatedSrcSet
+          });
+        }).catch((error) => {
+          // Errors
+          console.error("Errors:", error);
+        });
+      };
       
       const changeMainImage = (media) => {
         return new Promise((resolve) => {
@@ -237,7 +294,7 @@ registerBlockType(
                               <MediaPlaceholder
                                 icon="format-image"
                                 labels={{title: 'Add Image'}}
-                                onSelect={changeMainImage}
+                                onSelect={(media) => changeImage(media)}
                               />
 
                             </div>
@@ -250,9 +307,13 @@ registerBlockType(
                               <div className='setting_box'>
                                 <img src={attributes.mainImage.src} alt="Uploaded" />
 
-                                <MediaPlaceholder
+                                {/* <MediaPlaceholder
                                   labels={{title: 'Main Image'}}
                                   onSelect={changeMainImage}
+                                /> */}
+                                <MediaPlaceholder
+                                  labels={{title: 'Main Image'}}
+                                  onSelect={(media) => changeImage(media)}
                                 />
                                 <div className="image-dimensions row g-2">
                                   <TextControl
@@ -295,9 +356,13 @@ registerBlockType(
                                       {!attributes.srcSet[breakpoint].validateSize && (
                                         <div className='test_alert'>Bad Image Size</div>
                                       )}
-                                      <MediaPlaceholder
+                                      {/* <MediaPlaceholder
                                         labels={{title: 'Change Image'}}
                                         onSelect={(media) => changeSrcSetImage(breakpoint, media)}
+                                      /> */}
+                                      <MediaPlaceholder
+                                        labels={{title: 'Change Image'}}
+                                        onSelect={(media) => changeImage(media, breakpoint)}
                                       />
                                       {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
                                         <button
@@ -387,10 +452,15 @@ registerBlockType(
           {attributes.mainImage.src ? (
             <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
           ) : (
+            // <MediaPlaceholder
+            //   icon="format-image"
+            //   labels={{title: 'Add Image'}}
+            //   onSelect={changeMainImage}
+          // />
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
-              onSelect={changeMainImage}
+              onSelect={(media) => changeImage(media)}
             />
           )}
           
