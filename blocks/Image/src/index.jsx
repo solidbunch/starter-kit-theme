@@ -28,19 +28,24 @@ registerBlockType(
         className: [className],
       });
 
-      const changeMainDimension = (updatedAttributes) => {
-        setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
+      //change Width and Height in mainImage or srcSet
+      const changeDimension = (type, breakpoint, updatedAttributes) => {
+        let newAttributes = {};
+      
+        if (type === 'mainImage') {
+          newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
+        } else if (type === 'srcSet') {
+          newAttributes = {
+            srcSet: {
+              ...attributes.srcSet,
+              [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
+            },
+          };
+        }
+      
+        setAttributes(newAttributes);
       };
-
-      const changeSrcSetDimension = (breakpoint, updatedAttributes) => {
-        setAttributes({
-          srcSet: {
-            ...attributes.srcSet,
-            [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
-          },
-        });
-      };
-
+      
       const changeMainImage = (media) => {
         return new Promise((resolve) => {
           if (media.id) {
@@ -67,6 +72,7 @@ registerBlockType(
             const ratio = width / height;
             const newHeight = Math.trunc(viewPort / ratio);
             const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
+
             //The process involves checking for a condition if hiding breakpoints and if the width is less than the viewport.
             updatedSrcSet[brPoint] = {
               ...updatedSrcSet[brPoint],
@@ -130,6 +136,7 @@ registerBlockType(
           console.error("Errors:", error);
         });
       };
+      //reset attributes to Default (Main Image)
       const handleResetImage = (breakpoint) => {
         setAttributes({
           srcSet: {
@@ -214,7 +221,7 @@ registerBlockType(
                                       const {startWidth,ratio} = attributes.mainImage;
                                       if (event.target.value === "") {
                                         const newHeight = Math.trunc(startWidth / ratio);
-                                        changeMainDimension({width: startWidth, height: newHeight});
+                                        changeDimension('mainImage', null, {width: startWidth, height: newHeight});
                                       }
                                     }}
                                     onChange={(event) => {
@@ -228,7 +235,7 @@ registerBlockType(
                                         newWidth = startWidth;
                                       }
                                       let newHeight = Math.trunc(newWidth / ratio);
-                                      changeMainDimension({width: newWidth, height: newHeight});
+                                      changeDimension('mainImage', null, {width: newWidth, height: newHeight});
                                     }}
                                     inputMode="numeric"
                                     min="0"
@@ -291,7 +298,7 @@ registerBlockType(
                                             if (event.target.value === "") {
                                               let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
                                               const newHeight = Math.trunc(newWidth / ratio);
-                                              changeSrcSetDimension(breakpoint, {width: newWidth, height: newHeight});
+                                              changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
                                             }
                                           }}
                                           
@@ -312,7 +319,7 @@ registerBlockType(
                                             }
                                             
                                             let newHeight = Math.trunc(newWidth / ratio);
-                                            changeSrcSetDimension(breakpoint, {width: newWidth, height: newHeight});
+                                            changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
                                           }}
                                           inputMode="numeric"
                                           min="0"
