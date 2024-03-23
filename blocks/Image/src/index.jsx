@@ -27,7 +27,26 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-
+      
+      //blur
+      const handleBlur = (event, breakpoint = null) => {
+        const {mainImage, srcSet} = attributes;
+      
+        if (event.target.value === "") {
+          if (breakpoint === null) {
+            const {startWidth, ratio} = mainImage;
+            const newHeight = Math.trunc(startWidth / ratio);
+            changeDimension('mainImage', null, {width: startWidth, height: newHeight});
+          } else {
+            const {startWidth, viewPort, ratio, id} = srcSet[breakpoint];
+            const idValidation = mainImage.id === id;
+      
+            let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
+            const newHeight = Math.trunc(newWidth / ratio);
+            changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
+          }
+        }
+      };
       //change Width and Height in mainImage or srcSet
       const changeDimension = (type, breakpoint, updatedAttributes) => {
         let newAttributes = {};
@@ -136,6 +155,7 @@ registerBlockType(
           console.error("Errors:", error);
         });
       };
+
       //reset attributes to Default (Main Image)
       const handleResetImage = (breakpoint) => {
         setAttributes({
@@ -217,13 +237,7 @@ registerBlockType(
                                     value={attributes.mainImage.width}
                                     placeholder={attributes.mainImage.startWidth}
                                     onKeyPress={handleKeyPress}
-                                    onBlur={(event) => {
-                                      const {startWidth,ratio} = attributes.mainImage;
-                                      if (event.target.value === "") {
-                                        const newHeight = Math.trunc(startWidth / ratio);
-                                        changeDimension('mainImage', null, {width: startWidth, height: newHeight});
-                                      }
-                                    }}
+                                    onBlur={(event) => handleBlur(event)}
                                     onChange={(event) => {
                                       
                                       let newWidth = parseInt(event.replace(/\D/g, ''), 10);
@@ -266,10 +280,7 @@ registerBlockType(
                                     <div className='setting_box'>
                                       <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
                                       {!attributes.srcSet[breakpoint].validateSize && (
-                                        <div className='test_alert'
-                                        >
-                                          Bad Image Size
-                                        </div>
+                                        <div className='test_alert'>Bad Image Size</div>
                                       )}
                                       <MediaPlaceholder
                                         labels={{title: 'Change Image'}}
@@ -291,16 +302,7 @@ registerBlockType(
                                           value={attributes.srcSet[breakpoint].width}
                                           placeholder={attributes.srcSet[breakpoint].width}
                                           onKeyPress={handleKeyPress}
-                                          onBlur={(event) => {
-                                            const {startWidth, viewPort, ratio,id} = attributes.srcSet[breakpoint];
-                                            const idValidation = attributes.mainImage.id === id;
-                                            
-                                            if (event.target.value === "") {
-                                              let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
-                                              const newHeight = Math.trunc(newWidth / ratio);
-                                              changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
-                                            }
-                                          }}
+                                          onBlur={(event) => handleBlur(event, breakpoint)}
                                           
                                           onChange={(event) => {
                                             
