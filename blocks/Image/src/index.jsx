@@ -2,7 +2,7 @@
  * Block dependencies
  */
 import metadata from '../block.json';
-
+import {handleKeyPress} from './helpers';
 /**
  * Internal block libraries
  */
@@ -28,13 +28,6 @@ registerBlockType(
         className: [className],
       });
 
-      // letter protection
-      const handleKeyPress = (event) => {
-        const allowedCharacters = /[0-9]/;
-        if (!allowedCharacters.test(event.key)) {
-          event.preventDefault();
-        }
-      };
       const changeMainDimension = (updatedAttributes) => {
         setAttributes({mainImage: {...attributes.mainImage, ...updatedAttributes}});
       };
