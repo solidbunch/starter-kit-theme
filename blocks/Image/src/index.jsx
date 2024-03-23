@@ -61,28 +61,31 @@ registerBlockType(
           const updatedSrcSet = {...attributes.srcSet};
       
           // Update srcSet for all breakpoints
-          Object.keys(updatedSrcSet).forEach((brPoint) => {
-            const viewport = updatedSrcSet[brPoint].viewPort;
-            const validateSize = width >= viewport;
+          Object.keys(updatedSrcSet).forEach(brPoint => {
+            const {viewPort} = updatedSrcSet[brPoint];
+            const validateSize = width >= viewPort;
+            const ratio = width / height;
+            const newHeight = Math.trunc(viewPort / ratio);
+
             updatedSrcSet[brPoint] = {
               ...updatedSrcSet[brPoint],
               imageUrl: fullMedia.url,
               id: fullMedia.id,
-              ratio: width / height,
-              width: viewport,
-              height: Math.trunc(viewport / (width / height)),
+              ratio,
+              width: viewPort,
+              height: newHeight,
               validateSize
             };
-          });
-      
-          // Check and update disabled breakpoints
-          Object.keys(updatedSrcSet).forEach((brPoint) => {
-            if (setDisabledBreakpoint && width < updatedSrcSet[brPoint].viewPort) {
+
+            // Check and update disabled breakpoints
+            if (setDisabledBreakpoint && width < viewPort) {
               updatedSrcSet[brPoint] = {
                 ...updatedSrcSet[brPoint],
                 imageUrl: '',
                 height: '',
-                width: ''
+                width: '',
+                id: '',
+                ratio:''
               };
             }
           });
