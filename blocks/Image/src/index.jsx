@@ -27,8 +27,33 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      
-      //blur
+      //  change Width and Height in mainImage or srcSet
+      const handleChange = (event, breakpoint) => {
+        let newWidth = parseInt(event.replace(/\D/g, ''), 10);
+        if (isNaN(newWidth)) {
+          newWidth = "";
+        }
+    
+        const {startWidth, ratio, id} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
+        const idValidation = breakpoint ? attributes.mainImage.id === id : true;
+    
+        if (!idValidation) {
+          if (newWidth > startWidth) {
+            newWidth = startWidth;
+          }
+        } else if (newWidth > attributes.mainImage.startWidth) {
+          newWidth = attributes.mainImage.startWidth;
+        }
+    
+        let newHeight = Math.trunc(newWidth / ratio);
+    
+        if (breakpoint) {
+          changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
+        } else {
+          changeDimension('mainImage', null, {width: newWidth, height: newHeight});
+        }
+      };
+      //"Loss of focus on input"
       const handleBlur = (event, breakpoint = null) => {
         const {mainImage, srcSet} = attributes;
       
@@ -47,7 +72,7 @@ registerBlockType(
           }
         }
       };
-      //change Width and Height in mainImage or srcSet
+      //Set Width and Height in mainImage or srcSet
       const changeDimension = (type, breakpoint, updatedAttributes) => {
         let newAttributes = {};
       
@@ -238,19 +263,7 @@ registerBlockType(
                                     placeholder={attributes.mainImage.startWidth}
                                     onKeyPress={handleKeyPress}
                                     onBlur={(event) => handleBlur(event)}
-                                    onChange={(event) => {
-                                      
-                                      let newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                      const {startWidth,ratio} = attributes.mainImage;
-                                      if (isNaN(newWidth)) {
-                                        newWidth = "";
-                                      }
-                                      if (newWidth > startWidth) {
-                                        newWidth = startWidth;
-                                      }
-                                      let newHeight = Math.trunc(newWidth / ratio);
-                                      changeDimension('mainImage', null, {width: newWidth, height: newHeight});
-                                    }}
+                                    onChange={(event) => handleChange(event)}
                                     inputMode="numeric"
                                     min="0"
                                     max={attributes.mainImage.startWidth}
@@ -303,26 +316,7 @@ registerBlockType(
                                           placeholder={attributes.srcSet[breakpoint].width}
                                           onKeyPress={handleKeyPress}
                                           onBlur={(event) => handleBlur(event, breakpoint)}
-                                          
-                                          onChange={(event) => {
-                                            
-                                            let newWidth = parseInt(event.replace(/\D/g, ''), 10);
-                                            if (isNaN(newWidth)) {
-                                              newWidth = "";
-                                            }
-                                            const {startWidth, ratio,id} = attributes.srcSet[breakpoint];
-                                            const idValidation = attributes.mainImage.id === id;
-                                            if (!idValidation) {
-                                              if (newWidth > startWidth) {
-                                                newWidth = startWidth;
-                                              }
-                                            } else if (newWidth > attributes.mainImage.startWidth) {
-                                              newWidth = attributes.mainImage.startWidth;
-                                            }
-                                            
-                                            let newHeight = Math.trunc(newWidth / ratio);
-                                            changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
-                                          }}
+                                          onChange={(event) => handleChange(event, breakpoint)}
                                           inputMode="numeric"
                                           min="0"
                                           max={attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
