@@ -206,17 +206,18 @@ class Utils
      *
      * @return bool True if it's a WP Rest API request, false otherwise.
      */
-    public static function isRestApiRequest( ?string $method = null ): bool {
-        if ( empty( $_SERVER['REQUEST_URI'] ) ) {
+    public static function isRestApiRequest(?string $method = null): bool
+    {
+        if (empty($_SERVER['REQUEST_URI'])) {
             // Probably a CLI request
             return false;
         }
 
-        $rest_prefix         = trailingslashit( rest_get_url_prefix() );
-        $is_rest_api_request = strpos( $_SERVER['REQUEST_URI'], $rest_prefix ) !== false;
+        $rest_prefix         = trailingslashit(rest_get_url_prefix());
+        $is_rest_api_request = strpos($_SERVER['REQUEST_URI'], $rest_prefix) !== false;
 
-        if ( $method ) {
-            $is_rest_api_request = $is_rest_api_request && $_SERVER['REQUEST_METHOD'] === strtoupper( $method );
+        if ($method) {
+            $is_rest_api_request = $is_rest_api_request && $_SERVER['REQUEST_METHOD'] === strtoupper($method);
         }
 
         return $is_rest_api_request;
