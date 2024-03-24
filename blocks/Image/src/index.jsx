@@ -2,7 +2,6 @@
  * Block dependencies
  */
 import metadata from '../block.json';
-import {handleKeyPress} from './helpers';
 /**
  * Internal block libraries
  */
@@ -27,6 +26,14 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
+      // letter protection
+      const handleKeyPress = (event) => {
+        const allowedCharacters = /[0-9]/;
+        if (!allowedCharacters.test(event.key)) {
+          event.preventDefault();
+        }
+      };
+
       //  change Width and Height in mainImage or srcSet
       const handleChange = (event, breakpoint) => {
         let newWidth = parseInt(event.replace(/\D/g, ''), 10);
@@ -142,97 +149,6 @@ registerBlockType(
             srcSet: updatedSrcSet
           });
         }).catch((error) => {
-          // Errors
-          console.error("Errors:", error);
-        });
-      };
-      
-      const changeMainImage = (media) => {
-        return new Promise((resolve) => {
-          if (media.id) {
-            resolve(media);
-          } else {
-            const waitForData = setInterval(() => {
-              if (media.id) {
-                clearInterval(waitForData);
-                resolve(media);
-              }
-            }, 100); // reload 100
-      
-            // reject
-          }
-        }).then((fullMedia) => {
-          const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
-  
-          const updatedSrcSet = {...attributes.srcSet};
-      
-          // Update srcSet for all breakpoints
-          Object.keys(updatedSrcSet).forEach(brPoint => {
-            const {viewPort} = updatedSrcSet[brPoint];
-            const validateSize = width >= viewPort;
-            const ratio = width / height;
-            const newHeight = Math.trunc(viewPort / ratio);
-            const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
-
-            //The process involves checking for a condition if hiding breakpoints and if the width is less than the viewport.
-            updatedSrcSet[brPoint] = {
-              ...updatedSrcSet[brPoint],
-              imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
-              id: shouldDisableBreakpoint ? '' : fullMedia.id,
-              ratio: shouldDisableBreakpoint ? '' : ratio,
-              width: shouldDisableBreakpoint ? '' : viewPort,
-              height: shouldDisableBreakpoint ? '' : newHeight,
-              validateSize
-            };
-          });
-      
-          // Update mainImage and srcSet attributes
-          setAttributes({
-            mainImage: {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
-            srcSet: updatedSrcSet
-          });
-        }).catch((error) => {
-          // Errors
-          // eslint-disable-next-line no-console
-          console.error("Errors:", error);
-        });
-      };
-      
-      const changeSrcSetImage = (breakpoint, media) => {
-        return new Promise((resolve) => {
-          if (media.id) {
-            resolve(media);
-          } else {
-            const waitForData = setInterval(() => {
-              if (media.id) {
-                clearInterval(waitForData);
-                resolve(media);
-              }
-            }, 100); // reload 100
-      
-            // reject
-          }
-        }).then((fullMedia) => {
-          const updatedSrcSet = {...attributes.srcSet};
-          const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
-          const ratio = width / height;
-          const widthInInput = (width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
-      
-          updatedSrcSet[breakpoint] = {
-            ...updatedSrcSet[breakpoint],
-            imageUrl: fullMedia.url,
-            id: fullMedia.id,
-            width:widthInInput,
-            startWidth: width,
-            ratio,
-            height: Math.trunc(width / ratio)
-          };
-          // Update attributes
-          setAttributes({
-            srcSet: updatedSrcSet
-          });
-        }).catch((error) => {
-          // Errors
           // eslint-disable-next-line no-console
           console.error("Errors:", error);
         });
@@ -306,11 +222,6 @@ registerBlockType(
                             <div className='row_image'>
                               <div className='setting_box'>
                                 <img src={attributes.mainImage.src} alt="Uploaded" />
-
-                                {/* <MediaPlaceholder
-                                  labels={{title: 'Main Image'}}
-                                  onSelect={changeMainImage}
-                                /> */}
                                 <MediaPlaceholder
                                   labels={{title: 'Main Image'}}
                                   onSelect={(media) => changeImage(media)}
@@ -356,10 +267,6 @@ registerBlockType(
                                       {!attributes.srcSet[breakpoint].validateSize && (
                                         <div className='test_alert'>Bad Image Size</div>
                                       )}
-                                      {/* <MediaPlaceholder
-                                        labels={{title: 'Change Image'}}
-                                        onSelect={(media) => changeSrcSetImage(breakpoint, media)}
-                                      /> */}
                                       <MediaPlaceholder
                                         labels={{title: 'Change Image'}}
                                         onSelect={(media) => changeImage(media, breakpoint)}
@@ -445,18 +352,11 @@ registerBlockType(
         </InspectorControls>
       );
 
-      { console.log(attributes.mainImage); }
-      { console.log(attributes.srcSet); }
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (
             <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
           ) : (
-            // <MediaPlaceholder
-            //   icon="format-image"
-            //   labels={{title: 'Add Image'}}
-            //   onSelect={changeMainImage}
-          // />
             <MediaPlaceholder
               icon="format-image"
               labels={{title: 'Add Image'}}
