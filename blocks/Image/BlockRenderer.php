@@ -100,6 +100,20 @@ class BlockRenderer extends BlockAbstract {
                 }
             }
 
+            if (!empty($srcset)) {
+
+                // Add the original image after the last breakpoint to display by default on screens larger than the last breakpoint
+                $sizes[] = Size::make( "", "{$mainImageWidth}px" );
+
+                $resizer = Resizer::makeWithUrl( $mainImageUrl );
+
+                $resizer->setWidth( $mainImageWidth );
+                $resizer->setHeight( $mainImageHeight );
+
+                $srcset[] = SrcsetItem::makeWithResize( $resizer, "{$mainImageWidth}w" );
+            }
+
+
             $img = Img::make( $mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, $srcset, $sizes, $lazy );
 
             foreach ( $attrs as $attrName => $attrValue ) {
