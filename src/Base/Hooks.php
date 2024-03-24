@@ -25,6 +25,7 @@ class Hooks
         add_action('after_setup_theme', [Handlers\SetupTheme::class, 'registerMenus']);
         // filter image sizes
         add_filter('intermediate_image_sizes', [Handlers\SetupTheme::class, 'filterImageSizes']);
+        add_filter('big_image_size_threshold', [Handlers\SetupTheme::class, 'bigImageSizeThreshold']);
 
         /************************************
          *          Theme Settings

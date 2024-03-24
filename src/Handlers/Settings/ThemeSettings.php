@@ -8,6 +8,7 @@ use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 use WPRI\ImgUtils;
 
@@ -32,6 +33,7 @@ class ThemeSettings
      * Make Carbon Fields
      *
      * @return void
+     * @throws NotFoundException
      */
     public static function make(): void
     {
@@ -70,8 +72,9 @@ class ThemeSettings
                      ->set_attribute('placeholder', 'UA-XXXXXXXXX-X')
                      ->set_help_text(
                          __(
-                             'For a better speed performance, please insert the analytics code through the tag manager.
-                             Turn on google Analytics Scripts Local Load option',
+                             "For a better speed performance, " .
+                             "please insert the analytics code through the tag manager." .
+                             "Turn on google Analytics Scripts Local Load option",
                              'starter-kit'
                          )
                      )
@@ -105,7 +108,29 @@ class ThemeSettings
                              // @codingStandardsIgnoreLine
                              function ($value) { return !in_array($value, ['thumbnail', 'medium'], true); }
                          )
-                     ),
+                     )
+                    ->set_width(50),
+
+                Field::make(
+                    'text',
+                    $prefix . 'big_image_size_threshold',
+                    __('"BIG image" threshold value, px', 'starter-kit')
+                )
+                     ->set_default_value(Config::get('media/bigImageSizeThreshold'))
+                     ->set_help_text(
+                         __(
+                             "When a new image is uploaded, if its original width or height exceeds the threshold, " .
+                             "it will be scaled down. This threshold acts as the maximum width and height limit. " .
+                             "The downscaled image will then serve as the largest size available, affecting the " .
+                             "_wp_attached_file post meta value as well." .
+                             "\n\n" .
+                             "For instance, the default threshold in WordPress is set to 2560 pixels. Considering " .
+                             "display resolutions, 4096 pixels are typical for 4K monitors, while 5120 pixels " .
+                             "provide enhanced clarity on 5K monitors.",
+                             'starter-kit'
+                         )
+                     )
+                     ->set_width(50),
             ]
         );
     }
