@@ -123,7 +123,7 @@ class ThemeSettings
                              "it will be scaled down. This threshold acts as the maximum width and height limit. " .
                              "The downscaled image will then serve as the largest size available, affecting the " .
                              "_wp_attached_file post meta value as well." .
-                             "\n\n" .
+                             "<br><br>" .
                              "For instance, the default threshold in WordPress is set to 2560 pixels. Considering " .
                              "display resolutions, 4096 pixels are typical for 4K monitors, while 5120 pixels " .
                              "provide enhanced clarity on 5K monitors.",
