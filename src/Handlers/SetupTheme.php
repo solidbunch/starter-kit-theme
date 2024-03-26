@@ -2,6 +2,8 @@
 
 namespace StarterKit\Handlers;
 
+use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 
 defined('ABSPATH') || exit;
@@ -55,5 +57,24 @@ class SetupTheme
         }
 
         return $imageSizes;
+    }
+
+    /**
+     * The "BIG image" threshold value.
+     * If the original image width or height is above the threshold, it will be scaled down.
+     * The threshold is used as max width and max height.
+     * The scaled down image will be used as the largest available size,
+     * including the _wp_attached_file post meta value.
+     *
+     * Returning false will disable the scaling.
+     *
+     * @return int
+     * @throws NotFoundException
+     */
+    public static function bigImageSizeThreshold(): int
+    {
+        $threshold = Utils::getOptionFw('big_image_size_threshold', Config::get('media/bigImageSizeThreshold'));
+
+        return intval($threshold);
     }
 }
