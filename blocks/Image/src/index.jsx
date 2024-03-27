@@ -27,11 +27,10 @@ registerBlockType(
         className: [className],
       });
       useEffect(() => {
-        // Вызываем функцию setDimensionHiDPI при загрузке изображения и установке значения по умолчанию для hidpi
-        if (attributes.mainImage.src && attributes.hidpi) {
-          setDimensionHiDPI(true);
+        if (attributes.mainImage.id) {
+          setDimensionHiDPI(attributes.hidpi);
         }
-      }, [attributes.mainImage.src, attributes.hidpi]);
+      }, [attributes.mainImage.id, attributes.hidpi]);
 
       const setDimensionHiDPI = (checked,breakpoint = null) => {
         const {ratio} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
@@ -48,7 +47,7 @@ registerBlockType(
 
       const setHiDPI = (checked, breakpoint = null) => {
         setAttributes({hidpi: checked});
-        setDimensionHiDPI(checked, breakpoint);
+        // setDimensionHiDPI(checked, breakpoint);
       };
       // letter protection
       const handleKeyPress = (event) => {
@@ -173,7 +172,7 @@ registerBlockType(
             mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
             srcSet: updatedSrcSet
           });
-          
+          // console.log(attributes.mainImage);
         }).catch((error) => {
           // eslint-disable-next-line no-console
           console.error("Errors:", error);
