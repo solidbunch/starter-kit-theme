@@ -8,7 +8,7 @@ import metadata from '../block.json';
 const {registerBlockType} = wp.blocks;
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
-const {useState} = wp.element;
+const {useState,useEffect} = wp.element;
 
 // setDisabledBreakpoint  ---  toggler for hide breakpoints , when image with small size
 const setDisabledBreakpoint = true;
@@ -26,6 +26,30 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
+      useEffect(() => {
+        // Вызываем функцию setDimensionHiDPI при загрузке изображения и установке значения по умолчанию для hidpi
+        if (attributes.mainImage.src && attributes.hidpi) {
+          setDimensionHiDPI(true);
+        }
+      }, [attributes.mainImage.src, attributes.hidpi]);
+
+      const setDimensionHiDPI = (checked,breakpoint = null) => {
+        const {ratio} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
+        let newWidth;
+        if (checked) {
+          newWidth = Math.trunc(attributes.mainImage.startWidth / 2);
+        } else {
+          newWidth = Math.trunc(attributes.mainImage.startWidth);
+        }
+        let newHeight = Math.trunc(newWidth / ratio);
+        changeDimension('mainImage', null, {width: newWidth, height: newHeight});
+
+      };
+
+      const setHiDPI = (checked, breakpoint = null) => {
+        setAttributes({hidpi: checked});
+        setDimensionHiDPI(checked, breakpoint);
+      };
       // letter protection
       const handleKeyPress = (event) => {
         const allowedCharacters = /[0-9]/;
@@ -43,7 +67,7 @@ registerBlockType(
     
         const {startWidth, ratio, id} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
         const idValidation = breakpoint ? attributes.mainImage.id === id : true;
-    
+        
         if (!idValidation) {
           if (newWidth > startWidth) {
             newWidth = startWidth;
@@ -113,7 +137,7 @@ registerBlockType(
           const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
           const ratio = width / height;
           const widthInInput = (breakpoint && width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
-      
+          
           if (breakpoint) {
             updatedSrcSet[breakpoint] = {
               ...updatedSrcSet[breakpoint],
@@ -142,12 +166,14 @@ registerBlockType(
               };
             });
           }
-      
+          
           // Update attributes
+          
           setAttributes({
             mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
             srcSet: updatedSrcSet
           });
+          
         }).catch((error) => {
           // eslint-disable-next-line no-console
           console.error("Errors:", error);
@@ -184,6 +210,7 @@ registerBlockType(
           return '';
         }
       }
+      
       const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Image Properties" className="image_container">
@@ -226,6 +253,15 @@ registerBlockType(
                                   labels={{title: 'Main Image'}}
                                   onSelect={(media) => changeImage(media)}
                                 />
+                                <CheckboxControl
+                                  className="pb-3"
+                                  label="HiDPI"
+                                  checked={attributes.hidpi}
+                                  onChange={
+                                    (checked) => setHiDPI(checked)
+                                  }
+                                />
+                                {console.log(attributes.mainImage)}
                                 <div className="image-dimensions row g-2">
                                   <TextControl
                                     label="width"
@@ -248,6 +284,7 @@ registerBlockType(
                                     value={attributes.mainImage.height}
                                     disabled 
                                   />
+                                  
                                 </div>
                               </div>
                             </div>
@@ -351,7 +388,6 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>
       );
-
       const renderOutput = (
         <div  {...blockProps} key="blockControls">
           {attributes.mainImage.src ? (

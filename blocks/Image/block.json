@@ -26,6 +26,10 @@
       "type": "boolean",
       "default": false
     },
+    "hidpi": {
+      "type": "boolean",
+      "default": true
+    },
     "altText": {
       "type": "string",
       "default": "Image"
