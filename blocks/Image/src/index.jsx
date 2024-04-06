@@ -26,28 +26,52 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      useEffect(() => {
-        if (attributes.mainImage.id) {
-          setDimensionHiDPI(attributes.hidpi);
-        }
-      }, [attributes.mainImage.id, attributes.hidpi]);
+      const [imageLoaded, setImageLoaded] = useState(false);
 
-      const setDimensionHiDPI = (checked,breakpoint = null) => {
+      // useEffect(() => {
+      //   if (attributes.mainImage.id) {
+      //     console.log(attributes.mainImage.id);
+      //     setDimensionHiDPI(attributes.hidpi);
+      //   }
+      // }, [attributes.mainImage.id, attributes.hidpi]);
+
+      useEffect(() => {
+        if (attributes.mainImage.id && imageLoaded && attributes.hidpi) { // добавлено условие imageLoaded
+          setDimensionHiDPI(attributes.hidpi); // изменено на true, если нужно запускать только при attributes.hidpi === true
+        }
+      }, [attributes.mainImage.id, imageLoaded]);
+
+      // const setDimensionHiDPI = (checked,breakpoint = null) => {
+      //   const {ratio} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
+      //   let newWidth;
+      //   if (checked) {
+      //     newWidth = Math.trunc(attributes.mainImage.startWidth / 2);
+      //   } else {
+      //     newWidth = Math.trunc(attributes.mainImage.startWidth);
+      //   }
+      //   let newHeight = Math.trunc(newWidth / ratio);
+      //   changeDimension('mainImage', null, {width: newWidth, height: newHeight});
+
+      // };
+      const setDimensionHiDPI = (checked, breakpoint = null) => {
         const {ratio} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
         let newWidth;
+      
         if (checked) {
           newWidth = Math.trunc(attributes.mainImage.startWidth / 2);
+          // newStartWidth = newWidth; 
         } else {
-          newWidth = Math.trunc(attributes.mainImage.startWidth);
+          newWidth = Math.trunc(attributes.mainImage.startWidth * 2);
+          // newStartWidth = newWidth; 
         }
+       
         let newHeight = Math.trunc(newWidth / ratio);
-        changeDimension('mainImage', null, {width: newWidth, height: newHeight});
-
+        changeDimension('mainImage', null, {width: newWidth, height: newHeight, startWidth: newWidth});
       };
 
       const setHiDPI = (checked, breakpoint = null) => {
         setAttributes({hidpi: checked});
-        // setDimensionHiDPI(checked, breakpoint);
+        setDimensionHiDPI(checked, breakpoint);
       };
       // letter protection
       const handleKeyPress = (event) => {
@@ -74,7 +98,6 @@ registerBlockType(
         } else if (newWidth > attributes.mainImage.startWidth) {
           newWidth = attributes.mainImage.startWidth;
         }
-    
         let newHeight = Math.trunc(newWidth / ratio);
     
         if (breakpoint) {
@@ -119,6 +142,7 @@ registerBlockType(
       
         setAttributes(newAttributes);
       };
+
       const changeImage = (media, breakpoint = null) => {
         return new Promise((resolve) => {
           if (media.id) {
@@ -132,6 +156,7 @@ registerBlockType(
             }, 100); // reload 100
           }
         }).then((fullMedia) => {
+          
           const updatedSrcSet = {...attributes.srcSet};
           const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
           const ratio = width / height;
@@ -173,6 +198,7 @@ registerBlockType(
             srcSet: updatedSrcSet
           });
           // console.log(attributes.mainImage);
+          setImageLoaded(true);
         }).catch((error) => {
           // eslint-disable-next-line no-console
           console.error("Errors:", error);
