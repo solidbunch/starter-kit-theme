@@ -36,6 +36,14 @@ registerBlockType(
         
       }, [attributes.mainImage.id, imageLoaded]);
 
+      useEffect(() => {
+        if (attributes.mainImage.startWidth) { 
+          updateSrcSet(attributes.mainImage);
+          console.log(attributes.mainImage);
+        }
+        
+      }, [attributes.mainImage.startWidth]);
+
       const setDimensionHiDPI = (checked, breakpoint = null) => {
         const {ratio} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
         let newWidth;
@@ -49,12 +57,10 @@ registerBlockType(
         
         let newHeight = Math.trunc(newWidth / ratio);
         changeDimension('mainImage', null, {width: newWidth, height: newHeight, startWidth: newWidth});
-        updateSrcSet(attributes.mainImage);
+        // updateSrcSet(attributes.mainImage);
+        
         // console.log(`ширина в setDimensionHiDPI() ${attributes.mainImage.width}`);
       };
-      function testA(params) {
-  
-      }
       const setHiDPI = (checked, breakpoint = null) => {
         setAttributes({hidpi: checked});
         setDimensionHiDPI(checked, breakpoint);
@@ -152,8 +158,8 @@ registerBlockType(
         // setAttributes({
         //   srcSet: updatedSrcSet
         // });
-        console.log(2222);
-        console.log(`ширина в updateSrcSet нрендера ${attributes.mainImage.width}`);
+        // console.log(2222);
+        // console.log(`ширина в updateSrcSet нрендера ${attributes.mainImage.width}`);
         return setAttributes({srcSet: updatedSrcSet});;
       };
       const changeImage = (media, breakpoint = null) => {
@@ -187,32 +193,31 @@ registerBlockType(
             };
           } else {
            
-            Object.keys(updatedSrcSet).forEach(brPoint => {
-              const {viewPort} = updatedSrcSet[brPoint];
-              const validateSize = width >= viewPort;
-              const newHeight = Math.trunc(viewPort / ratio);
-              const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
+            // Object.keys(updatedSrcSet).forEach(brPoint => {
+            //   const {viewPort} = updatedSrcSet[brPoint];
+            //   const validateSize = width >= viewPort;
+            //   const newHeight = Math.trunc(viewPort / ratio);
+            //   const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
       
-              updatedSrcSet[brPoint] = {
-                ...updatedSrcSet[brPoint],
-                imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
-                id: shouldDisableBreakpoint ? '' : fullMedia.id,
-                ratio: shouldDisableBreakpoint ? '' : ratio,
-                width: shouldDisableBreakpoint ? '' : viewPort,
-                height: shouldDisableBreakpoint ? '' : newHeight,
-                validateSize
-              };
-            });
+            //   updatedSrcSet[brPoint] = {
+            //     ...updatedSrcSet[brPoint],
+            //     imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
+            //     id: shouldDisableBreakpoint ? '' : fullMedia.id,
+            //     ratio: shouldDisableBreakpoint ? '' : ratio,
+            //     width: shouldDisableBreakpoint ? '' : viewPort,
+            //     height: shouldDisableBreakpoint ? '' : newHeight,
+            //     validateSize
+            //   };
+            // });
           }
           
           // Update attributes
-          console.log(111);
           setAttributes({
             mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
-            srcSet: updatedSrcSet
+            // srcSet: updatedSrcSet
           });
           
-          console.log(attributes.mainImage);
+          // console.log(attributes.mainImage);
           setImageLoaded(true);
         }).catch((error) => {
           // eslint-disable-next-line no-console
