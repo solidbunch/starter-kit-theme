@@ -30,6 +30,10 @@
       "type": "boolean",
       "default": true
     },
+    "test": {
+      "type": "number",
+      "default": 10
+    },
     "altText": {
       "type": "string",
       "default": "Image"

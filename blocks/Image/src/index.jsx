@@ -26,49 +26,27 @@ registerBlockType(
       const blockProps = useBlockProps({
         className: [className],
       });
-      const [imageLoaded, setImageLoaded] = useState(false);
-
+      const [priorityHidpi, setpriorityHidpi] = useState(attributes.hidpi);
       useEffect(() => {
-        if (attributes.mainImage.id && imageLoaded && attributes.hidpi) { 
-          
-          // updateSrcSet(M, B);
-          setDimensionHiDPI(attributes.hidpi);
-          // console.log(attributes.mainImage);
-          // console.log(attributes.srcSet);
+        if (attributes.mainImage.id && attributes.hidpi) { 
+          setDimensionHiDPI(true);
           console.log(`1 useEffect`);
         }
-        
-      }, [attributes.mainImage.id, imageLoaded, attributes.hidpi]);
-
-      const [M, setM] = useState(null);
-      const [B, setB] = useState(null);
-      console.log(M);
-      useEffect(() => {
-        if (attributes.mainImage.startWidth && M && B) { 
-          updateSrcSet(M, B);
-          console.log(`2 useEffect updateSrcSet `);
-          // console.log(M);
-          // console.log(B);
-        }
-      }, [attributes.mainImage.startWidth, M, B]);
+      }, [attributes.mainImage.id,attributes.hidpi]);
 
       const setDimensionHiDPI = (checked) => {
-        const {ratio} = attributes.mainImage;
-        let newWidth;
-      
-        if (checked) {
-          newWidth = Math.trunc(attributes.mainImage.startWidth / 2);
-          
-        } else {
-          newWidth = Math.trunc(attributes.mainImage.startWidth * 2);
-        }
-        
-        let newHeight = Math.trunc(newWidth / ratio);
-        changeDimension('mainImage', null, {width: newWidth, height: newHeight, startWidth: newWidth});
+        // console.log(`start width:${attributes.mainImage.width}`);
+        // const {ratio, startWidth} = attributes.mainImage;
+        // const newWidth = checked ? Math.trunc(startWidth / 2) : Math.trunc(startWidth * 2);
+        // const newHeight = Math.trunc(newWidth / ratio);
+        // changeDimension('mainImage', null, {width: newWidth, height: newHeight, startWidth: newWidth});
+        // console.log(`width:${newWidth} startWidth:${startWidth}`);
+        const newnumber = checked ? Math.trunc(attributes.test / 2) : Math.trunc(attributes.test * 2);
+        setAttributes({test: newnumber});
+        console.log(attributes.test);
       };
       const setHiDPI = (checked) => {
         setAttributes({hidpi: checked});
-        console.log(checked);
         setDimensionHiDPI(checked);
       };
       // letter protection
@@ -140,32 +118,7 @@ registerBlockType(
       
         setAttributes(newAttributes);
       };
-      // const updateAllSrcSet = (mainImage) => {
-      //   const updatedSrcSet = {...attributes.srcSet};
-      //   const {width, ratio, src, id} = mainImage;
-
-      //   Object.keys(updatedSrcSet).forEach(brPoint => {
-      //     const {viewPort} = updatedSrcSet[brPoint];
-      //     const validateSize = width >= viewPort;
-      //     const newHeight = Math.trunc(viewPort / ratio);
-      //     const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
-
-      //     updatedSrcSet[brPoint] = {
-      //       ...updatedSrcSet[brPoint],
-      //       imageUrl: shouldDisableBreakpoint ? '' : src,
-      //       id: shouldDisableBreakpoint ? '' : id,
-      //       ratio: shouldDisableBreakpoint ? '' : ratio,
-      //       width: shouldDisableBreakpoint ? '' : viewPort,
-      //       height: shouldDisableBreakpoint ? '' : newHeight,
-      //       validateSize
-      //     };
-      //   });
-      //   // setAttributes({
-      //   //   srcSet: updatedSrcSet
-      //   // });
-      //   return setAttributes({srcSet: updatedSrcSet});;
-      // };
-      const updateSrcSet = (fullMedia, breakpoint = null) => {
+      const updateAllAttributes  = (fullMedia, breakpoint = null) => {
         const updatedSrcSet = {...attributes.srcSet};
         const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
         const ratio = width / height;
@@ -201,7 +154,6 @@ registerBlockType(
             };
             
           });
-          console.log(`забили по умолчанию все брейкоинты + валидация`);
         }
       
         setAttributes({
@@ -223,53 +175,7 @@ registerBlockType(
             }, 100); // reload 100
           }
         }).then((fullMedia) => {
-          
-          // const updatedSrcSet = {...attributes.srcSet};
-          // const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
-          // const ratio = width / height;
-          // const widthInInput = (breakpoint && width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
-          
-          // if (breakpoint) {
-          //   updatedSrcSet[breakpoint] = {
-          //     ...updatedSrcSet[breakpoint],
-          //     imageUrl: fullMedia.url,
-          //     id: fullMedia.id,
-          //     width: widthInInput,
-          //     startWidth: width,
-          //     ratio,
-          //     height: Math.trunc(width / ratio)
-          //   };
-          // } else {
-           
-          //   Object.keys(updatedSrcSet).forEach(brPoint => {
-          //     const {viewPort} = updatedSrcSet[brPoint];
-          //     const validateSize = width >= viewPort;
-          //     const newHeight = Math.trunc(viewPort / ratio);
-          //     const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
-      
-          //     updatedSrcSet[brPoint] = {
-          //       ...updatedSrcSet[brPoint],
-          //       imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
-          //       id: shouldDisableBreakpoint ? '' : fullMedia.id,
-          //       ratio: shouldDisableBreakpoint ? '' : ratio,
-          //       width: shouldDisableBreakpoint ? '' : viewPort,
-          //       height: shouldDisableBreakpoint ? '' : newHeight,
-          //       validateSize
-          //     };
-          //   });
-          // }
-          
-          // // Update attributes
-          // setAttributes({
-          //   mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
-          //   srcSet: updatedSrcSet
-          // });
-          setM(fullMedia);
-          setB(breakpoint);
-          updateSrcSet(fullMedia, breakpoint);
-
-          // console.log(attributes.mainImage);
-          setImageLoaded(true);
+          updateAllAttributes(fullMedia, breakpoint);
           
         }).catch((error) => {
           // eslint-disable-next-line no-console
@@ -358,10 +264,11 @@ registerBlockType(
                                     (checked) => setHiDPI(checked)
                                   }
                                 />
-                                {console.log(attributes.mainImage)}
-                                {console.log(attributes.srcSet)}
+                                {/* {console.log(attributes.mainImage)}
+                                {console.log(attributes.srcSet)} */}
                                 {/* {console.log(M)}
                                 {console.log(B)} */}
+                                {console.log(attributes.test)}
                                 <div className="image-dimensions row g-2">
                                   <TextControl
                                     label="width"
