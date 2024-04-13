@@ -2,16 +2,15 @@
  * Block dependencies
  */
 import metadata from '../block.json';
+
+import renderControls from './EditorComponents/renderControls';
+import renderOutput from './EditorComponents/renderOutput';
+
 /**
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
-const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
-const {useState,useEffect} = wp.element;
-
-// setDisabledBreakpoint  ---  toggler for hide breakpoints , when image with small size
-const setDisabledBreakpoint = true;
+const {useState, useEffect} = wp.element;
 
 registerBlockType(
   metadata,
@@ -22,25 +21,15 @@ registerBlockType(
     },
     edit: props => {
       const {attributes, setAttributes, className} = props;
-      const [priorityText, setPriorityText] = useState(getPriorityText(attributes.fetchPriority));
-      const blockProps = useBlockProps({
-        className: [className],
-      });
-      const [priorityHidpi, setpriorityHidpi] = useState(attributes.hidpi);
+
       useEffect(() => {
-        if (attributes.mainImage.id && attributes.hidpi) { 
+        if (attributes.mainImage.id && attributes.hidpi) {
           setDimensionHiDPI(true);
           console.log(`1 useEffect`);
         }
       }, [attributes.mainImage.id,attributes.hidpi]);
 
       const setDimensionHiDPI = (checked) => {
-        // console.log(`start width:${attributes.mainImage.width}`);
-        // const {ratio, startWidth} = attributes.mainImage;
-        // const newWidth = checked ? Math.trunc(startWidth / 2) : Math.trunc(startWidth * 2);
-        // const newHeight = Math.trunc(newWidth / ratio);
-        // changeDimension('mainImage', null, {width: newWidth, height: newHeight, startWidth: newWidth});
-        // console.log(`width:${newWidth} startWidth:${startWidth}`);
         const newnumber = checked ? Math.trunc(attributes.test / 2) : Math.trunc(attributes.test * 2);
         setAttributes({test: newnumber});
         console.log(attributes.test);
@@ -63,10 +52,10 @@ registerBlockType(
         if (isNaN(newWidth)) {
           newWidth = "";
         }
-    
+
         const {startWidth, ratio, id} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
         const idValidation = breakpoint ? attributes.mainImage.id === id : true;
-        
+
         if (!idValidation) {
           if (newWidth > startWidth) {
             newWidth = startWidth;
@@ -75,7 +64,7 @@ registerBlockType(
           newWidth = attributes.mainImage.startWidth;
         }
         let newHeight = Math.trunc(newWidth / ratio);
-    
+
         if (breakpoint) {
           changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
         } else {
@@ -85,7 +74,7 @@ registerBlockType(
       //"Loss of focus on input"
       const handleBlur = (event, breakpoint = null) => {
         const {mainImage, srcSet} = attributes;
-      
+
         if (event.target.value === "") {
           if (breakpoint === null) {
             const {startWidth, ratio} = mainImage;
@@ -94,7 +83,7 @@ registerBlockType(
           } else {
             const {startWidth, viewPort, ratio, id} = srcSet[breakpoint];
             const idValidation = mainImage.id === id;
-      
+
             let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
             const newHeight = Math.trunc(newWidth / ratio);
             changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
@@ -104,7 +93,7 @@ registerBlockType(
       //Set Width and Height in mainImage or srcSet
       const changeDimension = (type, breakpoint, updatedAttributes) => {
         let newAttributes = {};
-      
+
         if (type === 'mainImage') {
           newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
         } else if (type === 'srcSet') {
@@ -115,72 +104,8 @@ registerBlockType(
             },
           };
         }
-      
-        setAttributes(newAttributes);
-      };
-      const updateAllAttributes  = (fullMedia, breakpoint = null) => {
-        const updatedSrcSet = {...attributes.srcSet};
-        const {width, height} = fullMedia.media_details ? fullMedia.media_details : fullMedia;
-        const ratio = width / height;
-        const widthInInput = (breakpoint && width >= updatedSrcSet[breakpoint].viewPort) ? updatedSrcSet[breakpoint].viewPort : width;
-      
-        if (breakpoint) {
-          updatedSrcSet[breakpoint] = {
-            ...updatedSrcSet[breakpoint],
-            imageUrl: fullMedia.url,
-            id: fullMedia.id,
-            width: widthInInput,
-            startWidth: width,
-            ratio,
-            height: Math.trunc(width / ratio)
-          };
-          console.log(`поменяли ${breakpoint}`);
-        } else {
-      
-          Object.keys(updatedSrcSet).forEach(brPoint => {
-            const {viewPort} = updatedSrcSet[brPoint];
-            const validateSize = width >= viewPort;
-            const newHeight = Math.trunc(viewPort / ratio);
-            const shouldDisableBreakpoint = setDisabledBreakpoint && width < viewPort;
-      
-            updatedSrcSet[brPoint] = {
-              ...updatedSrcSet[brPoint],
-              imageUrl: shouldDisableBreakpoint ? '' : fullMedia.url,
-              id: shouldDisableBreakpoint ? '' : fullMedia.id,
-              ratio: shouldDisableBreakpoint ? '' : ratio,
-              width: shouldDisableBreakpoint ? '' : viewPort,
-              height: shouldDisableBreakpoint ? '' : newHeight,
-              validateSize
-            };
-            
-          });
-        }
-      
-        setAttributes({
-          mainImage: breakpoint ? attributes.mainImage : {src: fullMedia.url, width, startWidth: width, height, id: fullMedia.id, ratio: width / height},
-          srcSet: updatedSrcSet
-        });
-      };
 
-      const changeImage = (media, breakpoint = null) => {
-        return new Promise((resolve) => {
-          if (media.id) {
-            resolve(media);
-          } else {
-            const waitForData = setInterval(() => {
-              if (media.id) {
-                clearInterval(waitForData);
-                resolve(media);
-              }
-            }, 100); // reload 100
-          }
-        }).then((fullMedia) => {
-          updateAllAttributes(fullMedia, breakpoint);
-          
-        }).catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error("Errors:", error);
-        });
+        setAttributes(newAttributes);
       };
 
       //reset attributes to Default (Main Image)
@@ -201,218 +126,9 @@ registerBlockType(
         });
       };
 
-      function getPriorityText(value) {
-        switch (value) {
-        case 'auto':
-          return 'Default mode, which indicates no preference for the fetch priority. The browser decides what is best for the user.';
-        case 'low':
-          return 'Fetch the image at a low priority relative to other images.';
-        case 'high':
-          return 'Fetch the image at a high priority relative to other images.';
-        default:
-          return '';
-        }
-      }
-      
-      const renderControls = (
-        <InspectorControls key="controls">
-          <PanelBody title="Image Properties" className="image_container">
-            <TabPanel className="custom_tab" activeClass="btn-secondary text-white" tabs={[
-              {
-                name: 'tab1',
-                title: 'Responsive',
-                className: 'col btn btn-sm btn-outline-secondary',
-              },
-              {
-                name: 'tab2',
-                title: 'Settings',
-                className: 'col btn btn-sm btn-outline-secondary',
-              },
-            ]}>
-              {(tab) => (
-                <div className='custom_panel'>
-                  {tab.name === 'tab1' &&
-                    <div className='pt-4'>
-                      {!attributes.mainImage.src ? (
-                        <div className="px-3">
-                          <div className="row_image">
-                            <div className='setting_box'>
-                              <MediaPlaceholder
-                                icon="format-image"
-                                labels={{title: 'Add Image'}}
-                                onSelect={(media) => changeImage(media)}
-                              />
-
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <div className='px-4 mb-5'>
-                            <div className='row_image'>
-                              <div className='setting_box'>
-                                <img src={attributes.mainImage.src} alt="Uploaded" />
-                                <MediaPlaceholder
-                                  labels={{title: 'Main Image'}}
-                                  onSelect={(media) => changeImage(media)}
-                                />
-                                <CheckboxControl
-                                  className="pb-3"
-                                  label="HiDPI"
-                                  checked={attributes.hidpi}
-                                  onChange={
-                                    (checked) => setHiDPI(checked)
-                                  }
-                                />
-                                {/* {console.log(attributes.mainImage)}
-                                {console.log(attributes.srcSet)} */}
-                                {/* {console.log(M)}
-                                {console.log(B)} */}
-                                {console.log(attributes.test)}
-                                <div className="image-dimensions row g-2">
-                                  <TextControl
-                                    label="width"
-                                    type="number"
-                                    className="col"
-                                    value={attributes.mainImage.width}
-                                    placeholder={attributes.mainImage.startWidth}
-                                    onKeyPress={handleKeyPress}
-                                    onBlur={(event) => handleBlur(event)}
-                                    onChange={(event) => handleChange(event)}
-                                    inputMode="numeric"
-                                    min="0"
-                                    max={attributes.mainImage.startWidth}
-                                  />
-
-                                  <TextControl
-                                    label="height"
-                                    type="text"
-                                    className="col"
-                                    value={attributes.mainImage.height}
-                                    disabled 
-                                  />
-                                  
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          {Object.keys(attributes.srcSet)
-                            .reverse()
-                            .map((breakpoint) => (
-                              !setDisabledBreakpoint || attributes.srcSet[breakpoint].validateSize !== false ? (
-                                <PanelBody
-                                  title={`SrcSet: ${breakpoint.toUpperCase()}`}
-                                  key={breakpoint}
-                                  initialOpen={false}
-                                >
-                                  <div className='row_image' key={breakpoint}>
-                                    <div className='setting_box'>
-                                      <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
-                                      {!attributes.srcSet[breakpoint].validateSize && (
-                                        <div className='test_alert'>Bad Image Size</div>
-                                      )}
-                                      <MediaPlaceholder
-                                        labels={{title: 'Change Image'}}
-                                        onSelect={(media) => changeImage(media, breakpoint)}
-                                      />
-                                      {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
-                                        <button
-                                          className='btn btn-danger btn-sm btn_reset'
-                                          onClick={() => handleResetImage(breakpoint)}
-                                        >
-                                          Reset to Default Image
-                                        </button>
-                                      )}
-                                      <div className="image-dimensions row g-2">
-                                        <TextControl
-                                          label="width"
-                                          type="number"
-                                          className="col"
-                                          value={attributes.srcSet[breakpoint].width}
-                                          placeholder={attributes.srcSet[breakpoint].width}
-                                          onKeyPress={handleKeyPress}
-                                          onBlur={(event) => handleBlur(event, breakpoint)}
-                                          onChange={(event) => handleChange(event, breakpoint)}
-                                          inputMode="numeric"
-                                          min="0"
-                                          max={attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
-                                        />
-                                        <TextControl
-                                          label="height"
-                                          type="text"
-                                          className="col"
-                                          value={attributes.srcSet[breakpoint].height}
-                                          disabled 
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </PanelBody>
-                              ) : null
-                            ))}
-
-                        </div>
-                      )}
-                    </div>
-                  }
-                  {tab.name === 'tab2' &&
-                    <div className='pt-4 px-3'>
-                      <TextareaControl
-                        label="Alt Text"
-                        value={attributes.altText}
-                        onChange={(value) => {
-                          setAttributes({
-                            altText: value
-                          });
-                        }}
-                      />
-                      <CheckboxControl
-                        label="Lazy Loading"
-                        checked={attributes.loadingLazy}
-                        onChange={(checked) => setAttributes({loadingLazy: checked})}
-                      />
-                      <SelectControl
-                        label="Fetch Priority"
-                        value={attributes.fetchPriority}
-                        options={[
-                          {label: 'Priority: Auto', value: 'auto'},
-                          {label: 'Priority: Low', value: 'low'},
-                          {label: 'Priority: High', value: 'high'}
-                        ]}
-                        onChange={(value) => {
-                          setAttributes({fetchPriority: value});
-                          setPriorityText(getPriorityText(value));
-                        }}
-                      />
-                      <div>
-                        {priorityText && <p>{priorityText}</p>}
-                      </div>
-                    </div>
-                  }
-                </div>
-              )}
-            </TabPanel>
-          </PanelBody>
-        </InspectorControls>
-      );
-      const renderOutput = (
-        <div  {...blockProps} key="blockControls">
-          {attributes.mainImage.src ? (
-            <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
-          ) : (
-            <MediaPlaceholder
-              icon="format-image"
-              labels={{title: 'Add Image'}}
-              onSelect={(media) => changeImage(media)}
-            />
-          )}
-          
-        </div>
-      );
-
       return [
-        renderControls,
-        renderOutput,
+        //renderControls(props),
+        renderOutput(props),
       ];
     },
     save: () => {

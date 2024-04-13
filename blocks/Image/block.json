@@ -30,10 +30,6 @@
       "type": "boolean",
       "default": true
     },
-    "test": {
-      "type": "number",
-      "default": 10
-    },
     "altText": {
       "type": "string",
       "default": "Image"
@@ -47,6 +43,10 @@
         "id": "",
         "ratio": ""
       }
+    },
+    "hideBiggerBreakpoints": {
+      "type": "boolean",
+      "default": true
     },
     "srcSet": {
       "type": "object",
