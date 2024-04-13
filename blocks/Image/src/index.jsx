@@ -3,8 +3,7 @@
  */
 import metadata from '../block.json';
 
-import renderControls from './EditorComponents/renderControls';
-import renderOutput from './EditorComponents/renderOutput';
+import Edit from './js/Edit';
 
 /**
  * Internal block libraries
@@ -128,7 +127,7 @@ registerBlockType(
 
       return [
         //renderControls(props),
-        renderOutput(props),
+        Edit.renderOutput(props),
       ];
     },
     save: () => {
