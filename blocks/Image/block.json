@@ -37,7 +37,7 @@
     "mainImage": {
       "type": "object",
       "default": {
-        "src": "",
+        "url": "",
         "width": "",
         "height": "",
         "id": "",

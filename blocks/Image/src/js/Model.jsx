@@ -9,7 +9,7 @@ export default class Model {
       {
         mainImage: {
           id: image.id,
-          src: image.url,
+          url: image.url,
           startWidth: image.startWidth,
           width: image.width,
           height: image.height,
@@ -24,7 +24,7 @@ export default class Model {
     srcSetObj[breakpoint] = {
       ...srcSetObj[breakpoint],
       id: image.id,
-      imageUrl: image.url,
+      url: image.url,
       width: image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width,
       startWidth: image.width,
       ratio: image.ratio,
@@ -44,11 +44,13 @@ export default class Model {
 
       // hide breakpoint, when image with < breakpoint viewPort
       if (hideBiggerBreakpoints && image.width < viewPort) {
-        srcSetObj[brPoint] = {};
+        srcSetObj[brPoint] = {
+          viewPort
+        };
       } else {
         srcSetObj[brPoint] = {
           ...srcSetObj[brPoint],
-          imageUrl: image.url,
+          url: image.url,
           id: image.id,
           ratio: image.ratio,
           width: viewPort,
@@ -63,5 +65,23 @@ export default class Model {
       srcSet: srcSetObj
     });
   }
+
+  //Set Width and Height in mainImage or srcSet
+  static changeDimension(type, breakpoint, updatedAttributes) {
+    let newAttributes = {};
+
+    if (type === 'mainImage') {
+      newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
+    } else if (type === 'srcSet') {
+      newAttributes = {
+        srcSet: {
+          ...attributes.srcSet,
+          [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
+        },
+      };
+    }
+
+    setAttributes(newAttributes);
+  };
 
 }

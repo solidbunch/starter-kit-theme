@@ -35,7 +35,7 @@ export default class Edit {
               <div className='custom_panel'>
                 {tab.name === 'responsive-tab' &&
                   <div className='pt-4'>
-                    {!attributes.mainImage.src ? (
+                    {!attributes.mainImage.url ? (
                       <div className="px-3">
                         <div className="row_image">
                           <div className='setting_box'>
@@ -53,7 +53,7 @@ export default class Edit {
                         <div className='px-4 mb-5'>
                           <div className='row_image'>
                             <div className='setting_box'>
-                              <img src={attributes.mainImage.src} alt="Uploaded" />
+                              <img src={attributes.mainImage.url} alt="Uploaded" />
                               <MediaPlaceholder
                                 labels={{title: 'Main Image'}}
                                 onSelect={(media) => Handlers.onChangeImage(media, props)}
@@ -73,9 +73,9 @@ export default class Edit {
                                   className="col"
                                   value={attributes.mainImage.width}
                                   placeholder={attributes.mainImage.startWidth}
-                                  onKeyPress={handleKeyPress}
-                                  onBlur={(event) => handleBlur(event)}
-                                  onChange={(event) => handleChange(event)}
+                                  onKeyPress={Handlers.onWidthInputKeyPress}
+                                  onBlur={Handlers.onWidthInputBlur}
+                                  onChange={Handlers.onWidthInputChange}
                                   inputMode="numeric"
                                   min="0"
                                   max={attributes.mainImage.startWidth}
@@ -97,7 +97,7 @@ export default class Edit {
                           .reverse()
                           .map((breakpoint) => (
                             // hide breakpoints, when image with < breakpoint viewPort
-                            !attributes.hideBiggerBreakpoints || attributes.srcSet[breakpoint].validateSize !== false ? (
+                            attributes.hideBiggerBreakpoints && attributes.srcSet[breakpoint].id ? (
                               <PanelBody
                                 title={`SrcSet: ${breakpoint.toUpperCase()}`}
                                 key={breakpoint}
@@ -105,7 +105,7 @@ export default class Edit {
                               >
                                 <div className='row_image' key={breakpoint}>
                                   <div className='setting_box'>
-                                    <img src={attributes.srcSet[breakpoint].imageUrl} alt="Uploaded" />
+                                    <img src={attributes.srcSet[breakpoint].url} alt="Uploaded" />
                                     {!attributes.srcSet[breakpoint].validateSize && (
                                       <div className='test_alert'>Bad Image Size</div>
                                     )}
@@ -113,10 +113,10 @@ export default class Edit {
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
                                     />
-                                    {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
+                                    {attributes.srcSet[breakpoint].id && attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
                                       <button
                                         className='btn btn-danger btn-sm btn_reset'
-                                        onClick={() => handleResetImage(breakpoint)}
+                                        onClick={() => Handlers.onResetImage(breakpoint)}
                                       >
                                         Reset to Default Image
                                       </button>
@@ -128,12 +128,12 @@ export default class Edit {
                                         className="col"
                                         value={attributes.srcSet[breakpoint].width}
                                         placeholder={attributes.srcSet[breakpoint].width}
-                                        onKeyPress={handleKeyPress}
-                                        onBlur={(event) => handleBlur(event, breakpoint)}
-                                        onChange={(event) => handleChange(event, breakpoint)}
+                                        onKeyPress={Handlers.onWidthInputKeyPress}
+                                        onBlur={(event) => Handlers.onWidthInputBlur(event, breakpoint)}
+                                        onChange={(event) => Handlers.onWidthInputChange(event, breakpoint)}
                                         inputMode="numeric"
                                         min="0"
-                                        max={attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
+                                        max={attributes.mainImage.id && attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
                                       />
                                       <TextControl
                                         label="height"
@@ -205,8 +205,8 @@ export default class Edit {
 
     return (
       <div  {...blockProps} key="blockControls">
-        {attributes.mainImage.src ? (
-          <img src={attributes.mainImage.src} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
+        {attributes.mainImage.url ? (
+          <img src={attributes.mainImage.url} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
         ) : (
           <MediaPlaceholder
             icon="format-image"
