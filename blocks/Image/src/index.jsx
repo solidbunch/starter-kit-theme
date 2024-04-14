@@ -5,11 +5,7 @@ import metadata from '../block.json';
 
 import Edit from './js/Edit';
 
-/**
- * Internal block libraries
- */
 const {registerBlockType} = wp.blocks;
-const {useState, useEffect} = wp.element;
 
 registerBlockType(
   metadata,

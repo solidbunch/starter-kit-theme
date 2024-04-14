@@ -6,7 +6,16 @@ import Utils from './Helper/Utils';
  */
 export default class Handlers {
 
-  static onChangeImage(media, props, breakpoint = null) {
+  /**
+   * Add or update existing main or breakpoint image
+   *
+   * @param {Object} media
+   * @param {Object} props
+   * @param {string} breakpoint
+   *
+   * @return {Promise}
+   */
+  static onChangeImage(media, props, breakpoint = '') {
 
     return new Promise((resolve) => {
       if (media.id) {

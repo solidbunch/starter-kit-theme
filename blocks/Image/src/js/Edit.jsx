@@ -1,6 +1,9 @@
 import Handlers from "./Handlers";
 import Utils from "./Helper/Utils";
 
+/**
+ * Internal block libraries
+ */
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
 const {useState} = wp.element;
