@@ -70,8 +70,6 @@ export default class Handlers {
 
     let image = attributes.mainImage;
 
-    console.log(image);
-
     image = Utils.getDimensionHiDPI(image, checked);
 
     Model.setMainImage(image, setAttributes);
@@ -136,7 +134,7 @@ export default class Handlers {
 
   //reset attributes to Default (Main Image)
   static onResetImage(breakpoint) {
-/*    setAttributes({
+    /*    setAttributes({
       srcSet: {
         ...attributes.srcSet,
         [breakpoint]: {

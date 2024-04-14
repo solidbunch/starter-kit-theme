@@ -136,7 +136,7 @@ export default class Edit {
                                         onChange={(event) => Handlers.onWidthInputChange(event, breakpoint)}
                                         inputMode="numeric"
                                         min="0"
-                                        max={attributes.mainImage.id && attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
+                                        max={attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}
                                       />
                                       <TextControl
                                         label="height"

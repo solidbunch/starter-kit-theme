@@ -30,7 +30,7 @@ export default class Model {
       ratio: image.ratio,
       height: Math.trunc(image.width / image.ratio)
     };
-
+    // todo  fix height to viewPort
     setAttributes({
       srcSet: srcSetObj
     });
@@ -54,6 +54,7 @@ export default class Model {
           id: image.id,
           ratio: image.ratio,
           width: viewPort,
+          startWidth: image.startWidth,
           height: Math.trunc(viewPort / image.ratio),
           validateSize
         };
@@ -67,7 +68,7 @@ export default class Model {
   }
 
   //Set Width and Height in mainImage or srcSet
-  static changeDimension(type, breakpoint, updatedAttributes) {
+  static changeDimension(type, breakpoint, updatedAttributes,setAttributes,attributes) {
     let newAttributes = {};
 
     if (type === 'mainImage') {

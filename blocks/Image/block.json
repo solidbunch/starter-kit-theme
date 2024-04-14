@@ -52,34 +52,19 @@
       "type": "object",
       "default": {
         "sm": {
-          "imageUrl": "",
-          "viewPort": 576,
-          "id": "",
-          "ratio": ""
+          "viewPort": 576
         },
         "md": {
-          "imageUrl": "",
-          "viewPort": 768,
-          "id": "",
-          "ratio": ""
+          "viewPort": 768
         },
         "lg": {
-          "imageUrl": "",
-          "viewPort": 992,
-          "id": "",
-          "ratio": ""
+          "viewPort": 992
         },
         "xl": {
-          "imageUrl": "",
-          "viewPort": 1200,
-          "id": "",
-          "ratio": ""
+          "viewPort": 1200
         },
         "xxl": {
-          "imageUrl": "",
-          "viewPort": 1400,
-          "id": "",
-          "ratio": ""
+          "viewPort": 1400
         }
       }
     }
