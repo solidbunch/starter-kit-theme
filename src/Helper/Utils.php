@@ -214,7 +214,7 @@ class Utils
         }
 
         $rest_prefix         = trailingslashit(rest_get_url_prefix());
-        $is_rest_api_request = strpos($_SERVER['REQUEST_URI'], $rest_prefix) !== false;
+        $is_rest_api_request = str_contains($_SERVER['REQUEST_URI'], $rest_prefix);
 
         if ($method) {
             $is_rest_api_request = $is_rest_api_request && $_SERVER['REQUEST_METHOD'] === strtoupper($method);

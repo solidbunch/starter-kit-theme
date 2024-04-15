@@ -26,7 +26,7 @@ export default class Model {
       id: image.id,
       url: image.url,
       width: image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width,
-      startWidth: image.width,
+      startWidth: image.startWidth,
       ratio: image.ratio,
       height: Math.trunc(image.width / image.ratio)
     };
