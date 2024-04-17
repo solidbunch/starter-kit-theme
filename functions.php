@@ -13,7 +13,7 @@ use Psr\Container\ContainerInterface;
  */
 
 if (PHP_VERSION_ID < 80100) {
-    $activeTheme = wp_get_theme();
+    $activeTheme        = wp_get_theme();
     $requiredPhpVersion = $activeTheme->get('RequiresPHP');
 
     error_log(sprintf(__('Theme requires at least PHP %s (You are using PHP %s) '), $requiredPhpVersion, PHP_VERSION));

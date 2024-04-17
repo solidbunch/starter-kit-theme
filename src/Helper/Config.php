@@ -4,14 +4,13 @@ namespace StarterKit\Helper;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\App;
-use StarterKit\Helper\NotFoundException;
-
 
 /**
  * Theme configuration helper
  *
- * @throws NotFoundException No entry found for the given name.
  * @package Starter Kit
  *
  */
@@ -23,6 +22,10 @@ class Config
      * @param string $key
      *
      * @return mixed
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws NotFoundException
      */
     public static function get(string $key): mixed
     {
