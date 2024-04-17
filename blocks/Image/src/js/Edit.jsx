@@ -211,7 +211,7 @@ export default class Edit {
 
     return (
       <div  {...blockProps} key="blockControls">
-        {attributes.mainImage.url ? (
+        {attributes.mainImage.id ? (
           <ServerSideRender
             block={metadata.name}
             attributes={attributes}
