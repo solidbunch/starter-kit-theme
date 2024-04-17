@@ -3,8 +3,6 @@
 defined('ABSPATH') || exit;
 
 use StarterKit\App;
-use StarterKit\Helper\Utils;
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use Psr\Container\ContainerInterface;
 
@@ -30,10 +28,14 @@ if (PHP_VERSION_ID < 80100) {
         require_once __DIR__ . '/vendor/autoload.php';
 
         /** @var ContainerInterface $container */
-        $container = apply_filters('sk/container', require __DIR__ . '/config/container.php');
+        $container = apply_filters('starter_kit/container', require __DIR__ . '/config/container.php');
 
         App::instance()->run($container);
     } catch (Throwable $throwable) {
-        ErrorHandler::handleThrowable($throwable);
+        try {
+            ErrorHandler::handleThrowable($throwable);
+        } catch (Throwable $e) {
+            error_log($e);
+        }
     }
 }

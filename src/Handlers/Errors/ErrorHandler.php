@@ -14,6 +14,9 @@ use StarterKit\Helper\Logger;
 
 class ErrorHandler
 {
+    /**
+     * @throws \Throwable
+     */
     public static function handleThrowable(\Throwable $throwable): void
     {
         $error_message = 'PHP error: ' .

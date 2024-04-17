@@ -19,11 +19,12 @@ abstract class BlockAbstract implements BlockInterface
     /**
      * Load block view
      *
-     * @param  string  $file
-     * @param  array   $data
-     * @param  null    $base
+     * @param string $file
+     * @param array  $data
+     * @param null   $base
      *
      * @return string
+     * @throws Throwable
      */
     public static function loadBlockView(string $file = '', array $data = [], $base = null): string
     {
