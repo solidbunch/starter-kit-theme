@@ -31,7 +31,7 @@ registerBlockType(
           })
           .catch(error => {
             // eslint-disable-next-line no-console
-            console.error('Error fetching menu locations:', error);
+            console.error('Error fetching menu locations: ', error);
           });
 
         wp.apiFetch({path: '/skt/v1/get-menus'})
