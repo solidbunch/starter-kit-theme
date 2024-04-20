@@ -15,7 +15,7 @@ use WP_CLI\ExitException;
  *
  * @package    Starter Kit
  */
-class CloneTheme
+class CloneTheme implements CLICommandInterface
 {
     /**
      * Search values
