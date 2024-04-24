@@ -124,7 +124,6 @@ export default class Edit {
                                         Reset to Default Image
                                       </button>
                                     )}
-                                    { console.log(attributes)}
                                     <div className="image-dimensions row g-2">
                                       <TextControl
                                         label="width"
