@@ -30,52 +30,60 @@ class BlockRenderer extends BlockAbstract
      */
     public static function blockServerSideCallback($attributes, $content, $block): string
     {
-        $imgAlt        = !empty($attributes['altText']) ? esc_attr($attributes['altText']) : '';
-        $className     = !empty($attributes['defaultClass']) ? esc_attr($attributes['defaultClass']) : '';
-        $fetchPriority = !empty($attributes['fetchPriority']) ? esc_attr($attributes['fetchPriority']) : 'auto';
-        $lazy          = !empty($attributes['loadingLazy']) ? true : false;
+        $imgAlt         = !empty($attributes['altText']) ? esc_attr($attributes['altText']) : '';
+        $className      = !empty($attributes['defaultClass']) ? esc_attr($attributes['defaultClass']) : '';
+        $fetchPriority  = !empty($attributes['fetchPriority']) ? esc_attr($attributes['fetchPriority']) : 'auto';
+        $lazy           = !empty($attributes['loadingLazy']);
+        $editorTemplate = !empty($attributes['editorTemplate']);
+        $hidpi          = !empty($attributes['hidpi']);
 
         $attrs['class']         = $className;
         $attrs['fetchpriority'] = $fetchPriority;
 
-        $mainImageId     = !empty($attributes['mainImage']['id']) ? (int) $attributes['mainImage']['id'] : 0;
-        $mainImageUrl    = (string) wp_get_attachment_image_url($mainImageId, 'full');
-        $mainImageWidth  = !empty($attributes['mainImage']['width']) ? (int) $attributes['mainImage']['width'] : null;
-        $mainImageHeight = !empty($attributes['mainImage']['height']) ? (int) $attributes['mainImage']['height'] : null;
+        $mainImageId     = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
+        $mainImageUrl    = (string)wp_get_attachment_image_url($mainImageId, 'full');
+        $mainImageWidth  = !empty($attributes['mainImage']['width']) ? (int)$attributes['mainImage']['width'] : null;
+        $mainImageHeight = !empty($attributes['mainImage']['height']) ? (int)$attributes['mainImage']['height'] : null;
 
         $mqWithWidth = !empty($attributes['srcSet']) && is_array($attributes['srcSet'])
             ? $attributes['srcSet']
             : [];
 
-        $pixelRatio2x = false;
-
         if (!$mainImageUrl) {
             return '';
         }
 
-        if (Utils::isRestApiRequest('POST') || (is_admin() && !wp_doing_ajax())) {
-            return "<figure><img src='{$mainImageUrl}' alt=''></img></figure>";
-        }
+        $templateData = [];
 
-        $imgHtml = '';
+        if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) {
+            $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
+
+            foreach ($attrs as $attrName => $attrValue) {
+                $img->setAttr($attrName, $attrValue);
+            }
+
+            $templateData['imgHtml'] = $img->render() ?? '';
+
+            return self::loadBlockView('layout', $templateData);
+        }
 
         try {
             $sizes = $srcset = [];
 
             foreach ($mqWithWidth as $breakpoint => $bpData) {
-                $imageId  = !empty($bpData['id']) ? (int) $bpData['id'] : 0;
-                $imageUrl = (string) wp_get_attachment_image_url($imageId, 'full');
+                $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : 0;
+                $imageUrl = (string)wp_get_attachment_image_url($imageId, 'full');
 
-                $bp = is_numeric($bpData['viewPort']) && ! empty($bpData['viewPort'])
-                    ? (int) $bpData['viewPort']
+                $bp = !empty($bpData['viewPort']) && is_numeric($bpData['viewPort'])
+                    ? (int)$bpData['viewPort']
                     : null;
 
-                $widthToResize = is_numeric($bpData['width']) && ! empty($bpData['width'])
-                    ? (int) $bpData['width']
+                $widthToResize = !empty($bpData['width']) && is_numeric($bpData['width'])
+                    ? (int)$bpData['width']
                     : null;
 
-                $heightToResize = is_numeric($bpData['height']) && ! empty($bpData['height'])
-                    ? (int) $bpData['height']
+                $heightToResize = !empty($bpData['height']) && is_numeric($bpData['height'])
+                    ? (int)$bpData['height']
                     : null;
 
                 // imageUrl, widthToResize are required
@@ -93,13 +101,6 @@ class BlockRenderer extends BlockAbstract
                 $resizer->setHeight($heightToResize);
 
                 $srcset[] = SrcsetItem::makeWithResize($resizer, "{$widthToResize}w");
-
-                if ($pixelRatio2x) {
-                    $resizer->setWidth($widthToResize * 2);
-                    $resizer->setHeight($heightToResize * 2);
-
-                    $srcset[] = SrcsetItem::makeWithResize($resizer, ( $widthToResize * 2 ) . 'w');
-                }
             }
 
             if (!empty($srcset)) {
@@ -113,8 +114,15 @@ class BlockRenderer extends BlockAbstract
                 $resizer->setHeight($mainImageHeight);
 
                 $srcset[] = SrcsetItem::makeWithResize($resizer, "{$mainImageWidth}w");
-            }
 
+                // Add HiDPI 2x size
+                if ($hidpi) {
+                    $resizer->setWidth($mainImageWidth * 2);
+                    $resizer->setHeight($mainImageHeight * 2);
+
+                    $srcset[] = SrcsetItem::makeWithResize($resizer, ($mainImageWidth * 2) . 'w');
+                }
+            }
 
             $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, $srcset, $sizes, $lazy);
 
@@ -122,13 +130,11 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $imgHtml = $img->render();
+            $templateData['imgHtml'] = $img->render() ?? '';
         } catch (\Exception $ex) {
             error_log("\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n");
         }
 
-        $html = $imgHtml ? "<figure>{$imgHtml}</figure>" : '';
-
-        return $html;
+        return self::loadBlockView('layout', $templateData);
     }
 }

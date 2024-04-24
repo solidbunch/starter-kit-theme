@@ -26,6 +26,7 @@ export default class Model {
     srcSetObj[breakpoint] = {
       ...srcSetObj[breakpoint],
       id: image.id,
+      // ToDo add fetch image url by id to not store long data in database
       url: image.url,
       width:image.width,
       startWidth: image.width,
@@ -51,8 +52,8 @@ export default class Model {
       } else {
         srcSetObj[brPoint] = {
           ...srcSetObj[brPoint],
-          url: image.url,
           id: image.id,
+          url: image.url,
           ratio: image.ratio,
           width: viewPort,
           startWidth: image.startWidth,

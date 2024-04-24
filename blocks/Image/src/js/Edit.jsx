@@ -1,3 +1,5 @@
+import metadata from '../../block.json';
+
 import Handlers from "./Handlers";
 import Utils from "./Helper/Utils";
 
@@ -7,6 +9,7 @@ import Utils from "./Helper/Utils";
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl,TabPanel} = wp.components;
 const {useState} = wp.element;
+const {serverSideRender: ServerSideRender} = wp;
 
 /**
  * Block editor class
@@ -208,8 +211,11 @@ export default class Edit {
 
     return (
       <div  {...blockProps} key="blockControls">
-        {attributes.mainImage.url ? (
-          <img src={attributes.mainImage.url} alt="Uploaded" width={attributes.mainImage.width} height={attributes.mainImage.height}/>
+        {attributes.mainImage.id ? (
+          <ServerSideRender
+            block={metadata.name}
+            attributes={attributes}
+          />
         ) : (
           <MediaPlaceholder
             icon="format-image"
