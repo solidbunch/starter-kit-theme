@@ -21,16 +21,17 @@ export default class Model {
 
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
+    image.width = image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width;
+
     srcSetObj[breakpoint] = {
       ...srcSetObj[breakpoint],
       id: image.id,
       url: image.url,
-      width: image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width,
+      width:image.width,
       startWidth: image.width,
       ratio: image.ratio,
       height: Math.trunc(image.width / image.ratio)
     };
-    // todo  fix height to viewPort
     setAttributes({
       srcSet: srcSetObj
     });
@@ -68,7 +69,8 @@ export default class Model {
   }
 
   //Set Width and Height in mainImage or srcSet
-  static changeDimension(type, breakpoint, updatedAttributes,setAttributes,attributes) {
+  static changeDimension(type, breakpoint, updatedAttributes, props) {
+    const {attributes,setAttributes} = props;
     let newAttributes = {};
 
     if (type === 'mainImage') {

@@ -77,8 +77,8 @@ export default class Edit {
                                   value={attributes.mainImage.width}
                                   placeholder={attributes.mainImage.startWidth}
                                   onKeyPress={Handlers.onWidthInputKeyPress}
-                                  onBlur={Handlers.onWidthInputBlur}
-                                  onChange={Handlers.onWidthInputChange}
+                                  onBlur={(event) => Handlers.onWidthInputBlur(event,props)}
+                                  onChange={(event) => Handlers.onWidthInputChange(event, props)}
                                   inputMode="numeric"
                                   min="0"
                                   max={attributes.mainImage.startWidth}
@@ -116,14 +116,15 @@ export default class Edit {
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
                                     />
-                                    {attributes.srcSet[breakpoint].id && attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
+                                    {attributes.srcSet[breakpoint].id !== attributes.mainImage.id && (
                                       <button
                                         className='btn btn-danger btn-sm btn_reset'
-                                        onClick={() => Handlers.onResetImage(breakpoint)}
+                                        onClick={() => Handlers.onResetImage(breakpoint,props)}
                                       >
                                         Reset to Default Image
                                       </button>
                                     )}
+                                    { console.log(attributes)}
                                     <div className="image-dimensions row g-2">
                                       <TextControl
                                         label="width"
@@ -132,8 +133,8 @@ export default class Edit {
                                         value={attributes.srcSet[breakpoint].width}
                                         placeholder={attributes.srcSet[breakpoint].width}
                                         onKeyPress={Handlers.onWidthInputKeyPress}
-                                        onBlur={(event) => Handlers.onWidthInputBlur(event, breakpoint)}
-                                        onChange={(event) => Handlers.onWidthInputChange(event, breakpoint)}
+                                        onBlur={(event) => Handlers.onWidthInputBlur(event,props, breakpoint)}
+                                        onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
                                         min="0"
                                         max={attributes.mainImage.id !== attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint].startWidth : attributes.mainImage.startWidth}

@@ -87,27 +87,28 @@ export default class Handlers {
   };
 
   //"Loss of focus on input"
-  static onWidthInputBlur(event, breakpoint = null) {
-    const {mainImage, srcSet} = attributes;
+  static onWidthInputBlur(event, props, breakpoint = null) {
+    const {mainImage, srcSet} = props.attributes;
 
     if (event.target.value === "") {
       if (breakpoint === null) {
         const {startWidth, ratio} = mainImage;
         const newHeight = Math.trunc(startWidth / ratio);
-        Model.changeDimension('mainImage', null, {width: startWidth, height: newHeight});
+        Model.changeDimension('mainImage', null, {width: startWidth, height: newHeight},props);
       } else {
         const {startWidth, viewPort, ratio, id} = srcSet[breakpoint];
         const idValidation = mainImage.id === id;
 
         let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
         const newHeight = Math.trunc(newWidth / ratio);
-        Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
+        Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
       }
     }
   };
 
   //change Width and Height in mainImage or srcSet
-  static onWidthInputChange(event, breakpoint) {
+  static onWidthInputChange(event, props, breakpoint = null) {
+    const {attributes} = props;
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
     if (isNaN(newWidth)) {
       newWidth = "";
@@ -126,28 +127,25 @@ export default class Handlers {
     let newHeight = Math.trunc(newWidth / ratio);
 
     if (breakpoint) {
-      Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight});
+      Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
     } else {
-      Model.changeDimension('mainImage', null, {width: newWidth, height: newHeight});
+      Model.changeDimension('mainImage', null, {width: newWidth, height: newHeight},props);
     }
   };
 
   //reset attributes to Default (Main Image)
-  static onResetImage(breakpoint) {
-    /*    setAttributes({
-      srcSet: {
-        ...attributes.srcSet,
-        [breakpoint]: {
-          ...attributes.srcSet[breakpoint],
-          imageUrl: attributes.mainImage.src,
-          id: attributes.mainImage.id,
-          startWidth:'',
-          ratio:attributes.mainImage.ratio,
-          width:attributes.srcSet[breakpoint].viewPort,
-          height: Math.trunc(attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio),
-        }
-      }
-    });*/
+  static onResetImage(breakpoint, props) {
+    const {attributes, setAttributes} = props;
+    const srcSetObj = {...attributes.srcSet};
+    let image = {
+      id: attributes.mainImage.id,
+      url: attributes.mainImage.url,
+      width:attributes.srcSet[breakpoint].viewPort,
+      height: Math.trunc(attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio),
+      ratio : attributes.mainImage.ratio
+    };
+    Model.setBreakpoint(image, srcSetObj, breakpoint, setAttributes);
+    
   };
 
 }
