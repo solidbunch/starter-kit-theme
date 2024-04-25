@@ -105,7 +105,7 @@ export default class Edit {
                           .reverse()
                           .map((breakpoint) => (
                             // hide breakpoints, when image with < breakpoint viewPort
-                            attributes.srcSet[breakpoint].enableBreakpoint ? (
+                            attributes.srcSet[breakpoint].enabled ? (
                               <PanelBody
                                 title={`SrcSet: ${breakpoint.toUpperCase()} : ${attributes.srcSet[breakpoint].viewPort}px`}
                                 key={breakpoint}
@@ -128,8 +128,6 @@ export default class Edit {
                                         Reset to Default Image
                                       </button>
                                     )}
-                                    {console.log(attributes.srcSet)}
-                                    {console.log(attributes.mainImage)}
                                     <div className="image-dimensions row g-2">
                                       <TextControl
                                         label="width"

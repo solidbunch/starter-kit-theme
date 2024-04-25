@@ -38,23 +38,16 @@ export default class Model {
     });
   }
 
-  static setSrcSet(image, srcSetObj, props) {
-    const {attributes, setAttributes} = props;
+  static setSrcSet(image, srcSetObj, setAttributes, updatedImage = false) {
     Object.keys(srcSetObj).forEach(brPoint => {
       const {viewPort} = srcSetObj[brPoint];
+
+      // Disable breakpoint if breakpoint image with < breakpoint viewPort
       const enableBreakpoint = image.width >= viewPort;
 
-      const validateID = image.id === attributes.mainImage.id;
-
-      if (validateID) {
+      if (updatedImage) {
         srcSetObj[brPoint] = {
-          ...srcSetObj[brPoint],
-          enableBreakpoint,
-        };
-      } else {
-        srcSetObj[brPoint] = {
-          // ...srcSetObj[brPoint],
-          enableBreakpoint,
+          enabled: enableBreakpoint,
           id: image.id,
           url: image.url,
           viewPort,
@@ -62,6 +55,11 @@ export default class Model {
           width: viewPort,
           height: Math.trunc(viewPort / image.ratio),
           ratio: image.ratio,
+        };
+      } else {
+        srcSetObj[brPoint] = {
+          ...srcSetObj[brPoint],
+          enabled: enableBreakpoint,
         };
       }
 

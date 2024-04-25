@@ -71,6 +71,7 @@ class BlockRenderer extends BlockAbstract
             $sizes = $srcset = [];
 
             foreach ($mqWithWidth as $breakpoint => $bpData) {
+                $enabled  = !empty($bpData['enabled']);
                 $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : 0;
                 $imageUrl = (string)wp_get_attachment_image_url($imageId, 'full');
 
@@ -87,7 +88,7 @@ class BlockRenderer extends BlockAbstract
                     : null;
 
                 // imageUrl, widthToResize are required
-                if (!$imageUrl || !$widthToResize) {
+                if (!$enabled || !$imageUrl || !$widthToResize) {
                     continue;
                 }
 

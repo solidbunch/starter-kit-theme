@@ -53,7 +53,7 @@ export default class Handlers {
 
       Model.setMainImage(image, setAttributes);
 
-      Model.setSrcSet(image, srcSetObj, props);
+      Model.setSrcSet(image, srcSetObj, setAttributes, true);
 
     }).catch((error) => {
       // eslint-disable-next-line no-console
@@ -71,7 +71,7 @@ export default class Handlers {
     image = Utils.getDimensionHiDPI(image, checked);
 
     Model.setMainImage(image, setAttributes);
-    Model.setSrcSet(image, srcSetObj, props);
+    Model.setSrcSet(image, srcSetObj, setAttributes);
 
     setAttributes({hidpi: checked});
   }
@@ -143,7 +143,7 @@ export default class Handlers {
       ratio : attributes.mainImage.ratio
     };
     Model.setBreakpoint(image, srcSetObj, breakpoint, setAttributes);
-    
+
   };
 
 }
