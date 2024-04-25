@@ -59,7 +59,9 @@ export default class Edit {
                         <div className='px-4 mb-5'>
                           <div className='row_image'>
                             <div className='setting_box'>
-                              <img src={attributes.mainImage.url} alt="Uploaded" />
+                              <div className="img_holder">
+                                <img src={attributes.mainImage.url} alt="Uploaded" />
+                              </div>
                               <MediaPlaceholder
                                 labels={{title: 'Main Image'}}
                                 onSelect={(media) => Handlers.onChangeImage(media, props)}
@@ -111,7 +113,9 @@ export default class Edit {
                               >
                                 <div className='row_image' key={breakpoint}>
                                   <div className='setting_box'>
-                                    <img src={attributes.srcSet[breakpoint].url} alt="Uploaded" />
+                                    <div className="img_holder">
+                                      <img src={attributes.srcSet[breakpoint].url} alt="Uploaded" />
+                                    </div>
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
