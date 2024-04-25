@@ -38,27 +38,30 @@ export default class Model {
     });
   }
 
-  static setSrcSet(image, srcSetObj, hideBiggerBreakpoints, setAttributes) {
-
+  static setSrcSet(image, srcSetObj, props) {
+    const {attributes, setAttributes} = props;
     Object.keys(srcSetObj).forEach(brPoint => {
       const {viewPort} = srcSetObj[brPoint];
-      const validateSize = image.width >= viewPort;
+      const enableBreakpoint = image.width >= viewPort;
 
-      // hide breakpoint, when image with < breakpoint viewPort
-      if (hideBiggerBreakpoints && image.width < viewPort) {
+      const validateID = image.id === attributes.mainImage.id;
+
+      if (validateID) {
         srcSetObj[brPoint] = {
-          viewPort
+          ...srcSetObj[brPoint],
+          enableBreakpoint,
         };
       } else {
         srcSetObj[brPoint] = {
-          ...srcSetObj[brPoint],
+          // ...srcSetObj[brPoint],
+          enableBreakpoint,
           id: image.id,
           url: image.url,
-          ratio: image.ratio,
-          width: viewPort,
+          viewPort,
           startWidth: image.startWidth,
+          width: viewPort,
           height: Math.trunc(viewPort / image.ratio),
-          validateSize
+          ratio: image.ratio,
         };
       }
 

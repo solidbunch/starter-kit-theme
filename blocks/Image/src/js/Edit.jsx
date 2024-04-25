@@ -103,18 +103,15 @@ export default class Edit {
                           .reverse()
                           .map((breakpoint) => (
                             // hide breakpoints, when image with < breakpoint viewPort
-                            attributes.hideBiggerBreakpoints && attributes.srcSet[breakpoint].id ? (
+                            attributes.srcSet[breakpoint].enableBreakpoint ? (
                               <PanelBody
-                                title={`SrcSet: ${breakpoint.toUpperCase()}`}
+                                title={`SrcSet: ${breakpoint.toUpperCase()} : ${attributes.srcSet[breakpoint].viewPort}px`}
                                 key={breakpoint}
                                 initialOpen={false}
                               >
                                 <div className='row_image' key={breakpoint}>
                                   <div className='setting_box'>
                                     <img src={attributes.srcSet[breakpoint].url} alt="Uploaded" />
-                                    {!attributes.srcSet[breakpoint].validateSize && (
-                                      <div className='test_alert'>Bad Image Size</div>
-                                    )}
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
@@ -127,6 +124,8 @@ export default class Edit {
                                         Reset to Default Image
                                       </button>
                                     )}
+                                    {console.log(attributes.srcSet)}
+                                    {console.log(attributes.mainImage)}
                                     <div className="image-dimensions row g-2">
                                       <TextControl
                                         label="width"

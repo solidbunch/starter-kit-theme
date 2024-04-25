@@ -44,10 +44,6 @@
         "ratio": ""
       }
     },
-    "hideBiggerBreakpoints": {
-      "type": "boolean",
-      "default": true
-    },
     "srcSet": {
       "type": "object",
       "default": {

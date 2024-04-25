@@ -32,7 +32,6 @@ export default class Handlers {
 
       const {attributes, setAttributes} = props;
       const srcSetObj = {...attributes.srcSet};
-      const hideBiggerBreakpoints = attributes.hideBiggerBreakpoints || true;
 
       let image = {
         id: fullMedia.id,
@@ -54,7 +53,7 @@ export default class Handlers {
 
       Model.setMainImage(image, setAttributes);
 
-      Model.setSrcSet(image, srcSetObj, hideBiggerBreakpoints, setAttributes);
+      Model.setSrcSet(image, srcSetObj, props);
 
     }).catch((error) => {
       // eslint-disable-next-line no-console
@@ -66,14 +65,13 @@ export default class Handlers {
 
     const {attributes, setAttributes} = props;
     const srcSetObj = {...attributes.srcSet};
-    const hideBiggerBreakpoints = attributes.hideBiggerBreakpoints || true;
 
     let image = attributes.mainImage;
 
     image = Utils.getDimensionHiDPI(image, checked);
 
     Model.setMainImage(image, setAttributes);
-    Model.setSrcSet(image, srcSetObj, hideBiggerBreakpoints, setAttributes);
+    Model.setSrcSet(image, srcSetObj, props);
 
     setAttributes({hidpi: checked});
   }
