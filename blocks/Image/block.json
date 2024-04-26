@@ -24,7 +24,7 @@
     },
     "loadingLazy": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "hidpi": {
       "type": "boolean",
@@ -32,7 +32,7 @@
     },
     "altText": {
       "type": "string",
-      "default": "Image"
+      "default": ""
     },
     "mainImage": {
       "type": "object",
@@ -48,19 +48,24 @@
       "type": "object",
       "default": {
         "sm": {
-          "viewPort": 576
+          "viewPort": 576,
+          "enabled":true
         },
         "md": {
-          "viewPort": 768
+          "viewPort": 768,
+          "enabled":true
         },
         "lg": {
-          "viewPort": 992
+          "viewPort": 992,
+          "enabled":true
         },
         "xl": {
-          "viewPort": 1200
+          "viewPort": 1200,
+          "enabled":true
         },
         "xxl": {
-          "viewPort": 1400
+          "viewPort": 1400,
+          "enabled":true
         }
       }
     }

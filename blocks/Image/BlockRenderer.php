@@ -72,16 +72,16 @@ class BlockRenderer extends BlockAbstract
 
             foreach ($mqWithWidth as $breakpoint => $bpData) {
                 $enabled  = !empty($bpData['enabled']);
-                $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : 0;
+                $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : $mainImageId;
                 $imageUrl = (string)wp_get_attachment_image_url($imageId, 'full');
 
-                $bp = !empty($bpData['viewPort']) && is_numeric($bpData['viewPort'])
+                $bpViewPort = !empty($bpData['viewPort']) && is_numeric($bpData['viewPort'])
                     ? (int)$bpData['viewPort']
                     : null;
 
                 $widthToResize = !empty($bpData['width']) && is_numeric($bpData['width'])
                     ? (int)$bpData['width']
-                    : null;
+                    : $bpViewPort;
 
                 $heightToResize = !empty($bpData['height']) && is_numeric($bpData['height'])
                     ? (int)$bpData['height']
@@ -94,7 +94,7 @@ class BlockRenderer extends BlockAbstract
 
                 $resizer = Resizer::makeWithUrl($imageUrl);
 
-                $mediaQuery = $bp ? "(max-width: {$bp}px)" : '';
+                $mediaQuery = $bpViewPort ? "(max-width: {$bpViewPort}px)" : '';
 
                 $sizes[] = Size::make($mediaQuery, "{$widthToResize}px");
 

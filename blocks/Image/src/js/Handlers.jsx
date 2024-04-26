@@ -38,6 +38,7 @@ export default class Handlers {
         url: fullMedia.url,
         width: fullMedia.media_details ? fullMedia.media_details.width : fullMedia.width,
         height: fullMedia.media_details ? fullMedia.media_details.height : fullMedia.height,
+        alt: fullMedia.alt
       };
       image.ratio = image.width / image.height;
       image.startWidth =  image.width;
@@ -53,7 +54,7 @@ export default class Handlers {
 
       Model.setMainImage(image, setAttributes);
 
-      Model.setSrcSet(image, srcSetObj, setAttributes, true);
+      Model.setSrcSet(image, srcSetObj, setAttributes);
 
     }).catch((error) => {
       // eslint-disable-next-line no-console

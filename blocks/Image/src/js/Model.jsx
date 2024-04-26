@@ -13,8 +13,9 @@ export default class Model {
           startWidth: image.startWidth,
           width: image.width,
           height: image.height,
-          ratio: image.ratio
+          ratio: image.ratio,
         },
+        altText: image.alt
       }
     );
   };
@@ -38,31 +39,17 @@ export default class Model {
     });
   }
 
-  static setSrcSet(image, srcSetObj, setAttributes, updatedImage = false) {
+  static setSrcSet(image, srcSetObj, setAttributes) {
     Object.keys(srcSetObj).forEach(brPoint => {
       const {viewPort} = srcSetObj[brPoint];
 
       // Disable breakpoint if breakpoint image with < breakpoint viewPort
       const enableBreakpoint = image.width >= viewPort;
 
-      if (updatedImage) {
-        srcSetObj[brPoint] = {
-          enabled: enableBreakpoint,
-          id: image.id,
-          url: image.url,
-          viewPort,
-          startWidth: image.startWidth,
-          width: viewPort,
-          height: Math.trunc(viewPort / image.ratio),
-          ratio: image.ratio,
-        };
-      } else {
-        srcSetObj[brPoint] = {
-          ...srcSetObj[brPoint],
-          enabled: enableBreakpoint,
-        };
-      }
-
+      srcSetObj[brPoint] = {
+        ...srcSetObj[brPoint],
+        enabled: enableBreakpoint,
+      };
     });
 
     setAttributes({
