@@ -136,15 +136,8 @@ export default class Handlers {
   static onResetImage(breakpoint, props) {
     const {attributes, setAttributes} = props;
     const srcSetObj = {...attributes.srcSet};
-    let image = {
-      id: attributes.mainImage.id,
-      url: attributes.mainImage.url,
-      width:attributes.srcSet[breakpoint].viewPort,
-      height: Math.trunc(attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio),
-      ratio : attributes.mainImage.ratio
-    };
+    let image = {};
     Model.setBreakpoint(image, srcSetObj, breakpoint, setAttributes);
-
   };
 
 }

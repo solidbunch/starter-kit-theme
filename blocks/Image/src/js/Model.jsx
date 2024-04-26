@@ -23,17 +23,24 @@ export default class Model {
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
     image.width = image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width;
-
-    srcSetObj[breakpoint] = {
-      ...srcSetObj[breakpoint],
-      id: image.id,
-      // ToDo add fetch image url by id to not store long data in database
-      url: image.url,
-      width:image.width,
-      startWidth: image.width,
-      ratio: image.ratio,
-      height: Math.trunc(image.width / image.ratio)
-    };
+    if (!image) {
+      srcSetObj[breakpoint] = {
+        viewPort:srcSetObj[breakpoint].viewPort,
+        enabled:srcSetObj[breakpoint].enabled,
+      };
+    } else {
+      srcSetObj[breakpoint] = {
+        ...srcSetObj[breakpoint],
+        id: image.id,
+        // ToDo add fetch image url by id to not store long data in database
+        url: image.url,
+        width:image.width,
+        startWidth: image.width,
+        ratio: image.ratio,
+        height: Math.trunc(image.width / image.ratio)
+      };
+    }
+    
     setAttributes({
       srcSet: srcSetObj
     });
