@@ -72,8 +72,8 @@ class BlockRenderer extends BlockAbstract
 
             foreach ($mqWithWidth as $breakpoint => $bpData) {
                 $enabled  = !empty($bpData['enabled']);
-                $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : $mainImageId;
-                $imageUrl = (string)wp_get_attachment_image_url($imageId, 'full');
+                $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : 0;
+                $imageUrl = !empty($imageId) ? (string)wp_get_attachment_image_url($imageId, 'full') : $mainImageUrl;
 
                 $bpViewPort = !empty($bpData['viewPort']) && is_numeric($bpData['viewPort'])
                     ? (int)$bpData['viewPort']
