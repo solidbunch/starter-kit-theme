@@ -35,8 +35,7 @@ class BlockRenderer extends BlockAbstract
      */
     public static function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
-        $blockClassName = !empty($attributes['className']) ? esc_attr($attributes['className']) : '';
-        $spacers        = esc_attr(self::generateSpacersClasses($attributes['spacers'] ?? []));
+        $templateData = $attrs = [];
 
         $imgAlt         = !empty($attributes['altText']) ? esc_attr($attributes['altText']) : '';
         $imageClass     = !empty($attributes['imageClass']) ? esc_attr($attributes['imageClass']) : '';
@@ -61,7 +60,7 @@ class BlockRenderer extends BlockAbstract
             return '';
         }
 
-        $templateData = [];
+        $templateData['blockClass'] = self::generateBlockClasses($attributes);
 
         if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) {
             $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
@@ -70,8 +69,7 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $templateData['className'] = $blockClassName . (!empty($spacers) ? " " . $spacers : '');
-            $templateData['imgHtml']   = $img->render() ?? '';
+            $templateData['imgHtml'] = $img->render() ?? '';
 
             return self::loadBlockView('layout', $templateData);
         }
@@ -140,37 +138,11 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $templateData['className'] = $blockClassName . (!empty($spacers) ? " " . $spacers : '');
-            $templateData['imgHtml']   = $img->render() ?? '';
+            $templateData['imgHtml'] = $img->render() ?? '';
         } catch (\Exception $ex) {
             error_log("\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n");
         }
 
         return self::loadBlockView('layout', $templateData);
-    }
-
-    /**
-     * Generating spacers classes
-     *
-     * @param array $spacers
-     *
-     * @return string
-     */
-    public static function generateSpacersClasses(array $spacers, array $classes = []): string
-    {
-        // ToDo store grid variables in one place - maybe scss
-        $numberOfGrid = 5;
-
-        foreach ($spacers as $item) {
-            if (isset($item['valueRange'])) {
-                foreach ($item['valueRange'] as $key => $value) {
-                    $modifiedValue = ($value === ($numberOfGrid + 1)) ? 'auto' : $value;
-                    $modifiedClass = str_replace('-xs', '', "{$key}-{$modifiedValue}");
-                    $classes[]     = $modifiedClass;
-                }
-            }
-        }
-
-        return implode(' ', $classes);
     }
 }

@@ -1,5 +1,3 @@
-//import metadata from '../../block.json';
-
 import Handlers from './Handlers';
 import Utils from './Helper/Utils';
 
@@ -9,7 +7,6 @@ import Utils from './Helper/Utils';
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
-//const {serverSideRender: ServerSideRender} = wp;
 
 /**
  * Block editor class
