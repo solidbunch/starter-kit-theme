@@ -68,6 +68,7 @@ export default class Handlers {
    * @static
    * @param {boolean} checked
    * @param {Object}  props
+   * @return {void}
    */
   static onChangeHiDPI(checked, props) {
 
@@ -88,7 +89,8 @@ export default class Handlers {
    * permission to enter numbers only
    *
    * @static
-   * @param {*} event
+   * @param {Event} event
+   * @return {void}
    */
   static onWidthInputKeyPress(event) {
     const allowedCharacters = /[0-9]/;
@@ -104,6 +106,7 @@ export default class Handlers {
    * @param {Event}  event
    * @param {Object} props
    * @param {string} [breakpoint=null]
+   * @return {void}
    */
   static onWidthInputBlur(event, props, breakpoint = null) {
     const {mainImage, srcSet} = props.attributes;
@@ -131,6 +134,7 @@ export default class Handlers {
    * @param {Event}  event
    * @param {Object} props
    * @param {string} [breakpoint=null]
+   * @return {void}
    */
   static onWidthInputChange(event, props, breakpoint = null) {
     const {attributes} = props;
@@ -164,6 +168,7 @@ export default class Handlers {
    * @static
    * @param {string} breakpoint
    * @param {Object} props
+   * @return {void}
    */
   static onResetImage(breakpoint, props) {
     const {attributes, setAttributes} = props;

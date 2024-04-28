@@ -9,6 +9,7 @@ export default class Model {
    * @static
    * @param {Object}   image
    * @param {Function} setAttributes
+   * @return {void}
    */
   static setMainImage(image, setAttributes) {
 
@@ -35,6 +36,7 @@ export default class Model {
    * @param {Object}   srcSetObj
    * @param {string}   breakpoint
    * @param {Function} setAttributes
+   * @return {void}
    */
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
@@ -69,6 +71,7 @@ export default class Model {
    * @param {Object}   image
    * @param {Object}   srcSetObj
    * @param {Function} setAttributes
+   * @return {void}
    */
   static setSrcSet(image, srcSetObj, setAttributes) {
     Object.keys(srcSetObj).forEach(brPoint => {
@@ -96,6 +99,7 @@ export default class Model {
    * @param {string} breakpoint
    * @param {Object} updatedAttributes
    * @param {Object} props
+   * @return {void}
    */
   static changeDimension(type, breakpoint, updatedAttributes, props) {
     const {attributes,setAttributes} = props;

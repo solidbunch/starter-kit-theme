@@ -21,7 +21,7 @@ export default class Edit {
    *
    * @static
    * @param {Object} props
-   * @return {Object}
+   * @return {JSX.Element}
    */
   static renderControls(props) {
 
@@ -225,7 +225,7 @@ export default class Edit {
    *
    * @static
    * @param {Object} props
-   * @return {Object}
+   * @return {JSX.Element}
    */
   static renderOutput(props) {
 
