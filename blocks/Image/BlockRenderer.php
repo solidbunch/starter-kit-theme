@@ -5,7 +5,9 @@ namespace StarterKitBlocks\Image;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Blocks\BlockAbstract;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
+use Throwable;
 use WPRI\ResponsiveImages\Img;
 use WPRI\ResponsiveImages\Resizer;
 use WPRI\ResponsiveImages\Size;
@@ -22,15 +24,20 @@ class BlockRenderer extends BlockAbstract
      * Block server side render callback
      * Used in register block type from metadata
      *
-     * @param $attributes
-     * @param $content
-     * @param $block
+     * @param array  $attributes
+     * @param string $content
+     * @param object $block
      *
      * @return string
+     *
+     * @throws NotFoundException
+     * @throws Throwable
      */
-    public static function blockServerSideCallback($attributes, $content, $block): string
+    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
-        $className      = !empty($attributes['className']) ? esc_attr($attributes['className']) : '';
+        $blockClassName = !empty($attributes['className']) ? esc_attr($attributes['className']) : '';
+        $spacers        = esc_attr(self::generateSpacersClasses($attributes['spacers'] ?? []));
+
         $imgAlt         = !empty($attributes['altText']) ? esc_attr($attributes['altText']) : '';
         $imageClass     = !empty($attributes['imageClass']) ? esc_attr($attributes['imageClass']) : '';
         $fetchPriority  = !empty($attributes['fetchPriority']) ? esc_attr($attributes['fetchPriority']) : 'auto';
@@ -63,9 +70,9 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $templateData['className'] = $className;
-            $templateData['imgHtml'] = $img->render() ?? '';
-            
+            $templateData['className'] = $blockClassName . (!empty($spacers) ? " " . $spacers : '');
+            $templateData['imgHtml']   = $img->render() ?? '';
+
             return self::loadBlockView('layout', $templateData);
         }
 
@@ -133,11 +140,37 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $templateData['imgHtml'] = $img->render() ?? '';
+            $templateData['className'] = $blockClassName . (!empty($spacers) ? " " . $spacers : '');
+            $templateData['imgHtml']   = $img->render() ?? '';
         } catch (\Exception $ex) {
             error_log("\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n");
         }
 
         return self::loadBlockView('layout', $templateData);
+    }
+
+    /**
+     * Generating spacers classes
+     *
+     * @param array $spacers
+     *
+     * @return string
+     */
+    public static function generateSpacersClasses(array $spacers, array $classes = []): string
+    {
+        // ToDo store grid variables in one place - maybe scss
+        $numberOfGrid = 5;
+
+        foreach ($spacers as $item) {
+            if (isset($item['valueRange'])) {
+                foreach ($item['valueRange'] as $key => $value) {
+                    $modifiedValue = ($value === ($numberOfGrid + 1)) ? 'auto' : $value;
+                    $modifiedClass = str_replace('-xs', '', "{$key}-{$modifiedValue}");
+                    $classes[]     = $modifiedClass;
+                }
+            }
+        }
+
+        return implode(' ', $classes);
     }
 }
