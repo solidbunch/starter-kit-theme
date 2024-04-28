@@ -3,6 +3,13 @@
  */
 export default class Model {
 
+  /**
+   * set attributes for Main Image
+   *
+   * @static
+   * @param {*} image
+   * @param {*} setAttributes
+   */
   static setMainImage(image, setAttributes) {
 
     setAttributes(
@@ -20,6 +27,15 @@ export default class Model {
     );
   };
 
+  /**
+   * Description placeholder
+   *
+   * @static
+   * @param {*}      image
+   * @param {*}      srcSetObj
+   * @param {string} breakpoint
+   * @param {*}      setAttributes
+   */
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
     image.width = image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width;
