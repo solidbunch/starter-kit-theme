@@ -102,7 +102,7 @@ abstract class BlockAbstract implements BlockInterface
             if (isset($item['valueRange'])) {
                 foreach ($item['valueRange'] as $key => $value) {
                     $modifiedValue   = ($value === ($numberOfGrid + 1)) ? 'auto' : $value;
-                    $modifiedClass   = str_replace('-xs', '', "{$key}-{$modifiedValue}");
+                    $modifiedClass   = str_replace('-xs', '', "$key-$modifiedValue");
                     $spacerClasses[] = $modifiedClass;
                 }
             }

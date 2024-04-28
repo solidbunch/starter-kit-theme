@@ -4,6 +4,7 @@ namespace StarterKitBlocks\Image;
 
 defined('ABSPATH') || exit;
 
+use Exception;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -77,7 +78,7 @@ class BlockRenderer extends BlockAbstract
         try {
             $sizes = $srcset = [];
 
-            foreach ($mqWithWidth as $breakpoint => $bpData) {
+            foreach ($mqWithWidth as $bpData) {
                 $enabled  = !empty($bpData['enabled']);
                 $imageId  = !empty($bpData['id']) ? (int)$bpData['id'] : 0;
                 $imageUrl = !empty($imageId) ? (string)wp_get_attachment_image_url($imageId, 'full') : $mainImageUrl;
@@ -139,7 +140,7 @@ class BlockRenderer extends BlockAbstract
             }
 
             $templateData['imgHtml'] = $img->render() ?? '';
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             error_log("\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n");
         }
 
