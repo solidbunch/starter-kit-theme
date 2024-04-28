@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 use RuntimeException;
 use StarterKit\Helper\Config;
 use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Helper\NotFoundException;
 use Throwable;
 
 /**
@@ -19,13 +20,16 @@ abstract class BlockAbstract implements BlockInterface
     /**
      * Load block view
      *
-     * @param  string  $file
-     * @param  array   $data
-     * @param  null    $base
+     * @param string      $file
+     * @param array       $data
+     * @param string|null $base
      *
      * @return string
+     *
+     * @throws NotFoundException
+     * @throws Throwable
      */
-    public static function loadBlockView(string $file = '', array $data = [], $base = null): string
+    public static function loadBlockView(string $file = '', array $data = [], string $base = null): string
     {
         if ($base === null) {
             $base = Config::get('blocksDir') . self::getCurrentBlockName() . '/' . Config::get('blocksViewDir');

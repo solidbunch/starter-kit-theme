@@ -3,6 +3,7 @@ const {PanelBody, RangeControl, CheckboxControl} = wp.components;
 
 export default class BootstrapSpacers {
 
+  // ToDo store grid variables in one place - maybe scss
   static numberOfGrid = 5;
 
   static spacersTypes = ['m', 'p'];

@@ -14,11 +14,11 @@ interface BlockInterface
     /**
      * Block server side endpoint
      *
-     * @param $attributes
-     * @param $content
-     * @param $block
+     * @param array  $attributes
+     * @param string $content
+     * @param object $block
      *
      * @return string
      */
-    public static function blockServerSideCallback($attributes, $content, $block): string;
+    public static function blockServerSideCallback(array $attributes, string $content, object $block): string;
 }
