@@ -10,10 +10,6 @@ const {registerBlockType} = wp.blocks;
 registerBlockType(
   metadata,
   {
-    getEditWrapperProps(attributes) {
-      const blockClass = attributes.defaultClass;
-      return {className: blockClass};
-    },
     edit: props => {
 
       return [

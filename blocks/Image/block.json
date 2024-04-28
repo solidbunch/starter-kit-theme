@@ -14,7 +14,7 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "defaultClass": {
+    "imageClass": {
       "type": "string",
       "default": "img-fluid"
     },
@@ -49,23 +49,23 @@
       "default": {
         "sm": {
           "viewPort": 576,
-          "enabled":true
+          "enabled": true
         },
         "md": {
           "viewPort": 768,
-          "enabled":true
+          "enabled": true
         },
         "lg": {
           "viewPort": 992,
-          "enabled":true
+          "enabled": true
         },
         "xl": {
           "viewPort": 1200,
-          "enabled":true
+          "enabled": true
         },
         "xxl": {
           "viewPort": 1400,
-          "enabled":true
+          "enabled": true
         }
       }
     }

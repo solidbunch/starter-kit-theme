@@ -30,14 +30,15 @@ class BlockRenderer extends BlockAbstract
      */
     public static function blockServerSideCallback($attributes, $content, $block): string
     {
+        $className      = !empty($attributes['className']) ? esc_attr($attributes['className']) : '';
         $imgAlt         = !empty($attributes['altText']) ? esc_attr($attributes['altText']) : '';
-        $className      = !empty($attributes['defaultClass']) ? esc_attr($attributes['defaultClass']) : '';
+        $imageClass     = !empty($attributes['imageClass']) ? esc_attr($attributes['imageClass']) : '';
         $fetchPriority  = !empty($attributes['fetchPriority']) ? esc_attr($attributes['fetchPriority']) : 'auto';
         $lazy           = !empty($attributes['loadingLazy']);
         $editorTemplate = !empty($attributes['editorTemplate']);
         $hidpi          = !empty($attributes['hidpi']);
 
-        $attrs['class']         = $className;
+        $attrs['class']         = $imageClass;
         $attrs['fetchpriority'] = $fetchPriority;
 
         $mainImageId     = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
@@ -62,8 +63,9 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
+            $templateData['className'] = $className;
             $templateData['imgHtml'] = $img->render() ?? '';
-
+            
             return self::loadBlockView('layout', $templateData);
         }
 

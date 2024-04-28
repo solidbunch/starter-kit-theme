@@ -12,6 +12,6 @@ $data = $data ?? [];
 
 ?>
 
-<figure>
+<figure class="<?php echo $data['className'] ?? ''; ?>">
     <?php echo $data['imgHtml'] ?? ''; ?>
 </figure>

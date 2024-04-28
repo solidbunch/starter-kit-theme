@@ -224,11 +224,11 @@ export default class Edit {
     const mainImage = attributes.mainImage;
 
     return (
-      <div  {...blockProps} key="blockControls">
+      <>
         {mainImage.id ? (
-          <figure>
+          <figure   {...blockProps} key="blockControls">
             <img
-              className={attributes.defaultClass}
+              className={attributes.imageClass}
               src={mainImage.url}
               alt={attributes.altText}
               width={mainImage.width}
@@ -245,7 +245,7 @@ export default class Edit {
           />
         )}
 
-      </div>
+      </>
     );
   };
 }
