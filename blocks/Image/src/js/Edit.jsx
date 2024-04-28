@@ -234,7 +234,7 @@ export default class Edit {
               width={mainImage.width}
               height={mainImage.height}
               loading={attributes.loadingLazy ? 'lazy' : 'eager'}
-              fetchPriority={attributes.fetchPriority}
+              data-fetch-priority={attributes.fetchPriority}
             />
           </figure>
         ) : (
