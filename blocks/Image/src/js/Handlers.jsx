@@ -62,6 +62,13 @@ export default class Handlers {
     });
   };
 
+  /**
+   * click on checkbox hidpi
+   *
+   * @static
+   * @param {boolean} checked
+   * @param {Object}  props
+   */
   static onChangeHiDPI(checked, props) {
 
     const {attributes, setAttributes} = props;
@@ -77,7 +84,12 @@ export default class Handlers {
     setAttributes({hidpi: checked});
   }
 
-  // letter protection
+  /**
+   * permission to enter numbers only
+   *
+   * @static
+   * @param {*} event
+   */
   static onWidthInputKeyPress(event) {
     const allowedCharacters = /[0-9]/;
     if (!allowedCharacters.test(event.key)) {
@@ -85,7 +97,14 @@ export default class Handlers {
     }
   };
 
-  //"Loss of focus on input"
+  /**
+   * setting a value to the input if nothing is entered there. when losing focus from the input
+   *
+   * @static
+   * @param {Event}  event
+   * @param {Object} props
+   * @param {string} [breakpoint=null]
+   */
   static onWidthInputBlur(event, props, breakpoint = null) {
     const {mainImage, srcSet} = props.attributes;
 
@@ -105,7 +124,14 @@ export default class Handlers {
     }
   };
 
-  //change Width and Height in mainImage or srcSet
+  /**
+   * change Width and Height in mainImage or srcSet
+   *
+   * @static
+   * @param {Event}  event
+   * @param {Object} props
+   * @param {string} [breakpoint=null]
+   */
   static onWidthInputChange(event, props, breakpoint = null) {
     const {attributes} = props;
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
@@ -132,7 +158,13 @@ export default class Handlers {
     }
   };
 
-  //reset attributes to Default (Main Image)
+  /**
+   * reset attributes to Default (Main Image)
+   *
+   * @static
+   * @param {string} breakpoint
+   * @param {Object} props
+   */
   static onResetImage(breakpoint, props) {
     const {attributes, setAttributes} = props;
     const srcSetObj = {...attributes.srcSet};

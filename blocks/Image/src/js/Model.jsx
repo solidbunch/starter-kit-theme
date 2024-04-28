@@ -4,11 +4,11 @@
 export default class Model {
 
   /**
-   * set attributes for Main Image
+   * Set attributes for Main Image
    *
    * @static
-   * @param {*} image
-   * @param {*} setAttributes
+   * @param {Object}   image
+   * @param {Function} setAttributes
    */
   static setMainImage(image, setAttributes) {
 
@@ -28,13 +28,13 @@ export default class Model {
   };
 
   /**
-   * Description placeholder
+   * Setting image values at a specific breakpoint
    *
    * @static
-   * @param {*}      image
-   * @param {*}      srcSetObj
-   * @param {string} breakpoint
-   * @param {*}      setAttributes
+   * @param {Object}   image
+   * @param {Object}   srcSetObj
+   * @param {string}   breakpoint
+   * @param {Function} setAttributes
    */
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
@@ -62,6 +62,14 @@ export default class Model {
     });
   }
 
+  /**
+   * Validation and setting of all breakpoints when loading the main image
+   *
+   * @static
+   * @param {Object}   image
+   * @param {Object}   srcSetObj
+   * @param {Function} setAttributes
+   */
   static setSrcSet(image, srcSetObj, setAttributes) {
     Object.keys(srcSetObj).forEach(brPoint => {
       const {viewPort} = srcSetObj[brPoint];
@@ -80,7 +88,15 @@ export default class Model {
     });
   }
 
-  //Set Width and Height in mainImage or srcSet
+  /**
+   * Set Width and Height in mainImage or srcSet from input
+   *
+   * @static
+   * @param {string} type
+   * @param {string} breakpoint
+   * @param {Object} updatedAttributes
+   * @param {Object} props
+   */
   static changeDimension(type, breakpoint, updatedAttributes, props) {
     const {attributes,setAttributes} = props;
     let newAttributes = {};

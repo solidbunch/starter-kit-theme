@@ -16,6 +16,13 @@ const {useState} = wp.element;
  */
 export default class Edit {
 
+  /**
+   * render Controls(Sidebar in right part) in Editor
+   *
+   * @static
+   * @param {Object} props
+   * @return {Object}
+   */
   static renderControls(props) {
 
     const {attributes, setAttributes} = props;
@@ -213,6 +220,13 @@ export default class Edit {
     );
   };
 
+  /**
+   * render Output Image in Left Part from Editor (image or placeHolder for loading image)
+   *
+   * @static
+   * @param {Object} props
+   * @return {Object}
+   */
   static renderOutput(props) {
 
     const {attributes, className} = props;

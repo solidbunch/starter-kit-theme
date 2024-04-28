@@ -3,6 +3,13 @@
  */
 export default class Utils {
 
+  /**
+   * the function processes the incoming values from the Fetch Priority select and returns the required string
+   *
+   * @static
+   * @param {string} value
+   * @return {string}
+   */
   static getPriorityText(value) {
     switch (value) {
     case 'auto':
@@ -16,6 +23,15 @@ export default class Utils {
     }
   }
 
+  /**
+   * setting the image size to 2 times smaller or the original size
+   *
+   * @static
+   * @param {Object}  image
+   * @param {boolean} hidpi
+   * @param {boolean} [scratch=false]
+   * @return {Object}
+   */
   static getDimensionHiDPI(image, hidpi, scratch = false){
 
     if (!hidpi && scratch) {
