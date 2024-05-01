@@ -8,15 +8,17 @@
 // 	lg: 1024px,
 // 	www:2000px
 // );
-// $container-max-widths: (
-// 	sm: 420px,
-// 	md: 720px,
-// 	lg: 960px
-// );
+$container-max-widths: (
+  sm: 1280px,
+  md: 1280px,
+  lg: 1280px,
+  xl: 1280px,
+  xxl: 1280px
+);
 
 // scss-docs-start gray-color-variables
-$white: #f0f3f7;
-$gray-100: #f8f9fa;
+$white: #fafafa;
+$gray-100: #f0f1f2;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
 $gray-400: #ced4da;
