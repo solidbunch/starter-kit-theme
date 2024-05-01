@@ -1,20 +1,18 @@
 // Bootstrap custom variables
 
-// Color system
+// Custom grid breakpoints
 // $grid-breakpoints: (
 // 	xs: 0,
 // 	sm: 480px,
 // 	md: 768px,
 // 	lg: 1024px,
-// 	www:2000px
+// 	xxl: 2000px
 // );
-$container-max-widths: (
-  sm: 1280px,
-  md: 1280px,
-  lg: 1280px,
-  xl: 1280px,
-  xxl: 1280px
-);
+
+// Custom container widths
+// $container-max-widths: (
+//  xl: 1280px
+// );
 
 // scss-docs-start gray-color-variables
 $white: #fafafa;
