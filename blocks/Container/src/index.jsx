@@ -35,7 +35,7 @@ registerBlockType(
               label="Container width"
               value={attributes.modification}
               options={[
-                {label: 'Fixed width', value: 'container-xxl'},
+                {label: 'Responsive', value: 'container'},
                 {label: 'Full width', value: 'container-fluid'},
               ]}
               onChange={(modification) => setAttributes({modification})}
