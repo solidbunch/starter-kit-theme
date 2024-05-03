@@ -139,21 +139,16 @@ export default class Edit {
                                         label="width"
                                         type="number"
                                         className="col"
-                                        value={attributes.srcSet[breakpoint].width
-                                          ? attributes.srcSet[breakpoint].width
-                                          : attributes.srcSet[breakpoint].viewPort}
-                                        placeholder={attributes.srcSet[breakpoint].width
-                                          ? attributes.srcSet[breakpoint].width
-                                          : attributes.srcSet[breakpoint].viewPort}
+                                        value={attributes.srcSet[breakpoint].width !== undefined ? attributes.srcSet[breakpoint].width : attributes.srcSet[breakpoint].viewPort}
+                                        placeholder={attributes.srcSet[breakpoint].width !== undefined ? attributes.srcSet[breakpoint].width : attributes.srcSet[breakpoint].viewPort}
                                         onKeyPress={Handlers.onWidthInputKeyPress}
-                                        // onBlur={(event) => Handlers.onWidthInputBlur(event, props, breakpoint)}
+                                        onBlur={(event) => Handlers.onWidthInputBlur(event, props, breakpoint)}
                                         onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
                                         min="0"
-                                        max={attributes.srcSet[breakpoint].startWidth
-                                          ? attributes.srcSet[breakpoint].startWidth
-                                          : attributes.srcSet[breakpoint].viewPort}
+                                        max={attributes.srcSet[breakpoint].startWidth !== undefined ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
                                       />
+
                                       <TextControl
                                         label="height"
                                         type="text"

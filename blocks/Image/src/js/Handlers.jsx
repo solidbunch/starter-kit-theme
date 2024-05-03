@@ -109,18 +109,20 @@ export default class Handlers {
    * @return {void}
    */
   static onWidthInputBlur(event, props, breakpoint = null) {
-    const {mainImage, srcSet} = props.attributes;
+    const {attributes} = props;
 
     if (event.target.value === "") {
       if (breakpoint === null) {
-        const {startWidth, ratio} = mainImage;
+        const {startWidth, ratio} = attributes.mainImage;
         const newHeight = Math.trunc(startWidth / ratio);
         Model.changeDimension('mainImage', null, {width: startWidth, height: newHeight},props);
       } else {
-        const {startWidth, viewPort, ratio, id} = srcSet[breakpoint];
-        const idValidation = mainImage.id === id;
-
-        let newWidth = (!idValidation && startWidth <= viewPort) ? startWidth : viewPort;
+        // const { startWidth, viewPort, ratio, id } = srcSet[breakpoint];
+       
+        let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
+        let newWidth = startWidth;
+        if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort) newWidth = attributes.srcSet[breakpoint].viewPort;
+        
         const newHeight = Math.trunc(newWidth / ratio);
         Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
       }
@@ -140,14 +142,11 @@ export default class Handlers {
     const {attributes} = props;
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
     if (isNaN(newWidth)) {
-      newWidth = 0;
+      newWidth = '';
     }
    
     let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
     if (newWidth > startWidth) newWidth = startWidth;
-
-    //ToDo move to the blur(onWidthInputBlur) что бы был блюр и можно было удалить все числа 
-    if (!newWidth) newWidth = startWidth;
 
     if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort ) newWidth = attributes.srcSet[breakpoint].viewPort;
     
