@@ -41,7 +41,7 @@ export default class Model {
   static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
 
     image.width = image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width;
-    if (!image) {
+    if (!image.id) {
       srcSetObj[breakpoint] = {
         viewPort:srcSetObj[breakpoint].viewPort,
         enabled:srcSetObj[breakpoint].enabled,

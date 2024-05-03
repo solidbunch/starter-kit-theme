@@ -140,19 +140,17 @@ export default class Handlers {
     const {attributes} = props;
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
     if (isNaN(newWidth)) {
-      newWidth = "";
+      newWidth = 0;
     }
+   
+    let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
+    if (newWidth > startWidth) newWidth = startWidth;
 
-    const {startWidth, ratio, id} = breakpoint ? attributes.srcSet[breakpoint] : attributes.mainImage;
-    const idValidation = breakpoint ? attributes.mainImage.id === id : true;
+    //ToDo move to the blur(onWidthInputBlur) что бы был блюр и можно было удалить все числа 
+    if (!newWidth) newWidth = startWidth;
 
-    if (!idValidation) {
-      if (newWidth > startWidth) {
-        newWidth = startWidth;
-      }
-    } else if (newWidth > attributes.mainImage.startWidth) {
-      newWidth = attributes.mainImage.startWidth;
-    }
+    if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort ) newWidth = attributes.srcSet[breakpoint].viewPort;
+    
     let newHeight = Math.trunc(newWidth / ratio);
 
     if (breakpoint) {

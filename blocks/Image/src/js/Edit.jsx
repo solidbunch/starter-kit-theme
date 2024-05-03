@@ -146,7 +146,7 @@ export default class Edit {
                                           ? attributes.srcSet[breakpoint].width
                                           : attributes.srcSet[breakpoint].viewPort}
                                         onKeyPress={Handlers.onWidthInputKeyPress}
-                                        onBlur={(event) => Handlers.onWidthInputBlur(event, props, breakpoint)}
+                                        // onBlur={(event) => Handlers.onWidthInputBlur(event, props, breakpoint)}
                                         onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
                                         min="0"
@@ -173,6 +173,8 @@ export default class Edit {
 
                       </div>
                     )}
+                    {console.log(attributes.mainImage)}
+                    {console.log(attributes.srcSet)}
                   </div>
                 }
                 {tab.name === 'settings-tab' &&
