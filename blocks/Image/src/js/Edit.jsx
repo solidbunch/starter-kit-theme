@@ -168,8 +168,6 @@ export default class Edit {
 
                       </div>
                     )}
-                    {console.log(attributes.mainImage)}
-                    {console.log(attributes.srcSet)}
                   </div>
                 }
                 {tab.name === 'settings-tab' &&
