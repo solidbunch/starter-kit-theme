@@ -15,7 +15,7 @@ use Throwable;
  *
  * @package    Starter Kit
  */
-abstract class BlockAbstract implements BlockInterface
+abstract class BlockAbstract
 {
     /**
      * Load block view

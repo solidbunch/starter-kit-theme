@@ -4,7 +4,10 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 use StarterKitBlocks;
 
 /**
@@ -17,9 +20,14 @@ class Register
     /**
      * Add Gutenberg block category
      *
-     * @param  array  $categories
+     * @param array $categories
      *
      * @return array
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws NotFoundException
+     *
      * @see https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
      */
     public static function registerBlocksCategories(array $categories): array
@@ -36,6 +44,10 @@ class Register
      * Register all blocks in blocks directory
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function registerBlocks(): void
     {

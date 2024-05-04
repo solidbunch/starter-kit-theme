@@ -20,6 +20,7 @@ class CLI
      * Adds WP_CLI commands
      *
      * @return void
+     * @throws Throwable
      */
     public static function addCommands(): void
     {

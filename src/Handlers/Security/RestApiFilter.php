@@ -4,7 +4,10 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
 
 /**
  * Allow only defined REST API requests from FrontEnd
@@ -18,6 +21,10 @@ class RestApiFilter
      * Other REST API requests, including default will be disabled
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws NotFoundException
      */
     public static function allowOnlyThemeNamespace(): void
     {

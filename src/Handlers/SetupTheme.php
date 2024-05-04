@@ -2,6 +2,8 @@
 
 namespace StarterKit\Handlers;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -68,13 +70,18 @@ class SetupTheme
      *
      * Returning false will disable the scaling.
      *
-     * @return int
+     * @param $threshold
+     *
+     * @return string
+     *
+     * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
-    public static function bigImageSizeThreshold(): int
+    public static function bigImageSizeThreshold($threshold): string
     {
-        $threshold = Utils::getOptionFw('big_image_size_threshold', Config::get('media/bigImageSizeThreshold'));
+        $thresholdNew = Utils::getOption('big_image_size_threshold', Config::get('media/bigImageSizeThreshold'));
 
-        return intval($threshold);
+        return $thresholdNew ?? $threshold;
     }
 }
