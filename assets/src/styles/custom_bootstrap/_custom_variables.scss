@@ -10,32 +10,38 @@
 // );
 
 // Custom container widths
-// $container-max-widths: (
-//  xl: 1280px
-// );
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1280px
+);
 
 // scss-docs-start gray-color-variables
-$white: #fafafa;
-$gray-100: #f0f1f2;
+$white:    #fff;
+$gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
 $gray-400: #ced4da;
 $gray-500: #adb5bd;
-$gray-600: #78828a;
-$gray-700: #4f565e;
-$gray-800: #383d44;
-$gray-900: #2f3134;
-$black: #212529;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
 
 // scss-docs-start theme-color-variables
-$primary: #dc3545;
-$secondary: #212529;
+$primary: #eea571;
+$secondary: #70a276;
+
 $success: #198754;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
-$light: $gray-100;
-$dark: $gray-900;
+
+$light: #f5e3d6;
+$dark: #7c5e41;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
@@ -45,8 +51,8 @@ $min-contrast-ratio: 4;
 //
 // Settings for the `<body>` element.
 
-$body-color: $black;
-$body-bg: $white;
+$body-color: $gray-900;
+$body-bg: $gray-100;
 
 $body-secondary-color: rgba($body-color, .75);
 $body-secondary-bg: $gray-200;
@@ -54,7 +60,7 @@ $body-secondary-bg: $gray-200;
 $body-tertiary-color: rgba($body-color, .5);
 $body-tertiary-bg: $gray-100;
 
-$body-emphasis-color: $black;
+$body-emphasis-color: $gray-900;
 
 // Links
 //
@@ -66,12 +72,15 @@ $link-shade-percentage: 20%;
 $link-hover-color: $secondary;
 $link-hover-decoration: null;
 
+$nav-link-hover-color: $secondary;
+$navbar-light-hover-color:  $secondary;
+
 // scss-docs-start headings-variables
 $headings-font-family: null;
 $headings-font-style: null;
 $headings-font-weight: 500;
 $headings-line-height: 1.2;
-$headings-color: $primary;
+$headings-color: $gray-900;
 
 // scss-docs-start font-variables
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;

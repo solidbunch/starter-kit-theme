@@ -82,6 +82,7 @@ registerBlockType(
               value={attributes.modification.backgroundColor || ''}
               options={[
                 {label: 'Not Selected', value: ''},
+                {label: 'bg-dark', value: 'bg-dark'},
                 {label: 'bg-black', value: 'bg-black'},
                 {label: 'bg-primary', value: 'bg-primary'},
               ]}
@@ -99,7 +100,10 @@ registerBlockType(
               value={attributes.modification.textColor || ''}
               options={[
                 {label: 'Default', value: ''},
+                {label: 'text-light', value: 'text-light'},
+                {label: 'text-dark', value: 'text-dark'},
                 {label: 'text-white', value: 'text-white'},
+                {label: 'text-black', value: 'text-black'},
                 {label: 'text-primary', value: 'text-primary'},
               ]}
               onChange={(textColor) =>
