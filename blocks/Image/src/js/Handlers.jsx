@@ -36,12 +36,11 @@ export default class Handlers {
       let image = {
         id: fullMedia.id,
         url: fullMedia.url,
-        width: fullMedia.media_details ? fullMedia.media_details.width : fullMedia.width,
+        startWidth: fullMedia.media_details ? fullMedia.media_details.width : fullMedia.width,
         height: fullMedia.media_details ? fullMedia.media_details.height : fullMedia.height,
         alt: fullMedia.alt
       };
       image.ratio = image.width / image.height;
-      image.startWidth =  image.width;
 
       if (breakpoint) {
 
@@ -63,7 +62,7 @@ export default class Handlers {
   };
 
   /**
-   * click on checkbox hidpi
+   * Click on checkbox hidpi
    *
    * @static
    * @param {boolean} checked
@@ -86,7 +85,7 @@ export default class Handlers {
   }
 
   /**
-   * permission to enter numbers only
+   * Permission to enter numbers only
    *
    * @static
    * @param {Event} event
@@ -100,67 +99,64 @@ export default class Handlers {
   };
 
   /**
-   * setting a value to the input if nothing is entered there. when losing focus from the input
+   * Setting a value to the input if nothing is entered there. When losing focus from the input
    *
    * @static
    * @param {Event}  event
    * @param {Object} props
-   * @param {string} [breakpoint=null]
+   * @param {string} breakpoint
    * @return {void}
    */
-  static onWidthInputBlur(event, props, breakpoint = null) {
+  static onWidthInputBlur(event, props, breakpoint = '') {
     const {attributes} = props;
 
     if (event.target.value === "") {
       if (breakpoint === null) {
         const {startWidth, ratio} = attributes.mainImage;
         const newHeight = Math.trunc(startWidth / ratio);
-        Model.changeDimension('mainImage', null, {width: startWidth, height: newHeight},props);
+        Model.changeDimension( {width: startWidth, height: newHeight}, props, breakpoint);
       } else {
-        // const { startWidth, viewPort, ratio, id } = srcSet[breakpoint];
-       
+
         let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
         let newWidth = startWidth;
         if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort) newWidth = attributes.srcSet[breakpoint].viewPort;
-        
+
         const newHeight = Math.trunc(newWidth / ratio);
-        Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
+        Model.changeDimension({width: newWidth, height: newHeight}, props, breakpoint);
       }
     }
   };
 
   /**
-   * change Width and Height in mainImage or srcSet
+   * Change Width and Height in mainImage or srcSet
    *
    * @static
    * @param {Event}  event
    * @param {Object} props
-   * @param {string} [breakpoint=null]
+   * @param {string} breakpoint
    * @return {void}
    */
-  static onWidthInputChange(event, props, breakpoint = null) {
+  static onWidthInputChange(event, props, breakpoint = '') {
     const {attributes} = props;
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
     if (isNaN(newWidth)) {
+      console.log(newWidth);
       newWidth = '';
     }
-   
+
     let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
     if (newWidth > startWidth) newWidth = startWidth;
 
     if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort ) newWidth = attributes.srcSet[breakpoint].viewPort;
-    
+
     let newHeight = Math.trunc(newWidth / ratio);
 
-    if (breakpoint) {
-      Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
-    } else {
-      Model.changeDimension('mainImage', null, {width: newWidth, height: newHeight},props);
-    }
+    Model.changeDimension({width: newWidth, height: newHeight}, props, breakpoint);
+
   };
 
   /**
-   * reset attributes to Default (Main Image)
+   * Reset attributes to Default (Main Image)
    *
    * @static
    * @param {string} breakpoint

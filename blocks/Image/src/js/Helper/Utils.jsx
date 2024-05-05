@@ -32,7 +32,7 @@ export default class Utils {
    * @param {boolean} [scratch=false]
    * @return {Object}
    */
-  static getDimensionHiDPI(image, hidpi, scratch = false){
+  static getDimensionHiDPI(image, hidpi, scratch = false) {
 
     if (!hidpi && scratch) {
       return image;
@@ -44,10 +44,35 @@ export default class Utils {
       image.startWidth = Math.trunc(image.startWidth * 2);
     }
 
-    image.width = image.startWidth;
     image.height = Math.trunc(image.width / image.ratio);
 
     return image;
+  }
+
+  static showWidth(attributes, showEmpty = false, breakpoint = '') {
+    let resultWidth = '';
+
+    if (!breakpoint) {
+
+      // Use main image width details
+      const mainImage = attributes.mainImage;
+      if (showEmpty) {
+        resultWidth = mainImage.width !== undefined ? mainImage.width : mainImage.startWidth;
+      } else {
+        resultWidth = mainImage.width || mainImage.startWidth;
+      }
+    } else {
+
+      // Use breakpoint specific width details
+      const bpAttributes = attributes.srcSet[breakpoint];
+      if ((showEmpty && bpAttributes.width !== undefined) || bpAttributes.width) {
+        resultWidth = bpAttributes.width;
+      } else {
+        resultWidth = bpAttributes.startWidth || bpAttributes.viewPort;
+      }
+    }
+
+    return resultWidth;
   }
 
 }

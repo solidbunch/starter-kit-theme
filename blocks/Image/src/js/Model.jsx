@@ -19,8 +19,6 @@ export default class Model {
           id: image.id,
           url: image.url,
           startWidth: image.startWidth,
-          width: image.width,
-          height: image.height,
           ratio: image.ratio,
         },
         altText: image.alt
@@ -58,7 +56,7 @@ export default class Model {
         height: Math.trunc(image.width / image.ratio)
       };
     }
-    
+
     setAttributes({
       srcSet: srcSetObj
     });
@@ -95,25 +93,25 @@ export default class Model {
    * Set Width and Height in mainImage or srcSet from input
    *
    * @static
-   * @param {string} type
-   * @param {string} breakpoint
    * @param {Object} updatedAttributes
    * @param {Object} props
+   * @param {string} breakpoint
+   *
    * @return {void}
    */
-  static changeDimension(type, breakpoint, updatedAttributes, props) {
+  static changeDimension(updatedAttributes, props, breakpoint = '') {
     const {attributes,setAttributes} = props;
     let newAttributes = {};
 
-    if (type === 'mainImage') {
-      newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
-    } else if (type === 'srcSet') {
+    if (breakpoint) {
       newAttributes = {
         srcSet: {
           ...attributes.srcSet,
           [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
         },
       };
+    } else {
+      newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
     }
 
     setAttributes(newAttributes);

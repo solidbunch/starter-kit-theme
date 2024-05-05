@@ -83,10 +83,10 @@ export default class Edit {
                                   label="width"
                                   type="number"
                                   className="col"
-                                  value={attributes.mainImage.width}
+                                  value={Utils.showWidth(attributes, true)}
                                   placeholder={attributes.mainImage.startWidth}
                                   onKeyPress={Handlers.onWidthInputKeyPress}
-                                  onBlur={(event) => Handlers.onWidthInputBlur(event, props)}
+                                  /*onBlur={/*(event) => Handlers.onWidthInputBlur(event, props)}*/
                                   onChange={(event) => Handlers.onWidthInputChange(event, props)}
                                   inputMode="numeric"
                                   min="0"
@@ -168,6 +168,8 @@ export default class Edit {
 
                       </div>
                     )}
+                    {console.log(attributes.mainImage)}
+                    {console.log(attributes.srcSet)}
                   </div>
                 }
                 {tab.name === 'settings-tab' &&
@@ -237,8 +239,8 @@ export default class Edit {
               className={attributes.imageClass}
               src={mainImage.url}
               alt={attributes.altText}
-              width={mainImage.width}
-              height={mainImage.height}
+              width={Utils.showWidth(attributes, false)}
+              height={mainImage.height ? mainImage.height : (Math.trunc(mainImage.startWidth / mainImage.ratio))}
               loading={attributes.loadingLazy ? 'lazy' : 'eager'}
               data-fetch-priority={attributes.fetchPriority}
             />
