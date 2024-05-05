@@ -85,6 +85,7 @@ export default class Edit {
                                   className="col"
                                   value={Utils.getImageWidth(attributes, '', true)}
                                   placeholder={attributes.mainImage.startWidth}
+                                  onKeyPress={Handlers.onNumberInputKeyPress}
                                   onChange={(event) => Handlers.onWidthInputChange(event, props)}
                                   inputMode="numeric"
                                   min="0"
@@ -139,6 +140,7 @@ export default class Edit {
                                         className="col"
                                         value={Utils.getImageWidth(attributes, breakpoint, true)}
                                         placeholder={attributes.srcSet[breakpoint].startWidth ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
+                                        onKeyPress={Handlers.onNumberInputKeyPress}
                                         onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
                                         min="0"

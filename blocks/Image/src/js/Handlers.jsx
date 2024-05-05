@@ -83,6 +83,20 @@ export default class Handlers {
   }
 
   /**
+   * Permission to enter numbers only
+   *
+   * @static
+   * @param {Event} event
+   * @return {void}
+   */
+  static onNumberInputKeyPress(event) {
+    const allowedCharacters = /[0-9]/;
+    if (!allowedCharacters.test(event.key)) {
+      event.preventDefault();
+    }
+  };
+
+  /**
    * Change Width and Height in mainImage or srcSet
    *
    * @param {Event}  event

@@ -6,7 +6,6 @@ export default class Utils {
   /**
    * the function processes the incoming values from the Fetch Priority select and returns the required string
    *
-   * @static
    * @param {string} value
    * @return {string}
    */
@@ -25,8 +24,6 @@ export default class Utils {
 
   /**
    * setting the image size to 2 times smaller or the original size
-   *
-   * @static
    *
    * @param {Object}  image
    * @param {boolean} hidpi
@@ -52,13 +49,11 @@ export default class Utils {
   /**
    * Returns the actual image width depending on the existence of different width attributes
    *
-   * @static
-   *
    * @param {Object}  attributes
    * @param {string}  [breakpoint='']
    * @param {boolean} [showEmpty=false]
    *
-   * @return {string}
+   * @return {number}
    */
   static getImageWidth(attributes, breakpoint = '', showEmpty = false) {
     let resultWidth = '';
@@ -86,6 +81,14 @@ export default class Utils {
     return resultWidth;
   }
 
+  /**
+   * Returns the actual image height depending on the existence of different width attributes
+   *
+   * @param {Object} attributes
+   * @param {string} [breakpoint='']
+   *
+   * @return {number}
+   */
   static getImageHeight(attributes, breakpoint = '') {
 
     const imageWidth = Utils.getImageWidth(attributes, breakpoint);
