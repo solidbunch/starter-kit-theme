@@ -48,13 +48,27 @@ class BlockRenderer extends BlockAbstract
         $attrs['class']         = $imageClass;
         $attrs['fetchpriority'] = $fetchPriority;
 
-        $mainImageId         = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
-        $mainImageUrl        = (string)wp_get_attachment_image_url($mainImageId, 'full');
-        $mainImageStartWidth = !empty($attributes['mainImage']['startWidth']) ? (int)$attributes['mainImage']['startWidth'] : null;
-        $mainImageWidth      = !empty($attributes['mainImage']['width']) ? (int)$attributes['mainImage']['width'] : $mainImageStartWidth;
-        $mainImageHeight     = !empty($attributes['mainImage']['height']) ? (int)$attributes['mainImage']['height'] : null;
-        $mainImageRatio      = !empty($attributes['mainImage']['ratio']) ? (int)$attributes['mainImage']['ratio'] : null;
+        // Main Image id is strongly mandatory
+        $mainImageId  = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
+        $mainImageUrl = (string)wp_get_attachment_image_url($mainImageId, 'full');
 
+        $mainImageStartWidth = !empty($attributes['mainImage']['startWidth'])
+            ? (int)$attributes['mainImage']['startWidth']
+            : null;
+
+        $mainImageWidth = !empty($attributes['mainImage']['width'])
+            ? (int)$attributes['mainImage']['width']
+            : $mainImageStartWidth;
+
+        $mainImageHeight = !empty($attributes['mainImage']['height'])
+            ? (int)$attributes['mainImage']['height']
+            : null;
+
+        $mainImageRatio = !empty($attributes['mainImage']['ratio'])
+            ? (int)$attributes['mainImage']['ratio']
+            : null;
+
+        // Check $mainImageHeight is empty and recalculate it by ratio
         $mainImageHeight = empty(($mainImageHeight)) && !empty($mainImageRatio)
             ? $mainImageWidth / $mainImageRatio
             : $mainImageHeight;
@@ -69,6 +83,7 @@ class BlockRenderer extends BlockAbstract
 
         $templateData['blockClass'] = self::generateBlockClasses($attributes);
 
+        // Show image on editor without SrcSet
         if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) {
             $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
 
@@ -81,6 +96,7 @@ class BlockRenderer extends BlockAbstract
             return self::loadBlockView('layout', $templateData);
         }
 
+        // Making resize
         try {
             $sizes = $srcset = [];
 
@@ -122,6 +138,7 @@ class BlockRenderer extends BlockAbstract
                 $srcset[] = SrcsetItem::makeWithResize($resizer, "{$widthToResize}w");
             }
 
+            // Additional SrcSet options
             if (!empty($srcset)) {
                 // Add the original image after the last breakpoint
                 // to display by default on screens larger than the last breakpoint
