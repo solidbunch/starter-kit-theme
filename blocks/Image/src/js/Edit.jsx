@@ -146,7 +146,6 @@ export default class Edit {
                                         min="1"
                                         max={attributes.srcSet[breakpoint].startWidth ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
                                       />
-                                      {console.log(attributes)}
                                       <TextControl
                                         label="height"
                                         type="text"
