@@ -111,7 +111,7 @@ export default class Handlers {
     // Extract numeric value from `event` and parse it to an integer, defaulting to NaN if non-numeric
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
 
-    newWidth = isNaN(newWidth) ? '' : newWidth;
+    newWidth = (isNaN(newWidth) || newWidth === 0) ? '' : newWidth;
 
     let startWidth = attributes.mainImage.startWidth;
 

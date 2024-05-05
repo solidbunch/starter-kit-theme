@@ -50,7 +50,8 @@ export default class Model {
       };
     } else {
       srcSetObj[breakpoint] = {
-        ...srcSetObj[breakpoint],
+        viewPort: srcSetObj[breakpoint].viewPort,
+        enabled: srcSetObj[breakpoint].enabled,
         id: image.id,
         // ToDo add fetch image url by id to not store long data in database
         url: image.url,

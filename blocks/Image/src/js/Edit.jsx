@@ -88,7 +88,7 @@ export default class Edit {
                                   onKeyPress={Handlers.onNumberInputKeyPress}
                                   onChange={(event) => Handlers.onWidthInputChange(event, props)}
                                   inputMode="numeric"
-                                  min="0"
+                                  min="1"
                                   max={attributes.mainImage.startWidth}
                                 />
 
@@ -143,10 +143,10 @@ export default class Edit {
                                         onKeyPress={Handlers.onNumberInputKeyPress}
                                         onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
-                                        min="0"
+                                        min="1"
                                         max={attributes.srcSet[breakpoint].startWidth ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
                                       />
-
+                                      {console.log(attributes)}
                                       <TextControl
                                         label="height"
                                         type="text"
