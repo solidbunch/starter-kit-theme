@@ -27,9 +27,11 @@ export default class Utils {
    * setting the image size to 2 times smaller or the original size
    *
    * @static
+   *
    * @param {Object}  image
    * @param {boolean} hidpi
    * @param {boolean} [scratch=false]
+   *
    * @return {Object}
    */
   static getDimensionHiDPI(image, hidpi, scratch = false) {
@@ -44,12 +46,21 @@ export default class Utils {
       image.startWidth = Math.trunc(image.startWidth * 2);
     }
 
-    image.height = Math.trunc(image.width / image.ratio);
-
     return image;
   }
 
-  static showWidth(attributes, showEmpty = false, breakpoint = '') {
+  /**
+   * Returns the actual image width depending on the existence of different width attributes
+   *
+   * @static
+   *
+   * @param {Object}  attributes
+   * @param {string}  [breakpoint='']
+   * @param {boolean} [showEmpty=false]
+   *
+   * @return {string}
+   */
+  static getImageWidth(attributes, breakpoint = '', showEmpty = false) {
     let resultWidth = '';
 
     if (!breakpoint) {
@@ -73,6 +84,16 @@ export default class Utils {
     }
 
     return resultWidth;
+  }
+
+  static getImageHeight(attributes, breakpoint = '') {
+
+    const imageWidth = Utils.getImageWidth(attributes, breakpoint);
+    const ratio = (breakpoint && attributes.srcSet[breakpoint].ratio)
+      ? attributes.srcSet[breakpoint].ratio
+      : attributes.mainImage.ratio;
+
+    return Math.trunc(imageWidth / ratio);
   }
 
 }

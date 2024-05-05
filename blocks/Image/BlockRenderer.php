@@ -48,10 +48,16 @@ class BlockRenderer extends BlockAbstract
         $attrs['class']         = $imageClass;
         $attrs['fetchpriority'] = $fetchPriority;
 
-        $mainImageId     = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
-        $mainImageUrl    = (string)wp_get_attachment_image_url($mainImageId, 'full');
-        $mainImageWidth  = !empty($attributes['mainImage']['width']) ? (int)$attributes['mainImage']['width'] : null;
-        $mainImageHeight = !empty($attributes['mainImage']['height']) ? (int)$attributes['mainImage']['height'] : null;
+        $mainImageId         = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
+        $mainImageUrl        = (string)wp_get_attachment_image_url($mainImageId, 'full');
+        $mainImageStartWidth = !empty($attributes['mainImage']['startWidth']) ? (int)$attributes['mainImage']['startWidth'] : null;
+        $mainImageWidth      = !empty($attributes['mainImage']['width']) ? (int)$attributes['mainImage']['width'] : $mainImageStartWidth;
+        $mainImageHeight     = !empty($attributes['mainImage']['height']) ? (int)$attributes['mainImage']['height'] : null;
+        $mainImageRatio      = !empty($attributes['mainImage']['ratio']) ? (int)$attributes['mainImage']['ratio'] : null;
+
+        $mainImageHeight = empty(($mainImageHeight)) && !empty($mainImageRatio)
+            ? $mainImageWidth / $mainImageRatio
+            : $mainImageHeight;
 
         $mqWithWidth = !empty($attributes['srcSet']) && is_array($attributes['srcSet'])
             ? $attributes['srcSet']
@@ -87,9 +93,13 @@ class BlockRenderer extends BlockAbstract
                     ? (int)$bpData['viewPort']
                     : null;
 
+                $bpStartWidth = !empty($bpData['startWidth']) && is_numeric($bpData['startWidth'])
+                    ? (int)$bpData['startWidth']
+                    : $bpViewPort;
+
                 $widthToResize = !empty($bpData['width']) && is_numeric($bpData['width'])
                     ? (int)$bpData['width']
-                    : $bpViewPort;
+                    : $bpStartWidth;
 
                 $heightToResize = !empty($bpData['height']) && is_numeric($bpData['height'])
                     ? (int)$bpData['height']
