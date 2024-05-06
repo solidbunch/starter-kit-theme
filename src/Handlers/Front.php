@@ -6,6 +6,8 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use PHPMailer;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -21,7 +23,10 @@ class Front
      * Load critical assets before blocks assets
      *
      * @return void
+     *
      * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public static function enqueueCriticalAssets(): void
     {
@@ -37,7 +42,10 @@ class Front
      * Load regular theme assets after blocks assets
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function enqueueThemeAssets(): void
     {
@@ -62,7 +70,9 @@ class Front
      * Load additional JS data variables
      *
      * @return void
+     * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function loadFrontendJsData(): void
     {
@@ -81,7 +91,10 @@ class Front
      * Completely disable browser HTML cache
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function addNoCacheHeaders(): void
     {

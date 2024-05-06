@@ -43,7 +43,7 @@
     "laminas/laminas-config-aggregator": "1.14.0",
     "monolog/monolog": "3.5.0",
     "php-di/php-di": "7.0.6",
-    "vvv3/wp-responsive-images": "1.0.2"
+    "vvv3/wp-responsive-images": "1.0.3"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",

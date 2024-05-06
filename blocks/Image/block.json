@@ -14,7 +14,7 @@
   "supports": {},
   "example": {},
   "attributes": {
-    "defaultClass": {
+    "imageClass": {
       "type": "string",
       "default": "img-fluid"
     },
@@ -24,16 +24,20 @@
     },
     "loadingLazy": {
       "type": "boolean",
-      "default": false
+      "default": true
+    },
+    "hidpi": {
+      "type": "boolean",
+      "default": true
     },
     "altText": {
       "type": "string",
-      "default": "Image"
+      "default": ""
     },
     "mainImage": {
       "type": "object",
       "default": {
-        "src": "",
+        "url": "",
         "width": "",
         "height": "",
         "id": "",
@@ -44,34 +48,24 @@
       "type": "object",
       "default": {
         "sm": {
-          "imageUrl": "",
           "viewPort": 576,
-          "id": "",
-          "ratio": ""
+          "enabled": true
         },
         "md": {
-          "imageUrl": "",
           "viewPort": 768,
-          "id": "",
-          "ratio": ""
+          "enabled": true
         },
         "lg": {
-          "imageUrl": "",
           "viewPort": 992,
-          "id": "",
-          "ratio": ""
+          "enabled": true
         },
         "xl": {
-          "imageUrl": "",
           "viewPort": 1200,
-          "id": "",
-          "ratio": ""
+          "enabled": true
         },
         "xxl": {
-          "imageUrl": "",
           "viewPort": 1400,
-          "id": "",
-          "ratio": ""
+          "enabled": true
         }
       }
     }

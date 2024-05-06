@@ -26,17 +26,17 @@ registerBlockType(
 
       useEffect(() => {
         wp.apiFetch({path: '/skt/v1/get-menu-locations'})
-          .then(fetchedMenuLocations => {
-            setMenuLocations(fetchedMenuLocations);
+          .then(response => {
+            setMenuLocations(response);
           })
           .catch(error => {
             // eslint-disable-next-line no-console
-            console.error('Error fetching menu locations:', error);
+            console.error('Error fetching menu locations: ', error);
           });
 
         wp.apiFetch({path: '/skt/v1/get-menus'})
-          .then(fetchedMenus => {
-            setMenus(fetchedMenus);
+          .then(response => {
+            setMenus(response);
           })
           .catch(error => {
             // eslint-disable-next-line no-console

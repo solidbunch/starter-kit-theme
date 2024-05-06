@@ -10,7 +10,7 @@ abstract class AbstractSingleton
     /**
      * Call this method to get singleton
      */
-    public static function instance()
+    public static function instance(): bool|static
     {
         static $instance = false;
         if ($instance === false) {

@@ -4,11 +4,12 @@ namespace StarterKit;
 
 defined('ABSPATH') || exit;
 
-use Psr\Log\LoggerInterface;
 use StarterKit\Base\Hooks;
 use StarterKit\Handlers\CLI\CLI;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
+use Throwable;
 
 /**
  * Application main class
@@ -17,7 +18,7 @@ use Psr\Container\ContainerInterface;
  */
 final class App extends AbstractSingleton
 {
-    /** @var ContainerInterface  Dependency Injection Container */
+    /** @var ContainerInterface|null  Dependency Injection Container */
     private ?ContainerInterface $container = null;
 
 
@@ -25,6 +26,8 @@ final class App extends AbstractSingleton
      * Run the Application
      *
      * @param ContainerInterface $container Dependency Injection Container
+     *
+     * @throws Throwable
      */
     public function run(ContainerInterface $container): void
     {
