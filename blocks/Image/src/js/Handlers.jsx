@@ -31,21 +31,19 @@ export default class Handlers {
     }).then((fullMedia) => {
 
       const {attributes, setAttributes} = props;
-      const srcSetObj = {...attributes.srcSet};
 
       let image = {
         id: fullMedia.id,
         url: fullMedia.url,
-        width: fullMedia.media_details ? fullMedia.media_details.width : fullMedia.width,
-        height: fullMedia.media_details ? fullMedia.media_details.height : fullMedia.height,
-        alt: fullMedia.alt
+        startWidth: fullMedia.media_details ? fullMedia.media_details.width : fullMedia.width,
+        alt: fullMedia.alt,
       };
-      image.ratio = image.width / image.height;
-      image.startWidth =  image.width;
+
+      image.ratio = image.startWidth / (fullMedia.media_details ? fullMedia.media_details.height : fullMedia.height);
 
       if (breakpoint) {
 
-        Model.setBreakpoint(image, srcSetObj, breakpoint, setAttributes);
+        Model.setBreakpoint(image, breakpoint, props);
 
         return;
       }
@@ -54,45 +52,44 @@ export default class Handlers {
 
       Model.setMainImage(image, setAttributes);
 
-      Model.setSrcSet(image, srcSetObj, setAttributes);
+      Model.setSrcSet(image, props);
 
     }).catch((error) => {
       // eslint-disable-next-line no-console
-      console.error("Errors:", error);
+      console.error('Errors:', error);
     });
   };
 
   /**
-   * click on checkbox hidpi
+   * Click on checkbox hidpi
    *
-   * @static
    * @param {boolean} checked
    * @param {Object}  props
+   *
    * @return {void}
    */
   static onChangeHiDPI(checked, props) {
 
     const {attributes, setAttributes} = props;
-    const srcSetObj = {...attributes.srcSet};
 
     let image = attributes.mainImage;
 
     image = Utils.getDimensionHiDPI(image, checked);
 
     Model.setMainImage(image, setAttributes);
-    Model.setSrcSet(image, srcSetObj, setAttributes);
+    Model.setSrcSet(image, props);
 
     setAttributes({hidpi: checked});
   }
 
   /**
-   * permission to enter numbers only
+   * Permission to enter numbers only
    *
    * @static
    * @param {Event} event
    * @return {void}
    */
-  static onWidthInputKeyPress(event) {
+  static onNumberInputKeyPress(event) {
     const allowedCharacters = /[0-9]/;
     if (!allowedCharacters.test(event.key)) {
       event.preventDefault();
@@ -100,78 +97,49 @@ export default class Handlers {
   };
 
   /**
-   * setting a value to the input if nothing is entered there. when losing focus from the input
+   * Change Width and Height in mainImage or srcSet
    *
-   * @static
    * @param {Event}  event
    * @param {Object} props
-   * @param {string} [breakpoint=null]
-   * @return {void}
-   */
-  static onWidthInputBlur(event, props, breakpoint = null) {
-    const {attributes} = props;
-
-    if (event.target.value === "") {
-      if (breakpoint === null) {
-        const {startWidth, ratio} = attributes.mainImage;
-        const newHeight = Math.trunc(startWidth / ratio);
-        Model.changeDimension('mainImage', null, {width: startWidth, height: newHeight},props);
-      } else {
-        // const { startWidth, viewPort, ratio, id } = srcSet[breakpoint];
-       
-        let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
-        let newWidth = startWidth;
-        if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort) newWidth = attributes.srcSet[breakpoint].viewPort;
-        
-        const newHeight = Math.trunc(newWidth / ratio);
-        Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
-      }
-    }
-  };
-
-  /**
-   * change Width and Height in mainImage or srcSet
+   * @param {string} breakpoint
    *
-   * @static
-   * @param {Event}  event
-   * @param {Object} props
-   * @param {string} [breakpoint=null]
    * @return {void}
    */
-  static onWidthInputChange(event, props, breakpoint = null) {
+  static onWidthInputChange(event, props, breakpoint = '') {
     const {attributes} = props;
+
+    // Extract numeric value from `event` and parse it to an integer, defaulting to NaN if non-numeric
     let newWidth = parseInt(event.replace(/\D/g, ''), 10);
-    if (isNaN(newWidth)) {
-      newWidth = '';
-    }
-   
-    let {startWidth, ratio} = breakpoint && attributes.srcSet[breakpoint].id ? attributes.srcSet[breakpoint] : attributes.mainImage;
-    if (newWidth > startWidth) newWidth = startWidth;
 
-    if (breakpoint && newWidth > attributes.srcSet[breakpoint].viewPort ) newWidth = attributes.srcSet[breakpoint].viewPort;
-    
-    let newHeight = Math.trunc(newWidth / ratio);
+    newWidth = (isNaN(newWidth) || newWidth === 0) ? '' : newWidth;
+
+    let startWidth = attributes.mainImage.startWidth;
 
     if (breakpoint) {
-      Model.changeDimension('srcSet', breakpoint, {width: newWidth, height: newHeight},props);
-    } else {
-      Model.changeDimension('mainImage', null, {width: newWidth, height: newHeight},props);
+      // Decide based on the existence of an `id` in the srcSet for the given breakpoint
+      startWidth = attributes.srcSet[breakpoint].startWidth
+        ? attributes.srcSet[breakpoint].startWidth
+        : attributes.srcSet[breakpoint].viewPort;
     }
+
+    // Adjust `newWidth` to not exceed `startWidth` if `newWidth` is a number
+    newWidth = (typeof newWidth === 'number' && newWidth > startWidth) ? startWidth : newWidth;
+
+    Model.changeDimension({width: newWidth}, props, breakpoint);
+
   };
 
   /**
-   * reset attributes to Default (Main Image)
+   * Reset breakpoint image attributes to mainImage (default)
    *
-   * @static
    * @param {string} breakpoint
    * @param {Object} props
+   *
    * @return {void}
    */
   static onResetImage(breakpoint, props) {
-    const {attributes, setAttributes} = props;
-    const srcSetObj = {...attributes.srcSet};
-    let image = {};
-    Model.setBreakpoint(image, srcSetObj, breakpoint, setAttributes);
+    const image = {};
+    Model.setBreakpoint(image, breakpoint, props);
   };
 
 }

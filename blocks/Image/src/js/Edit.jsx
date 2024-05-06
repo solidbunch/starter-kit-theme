@@ -14,10 +14,10 @@ const {useState} = wp.element;
 export default class Edit {
 
   /**
-   * render Controls(Sidebar in right part) in Editor
+   * Render Controls(Sidebar in right part) in Editor
    *
-   * @static
    * @param {Object} props
+   *
    * @return {JSX.Element}
    */
   static renderControls(props) {
@@ -83,13 +83,12 @@ export default class Edit {
                                   label="width"
                                   type="number"
                                   className="col"
-                                  value={attributes.mainImage.width}
+                                  value={Utils.getImageWidth(attributes, '', true)}
                                   placeholder={attributes.mainImage.startWidth}
-                                  onKeyPress={Handlers.onWidthInputKeyPress}
-                                  onBlur={(event) => Handlers.onWidthInputBlur(event, props)}
+                                  onKeyPress={Handlers.onNumberInputKeyPress}
                                   onChange={(event) => Handlers.onWidthInputChange(event, props)}
                                   inputMode="numeric"
-                                  min="0"
+                                  min="1"
                                   max={attributes.mainImage.startWidth}
                                 />
 
@@ -97,7 +96,7 @@ export default class Edit {
                                   label="height"
                                   type="text"
                                   className="col"
-                                  value={attributes.mainImage.height}
+                                  value={Utils.getImageHeight(attributes)}
                                   disabled
                                 />
 
@@ -139,24 +138,19 @@ export default class Edit {
                                         label="width"
                                         type="number"
                                         className="col"
-                                        value={attributes.srcSet[breakpoint].width !== undefined ? attributes.srcSet[breakpoint].width : attributes.srcSet[breakpoint].viewPort}
-                                        placeholder={attributes.srcSet[breakpoint].width !== undefined ? attributes.srcSet[breakpoint].width : attributes.srcSet[breakpoint].viewPort}
-                                        onKeyPress={Handlers.onWidthInputKeyPress}
-                                        onBlur={(event) => Handlers.onWidthInputBlur(event, props, breakpoint)}
+                                        value={Utils.getImageWidth(attributes, breakpoint, true)}
+                                        placeholder={attributes.srcSet[breakpoint].startWidth ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
+                                        onKeyPress={Handlers.onNumberInputKeyPress}
                                         onChange={(event) => Handlers.onWidthInputChange(event, props, breakpoint)}
                                         inputMode="numeric"
-                                        min="0"
-                                        max={attributes.srcSet[breakpoint].startWidth !== undefined ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
+                                        min="1"
+                                        max={attributes.srcSet[breakpoint].startWidth ? attributes.srcSet[breakpoint].startWidth : attributes.srcSet[breakpoint].viewPort}
                                       />
-
                                       <TextControl
                                         label="height"
                                         type="text"
                                         className="col"
-                                        value={attributes.srcSet[breakpoint].height
-                                          ? attributes.srcSet[breakpoint].height
-                                          : Math.trunc(
-                                            attributes.srcSet[breakpoint].viewPort / attributes.mainImage.ratio)}
+                                        value={Utils.getImageHeight(attributes, breakpoint)}
                                         disabled
                                       />
                                     </div>
@@ -213,10 +207,10 @@ export default class Edit {
   };
 
   /**
-   * render Output Image in Left Part from Editor (image or placeHolder for loading image)
+   * Render Output Image in Left Part from Editor (image or placeHolder for loading image)
    *
-   * @static
    * @param {Object} props
+   *
    * @return {JSX.Element}
    */
   static renderOutput(props) {
@@ -237,8 +231,8 @@ export default class Edit {
               className={attributes.imageClass}
               src={mainImage.url}
               alt={attributes.altText}
-              width={mainImage.width}
-              height={mainImage.height}
+              width={Utils.getImageWidth(attributes)}
+              height={Utils.getImageHeight(attributes)}
               loading={attributes.loadingLazy ? 'lazy' : 'eager'}
               data-fetch-priority={attributes.fetchPriority}
             />

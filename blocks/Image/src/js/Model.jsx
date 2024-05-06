@@ -6,7 +6,6 @@ export default class Model {
   /**
    * Set attributes for Main Image
    *
-   * @static
    * @param {Object}   image
    * @param {Function} setAttributes
    * @return {void}
@@ -19,66 +18,70 @@ export default class Model {
           id: image.id,
           url: image.url,
           startWidth: image.startWidth,
-          width: image.width,
-          height: image.height,
           ratio: image.ratio,
         },
-        altText: image.alt
-      }
+        altText: image.alt,
+      },
     );
   };
 
   /**
    * Setting image values at a specific breakpoint
    *
-   * @static
-   * @param {Object}   image
-   * @param {Object}   srcSetObj
-   * @param {string}   breakpoint
-   * @param {Function} setAttributes
+   * @param {Object} image
+   * @param {string} breakpoint
+   * @param {Object} props
+   *
    * @return {void}
    */
-  static setBreakpoint(image, srcSetObj, breakpoint, setAttributes) {
+  static setBreakpoint(image, breakpoint, props) {
 
-    image.width = image.width >= srcSetObj[breakpoint].viewPort ? srcSetObj[breakpoint].viewPort : image.width;
+    const {attributes, setAttributes} = props;
+    const srcSetObj = {...attributes.srcSet};
+
+    image.startWidth = image.startWidth >= srcSetObj[breakpoint].viewPort
+      ? srcSetObj[breakpoint].viewPort
+      : image.startWidth;
+
     if (!image.id) {
       srcSetObj[breakpoint] = {
-        viewPort:srcSetObj[breakpoint].viewPort,
-        enabled:srcSetObj[breakpoint].enabled,
+        viewPort: srcSetObj[breakpoint].viewPort,
+        enabled: srcSetObj[breakpoint].enabled,
       };
     } else {
       srcSetObj[breakpoint] = {
-        ...srcSetObj[breakpoint],
+        viewPort: srcSetObj[breakpoint].viewPort,
+        enabled: srcSetObj[breakpoint].enabled,
         id: image.id,
         // ToDo add fetch image url by id to not store long data in database
         url: image.url,
-        width:image.width,
-        startWidth: image.width,
+        startWidth: image.startWidth,
         ratio: image.ratio,
-        height: Math.trunc(image.width / image.ratio)
       };
     }
-    
+
     setAttributes({
-      srcSet: srcSetObj
+      srcSet: srcSetObj,
     });
   }
 
   /**
    * Validation and setting of all breakpoints when loading the main image
    *
-   * @static
-   * @param {Object}   image
-   * @param {Object}   srcSetObj
-   * @param {Function} setAttributes
+   * @param {Object} image
+   * @param {Object} props
+   *
    * @return {void}
    */
-  static setSrcSet(image, srcSetObj, setAttributes) {
+  static setSrcSet(image, props) {
+    const {attributes, setAttributes} = props;
+    const srcSetObj = {...attributes.srcSet};
+
     Object.keys(srcSetObj).forEach(brPoint => {
       const {viewPort} = srcSetObj[brPoint];
 
       // Disable breakpoint if breakpoint image with < breakpoint viewPort
-      const enableBreakpoint = image.width >= viewPort;
+      const enableBreakpoint = image.startWidth && image.startWidth >= viewPort;
 
       srcSetObj[brPoint] = {
         ...srcSetObj[brPoint],
@@ -87,33 +90,32 @@ export default class Model {
     });
 
     setAttributes({
-      srcSet: srcSetObj
+      srcSet: srcSetObj,
     });
   }
 
   /**
    * Set Width and Height in mainImage or srcSet from input
    *
-   * @static
-   * @param {string} type
-   * @param {string} breakpoint
    * @param {Object} updatedAttributes
    * @param {Object} props
+   * @param {string} breakpoint
+   *
    * @return {void}
    */
-  static changeDimension(type, breakpoint, updatedAttributes, props) {
-    const {attributes,setAttributes} = props;
+  static changeDimension(updatedAttributes, props, breakpoint = '') {
+    const {attributes, setAttributes} = props;
     let newAttributes = {};
 
-    if (type === 'mainImage') {
-      newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
-    } else if (type === 'srcSet') {
+    if (breakpoint) {
       newAttributes = {
         srcSet: {
           ...attributes.srcSet,
           [breakpoint]: {...attributes.srcSet[breakpoint], ...updatedAttributes},
         },
       };
+    } else {
+      newAttributes = {mainImage: {...attributes.mainImage, ...updatedAttributes}};
     }
 
     setAttributes(newAttributes);
