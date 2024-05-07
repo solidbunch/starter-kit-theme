@@ -1,8 +1,7 @@
 import metadata from '../block.json';
 
 const {registerBlockType} = wp.blocks;
-const {InspectorControls, useBlockProps, RichText, AlignmentToolbar,BlockControls} = wp.blockEditor;
-const {PanelBody, SelectControl} = wp.components;
+const {useBlockProps, RichText, AlignmentToolbar,BlockControls} = wp.blockEditor;
 
 registerBlockType(
   metadata,
@@ -37,26 +36,6 @@ registerBlockType(
         }
         setAttributes({alignment: newAlignment, customAlignment});
       };
-    
-      const renderControls = (
-        <InspectorControls key="controls">
-          <PanelBody title="Section styles">
-            {/* <SelectControl
-              label="Align text"
-              value={attributes.alignment || ''}
-              options={alignTextOptions}
-              onChange={(alignText) =>
-                setAttributes({
-                  modification: {
-                    ...attributes.modification,
-                    alignText,
-                  },
-                })
-              }
-            /> */}
-          </PanelBody>
-        </InspectorControls>
-      );
       
       const renderOutput = (
         <>
@@ -78,7 +57,6 @@ registerBlockType(
       );
       
       return [
-        renderControls,
         renderOutput,
       ];
     },
