@@ -17,7 +17,7 @@
   "attributes": {
     "modification": {
       "type": "string",
-      "default": "container-xxl"
+      "default": "container"
     }
   },
   "editorScript": "file:build/index.js",
