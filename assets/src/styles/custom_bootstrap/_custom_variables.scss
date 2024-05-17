@@ -9,13 +9,18 @@
 // 	xxl: 2000px
 // );
 
-// Custom container widths
+// Default container widths
+// $container-max-widths: (
+//  sm: 540px,
+//  md: 720px,
+//  lg: 960px,
+//  xl: 1140px,
+//  xxl: 1280px
+// );
+
+// For fixed width containers
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1280px
+  xl: 1280px
 );
 
 // scss-docs-start gray-color-variables
@@ -32,20 +37,27 @@ $gray-900: #212529;
 $black:    #000;
 
 // scss-docs-start theme-color-variables
-$primary: #eea571;
-$secondary: #70a276;
+$primary: #f7944e;
+$secondary: #6eb477;
+
+// Tint and shade percentage is set to 20% by default
+$primary-light: tint-color($primary, 20%);
+$primary-dark: shade-color($primary, 20%);
+
+$secondary-light: tint-color($secondary, 20%);
+$secondary-dark: shade-color($secondary, 20%);
 
 $success: #198754;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
 
-$light: #f5e3d6;
-$dark: #7c5e41;
+$light: $gray-100;
+$dark: $gray-900;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
-$min-contrast-ratio: 4;
+$min-contrast-ratio: 2;
 
 // Body
 //
@@ -66,14 +78,14 @@ $body-emphasis-color: $gray-900;
 //
 // Style anchor elements.
 
-$link-color: $primary;
+$link-color: $body-color;
 $link-decoration: underline;
 $link-shade-percentage: 20%;
-$link-hover-color: $secondary;
+$link-hover-color: $primary-dark;
 $link-hover-decoration: null;
 
-$nav-link-hover-color: $secondary;
-$navbar-light-hover-color:  $secondary;
+//$nav-link-hover-color: $secondary;
+//$navbar-light-hover-color:  $secondary;
 
 // scss-docs-start headings-variables
 $headings-font-family: null;
