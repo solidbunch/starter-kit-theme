@@ -24,7 +24,7 @@ $container-max-widths: (
 );
 
 // scss-docs-start gray-color-variables
-$white:    #fff;
+$white: #fff;
 $gray-100: #f8f9fa;
 $gray-200: #e9ecef;
 $gray-300: #dee2e6;
@@ -34,7 +34,7 @@ $gray-600: #6c757d;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
-$black:    #000;
+$black: #000;
 
 // scss-docs-start theme-color-variables
 $primary: #f7944e;
@@ -46,6 +46,8 @@ $primary-dark: shade-color($primary, 20%);
 
 $secondary-light: tint-color($secondary, 20%);
 $secondary-dark: shade-color($secondary, 20%);
+
+$border-radius: 0;
 
 $success: #198754;
 $info: #0dcaf0;

@@ -1,0 +1,12 @@
+.hero_section {
+  text-align: center;
+  --indent: 120px;
+  @include media-breakpoint-up(lg) {
+
+    text-align: left;
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: var(--indent) !important;
+    padding-bottom: var(--indent) !important;
+  }
+}
