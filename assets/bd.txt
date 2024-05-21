@@ -1,0 +1,37 @@
+<!-- wp:starter-kit/section {"className":"bg_gradient hero_section","spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg_gradient hero_section pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center","justifyContent":"center"},"sm":[],"md":{"justifyContent":""},"lg":{"justifyContent":"between"},"xl":[],"xxl":[]}} -->
+<div class="row justify-content-center align-items-center justify-content-lg-between"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":7},"md":{"mod":"custom","valueRange":10},"lg":{"mod":"default"},"xl":{"mod":"custom","valueRange":6},"xxl":{"mod":"","valueRange":6}}} -->
+<div class="col-12 col-md-10 col-lg col-xl-6"><!-- wp:starter-kit/heading {"level":1,"spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h1 class="mb-3">One-stop tool to create a web projects of any complexity</h1>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>With the help of advanced technologies, the solution can be created and deployed in a quick and comfortable way.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":5},"md":{"mod":"custom","valueRange":9},"lg":{"mod":"default"},"xl":{"mod":"custom","valueRange":5},"xxl":{"mod":"","valueRange":6}},"spacers":{"xs":{"valueRange":{"mt-xs":3}},"sm":{},"md":{},"lg":{"valueRange":{"mt-lg":0}},"xl":{},"xxl":{}}} -->
+<div class="col-12 col-md-9 col-lg col-xl-5 mt-3 mt-lg-0"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm"><!-- wp:starter-kit/button {"modification":{"buttonText":"Prefer to dive right in?","tagName":"button","defaultClass":"btn","buttonColor":"btn-secondary"},"className":"w-100","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-secondary  w-100 pt-3 pb-3">Prefer to dive right in?</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm-auto"><!-- wp:starter-kit/paragraph {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":2,"mt-xs":2}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="text-center mb-2 mt-2">or</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm"><!-- wp:starter-kit/button {"modification":{"buttonText":"Get Expert Assistance","tagName":"button","defaultClass":"btn"},"className":"w-100","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-primary  w-100 pt-3 pb-3">Get Expert Assistance</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
