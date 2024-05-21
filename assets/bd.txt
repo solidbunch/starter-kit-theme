@@ -35,3 +35,37 @@
 <!-- /wp:starter-kit/row --></div>
 <!-- /wp:starter-kit/container --></section>
 <!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-5">Divisions</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":{"justifyContent":"between"},"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row justify-content-center justify-content-md-between"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center"} -->
+<div class="col-10 col-sm-7 col-md-5 text-center"><!-- wp:starter-kit/image {"mainImage":{"id":1428,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/theme-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+
+<!-- wp:starter-kit/heading {"level":3} -->
+<h3>StarterKit Theme</h3>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>WordPress starter theme with a modern development stack for launching projects faster and easily</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center","spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{"valueRange":{"mt-md":0}},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-7 col-md-5 text-center mt-5 mt-md-0"><!-- wp:starter-kit/image {"mainImage":{"id":1431,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/foundation-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+
+<!-- wp:starter-kit/heading {"level":3} -->
+<h3>StarterKit Foundation</h3>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>Environment boilerplate for start web projects with docker containers, convenient credential, improved configuration</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
