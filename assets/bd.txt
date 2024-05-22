@@ -275,3 +275,151 @@
 <!-- /wp:starter-kit/row --></div>
 <!-- /wp:starter-kit/container --></section>
 <!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"className":"bg_gradient","spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg_gradient pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{"valueRange":{"mb-md":5}},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4 mb-md-5">Advantages</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/row {"className":"g-4"} -->
+<div class="row g-4"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Facilitating Rapid Iteration</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Quick setup and tear-down of environments (Docker), along with automated deployments (CI/CD), allow teams to iterate rapidly.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Enhancing Collaboration</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">These tools streamline workflows, making it easier for cross-functional teams to collaborate effectively.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Improving Feedback Loops</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and continuous integration provide immediate feedback on changes, crucial for Agile's iterative approach.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Reducing Risk</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated tests and standardized coding practices reduce the risk of defects, aligning with Agile’s focus on high-quality deliverables.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Zero Downtime and Errors</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and deployment ensure higher quality, reducing costly errors and downtime.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Enhancing Efficiency</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Tools like Docker and CI/CD streamline workflows, reducing the time needed for setup and deployment.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Improving Resource Management</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Cloud integration and microservices architecture allow for more efficient use of resources.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Reducing Costs</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and deployment minimize human error, reducing the costs associated with fixing bugs, decrease the time to market, reducing labor costs. Allow for better resource utilization</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row -->
+
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="mt-5"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center","justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"className":"text-center text-lg-start"} -->
+<div class="row justify-content-center align-items-center text-center text-lg-start"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":12},"md":[],"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-lg-4 col-xxl-3"><!-- wp:starter-kit/heading {"alignment":"center","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center pe-3 ps-3">Don’t doubt, choose us!</h2>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":""},"md":[],"lg":{"mod":"default"},"xl":[],"xxl":[]}} -->
+<div class="col-10 col-lg"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">We've harnessed the most advanced technologies and tools to streamline the launch and support of your project, allowing you to focus on its unique features and business processes. With the technical complexities and tool selection already taken care of, your energy can be directed towards innovation and growth. Whether you're an entrepreneur, startup, or developer, join us in creating something new and exciting!</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-primary","textColor":[],"tagName":"section","colorTheme":""},"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg-primary  pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-black","textColor":[],"tagName":"div","colorTheme":""}} -->
+<div class="bg-black"><!-- wp:starter-kit/paragraph -->
+<p>fdssdfsdffds</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
