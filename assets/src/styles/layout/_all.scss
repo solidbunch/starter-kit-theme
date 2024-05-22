@@ -23,13 +23,7 @@ body {
 }
 //hero_section
 .hero_section {
-  text-align: center;
-
   --indent: 120px;
-
-  @include media-breakpoint-up(lg) {
-    text-align: left;
-  }
 
   @include media-breakpoint-up(xl) {
     padding-top: var(--indent) !important;
@@ -50,7 +44,8 @@ body {
 .card_title {
   padding-left: 36px;
   position: relative;
-  &:before {
+
+  &::before {
     content: "";
     width: 24px;
     height: 24px;
