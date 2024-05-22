@@ -17,6 +17,32 @@ body {
     flex: 1 0 auto;
   }
 }
+
 .bg_gradient {
   background-image: linear-gradient(to top, #e9ecef, #f8f9fa);
+}
+//hero_section
+.hero_section {
+  text-align: center;
+
+  --indent: 120px;
+
+  @include media-breakpoint-up(lg) {
+    text-align: left;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: var(--indent) !important;
+    padding-bottom: var(--indent) !important;
+  }
+}
+//functionality
+.list_functionality {
+  .col_img {
+    margin-bottom: 10px;
+
+    @include media-breakpoint-up(sm) {
+      margin: 0;
+    }
+  }
 }

@@ -44,7 +44,7 @@
 
 <!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":{"justifyContent":"between"},"lg":[],"xl":[],"xxl":[]}} -->
 <div class="row justify-content-center justify-content-md-between"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center"} -->
-<div class="col-10 col-sm-7 col-md-5 text-center"><!-- wp:starter-kit/image {"mainImage":{"id":1428,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/theme-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+<div class="col-10 col-sm-7 col-md-5 text-center"><!-- wp:starter-kit/image {"mainImage":{"id":1562,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/theme-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
 
 <!-- wp:starter-kit/heading {"level":3} -->
 <h3>StarterKit Theme</h3>
@@ -56,7 +56,7 @@
 <!-- /wp:starter-kit/column -->
 
 <!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center","spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{"valueRange":{"mt-md":0}},"lg":{},"xl":{},"xxl":{}}} -->
-<div class="col-10 col-sm-7 col-md-5 text-center mt-5 mt-md-0"><!-- wp:starter-kit/image {"mainImage":{"id":1431,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/foundation-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+<div class="col-10 col-sm-7 col-md-5 text-center mt-5 mt-md-0"><!-- wp:starter-kit/image {"mainImage":{"id":1552,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/foundation-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
 
 <!-- wp:starter-kit/heading {"level":3} -->
 <h3>StarterKit Foundation</h3>
@@ -72,17 +72,205 @@
 
 <!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
 <section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
-<div class="container"><!-- wp:starter-kit/heading {"alignment":"center"} -->
-<h2 class="text-center">Functionality</h2>
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4">Functionality</h2>
 <!-- /wp:starter-kit/heading -->
 
-<!-- wp:starter-kit/row -->
-<div class="row"><!-- wp:starter-kit/column -->
-<div class="col"></div>
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":{"justifyContent":"between"},"lg":[],"xl":[],"xxl":[]},"className":"text-center text-sm-start list_functionality"} -->
+<div class="row justify-content-center justify-content-md-between text-center text-sm-start list_functionality"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"","alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1575,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/gutenberg.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
 <!-- /wp:starter-kit/column -->
 
-<!-- wp:starter-kit/column -->
-<div class="col"></div>
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use Gutenberg blocks, FSE, and last WordPress features to make flexible and powerful projects</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1559,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/server_.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Setup server environments, hosting (poduction, staging, develop, etc)</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1583,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/composer.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use Composer and webpack to install dependencies and to operate with assets</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1546,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/blockchain.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Improved base project structure</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1564,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/web-development.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Follows PSR rules to make best development and code understanding</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1558,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/security.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Maintain high-level security protocols to safeguard the integrity and reliability of the application</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1544,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/3d-1.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use modern PHP approaches/architecture (OOP, MVC, Dependency Injection, Autoloading)</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1547,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/box.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Install dependencies - WordPress core, plugins, StarterKit Theme</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1551,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/folder.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Have a contemporary and user-friendly file structure</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1550,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/containers.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Run docker containers with database, PHP, and NGINX</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1563,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/warning.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Unit tests, CodeSniffer, ESLint, Stylelint</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1545,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/agile.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Setup CI/CD. Run build and deployments</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1557,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/rocket.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Features PageSpeed improvements and optimized code, ensuring a faster and more efficient performance</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1565,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/website-tests.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Comprehensive testing, including unit, integration, system, end-to-end, performance, and security tests</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
 <!-- /wp:starter-kit/column --></div>
 <!-- /wp:starter-kit/row --></div>
 <!-- /wp:starter-kit/container --></section>
