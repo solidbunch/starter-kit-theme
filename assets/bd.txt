@@ -399,7 +399,7 @@
 <!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
 <div class="mt-5"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center","justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"className":"text-center text-lg-start"} -->
 <div class="row justify-content-center align-items-center text-center text-lg-start"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":12},"md":[],"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
-<div class="col-12 col-lg-4 col-xxl-3"><!-- wp:starter-kit/heading {"alignment":"center","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-12 col-lg-4 col-xxl-3"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
 <h2 class="text-center pe-3 ps-3">Don’t doubt, choose us!</h2>
 <!-- /wp:starter-kit/heading --></div>
 <!-- /wp:starter-kit/column -->
@@ -414,12 +414,70 @@
 <!-- /wp:starter-kit/container --></section>
 <!-- /wp:starter-kit/section -->
 
-<!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-primary","textColor":[],"tagName":"section","colorTheme":""},"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
-<section class="bg-primary  pt-5 pb-5"><!-- wp:starter-kit/container -->
-<div class="container"><!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-black","textColor":[],"tagName":"div","colorTheme":""}} -->
-<div class="bg-black"><!-- wp:starter-kit/paragraph -->
-<p>fdssdfsdffds</p>
-<!-- /wp:starter-kit/paragraph --></div>
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-secondary","textColor":[],"tagName":"section","colorTheme":""},"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg-secondary  pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-white","textColor":[],"tagName":"div","colorTheme":""},"className":"text-center text-lg-start","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3,"pb-xs":5,"pt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="bg-white  text-center text-lg-start pe-3 ps-3 pb-5 pt-5"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center"} -->
+<h2 class="text-center">How Would You Like to Proceed?</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"alignment":"center","className":"text-center"} -->
+<p class="text-center">We offer two options to suit your needs:</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="row justify-content-center mt-5"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":4},"xl":{"mod":"custom","valueRange":3},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-4 col-xl-3"><!-- wp:starter-kit/heading {"level":3} -->
+<h3>Consultation,Expert Assistance</h3>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":6},"xl":{"mod":"custom","valueRange":5},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-6 col-xl-5"><!-- wp:starter-kit/paragraph -->
+<p>If you need personalized assistance or consultation from our experts, click the button below to access our paid support service and get the guidance you need.</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/button {"modification":{"buttonText":"Get Expert Assistance","tagName":"button","defaultClass":"btn"},"className":"max_w","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-primary  max_w pt-3 pb-3">Get Expert Assistance</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="row justify-content-center mt-5"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":4},"xl":{"mod":"custom","valueRange":3},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-4 col-xl-3"><!-- wp:starter-kit/heading {"level":3} -->
+<h3>Get Started</h3>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":6},"xl":{"mod":"custom","valueRange":5},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-6 col-xl-5"><!-- wp:starter-kit/paragraph -->
+<p>Prefer to dive right in? Download the StarterKit and begin your project installation yourself. Our easy-to-follow instructions will guide you through every step of the process.</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/button {"modification":{"buttonText":"Download StarterKit","tagName":"button","defaultClass":"btn","buttonColor":"btn-outline-secondary"},"className":"max_w","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-outline-secondary  max_w pt-3 pb-3">Download StarterKit</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
 <!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4">Frequently Asked Questions</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/faq-section -->
+<div class="accordion" itemscope itemtype="https://schema.org/FAQPage"><!-- wp:starter-kit/faq-single {"accordionItemId":"accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660"} -->
+<section class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660" aria-expanded="false" itemprop="name">lore ipsum "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo?</button></h2><div class="accordion-collapse collapse" id="accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660"><div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="__answer-text mb-0" itemprop="text">"Sed ut perspiciatis unde omnis iste natus error sit <strong>voluptatem </strong>accusantium <a href="http://google.com" data-type="link" data-id="google.com">doloremque </a>laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p></div></div></section>
+<!-- /wp:starter-kit/faq-single -->
+
+<!-- wp:starter-kit/faq-single {"accordionItemId":"accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f"} -->
+<section class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f" aria-expanded="false" itemprop="name">"Sed ut perspiciatis unde omnis iste natu ?</button></h2><div class="accordion-collapse collapse" id="accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f"><div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="__answer-text mb-0" itemprop="text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p></div></div></section>
+<!-- /wp:starter-kit/faq-single --></div>
+<!-- /wp:starter-kit/faq-section --></div>
 <!-- /wp:starter-kit/container --></section>
 <!-- /wp:starter-kit/section -->
