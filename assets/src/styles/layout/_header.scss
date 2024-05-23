@@ -13,3 +13,30 @@ body.admin-bar {
     }
   }
 }
+
+header.header {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+  background: var(--bs-body-bg);
+}
+header.header .row {
+  >div {
+    &:first-child {
+      img {
+        width: 235px;
+        @include media-breakpoint-down(lg) {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+[data-bs-theme="light"] {
+  .navbar {
+    --bs-navbar-active-color: var(--bs-primary);
+    --bs-navbar-hover-color: var(--bs-primary);
+
+  }
+  .navbar-nav {
+    --bs-nav-link-color: var(--bs-gray-900);
+  }
+}
