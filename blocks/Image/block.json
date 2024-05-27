@@ -26,6 +26,13 @@
       "type": "boolean",
       "default": true
     },
+    "link": {
+      "type": "object",
+      "default": {
+        "href": "",
+        "target": ""
+      }
+    },
     "hidpi": {
       "type": "boolean",
       "default": true
