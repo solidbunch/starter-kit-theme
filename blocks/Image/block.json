@@ -18,6 +18,14 @@
       "type": "string",
       "default": "img-fluid"
     },
+    "link": {
+      "type": "object",
+      "default": {
+        "addLink": false,
+        "targetBlank": false,
+        "href": ""
+      }
+    },
     "fetchPriority": {
       "type": "string",
       "default": "auto"
@@ -25,13 +33,6 @@
     "loadingLazy": {
       "type": "boolean",
       "default": true
-    },
-    "link": {
-      "type": "object",
-      "default": {
-        "href": "",
-        "target": ""
-      }
     },
     "hidpi": {
       "type": "boolean",

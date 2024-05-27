@@ -64,7 +64,7 @@ export default class Edit {
                           <div className="row_image">
                             <div className="setting_box">
                               <div className="img_holder">
-                                <img src={attributes.mainImage.url} alt="Main"/>
+                                <img src={attributes.mainImage.url} alt="Main" />
                               </div>
                               <MediaPlaceholder
                                 labels={{title: 'Main Image'}}
@@ -119,7 +119,7 @@ export default class Edit {
                                     <div className="img_holder">
                                       <img src={attributes.srcSet[breakpoint].url
                                         ? attributes.srcSet[breakpoint].url
-                                        : attributes.mainImage.url} alt={`Breakpoint ${attributes.srcSet[breakpoint].viewPort}`}/>
+                                        : attributes.mainImage.url} alt={`Breakpoint ${attributes.srcSet[breakpoint].viewPort}`} />
                                     </div>
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
@@ -166,6 +166,28 @@ export default class Edit {
                 }
                 {tab.name === 'settings-tab' &&
                   <div className="pt-4 px-3">
+                    <div className="box_breakpoint mb-3">
+                      <CheckboxControl
+                        label="Wrap an image into a link"
+                        checked={attributes.link.addLink}
+                        onChange={(checked) => setAttributes({link: {...attributes.link, addLink: checked}})}
+                      />
+                      {attributes.link.addLink && (
+                        <>
+                          <TextControl
+                            label="Href"
+                            value={attributes.link.href}
+                            onChange={(value) => setAttributes({link: {...attributes.link, href: value}})}
+                          />
+                          <CheckboxControl
+                            label="Open in New Tab"
+                            checked={attributes.link.targetBlank}
+                            onChange={(checked) => setAttributes({link: {...attributes.link, targetBlank: checked}})}
+                          />
+                        </>
+                      )}
+                      
+                    </div>
                     <TextareaControl
                       label="Alt Text"
                       value={attributes.altText}
@@ -214,41 +236,63 @@ export default class Edit {
    * @return {JSX.Element}
    */
   static renderOutput(props) {
-
-    const {attributes, className} = props;
-
+    const {attributes, className, isSelected} = props;
+  
     const blockProps = useBlockProps({
       className: [className],
     });
-
+  
     const mainImage = attributes.mainImage;
-
     const imageWidth = Utils.getImageWidth(attributes);
     const imageHeight = Utils.getImageHeight(attributes);
-
-    return (
-      <>
-        {mainImage.id ? (
-          <figure   {...blockProps} key="blockControls">
-            <img
-              className={attributes.imageClass}
-              src={mainImage.url}
-              alt={attributes.altText}
-              {...(imageWidth && {width: imageWidth})}
-              {...(imageHeight && {height: imageHeight})}
-              loading={attributes.loadingLazy ? 'lazy' : 'eager'}
-              data-fetch-priority={attributes.fetchPriority}
-            />
-          </figure>
-        ) : (
-          <MediaPlaceholder
-            icon="format-image"
-            labels={{title: 'Add Image'}}
-            onSelect={(media) => Handlers.onChangeImage(media, props)}
-          />
-        )}
-
-      </>
+    const linkHref = attributes.link.href || '#';
+  
+    const imgElement = (
+      <img
+        className={attributes.imageClass}
+        src={mainImage.url}
+        alt={attributes.altText}
+        {...(imageWidth && {width: imageWidth})}
+        {...(imageHeight && {height: imageHeight})}
+        loading={attributes.loadingLazy ? 'lazy' : 'eager'}
+        data-fetch-priority={attributes.fetchPriority}
+      />
     );
-  };
-}
+  
+    // const handleLinkClick = (event) => {
+    //   if (isSelected) {
+    //     event.preventDefault();
+    //   }
+    // };
+  
+    let content;
+  
+    if (mainImage.id) {
+      content = (
+        <figure {...blockProps} key="blockControls">
+          {attributes.link.addLink ? (
+            <a
+              href={linkHref}
+              {...(attributes.link.targetBlank && {target: "_blank"})}
+              onClick={(event) => Utils.preventLinkNavigation(event, isSelected)}
+            >
+              {imgElement}
+            </a>
+          ) : (
+            imgElement
+          )}
+        </figure>
+      );
+    } else {
+      content = (
+        <MediaPlaceholder
+          icon="format-image"
+          labels={{title: 'Add Image'}}
+          onSelect={(media) => Handlers.onChangeImage(media, props)}
+        />
+      );
+    }
+  
+    return <>{content}</>;
+  }
+}  
