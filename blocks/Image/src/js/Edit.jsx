@@ -223,6 +223,9 @@ export default class Edit {
 
     const mainImage = attributes.mainImage;
 
+    const imageWidth = Utils.getImageWidth(attributes);
+    const imageHeight = Utils.getImageHeight(attributes);
+
     return (
       <>
         {mainImage.id ? (
@@ -231,8 +234,8 @@ export default class Edit {
               className={attributes.imageClass}
               src={mainImage.url}
               alt={attributes.altText}
-              width={Utils.getImageWidth(attributes)}
-              height={Utils.getImageHeight(attributes)}
+              {...(imageWidth && {width: imageWidth})}
+              {...(imageHeight && {height: imageHeight})}
               loading={attributes.loadingLazy ? 'lazy' : 'eager'}
               data-fetch-priority={attributes.fetchPriority}
             />
