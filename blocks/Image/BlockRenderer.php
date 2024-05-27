@@ -81,7 +81,12 @@ class BlockRenderer extends BlockAbstract
             return '';
         }
 
+        $link = !empty($attributes['link']) && is_array($attributes['link'])
+            ? $attributes['link']
+            : [];
+
         $templateData['blockClass'] = self::generateBlockClasses($attributes);
+        $templateData['link'] = $link;
 
         // Show image on editor without SrcSet
         if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) {
