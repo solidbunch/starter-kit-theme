@@ -13,7 +13,7 @@ registerBlockType(
     edit: props => {
 
       return [
-        Edit.renderControls(props),
+        Edit.renderControls(props, metadata),
         Edit.renderOutput(props, metadata),
       ];
     },

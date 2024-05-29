@@ -1,9 +1,6 @@
 import Model from './Model';
 import Utils from './Helper/Utils';
 
-const {useDispatch} = wp.data;
-const {store: noticesStore} = wp.notices;
-
 /**
  * Block editor handlers
  */
@@ -178,8 +175,15 @@ export default class Handlers {
     Model.setBreakpoint(image, breakpoint, props);
   };
 
-  static onUploadError(message) {
-    const {createErrorNotice} = useDispatch( noticesStore );
+  /**
+   * Show error message on media upload error
+   *
+   * @param {Function} createErrorNotice
+   * @param {string}   message
+   *
+   * @return {void}
+   */
+  static onUploadError(createErrorNotice, message) {
     createErrorNotice(message, {type: 'snackbar'});
   }
 

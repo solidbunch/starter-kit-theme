@@ -1,6 +1,9 @@
 import Handlers from './Handlers';
 import Utils from './Helper/Utils';
 
+const {useDispatch} = wp.data;
+const {store: noticesStore} = wp.notices;
+
 /**
  * Internal block libraries
  */
@@ -19,14 +22,17 @@ export default class Edit {
    * Render Controls(Sidebar in right part) in Editor
    *
    * @param {Object} props
+   * @param {Object} metadata
    *
    * @return {JSX.Element}
    */
-  static renderControls(props) {
+  static renderControls(props, metadata) {
 
     const {attributes, setAttributes} = props;
 
     const [priorityText, setPriorityText] = useState(Utils.getPriorityText(attributes.fetchPriority));
+
+    const {createErrorNotice} = useDispatch(noticesStore);
 
     return (
       <InspectorControls key="controls">
@@ -52,9 +58,13 @@ export default class Edit {
                         <div className="row_image">
                           <div className="setting_box">
                             <MediaPlaceholder
-                              icon="format-image"
+                              icon={metadata.icon}
                               labels={{title: 'Add Image'}}
                               onSelect={(media) => Handlers.onChangeImage(media, props)}
+                              onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+                              onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                              accept="image/*"
+                              allowedTypes={ALLOWED_MEDIA_TYPES}
                             />
 
                           </div>
@@ -71,6 +81,10 @@ export default class Edit {
                               <MediaPlaceholder
                                 labels={{title: 'Main Image'}}
                                 onSelect={(media) => Handlers.onChangeImage(media, props)}
+                                onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+                                onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                                accept="image/*"
+                                allowedTypes={ALLOWED_MEDIA_TYPES}
                               />
                               <CheckboxControl
                                 className="pb-3"
@@ -126,6 +140,9 @@ export default class Edit {
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
+                                      onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                                      accept="image/*"
+                                      allowedTypes={ALLOWED_MEDIA_TYPES}
                                     />
                                     {attributes.srcSet[breakpoint].id && (
                                       <button
@@ -245,6 +262,8 @@ export default class Edit {
       className: [className],
     });
 
+    const {createErrorNotice} = useDispatch(noticesStore);
+
     const mainImage = attributes.mainImage;
     const imageWidth = Utils.getImageWidth(attributes);
     const imageHeight = Utils.getImageHeight(attributes);
@@ -294,13 +313,9 @@ export default class Edit {
           labels={{title: 'Add Image'}}
           onSelect={(media) => Handlers.onChangeImage(media, props)}
           onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
-          onError={(message) => Handlers.onUploadError(message)}
-          //placeholder={ placeholder }
+          onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
           accept="image/*"
           allowedTypes={ALLOWED_MEDIA_TYPES}
-          //value={ { id, src } }
-          //mediaPreview={ mediaPreview }
-          //disableMediaButtons={ temporaryURL || url }
         />
       );
     }

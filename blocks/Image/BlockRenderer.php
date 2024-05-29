@@ -6,6 +6,7 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use StarterKit\Handlers\Blocks\BlockAbstract;
+use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
@@ -48,8 +49,9 @@ class BlockRenderer extends BlockAbstract
         $attrs['class']         = $imageClass;
         $attrs['fetchpriority'] = $fetchPriority;
 
-        // Main Image id is strongly mandatory
-        $mainImageId  = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
+        // Main Image id or Main image url is strongly mandatory
+        $mainImageId = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
+
         if (!empty($mainImageId)) {
             $mainImageUrl = (string)wp_get_attachment_image_url($mainImageId, 'full');
         } else {
@@ -92,22 +94,92 @@ class BlockRenderer extends BlockAbstract
             : [];
 
         $templateData['blockClass'] = self::generateBlockClasses($attributes);
-        $templateData['link'] = $link;
+        $templateData['link']       = $link;
 
-        // Show image on editor without SrcSet
+        // Show image without SrcSet
         if ((Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) || empty($mainImageId)) {
-            $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
-
-            foreach ($attrs as $attrName => $attrValue) {
-                $img->setAttr($attrName, $attrValue);
-            }
-
-            $templateData['imgHtml'] = $img->render() ?? '';
+            $templateData['imgHtml'] = self::showSimpleImage(
+                $mainImageUrl,
+                $imgAlt,
+                $mainImageWidth,
+                $mainImageHeight,
+                $lazy,
+                $attrs
+            );
 
             return self::loadBlockView('layout', $templateData);
         }
 
         // Making resize
+        $templateData['imgHtml'] = self::showImageWithSrcSet(
+            $mainImageUrl,
+            $imgAlt,
+            $mainImageWidth,
+            $mainImageHeight,
+            $mqWithWidth,
+            $hidpi,
+            $lazy,
+            $attrs
+        );
+
+        return self::loadBlockView('layout', $templateData);
+    }
+
+    /**
+     * Show image without SrcSet
+     * Used for Editor, SVG images, external images added by url
+     *
+     * @param $mainImageUrl
+     * @param $imgAlt
+     * @param $mainImageWidth
+     * @param $mainImageHeight
+     * @param $lazy
+     * @param $attrs
+     *
+     * @return string
+     */
+    private static function showSimpleImage(
+        $mainImageUrl,
+        $imgAlt,
+        $mainImageWidth,
+        $mainImageHeight,
+        $lazy,
+        $attrs
+    ): string {
+        $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
+
+        foreach ($attrs as $attrName => $attrValue) {
+            $img->setAttr($attrName, $attrValue);
+        }
+
+        return $img->render() ?? '';
+    }
+
+    /**
+     * Show image with SrcSet and with full resize options
+     *
+     * @param $mainImageUrl
+     * @param $imgAlt
+     * @param $mainImageWidth
+     * @param $mainImageHeight
+     * @param $mqWithWidth
+     * @param $hidpi
+     * @param $lazy
+     * @param $attrs
+     *
+     * @return string
+     * @throws Throwable
+     */
+    private static function showImageWithSrcSet(
+        $mainImageUrl,
+        $imgAlt,
+        $mainImageWidth,
+        $mainImageHeight,
+        $mqWithWidth,
+        $hidpi,
+        $lazy,
+        $attrs
+    ): string {
         try {
             $sizes = $srcset = [];
 
@@ -177,11 +249,11 @@ class BlockRenderer extends BlockAbstract
                 $img->setAttr($attrName, $attrValue);
             }
 
-            $templateData['imgHtml'] = $img->render() ?? '';
+            return $img->render() ?? '';
         } catch (Exception $ex) {
-            error_log("\nFile: {$ex->getFile()}\nLine: {$ex->getLine()}\nMessage: {$ex->getMessage()}\n");
+            ErrorHandler::handleThrowable($ex);
         }
 
-        return self::loadBlockView('layout', $templateData);
+        return '';
     }
 }
