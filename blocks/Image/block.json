@@ -18,6 +18,14 @@
       "type": "string",
       "default": "img-fluid"
     },
+    "link": {
+      "type": "object",
+      "default": {
+        "addLink": false,
+        "targetBlank": false,
+        "href": ""
+      }
+    },
     "fetchPriority": {
       "type": "string",
       "default": "auto"

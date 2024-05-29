@@ -85,6 +85,9 @@ registerBlockType(
                 {label: 'bg-dark', value: 'bg-dark'},
                 {label: 'bg-black', value: 'bg-black'},
                 {label: 'bg-primary', value: 'bg-primary'},
+                {label: 'bg-secondary', value: 'bg-secondary'},
+                {label: 'bg-white', value: 'bg-white'},
+                {label: 'bg-light', value: 'bg-light'},
               ]}
               onChange={(backgroundColor) =>
                 setAttributes({

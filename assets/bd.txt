@@ -1,0 +1,483 @@
+<!-- wp:starter-kit/section {"className":"bg_gradient hero_section text-center text-lg-start","spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg_gradient hero_section text-center text-lg-start pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center","justifyContent":"center"},"sm":[],"md":{"justifyContent":""},"lg":{"justifyContent":"between"},"xl":[],"xxl":[]}} -->
+<div class="row justify-content-center align-items-center justify-content-lg-between"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":7},"md":{"mod":"custom","valueRange":10},"lg":{"mod":"default"},"xl":{"mod":"custom","valueRange":6},"xxl":{"mod":"","valueRange":6}}} -->
+<div class="col-12 col-md-10 col-lg col-xl-6"><!-- wp:starter-kit/heading {"level":1,"spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h1 class="mb-3">One-stop tool to create a web projects of any complexity</h1>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>With the help of advanced technologies, the solution can be created and deployed in a quick and comfortable way.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":5},"md":{"mod":"custom","valueRange":9},"lg":{"mod":"default"},"xl":{"mod":"custom","valueRange":5},"xxl":{"mod":"","valueRange":6}},"spacers":{"xs":{"valueRange":{"mt-xs":3}},"sm":{},"md":{},"lg":{"valueRange":{"mt-lg":0}},"xl":{},"xxl":{}}} -->
+<div class="col-12 col-md-9 col-lg col-xl-5 mt-3 mt-lg-0"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm"><!-- wp:starter-kit/button {"modification":{"buttonText":"Prefer to dive right in?","tagName":"button","defaultClass":"btn","buttonColor":"btn-secondary"},"className":"w-100","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-secondary  w-100 pt-3 pb-3">Prefer to dive right in?</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm-auto"><!-- wp:starter-kit/paragraph {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":2,"mt-xs":2}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="text-center mb-2 mt-2">or</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="col-12 col-sm"><!-- wp:starter-kit/button {"modification":{"buttonText":"Get Expert Assistance","tagName":"button","defaultClass":"btn"},"className":"w-100","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-primary  w-100 pt-3 pb-3">Get Expert Assistance</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-5">Divisions</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":{"justifyContent":"between"},"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row justify-content-center justify-content-md-between"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center"} -->
+<div class="col-10 col-sm-7 col-md-5 text-center"><!-- wp:starter-kit/image {"mainImage":{"id":1562,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/theme-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+
+<!-- wp:starter-kit/heading {"level":3} -->
+<h3>StarterKit Theme</h3>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>WordPress starter theme with a modern development stack for launching projects faster and easily</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":7},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":[]},"className":"text-center","spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{"valueRange":{"mt-md":0}},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-7 col-md-5 text-center mt-5 mt-md-0"><!-- wp:starter-kit/image {"mainImage":{"id":1552,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/foundation-icon.svg","startWidth":72,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}}} /-->
+
+<!-- wp:starter-kit/heading {"level":3} -->
+<h3>StarterKit Foundation</h3>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph -->
+<p>Environment boilerplate for start web projects with docker containers, convenient credential, improved configuration</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4">Functionality</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":{"justifyContent":"between"},"lg":[],"xl":[],"xxl":[]},"className":"text-center text-sm-start list_functionality"} -->
+<div class="row justify-content-center justify-content-md-between text-center text-sm-start list_functionality"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"","alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1575,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/gutenberg.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use Gutenberg blocks, FSE, and last WordPress features to make flexible and powerful projects</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1559,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/server_.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Setup server environments, hosting (poduction, staging, develop, etc)</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1583,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/composer.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use Composer and webpack to install dependencies and to operate with assets</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1546,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/blockchain.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Improved base project structure</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1564,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/web-development.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Follows PSR rules to make best development and code understanding</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1558,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/security.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Maintain high-level security protocols to safeguard the integrity and reliability of the application</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1544,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/3d-1.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Use modern PHP approaches/architecture (OOP, MVC, Dependency Injection, Autoloading)</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1547,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/box.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Install dependencies - WordPress core, plugins, StarterKit Theme</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1551,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/folder.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Have a contemporary and user-friendly file structure</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1550,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/containers.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Run docker containers with database, PHP, and NGINX</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1563,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/warning.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Unit tests, CodeSniffer, ESLint, Stylelint</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1545,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/agile.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Setup CI/CD. Run build and deployments</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1557,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/rocket.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Features PageSpeed improvements and optimized code, ensuring a faster and more efficient performance</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":"custom","valueRange":9},"md":{"mod":"custom","valueRange":5},"lg":[],"xl":[],"xxl":{"mod":"","valueRange":5}},"spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="col-10 col-sm-9 col-md-5 mb-4"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]}} -->
+<div class="row align-items-center"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"auto"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_img"} -->
+<div class="col-12 col-sm-auto col_img"><!-- wp:starter-kit/image {"mainImage":{"id":1565,"url":"http://starter-kit.loc/wp-content/uploads/2024/05/website-tests.svg","startWidth":25,"ratio":1},"srcSet":{"sm":{"viewPort":576,"enabled":false},"md":{"viewPort":768,"enabled":false},"lg":{"viewPort":992,"enabled":false},"xl":{"viewPort":1200,"enabled":false},"xxl":{"viewPort":1400,"enabled":false}},"className":"mb-0"} /--></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"default"},"md":[],"lg":[],"xl":[],"xxl":[]},"className":"col_txt"} -->
+<div class="col-12 col-sm col_txt"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Comprehensive testing, including unit, integration, system, end-to-end, performance, and security tests</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"className":"bg_gradient","spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg_gradient pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{"valueRange":{"mb-md":5}},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4 mb-md-5">Advantages</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/row {"className":"g-4"} -->
+<div class="row g-4"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Facilitating Rapid Iteration</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Quick setup and tear-down of environments (Docker), along with automated deployments (CI/CD), allow teams to iterate rapidly.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Enhancing Collaboration</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">These tools streamline workflows, making it easier for cross-functional teams to collaborate effectively.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Improving Feedback Loops</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and continuous integration provide immediate feedback on changes, crucial for Agile's iterative approach.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Reducing Risk</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated tests and standardized coding practices reduce the risk of defects, aligning with Agile’s focus on high-quality deliverables.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Zero Downtime and Errors</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and deployment ensure higher quality, reducing costly errors and downtime.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Enhancing Efficiency</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Tools like Docker and CI/CD streamline workflows, reducing the time needed for setup and deployment.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Improving Resource Management</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Cloud integration and microservices architecture allow for more efficient use of resources.</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"custom","valueRange":6},"md":{"mod":"","valueRange":4},"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-sm-6 col-lg-4 col-xxl-3"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card h-100"} -->
+<div class="card h-100"><!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"className":"card-body"} -->
+<div class="card-body"><!-- wp:starter-kit/heading {"level":4,"className":"card_title","spacers":{"xs":{"valueRange":{"mb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h4 class="card_title mb-3">Reducing Costs</h4>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">Automated testing and deployment minimize human error, reducing the costs associated with fixing bugs, decrease the time to market, reducing labor costs. Allow for better resource utilization</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row -->
+
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":[],"textColor":[],"tagName":"div","colorTheme":""},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="mt-5"><!-- wp:starter-kit/row {"properties":{"xs":{"alignItems":"center","justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"className":"text-center text-lg-start"} -->
+<div class="row justify-content-center align-items-center text-center text-lg-start"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":12},"sm":{"mod":"","valueRange":12},"md":[],"lg":{"mod":"custom","valueRange":4},"xl":[],"xxl":{"mod":"custom","valueRange":3}}} -->
+<div class="col-12 col-lg-4 col-xxl-3"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center pe-3 ps-3">Don’t doubt, choose us!</h2>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":10},"sm":{"mod":""},"md":[],"lg":{"mod":"default"},"xl":[],"xxl":[]}} -->
+<div class="col-10 col-lg"><!-- wp:starter-kit/paragraph {"spacers":{"xs":{"valueRange":{"mb-xs":0}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<p class="mb-0">We've harnessed the most advanced technologies and tools to streamline the launch and support of your project, allowing you to focus on its unique features and business processes. With the technical complexities and tool selection already taken care of, your energy can be directed towards innovation and growth. Whether you're an entrepreneur, startup, or developer, join us in creating something new and exciting!</p>
+<!-- /wp:starter-kit/paragraph --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-secondary","textColor":[],"tagName":"section","colorTheme":""},"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="bg-secondary  pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/section {"modification":{"backgroundColor":"bg-white","textColor":[],"tagName":"div","colorTheme":""},"className":"text-center text-lg-start","spacers":{"xs":{"valueRange":{"pe-xs":3,"ps-xs":3,"pb-xs":5,"pt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="bg-white  text-center text-lg-start pe-3 ps-3 pb-5 pt-5"><!-- wp:starter-kit/heading {"alignment":"center","className":"text-center"} -->
+<h2 class="text-center">How Would You Like to Proceed?</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/paragraph {"alignment":"center","className":"text-center"} -->
+<p class="text-center">We offer two options to suit your needs:</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="row justify-content-center mt-5"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":4},"xl":{"mod":"custom","valueRange":3},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-4 col-xl-3"><!-- wp:starter-kit/heading {"level":3} -->
+<h3>Consultation,Expert Assistance</h3>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":6},"xl":{"mod":"custom","valueRange":5},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-6 col-xl-5"><!-- wp:starter-kit/paragraph -->
+<p>If you need personalized assistance or consultation from our experts, click the button below to access our paid support service and get the guidance you need.</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/button {"modification":{"buttonText":"Get Expert Assistance","tagName":"button","defaultClass":"btn"},"className":"max_w","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-primary  max_w pt-3 pb-3">Get Expert Assistance</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row -->
+
+<!-- wp:starter-kit/row {"properties":{"xs":{"justifyContent":"center"},"sm":[],"md":[],"lg":[],"xl":[],"xxl":[]},"spacers":{"xs":{"valueRange":{"mt-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<div class="row justify-content-center mt-5"><!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":4},"xl":{"mod":"custom","valueRange":3},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-4 col-xl-3"><!-- wp:starter-kit/heading {"level":3} -->
+<h3>Get Started</h3>
+<!-- /wp:starter-kit/heading --></div>
+<!-- /wp:starter-kit/column -->
+
+<!-- wp:starter-kit/column {"size":{"xs":{"mod":"custom","valueRange":11},"sm":[],"md":{"mod":"custom","valueRange":8},"lg":{"mod":"custom","valueRange":6},"xl":{"mod":"custom","valueRange":5},"xxl":[]}} -->
+<div class="col-11 col-md-8 col-lg-6 col-xl-5"><!-- wp:starter-kit/paragraph -->
+<p>Prefer to dive right in? Download the StarterKit and begin your project installation yourself. Our easy-to-follow instructions will guide you through every step of the process.</p>
+<!-- /wp:starter-kit/paragraph -->
+
+<!-- wp:starter-kit/button {"modification":{"buttonText":"Download StarterKit","tagName":"button","defaultClass":"btn","buttonColor":"btn-outline-secondary"},"className":"max_w","spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<button class="btn btn-outline-secondary  max_w pt-3 pb-3">Download StarterKit</button>
+<!-- /wp:starter-kit/button --></div>
+<!-- /wp:starter-kit/column --></div>
+<!-- /wp:starter-kit/row --></div>
+<!-- /wp:starter-kit/section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->
+
+<!-- wp:starter-kit/section {"spacers":{"xs":{"valueRange":{"pt-xs":5,"pb-xs":5}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<section class="pt-5 pb-5"><!-- wp:starter-kit/container -->
+<div class="container"><!-- wp:starter-kit/heading {"alignment":"center","spacers":{"xs":{"valueRange":{"mb-xs":4}},"sm":{},"md":{},"lg":{},"xl":{},"xxl":{}}} -->
+<h2 class="text-center mb-4">Frequently Asked Questions</h2>
+<!-- /wp:starter-kit/heading -->
+
+<!-- wp:starter-kit/faq-section -->
+<div class="accordion" itemscope itemtype="https://schema.org/FAQPage"><!-- wp:starter-kit/faq-single {"accordionItemId":"accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660"} -->
+<section class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660" aria-expanded="false" itemprop="name">lore ipsum "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo?</button></h2><div class="accordion-collapse collapse" id="accordion-item-b692698b-ad27-4f4b-a14a-83fabbf4c660"><div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="__answer-text mb-0" itemprop="text">"Sed ut perspiciatis unde omnis iste natus error sit <strong>voluptatem </strong>accusantium <a href="http://google.com" data-type="link" data-id="google.com">doloremque </a>laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p></div></div></section>
+<!-- /wp:starter-kit/faq-single -->
+
+<!-- wp:starter-kit/faq-single {"accordionItemId":"accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f"} -->
+<section class="accordion-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h2 class="accordion-header"><button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f" aria-expanded="false" itemprop="name">"Sed ut perspiciatis unde omnis iste natu ?</button></h2><div class="accordion-collapse collapse" id="accordion-item-775c86e9-a045-4fe7-b4fe-9de539eaab4f"><div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p class="__answer-text mb-0" itemprop="text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p></div></div></section>
+<!-- /wp:starter-kit/faq-single --></div>
+<!-- /wp:starter-kit/faq-section --></div>
+<!-- /wp:starter-kit/container --></section>
+<!-- /wp:starter-kit/section -->

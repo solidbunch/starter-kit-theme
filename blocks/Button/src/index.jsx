@@ -14,6 +14,7 @@ const colorOptions = [
   {label: 'btn-info', value: 'btn-info'},
   {label: 'btn-light', value: 'btn-light'},
   {label: 'btn-link', value: 'btn-link'},
+  {label: 'btn-outline-secondary', value: 'btn-outline-secondary'},
 ];
 const sizeOptions = [
   {label: 'btn-lg', value: 'btn-lg'},

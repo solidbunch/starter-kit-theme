@@ -99,4 +99,15 @@ export default class Utils {
     return Math.trunc(imageWidth / ratio);
   }
 
+  /**
+   * Preventing clicking on a link when editing a block
+   *
+   * @param {Event}    event
+   * @param {Function} isSelected
+   */
+  static preventLinkNavigation = (event, isSelected) => {
+    if (isSelected) {
+      event.preventDefault();
+    }
+  };
 }

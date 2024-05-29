@@ -13,5 +13,16 @@ $data = $data ?? [];
 ?>
 
 <figure<?php echo !empty($data['blockClass']) ? ' class="' . $data['blockClass'] . '"' : ''; ?>>
-    <?php echo $data['imgHtml'] ?? ''; ?>
+    <?php if (!empty($data['link']['addLink'])) { ?>
+        <a
+            href="<?php echo $data['link']['href']; ?>"
+            <?php echo !empty($data['link']['targetBlank']) ? ' target="_blank"' : ''; ?>
+        >
+            <?php echo $data['imgHtml'] ?? ''; ?>
+        </a>
+    <?php } else { ?>
+        <?php echo $data['imgHtml'] ?? ''; ?>
+    <?php } ?>
 </figure>
+
+
