@@ -2,6 +2,7 @@
  * Block dependencies
  */
 import metadata from '../block.json';
+import Events from '../../../assets/src/js/EditorComponents/Events';
 
 /**
  * Internal block libraries
@@ -10,7 +11,7 @@ const {registerBlockType} = wp.blocks;
 const {InspectorControls, useBlockProps} = wp.blockEditor;
 const {PanelBody, SelectControl, Spinner} = wp.components;
 const {serverSideRender: ServerSideRender} = wp;
-const {useState, useEffect} = wp.element;
+const {useState, useEffect, useRef} = wp.element;
 
 registerBlockType(
   metadata,
@@ -40,7 +41,7 @@ registerBlockType(
           })
           .catch(error => {
             // eslint-disable-next-line no-console
-            console.error('Error fetching menus:', error);
+            console.error('Error fetching menus: ', error);
           });
       }, []); // The empty dependency array ensures this effect runs only once when the component mounts
 
@@ -107,8 +108,28 @@ registerBlockType(
         </InspectorControls>
       );
 
+      const blockRef = useRef();
+
+      useEffect(() => {
+        // Adding event listener to all anchor tags within the block in the editor
+        const links = blockRef.current.querySelectorAll('.header a');
+        links.forEach(link => {
+          link.onclick = (event) => {
+            Events.preventLinkNavigation(event, true); // Prevent the default link behavior
+            return false;
+          };
+        });
+
+        // Cleanup function to remove event listeners
+        return () => {
+          links.forEach(link => {
+            link.onclick = null;
+          });
+        };
+      });
+
       const renderOutput = (
-        <div {...blockProps} key="blockControls">
+        <div {...blockProps} key="blockControls" ref={blockRef}>
           <ServerSideRender
             block={metadata.name}
             attributes={attributes}

@@ -1,5 +1,6 @@
 import Handlers from './Handlers';
 import Utils from './Helper/Utils';
+import Events from '../../../../assets/src/js/EditorComponents/Events';
 
 /**
  * Internal block libraries
@@ -274,7 +275,7 @@ export default class Edit {
             <a
               href={linkHref}
               {...(attributes.link.targetBlank && {target: "_blank"})}
-              onClick={(event) => Utils.preventLinkNavigation(event, isSelected)}
+              onClick={(event) => Events.preventLinkNavigation(event, isSelected)}
             >
               {imgElement}
             </a>
