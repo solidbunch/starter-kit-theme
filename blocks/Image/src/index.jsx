@@ -14,7 +14,7 @@ registerBlockType(
 
       return [
         Edit.renderControls(props),
-        Edit.renderOutput(props),
+        Edit.renderOutput(props, metadata),
       ];
     },
     save: () => {

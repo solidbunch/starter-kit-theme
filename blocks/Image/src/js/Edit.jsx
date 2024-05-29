@@ -8,6 +8,8 @@ const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
 
+const ALLOWED_MEDIA_TYPES = ['image'];
+
 /**
  * Block editor class
  */
@@ -186,7 +188,7 @@ export default class Edit {
                           />
                         </>
                       )}
-                      
+
                     </div>
                     <TextareaControl
                       label="Alt Text"
@@ -232,21 +234,22 @@ export default class Edit {
    * Render Output Image in Left Part from Editor (image or placeHolder for loading image)
    *
    * @param {Object} props
+   * @param {Object} metadata
    *
    * @return {JSX.Element}
    */
-  static renderOutput(props) {
+  static renderOutput(props, metadata) {
     const {attributes, className, isSelected} = props;
-  
+
     const blockProps = useBlockProps({
       className: [className],
     });
-  
+
     const mainImage = attributes.mainImage;
     const imageWidth = Utils.getImageWidth(attributes);
     const imageHeight = Utils.getImageHeight(attributes);
     const linkHref = attributes.link.href || '#';
-  
+
     const imgElement = (
       <img
         className={attributes.imageClass}
@@ -258,16 +261,16 @@ export default class Edit {
         data-fetch-priority={attributes.fetchPriority}
       />
     );
-  
+
     // const handleLinkClick = (event) => {
     //   if (isSelected) {
     //     event.preventDefault();
     //   }
     // };
-  
+
     let content;
-  
-    if (mainImage.id) {
+
+    if (mainImage.url) {
       content = (
         <figure {...blockProps} key="blockControls">
           {attributes.link.addLink ? (
@@ -284,15 +287,24 @@ export default class Edit {
         </figure>
       );
     } else {
+
       content = (
         <MediaPlaceholder
-          icon="format-image"
+          icon={metadata.icon}
           labels={{title: 'Add Image'}}
           onSelect={(media) => Handlers.onChangeImage(media, props)}
+          onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+          onError={(message) => Handlers.onUploadError(message)}
+          //placeholder={ placeholder }
+          accept="image/*"
+          allowedTypes={ALLOWED_MEDIA_TYPES}
+          //value={ { id, src } }
+          //mediaPreview={ mediaPreview }
+          //disableMediaButtons={ temporaryURL || url }
         />
       );
     }
-  
+
     return <>{content}</>;
   }
-}  
+}

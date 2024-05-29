@@ -50,7 +50,13 @@ class BlockRenderer extends BlockAbstract
 
         // Main Image id is strongly mandatory
         $mainImageId  = !empty($attributes['mainImage']['id']) ? (int)$attributes['mainImage']['id'] : 0;
-        $mainImageUrl = (string)wp_get_attachment_image_url($mainImageId, 'full');
+        if (!empty($mainImageId)) {
+            $mainImageUrl = (string)wp_get_attachment_image_url($mainImageId, 'full');
+        } else {
+            $mainImageUrl = !empty($attributes['mainImage']['url'])
+                ? (string)$attributes['mainImage']['url']
+                : '';
+        }
 
         $mainImageStartWidth = !empty($attributes['mainImage']['startWidth'])
             ? (int)$attributes['mainImage']['startWidth']
@@ -89,7 +95,7 @@ class BlockRenderer extends BlockAbstract
         $templateData['link'] = $link;
 
         // Show image on editor without SrcSet
-        if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) {
+        if ((Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) || empty($mainImageId)) {
             $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
 
             foreach ($attrs as $attrName => $attrValue) {

@@ -1,6 +1,9 @@
 import Model from './Model';
 import Utils from './Helper/Utils';
 
+const {useDispatch} = wp.data;
+const {store: noticesStore} = wp.notices;
+
 /**
  * Block editor handlers
  */
@@ -58,6 +61,39 @@ export default class Handlers {
       // eslint-disable-next-line no-console
       console.error('Errors:', error);
     });
+  };
+
+  /**
+   * Run updates when new image added by url
+   *
+   * @param {string} newURL
+   * @param {Object} props
+   *
+   * @return {void}
+   */
+  static onSelectURL(newURL, props) {
+
+    const {attributes, setAttributes} = props;
+
+    const img = new Image();
+    img.src = newURL;
+
+    img.onload = () => {
+      let image = {
+        id: "",
+        url: newURL,
+        startWidth: img.naturalWidth,
+        alt: "",
+        ratio: (img.naturalWidth / img.naturalHeight)
+      };
+
+      image = Utils.getDimensionHiDPI(image, attributes.hidpi, true);
+
+      Model.setMainImage(image, setAttributes);
+
+      Model.setSrcSet(image, props);
+
+    };
   };
 
   /**
@@ -141,5 +177,10 @@ export default class Handlers {
     const image = {};
     Model.setBreakpoint(image, breakpoint, props);
   };
+
+  static onUploadError(message) {
+    const {createErrorNotice} = useDispatch( noticesStore );
+    createErrorNotice(message, {type: 'snackbar'});
+  }
 
 }
