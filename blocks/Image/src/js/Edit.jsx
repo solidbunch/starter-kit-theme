@@ -8,11 +8,6 @@ const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
 
-function preventLinkNavigation(event, isSelected) {
-  if (isSelected) {
-    event.preventDefault();
-  }
-}
 /**
  * Block editor class
  */
@@ -279,7 +274,7 @@ export default class Edit {
             <a
               href={linkHref}
               {...(attributes.link.targetBlank && {target: "_blank"})}
-              onClick={(event) => preventLinkNavigation(event, isSelected)}
+              onClick={(event) => Utils.preventLinkNavigation(event, isSelected)}
             >
               {imgElement}
             </a>
