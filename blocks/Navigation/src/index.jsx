@@ -11,11 +11,13 @@ const {InspectorControls, useBlockProps} = wp.blockEditor;
 const {PanelBody, SelectControl, Spinner} = wp.components;
 const {serverSideRender: ServerSideRender} = wp;
 const {useState, useEffect, useRef} = wp.element;
+
 function preventLinkNavigation(event, isSelected) {
   if (isSelected) {
     event.preventDefault();
   }
 }
+
 registerBlockType(
   metadata,
   {

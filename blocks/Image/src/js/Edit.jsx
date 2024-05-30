@@ -7,6 +7,7 @@ import Utils from './Helper/Utils';
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
+
 function preventLinkNavigation(event, isSelected) {
   if (isSelected) {
     event.preventDefault();
