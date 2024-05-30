@@ -1,6 +1,5 @@
 import Handlers from './Handlers';
 import Utils from './Helper/Utils';
-import Events from '../../../../assets/src/js/EditorComponents/Events';
 
 /**
  * Internal block libraries
@@ -8,7 +7,11 @@ import Events from '../../../../assets/src/js/EditorComponents/Events';
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
-
+function preventLinkNavigation(event, isSelected) {
+  if (isSelected) {
+    event.preventDefault();
+  }
+}
 /**
  * Block editor class
  */
@@ -275,7 +278,7 @@ export default class Edit {
             <a
               href={linkHref}
               {...(attributes.link.targetBlank && {target: "_blank"})}
-              onClick={(event) => Events.preventLinkNavigation(event, isSelected)}
+              onClick={(event) => preventLinkNavigation(event, isSelected)}
             >
               {imgElement}
             </a>

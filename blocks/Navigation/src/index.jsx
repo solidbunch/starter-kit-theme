@@ -2,7 +2,6 @@
  * Block dependencies
  */
 import metadata from '../block.json';
-import Events from '../../../assets/src/js/EditorComponents/Events';
 
 /**
  * Internal block libraries
@@ -12,7 +11,11 @@ const {InspectorControls, useBlockProps} = wp.blockEditor;
 const {PanelBody, SelectControl, Spinner} = wp.components;
 const {serverSideRender: ServerSideRender} = wp;
 const {useState, useEffect, useRef} = wp.element;
-
+function preventLinkNavigation(event, isSelected) {
+  if (isSelected) {
+    event.preventDefault();
+  }
+}
 registerBlockType(
   metadata,
   {
@@ -115,7 +118,7 @@ registerBlockType(
         const links = blockRef.current.querySelectorAll('.header a');
         links.forEach(link => {
           link.onclick = (event) => {
-            Events.preventLinkNavigation(event, true); // Prevent the default link behavior
+            preventLinkNavigation(event, true); // Prevent the default link behavior
             return false;
           };
         });
