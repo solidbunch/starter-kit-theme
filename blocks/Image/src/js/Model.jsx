@@ -81,7 +81,7 @@ export default class Model {
       const {viewPort} = srcSetObj[brPoint];
 
       // Disable breakpoint if breakpoint image with < breakpoint viewPort
-      const enableBreakpoint = image.id && image.startWidth && image.startWidth >= viewPort;
+      const enableBreakpoint = !!(image.id && image.startWidth && image.startWidth >= viewPort);
 
       srcSetObj[brPoint] = {
         ...srcSetObj[brPoint],

@@ -272,7 +272,9 @@ export default class Edit {
     const imgElement = (
       <img
         className={attributes.imageClass}
-        src={mainImage.url}
+        // Gutenberg using iframe in editor with different base url.
+        // This will fix all relative image urls - make it absolute for editor.
+        src={Utils.ensureAbsoluteUrl(mainImage.url)}
         alt={attributes.altText}
         {...(imageWidth && {width: imageWidth})}
         {...(imageHeight && {height: imageHeight})}
@@ -280,12 +282,6 @@ export default class Edit {
         data-fetch-priority={attributes.fetchPriority}
       />
     );
-
-    // const handleLinkClick = (event) => {
-    //   if (isSelected) {
-    //     event.preventDefault();
-    //   }
-    // };
 
     let content;
 

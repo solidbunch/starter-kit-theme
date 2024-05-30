@@ -73,7 +73,7 @@ class BlockRenderer extends BlockAbstract
             : null;
 
         $mainImageRatio = !empty($attributes['mainImage']['ratio'])
-            ? (int)$attributes['mainImage']['ratio']
+            ? (float)$attributes['mainImage']['ratio']
             : null;
 
         // Check $mainImageHeight is empty and recalculate it by ratio
