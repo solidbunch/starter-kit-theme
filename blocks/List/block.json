@@ -1,0 +1,25 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/list-section",
+  "title": "List Section",
+  "category": "starter-kit",
+  "icon": "sk sk-list",
+  "description": "List parent block",
+  "keywords": [
+    "List"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "listType": {
+      "type": "string",
+      "default": "ul"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "viewScript": "file:build/view.js",
+  "editorStyle": "",
+  "style": "file:build/style.css"
+}

@@ -9,6 +9,9 @@
     "/blocks/News/build/index.js": "/blocks/News/build/index.js",
     "/blocks/Navigation/build/view.js": "/blocks/Navigation/build/view.js",
     "/blocks/Navigation/build/index.js": "/blocks/Navigation/build/index.js",
+    "/blocks/ListItem/build/index.js": "/blocks/ListItem/build/index.js",
+    "/blocks/List/build/view.js": "/blocks/List/build/view.js",
+    "/blocks/List/build/index.js": "/blocks/List/build/index.js",
     "/blocks/Image/build/index.js": "/blocks/Image/build/index.js",
     "/blocks/Heading/build/index.js": "/blocks/Heading/build/index.js",
     "/blocks/FaqSingle/build/index.js": "/blocks/FaqSingle/build/index.js",
@@ -25,6 +28,7 @@
     "/blocks/FaqSection/build/style.css": "/blocks/FaqSection/build/style.css",
     "/blocks/Image/build/editor.css": "/blocks/Image/build/editor.css",
     "/blocks/Image/build/style.css": "/blocks/Image/build/style.css",
+    "/blocks/List/build/style.css": "/blocks/List/build/style.css",
     "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
     "/blocks/News/build/editor.css": "/blocks/News/build/editor.css"
 }
