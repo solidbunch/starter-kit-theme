@@ -96,5 +96,12 @@ $headings-font-weight: 500;
 $headings-line-height: 1.2;
 $headings-color: $gray-900;
 
+// Accordion
+$accordion-button-bg: $white;
+$accordion-button-focus-border-color: $black;
+$accordion-button-focus-box-shadow: $gray-300;
+$accordion-button-active-color: $black;
+$accordion-button-active-bg: $gray-200;
+
 // scss-docs-start font-variables
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;
