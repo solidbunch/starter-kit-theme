@@ -1,12 +1,17 @@
 import Handlers from './Handlers';
 import Utils from './Helper/Utils';
 
+const {useDispatch} = wp.data;
+const {store: noticesStore} = wp.notices;
+
 /**
  * Internal block libraries
  */
 const {InspectorControls, useBlockProps, MediaPlaceholder} = wp.blockEditor;
 const {PanelBody, SelectControl, CheckboxControl, TextControl, TextareaControl, TabPanel} = wp.components;
 const {useState} = wp.element;
+
+const ALLOWED_MEDIA_TYPES = ['image'];
 
 /**
  * Block editor class
@@ -17,14 +22,17 @@ export default class Edit {
    * Render Controls(Sidebar in right part) in Editor
    *
    * @param {Object} props
+   * @param {Object} metadata
    *
    * @return {JSX.Element}
    */
-  static renderControls(props) {
+  static renderControls(props, metadata) {
 
     const {attributes, setAttributes} = props;
 
     const [priorityText, setPriorityText] = useState(Utils.getPriorityText(attributes.fetchPriority));
+
+    const {createErrorNotice} = useDispatch(noticesStore);
 
     return (
       <InspectorControls key="controls">
@@ -50,9 +58,13 @@ export default class Edit {
                         <div className="row_image">
                           <div className="setting_box">
                             <MediaPlaceholder
-                              icon="format-image"
+                              icon={metadata.icon}
                               labels={{title: 'Add Image'}}
                               onSelect={(media) => Handlers.onChangeImage(media, props)}
+                              onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+                              onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                              accept="image/*"
+                              allowedTypes={ALLOWED_MEDIA_TYPES}
                             />
 
                           </div>
@@ -69,6 +81,10 @@ export default class Edit {
                               <MediaPlaceholder
                                 labels={{title: 'Main Image'}}
                                 onSelect={(media) => Handlers.onChangeImage(media, props)}
+                                onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+                                onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                                accept="image/*"
+                                allowedTypes={ALLOWED_MEDIA_TYPES}
                               />
                               <CheckboxControl
                                 className="pb-3"
@@ -124,6 +140,9 @@ export default class Edit {
                                     <MediaPlaceholder
                                       labels={{title: 'Change Image'}}
                                       onSelect={(media) => Handlers.onChangeImage(media, props, breakpoint)}
+                                      onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+                                      accept="image/*"
+                                      allowedTypes={ALLOWED_MEDIA_TYPES}
                                     />
                                     {attributes.srcSet[breakpoint].id && (
                                       <button
@@ -186,7 +205,7 @@ export default class Edit {
                           />
                         </>
                       )}
-                      
+
                     </div>
                     <TextareaControl
                       label="Alt Text"
@@ -232,25 +251,30 @@ export default class Edit {
    * Render Output Image in Left Part from Editor (image or placeHolder for loading image)
    *
    * @param {Object} props
+   * @param {Object} metadata
    *
    * @return {JSX.Element}
    */
-  static renderOutput(props) {
+  static renderOutput(props, metadata) {
     const {attributes, className, isSelected} = props;
-  
+
     const blockProps = useBlockProps({
       className: [className],
     });
-  
+
+    const {createErrorNotice} = useDispatch(noticesStore);
+
     const mainImage = attributes.mainImage;
     const imageWidth = Utils.getImageWidth(attributes);
     const imageHeight = Utils.getImageHeight(attributes);
     const linkHref = attributes.link.href || '#';
-  
+
     const imgElement = (
       <img
         className={attributes.imageClass}
-        src={mainImage.url}
+        // Gutenberg using iframe in editor with different base url.
+        // This will fix all relative image urls - make it absolute for editor.
+        src={Utils.ensureAbsoluteUrl(mainImage.url)}
         alt={attributes.altText}
         {...(imageWidth && {width: imageWidth})}
         {...(imageHeight && {height: imageHeight})}
@@ -258,16 +282,10 @@ export default class Edit {
         data-fetch-priority={attributes.fetchPriority}
       />
     );
-  
-    // const handleLinkClick = (event) => {
-    //   if (isSelected) {
-    //     event.preventDefault();
-    //   }
-    // };
-  
+
     let content;
-  
-    if (mainImage.id) {
+
+    if (mainImage.url) {
       content = (
         <figure {...blockProps} key="blockControls">
           {attributes.link.addLink ? (
@@ -284,15 +302,20 @@ export default class Edit {
         </figure>
       );
     } else {
+
       content = (
         <MediaPlaceholder
-          icon="format-image"
+          icon={metadata.icon}
           labels={{title: 'Add Image'}}
           onSelect={(media) => Handlers.onChangeImage(media, props)}
+          onSelectURL={(newURL) => Handlers.onSelectURL(newURL, props)}
+          onError={(message) => Handlers.onUploadError(createErrorNotice, message)}
+          accept="image/*"
+          allowedTypes={ALLOWED_MEDIA_TYPES}
         />
       );
     }
-  
+
     return <>{content}</>;
   }
-}  
+}
