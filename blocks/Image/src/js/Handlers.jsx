@@ -61,6 +61,39 @@ export default class Handlers {
   };
 
   /**
+   * Run updates when new image added by url
+   *
+   * @param {string} newURL
+   * @param {Object} props
+   *
+   * @return {void}
+   */
+  static onSelectURL(newURL, props) {
+
+    const {attributes, setAttributes} = props;
+
+    const img = new Image();
+    img.src = newURL;
+
+    img.onload = () => {
+      let image = {
+        id: "",
+        url: newURL,
+        startWidth: img.naturalWidth,
+        alt: "",
+        ratio: (img.naturalWidth / img.naturalHeight)
+      };
+
+      image = Utils.getDimensionHiDPI(image, attributes.hidpi, true);
+
+      Model.setMainImage(image, setAttributes);
+
+      Model.setSrcSet(image, props);
+
+    };
+  };
+
+  /**
    * Click on checkbox hidpi
    *
    * @param {boolean} checked
@@ -141,5 +174,17 @@ export default class Handlers {
     const image = {};
     Model.setBreakpoint(image, breakpoint, props);
   };
+
+  /**
+   * Show error message on media upload error
+   *
+   * @param {Function} createErrorNotice
+   * @param {string}   message
+   *
+   * @return {void}
+   */
+  static onUploadError(createErrorNotice, message) {
+    createErrorNotice(message, {type: 'snackbar'});
+  }
 
 }

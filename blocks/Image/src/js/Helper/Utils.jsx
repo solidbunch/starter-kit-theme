@@ -110,4 +110,20 @@ export default class Utils {
       event.preventDefault();
     }
   };
+
+  /**
+   * Gutenberg using iframe in editor with different base url.
+   * This will fix all relative image urls - make it absolute for editor.
+   *
+   * @param {string|{toString: () => string}} url
+   */
+  static ensureAbsoluteUrl(url) {
+    // Creating a new URL object, relative to window.location.origin
+    try {
+      return new URL(url, window.location.origin).href;
+    } catch (error) {
+      // If the URL is incorrect, return the original URL
+      return url;
+    }
+  }
 }
