@@ -7,19 +7,13 @@ import blockMetadata from '../block.json';
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
-const {RichText, InspectorControls, useBlockProps} = wp.blockEditor;
+const {RichText, useBlockProps} = wp.blockEditor;
 
 registerBlockType(blockMetadata, {
   edit: props => {
     const {attributes, className, setAttributes} = props;
 
     const blockProps = useBlockProps({className});
-
-    const renderControls = (
-      <InspectorControls key="inspectorControls">
-        <h1>TEST LI</h1>
-      </InspectorControls>
-    );
 
     const renderOutput = (
       <RichText
@@ -34,7 +28,6 @@ registerBlockType(blockMetadata, {
     );
 
     return [
-      renderControls,
       renderOutput
     ];
   }, // end edit
