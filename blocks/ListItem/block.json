@@ -1,0 +1,32 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/list-item",
+  "title": "List Item Single",
+  "category": "starter-kit",
+  "parent": [
+    "starter-kit/list"
+  ],
+  "icon": "sk sk-listitem",
+  "description": "List Item child block.",
+  "keywords": [
+    "list"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "example": {
+    "attributes": {
+      "preview": false
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "source": "html",
+      "default": ""
+    }
+  },
+  "editorScript": "file:build/index.js"
+}
