@@ -8,17 +8,12 @@ import blockMetadata from '../block.json';
  */
 const {registerBlockType} = wp.blocks;
 const {RichText, InspectorControls, useBlockProps} = wp.blockEditor;
-const {PanelBody, TextControl} = wp.components;
-
-const blockMainCssClass = '';
 
 registerBlockType(blockMetadata, {
   edit: props => {
     const {attributes, className, setAttributes} = props;
 
-    const blockProps = useBlockProps({
-      className: [blockMainCssClass, className]
-    });
+    const blockProps = useBlockProps({className});
 
     const renderControls = (
       <InspectorControls key="inspectorControls">
@@ -30,12 +25,11 @@ registerBlockType(blockMetadata, {
       <RichText
         {...blockProps}
         key="blockControls"
-        tagName="li"
-        multiline={false}
+        multiline="li"
         format="string"
         placeholder="Text here"
-        onChange={question => setAttributes({question})}
-        value={attributes.question}
+        onChange={text => setAttributes({text})}
+        value={attributes.text}
       />
     );
 
@@ -47,15 +41,13 @@ registerBlockType(blockMetadata, {
   save: props => {
     const {attributes} = props;
 
-    const blockProps = useBlockProps.save({
-      className: blockMainCssClass
-    });
+    const {className} = useBlockProps.save();
+    const blockProps = className ? {className} : {};
 
     return (
       <RichText.Content
         {...blockProps}
-        tagName="li"
-        value={attributes.question}
+        value={attributes.text}
       />
     );
   }

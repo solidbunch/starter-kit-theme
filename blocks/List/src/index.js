@@ -6,50 +6,44 @@ const {registerBlockType} = wp.blocks;
 const {InspectorControls, InnerBlocks, useBlockProps, BlockControls} = wp.blockEditor;
 const {ToolbarGroup, ToolbarButton} = wp.components;
 
-const blockMainCssClass = '';
-
 registerBlockType(blockMetadata, {
   edit: props => {
     const {className, attributes, setAttributes} = props;
     const {listType} = attributes;
 
-    const blockProps = useBlockProps({
-      className: [blockMainCssClass, className]
-    });
+    const blockProps = useBlockProps({className});
 
     const onChangeListType = (type) => {
       setAttributes({listType: type});
     };
 
     const renderControls = (
-      <InspectorControls key="inspectorControls">
-        <h1>{listType === 'ol' ? 'Ordered List' : 'Unordered List'}</h1>
-      </InspectorControls>
+      <>
+        <InspectorControls key="inspectorControls">
+          <div className="card m-3">
+            <div className="cardbody">
+              <p className='text-center mb-0'>{listType === 'ol' ? 'Ordered List' : 'Unordered List'}</p>
+            </div>
+          </div>
+        </InspectorControls>
+        <BlockControls key="blockControls">
+          <ToolbarGroup>
+            {['ul', 'ol'].map(type => (
+              <ToolbarButton
+                key={type}
+                icon={`editor-${type}`}
+                label={`${type === 'ul' ? 'Unordered' : 'Ordered'} List`}
+                isPressed={listType === type}
+                onClick={() => onChangeListType(type)}
+              />
+            ))}
+          </ToolbarGroup>
+        </BlockControls>
+      </>
     );
-
-    const renderBlockControls = (
-      <BlockControls key="blockControls">
-        <ToolbarGroup>
-          <ToolbarButton
-            icon="editor-ul"
-            label="Unordered List"
-            isPressed={listType === 'ul'}
-            onClick={() => onChangeListType('ul')}
-          />
-          <ToolbarButton
-            icon="editor-ol"
-            label="Ordered List"
-            isPressed={listType === 'ol'}
-            onClick={() => onChangeListType('ol')}
-          />
-        </ToolbarGroup>
-      </BlockControls>
-    );
-
     const TagName = listType === 'ul' ? 'ul' : 'ol';
-
     const renderOutput = (
-      <TagName {...blockProps}>
+      <TagName {...blockProps} key="list">
         <InnerBlocks
           allowedBlocks={blocksAllowed}
           template={blockTemplate}
@@ -61,17 +55,14 @@ registerBlockType(blockMetadata, {
 
     return [
       renderControls,
-      renderBlockControls,
       renderOutput
     ];
   },
   save: ({attributes}) => {
     const {listType} = attributes;
     const TagName = listType === 'ul' ? 'ul' : 'ol';
-
-    const blockProps = useBlockProps.save({
-      className: blockMainCssClass
-    });
+    const {className} = useBlockProps.save();
+    const blockProps = className ? {className} : {};
 
     return (
       <TagName {...blockProps}>

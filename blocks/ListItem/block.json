@@ -4,7 +4,7 @@
   "title": "List Item Single",
   "category": "starter-kit",
   "parent": [
-    "starter-kit/list-section"
+    "starter-kit/list"
   ],
   "icon": "sk sk-listitem",
   "description": "List Item child block.",
@@ -22,13 +22,11 @@
     "html": false
   },
   "attributes": {
-    "question": {
+    "text": {
       "type": "string",
       "source": "html",
-      "selector": "li"
+      "default": ""
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  "editorScript": "file:build/index.js"
 }

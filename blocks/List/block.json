@@ -1,6 +1,6 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/list-section",
+  "name": "starter-kit/list",
   "title": "List Section",
   "category": "starter-kit",
   "icon": "sk sk-list",
@@ -18,8 +18,5 @@
       "default": "ul"
     }
   },
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "",
-  "style": "file:build/style.css"
+  "editorScript": "file:build/index.js"
 }
