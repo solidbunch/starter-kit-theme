@@ -146,13 +146,19 @@ class BlockRenderer extends BlockAbstract
         $lazy,
         $attrs
     ): string {
-        $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
+        try {
+            $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
 
-        foreach ($attrs as $attrName => $attrValue) {
-            $img->setAttr($attrName, $attrValue);
+            foreach ($attrs as $attrName => $attrValue) {
+                $img->setAttr($attrName, $attrValue);
+            }
+
+            return $img->render() ?? '';
+        } catch (Exception $ex) {
+            ErrorHandler::handleThrowable($ex);
         }
 
-        return $img->render() ?? '';
+        return '';
     }
 
     /**
