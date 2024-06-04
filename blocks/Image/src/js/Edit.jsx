@@ -256,7 +256,7 @@ export default class Edit {
    * @return {JSX.Element}
    */
   static renderOutput(props, metadata) {
-    const {attributes, className, isSelected} = props;
+    const {attributes, className} = props;
 
     const blockProps = useBlockProps({
       className: [className],
@@ -267,38 +267,23 @@ export default class Edit {
     const mainImage = attributes.mainImage;
     const imageWidth = Utils.getImageWidth(attributes);
     const imageHeight = Utils.getImageHeight(attributes);
-    const linkHref = attributes.link.href || '#';
-
-    const imgElement = (
-      <img
-        className={attributes.imageClass}
-        // Gutenberg using iframe in editor with different base url.
-        // This will fix all relative image urls - make it absolute for editor.
-        src={Utils.ensureAbsoluteUrl(mainImage.url)}
-        alt={attributes.altText}
-        {...(imageWidth && {width: imageWidth})}
-        {...(imageHeight && {height: imageHeight})}
-        loading={attributes.loadingLazy ? 'lazy' : 'eager'}
-        data-fetch-priority={attributes.fetchPriority}
-      />
-    );
 
     let content;
 
     if (mainImage.url) {
       content = (
         <figure {...blockProps} key="blockControls">
-          {attributes.link.addLink ? (
-            <a
-              href={linkHref}
-              {...(attributes.link.targetBlank && {target: "_blank"})}
-              onClick={(event) => Utils.preventLinkNavigation(event, isSelected)}
-            >
-              {imgElement}
-            </a>
-          ) : (
-            imgElement
-          )}
+          <img
+            className={attributes.imageClass}
+            // Gutenberg using iframe in editor with different base url.
+            // This will fix all relative image urls - make it absolute for editor.
+            src={Utils.ensureAbsoluteUrl(mainImage.url)}
+            alt={attributes.altText}
+            {...(imageWidth && {width: imageWidth})}
+            {...(imageHeight && {height: imageHeight})}
+            loading={attributes.loadingLazy ? 'lazy' : 'eager'}
+            data-fetch-priority={attributes.fetchPriority}
+          />
         </figure>
       );
     } else {
