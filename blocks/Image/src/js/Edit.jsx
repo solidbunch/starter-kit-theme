@@ -56,7 +56,7 @@ export default class Edit {
                     {!attributes.mainImage.url ? (
                       <div className="px-3">
                         <div className="row_image">
-                          <div className="setting_box">
+                          <div className="starter-kit-image-block">
                             <MediaPlaceholder
                               icon={metadata.icon}
                               labels={{title: 'Add Image'}}
@@ -74,7 +74,7 @@ export default class Edit {
                       <div>
                         <div className="px-4 mb-5">
                           <div className="row_image">
-                            <div className="setting_box">
+                            <div className="starter-kit-image-block">
                               <div className="img_holder">
                                 <img src={attributes.mainImage.url} alt="Main" />
                               </div>
@@ -131,7 +131,7 @@ export default class Edit {
                                 initialOpen={false}
                               >
                                 <div className="row_image" key={breakpoint}>
-                                  <div className="setting_box">
+                                  <div className="starter-kit-image-block">
                                     <div className="img_holder">
                                       <img src={attributes.srcSet[breakpoint].url
                                         ? attributes.srcSet[breakpoint].url

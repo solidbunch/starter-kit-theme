@@ -1,5 +1,47 @@
-.setting_box {
+$btn_bg_etc: #f5fafc;
+
+.starter-kit-image-block {
   position: relative;
+
+  .block-editor-media-placeholder {
+    padding: 0;
+    padding-bottom: 15px;
+
+    button {
+      margin: 0 !important;
+      width: 100%;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .components-form-file-upload {
+      max-width: 50%;
+      flex: 0 0 50%;
+
+      +.components-button {
+        max-width: 50%;
+        flex: 0 0 50%;
+        background: darken($btn_bg_etc, 10);
+
+        &:hover {
+          background: darken($btn_bg_etc, 30);
+        }
+      }
+    }
+
+    .block-editor-media-placeholder__url-input-container {
+      max-width: 100%;
+      flex: 0 0 100%;
+
+      .components-button {
+        background: $btn_bg_etc;
+
+        &:hover {
+          background: darken($btn_bg_etc, 12);
+        }
+      }
+    }
+  }
 
   .components-placeholder__fieldset {
     flex-direction: row !important;
