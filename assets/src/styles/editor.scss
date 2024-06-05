@@ -8,6 +8,7 @@ html :where(.wp-block) {
   .wp-block {
     &:hover {
       background: rgba(#ccc, .3);
+      filter: invert(1);
     }
 
     &.is-selected {
