@@ -23,7 +23,7 @@ body {
 }
 //hero_section
 .hero_section {
-  --indent: 120px;
+  --indent: 110px;
 
   @include media-breakpoint-up(xl) {
     padding-top: var(--indent) !important;
