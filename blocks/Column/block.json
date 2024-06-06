@@ -1,0 +1,39 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/column",
+  "title": "Column",
+  "category": "starter-kit",
+  "parent": [
+    "starter-kit/row"
+  ],
+  "icon": "sk sk-column",
+  "description": "Bootstrap column",
+  "keywords": [
+    "Column",
+    "Columns",
+    "Container",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "size": {
+      "type": "object",
+      "default": {
+        "xs": {
+          "mod": "default"
+        },
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
+      }
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "",
+  "style": ""
+}

@@ -1,0 +1,87 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@wordpress/eslint-plugin/recommended"
+  ],
+  "globals": {
+    "wp": true
+  },
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "objectLiteralDuplicateProperties": false,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "vendor/",
+    "assets/libs/",
+    "**/build/"
+  ],
+  "rules": {
+    "comma-dangle": "off",
+    "no-var": 2,
+    "no-console": 1,
+    "no-useless-escape": 0,
+    "no-unused-vars": 1,
+    "semi": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "no-tabs": "error",
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1,
+        "maxBOF": 0
+      }
+    ],
+    "space-infix-ops": [
+      "warn",
+      {
+        "int32Hint": false
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "prefer-const": 0,
+    "prettier/prettier": 0,
+    "jsdoc/require-returns-description": 0,
+    "react-hooks/rules-of-hooks": 0,
+    "eqeqeq": 0,
+    "@wordpress/no-global-event-listener": 0
+  },
+  "overrides": [
+    {
+      "env": {
+        "node": true
+      },
+      "files": [
+        "webpack.mix.js"
+      ],
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
+}

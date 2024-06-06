@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer configuration">
+  <!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
+  <!-- See https://github.com/PHPCompatibility/PHPCompatibilityWP -->
+
+  <description>A custom set of code standard rules to check for WordPress Theme based on PRS12</description>
+
+  <!--
+  #############################################################################
+  CONFIGS
+  #############################################################################
+  -->
+
+  <!-- PHP version uses at PHPCompatibility -->
+  <config name="testVersion" value="8.1"/>
+
+  <!--
+  #############################################################################
+  COMMAND LINE ARGUMENTS
+  https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+  #############################################################################
+  -->
+
+  <!-- Pass some flags to PHPCS:
+   p flag: Show progress of the run.
+   s flag: Show sniff codes in all reports.
+  -->
+  <arg value="ps"/>
+
+  <!-- Strip the file paths down to the relevant bit. -->
+  <arg name="basepath" value="./"/>
+
+  <!-- Check up to 8 files simultaneously. -->
+  <arg name="parallel" value="8"/>
+
+  <!-- Only check the PHP files. -->
+  <arg name="extensions" value="php"/>
+
+  <arg name="colors"/>
+  <!--<arg name="report" value="code"/>-->
+  <!--<arg name="report" value="summary"/>-->
+
+  <!-- Check all files in this directory and the directories below it. -->
+  <file>.</file>
+
+  <!-- Exclude patterns. -->
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/vendor-custom/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+  <exclude-pattern>.git/*</exclude-pattern>
+  <exclude-pattern>.github/*</exclude-pattern>
+
+  <!--
+  #############################################################################
+  RULES
+  #############################################################################
+  -->
+
+  <!-- Include the PSR-1 standard -->
+  <!-- https://www.php-fig.org/psr/psr-1/#23-side-effects Excluding Side Effects in the PHP class file for defined('ABSPATH') || exit; -->
+  <rule ref="PSR1">
+    <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+  </rule>
+
+  <!-- Include the whole PSR-12 standard -->
+  <rule ref="PSR12"/>
+
+  <!-- Use PHPCompatibilityWP standard -->
+  <rule ref="PHPCompatibilityWP"/>
+
+</ruleset>

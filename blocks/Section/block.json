@@ -1,0 +1,28 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/section",
+  "title": "Section",
+  "category": "starter-kit",
+  "icon": "sk sk-section",
+  "description": "Section",
+  "keywords": [
+    "Section",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "object",
+      "default": {
+        "backgroundColor": {},
+        "textColor": {},
+        "tagName": "section",
+        "colorTheme": ""
+      }
+    }
+  },
+  "editorScript": "file:build/index.js"
+}

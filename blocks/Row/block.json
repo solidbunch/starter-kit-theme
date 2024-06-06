@@ -1,0 +1,58 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/row",
+  "title": "Row",
+  "category": "starter-kit",
+  "icon": "sk sk-row",
+  "description": "Bootstrap parent block for columns",
+  "keywords": [
+    "Row",
+    "Container",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "string",
+      "default": "row"
+    },
+    "properties": {
+      "type": "object",
+      "default": {
+        "xs": {},
+        "sm": {},
+        "md": {},
+        "lg": {},
+        "xl": {},
+        "xxl": {}
+      }
+    },
+    "justifyContent": {
+      "type": "object",
+      "default": [
+        "start",
+        "end",
+        "center",
+        "between",
+        "around",
+        "evenly"
+      ]
+    },
+    "alignItems": {
+      "type": "object",
+      "default": [
+        "start",
+        "end",
+        "center",
+        "baseline",
+        "stretch"
+      ]
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/editor.css",
+  "style": ""
+}

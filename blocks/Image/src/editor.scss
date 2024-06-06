@@ -1,0 +1,121 @@
+$btn_bg_etc: #f5fafc;
+
+.starter-kit-image-block {
+  position: relative;
+
+  .block-editor-media-placeholder {
+    padding: 0;
+    padding-bottom: 15px;
+
+    button {
+      margin: 0 !important;
+      width: 100%;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .components-form-file-upload {
+      max-width: 50%;
+      flex: 0 0 50%;
+
+      +.components-button {
+        max-width: 50%;
+        flex: 0 0 50%;
+        background: darken($btn_bg_etc, 10);
+
+        &:hover {
+          background: darken($btn_bg_etc, 30);
+        }
+      }
+    }
+
+    .block-editor-media-placeholder__url-input-container {
+      max-width: 100%;
+      flex: 0 0 100%;
+
+      .components-button {
+        background: $btn_bg_etc;
+
+        &:hover {
+          background: darken($btn_bg_etc, 12);
+        }
+      }
+    }
+  }
+
+  .components-placeholder__fieldset {
+    flex-direction: row !important;
+  }
+
+  .btn_reset {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.row_image {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  .components-base-control__field,
+  .components-base-control {
+    margin-bottom: 0 !important;
+  }
+
+  .components-placeholder {
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+.components-tab-panel__tabs {
+  button {
+    border-radius: 0;
+    border-right-width: 0;
+
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
+
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+      border-right-width: 1px;
+    }
+  }
+}
+
+.image-dimensions {
+  display: flex;
+}
+
+.custom_tab {
+  .components-tab-panel__tabs {
+    button {
+      font-size: 12px;
+    }
+  }
+}
+
+.custom_panel {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.img_holder {
+  height: 150px;
+  position: relative;
+  background: rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

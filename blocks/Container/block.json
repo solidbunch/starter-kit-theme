@@ -1,0 +1,26 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/container",
+  "title": "Container",
+  "category": "starter-kit",
+  "icon": "sk sk-container",
+  "description": "Bootstrap Centered Container",
+  "keywords": [
+    "Container",
+    "Centered",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "modification": {
+      "type": "string",
+      "default": "container"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "",
+  "style": ""
+}

@@ -1,0 +1,14 @@
+footer.footer {
+  background: var(--bs-gray-900);
+}
+
+[data-bs-theme="dark"] {
+  .navbar {
+    --bs-navbar-active-color: var(--bs-primary);
+    --bs-navbar-hover-color: var(--bs-primary);
+  }
+
+  .navbar-nav {
+    --bs-nav-link-color: var(--bs-gray-100);
+  }
+}

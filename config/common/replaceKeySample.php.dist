@@ -1,0 +1,12 @@
+<?php
+
+use Laminas\Stdlib\ArrayUtils\MergeReplaceKey;
+
+return [
+
+    'config' => [
+        'logger' => new MergeReplaceKey ([
+            'override' => true,
+        ]),
+    ],
+];

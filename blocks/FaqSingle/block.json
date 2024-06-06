@@ -1,0 +1,51 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/faq-single",
+  "title": "Faq Single",
+  "category": "starter-kit",
+  "parent": [
+    "starter-kit/faq-section"
+  ],
+  "icon": "sk sk-news",
+  "description": "Single faq child block.",
+  "keywords": [
+    "FAQ",
+    "Question",
+    "Answer",
+    "Single"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {
+    "attributes": {
+      "preview": false
+    }
+  },
+  "attributes": {
+    "accordionItemId": {
+      "type": "string"
+    },
+    "markQuestion": {
+      "type": "string",
+      "default": "Question:"
+    },
+    "question": {
+      "type": "string",
+      "source": "html",
+      "selector": ".accordion-button"
+    },
+    "markAnswer": {
+      "type": "string",
+      "default": "Answer:"
+    },
+    "answer": {
+      "type": "string",
+      "source": "html",
+      "selector": ".__answer-text"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "",
+  "style": ""
+}

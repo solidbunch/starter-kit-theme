@@ -1,9 +1,5 @@
+# Starter Kit theme
 <!--suppress HtmlDeprecatedAttribute -->
-<p align="center">
-
-  <img alt="Starter Kit Theme" src="https://starter-kit.io/images/logo.png" height="100">
-
-</p>
 
 <p align="center">
 
@@ -24,10 +20,11 @@
 
 ## Requirements
 
-- [PHP](https://secure.php.net/manual/en/install.php) 7.2+
-- [WordPress](https://wordpress.org/) 5.4+
-- [Node.js](http://nodejs.org/) 10+ (optional) or [Yarn](https://yarnpkg.com/en/docs/install) (optional)
- 
+- [PHP](https://secure.php.net/manual/en/install.php) 8.1
+- [WordPress](https://wordpress.org/) 6.1
+- [Composer](https://getcomposer.org/) 2.6
+- [Node.js](http://nodejs.org/) 18
+
 ## How to use
 
 ### Installation
@@ -38,19 +35,25 @@
 mkdir you-theme-dir && cd you-theme-dir
 ```
 
-2. Install Starter Kit Theme:
+2. Clone Starter Kit Theme:
 
 ```bash
 git clone --depth=1 git@github.com:solidbunch/starter-kit-theme.git . && rm -rf .git
 ```
 
-3. Setup node dependencies:
+3. Setup php dependencies:
 
 ```bash
-npm i
+composer install
 ```
 
-4. Edit theme config object in `gulpfile.js`. Change theme name, theme prefix, main class, etc.
+4. Setup node dependencies and dev mode build:
+
+```bash
+npm run install-dev
+```
+
+<!-- 5. Edit theme config object in `gulpfile.js`. Change theme name, theme prefix, main class, etc.
 
 
 5. Run replace names command:
@@ -58,7 +61,7 @@ npm i
 ```bash
 npm run replaceNames
 ```
-
+-->
 ### Build commands
 
 - Build minified assets for production:
@@ -73,18 +76,10 @@ npm run prod
 npm run dev
 ```
 
-- Start watcher for development:
+- Start watcher with browser sync for development:
 
 ```bash
 npm run watch
-```
-
-- Start watcher with browser sync for development 
-
-Copy `build/broswer-sync.config.js.sample` to `build/broswer-sync.config.js`, edit it, and configure your local domain. After that run:
-
-```bash
-npm run browser-sync
 ```
 
 <details>
@@ -111,7 +106,7 @@ npm run browser-sync
    ├── config/                         # Base theme configuration
    │   ├──_animations.php              # CSS animations declaration
    │   ├──_social_icons.php            # Social CSS classes settings. Font Awesome default
-   │   ├──_social_profiles.php         # Register social profiles meta for website options 
+   │   ├──_social_profiles.php         # Register social profiles meta for website options
    │   └──config.php                   # Bootstrap config file
    │
    ├── Handlers/                       # Theme hook handlers, main functionality
@@ -154,8 +149,8 @@ npm run browser-sync
    │   ├── news/                       # News block
    │   ├── posts/                      # Posts block (pagination, styling)
    │   ├── pricing_table/              # Pricing table (price settings, styling)
-   │   ├── social_login/               # Login using social networks Facebook, Twitter, Google 
-   │   ├── tabs/                       # Tabs shortcode 
+   │   ├── social_login/               # Login using social networks Facebook, Twitter, Google
+   │   ├── tabs/                       # Tabs shortcode
    │   └── toggles/                    # Accordion shortcode
    │
    ├── templates/                      # HTML or other templates
@@ -163,14 +158,14 @@ npm run browser-sync
    ├── AbstractSingleton.php           # Abstract Class for creating Singleton Classes
    ├── App.php                         # Application Singleton. Entrypoint
    └── dev.php                         # Some developers functions for debug, logging, etc
-   
+
 ── assets/                             # Theme assets
    ├── css/
    ├── fonts/
    ├── images/
    ├── js/
    └── libs/
-   
+
 ── build/                              # Webpack configs
 ── dist/                               # The compiled assets
 ── template-parts/                     # Front templates
@@ -181,7 +176,7 @@ npm run browser-sync
    ├── oauth/                          # Facebook, Google, Twitter libs for OAuth
    ├── tgm/                            # Required plugin installation
    └── wp-bootstrap-navwalker/         # Make awesome bootstrap menu
-   
+
 ── 404.php
 ── comments.php
 ── footer.php
@@ -200,27 +195,29 @@ npm run browser-sync
 ── webpack.config.js
 
 ```
- 
-## Shortcodes
+
+## Blocks
 
 ### Overview
- 
- Shortcodes in the `app/Shortcodes` folder are loaded with the autoloader. That is, you can simply create a folder of a new shortcode with the necessary files and this shortcode will be automatically available. 
- 
- Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder. 
- 
+
+ Gutenberg Blocks in the `blocks/` folder are loaded with the autoloader. That is, you can simply create a folder of a new block with the necessary files and this blocks will be automatically available.
+
+Use `StarterBlock` as an example to create new blocks.
+
+ <!-- Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder. -->
+
 ### Structure
 
 The file structure can be any, you can add your files, but here are three files `config.php`, `ajax.php` and `shortcode.php` - loads by the autoloader.
 
-``` 
+```
 ── assets/              # All assets (styles, scripts, fonts, etc)
    ├── style.scss
    ├── scripts.js
    └── images/
-── childs/              # Nested shortcodes, have the same structure    
-── view/                # Shortcode templates    
-── ajax.php             # Backend functions for ajax queries 
+── childs/              # Nested shortcodes, have the same structure
+── view/                # Shortcode templates
+── ajax.php             # Backend functions for ajax queries
 ── config.php           # Shortcode config (required file)
 ── shortcode.php        # Shortcode controller (required file)
 ── vc.php               # WPBakery Page Builder support

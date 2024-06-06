@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-scss"
+  ],
+  "rules": {
+    "no-empty-source": null,
+    "indentation": 2,
+    "no-descending-specificity": null,
+    "number-leading-zero": null,
+    "font-family-no-missing-generic-family-keyword": null
+  }
+}

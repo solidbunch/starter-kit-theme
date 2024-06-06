@@ -1,0 +1,84 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/image",
+  "title": "Image",
+  "category": "starter-kit",
+  "icon": "sk sk-image",
+  "description": "Image",
+  "keywords": [
+    "Image",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "imageClass": {
+      "type": "string",
+      "default": "img-fluid"
+    },
+    "link": {
+      "type": "object",
+      "default": {
+        "addLink": false,
+        "targetBlank": false,
+        "href": ""
+      }
+    },
+    "fetchPriority": {
+      "type": "string",
+      "default": "auto"
+    },
+    "loadingLazy": {
+      "type": "boolean",
+      "default": true
+    },
+    "hidpi": {
+      "type": "boolean",
+      "default": true
+    },
+    "altText": {
+      "type": "string",
+      "default": ""
+    },
+    "mainImage": {
+      "type": "object",
+      "default": {
+        "url": "",
+        "width": "",
+        "height": "",
+        "id": "",
+        "ratio": ""
+      }
+    },
+    "srcSet": {
+      "type": "object",
+      "default": {
+        "sm": {
+          "viewPort": 576,
+          "enabled": true
+        },
+        "md": {
+          "viewPort": 768,
+          "enabled": true
+        },
+        "lg": {
+          "viewPort": 992,
+          "enabled": true
+        },
+        "xl": {
+          "viewPort": 1200,
+          "enabled": true
+        },
+        "xxl": {
+          "viewPort": 1400,
+          "enabled": true
+        }
+      }
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "editorStyle": "file:build/editor.css",
+  "style": "file:build/style.css"
+}

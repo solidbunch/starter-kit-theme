@@ -1,54 +1,98 @@
 {
-    "name": "solidbunch/starter-kit-theme",
-    "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
-    "type": "wordpress-theme",
-    "minimum-stability": "dev",
-    "license": "MIT",
-    "homepage": "https://starter-kit.io",
-    "authors": [
-        {
-            "name": "SolidBunch Team",
-            "email": "contact@solidbunch.com",
-            "homepage": "https://solidbunch.com"
-        },
-        {
-            "name": "Yurii Pavlov"
-        },
-        {
-            "name": "Valerii Vasyliev"
-        },
-        {
-            "name": "Nikita Bolotov"
-        },
-        {
-            "name": "Viktor Sedzialo"
-        },
-        {
-            "name": "Dmytro Kudleichuk"
-        },
-        {
-            "name": "Nikolay Kravchenko"
-        }
-    ],
-    "keywords": [
-        "wordpress", "starter", "theme"
-    ],
-    "support": {
-        "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
+  "name": "solidbunch/starter-kit-theme",
+  "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
+  "type": "wordpress-theme",
+  "license": "MIT",
+  "homepage": "https://starter-kit.io",
+  "authors": [
+    {
+      "name": "SolidBunch Team",
+      "email": "contact@solidbunch.com",
+      "homepage": "https://solidbunch.com"
     },
-    "require": {
-        "php": ">=8.1",
-        "htmlburger/carbon-fields": "3.6.*"
+    {
+      "name": "Yurii Pavlov"
     },
-    "require-dev": {
-        "roave/security-advisories": "dev-latest"
+    {
+      "name": "Valerii Vasyliev"
     },
-    "autoload": {
-        "psr-4": {
-            "StarterKit\\": "app/"
-        }
+    {
+      "name": "Nikita Bolotov"
     },
-    "config": {
-        "optimize-autoloader": true
+    {
+      "name": "Viktor Sedzialo"
+    },
+    {
+      "name": "Dmytro Kudleichuk"
+    },
+    {
+      "name": "Nikolay Kravchenko"
     }
+  ],
+  "keywords": [
+    "wordpress",
+    "starter",
+    "theme"
+  ],
+  "support": {
+    "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
+  },
+  "require": {
+    "php": ">=8.1",
+    "htmlburger/carbon-fields": "3.6.2",
+    "laminas/laminas-config-aggregator": "1.14.0",
+    "monolog/monolog": "3.5.0",
+    "php-di/php-di": "7.0.6",
+    "vvv3/wp-responsive-images": "1.0.4"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
+    "filp/whoops": "2.15.4",
+    "phpcompatibility/phpcompatibility-wp": "2.1.4",
+    "phpunit/phpunit": "10.5.3",
+    "roave/security-advisories": "dev-latest",
+    "squizlabs/php_codesniffer": "3.7.2"
+  },
+  "scripts": {
+    "install-dev": [
+      "composer install"
+    ],
+    "install-prod": [
+      "composer install --no-dev --no-interaction --optimize-autoloader"
+    ],
+    "update-dev": [
+      "composer update"
+    ],
+    "update-prod": [
+      "composer update --no-dev --no-interaction --optimize-autoloader"
+    ],
+    "lint": [
+      "phpcs --standard=phpcs.xml"
+    ],
+    "lintfix": [
+      "phpcbf --standard=phpcs.xml"
+    ],
+    "tests": [
+      "vendor/bin/phpunit -c phpunit.xml --colors=always --testdox"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "StarterKit\\": "src/",
+      "StarterKitBlocks\\": "blocks/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "StarterKitTests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  }
 }

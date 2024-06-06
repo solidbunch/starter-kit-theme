@@ -1,0 +1,45 @@
+body.admin-bar {
+  header.sticky-top,
+  .offcanvas {
+    top: 32px;
+  }
+}
+
+@media all and (max-width: 782px) {
+  body.admin-bar {
+    header.sticky-top,
+    .offcanvas {
+      top: 46px;
+    }
+  }
+}
+
+header.header {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+  background: var(--bs-body-bg);
+}
+
+header.header .row {
+  >div {
+    &:first-child {
+      img {
+        max-width: 100px;
+
+        @include media-breakpoint-up(lg) {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+[data-bs-theme="light"] {
+  .navbar {
+    --bs-navbar-active-color: var(--bs-primary);
+    --bs-navbar-hover-color: var(--bs-primary);
+  }
+
+  .navbar-nav {
+    --bs-nav-link-color: var(--bs-gray-900);
+  }
+}
