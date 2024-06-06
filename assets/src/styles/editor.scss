@@ -6,11 +6,6 @@ html :where(.wp-block) {
 
 .editor-styles-wrapper {
   .wp-block {
-    &:hover {
-      background: rgba(#ccc, .3);
-      filter: invert(1);
-    }
-
     &.is-selected {
       outline: 2px dashed #ccc;
     }
@@ -27,4 +22,11 @@ html :where(.wp-block) {
     background: #f5f5f5;
     background: #ccc;
   }
+}
+
+.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted::after,
+.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted ~ .is-multi-selected::after,
+.block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable]):focus::after,
+.block-editor-block-list__layout.is-navigate-mode .block-editor-block-list__block.is-selected::after {
+  background: rgba(#000, .2);
 }
