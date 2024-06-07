@@ -25,7 +25,7 @@ html :where(.wp-block) {
 
       &:hover::after {
         opacity: 0.1;
-        background: rgba(#aaa, .3);
+        background: rgba(#999, .3);
       }
 
       &.is-selected,
