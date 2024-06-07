@@ -20,12 +20,12 @@ html :where(.wp-block) {
       }
 
       &:hover {
-        outline: 1px dashed rgba(#ccc, .7);
+        outline: 1px dashed #aaa;
       }
 
       &:hover::after {
         opacity: 0.1;
-        background: rgba(#ccc, .3);
+        background: rgba(#aaa, .3);
       }
 
       &.is-selected,
