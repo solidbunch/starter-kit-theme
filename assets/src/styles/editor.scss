@@ -5,27 +5,46 @@ html :where(.wp-block) {
 }
 
 .editor-styles-wrapper {
-  .wp-block {
-    &.is-selected {
-      outline: 2px dashed #ccc;
+  .block-editor-block-list__layout {
+    .wp-block {
+      &::after {
+        content: "";
+        border-radius: 1px;
+        bottom: 1px;
+        left: 1px;
+        right: 1px;
+        top: 1px;
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+      }
+
+      &:hover {
+        outline: 1px dashed #aaa;
+      }
+
+      &:hover::after {
+        opacity: 0.1;
+        background: rgba(#999, .3);
+      }
+
+      &.is-selected,
+      &.is-multi-selected {
+        outline: 1px dashed var(--wp-admin-theme-color);
+      }
     }
   }
 }
 
-.box_breakpoint {
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, .2);
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+.block-editor .interface-interface-skeleton__sidebar {
+  .box_breakpoint {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .2);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
 
-  &.active {
-    background: #ccc;
+    &.active {
+      background: #ccc;
+    }
   }
-}
-
-.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted::after,
-.block-editor-block-list__layout .block-editor-block-list__block.is-highlighted ~ .is-multi-selected::after,
-.block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable]):focus::after,
-.block-editor-block-list__layout.is-navigate-mode .block-editor-block-list__block.is-selected::after {
-  background: rgba(#000, .2);
 }
