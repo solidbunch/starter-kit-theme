@@ -29,7 +29,7 @@ class BlockRenderer extends BlockAbstract
 
         $templateData = [];
 
-        return self::loadBlockView('nav-layout', $templateData);
+        return self::loadBlockView('layout', $templateData);
     }
 
 }
