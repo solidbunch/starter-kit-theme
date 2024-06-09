@@ -33,6 +33,7 @@ $data = $data ?? [];
                         <div class="footer col-auto">
                             <h5 class="text-center mb-4"><?php echo $pricingPackage['price'] ?? ''; ?></h5>
                             <button class="w-100 py-3 btn btn-<?php
+                                // ToDo add button_link
                                 echo $pricingPackage['button_style'] ? $pricingPackage['button_style'] . '-' : '';
                                 echo $pricingPackage['button_color'] ?? 'primary'; ?>">
                                 <?php echo $pricingPackage['button_text'] ?? ''; ?>
