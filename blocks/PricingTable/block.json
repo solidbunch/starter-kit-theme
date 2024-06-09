@@ -1,10 +1,10 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/pricing-table",
-  "title": "PricingTable",
+  "title": "Pricing Table",
   "category": "starter-kit",
-  "icon": "sk sk-pricingTable",
-  "description": "Bootstrap PricingTable",
+  "icon": "sk sk-pricing-table",
+  "description": "Bootstrap Pricing Table",
   "keywords": [
     "PricingTable",
     "Bootstrap"
