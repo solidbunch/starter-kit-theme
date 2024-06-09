@@ -20,6 +20,9 @@ class DisableDefaultBlocks
     {
         if (!empty(Config::get('optimization/disableDefaultBlocks'))) {
             add_filter('allowed_block_types_all', [self::class, 'allowedBlockTypes'], 10, 2);
+        }
+
+        if (!empty(Config::get('optimization/disableDefaultBlocksStyles'))) {
             add_action('wp_enqueue_scripts', [self::class, 'removeDefaultBlocksStyles'], 100);
         }
     }
