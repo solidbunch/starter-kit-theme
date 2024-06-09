@@ -1,0 +1,34 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/navigation",
+  "title": "Navigation",
+  "category": "starter-kit",
+  "icon": "sk sk-navigaton",
+  "description": "Bootstrap navigation",
+  "keywords": [
+    "Navigation",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "menuLocation": {
+      "type": "string",
+      "default": ""
+    },
+    "menuId": {
+      "type": "string",
+      "default": ""
+    },
+    "expand": {
+      "type": "string",
+      "default": "navbar-expand"
+    }
+  },
+  "editorScript": "file:build/index.js",
+  "viewScript": "file:build/view.js",
+  "editorStyle": "file:build/editor.css",
+  "style": "file:build/style.css"
+}
