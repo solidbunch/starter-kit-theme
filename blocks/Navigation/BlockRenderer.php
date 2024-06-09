@@ -6,6 +6,8 @@ defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
+use Throwable;
 
 /**
  * Block controller
@@ -23,6 +25,8 @@ class BlockRenderer extends BlockAbstract
      * @param $block
      *
      * @return string
+     * @throws NotFoundException
+     * @throws Throwable
      */
     public static function blockServerSideCallback($attributes, $content, $block): string
     {

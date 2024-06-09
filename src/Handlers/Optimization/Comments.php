@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Handlers\Security;
+namespace StarterKit\Handlers\Optimization;
 
 defined('ABSPATH') || exit;
 
@@ -73,7 +73,7 @@ class Comments
      * Remove comments pages from rewrite rules
      * comment-page-([0-9]{1,})/?$
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */

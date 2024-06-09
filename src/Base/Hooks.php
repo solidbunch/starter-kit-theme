@@ -94,10 +94,11 @@ class Hooks
         /************************************
          *       Security and CleanUp
          ************************************/
+        add_action('init', [Handlers\Optimization\CleanUp::class, 'headCleanup'], 999);
+        add_action('init', [Handlers\Optimization\Comments::class, 'disableComments']);
+        add_action('init', [Handlers\Optimization\CleanAttributes::class, 'init']);
+        add_action('init', [Handlers\Optimization\DisableDefaultBlocks::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
-        add_action('init', [Handlers\Security\CleanUp::class, 'headCleanup'], 999);
-        add_action('init', [Handlers\Security\Optimization::class, 'init']);
-        add_action('init', [Handlers\Security\Comments::class, 'disableComments']);
         add_action('rest_api_init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace']);
     }
 }
