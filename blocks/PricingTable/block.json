@@ -1,12 +1,12 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/navigation",
-  "title": "Navigation",
+  "name": "starter-kit/PricingTable",
+  "title": "PricingTable",
   "category": "starter-kit",
-  "icon": "sk sk-navigaton",
-  "description": "Bootstrap navigation",
+  "icon": "sk sk-pricing",
+  "description": "Bootstrap PricingTable",
   "keywords": [
-    "Navigation",
+    "PricingTable",
     "Bootstrap"
   ],
   "textdomain": "",

@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\Navigation;
+namespace StarterKitBlocks\PricingTable;
 
 defined('ABSPATH') || exit;
 
