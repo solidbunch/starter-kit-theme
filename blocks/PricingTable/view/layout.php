@@ -6,8 +6,6 @@
  * @var $data array
  */
 
-use StarterKit\Helper\Utils;
-
 defined('ABSPATH') || exit;
 
 $data = $data ?? [];

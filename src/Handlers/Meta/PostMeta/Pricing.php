@@ -7,8 +7,6 @@ defined('ABSPATH') || exit;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use StarterKit\Helper\Config;
-use StarterKit\Repository\CarBrandsRepository;
-use StarterKit\Repository\ServicesRepository;
 
 /**
  * Post type meta data handler
