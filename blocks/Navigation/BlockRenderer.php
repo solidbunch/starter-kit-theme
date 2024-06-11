@@ -6,6 +6,8 @@ defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\NotFoundException;
+use Throwable;
 
 /**
  * Block controller
@@ -18,13 +20,16 @@ class BlockRenderer extends BlockAbstract
      * Block server side render callback
      * Used in register block type from metadata
      *
-     * @param $attributes
-     * @param $content
-     * @param $block
+     * @param array  $attributes
+     * @param string $content
+     * @param object $block
      *
      * @return string
+     *
+     * @throws NotFoundException
+     * @throws Throwable
      */
-    public static function blockServerSideCallback($attributes, $content, $block): string
+    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         // Get all the locations
         $locations = get_nav_menu_locations();

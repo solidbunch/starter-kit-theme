@@ -53,6 +53,7 @@ class Hooks
         add_action('init', [Handlers\PostTypes\News::class, 'registerTagTaxonomy'], 5);
         add_action('carbon_fields_register_fields', [Handlers\Settings\NewsSettings::class, 'make']);
         add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
+        add_action('init', [Handlers\PostTypes\Pricing::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\TeamMembers::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Services::class, 'registerPostType'], 5);
 
@@ -66,6 +67,7 @@ class Hooks
          ************************************/
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\News::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
+        add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Pricing::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
         add_filter('manage_posts_columns', [Handlers\AdminColumns::class, 'addImgColumn']);
         add_filter('manage_posts_custom_column', [Handlers\AdminColumns::class, 'manageImgColumn'], 10, 2);

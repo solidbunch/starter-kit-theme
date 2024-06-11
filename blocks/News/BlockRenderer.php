@@ -4,9 +4,13 @@ namespace StarterKitBlocks\News;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
+use StarterKit\Helper\NotFoundException;
 use StarterKit\Repository\NewsRepository;
+use Throwable;
 use WP_Error;
 use WP_HTTP_Response;
 use WP_REST_Request;
@@ -23,13 +27,16 @@ class BlockRenderer extends BlockAbstract
      * Block server side render callback
      * Used in register block type from metadata
      *
-     * @param $attributes
-     * @param $content
-     * @param $block
+     * @param array  $attributes
+     * @param string $content
+     * @param object $block
      *
      * @return string
+     *
+     * @throws NotFoundException
+     * @throws Throwable
      */
-    public static function blockServerSideCallback($attributes, $content, $block): string
+    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         $templateData = [];
 
@@ -44,6 +51,10 @@ class BlockRenderer extends BlockAbstract
      * Runs by Blocks Register Handler
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function blockRestApiEndpoints(): void
     {
@@ -57,9 +68,13 @@ class BlockRenderer extends BlockAbstract
     /**
      * REST API endpoint callback
      *
-     * @param  WP_REST_Request  $request
+     * @param WP_REST_Request $request
      *
      * @return WP_Error|WP_REST_Response|WP_HTTP_Response
+     *
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public static function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
     {
