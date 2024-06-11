@@ -43,6 +43,11 @@ class BlockRenderer extends BlockAbstract
 
         $pricingPackages = PricingRepository::getAllWithData($args);
 
+        // Check if Pricing packages present
+        if (empty($pricingPackages)) {
+            return self::loadBlockView('no-data', ['message' => __('No pricing found', 'starter-kit')]);
+        }
+
         $templateData['pricingPackages'] = $pricingPackages;
 
         return self::loadBlockView('layout', $templateData);
