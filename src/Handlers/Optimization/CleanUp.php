@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Handlers\Security;
+namespace StarterKit\Handlers\Optimization;
 
 defined('ABSPATH') || exit;
 
@@ -130,7 +130,7 @@ class CleanUp
     /**
      * Kill feed rewrite rule, this will make feed links return 404
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */
@@ -148,7 +148,7 @@ class CleanUp
     /**
      * Kill embed rewrite rule, this will make embed links return 404
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return array
      */

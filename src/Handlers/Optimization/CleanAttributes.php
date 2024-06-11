@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Handlers\Security;
+namespace StarterKit\Handlers\Optimization;
 
 defined('ABSPATH') || exit;
 
@@ -13,16 +13,12 @@ use StarterKit\Helper\Config;
  *
  * @package    Starter Kit
  */
-class Optimization
+class CleanAttributes
 {
     public static function init(): void
     {
         if (is_admin()) {
             return;
-        }
-
-        if (!empty(Config::get('optimization/removeDefaultBlocksStyles'))) {
-            self::removeDefaultBlocksStyles();
         }
 
         if (!empty(Config::get('optimization/cleanBodyClass'))) {
@@ -36,23 +32,9 @@ class Optimization
     }
 
     /**
-     * Remove default blocks styles
-     *
-     * @return void
-     */
-    public static function removeDefaultBlocksStyles(): void
-    {
-        add_action('wp_enqueue_scripts', function () {
-            wp_dequeue_style('wp-block-library');
-            wp_dequeue_style('wp-block-library-theme');
-            wp_dequeue_style('global-styles');
-        }, 100);
-    }
-
-    /**
      * Clean body class
      *
-     * @param  array  $classes
+     * @param array $classes
      *
      * @return array
      */
@@ -82,8 +64,8 @@ class Optimization
     /**
      * Remove assets attributes
      *
-     * @param  string  $tag
-     * @param  string  $handle
+     * @param string $tag
+     * @param string $handle
      *
      * @return string
      */
