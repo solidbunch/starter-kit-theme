@@ -5,7 +5,6 @@
     "/assets/build/js/app.js": "/assets/build/js/app.js",
     "/blocks/Section/build/index.js": "/blocks/Section/build/index.js",
     "/blocks/Row/build/index.js": "/blocks/Row/build/index.js",
-    "/blocks/PricingTable/build/view.js": "/blocks/PricingTable/build/view.js",
     "/blocks/PricingTable/build/index.js": "/blocks/PricingTable/build/index.js",
     "/blocks/Paragraph/build/index.js": "/blocks/Paragraph/build/index.js",
     "/blocks/News/build/index.js": "/blocks/News/build/index.js",
