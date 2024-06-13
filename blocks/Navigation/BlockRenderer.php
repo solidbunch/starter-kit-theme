@@ -4,6 +4,8 @@ namespace StarterKitBlocks\Navigation;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
@@ -176,5 +178,55 @@ class BlockRenderer extends BlockAbstract
     public static function getMenusPermissionCheck(): bool
     {
         return current_user_can('edit_posts');
+    }
+
+    /**
+     * @return void
+     *
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public static function blockAssets(): void
+    {
+        add_action('enqueue_block_editor_assets', function () {
+            $editorScript = 'Navigation/build/index.js';
+            wp_enqueue_script(
+                Config::get('themeSlug') . '-navigation-editor-script',
+                Config::get('blocksUrl') . $editorScript,
+                ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
+                filemtime(Config::get('blocksDir') . $editorScript),
+                true
+            );
+
+            $editorStyle = 'Navigation/build/editor.css';
+            wp_enqueue_style(
+                Config::get('themeSlug') . '-navigation-editor-style',
+                Config::get('blocksUrl') . $editorStyle,
+                [],
+                filemtime(Config::get('blocksDir') . $editorStyle)
+            );
+        });
+
+
+        add_action('enqueue_block_assets', function () {
+
+            $script = 'Navigation/build/view.js';
+            wp_enqueue_script(
+                Config::get('themeSlug') . '-navigation-script',
+                Config::get('blocksUrl') . $script,
+                [],
+                filemtime(Config::get('blocksDir') . $script),
+                true
+            );
+
+            $style = 'Navigation/build/style.css';
+            wp_enqueue_style(
+                Config::get('themeSlug') . '-navigation-style',
+                Config::get('blocksUrl') . $style,
+                [],
+                filemtime(Config::get('blocksDir') . $style)
+            );
+        });
     }
 }

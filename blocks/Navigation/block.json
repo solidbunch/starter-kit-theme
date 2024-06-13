@@ -26,9 +26,5 @@
       "type": "string",
       "default": "navbar-expand"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  }
 }

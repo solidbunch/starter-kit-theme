@@ -30,10 +30,10 @@ class Front
      */
     public static function enqueueCriticalAssets(): void
     {
-        $style = Config::get('assetsUri') . 'build/styles/theme.css';
+        $style = 'build/styles/theme.css';
 
-        $styleUri = get_template_directory_uri() . $style;
-        $stylePath = get_template_directory() . $style;
+        $styleUri = Config::get('assetsUri') . $style;
+        $stylePath = Config::get('assetsDir') . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
     }
