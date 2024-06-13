@@ -106,6 +106,7 @@ $bg_list_marked: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     --header-height: 96px;
     --admin-bar-height: 32px;
     --size: 300px;
+
     background: $body-bg;
     // position: sticky;
     // top: 0;
@@ -140,6 +141,7 @@ $bg_list_marked: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
   svg {
     fill: $primary;
   }
+
   &:hover {
     svg {
       fill: $white;
