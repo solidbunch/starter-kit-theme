@@ -1,0 +1,92 @@
+//doc page
+.section_doc {
+  .sidebar {
+    --header-height: 96px;
+    --admin-bar-height: 32px;
+    --size: 300px;
+
+    background: $body-bg;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+
+    .doc_offcanvas {
+      top: 0;
+
+      .admin-bar & {
+        top: calc(var(--admin-bar-height));
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      border: 2px dashed red;
+      position: sticky;
+      top: calc(var(--header-height));
+      height: calc(100vh - var(--header-height));
+      left: 0;
+      max-width: var(--size);
+      flex: 0 0 var(--size);
+      overflow-y: auto;
+      box-shadow: none;
+
+      .admin-bar & {
+        top: calc(var(--header-height) + var(--admin-bar-height));
+        height: calc(100vh - var(--header-height) - var(--admin-bar-height));
+      }
+    }
+  }
+}
+
+.doc_toggler_btn {
+  svg {
+    fill: $primary;
+  }
+}
+
+.list_doc {
+  li {
+    padding-left: 10px;
+
+    a {
+      padding: 3px 8px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 2px;
+      font-size: 14px;
+
+      &:hover,
+      &.active,
+      &.current {
+        color: $primary;
+      }
+
+      &.active,
+      &.current {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.single-doc-pages {
+  @include media-breakpoint-down(lg) {
+    header.header {
+      position: static;
+      z-index: inherit !important;
+    }
+
+    .section_doc .sidebar {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    &.admin-bar {
+      .section_doc .sidebar {
+        top: calc(var(--admin-bar-height));
+        background: $body-bg;
+      }
+    }
+  }
+}
