@@ -12,7 +12,7 @@ return [
         'assetsDir'           => get_stylesheet_directory() . '/assets/',
         'assetsUri'           => get_stylesheet_directory_uri() . '/assets/',
         'blocksDir'           => get_stylesheet_directory() . '/blocks/',
-        'blocksUrl'           => get_stylesheet_directory_uri() . '/blocks/',
+        'blocksUri'           => get_stylesheet_directory_uri() . '/blocks/',
         'blocksIcons'         => '',
         'blocksCategorySlug'  => 'starter-kit',
         'blocksCategoryTitle' => 'StarterKit Blocks',

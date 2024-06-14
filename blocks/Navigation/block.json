@@ -3,7 +3,7 @@
   "name": "starter-kit/navigation",
   "title": "Navigation",
   "category": "starter-kit",
-  "icon": "sk sk-navigaton",
+  "icon": "sk sk-navigation",
   "description": "Bootstrap navigation",
   "keywords": [
     "Navigation",
@@ -26,5 +26,9 @@
       "type": "string",
       "default": "navbar-expand"
     }
-  }
+  },
+  "editorScript": "block-navigation-index-script",
+  "viewScript": "block-navigation-view-script",
+  "editorStyle": "block-navigation-editor-style",
+  "style": "block-navigation-view-style"
 }

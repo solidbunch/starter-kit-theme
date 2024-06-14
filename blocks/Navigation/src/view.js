@@ -1,10 +1,6 @@
 /**
  * Block frontend view scripts
  */
-// import FrontendModule from "./Handlers/FrontendModule";
-import 'bootstrap/js/src/offcanvas';
-import 'bootstrap/js/src/dropdown';
-
 (function () {
   "use strict";
 
@@ -24,13 +20,13 @@ import 'bootstrap/js/src/dropdown';
         this.querySelector('.dropdown-menu').classList.add('show');
         this.querySelector('.nav-link').classList.add('show');
       });
-    
+
       dropdown.addEventListener('mouseleave', function () {
         this.querySelector('.dropdown-menu').classList.remove('show');
         this.querySelector('.nav-link').classList.remove('show');
       });
     });
-    
+
   }
 
 })();

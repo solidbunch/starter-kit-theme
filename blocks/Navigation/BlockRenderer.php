@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use Throwable;
@@ -187,46 +188,20 @@ class BlockRenderer extends BlockAbstract
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public static function blockAssets(): void
+    public static function blockAssets(string $blockName): void
     {
-        add_action('enqueue_block_editor_assets', function () {
-            $editorScript = 'Navigation/build/index.js';
-            wp_enqueue_script(
-                Config::get('themeSlug') . '-navigation-editor-script',
-                Config::get('blocksUrl') . $editorScript,
-                ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
-                filemtime(Config::get('blocksDir') . $editorScript),
-                true
+        add_action('enqueue_block_editor_assets', function () use ($blockName) {
+            Assets::registerBlockScript(
+                $blockName,
+                'index.js',
+                ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
             );
-
-            $editorStyle = 'Navigation/build/editor.css';
-            wp_enqueue_style(
-                Config::get('themeSlug') . '-navigation-editor-style',
-                Config::get('blocksUrl') . $editorStyle,
-                [],
-                filemtime(Config::get('blocksDir') . $editorStyle)
-            );
+            Assets::registerBlockStyle($blockName, 'editor.css');
         });
 
-
-        add_action('enqueue_block_assets', function () {
-
-            $script = 'Navigation/build/view.js';
-            wp_enqueue_script(
-                Config::get('themeSlug') . '-navigation-script',
-                Config::get('blocksUrl') . $script,
-                [],
-                filemtime(Config::get('blocksDir') . $script),
-                true
-            );
-
-            $style = 'Navigation/build/style.css';
-            wp_enqueue_style(
-                Config::get('themeSlug') . '-navigation-style',
-                Config::get('blocksUrl') . $style,
-                [],
-                filemtime(Config::get('blocksDir') . $style)
-            );
+        add_action('enqueue_block_assets', function () use ($blockName) {
+            Assets::registerBlockScript($blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
+            Assets::registerBlockStyle($blockName, 'view.css');
         });
     }
 }

@@ -32,15 +32,15 @@ class Register
      */
     public static function registerBlocksCategories(array $categories): array
     {
-        return array_merge([
-                               [
-                                   'slug'  => Config::get('blocksCategorySlug'
-                                   ),
-                                   'title' => Config::get('blocksCategoryTitle'
-                                   ),
-                               ],
-                           ],
-                           $categories);
+        return array_merge(
+            [
+                [
+                    'slug'  => Config::get('blocksCategorySlug'),
+                    'title' => Config::get('blocksCategoryTitle'),
+                ],
+            ],
+            $categories
+        );
     }
 
     /**
@@ -70,19 +70,19 @@ class Register
 
             $blockMetaPath = $blockPath . '/block.json';
 
-            $blockClass = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';
+            $blockNamespace = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';
 
             if (!file_exists($blockMetaPath)) {
                 continue;
             }
 
-            self::registerBlockTypeFromMetadata($blockMetaPath, $blockClass);
+            self::registerBlockTypeFromMetadata($blockMetaPath, $blockNamespace);
 
-            self::registerBlocksRestApiEndpoints($blockClass);
+            self::registerBlocksRestApiEndpoints($blockNamespace);
 
-            self::registerBlockOnInitFunction($blockClass);
+            self::registerBlockOnInitFunction($blockNamespace);
 
-            self::registerBlockAssets($blockClass);
+            self::registerBlockAssets($blockNamespace, $blockName);
         }
     }
 
@@ -91,19 +91,19 @@ class Register
      * And register callback from block folder controller php file if exists
      *
      * @param string $blockMetaPath
-     * @param string $blockClass
+     * @param string $blockNamespace
      *
      * @return void
      */
-    private static function registerBlockTypeFromMetadata(string $blockMetaPath, string $blockClass): void
+    private static function registerBlockTypeFromMetadata(string $blockMetaPath, string $blockNamespace): void
     {
         $blockTypeArgs = [];
 
-        if (method_exists($blockClass, 'blockServerSideCallback')) {
-            $blockTypeArgs['render_callback'] = function ($attributes, $content, $block) use ($blockClass) {
+        if (method_exists($blockNamespace, 'blockServerSideCallback')) {
+            $blockTypeArgs['render_callback'] = function ($attributes, $content, $block) use ($blockNamespace) {
                 return call_user_func(
                     [
-                        $blockClass,
+                        $blockNamespace,
                         'blockServerSideCallback',
                     ],
                     $attributes,
@@ -120,19 +120,19 @@ class Register
      * If we are calling registerBlocks() function on init hook,
      * we can call blockOnInit() function from block folder controller php file if exists
      *
-     * @param $blockClass
+     * @param string $blockNamespace
      *
      * @return void
      */
-    private static function registerBlockOnInitFunction($blockClass): void
+    private static function registerBlockOnInitFunction(string $blockNamespace): void
     {
-        if (!method_exists($blockClass, 'blockOnInitFunction')) {
+        if (!method_exists($blockNamespace, 'blockOnInitFunction')) {
             return;
         }
 
         call_user_func(
             [
-                $blockClass,
+                $blockNamespace,
                 'blockOnInit',
             ]
         );
@@ -141,20 +141,20 @@ class Register
     /**
      * Register rest api callback from block folder controller php file if exists
      *
-     * @param string $blockClass
+     * @param string $blockNamespace
      *
      * @return void
      */
-    private static function registerBlocksRestApiEndpoints(string $blockClass): void
+    private static function registerBlocksRestApiEndpoints(string $blockNamespace): void
     {
-        if (!method_exists($blockClass, 'blockRestApiEndpoints')) {
+        if (!method_exists($blockNamespace, 'blockRestApiEndpoints')) {
             return;
         }
 
-        add_action('rest_api_init', function () use ($blockClass) {
+        add_action('rest_api_init', function () use ($blockNamespace) {
             call_user_func(
                 [
-                    $blockClass,
+                    $blockNamespace,
                     'blockRestApiEndpoints',
                 ]
             );
@@ -165,21 +165,23 @@ class Register
     /**
      *
      *
-     * @param string $blockClass
+     * @param string $blockNamespace
+     * @param string $blockName
      *
      * @return void
      */
-    private static function registerBlockAssets(string $blockClass): void
+    private static function registerBlockAssets(string $blockNamespace, string $blockName): void
     {
-        if (!method_exists($blockClass, 'blockAssets')) {
+        if (!method_exists($blockNamespace, 'blockAssets')) {
             return;
         }
 
         call_user_func(
             [
-                $blockClass,
+                $blockNamespace,
                 'blockAssets',
-            ]
+            ],
+            $blockName
         );
     }
 }
