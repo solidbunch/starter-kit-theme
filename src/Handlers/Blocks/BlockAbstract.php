@@ -4,6 +4,8 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use RuntimeException;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
@@ -17,12 +19,30 @@ use Throwable;
  */
 abstract class BlockAbstract implements BlockInterface
 {
+    /**
+     * Block name defined in Register class, usually block directory name
+     *
+     * @var string
+     */
     protected string $blockName;
 
+    /**
+     * Additional block metadata. Place server side render callback here
+     *
+     * @var array
+     */
+    protected array $blockArgs = [];
+
+    /**
+     * BlockAbstract constructor.
+     *
+     * @param $blockName
+     */
     public function __construct($blockName)
     {
         $this->blockName = $blockName;
 
+        // Runs on 'init' hook
         $this->registerBlock();
 
         //ToDo vvv Do we need to add 'init' and other hooks here?
@@ -34,6 +54,25 @@ abstract class BlockAbstract implements BlockInterface
         add_action('enqueue_block_editor_assets', [$this, 'blockEditorAssets']);
         add_action('enqueue_block_assets', [$this, 'blockAssets']);
     }
+
+    /**
+     * Register block with metadata from block.json
+     * Add your server side render callback into $this->blockArgs
+     *
+     * @return void
+     * //ToDo vvv maybe add try catch to config get?
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function registerBlock(): void
+    {
+        register_block_type_from_metadata(
+            Config::get('blocksDir') . $this->blockName,
+            $this->blockArgs
+        );
+    }
+
     /**
      * Load block view
      *
@@ -71,6 +110,8 @@ abstract class BlockAbstract implements BlockInterface
 
     /**
      * Generating block classes including spacers
+     * Used in block server side render callback
+     * Same as js function BootstrapSpacers.generateClasses
      *
      * @param array $attributes
      *

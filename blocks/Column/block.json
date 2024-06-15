@@ -33,7 +33,5 @@
       }
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  "editorScript":  "block-column-index-script"
 }

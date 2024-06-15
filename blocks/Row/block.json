@@ -52,7 +52,6 @@
       ]
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
-  "style": ""
+  "editorScript":  "block-row-index-script",
+  "editorStyle": "block-row-editor-style"
 }

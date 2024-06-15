@@ -19,14 +19,16 @@ use Throwable;
  */
 class BlockRenderer extends BlockAbstract
 {
-    public function registerBlock(): void
+    /**
+     * BlockRenderer constructor.
+     *
+     * @param $blockName
+     */
+    public function __construct($blockName)
     {
-        register_block_type_from_metadata(
-            __DIR__,
-            [
-                'render_callback' => [$this, 'blockServerSideCallback']
-            ]
-        );
+        $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
+
+        parent::__construct($blockName);
     }
 
     /**
@@ -119,7 +121,7 @@ class BlockRenderer extends BlockAbstract
 
     /**
      * Register rest api endpoints
-     * Runs by Blocks Register Handler
+     * Runs by abstract constructor
      *
      * @return void
      *
@@ -142,6 +144,11 @@ class BlockRenderer extends BlockAbstract
         ]);
     }
 
+    /**
+     * Get all menu locations from database
+     *
+     * @return array
+     */
     public function getMenuLocations(): array
     {
         $locations = [];
@@ -196,6 +203,7 @@ class BlockRenderer extends BlockAbstract
     }
 
     /**
+     * Register block editor assets
      *
      * @return void
      *
@@ -214,6 +222,7 @@ class BlockRenderer extends BlockAbstract
     }
 
     /**
+     * Register block assets for frontend and editor
      *
      * @return void
      *

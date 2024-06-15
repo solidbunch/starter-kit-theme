@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\Section;
+namespace StarterKitBlocks\Row;
 
 defined('ABSPATH') || exit;
 
@@ -32,7 +32,7 @@ class BlockRenderer extends BlockAbstract
     }
 
     /**
-     * Register block editor assets
+     * Register block assets for frontend and editor
      *
      * @return void
      *
@@ -47,6 +47,7 @@ class BlockRenderer extends BlockAbstract
             'index.js',
             ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
         );
+        Assets::registerBlockStyle($this->blockName, 'editor.css');
     }
 
     /**
