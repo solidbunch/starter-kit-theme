@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Handlers\Optimization;
+namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
@@ -8,7 +8,7 @@ use StarterKit\Helper\Config;
 use WP_Block_Type_Registry;
 
 /**
- * Optimization Handlers
+ * Disable default blocks
  *
  * removes unnecessary tags etc.
  *

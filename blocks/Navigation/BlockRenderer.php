@@ -19,6 +19,40 @@ use Throwable;
  */
 class BlockRenderer extends BlockAbstract
 {
+    protected string $blockName;
+
+    /**
+     * BlockRenderer constructor.
+     *
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     */
+    public function __construct($blockName) {
+
+        $this->blockName = $blockName;
+
+        $this->registerBlock();
+
+        //ToDo Do we need to add 'init' and other hooks here? (enqueue_block_editor_assets, enqueue_block_assets, etc.)
+
+        //add_action('rest_api_init',[$this, 'blockRestApiEndpoints']);
+        $this->blockRestApiEndpoints();
+
+        $this->blockAssets();
+
+    }
+
+    public function registerBlock(): void
+    {
+        register_block_type_from_metadata(
+            __DIR__,
+            [
+                'render_callback' => [$this, 'blockServerSideCallback']
+            ]
+        );
+    }
+
     /**
      * Block server side render callback
      * Used in register block type from metadata
@@ -32,7 +66,7 @@ class BlockRenderer extends BlockAbstract
      * @throws NotFoundException
      * @throws Throwable
      */
-    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
+    public function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         // Get all the locations
         $locations = get_nav_menu_locations();
@@ -42,7 +76,7 @@ class BlockRenderer extends BlockAbstract
 
         // Check for no menus in location
         if (!empty($attributes['menuLocation']) && empty($menuId)) {
-            return self::loadBlockView('no-data', ['message' => __('No menu in selected location', 'starter-kit')]);
+            return $this->loadBlockView('no-data', ['message' => __('No menu in selected location', 'starter-kit')]);
         }
 
         // Or get menuId if menuId attribute present
@@ -50,13 +84,13 @@ class BlockRenderer extends BlockAbstract
 
         // Check for menuId and handle the 'no menu selected' case
         if (empty($menuId)) {
-            return self::loadBlockView('no-data', ['message' => __('No location or menu selected', 'starter-kit')]);
+            return $this->loadBlockView('no-data', ['message' => __('No location or menu selected', 'starter-kit')]);
         }
 
         // Get menu items and handle the 'no menu items found' case
         $menuItems = wp_get_nav_menu_items($menuId);
         if (empty($menuItems)) {
-            return self::loadBlockView('no-data', ['message' => __('No menu items found', 'starter-kit')]);
+            return $this->loadBlockView('no-data', ['message' => __('No menu items found', 'starter-kit')]);
         }
 
         // Add 'current' property and classes to menu item objects
@@ -66,16 +100,16 @@ class BlockRenderer extends BlockAbstract
         // Prepare template data
         $templateData = [
             'attributes'   => $attributes,
-            'menuTemplate' => self::loadBlockView('nav-menu', [
-                'menuTree' => self::buildMenuTree($menuItems),
+            'menuTemplate' => $this->loadBlockView('nav-menu', [
+                'menuTree' => $this->buildMenuTree($menuItems),
             ]),
         ];
 
         // Render the main navigation layout
-        return self::loadBlockView('nav-layout', $templateData);
+        return $this->loadBlockView('nav-layout', $templateData);
     }
 
-    private static function buildMenuTree($menuItems): array
+    private function buildMenuTree($menuItems): array
     {
         $menuTree = [];
         foreach ($menuItems as $item) {
@@ -112,23 +146,29 @@ class BlockRenderer extends BlockAbstract
      * Runs by Blocks Register Handler
      *
      * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
-    public static function blockRestApiEndpoints(): void
+    public function blockRestApiEndpoints(): void
     {
-        register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
-            'methods'             => 'GET',
-            'callback'            => [self::class, 'getMenuLocations'],
-            'permission_callback' => [self::class, 'getMenusPermissionCheck'],
-        ]);
+        add_action('rest_api_init', function () {
+            register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
+                'methods'             => 'GET',
+                'callback'            => [$this, 'getMenuLocations'],
+                'permission_callback' => [$this, 'getMenusPermissionCheck'],
+            ]);
 
-        register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
-            'methods'             => 'GET',
-            'callback'            => [self::class, 'getMenus'],
-            'permission_callback' => [self::class, 'getMenusPermissionCheck'],
-        ]);
+            register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
+                'methods'             => 'GET',
+                'callback'            => [$this, 'getMenus'],
+                'permission_callback' => [$this, 'getMenusPermissionCheck'],
+            ]);
+        });
     }
 
-    public static function getMenuLocations(): array
+    public function getMenuLocations(): array
     {
         $locations = [];
 
@@ -149,7 +189,7 @@ class BlockRenderer extends BlockAbstract
      *
      * @return array
      */
-    public static function getMenus(): array
+    public function getMenus(): array
     {
         $menus = [];
 
@@ -176,32 +216,33 @@ class BlockRenderer extends BlockAbstract
      *
      * @return bool
      */
-    public static function getMenusPermissionCheck(): bool
+    public function getMenusPermissionCheck(): bool
     {
         return current_user_can('edit_posts');
     }
 
     /**
+     *
      * @return void
      *
-     * @throws NotFoundException
      * @throws ContainerExceptionInterface
+     * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    public static function blockAssets(string $blockName): void
+    public function blockAssets(): void
     {
-        add_action('enqueue_block_editor_assets', function () use ($blockName) {
+        add_action('enqueue_block_editor_assets', function () {
             Assets::registerBlockScript(
-                $blockName,
+                $this->blockName,
                 'index.js',
                 ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
             );
-            Assets::registerBlockStyle($blockName, 'editor.css');
+            Assets::registerBlockStyle($this->blockName, 'editor.css');
         });
 
-        add_action('enqueue_block_assets', function () use ($blockName) {
-            Assets::registerBlockScript($blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
-            Assets::registerBlockStyle($blockName, 'view.css');
+        add_action('enqueue_block_assets', function () {
+            Assets::registerBlockScript($this->blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
+            Assets::registerBlockStyle($this->blockName, 'view.css');
         });
     }
 }

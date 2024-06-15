@@ -15,7 +15,7 @@ use Throwable;
  *
  * @package    Starter Kit
  */
-abstract class BlockAbstract
+abstract class BlockAbstract implements BlockInterface
 {
     /**
      * Load block view
@@ -29,10 +29,10 @@ abstract class BlockAbstract
      * @throws NotFoundException
      * @throws Throwable
      */
-    public static function loadBlockView(string $file = '', array $data = [], string $base = null): string
+    public function loadBlockView(string $file = '', array $data = [], string $base = null): string
     {
         if ($base === null) {
-            $base = Config::get('blocksDir') . self::getCurrentBlockName() . '/' . Config::get('blocksViewDir');
+            $base = Config::get('blocksDir') . $this->blockName . '/' . Config::get('blocksViewDir');
         }
 
         $viewFilePath = $base . $file . '.php';
@@ -53,26 +53,13 @@ abstract class BlockAbstract
     }
 
     /**
-     * Generate block name from class name
-     * StarterKitBlocks\BlockName\BlockName
-     *
-     * @return string
-     */
-    public static function getCurrentBlockName(): string
-    {
-        $blockNamespace = explode('\\', static::class);
-
-        return array_slice($blockNamespace, -2, 1)[0] ?? '';
-    }
-
-    /**
      * Generating block classes including spacers
      *
      * @param array $attributes
      *
      * @return string
      */
-    public static function generateBlockClasses(array $attributes): string
+    public function generateBlockClasses(array $attributes): string
     {
         $blockClasses = [];
 
@@ -80,7 +67,7 @@ abstract class BlockAbstract
             $blockClasses[] = $attributes['className'];
         }
 
-        $blockClasses = array_merge($blockClasses, self::generateSpacersClasses($attributes['spacers'] ?? []));
+        $blockClasses = array_merge($blockClasses, $this->generateSpacersClasses($attributes['spacers'] ?? []));
 
         return esc_attr(implode(' ', $blockClasses));
     }
@@ -92,7 +79,7 @@ abstract class BlockAbstract
      *
      * @return array
      */
-    public static function generateSpacersClasses(array $spacers): array
+    public function generateSpacersClasses(array $spacers): array
     {
         $spacerClasses = [];
         // ToDo store grid variables in one place - maybe scss

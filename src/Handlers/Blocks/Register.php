@@ -6,9 +6,11 @@ defined('ABSPATH') || exit;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKitBlocks;
+use Throwable;
 
 /**
  * Register blocks functionality
@@ -63,26 +65,28 @@ class Register
         foreach ($blocks as $blockPath) {
             $blockName = basename($blockPath);
 
-            // Exclude blocks with name starting with underscore
-            if (str_starts_with($blockName, '_')) {
+            // Exclude blocks with name starting with underscore or without block.json file
+            if (str_starts_with($blockName, '_') || !file_exists($blockPath . '/block.json')) {
                 continue;
             }
+            // Assuming each block has a BlockRenderer class in the appropriate namespace
+            $blockClass = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';
 
-            $blockMetaPath = $blockPath . '/block.json';
-
-            $blockNamespace = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';
-
-            if (!file_exists($blockMetaPath)) {
-                continue;
+            // Instantiate the block renderer class
+            try {
+                new $blockClass($blockName);
+            } catch (Throwable $throwable) {
+                ErrorHandler::handleThrowable($throwable);
             }
 
-            self::registerBlockTypeFromMetadata($blockMetaPath, $blockNamespace);
 
-            self::registerBlocksRestApiEndpoints($blockNamespace);
+            //self::registerBlockTypeFromMetadata();
 
-            self::registerBlockOnInitFunction($blockNamespace);
+            //self::registerBlocksRestApiEndpoints($blockNamespace);
 
-            self::registerBlockAssets($blockNamespace, $blockName);
+            //self::registerBlockOnInitFunction($blockNamespace);
+
+            //self::registerBlockAssets($blockNamespace, $blockName);
         }
     }
 
