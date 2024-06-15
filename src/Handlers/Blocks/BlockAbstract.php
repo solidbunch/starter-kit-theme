@@ -17,6 +17,22 @@ use Throwable;
  */
 abstract class BlockAbstract implements BlockInterface
 {
+    protected string $blockName;
+
+    public function __construct($blockName)
+    {
+        $this->blockName = $blockName;
+
+        $this->registerBlock();
+
+        //ToDo vvv Do we need to add 'init' and other hooks here? (enqueue_block_editor_assets, enqueue_block_assets, etc.)
+        add_action('rest_api_init',[$this, 'blockRestApiEndpoints']);
+        //$this->blockRestApiEndpoints();
+
+        // ToDo vvv maybe move block Assets functions to abstract class?
+        add_action('enqueue_block_editor_assets', [$this, 'blockEditorAssets']);
+        add_action('enqueue_block_assets', [$this, 'blockAssets']);
+    }
     /**
      * Load block view
      *

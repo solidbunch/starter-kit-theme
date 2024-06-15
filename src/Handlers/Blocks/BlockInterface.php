@@ -8,8 +8,7 @@ interface BlockInterface
 
     function blockRestApiEndpoints(): void;
 
-    function blockOnInit();
+    function blockEditorAssets(): void;
 
     function blockAssets(): void;
-
 }

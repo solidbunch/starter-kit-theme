@@ -19,29 +19,6 @@ use Throwable;
  */
 class BlockRenderer extends BlockAbstract
 {
-    protected string $blockName;
-
-    /**
-     * BlockRenderer constructor.
-     *
-     * @throws NotFoundExceptionInterface
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     */
-    public function __construct($blockName) {
-
-        $this->blockName = $blockName;
-
-        $this->registerBlock();
-
-        //ToDo Do we need to add 'init' and other hooks here? (enqueue_block_editor_assets, enqueue_block_assets, etc.)
-
-        //add_action('rest_api_init',[$this, 'blockRestApiEndpoints']);
-        $this->blockRestApiEndpoints();
-
-        $this->blockAssets();
-
-    }
 
     public function registerBlock(): void
     {
@@ -153,19 +130,17 @@ class BlockRenderer extends BlockAbstract
      */
     public function blockRestApiEndpoints(): void
     {
-        add_action('rest_api_init', function () {
-            register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
-                'methods'             => 'GET',
-                'callback'            => [$this, 'getMenuLocations'],
-                'permission_callback' => [$this, 'getMenusPermissionCheck'],
-            ]);
+        register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
+            'methods'             => 'GET',
+            'callback'            => [$this, 'getMenuLocations'],
+            'permission_callback' => [$this, 'getMenusPermissionCheck'],
+        ]);
 
-            register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
-                'methods'             => 'GET',
-                'callback'            => [$this, 'getMenus'],
-                'permission_callback' => [$this, 'getMenusPermissionCheck'],
-            ]);
-        });
+        register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
+            'methods'             => 'GET',
+            'callback'            => [$this, 'getMenus'],
+            'permission_callback' => [$this, 'getMenusPermissionCheck'],
+        ]);
     }
 
     public function getMenuLocations(): array
@@ -229,20 +204,27 @@ class BlockRenderer extends BlockAbstract
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
+    public function blockEditorAssets(): void
+    {
+        Assets::registerBlockScript(
+            $this->blockName,
+            'index.js',
+            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
+        );
+        Assets::registerBlockStyle($this->blockName, 'editor.css');
+    }
+
+    /**
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
     public function blockAssets(): void
     {
-        add_action('enqueue_block_editor_assets', function () {
-            Assets::registerBlockScript(
-                $this->blockName,
-                'index.js',
-                ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
-            );
-            Assets::registerBlockStyle($this->blockName, 'editor.css');
-        });
-
-        add_action('enqueue_block_assets', function () {
-            Assets::registerBlockScript($this->blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
-            Assets::registerBlockStyle($this->blockName, 'view.css');
-        });
+        Assets::registerBlockScript($this->blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
+        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }
