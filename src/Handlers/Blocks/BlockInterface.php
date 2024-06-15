@@ -4,11 +4,11 @@ namespace StarterKit\Handlers\Blocks;
 
 interface BlockInterface
 {
-    function registerBlock(): void;
+    public function registerBlock(): void;
 
-    function blockRestApiEndpoints(): void;
+    public function blockRestApiEndpoints(): void;
 
-    function blockEditorAssets(): void;
+    public function blockEditorAssets(): void;
 
-    function blockAssets(): void;
+    public function blockAssets(): void;
 }

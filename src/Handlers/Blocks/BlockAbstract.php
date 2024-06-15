@@ -25,8 +25,9 @@ abstract class BlockAbstract implements BlockInterface
 
         $this->registerBlock();
 
-        //ToDo vvv Do we need to add 'init' and other hooks here? (enqueue_block_editor_assets, enqueue_block_assets, etc.)
-        add_action('rest_api_init',[$this, 'blockRestApiEndpoints']);
+        //ToDo vvv Do we need to add 'init' and other hooks here?
+        // (enqueue_block_editor_assets, enqueue_block_assets, etc.)
+        add_action('rest_api_init', [$this, 'blockRestApiEndpoints']);
         //$this->blockRestApiEndpoints();
 
         // ToDo vvv maybe move block Assets functions to abstract class?

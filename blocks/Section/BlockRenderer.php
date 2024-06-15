@@ -17,14 +17,14 @@ use StarterKit\Helper\NotFoundException;
  */
 class BlockRenderer extends BlockAbstract
 {
-    function registerBlock(): void
+    public function registerBlock(): void
     {
         register_block_type_from_metadata(
             __DIR__
         );
     }
 
-    function blockRestApiEndpoints(): void
+    public function blockRestApiEndpoints(): void
     {
     }
 
