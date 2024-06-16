@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\FaqSection;
+namespace StarterKitBlocks\ListItem;
 
 defined('ABSPATH') || exit;
 
@@ -42,7 +42,6 @@ class Block extends BlockAbstract
      */
     public function blockEditorAssets(): void
     {
-
         Assets::registerBlockScript(
             $this->blockName,
             'index.js',
@@ -61,7 +60,5 @@ class Block extends BlockAbstract
      */
     public function blockAssets(): void
     {
-        Assets::registerBlockScript($this->blockName, 'view.js', ['collapse-script']);
-        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }

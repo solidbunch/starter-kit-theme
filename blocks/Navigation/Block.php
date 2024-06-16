@@ -19,6 +19,8 @@ use Throwable;
  */
 class Block extends BlockAbstract
 {
+    //protected string $render_callback = 'blockServerSideCallback';
+
     /**
      * Block constructor.
      *
@@ -220,6 +222,16 @@ class Block extends BlockAbstract
      */
     public function blockEditorAssets(): void
     {
+
+/*        $this->assets = [
+            'scripts' => [
+                'view.js' => ['dropdown-script', 'offcanvas-script'],
+            ],
+            'styles'  => [
+                'view.css',
+            ],
+        ];*/
+
         // ToDo vvv move to abstract class?
         Assets::registerBlockScript(
             $this->blockName,

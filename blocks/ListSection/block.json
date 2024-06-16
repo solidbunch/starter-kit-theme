@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/list",
+  "name": "starter-kit/list-section",
   "title": "List Section",
   "category": "starter-kit",
-  "icon": "sk sk-list",
+  "icon": "sk sk-list-section",
   "description": "List parent block",
   "keywords": [
     "List"
@@ -18,5 +18,5 @@
       "default": "ul"
     }
   },
-  "editorScript": "file:build/index.js"
+  "editorScript": "block-list-section-index-script"
 }

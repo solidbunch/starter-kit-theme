@@ -74,10 +74,6 @@ class Register
             // Assuming each block has a BlockRenderer class in the appropriate namespace
             $Block = 'StarterKitBlocks\\' . $blockName . '\\Block';
 
-            if (!class_exists($Block)) {
-                continue;
-            }
-
             // Instantiate the block class
             try {
                 new $Block($blockName);

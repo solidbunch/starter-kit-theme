@@ -130,7 +130,7 @@ class Block extends BlockAbstract
      */
     public function blockEditorAssets(): void
     {
-        // ToDo vvv move to abstract class?
+
         Assets::registerBlockScript(
             $this->blockName,
             'index.js',
