@@ -15,8 +15,7 @@
   "styles": [],
   "supports": {},
   "example": {},
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "",
-  "style": "file:build/style.css"
+  "editorScript": "block-faq-section-index-script",
+  "viewScript": "block-faq-section-view-script",
+  "style": "block-faq-section-view-style"
 }

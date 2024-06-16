@@ -50,6 +50,8 @@ class Front
      */
     public static function enqueueBootstrap(): void
     {
+        Assets::registerThemeScript('build/js/bootstrap/alert.js');
+        Assets::registerThemeScript('build/js/bootstrap/collapse.js');
         Assets::registerThemeScript('build/js/bootstrap/dropdown.js');
         Assets::registerThemeScript('build/js/bootstrap/offcanvas.js');
     }

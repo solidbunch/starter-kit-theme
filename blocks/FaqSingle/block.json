@@ -45,7 +45,5 @@
       "selector": ".__answer-text"
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  "editorScript": "block-faq-single-index-script"
 }
