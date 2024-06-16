@@ -6,6 +6,7 @@ defined('ABSPATH') || exit;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\NotFoundException;
@@ -21,8 +22,24 @@ use WP_REST_Response;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends BlockAbstract
+class Block extends BlockAbstract
 {
+    /**
+     * Block constructor.
+     *
+     * @param $blockName
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function __construct($blockName)
+    {
+        $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
+
+        parent::__construct($blockName);
+    }
+
     /**
      * Block server side render callback
      * Used in register block type from metadata
@@ -36,14 +53,14 @@ class BlockRenderer extends BlockAbstract
      * @throws NotFoundException
      * @throws Throwable
      */
-    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
+    public function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         $templateData = [];
 
         $templateData['newsData']     = 'Some data';
         $templateData['newsCategory'] = $attributes['category'] ?? true;
 
-        return self::loadBlockView('layout', $templateData);
+        return $this->loadBlockView('layout', $templateData);
     }
 
     /**
@@ -56,11 +73,11 @@ class BlockRenderer extends BlockAbstract
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    public static function blockRestApiEndpoints(): void
+    public function blockRestApiEndpoints(): void
     {
         register_rest_route(Config::get('restApiNamespace'), '/news', [
             'methods'             => 'GET,POST',
-            'callback'            => [self::class, 'getNewsCallback'],
+            'callback'            => [$this, 'getNewsCallback'],
             'permission_callback' => '__return_true',
         ]);
     }
@@ -76,7 +93,7 @@ class BlockRenderer extends BlockAbstract
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public static function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
+    public function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
     {
         $requestData = esc_sql(json_decode($request->get_body(), true));
         if (empty($requestData)) {
@@ -100,5 +117,39 @@ class BlockRenderer extends BlockAbstract
         $response['news']        = $news;
 
         return rest_ensure_response($response);
+    }
+
+    /**
+     * Register block editor assets
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function blockEditorAssets(): void
+    {
+        // ToDo vvv move to abstract class?
+        Assets::registerBlockScript(
+            $this->blockName,
+            'index.js',
+            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
+        );
+        Assets::registerBlockStyle($this->blockName, 'editor.css');
+    }
+
+    /**
+     * Register block assets for frontend and editor
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function blockAssets(): void
+    {
+        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }

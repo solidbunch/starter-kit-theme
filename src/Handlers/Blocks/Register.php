@@ -70,8 +70,13 @@ class Register
             if (str_starts_with($blockName, '_') || !file_exists($blockPath . '/block.json')) {
                 continue;
             }
+
             // Assuming each block has a BlockRenderer class in the appropriate namespace
             $Block = 'StarterKitBlocks\\' . $blockName . '\\Block';
+
+            if (!class_exists($Block)) {
+                continue;
+            }
 
             // Instantiate the block class
             try {
