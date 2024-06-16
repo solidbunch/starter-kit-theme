@@ -78,7 +78,7 @@
       }
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  "editorScript": "block-image-index-script",
+  "editorStyle": "block-image-editor-style",
+  "style": "block-image-view-style"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\Column;
+namespace StarterKitBlocks\Row;
 
 defined('ABSPATH') || exit;
 
@@ -15,7 +15,7 @@ use StarterKit\Helper\NotFoundException;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends BlockAbstract
+class Block extends BlockAbstract
 {
     /**
      * Register rest api endpoints
@@ -47,6 +47,7 @@ class BlockRenderer extends BlockAbstract
             'index.js',
             ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
         );
+        Assets::registerBlockStyle($this->blockName, 'editor.css');
     }
 
     /**

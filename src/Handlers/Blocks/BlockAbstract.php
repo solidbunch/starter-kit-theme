@@ -37,6 +37,10 @@ abstract class BlockAbstract implements BlockInterface
      * BlockAbstract constructor.
      *
      * @param $blockName
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public function __construct($blockName)
     {

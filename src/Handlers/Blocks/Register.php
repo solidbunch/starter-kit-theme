@@ -53,6 +53,7 @@ class Register
      * @throws ContainerExceptionInterface
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
+     * @throws Throwable
      */
     public static function registerBlocks(): void
     {
@@ -70,122 +71,14 @@ class Register
                 continue;
             }
             // Assuming each block has a BlockRenderer class in the appropriate namespace
-            $blockClass = 'StarterKitBlocks\\' . $blockName . '\\BlockRenderer';
+            $Block = 'StarterKitBlocks\\' . $blockName . '\\Block';
 
-            // Instantiate the block renderer class
+            // Instantiate the block class
             try {
-                new $blockClass($blockName);
+                new $Block($blockName);
             } catch (Throwable $throwable) {
                 ErrorHandler::handleThrowable($throwable);
             }
-
-
-            //self::registerBlockTypeFromMetadata();
-
-            //self::registerBlocksRestApiEndpoints($blockNamespace);
-
-            //self::registerBlockOnInitFunction($blockNamespace);
-
-            //self::registerBlockAssets($blockNamespace, $blockName);
         }
-    }
-
-    /**
-     * Register block type from block.json metadata file
-     * And register callback from block folder controller php file if exists
-     *
-     * @param string $blockMetaPath
-     * @param string $blockNamespace
-     *
-     * @return void
-     */
-    private static function registerBlockTypeFromMetadata(string $blockMetaPath, string $blockNamespace): void
-    {
-        $blockTypeArgs = [];
-
-        if (method_exists($blockNamespace, 'blockServerSideCallback')) {
-            $blockTypeArgs['render_callback'] = function ($attributes, $content, $block) use ($blockNamespace) {
-                return call_user_func(
-                    [
-                        $blockNamespace,
-                        'blockServerSideCallback',
-                    ],
-                    $attributes,
-                    $content,
-                    $block
-                );
-            };
-        }
-
-        register_block_type_from_metadata($blockMetaPath, $blockTypeArgs);
-    }
-
-    /**
-     * If we are calling registerBlocks() function on init hook,
-     * we can call blockOnInit() function from block folder controller php file if exists
-     *
-     * @param string $blockNamespace
-     *
-     * @return void
-     */
-    private static function registerBlockOnInitFunction(string $blockNamespace): void
-    {
-        if (!method_exists($blockNamespace, 'blockOnInitFunction')) {
-            return;
-        }
-
-        call_user_func(
-            [
-                $blockNamespace,
-                'blockOnInit',
-            ]
-        );
-    }
-
-    /**
-     * Register rest api callback from block folder controller php file if exists
-     *
-     * @param string $blockNamespace
-     *
-     * @return void
-     */
-    private static function registerBlocksRestApiEndpoints(string $blockNamespace): void
-    {
-        if (!method_exists($blockNamespace, 'blockRestApiEndpoints')) {
-            return;
-        }
-
-        add_action('rest_api_init', function () use ($blockNamespace) {
-            call_user_func(
-                [
-                    $blockNamespace,
-                    'blockRestApiEndpoints',
-                ]
-            );
-        });
-    }
-
-
-    /**
-     *
-     *
-     * @param string $blockNamespace
-     * @param string $blockName
-     *
-     * @return void
-     */
-    private static function registerBlockAssets(string $blockNamespace, string $blockName): void
-    {
-        if (!method_exists($blockNamespace, 'blockAssets')) {
-            return;
-        }
-
-        call_user_func(
-            [
-                $blockNamespace,
-                'blockAssets',
-            ],
-            $blockName
-        );
     }
 }

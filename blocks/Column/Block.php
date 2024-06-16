@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\Section;
+namespace StarterKitBlocks\Column;
 
 defined('ABSPATH') || exit;
 
@@ -15,7 +15,7 @@ use StarterKit\Helper\NotFoundException;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends BlockAbstract
+class Block extends BlockAbstract
 {
     /**
      * Register rest api endpoints
@@ -32,7 +32,7 @@ class BlockRenderer extends BlockAbstract
     }
 
     /**
-     * Register block editor assets
+     * Register block assets for frontend and editor
      *
      * @return void
      *

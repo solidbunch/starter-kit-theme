@@ -13,7 +13,7 @@
   "styles": [],
   "supports": {},
   "example": {},
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  "editorScript": "block-pricing-table-index-script",
+  "editorStyle": "block-pricing-table-editor-style",
+  "style": "block-pricing-table-view-style"
 }

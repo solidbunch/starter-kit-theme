@@ -20,7 +20,5 @@
       "default": "container"
     }
   },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  "editorScript": "block-container-index-script"
 }

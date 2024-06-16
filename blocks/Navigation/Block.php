@@ -17,15 +17,22 @@ use Throwable;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends BlockAbstract
+class Block extends BlockAbstract
 {
     /**
-     * BlockRenderer constructor.
+     * Block constructor.
      *
      * @param $blockName
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public function __construct($blockName)
     {
+
+        // Todo vvv how we can correctly connect the callback function to the block
+        // Use it in constructor or add separate function with interface?
         $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
 
         parent::__construct($blockName);
@@ -213,6 +220,7 @@ class BlockRenderer extends BlockAbstract
      */
     public function blockEditorAssets(): void
     {
+        // ToDo vvv move to abstract class?
         Assets::registerBlockScript(
             $this->blockName,
             'index.js',

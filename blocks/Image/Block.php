@@ -5,8 +5,11 @@ namespace StarterKitBlocks\Image;
 defined('ABSPATH') || exit;
 
 use Exception;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
@@ -20,8 +23,24 @@ use WPRI\ResponsiveImages\SrcsetItem;
  *
  * @package    Starter Kit
  */
-class BlockRenderer extends BlockAbstract
+class Block extends BlockAbstract
 {
+    /**
+     * Block constructor.
+     *
+     * @param $blockName
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function __construct($blockName)
+    {
+        $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
+
+        parent::__construct($blockName);
+    }
+
     /**
      * Block server side render callback
      * Used in register block type from metadata
@@ -35,7 +54,7 @@ class BlockRenderer extends BlockAbstract
      * @throws NotFoundException
      * @throws Throwable
      */
-    public static function blockServerSideCallback(array $attributes, string $content, object $block): string
+    public function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         $templateData = $attrs = [];
 
@@ -93,12 +112,12 @@ class BlockRenderer extends BlockAbstract
             ? $attributes['link']
             : [];
 
-        $templateData['blockClass'] = self::generateBlockClasses($attributes);
+        $templateData['blockClass'] = $this->generateBlockClasses($attributes);
         $templateData['link']       = $link;
 
         // Show image without SrcSet
         if ((Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax()) || $editorTemplate) || empty($mainImageId)) {
-            $templateData['imgHtml'] = self::showSimpleImage(
+            $templateData['imgHtml'] = $this->showSimpleImage(
                 $mainImageUrl,
                 $imgAlt,
                 $mainImageWidth,
@@ -107,11 +126,11 @@ class BlockRenderer extends BlockAbstract
                 $attrs
             );
 
-            return self::loadBlockView('layout', $templateData);
+            return $this->loadBlockView('layout', $templateData);
         }
 
         // Making resize
-        $templateData['imgHtml'] = self::showImageWithSrcSet(
+        $templateData['imgHtml'] = $this->showImageWithSrcSet(
             $mainImageUrl,
             $imgAlt,
             $mainImageWidth,
@@ -122,7 +141,7 @@ class BlockRenderer extends BlockAbstract
             $attrs
         );
 
-        return self::loadBlockView('layout', $templateData);
+        return $this->loadBlockView('layout', $templateData);
     }
 
     /**
@@ -137,6 +156,8 @@ class BlockRenderer extends BlockAbstract
      * @param $attrs
      *
      * @return string
+     *
+     * @throws Throwable
      */
     private static function showSimpleImage(
         $mainImageUrl,
@@ -174,9 +195,10 @@ class BlockRenderer extends BlockAbstract
      * @param $attrs
      *
      * @return string
+     *
      * @throws Throwable
      */
-    private static function showImageWithSrcSet(
+    private function showImageWithSrcSet(
         $mainImageUrl,
         $imgAlt,
         $mainImageWidth,
@@ -261,5 +283,52 @@ class BlockRenderer extends BlockAbstract
         }
 
         return '';
+    }
+
+    /**
+     * Register rest api endpoints
+     * Runs by abstract constructor
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function blockRestApiEndpoints(): void
+    {
+    }
+
+    /**
+     * Register block editor assets
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function blockEditorAssets(): void
+    {
+        Assets::registerBlockScript(
+            $this->blockName,
+            'index.js',
+            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
+        );
+        Assets::registerBlockStyle($this->blockName, 'editor.css');
+    }
+
+    /**
+     * Register block assets for frontend and editor
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     */
+    public function blockAssets(): void
+    {
+        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }

@@ -26,5 +26,5 @@
       "default": "none"
     }
   },
-  "editorScript": "file:build/index.js"
+  "editorScript": "block-paragraph-index-script"
 }

@@ -23,5 +23,5 @@
       }
     }
   },
-  "editorScript": "file:build/index.js"
+  "editorScript": "block-button-index-script"
 }
