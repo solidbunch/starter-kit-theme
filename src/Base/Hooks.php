@@ -76,6 +76,7 @@ class Hooks
         /************************************
          *            Front
          ************************************/
+        add_filter('wpcf7_autop_or_not', '__return_false');
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
