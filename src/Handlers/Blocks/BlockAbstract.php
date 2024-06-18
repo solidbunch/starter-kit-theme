@@ -209,12 +209,16 @@ abstract class BlockAbstract implements BlockInterface
             $media = 'all';
 
             // Prepare handle based on type
-            $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-' . basename($asset['file'], strstr($asset['file'], '.')) . '-';
-            $handle      = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
+            $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-'
+                           . basename($asset['file'], strstr($asset['file'], '.')) . '-';
+
+            $handle = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
 
             // Check environment and type for proper registration
-            if ((is_admin() && in_array($type, ['editor_script', 'script', 'editor_style', 'style'])) ||
-                (!is_admin() && in_array($type, ['script', 'view_script', 'style', 'view_style']))) {
+            if (
+                (is_admin() && in_array($type, ['editor_script', 'script', 'editor_style', 'style'])) ||
+                (!is_admin() && in_array($type, ['script', 'view_script', 'style', 'view_style']))
+            ) {
                 if (str_contains($type, 'script')) {
                     wp_register_script($handle, $fileUri, $deps, $ver, $args);
                 } else {

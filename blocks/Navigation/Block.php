@@ -92,9 +92,8 @@ class Block extends BlockAbstract
         $templateData = [
             'attributes' => $attributes,
             'menuTemplate' => $this->loadBlockView('nav-menu', [
-                    'menuTree' => $this->buildMenuTree($menuItems),
-                ]
-            ),
+                'menuTree' => $this->buildMenuTree($menuItems),
+            ]),
         ];
 
         // Render the main navigation layout
@@ -146,18 +145,16 @@ class Block extends BlockAbstract
     public function blockRestApiEndpoints(): void
     {
         register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
-                'methods' => 'GET',
-                'callback' => [$this, 'getMenuLocations'],
-                'permission_callback' => [$this, 'getMenusPermissionCheck'],
-            ]
-        );
+            'methods' => 'GET',
+            'callback' => [$this, 'getMenuLocations'],
+            'permission_callback' => [$this, 'getMenusPermissionCheck'],
+        ]);
 
         register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
-                'methods' => 'GET',
-                'callback' => [$this, 'getMenus'],
-                'permission_callback' => [$this, 'getMenusPermissionCheck'],
-            ]
-        );
+            'methods' => 'GET',
+            'callback' => [$this, 'getMenus'],
+            'permission_callback' => [$this, 'getMenusPermissionCheck'],
+        ]);
     }
 
     /**

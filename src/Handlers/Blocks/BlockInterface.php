@@ -8,8 +8,6 @@ use StarterKit\Helper\NotFoundException;
 
 interface BlockInterface
 {
-
-
     /**
      * Server side render callback function, used only if block need to be rendered on server side
      * Not mandatory
