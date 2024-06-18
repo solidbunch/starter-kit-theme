@@ -12,8 +12,5 @@
   "textdomain": "",
   "styles": [],
   "supports": {},
-  "example": {},
-  "editorScript": "block-pricing-table-index-script",
-  "editorStyle": "block-pricing-table-editor-style",
-  "style": "block-pricing-table-view-style"
+  "example": {}
 }

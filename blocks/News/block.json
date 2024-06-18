@@ -18,8 +18,5 @@
       "type": "string",
       "default": ""
     }
-  },
-  "editorScript": "block-news-index-script",
-  "editorStyle": "block-news-editor-style",
-  "style": "block-news-view-style"
+  }
 }

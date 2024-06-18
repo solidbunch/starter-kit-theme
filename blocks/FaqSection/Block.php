@@ -30,7 +30,7 @@ class Block extends BlockAbstract
             ],
             'view_script' => [
                 'file' => 'view.js',
-                'dependencies' => ['dropdown-script', 'offcanvas-script'],
+                'dependencies' => ['collapse-script'],
             ],
             'style' => [
                 'file' => 'style.css',

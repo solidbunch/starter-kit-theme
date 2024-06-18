@@ -39,9 +39,5 @@
       "selector": "div",
       "attribute": "data-align"
     }
-  },
-  "editorScript": "block-starter-block-index-script",
-  "viewScript": "block-starter-block-view-script",
-  "editorStyle": "block-starter-block-editor-style",
-  "style": "block-starter-block-view-style"
+  }
 }

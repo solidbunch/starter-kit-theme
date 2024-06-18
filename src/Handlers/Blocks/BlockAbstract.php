@@ -59,6 +59,9 @@ abstract class BlockAbstract implements BlockInterface
         // We should register block assets before block registration
         $this->registerBlockAssets();
 
+        // We should add necessary block arguments before block registration
+        $this->registerBlockArgs();
+
         $this->registerBlock();
 
         add_action('rest_api_init', [$this, 'blockRestApiEndpoints']);

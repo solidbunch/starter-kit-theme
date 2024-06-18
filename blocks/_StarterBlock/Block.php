@@ -18,22 +18,38 @@ use StarterKit\Helper\NotFoundException;
 class Block extends BlockAbstract
 {
     /**
-     * Block constructor.
+     * Block assets for editor and frontend
      *
-     * @param $blockName
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @var array
      */
-    public function __construct($blockName)
+    protected array $blockAssets
+        = [
+            'editor_script' => [
+                'file' => 'index.js',
+                'dependencies' => ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
+            ],
+            'view_script' => [
+                'file' => 'view.js',
+                'dependencies' => [],
+            ],
+            'editor_style' => [
+                'file' => 'editor.css',
+                'dependencies' => [],
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ],
+            'view_style' => [],
+        ];
+
+    /**
+     * Register block additional arguments including server side render callback
+     *
+     * @return void
+     */
+    public function registerBlockArgs(): void
     {
-
-        // Todo vvv how we can correctly connect the callback function to the block
-        // Use it in constructor or add separate function with interface?
-        //$this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
-
-        parent::__construct($blockName);
     }
 
     /**
@@ -48,39 +64,5 @@ class Block extends BlockAbstract
      */
     public function blockRestApiEndpoints(): void
     {
-    }
-
-    /**
-     * Register block editor assets
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockEditorAssets(): void
-    {
-        Assets::registerBlockScript(
-            $this->blockName,
-            'index.js',
-            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
-        );
-        Assets::registerBlockStyle($this->blockName, 'editor.css');
-    }
-
-    /**
-     * Register block assets for frontend and editor
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockAssets(): void
-    {
-        Assets::registerBlockScript($this->blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
-        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }
