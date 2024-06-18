@@ -25,6 +25,5 @@
       "type": "string",
       "default": "none"
     }
-  },
-  "editorScript": "block-paragraph-index-script"
+  }
 }

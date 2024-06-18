@@ -51,7 +51,5 @@
         "stretch"
       ]
     }
-  },
-  "editorScript":  "block-row-index-script",
-  "editorStyle": "block-row-editor-style"
+  }
 }

@@ -19,6 +19,5 @@
       "type": "string",
       "default": "container"
     }
-  },
-  "editorScript": "block-container-index-script"
+  }
 }

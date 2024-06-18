@@ -45,6 +45,16 @@ class Block extends BlockAbstract
         ];
 
     /**
+     * Register block additional arguments including server side render callback
+     *
+     * @return void
+     */
+    public function registerBlockArgs(): void
+    {
+        $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
+    }
+
+    /**
      * Block server side render callback
      * Used in register block type from metadata
      *
@@ -59,7 +69,7 @@ class Block extends BlockAbstract
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
-        // Get all the locations
+        // Get all locations
         $locations = get_nav_menu_locations();
 
         // Get object id by location

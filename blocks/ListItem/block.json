@@ -27,6 +27,5 @@
       "source": "html",
       "default": ""
     }
-  },
-  "editorScript": "block-list-item-index-script"
+  }
 }

@@ -75,10 +75,6 @@ abstract class BlockAbstract implements BlockInterface
      */
     public function registerBlock(): void
     {
-        if (method_exists($this, 'blockServerSideCallback')) {
-            $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
-        }
-        //elog($this->blockArgs);
         register_block_type_from_metadata(
             Config::get('blocksDir') . $this->blockName,
             $this->blockArgs
@@ -230,6 +226,7 @@ abstract class BlockAbstract implements BlockInterface
             }
 
             if (!in_array($type, ['editor_script', 'editor_style', 'script', 'view_script', 'style', 'view_style'])) {
+                // ToDo vvv add correct error logging
                 error_log("Unsupported asset type or context: $type");
             }
         }

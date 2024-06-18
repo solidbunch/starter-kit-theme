@@ -9,16 +9,12 @@ use StarterKit\Helper\NotFoundException;
 interface BlockInterface
 {
     /**
-     * Server side render callback function, used only if block need to be rendered on server side
-     * Not mandatory
+     * Register block additional arguments including server side render callback
+     * $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
      *
-     * @param array  $attributes
-     * @param string $content
-     * @param object $block
-     *
-     * @return string
+     * @return void
      */
-    //public function blockServerSideCallback(array $attributes, string $content, object $block): string;
+    public function registerBlockArgs(): void;
 
     /**
      * Register rest api endpoints

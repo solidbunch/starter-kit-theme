@@ -77,8 +77,5 @@
         }
       }
     }
-  },
-  "editorScript": "block-image-index-script",
-  "editorStyle": "block-image-editor-style",
-  "style": "block-image-view-style"
+  }
 }

@@ -26,19 +26,34 @@ use WPRI\ResponsiveImages\SrcsetItem;
 class Block extends BlockAbstract
 {
     /**
-     * Block constructor.
+     * Block assets for editor and frontend
      *
-     * @param $blockName
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @var array
      */
-    public function __construct($blockName)
-    {
-        $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
+    protected array $blockAssets
+        = [
+            'editor_script' => [
+                'file' => 'index.js',
+                'dependencies' => ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
+            ],
+            'editor_style' => [
+                'file' => 'editor.css',
+                'dependencies' => [],
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ]
+        ];
 
-        parent::__construct($blockName);
+    /**
+     * Register block additional arguments including server side render callback
+     *
+     * @return void
+     */
+    public function registerBlockArgs(): void
+    {
+        $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
     }
 
     /**
@@ -297,38 +312,5 @@ class Block extends BlockAbstract
      */
     public function blockRestApiEndpoints(): void
     {
-    }
-
-    /**
-     * Register block editor assets
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockEditorAssets(): void
-    {
-        Assets::registerBlockScript(
-            $this->blockName,
-            'index.js',
-            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
-        );
-        Assets::registerBlockStyle($this->blockName, 'editor.css');
-    }
-
-    /**
-     * Register block assets for frontend and editor
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockAssets(): void
-    {
-        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }

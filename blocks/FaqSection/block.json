@@ -14,8 +14,5 @@
   "textdomain": "",
   "styles": [],
   "supports": {},
-  "example": {},
-  "editorScript": "block-faq-section-index-script",
-  "viewScript": "block-faq-section-view-script",
-  "style": "block-faq-section-view-style"
+  "example": {}
 }

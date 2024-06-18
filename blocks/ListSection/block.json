@@ -17,6 +17,5 @@
       "type": "string",
       "default": "ul"
     }
-  },
-  "editorScript": "block-list-section-index-script"
+  }
 }

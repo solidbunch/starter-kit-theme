@@ -44,6 +44,5 @@
       "source": "html",
       "selector": ".__answer-text"
     }
-  },
-  "editorScript": "block-faq-single-index-script"
+  }
 }
