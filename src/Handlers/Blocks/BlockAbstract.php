@@ -10,6 +10,7 @@ use RuntimeException;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
+use StarterKit\Helper\Utils;
 use Throwable;
 
 /**
@@ -34,29 +35,33 @@ abstract class BlockAbstract implements BlockInterface
     protected array $blockArgs = [];
 
     /**
+     * Block assets for editor and frontend
+     *
+     * @var array
+     */
+    protected array $blockAssets = [];
+
+    /**
      * BlockAbstract constructor.
+     * Runs on 'init' hook
      *
      * @param $blockName
      *
      * @throws ContainerExceptionInterface
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
+     * @throws Throwable
      */
     public function __construct($blockName)
     {
         $this->blockName = $blockName;
 
-        // Runs on 'init' hook
+        // We should register block assets before block registration
+        $this->registerBlockAssets();
+
         $this->registerBlock();
 
-        //ToDo vvv Do we need to add 'init' and other hooks here?
-        // (enqueue_block_editor_assets, enqueue_block_assets, etc.)
         add_action('rest_api_init', [$this, 'blockRestApiEndpoints']);
-        //$this->blockRestApiEndpoints();
-
-        // ToDo vvv maybe move block Assets functions to abstract class?
-        add_action('enqueue_block_editor_assets', [$this, 'blockEditorAssets']);
-        add_action('enqueue_block_assets', [$this, 'blockAssets']);
     }
 
     /**
@@ -64,13 +69,16 @@ abstract class BlockAbstract implements BlockInterface
      * Add your server side render callback into $this->blockArgs
      *
      * @return void
-     * //ToDo vvv maybe add try catch to config get?
      * @throws NotFoundException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
     public function registerBlock(): void
     {
+        if (method_exists($this, 'blockServerSideCallback')) {
+            $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
+        }
+        //elog($this->blockArgs);
         register_block_type_from_metadata(
             Config::get('blocksDir') . $this->blockName,
             $this->blockArgs
@@ -158,5 +166,68 @@ abstract class BlockAbstract implements BlockInterface
         }
 
         return $spacerClasses;
+    }
+
+    /**
+     * Register block editor and front assets
+     * Functionality moved from default function because there is no ability to use dependencies
+     * No need to add to block.json:
+     *   "editorScript": "",
+     *   "viewScript": "",
+     *   "editorStyle": "",
+     *   "style": ""
+     * Use $blockAssets property instead
+     *
+     * @return void
+     *
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
+     * @throws Throwable
+     */
+    public function registerBlockAssets(): void
+    {
+        $blockUri = Config::get('blocksUri') . $this->blockName . '/build/';
+        $blockDir = Config::get('blocksDir') . $this->blockName . '/build/';
+
+        foreach ($this->blockAssets as $type => $asset) {
+            if (empty($asset['file'])) {
+                continue;
+            }
+
+            $filePath = $blockDir . $asset['file'];
+            $fileUri  = $blockUri . $asset['file'];
+            $deps     = $asset['dependencies'];
+            $ver      = filemtime($filePath);
+
+            // Default for scripts
+            $args = [
+                'strategy' => !is_admin() ? 'defer' : '',
+                'in_footer' => true,
+            ];
+            // Default for styles
+            $media = 'all';
+
+            // Prepare handle based on type
+            $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-' . basename($asset['file'], strstr($asset['file'], '.')) . '-';
+            $handle      = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
+
+            // Check environment and type for proper registration
+            if ((is_admin() && in_array($type, ['editor_script', 'script', 'editor_style', 'style'])) ||
+                (!is_admin() && in_array($type, ['script', 'view_script', 'style', 'view_style']))) {
+                if (str_contains($type, 'script')) {
+                    wp_register_script($handle, $fileUri, $deps, $ver, $args);
+                } else {
+                    wp_register_style($handle, $fileUri, $deps, $ver, $media);
+                }
+
+                // Store registered handles for use in block registration
+                $this->blockArgs[$type . '_handles'][] = $handle;
+            }
+
+            if (!in_array($type, ['editor_script', 'editor_style', 'script', 'view_script', 'style', 'view_style'])) {
+                error_log("Unsupported asset type or context: $type");
+            }
+        }
     }
 }

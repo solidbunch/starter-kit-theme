@@ -17,7 +17,7 @@ use Throwable;
  *
  * @package    Starter Kit
  */
-class Register
+class Init
 {
     /**
      * Add Gutenberg block category
@@ -32,7 +32,7 @@ class Register
      *
      * @see https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
      */
-    public static function registerBlocksCategories(array $categories): array
+    public static function loadBlocksCategories(array $categories): array
     {
         return array_merge(
             [
@@ -55,7 +55,7 @@ class Register
      * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
-    public static function registerBlocks(): void
+    public static function loadBlocks(): void
     {
         if (!function_exists('register_block_type_from_metadata')) {
             return;

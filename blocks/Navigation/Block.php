@@ -7,7 +7,6 @@ defined('ABSPATH') || exit;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use Throwable;
@@ -19,26 +18,31 @@ use Throwable;
  */
 class Block extends BlockAbstract
 {
-    //protected string $render_callback = 'blockServerSideCallback';
-
     /**
-     * Block constructor.
+     * Block assets for editor and frontend
      *
-     * @param $blockName
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @var array
      */
-    public function __construct($blockName)
-    {
-
-        // Todo vvv how we can correctly connect the callback function to the block
-        // Use it in constructor or add separate function with interface?
-        $this->blockArgs = ['render_callback' => [$this, 'blockServerSideCallback']];
-
-        parent::__construct($blockName);
-    }
+    protected array $blockAssets
+        = [
+            'editor_script' => [
+                'file' => 'index.js',
+                'dependencies' => ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
+            ],
+            'view_script' => [
+                'file' => 'view.js',
+                'dependencies' => ['dropdown-script', 'offcanvas-script'],
+            ],
+            'editor_style' => [
+                'file' => 'editor.css',
+                'dependencies' => [],
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ],
+            'view_style' => [],
+        ];
 
     /**
      * Block server side render callback
@@ -86,10 +90,11 @@ class Block extends BlockAbstract
         //wlog($menuItems);
         // Prepare template data
         $templateData = [
-            'attributes'   => $attributes,
+            'attributes' => $attributes,
             'menuTemplate' => $this->loadBlockView('nav-menu', [
-                'menuTree' => $this->buildMenuTree($menuItems),
-            ]),
+                    'menuTree' => $this->buildMenuTree($menuItems),
+                ]
+            ),
         ];
 
         // Render the main navigation layout
@@ -141,16 +146,18 @@ class Block extends BlockAbstract
     public function blockRestApiEndpoints(): void
     {
         register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
-            'methods'             => 'GET',
-            'callback'            => [$this, 'getMenuLocations'],
-            'permission_callback' => [$this, 'getMenusPermissionCheck'],
-        ]);
+                'methods' => 'GET',
+                'callback' => [$this, 'getMenuLocations'],
+                'permission_callback' => [$this, 'getMenusPermissionCheck'],
+            ]
+        );
 
         register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
-            'methods'             => 'GET',
-            'callback'            => [$this, 'getMenus'],
-            'permission_callback' => [$this, 'getMenusPermissionCheck'],
-        ]);
+                'methods' => 'GET',
+                'callback' => [$this, 'getMenus'],
+                'permission_callback' => [$this, 'getMenusPermissionCheck'],
+            ]
+        );
     }
 
     /**
@@ -185,15 +192,15 @@ class Block extends BlockAbstract
 
         $menusObjects = wp_get_nav_menus(
             [
-                'taxonomy'   => 'nav_menu',
+                'taxonomy' => 'nav_menu',
                 'hide_empty' => false,
-                'orderby'    => 'name',
+                'orderby' => 'name',
             ]
         );
 
         foreach ($menusObjects as $menuObject) {
             $menus[] = [
-                'id'   => $menuObject->term_id,
+                'id' => $menuObject->term_id,
                 'name' => $menuObject->name,
             ];
         }
@@ -209,50 +216,5 @@ class Block extends BlockAbstract
     public function getMenusPermissionCheck(): bool
     {
         return current_user_can('edit_posts');
-    }
-
-    /**
-     * Register block editor assets
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockEditorAssets(): void
-    {
-
-/*        $this->assets = [
-            'scripts' => [
-                'view.js' => ['dropdown-script', 'offcanvas-script'],
-            ],
-            'styles'  => [
-                'view.css',
-            ],
-        ];*/
-
-        // ToDo vvv move to abstract class?
-        Assets::registerBlockScript(
-            $this->blockName,
-            'index.js',
-            ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor']
-        );
-        Assets::registerBlockStyle($this->blockName, 'editor.css');
-    }
-
-    /**
-     * Register block assets for frontend and editor
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockAssets(): void
-    {
-        Assets::registerBlockScript($this->blockName, 'view.js', ['dropdown-script', 'offcanvas-script']);
-        Assets::registerBlockStyle($this->blockName, 'view.css');
     }
 }

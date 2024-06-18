@@ -20,29 +20,33 @@ class Assets
      * Register theme script from /assets folder
      * Autogenerate handle with name '<filename>-script' if not provided
      *
-     * @param string  $relativePath Relative path to the file
-     * @param array   $deps         Dependencies
-     * @param string  $handle       Name of the script
-     * @param boolean $inFooter     connect to footer
+     * @param string $relativePath Relative path to the file
+     * @param array  $deps         Dependencies
+     * @param string $handle       Name of the script
+     * @param array  $args         An array of additional script loading strategies.
      *
      * @return void
      *
-     * @throws NotFoundExceptionInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function registerThemeScript(
         string $relativePath,
         array $deps = [],
         string $handle = '',
-        bool $inFooter = true
+        array $args
+        = [
+            'strategy'  => 'defer',
+            'in_footer' => true,
+        ]
     ): void {
         wp_register_script(
             $handle ?: basename($relativePath, '.js') . '-script',
             Config::get('assetsUri') . $relativePath,
             $deps,
             filemtime(Config::get('assetsDir') . $relativePath),
-            $inFooter
+            $args
         );
     }
 
@@ -53,7 +57,7 @@ class Assets
      * @param string $relativePath Relative path to the file
      * @param array  $deps         Dependencies
      * @param string $handle       Name of the style
-     * @param string $media
+     * @param string $media        Media type
      *
      * @return void
      *
@@ -80,31 +84,35 @@ class Assets
      * Register block script from blocks folder
      * Autogenerate handle with name 'block-<BlockName>-script' if not provided
      *
-     * @param string  $blockName Name of the block folder
-     * @param string  $fileName  File name of the script in build folder
-     * @param array   $deps      Dependencies
-     * @param string  $handle    Name of the script
-     * @param boolean $inFooter  connect to footer
+     * @param string $blockName Name of the block folder
+     * @param string $fileName  File name of the script in build folder
+     * @param array  $deps      Dependencies
+     * @param string $handle    Name of the script
+     * @param array  $args      An array of additional script loading strategies.
      *
      * @return void
      *
-     * @throws NotFoundExceptionInterface
      * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      */
     public static function registerBlockScript(
         string $blockName,
         string $fileName,
         array $deps = [],
         string $handle = '',
-        bool $inFooter = true
+        array $args
+        = [
+            'strategy'  => 'defer',
+            'in_footer' => true,
+        ]
     ): void {
         wp_register_script(
             $handle ?: 'block-' . Utils::camelToKebab($blockName) . '-' . basename($fileName, '.js') . '-script',
             Config::get('blocksUri') . $blockName . '/build/' . $fileName,
             $deps,
             filemtime(Config::get('blocksDir') . $blockName . '/build/' . $fileName),
-            $inFooter
+            $args
         );
     }
 

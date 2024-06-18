@@ -127,7 +127,9 @@ class Front
             return $src;
         }
 
-        return add_query_arg('ver', filemtime($style->extra['path']), $src);
+        $ver = filemtime($style->extra['path']);
+
+        return add_query_arg('ver', $ver, $src);
     }
 
     /**

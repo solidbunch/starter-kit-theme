@@ -8,6 +8,20 @@ use StarterKit\Helper\NotFoundException;
 
 interface BlockInterface
 {
+
+
+    /**
+     * Server side render callback function, used only if block need to be rendered on server side
+     * Not mandatory
+     *
+     * @param array  $attributes
+     * @param string $content
+     * @param object $block
+     *
+     * @return string
+     */
+    //public function blockServerSideCallback(array $attributes, string $content, object $block): string;
+
     /**
      * Register rest api endpoints
      * Runs by abstract constructor
@@ -19,26 +33,4 @@ interface BlockInterface
      * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void;
-
-    /**
-     * Register block editor assets
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockEditorAssets(): void;
-
-    /**
-     * Register block assets for frontend and editor
-     *
-     * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
-     */
-    public function blockAssets(): void;
 }

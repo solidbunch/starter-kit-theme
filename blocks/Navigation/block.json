@@ -26,9 +26,5 @@
       "type": "string",
       "default": "navbar-expand"
     }
-  },
-  "editorScript": "block-navigation-index-script",
-  "viewScript": "block-navigation-view-script",
-  "editorStyle": "block-navigation-editor-style",
-  "style": "block-navigation-view-style"
+  }
 }

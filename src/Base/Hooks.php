@@ -40,9 +40,8 @@ class Hooks
         /************************************
          *         Gutenberg blocks
          ************************************/
-        // ToDo vvv maybe move blocks functions to separate class to App as CLI?
-        add_action('block_categories_all', [Handlers\Blocks\Register::class, 'registerBlocksCategories']);
-        add_action('init', [Handlers\Blocks\Register::class, 'registerBlocks']);
+        add_action('block_categories_all', [Handlers\Blocks\Init::class, 'loadBlocksCategories']);
+        add_action('init', [Handlers\Blocks\Init::class, 'loadBlocks']);
         add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
         add_action('init', [Handlers\Blocks\DisableDefaultBlocks::class, 'init']);
 
