@@ -103,6 +103,6 @@ class Hooks
         add_action('init', [Handlers\Optimization\CleanAttributes::class, 'init']);
         add_action('init', [Handlers\Optimization\DisableDefaultBlocks::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
-        add_action('rest_api_init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace']);
+        add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restrictRestApiToWhitelistOnly'], 10, 3);
     }
 }
