@@ -75,7 +75,7 @@ class Hooks
         /************************************
          *            Front
          ************************************/
-        add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
+        add_action('wp_loaded', [Handlers\Front::class, 'enqueueCriticalAssets'], );
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueBootstrap'], 10);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
