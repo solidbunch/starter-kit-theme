@@ -82,4 +82,21 @@ class Init
             }
         }
     }
+
+    public static function addSpacerAttributeToBlocks($args): array
+    {
+        $args['attributes']['spacers'] = [
+            'type' => 'object',
+            'default' => [
+                'xs' => [],
+                'sm' => [],
+                'md' => [],
+                'lg' => [],
+                'xl' => [],
+                'xxl' => [],
+            ],
+        ];
+
+        return $args;
+    }
 }

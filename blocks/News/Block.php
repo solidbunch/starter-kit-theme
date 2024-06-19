@@ -6,9 +6,8 @@ defined('ABSPATH') || exit;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Assets;
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\Blocks\BlockAbstract;
+use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Repository\NewsRepository;
 use Throwable;
@@ -42,7 +41,7 @@ class Block extends BlockAbstract
             'style' => [
                 'file' => 'style.css',
                 'dependencies' => [],
-            ]
+            ],
         ];
 
     /**
@@ -75,6 +74,8 @@ class Block extends BlockAbstract
         $templateData['newsData']     = 'Some data';
         $templateData['newsCategory'] = $attributes['category'] ?? true;
 
+        $templateData['blockClass'] = $this->generateBlockClasses($attributes);
+
         return $this->loadBlockView('layout', $templateData);
     }
 
@@ -91,8 +92,8 @@ class Block extends BlockAbstract
     public function blockRestApiEndpoints(): void
     {
         register_rest_route(Config::get('restApiNamespace'), '/news', [
-            'methods'             => 'GET,POST',
-            'callback'            => [$this, 'getNewsCallback'],
+            'methods' => 'GET,POST',
+            'callback' => [$this, 'getNewsCallback'],
             'permission_callback' => '__return_true',
         ]);
     }

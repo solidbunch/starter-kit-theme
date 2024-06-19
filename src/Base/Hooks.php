@@ -43,6 +43,7 @@ class Hooks
         add_action('block_categories_all', [Handlers\Blocks\Init::class, 'loadBlocksCategories']);
         add_action('init', [Handlers\Blocks\Init::class, 'loadBlocks']);
         add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
+        add_filter('register_block_type_args', [Handlers\Blocks\Init::class, 'addSpacerAttributeToBlocks']);
         add_action('init', [Handlers\Blocks\DisableDefaultBlocks::class, 'init']);
 
         /************************************
@@ -75,7 +76,7 @@ class Hooks
         /************************************
          *            Front
          ************************************/
-        add_action('wp_loaded', [Handlers\Front::class, 'enqueueCriticalAssets'], );
+        add_action('wp_loaded', [Handlers\Front::class, 'enqueueCriticalAssets']);
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueBootstrap'], 10);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);

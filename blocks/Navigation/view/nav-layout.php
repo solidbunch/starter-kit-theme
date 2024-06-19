@@ -12,7 +12,10 @@ $data = $data ?? [];
 
 ?>
 
-<nav class="navbar <?php echo $data['attributes']['expand'] ?? 'navbar-expand-lg'; ?>">
+<nav class="navbar <?php
+    echo $data['attributes']['expand'] ?? 'navbar-expand-lg';
+    echo !empty($data['blockClass']) ? ' ' . $data['blockClass'] : '';
+?>">
     <button
         class="navbar-toggler ms-auto"
         type="button"

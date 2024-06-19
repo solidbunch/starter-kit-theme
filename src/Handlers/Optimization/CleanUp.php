@@ -107,9 +107,9 @@ class CleanUp
          ************************************/
         add_filter('use_default_gallery_style', '__return_false');
         add_filter('show_recent_comments_widget_style', '__return_false');
-        add_action( 'wp_enqueue_scripts', function() {
-            wp_dequeue_style( 'classic-theme-styles' );
-        }, 20 );
+        add_action('wp_enqueue_scripts', function () {
+            wp_dequeue_style('classic-theme-styles');
+        }, 20);
 
         /*************************************
          *  SVG filters and Duotone support

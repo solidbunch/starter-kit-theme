@@ -7,7 +7,6 @@ defined('ABSPATH') || exit;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\Assets;
 use StarterKit\Helper\NotFoundException;
 
 /**

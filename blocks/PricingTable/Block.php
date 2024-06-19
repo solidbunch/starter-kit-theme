@@ -4,13 +4,8 @@ namespace StarterKitBlocks\PricingTable;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\Assets;
-use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
-use StarterKit\Helper\Utils;
 use StarterKit\Repository\PricingRepository;
 use Throwable;
 
@@ -83,6 +78,8 @@ class Block extends BlockAbstract
         }
 
         $templateData['pricingPackages'] = $pricingPackages;
+
+        $templateData['blockClass'] = $this->generateBlockClasses($attributes);
 
         return $this->loadBlockView('layout', $templateData);
     }

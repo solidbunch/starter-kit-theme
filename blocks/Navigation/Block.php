@@ -104,6 +104,7 @@ class Block extends BlockAbstract
             'menuTemplate' => $this->loadBlockView('nav-menu', [
                 'menuTree' => $this->buildMenuTree($menuItems),
             ]),
+            'blockClass' => $this->generateBlockClasses($attributes),
         ];
 
         // Render the main navigation layout

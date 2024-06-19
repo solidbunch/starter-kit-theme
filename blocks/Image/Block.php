@@ -9,7 +9,6 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Handlers\Errors\ErrorHandler;
-use StarterKit\Helper\Assets;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;

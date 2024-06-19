@@ -10,8 +10,9 @@ defined('ABSPATH') || exit;
 
 $data = $data ?? [];
 
+// pt-4 pb-4 pt-sm-5 pb-sm-5
 ?>
-<div class="container pricing_section pt-4 pb-4 pt-sm-5 pb-sm-5">
+<div class="container pricing_section<?php echo !empty($data['blockClass']) ? ' ' . $data['blockClass'] : ''; ?>">
     <div class="row">
         <?php foreach ($data['pricingPackages'] as $postID => $pricingPackage) { ?>
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
