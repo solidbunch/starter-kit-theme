@@ -102,7 +102,7 @@ class Hooks
         add_action('init', [Handlers\Optimization\CleanAttributes::class, 'init']);
         add_action('init', [Handlers\Optimization\DisableDefaultBlocks::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
-        add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restrictRestApiToWhitelistOnly'], 10, 3);
+        add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restApiWhitelistOnly'], 10, 3);
 
         /************************************
          *         Contact Form 7

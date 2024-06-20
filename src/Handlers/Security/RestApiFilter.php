@@ -32,8 +32,11 @@ class RestApiFilter
      * @throws NotFoundException
      * @throws NotFoundExceptionInterface
      */
-    public static function restrictRestApiToWhitelistOnly(mixed $result, WP_REST_Server $server, WP_REST_Request $request): mixed
-    {
+    public static function restApiWhitelistOnly(
+        mixed $result,
+        WP_REST_Server $server,
+        WP_REST_Request $request
+    ): mixed {
         if (!defined('REST_REQUEST') || !Config::get('security/restrictRestApiToWhitelistOnly')) {
             return $result;
         }
@@ -72,6 +75,4 @@ class RestApiFilter
         // ToDo return 404 template
         exit;
     }
-
-
 }
