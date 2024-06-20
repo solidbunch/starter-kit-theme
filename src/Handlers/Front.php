@@ -31,18 +31,35 @@ class Front
      */
     public static function enqueueCriticalAssets(): void
     {
-        // To make it load before blocks assets we use 'wp_loaded' hook, that works not only for front-end
-        // It's because Gutenberg blocks assets loads not on 'enqueue_block_assets' hook but on render_block() function
-        if (is_admin()) {
-            return;
-        }
-
         $style = 'build/styles/theme.css';
 
         $styleUri  = Config::get('assetsUri') . $style;
         $stylePath = Config::get('assetsDir') . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
+    }
+
+    /**
+     * To make critical common styles load before blocks assets
+     * It's because Gutenberg blocks assets loads not on 'enqueue_block_assets' hook but on render_block() function
+     *
+     * https://github.com/WordPress/gutenberg/discussions/39023
+     *
+     * @param $dependencies
+     * @param $blockName
+     * @param $type
+     *
+     * @return array
+     */
+    public static function addThemeStyleDependencyToBlocks($dependencies, $blockName, $type): array
+    {
+        if ($type !== 'style' && $type !== 'view_style') {
+            return $dependencies;
+        }
+
+        $dependencies[] = 'theme-main-style';
+
+        return $dependencies;
     }
 
     /**

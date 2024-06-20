@@ -150,22 +150,34 @@ abstract class BlockAbstract implements BlockInterface
      */
     public function generateSpacersClasses(array $spacers): array
     {
-        $spacerClasses = [];
-        // ToDo store grid variables in one place - maybe scss
-        $numberOfGrid = 5;
+        if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax())) {
+            return [];
+        }
 
+        elog($spacers);
+        $spacerClasses = [];
+        $numberOfGrid  = 5; // Equivalent to BootstrapSpacers.numberOfGrid in JS
+
+        // Iterate over the values of the spacers array
         foreach ($spacers as $item) {
-            if (isset($item['valueRange'])) {
+            if (isset($item['valueRange']) && is_array($item['valueRange'])) {
+                // Iterate over the keys of valueRange
                 foreach ($item['valueRange'] as $key => $value) {
-                    $modifiedValue   = ($value === ($numberOfGrid + 1)) ? 'auto' : $value;
+                    // Modify the value if it equals numberOfGrid + 1
+                    elog($value, $numberOfGrid + 1);
+                    $modifiedValue = ($value >= ($numberOfGrid + 1)) ? 'auto' : $value;
+                    // Generate the class, excluding the '-xs' prefix
                     $modifiedClass   = str_replace('-xs', '', "$key-$modifiedValue");
                     $spacerClasses[] = $modifiedClass;
+                    elog($spacerClasses, $modifiedClass);
                 }
             }
         }
 
+        // Return an array containing all classes
         return $spacerClasses;
     }
+
 
     /**
      * Register block editor and front assets
@@ -196,8 +208,18 @@ abstract class BlockAbstract implements BlockInterface
 
             $filePath = $blockDir . $asset['file'];
             $fileUri  = $blockUri . $asset['file'];
-            $deps     = $asset['dependencies'];
-            $ver      = filemtime($filePath);
+
+            /**
+             * Fires block asset dependencies
+             */
+            $deps     = apply_filters(
+                Config::get('hooksPrefix') . '/block_asset_dependencies',
+                $asset['dependencies'],
+                $this->blockName,
+                $type
+            );
+
+            $ver = filemtime($filePath);
 
             // Default for scripts
             $args = [
@@ -209,7 +231,7 @@ abstract class BlockAbstract implements BlockInterface
 
             // Prepare handle based on type
             $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-'
-                           . basename($asset['file'], strstr($asset['file'], '.')) . '-';
+                . basename($asset['file'], strstr($asset['file'], '.')) . '-';
 
             $handle = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
 

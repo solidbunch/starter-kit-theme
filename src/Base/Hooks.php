@@ -5,6 +5,7 @@ namespace StarterKit\Base;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers;
+use StarterKit\Helper\Config;
 use StarterKitBlocks;
 
 /**
@@ -76,7 +77,8 @@ class Hooks
         /************************************
          *            Front
          ************************************/
-        add_action('wp_loaded', [Handlers\Front::class, 'enqueueCriticalAssets']);
+        add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2 );
+        add_filter(Config::get('hooksPrefix') . '/block_asset_dependencies', [Handlers\Front::class, 'addThemeStyleDependencyToBlocks'], 10, 3);
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueBootstrap'], 10);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
