@@ -76,7 +76,6 @@ class Hooks
         /************************************
          *            Front
          ************************************/
-        add_filter('wpcf7_autop_or_not', '__return_false');
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
@@ -104,5 +103,11 @@ class Hooks
         add_action('init', [Handlers\Optimization\DisableDefaultBlocks::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
         add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restrictRestApiToWhitelistOnly'], 10, 3);
+
+        /************************************
+         *         Contact Form 7
+         ************************************/
+        add_filter('wpcf7_autop_or_not', '__return_false');
+        //add_filter( 'wpcf7_load_css', '__return_false' );
     }
 }
