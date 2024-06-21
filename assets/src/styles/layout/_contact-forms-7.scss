@@ -1,0 +1,149 @@
+//contact form 7
+.wpcf7-not-valid-tip {
+  @extend .alert;
+  @extend .alert-danger;
+
+  --indent: 3px !important;
+
+  display: block;
+  padding-top: var(--indent);
+  padding-bottom: var(--indent);
+  font-size: 14px !important;
+}
+//spinner
+.wpcf7-spinner {
+  visibility: hidden;
+  // display: inline-block;
+  display: block;
+  background-color: #23282d;
+  opacity: 0.75;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 100%;
+  padding: 0;
+  position: relative;
+
+  @extend .my-3, .mx-auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: #fbfbfc;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    border: none;
+    border-radius: 100%;
+    transform-origin: 8px 8px;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+// style alert
+.wpcf7 {
+  .screen-reader-response {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+  }
+
+  form {
+    .wpcf7-response-output {
+      // border: 1px solid blue;
+      @extend .alert;
+      @extend .alert-info;
+      @extend .my-3, .mx-auto;
+      @extend .text-center;
+
+      max-width: 700px;
+    }
+
+    &.spam {
+      .wpcf7-response-output {
+        // border: 1px solid orange;
+        @extend .alert-warning;
+      }
+    }
+
+    &.invalid,
+    &.unaccepted,
+    &.payment-required {
+      .wpcf7-response-output {
+        // border: 1px solid yellow;
+        @extend .alert-primary;
+      }
+    }
+
+    &.failed,
+    &.aborted {
+      .wpcf7-response-output {
+        // border: 1px solid red;
+        @extend .alert-danger;
+      }
+    }
+
+    &.sent {
+      .wpcf7-response-output {
+        // border: 1px solid green;
+        @extend .alert-success;
+      }
+    }
+
+    &.init,
+    &.resetting,
+    &.submitting {
+      .wpcf7-response-output {
+        display: none;
+      }
+    }
+    // spinner
+    &.submitting {
+      .wpcf7-spinner {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+// animation
+
+@media (prefers-reduced-motion: reduce) {
+  .wpcf7-spinner::before {
+    animation-name: blink;
+    animation-duration: 2000ms;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

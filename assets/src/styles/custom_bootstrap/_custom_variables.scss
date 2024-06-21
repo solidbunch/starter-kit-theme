@@ -1,5 +1,13 @@
 // Bootstrap custom variables
 
+// scss-docs-start theme-color-variables
+$primary: #f7944e;
+$secondary: #6eb477;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+
 // Custom grid breakpoints
 // $grid-breakpoints: (
 // 	xs: 0,
@@ -36,10 +44,6 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-// scss-docs-start theme-color-variables
-$primary: #f7944e;
-$secondary: #6eb477;
-
 // Tint and shade percentage is set to 20% by default
 $primary-light: tint-color($primary, 20%);
 $primary-dark: shade-color($primary, 20%);
@@ -48,11 +52,6 @@ $secondary-light: tint-color($secondary, 20%);
 $secondary-dark: shade-color($secondary, 20%);
 
 $border-radius: 0;
-
-$success: #198754;
-$info: #0dcaf0;
-$warning: #ffc107;
-$danger: #dc3545;
 
 $light: $gray-100;
 $dark: $gray-900;
@@ -111,4 +110,4 @@ $input-focus-box-shadow: none;
 $input-placeholder-color: $gray-500;
 $input-bg: $white;
 $input-border-color: $gray-300;
-$input-border-radius: 6px;
+// $input-border-radius: 6px;
