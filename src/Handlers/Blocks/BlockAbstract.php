@@ -210,7 +210,7 @@ abstract class BlockAbstract implements BlockInterface
             $fileUri  = $blockUri . $asset['file'];
 
             /**
-             * Fires block asset dependencies
+             * Filter block asset dependencies
              */
             $deps     = apply_filters(
                 Config::get('hooksPrefix') . '/block_asset_dependencies',
