@@ -50,7 +50,7 @@ class SMTP
         // 2 Client commands and server responses
         // 3 As 2 plus connection status
         // 4 Low-level data output, all messages.
-        $phpmailer->SMTPDebug = SSMTP_DEBUG;
+        $phpmailer->SMTPDebug = SMTP_DEBUG;
 
         $phpmailer->Debugoutput = function ($str, $level) {
             error_log("debug level $level; message: $str");
