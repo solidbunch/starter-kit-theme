@@ -105,6 +105,12 @@ class Hooks
         add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restApiWhitelistOnly'], 10, 3);
 
         /************************************
+         *            Send Mail
+         ************************************/
+        add_action('phpmailer_init', [Handlers\Mail\SMTP::class, 'phpmailerSmtpInit'], 999);
+        add_action('wp_mail_failed', [Handlers\Mail\SMTP::class, 'mailFailedHandler']);
+
+        /************************************
          *         Contact Form 7
          ************************************/
         add_filter('wpcf7_autop_or_not', '__return_false');

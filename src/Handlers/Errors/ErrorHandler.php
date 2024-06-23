@@ -4,24 +4,24 @@ namespace StarterKit\Handlers\Errors;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Throwable;
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
-use Whoops\Util\Misc;
 use Whoops\Run;
-use StarterKit\Helper\Logger;
+use Whoops\Util\Misc;
+use WP_Error;
 
 class ErrorHandler
 {
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public static function handleThrowable(\Throwable $throwable): void
+    public static function handleThrowable(Throwable $throwable): void
     {
         $error_message = 'PHP error: ' .
-                         $throwable->getMessage() .
-                         ' in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
+            $throwable->getMessage() .
+            '; in ' . $throwable->getFile() . ' on line ' . $throwable->getLine();
 
         $error_message .= PHP_EOL . 'Stack trace:';
         $error_message .= PHP_EOL . $throwable->getTraceAsString();
@@ -33,6 +33,29 @@ class ErrorHandler
         }
 
         throw $throwable;
+    }
+
+
+    /**
+     * @param WP_Error $WPError
+     */
+    public static function handleWPError(WP_Error $WPError): void
+    {
+        $error_message = 'WP error: ' .
+            $WPError->get_error_message() .
+            '; with code: ' . $WPError->get_error_code();
+
+        $errorData = $WPError->get_error_data();
+
+        if ($errorData !== null) {
+            if (is_array($errorData) || is_object($errorData)) {
+                $error_message .= PHP_EOL . 'Error data: ' . json_encode($errorData);
+            } else {
+                $error_message .= PHP_EOL . 'Error data: ' . $errorData;
+            }
+        }
+
+        error_log($error_message);
     }
 
 
@@ -67,7 +90,7 @@ class ErrorHandler
 
     private static function hideErrors(): bool
     {
-        return ! static::isDebug() || ! static::isDebugDisplay() || static::isProdEnvironment();
+        return !static::isDebug() || !static::isDebugDisplay() || static::isProdEnvironment();
     }
 
 
@@ -92,10 +115,10 @@ class ErrorHandler
     private static function getTables(): array
     {
         $tables = [
-            '$wp'       => function () {
+            '$wp' => function () {
                 global $wp;
 
-                if (! $wp instanceof \WP) {
+                if (!$wp instanceof \WP) {
                     return [];
                 }
 
@@ -108,21 +131,21 @@ class ErrorHandler
             '$wp_query' => function () {
                 global $wp_query;
 
-                if (! $wp_query instanceof \WP_Query) {
+                if (!$wp_query instanceof \WP_Query) {
                     return [];
                 }
 
-                $output = get_object_vars($wp_query);
+                $output               = get_object_vars($wp_query);
                 $output['query_vars'] = array_filter($output['query_vars']);
                 unset($output['posts']);
                 unset($output['post']);
 
                 return array_filter($output);
             },
-            '$post'     => function () {
+            '$post' => function () {
                 $post = get_post();
 
-                if (! $post instanceof \WP_Post) {
+                if (!$post instanceof \WP_Post) {
                     return [];
                 }
 
