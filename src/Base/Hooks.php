@@ -56,6 +56,7 @@ class Hooks
         add_action('carbon_fields_register_fields', [Handlers\Settings\NewsSettings::class, 'make']);
         add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Pricing::class, 'registerPostType'], 5);
+        add_action('init', [Handlers\PostTypes\DocPages::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\TeamMembers::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Services::class, 'registerPostType'], 5);
 
@@ -109,6 +110,18 @@ class Hooks
         add_action('init', [Handlers\Optimization\Comments::class, 'disableComments']);
         add_action('init', [Handlers\Optimization\CleanAttributes::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
-        add_action('rest_api_init', [Handlers\Security\RestApiFilter::class, 'allowOnlyThemeNamespace']);
+        add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restApiWhitelistOnly'], 10, 3);
+
+        /************************************
+         *            Send Mail
+         ************************************/
+        add_action('phpmailer_init', [Handlers\Mail\SMTP::class, 'phpmailerSmtpInit'], 999);
+        add_action('wp_mail_failed', [Handlers\Mail\SMTP::class, 'mailFailedHandler']);
+
+        /************************************
+         *         Contact Form 7
+         ************************************/
+        add_filter('wpcf7_autop_or_not', '__return_false');
+        add_filter('wpcf7_load_css', '__return_false');
     }
 }

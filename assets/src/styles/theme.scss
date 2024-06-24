@@ -13,8 +13,14 @@
 @import "~bootstrap/scss/utilities/api";
 // add card
 @import "~bootstrap/scss/card";
+//add Forms
+@import "~bootstrap/scss/forms";
+//add alerts
+@import "~bootstrap/scss/alert";
 // Layout
 @import "layout/fonts";
 @import "layout/header";
 @import "layout/footer";
 @import "layout/all";
+@import "layout/single-doc-pages";
+@import "layout/contact-forms-7";
