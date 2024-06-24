@@ -154,7 +154,6 @@ abstract class BlockAbstract implements BlockInterface
             return [];
         }
 
-        elog($spacers);
         $spacerClasses = [];
         $numberOfGrid  = 5; // Equivalent to BootstrapSpacers.numberOfGrid in JS
 
@@ -164,12 +163,10 @@ abstract class BlockAbstract implements BlockInterface
                 // Iterate over the keys of valueRange
                 foreach ($item['valueRange'] as $key => $value) {
                     // Modify the value if it equals numberOfGrid + 1
-                    elog($value, $numberOfGrid + 1);
                     $modifiedValue = ($value >= ($numberOfGrid + 1)) ? 'auto' : $value;
                     // Generate the class, excluding the '-xs' prefix
                     $modifiedClass   = str_replace('-xs', '', "$key-$modifiedValue");
                     $spacerClasses[] = $modifiedClass;
-                    elog($spacerClasses, $modifiedClass);
                 }
             }
         }

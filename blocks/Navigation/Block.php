@@ -97,10 +97,10 @@ class Block extends BlockAbstract
         // Add 'current' property and classes to menu item objects
         _wp_menu_item_classes_by_context($menuItems);
 
-        //wlog($menuItems);
         // Prepare template data
         $templateData = [
             'attributes' => $attributes,
+            'menuId' => $menuId,
             'menuTemplate' => $this->loadBlockView('nav-menu', [
                 'menuTree' => $this->buildMenuTree($menuItems),
             ]),

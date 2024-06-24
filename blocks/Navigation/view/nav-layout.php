@@ -19,14 +19,14 @@ $data = $data ?? [];
     <button
         class="navbar-toggler ms-auto"
         type="button"
-        data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar-<?php echo $data['attributes']['menuId'] ?? ''; ?>"
-        aria-controls="offcanvasNavbar-<?php echo $data['attributes']['menuId'] ?? ''; ?>"
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar-<?php echo $data['menuId'] ?? ''; ?>"
+        aria-controls="offcanvasNavbar-<?php echo $data['menuId'] ?? ''; ?>"
         aria-label="<?php esc_attr_e('Toggle navigation', 'starter-kit'); ?>"
     >
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="offcanvas offcanvas-end"
-         tabIndex="-1" id="offcanvasNavbar-<?php echo $data['attributes']['menuId'] ?? ''; ?>"
+         tabIndex="-1" id="offcanvasNavbar-<?php echo $data['menuId'] ?? ''; ?>"
     >
         <div class="offcanvas-header">
             <button
