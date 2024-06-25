@@ -1,15 +1,4 @@
 //contact form 7
-.wpcf7-not-valid-tip {
-  @extend .alert;
-  @extend .alert-danger;
-
-  --indent: 3px !important;
-
-  display: block;
-  padding-top: var(--indent);
-  padding-bottom: var(--indent);
-  font-size: 14px !important;
-}
 //spinner
 .wpcf7-spinner {
   visibility: hidden;
@@ -115,6 +104,22 @@
   }
 }
 
+.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+
+  &:has(>.wpcf7-not-valid-tip) {
+    .form-control {
+      border-color: $danger;
+    }
+  }
+
+  .wpcf7-not-valid-tip {
+    @extend .invalid-tooltip;
+
+    display: block;
+  }
+}
 // animation
 
 @media (prefers-reduced-motion: reduce) {
