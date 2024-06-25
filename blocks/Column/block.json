@@ -32,8 +32,5 @@
         "xxl": {}
       }
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

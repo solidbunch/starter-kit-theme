@@ -19,8 +19,5 @@
       "type": "string",
       "default": "container"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

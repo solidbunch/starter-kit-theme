@@ -1,4 +1,5 @@
 /**
  * Block frontend view scripts
  */
-import 'bootstrap/js/src/collapse';
+// Need to connect this file for load dependencies
+// ['dropdown-script', 'offcanvas-script']

@@ -174,7 +174,7 @@ if (!mix.inProduction()) {
  * Example, '_StarterBlock' - should not be registered
  */
 const allAssets = glob.sync(
-  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
+  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx},assets/src/js/bootstrap/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 

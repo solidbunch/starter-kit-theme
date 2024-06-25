@@ -1,20 +1,17 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/doc-pages-nav",
-  "title": "Doc Page",
+  "title": "Doc Pages Navigation",
   "category": "starter-kit",
   "icon": "sk sk-doc-pages-nav",
-  "description": "Bootstrap Doc Page",
+  "description": "Bootstrap Documentation Page Navigation panel",
   "keywords": [
     "Doc Page",
-    "Bootstrap"
+    "Bootstrap",
+    "Navigation"
   ],
   "textdomain": "",
   "styles": [],
   "supports": {},
-  "example": {},
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  "example": {}
 }

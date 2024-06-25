@@ -1,5 +1,5 @@
 /**
  * Block frontend view scripts
  */
-// import 'bootstrap/js/src/offcanvas';
-// import 'bootstrap/js/src/dropdown';
+// Need to connect this file for load dependencies
+// ['dropdown-script', 'offcanvas-script']

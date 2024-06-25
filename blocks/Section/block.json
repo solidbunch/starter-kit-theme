@@ -23,6 +23,5 @@
         "colorTheme": ""
       }
     }
-  },
-  "editorScript": "file:build/index.js"
+  }
 }

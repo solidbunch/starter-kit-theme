@@ -44,8 +44,5 @@
       "source": "html",
       "selector": ".__answer-text"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

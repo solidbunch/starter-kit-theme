@@ -8,6 +8,7 @@ use Exception;
 use PHPMailer;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -30,12 +31,52 @@ class Front
      */
     public static function enqueueCriticalAssets(): void
     {
-        $style = Config::get('assetsUri') . 'build/styles/theme.css';
+        $style = 'build/styles/theme.css';
 
-        $styleUri = get_template_directory_uri() . $style;
-        $stylePath = get_template_directory() . $style;
+        $styleUri  = Config::get('assetsUri') . $style;
+        $stylePath = Config::get('assetsDir') . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
+    }
+
+    /**
+     * To make critical common styles load before blocks assets
+     * It's because Gutenberg blocks assets loads not on 'enqueue_block_assets' hook but on render_block() function
+     *
+     * https://github.com/WordPress/gutenberg/discussions/39023
+     *
+     * @param $dependencies
+     * @param $blockName
+     * @param $type
+     *
+     * @return array
+     */
+    public static function addThemeStyleDependencyToBlocks($dependencies, $blockName, $type): array
+    {
+        if ($type !== 'style' && $type !== 'view_style') {
+            return $dependencies;
+        }
+
+        $dependencies[] = 'theme-main-style';
+
+        return $dependencies;
+    }
+
+    /**
+     * Load Bootstrap modules
+     *
+     * @return void
+     *
+     * @throws NotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public static function enqueueBootstrap(): void
+    {
+        Assets::registerThemeScript('build/js/bootstrap/alert.js');
+        Assets::registerThemeScript('build/js/bootstrap/collapse.js');
+        Assets::registerThemeScript('build/js/bootstrap/dropdown.js');
+        Assets::registerThemeScript('build/js/bootstrap/offcanvas.js');
     }
 
     /**
@@ -49,21 +90,6 @@ class Front
      */
     public static function enqueueThemeAssets(): void
     {
-        $bootstrapBundle = Config::get('assetsUri') . 'libs/bootstrap/bootstrap.bundle.min.js';
-
-        $bootstrapBundleUri = get_template_directory_uri() . $bootstrapBundle;
-        $bootstrapBundlePath = get_template_directory() . $bootstrapBundle;
-        /*
-        wp_enqueue_script(
-            'bootstrap-bundle',
-            $bootstrapBundleUri,
-            [],
-            filemtime($bootstrapBundlePath),
-            [
-                'in_footer' => true,
-                'strategy'  => 'async',
-            ]
-        );*/
     }
 
     /**
@@ -124,7 +150,9 @@ class Front
             return $src;
         }
 
-        return add_query_arg('ver', filemtime($style->extra['path']), $src);
+        $ver = filemtime($style->extra['path']);
+
+        return add_query_arg('ver', $ver, $src);
     }
 
     /**
@@ -198,7 +226,7 @@ class Front
     }
 
     /**
-     * @param  PHPMailer  $phpmailer
+     * @param PHPMailer $phpmailer
      *
      * @return null|PHPMailer
      * @throws Exception

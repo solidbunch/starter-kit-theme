@@ -5,6 +5,7 @@ namespace StarterKit\Base;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers;
+use StarterKit\Helper\Config;
 use StarterKitBlocks;
 
 /**
@@ -40,10 +41,11 @@ class Hooks
         /************************************
          *         Gutenberg blocks
          ************************************/
-        add_action('block_categories_all', [Handlers\Blocks\Register::class, 'registerBlocksCategories']);
-        add_action('init', [Handlers\Blocks\Register::class, 'registerBlocks']);
+        add_action('block_categories_all', [Handlers\Blocks\Init::class, 'loadBlocksCategories']);
+        add_action('init', [Handlers\Blocks\Init::class, 'loadBlocks']);
         add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
-        // ToDo deactivate default blocks if Config removeDefaultBlocks
+        add_filter('register_block_type_args', [Handlers\Blocks\Init::class, 'addSpacerAttributeToBlocks']);
+        add_action('init', [Handlers\Blocks\DisableDefaultBlocks::class, 'init']);
 
         /************************************
          *     PostTypes with Taxonomies
@@ -77,6 +79,13 @@ class Hooks
          *            Front
          ************************************/
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
+        add_filter(
+            Config::get('hooksPrefix') . '/block_asset_dependencies',
+            [Handlers\Front::class, 'addThemeStyleDependencyToBlocks'],
+            10,
+            3
+        );
+        add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueBootstrap'], 10);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'enqueueThemeAssets']);
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
@@ -100,7 +109,6 @@ class Hooks
         add_action('init', [Handlers\Optimization\CleanUp::class, 'headCleanup'], 999);
         add_action('init', [Handlers\Optimization\Comments::class, 'disableComments']);
         add_action('init', [Handlers\Optimization\CleanAttributes::class, 'init']);
-        add_action('init', [Handlers\Optimization\DisableDefaultBlocks::class, 'init']);
         add_action('init', [Handlers\Security\Xmlrpc::class, 'disableXmlrpcTrackbacks']);
         add_filter('rest_pre_dispatch', [Handlers\Security\RestApiFilter::class, 'restApiWhitelistOnly'], 10, 3);
 

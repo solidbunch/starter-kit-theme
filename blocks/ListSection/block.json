@@ -1,22 +1,21 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/news",
-  "title": "News",
+  "name": "starter-kit/list-section",
+  "title": "List Section",
   "category": "starter-kit",
-  "icon": "sk sk-news",
-  "description": "Show News post type",
+  "icon": "sk sk-list-section",
+  "description": "List parent block",
   "keywords": [
-    "News",
-    "Post"
+    "List"
   ],
   "textdomain": "",
   "styles": [],
   "supports": {},
   "example": {},
   "attributes": {
-    "category": {
+    "listType": {
       "type": "string",
-      "default": ""
+      "default": "ul"
     }
   }
 }
