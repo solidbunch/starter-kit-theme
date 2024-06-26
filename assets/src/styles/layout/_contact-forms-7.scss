@@ -52,6 +52,9 @@
       @extend .text-center;
 
       max-width: 700px;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity .5s linear;
     }
 
     .btn[type="submit"] {
@@ -61,6 +64,8 @@
         @extend .me-2;
 
         margin-left: calc((1rem + (.2em * 2)) * -1);
+        opacity: 0;
+        transition: visibility 0s, opacity .3s linear;
       }
     }
 
@@ -95,7 +100,8 @@
     &.resetting,
     &.submitting {
       .wpcf7-response-output {
-        display: none;
+        visibility: hidden;
+        opacity: 0;
       }
     }
     // spinner
@@ -107,6 +113,7 @@
       .btn[type="submit"] {
         .spinner-border {
           visibility: visible;
+          opacity: 1;
         }
       }
     }
