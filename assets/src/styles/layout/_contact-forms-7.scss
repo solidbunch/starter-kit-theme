@@ -56,7 +56,14 @@
 
       max-width: 700px;
     }
-
+    .btn[type="submit"] {
+      .spinner-border {
+        visibility: hidden;
+        // display: none;
+        @extend .me-2;
+        margin-left: calc((1rem + (.2em * 2)) * -1);
+      }
+    }
     &.spam {
       .wpcf7-response-output {
         // border: 1px solid orange;
@@ -99,6 +106,12 @@
     &.submitting {
       .wpcf7-spinner {
         visibility: visible;
+      }
+      .btn[type="submit"] {
+        .spinner-border {
+          visibility: visible;
+          // display: inline-block;
+        }
       }
     }
   }
