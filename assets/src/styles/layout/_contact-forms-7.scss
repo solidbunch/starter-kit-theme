@@ -1,19 +1,7 @@
 //contact form 7
-.wpcf7-not-valid-tip {
-  @extend .alert;
-  @extend .alert-danger;
-
-  --indent: 3px !important;
-
-  display: block;
-  padding-top: var(--indent);
-  padding-bottom: var(--indent);
-  font-size: 14px !important;
-}
 //spinner
 .wpcf7-spinner {
   visibility: hidden;
-  // display: inline-block;
   display: block;
   background-color: #23282d;
   opacity: 0.75;
@@ -59,18 +47,25 @@
 
   form {
     .wpcf7-response-output {
-      // border: 1px solid blue;
-      @extend .alert;
-      @extend .alert-info;
+      @extend .alert, .alert-info;
       @extend .my-3, .mx-auto;
       @extend .text-center;
 
       max-width: 700px;
     }
 
+    .btn[type="submit"] {
+      .spinner-border {
+        visibility: hidden;
+
+        @extend .me-2;
+
+        margin-left: calc((1rem + (.2em * 2)) * -1);
+      }
+    }
+
     &.spam {
       .wpcf7-response-output {
-        // border: 1px solid orange;
         @extend .alert-warning;
       }
     }
@@ -79,22 +74,19 @@
     &.unaccepted,
     &.payment-required {
       .wpcf7-response-output {
-        // border: 1px solid yellow;
-        @extend .alert-primary;
+        @extend .alert-warning;
       }
     }
 
     &.failed,
     &.aborted {
       .wpcf7-response-output {
-        // border: 1px solid red;
         @extend .alert-danger;
       }
     }
 
     &.sent {
       .wpcf7-response-output {
-        // border: 1px solid green;
         @extend .alert-success;
       }
     }
@@ -111,10 +103,32 @@
       .wpcf7-spinner {
         visibility: visible;
       }
+
+      .btn[type="submit"] {
+        .spinner-border {
+          visibility: visible;
+        }
+      }
     }
   }
 }
 
+.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+
+  &:has(>.wpcf7-not-valid-tip) {
+    .form-control {
+      border-color: $danger;
+    }
+  }
+
+  .wpcf7-not-valid-tip {
+    @extend .invalid-tooltip;
+
+    display: block;
+  }
+}
 // animation
 
 @media (prefers-reduced-motion: reduce) {
