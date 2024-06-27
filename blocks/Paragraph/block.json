@@ -23,7 +23,11 @@
     },
     "alignment": {
       "type": "string",
-      "default": "none"
+      "default": ""
+    },
+    "customAlignment": {
+      "type": "string",
+      "default": ""
     }
   }
 }

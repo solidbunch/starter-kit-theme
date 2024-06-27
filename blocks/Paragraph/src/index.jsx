@@ -53,6 +53,7 @@ registerBlockType(
             style={{textAlign: alignment}}
             placeholder="Type / to choose a block"
           />
+          {console.log(attributes)}
         </>
       );
       
@@ -80,5 +81,6 @@ registerBlockType(
         />
       );
     },
+    
   },
 );
