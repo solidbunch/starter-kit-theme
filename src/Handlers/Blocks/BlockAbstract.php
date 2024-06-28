@@ -96,7 +96,7 @@ abstract class BlockAbstract implements BlockInterface
      * @throws NotFoundException
      * @throws Throwable
      */
-    public function loadBlockView(string $file = '', array $data = [], string $base = null): string
+    public function loadBlockView(string $file = '', array $data = [], string $base = null, $echo = false): string
     {
         if ($base === null) {
             $base = Config::get('blocksDir') . $this->blockName . '/' . Config::get('blocksViewDir');
@@ -104,7 +104,9 @@ abstract class BlockAbstract implements BlockInterface
 
         $viewFilePath = $base . $file . '.php';
 
-        ob_start();
+        if (!$echo) {
+            ob_start();
+        }
 
         try {
             if (file_exists($viewFilePath)) {
@@ -116,7 +118,11 @@ abstract class BlockAbstract implements BlockInterface
             ErrorHandler::handleThrowable($throwable);
         }
 
-        return ob_get_clean();
+        if (!$echo) {
+            return ob_get_clean();
+        }
+
+        return '';
     }
 
     /**

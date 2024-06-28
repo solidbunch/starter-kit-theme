@@ -8,6 +8,7 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\NotFoundException;
+use StarterKit\Repository\DocPagesRepository;
 use Throwable;
 
 /**
@@ -68,16 +69,17 @@ class Block extends BlockAbstract
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
     {
         $args = [
-            'posts_per_page' => 10,
+            'posts_per_page' => 300,
             'orderby' => [
                 'menu_order' => 'ASC',
             ],
         ];
 
-        //$pricingPackages = PricingRepository::getAllWithData($args);
+        $docPages = DocPagesRepository::getAllHierarchicallyWithLinks($args);
 
 
-        $templateData['data'] = '';
+        $templateData['docPages'] = $docPages;
+        //elog($docPages);
 
         return $this->loadBlockView('layout', $templateData);
     }
