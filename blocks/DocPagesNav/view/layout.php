@@ -10,8 +10,6 @@ defined('ABSPATH') || exit;
 
 $data = $data ?? [];
 
-elog($data);
-
 ?>
 <aside class="sidebar col-12 py-1 px-2 py-lg-3 px-lg-0 mb-5 mb-lg-0">
     <div class="d-flex d-lg-none align-items-center">
