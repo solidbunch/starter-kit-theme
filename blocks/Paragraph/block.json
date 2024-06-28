@@ -24,10 +24,6 @@
     "alignment": {
       "type": "string",
       "default": ""
-    },
-    "customAlignment": {
-      "type": "string",
-      "default": ""
     }
   }
 }
