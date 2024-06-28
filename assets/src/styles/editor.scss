@@ -32,6 +32,9 @@ html :where(.wp-block) {
       &.is-multi-selected {
         outline: 1px dashed var(--wp-admin-theme-color);
       }
+
+      margin-left: unset;
+      margin-right: unset;
     }
   }
 }
