@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "customTemplates": [
+    {
+      "name": "page-with-hero",
+      "title": "Page with Hero"
+    },
+    {
+      "name": "page-without-title",
+      "title": "Page without Title"
+    },
+    {
+      "name": "single-doc-pages",
+      "title": "Single Doc Pages",
+      "postTypes": ["single-doc-pages"]
+    }
+  ]
+}

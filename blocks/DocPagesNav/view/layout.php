@@ -27,13 +27,13 @@ $data = $data ?? [];
             </svg>
             Menu
         </button>
-        <a href="#">Return to top</a>
+        <a href="#"><?php esc_html_e('Return to top', 'starter-kit'); ?></a>
     </div>
     <div class="offcanvas-lg offcanvas-start doc_offcanvas"
          tabindex="-1" id="offcanvasDocs"
          aria-labelledby="offcanvasDocsLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDocsLabel">Docs:</h5>
+            <h5 class="offcanvas-title" id="offcanvasDocsLabel"><?php esc_html_e('Docs:', 'starter-kit'); ?></h5>
             <button type="button" class="btn-close ms-auto"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
@@ -42,25 +42,28 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-                <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
-                    <div class="py-3 px-lg-3">
-                        <h5>
-                            <a href="<?php echo $docPage['link'] ?? ''; ?>">
-                                <?php echo $docPage['title'] ?? ''; ?>
-                            </a>
-                        </h5>
-                        <?php if (!empty($data['docPages'][$docPageId])) {
-                            $this->loadBlockView(
-                                'child-nav',
-                                [
-                                    'docPages' => $data['docPages'],
-                                    'parentPageId' => $docPageId,
-                                ],
-                                null,
-                                true
-                            );
-                        } ?>
-                    </div>
+                <?php if (!empty($data['docPages'][0])) {
+                    foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
+                        <div class="py-3 px-lg-3">
+                            <h5>
+                                <a href="<?php echo $docPage['link'] ?? ''; ?>"
+                                    <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
+                                    <?php echo $docPage['title'] ?? ''; ?>
+                                </a>
+                            </h5>
+                            <?php if (!empty($data['docPages'][$docPageId])) {
+                                $this->loadBlockView(
+                                    'child-nav',
+                                    [
+                                        'docPages' => $data['docPages'],
+                                        'parentPageId' => $docPageId,
+                                    ],
+                                    null,
+                                    true
+                                );
+                            } ?>
+                        </div>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </div>
