@@ -77,9 +77,7 @@ class Block extends BlockAbstract
 
         $docPages = DocPagesRepository::getAllHierarchicallyWithLinks($args);
 
-
         $templateData['docPages'] = $docPages;
-        //elog($docPages);
 
         return $this->loadBlockView('layout', $templateData);
     }

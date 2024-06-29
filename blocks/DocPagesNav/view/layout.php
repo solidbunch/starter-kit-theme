@@ -42,7 +42,7 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-                <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { //elog($docPageId); ?>
+                <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
                     <div class="py-3 px-lg-3">
                         <h5>
                             <a href="<?php echo $docPage['link'] ?? ''; ?>">
