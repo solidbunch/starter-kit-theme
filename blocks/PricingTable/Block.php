@@ -30,10 +30,6 @@ class Block extends BlockAbstract
             'editor_style' => [
                 'file' => 'editor.css',
                 'dependencies' => [],
-            ],
-            'style' => [
-                'file' => 'style.css',
-                'dependencies' => [],
             ]
         ];
 
