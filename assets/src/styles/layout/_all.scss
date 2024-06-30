@@ -136,4 +136,19 @@ code {
   border-radius: 4px;
 
   @extend .px-2, .py-1;
+
+  .highlight &,
+  pre & {
+    background-color: transparent;
+    display: block;
+
+    @extend .p-2;
+  }
+}
+
+pre {
+  background-color: $gray-200;
+  border-radius: 4px;
+
+  @extend .border;
 }

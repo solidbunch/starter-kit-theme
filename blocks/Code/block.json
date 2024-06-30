@@ -1,0 +1,29 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/code",
+  "title": "Code",
+  "category": "starter-kit",
+  "icon": "sk sk-code",
+  "description": "A custom Code.",
+  "keywords": [
+    "Code",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {
+    "html": false
+  },
+  "example": {},
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": "code"
+    },
+    "alignment": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}
