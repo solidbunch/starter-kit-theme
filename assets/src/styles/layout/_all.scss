@@ -100,20 +100,22 @@ $bg_list_marked: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
   max-width: 1440px;
 }
 
-a[target="_blank"] {
-  &::after {
-    content: '';
-    display: inline-block;
-    width: 0.8em;
-    height: 0.8em;
-    margin-left: 0.1em;
-    vertical-align: middle;
-    background: url('../../images/icon/external-link.svg') no-repeat center / contain;
-    background-size: cover;
-  }
+main {
+  a[target="_blank"] {
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 0.8em;
+      height: 0.8em;
+      margin-left: 0.1em;
+      vertical-align: middle;
+      background: url('../../images/icon/external-link.svg') no-repeat center / contain;
+      background-size: cover;
+    }
 
-  &:hover::after {
-    filter: brightness(0) saturate(100%) invert(47%) sepia(87%) saturate(3491%) hue-rotate(347deg) brightness(103%) contrast(101%);
+    &:hover::after {
+      filter: brightness(0) saturate(100%) invert(47%) sepia(87%) saturate(3491%) hue-rotate(347deg) brightness(103%) contrast(101%);
+    }
   }
 }
 
