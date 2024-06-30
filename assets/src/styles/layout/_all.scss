@@ -133,6 +133,7 @@ kbd {
 
 code {
   background-color: $gray-200;
-  @extend .px-2, .py-1;
   border-radius: 4px;
+
+  @extend .px-2, .py-1;
 }
