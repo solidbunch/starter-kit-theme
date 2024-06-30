@@ -117,3 +117,22 @@ a[target="_blank"] {
   }
 }
 
+//code
+kbd {
+  box-shadow: 0 2px 0 1px $gray-400;
+  border: 1px solid $gray-400;
+  position: relative;
+  cursor: default;
+  top: -1px;
+
+  &:hover {
+    box-shadow: 0 1px 0 0.5px $gray-400;
+    top: 1px;
+  }
+}
+
+code {
+  background-color: $gray-200;
+  @extend .px-2, .py-1;
+  border-radius: 4px;
+}
