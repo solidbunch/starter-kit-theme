@@ -42,9 +42,9 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-                <?php if (!empty($data['docPages'][0])) {
-                    foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
-                        <div class="py-3 px-lg-3">
+                <div class="py-3 px-lg-3">
+                    <?php if (!empty($data['docPages'][0])) {
+                        foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
                             <h5>
                                 <a href="<?php echo $docPage['link'] ?? ''; ?>"
                                     <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
@@ -61,10 +61,12 @@ $data = $data ?? [];
                                     null,
                                     true
                                 );
-                            } ?>
-                        </div>
-                    <?php } ?>
-                <?php } ?>
+                            }
+                        }
+                    } else {
+                        echo '<p>' . esc_html__('No docs found.', 'starter-kit') . '</p>';
+                    } ?>
+                </div>
             </div>
         </div>
     </div>
