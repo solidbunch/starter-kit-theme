@@ -1,12 +1,11 @@
 import metadata from '../block.json';
 
 const {registerBlockType} = wp.blocks;
-const {useBlockProps, RichText, AlignmentToolbar,BlockControls} = wp.blockEditor;
+const {useBlockProps, RichText, AlignmentToolbar, BlockControls} = wp.blockEditor;
 
 registerBlockType(
   metadata,
   {
-
     edit: props => {
       const {attributes, setAttributes, className} = props;
       const {content, alignment} = attributes;
@@ -20,21 +19,7 @@ registerBlockType(
       }
 
       const onChangeAlignment = (newAlignment) => {
-        let customAlignment;
-        switch (newAlignment) {
-        case 'left':
-          customAlignment = 'start';
-          break;
-        case 'right':
-          customAlignment = 'end';
-          break;
-        case 'center':
-          customAlignment = 'center';
-          break;
-        default:
-          customAlignment = null; 
-        }
-        setAttributes({alignment: newAlignment, customAlignment});
+        setAttributes({alignment: newAlignment});
       };
       
       const renderOutput = (
@@ -63,15 +48,31 @@ registerBlockType(
 
     save: (props) => {
       const {attributes} = props;
-      const {content, customAlignment} = attributes;
+      const {content, alignment} = attributes;
       const {className} = useBlockProps.save();
-      const blockClass = `${customAlignment ? `text-${customAlignment}` : ""} ${className}`.trim();
-      // Create a new object for the attributes, excluding the 'class' attribute if it's empty
+      
+      let alignmentClass;
+      switch (alignment) {
+      case 'left':
+        alignmentClass = 'text-start';
+        break;
+      case 'right':
+        alignmentClass = 'text-end';
+        break;
+      case 'center':
+        alignmentClass = 'text-center';
+        break;
+      default:
+        alignmentClass = '';
+      }
+      
+      const blockClass = `${alignmentClass} ${className}`.trim();
       const blockProps = {};
 
       if (blockClass) {
         blockProps.className = blockClass;
       }
+
       return (
         <RichText.Content
           {...blockProps}
@@ -80,5 +81,5 @@ registerBlockType(
         />
       );
     },
-  },
+  }
 );
