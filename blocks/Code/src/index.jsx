@@ -1,7 +1,6 @@
 import metadata from '../block.json';
-
 const {registerBlockType} = wp.blocks;
-const {useBlockProps, RichText, AlignmentToolbar, BlockControls} = wp.blockEditor;
+const {useBlockProps, PlainText, AlignmentToolbar, BlockControls} = wp.blockEditor;
 
 registerBlockType(
   metadata,
@@ -31,7 +30,7 @@ registerBlockType(
             />
           </BlockControls>
           <pre {...blockProps}>
-            <RichText
+            <PlainText
               tagName="code"
               value={content}
               onChange={onChangeContent}
@@ -76,10 +75,9 @@ registerBlockType(
 
       return (
         <pre {...blockProps}>
-          <RichText.Content
-            tagName="code"
-            value={content}
-          />
+          <code>
+            {content}
+          </code>
         </pre>
       );
     },

@@ -26,7 +26,15 @@ class Block extends BlockAbstract
             'editor_script' => [
                 'file' => 'index.js',
                 'dependencies' => ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
-            ]
+            ],
+            'view_script' => [
+                'file' => 'view.js',
+                'dependencies' => [],
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ],
         ];
 
     /**
