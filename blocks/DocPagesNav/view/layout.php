@@ -25,7 +25,7 @@ $data = $data ?? [];
                 <path d="M21,15H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h18c0.6,0,1,0.4,1,1S21.6,15,21,15z"></path>
                 <path d="M17,19H3c-0.6,0-1-0.4-1-1s0.4-1,1-1h14c0.6,0,1,0.4,1,1S17.6,19,17,19z"></path>
             </svg>
-            Menu
+            <?php esc_html_e('Menu', 'starter-kit'); ?>
         </button>
         <a href="#"><?php esc_html_e('Return to top', 'starter-kit'); ?></a>
     </div>
