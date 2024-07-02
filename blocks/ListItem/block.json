@@ -6,7 +6,7 @@
   "parent": [
     "starter-kit/list"
   ],
-  "icon": "sk sk-list-item",
+  "icon": "skb skb-list-item",
   "description": "List Item child block.",
   "keywords": [
     "list"

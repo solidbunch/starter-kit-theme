@@ -3,7 +3,7 @@
   "name": "starter-kit/paragraph",
   "title": "Paragraph",
   "category": "starter-kit",
-  "icon": "sk sk-paragraph",
+  "icon": "skb skb-paragraph",
   "description": "A custom paragraph block with text alignment.",
   "keywords": [
     "Paragraph",

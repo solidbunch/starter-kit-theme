@@ -1,6 +1,8 @@
 {
     "/assets/build/fonts/block-icons/block-icons.font.css": "/assets/build/fonts/block-icons/block-icons.font.css",
     "/assets/build/fonts/block-icons/block-icons.font.js": "/assets/build/fonts/block-icons/block-icons.font.js",
+    "/assets/build/fonts/icons/icons.font.css": "/assets/build/fonts/icons/icons.font.css",
+    "/assets/build/fonts/icons/icons.font.js": "/assets/build/fonts/icons/icons.font.js",
     "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
     "/assets/build/js/bootstrap/offcanvas.js": "/assets/build/js/bootstrap/offcanvas.js",
