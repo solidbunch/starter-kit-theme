@@ -167,8 +167,18 @@ pre {
     right: 0;
     background: #fff;
 
+    &:focus,
+    &:active {
+      border-color: transparent !important;
+    }
+
     &.active {
       background: none;
+      border-color: transparent;
+
+      svg {
+        fill: $success;
+      }
     }
 
     &:hover {
@@ -179,10 +189,6 @@ pre {
 
     svg {
       width: 20px;
-
-      &.ok {
-        fill: $success;
-      }
     }
   }
 
