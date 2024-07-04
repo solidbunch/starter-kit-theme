@@ -24,6 +24,6 @@
 
 {{#each codepoints}}
 .{{../classPrefix}}{{@key}}:before {
-  content: "\\{{this}}";
+  content: var(--{{../classPrefix}}{{@key}});
 }
 {{/each}}

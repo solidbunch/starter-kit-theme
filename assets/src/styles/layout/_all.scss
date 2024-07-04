@@ -51,7 +51,7 @@ body {
   position: relative;
 
   &::before {
-    content: var(--sk-list-checked);
+    content: var(--sk-check2-square);
     font-family: icons, serif !important;
     font-style: normal;
     font-weight: normal !important;
@@ -75,7 +75,7 @@ body {
     padding-left: 20px;
 
     &::before {
-      content: var(--sk-list-checked);
+      content: var(--sk-check);
       font-family: icons, serif !important;
       font-style: normal;
       font-weight: normal !important;

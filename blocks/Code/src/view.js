@@ -1,4 +1,14 @@
-import hljs from 'highlight.js';
+const hljs = require('highlight.js/lib/core');
+
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+
 (function () {
   "use strict";
 
@@ -34,7 +44,7 @@ import hljs from 'highlight.js';
     textarea.select();
     document.execCommand('copy');
     document.body.removeChild(textarea);
-    
+
     // change icon 2 seconds
     const originalIcon = button.innerHTML;
     button.innerHTML = '<i class="sk-icon sk-check"></i>';
