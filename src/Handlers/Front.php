@@ -37,6 +37,13 @@ class Front
         $stylePath = Config::get('assetsDir') . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
+
+        $style = 'build/fonts/icons/icons.font.css';
+
+        $styleUri = Config::get('assetsUri') . $style;
+        $stylePath = Config::get('assetsDir') . $style;
+
+        wp_enqueue_style('icons-font-style', $styleUri, [], filemtime($stylePath));
     }
 
     /**

@@ -50,6 +50,7 @@ class DisableDefaultBlocks
     public static function allowedBlockTypes(bool|array $allowedBlockTypes, $blockEditorContext): bool|array
     {
         $allowedBlockTypes = [
+            'core/code',
             'core/shortcode',
             'core/html',
         ];

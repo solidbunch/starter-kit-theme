@@ -1,12 +1,12 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/paragraph",
-  "title": "Paragraph",
+  "name": "starter-kit/code",
+  "title": "Code",
   "category": "starter-kit",
-  "icon": "skb skb-paragraph",
-  "description": "A custom paragraph block with text alignment.",
+  "icon": "skb skb-code",
+  "description": "A custom Code.",
   "keywords": [
-    "Paragraph",
+    "Code",
     "Bootstrap"
   ],
   "textdomain": "",
@@ -19,7 +19,7 @@
     "content": {
       "type": "string",
       "source": "html",
-      "selector": "p"
+      "selector": "code"
     },
     "alignment": {
       "type": "string",

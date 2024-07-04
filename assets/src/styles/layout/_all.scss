@@ -18,6 +18,10 @@ body {
   }
 }
 
+.minw_0 {
+  min-width: 0;
+}
+
 .bg_gradient {
   background-image: linear-gradient(to top, #e9ecef, #f8f9fa);
 }
@@ -98,4 +102,95 @@ $bg_list_marked: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 .pricing_section {
   max-width: 1440px;
+}
+
+.wp-block-post-content {
+  a[target="_blank"]:not(:has(> img)) {
+    &::after {
+      content: "\f11b";
+      font-family: icons, serif !important;
+      font-style: normal;
+      font-weight: normal !important;
+      font-size: 0.6rem;
+      vertical-align: middle;
+      display: inline-block;
+      margin-left: 0.4em;
+    }
+
+    &:hover::after {
+      color: $link-hover-color;
+    }
+  }
+}
+
+//code
+kbd {
+  box-shadow: 0 2px 0 1px $gray-400;
+  border: 1px solid $gray-400;
+  position: relative;
+  cursor: default;
+  top: -1px;
+
+  &:hover {
+    box-shadow: 0 1px 0 0.5px $gray-400;
+    top: 1px;
+  }
+}
+
+code {
+  background-color: $gray-200;
+  border-radius: 4px;
+
+  @extend .px-2, .py-1;
+
+  .highlight &,
+  pre & {
+    background-color: transparent;
+    display: block;
+
+    @extend .p-2;
+  }
+}
+
+pre {
+  border-radius: 4px;
+  position: relative;
+
+  code {
+    padding: 16px !important;
+    // background-color: $gray-200 !important;
+  }
+
+  .copy_clipboard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+
+    &:focus,
+    &:active {
+      border-color: transparent !important;
+    }
+
+    &.active {
+      background: none;
+      border-color: transparent;
+
+      svg {
+        fill: $success;
+      }
+    }
+
+    &:hover {
+      svg {
+        fill: $primary;
+      }
+    }
+
+    svg {
+      width: 20px;
+    }
+  }
+
+  @extend .border;
 }

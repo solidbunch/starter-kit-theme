@@ -3,7 +3,7 @@
   "name": "starter-kit/starter-block",
   "title": "Starter Block",
   "category": "starter-kit",
-  "icon": "sk sk-starter",
+  "icon": "skb skb-starter",
   "description": "Just simple blank block. Copy, rename and edit settings",
   "keywords": [
     "Starter",

@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\DocPagesNav;
+namespace StarterKitBlocks\Code;
 
 defined('ABSPATH') || exit;
 
@@ -8,8 +8,6 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\NotFoundException;
-use StarterKit\Repository\DocPagesRepository;
-use Throwable;
 
 /**
  * Block controller
@@ -31,12 +29,12 @@ class Block extends BlockAbstract
             ],
             'view_script' => [
                 'file' => 'view.js',
-                'dependencies' => ['dropdown-script', 'offcanvas-script'],
-            ],
-            'editor_style' => [
-                'file' => 'editor.css',
                 'dependencies' => [],
-            ]
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ],
         ];
 
     /**
@@ -46,36 +44,7 @@ class Block extends BlockAbstract
      */
     public function registerBlockArgs(): void
     {
-        $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
     }
-
-    /**
-     * Block server side render callback
-     * Used in register block type from metadata
-     *
-     * @param array  $attributes
-     * @param string $content
-     * @param object $block
-     *
-     * @return string
-     *
-     * @throws NotFoundException
-     * @throws Throwable
-     */
-    public function blockServerSideCallback(array $attributes, string $content, object $block): string
-    {
-        $args = [
-            'posts_per_page' => 300,
-            'orderby' => [
-                'menu_order' => 'ASC',
-            ],
-        ];
-
-        $templateData['docPages'] = DocPagesRepository::getAllHierarchicallyWithLinks($args);
-
-        return $this->loadBlockView('layout', $templateData);
-    }
-
     /**
      * Register rest api endpoints
      * Runs by abstract constructor

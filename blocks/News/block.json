@@ -3,7 +3,7 @@
   "name": "starter-kit/news",
   "title": "News",
   "category": "starter-kit",
-  "icon": "sk sk-news",
+  "icon": "skb skb-news",
   "description": "Show News post type",
   "keywords": [
     "News",

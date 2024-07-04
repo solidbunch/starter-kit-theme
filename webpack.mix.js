@@ -15,32 +15,30 @@ mix.options({
 
 mix.disableNotifications();
 
-mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
-  .webpackConfig({
-    devtool: false,
-    module: {
-      rules: [
-        {
-          test: /webfonts-loader\/.*\.font\.js$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                url: false,
-                sourceMap: false,
+function applyFontRule(fontPath) {
+  mix.js(`webfonts-loader/${fontPath}.font.js`, `assets/build/fonts/${fontPath}`)
+    .webpackConfig({
+      devtool: false,
+      module: {
+        rules: [
+          {
+            test: /webfonts-loader\/.*\.font\.js$/,
+            use: [
+              {loader: MiniCssExtractPlugin.loader},
+              {
+                loader: 'css-loader',
+                options: {url: false, sourceMap: false},
               },
-            },
-            {
-              loader: 'webfonts-loader'
-            },
-          ],
-        },
-      ],
-    }
-  });
+              {loader: 'webfonts-loader'},
+            ],
+          },
+        ],
+      },
+    });
+}
+
+applyFontRule('block-icons');
+applyFontRule('icons');
 
 /**
  * Setup options for dev mode

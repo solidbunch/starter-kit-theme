@@ -6,7 +6,7 @@
   "parent": [
     "starter-kit/faq-section"
   ],
-  "icon": "sk sk-news",
+  "icon": "skb skb-news",
   "description": "Single faq child block.",
   "keywords": [
     "FAQ",

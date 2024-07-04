@@ -3,7 +3,7 @@
   "name": "starter-kit/list-section",
   "title": "List Section",
   "category": "starter-kit",
-  "icon": "sk sk-list-section",
+  "icon": "skb skb-list-section",
   "description": "List parent block",
   "keywords": [
     "List"

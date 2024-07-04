@@ -88,3 +88,10 @@
     }
   }
 }
+
+// When inner doc pages open, the main page link should be active
+body.single-doc-pages {
+  .nav-link.doc-page-main {
+    color: var(--bs-navbar-active-color);
+  }
+}
