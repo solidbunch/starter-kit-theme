@@ -153,12 +153,12 @@ code {
 }
 
 pre {
-  background-color: $gray-200;
   border-radius: 4px;
   position: relative;
 
   code {
-    padding-right: 50px !important;
+    padding: 16px !important;
+    // background-color: $gray-200 !important;
   }
 
   .copy_clipboard {
