@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
 $data = $data ?? [];
 
 ?>
-<aside class="sidebar col-12 py-1 px-2 py-lg-3 px-lg-0 mb-5 mb-lg-0">
+<aside class="sidebar col-12 py-1 px-2 py-lg-0 px-lg-0 mb-5 mb-lg-0">
     <div class="d-flex d-lg-none align-items-center">
         <button class="btn text-primary px-0 py-1 doc_toggler_btn navbar-toggler me-auto"
                 type="button"
@@ -42,28 +42,32 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-                <div class="py-3 px-lg-3">
-                    <?php if (!empty($data['docPages'][0])) {
-                        foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
-                            <h5>
-                                <a href="<?php echo $docPage['link'] ?? ''; ?>"
-                                    <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
-                                    <?php echo $docPage['title'] ?? ''; ?>
-                                </a>
-                            </h5>
-                            <?php if (!empty($data['docPages'][$docPageId])) {
-                                $this->loadBlockView(
-                                    'child-nav',
-                                    [
-                                        'docPages' => $data['docPages'],
-                                        'parentPageId' => $docPageId,
-                                    ],
-                                    null,
-                                    true
-                                );
-                            }
-                        }
-                    } else {
+            <div class="py-2 px-lg-3">
+                    <?php if (!empty($data['docPages'][0])) { ?>
+                        <ul class="list-unstyled">
+                            <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
+                                <li>
+                                    <h5 class="mb-0">
+                                        <a href="<?php echo $docPage['link'] ?? ''; ?>"
+                                            <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
+                                            <?php echo $docPage['title'] ?? ''; ?>
+                                        </a>
+                                    </h5>
+                                    <?php if (!empty($data['docPages'][$docPageId])) {
+                                        $this->loadBlockView(
+                                            'child-nav',
+                                            [
+                                                'docPages' => $data['docPages'],
+                                                'parentPageId' => $docPageId,
+                                            ],
+                                            null,
+                                            true
+                                        );
+                                    } ?>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    <?php } else {
                         echo '<p>' . esc_html__('No docs found.', 'starter-kit') . '</p>';
                     } ?>
                 </div>
