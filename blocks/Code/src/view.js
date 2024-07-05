@@ -1,4 +1,14 @@
-import hljs from 'highlight.js';
+const hljs = require('highlight.js/lib/core');
+
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+hljs.registerLanguage('vim', require('highlight.js/lib/languages/vim'));
+hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+
 (function () {
   "use strict";
 
@@ -17,7 +27,10 @@ import hljs from 'highlight.js';
     document.querySelectorAll('pre').forEach((pre) => {
       const button = document.createElement('button');
       button.classList.add('btn','copy_clipboard');
-      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>';
+      button.innerHTML = '<i class="sk-icon sk-copy"></i>';
+      button.dataset.originalIcon = button.innerHTML;
+      button.dataset.timeoutId = '';
+
       button.addEventListener('click', () => {
         const code = pre.querySelector('code').innerText;
         copyToClipboard(code, button);
@@ -34,16 +47,23 @@ import hljs from 'highlight.js';
     textarea.select();
     document.execCommand('copy');
     document.body.removeChild(textarea);
-    
+
     // change icon 2 seconds
-    const originalIcon = button.innerHTML;
-    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>';
+    const originalIcon = button.dataset.originalIcon;
+    button.innerHTML = '<i class="sk-icon sk-check"></i>';
     button.classList.add('active');
 
-    setTimeout(() => {
+    if (button.dataset.timeoutId) {
+      clearTimeout(button.dataset.timeoutId);
+    }
+
+    const timeoutId = setTimeout(() => {
       button.innerHTML = originalIcon;
       button.classList.remove('active');
+      button.dataset.timeoutId = '';
     }, 2000);
+
+    button.dataset.timeoutId = timeoutId;
   }
 
 })();

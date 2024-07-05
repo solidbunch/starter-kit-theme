@@ -4,8 +4,15 @@
   src: {{{src}}};
 }
 
+:root{
+  {{#each codepoints}}
+  --{{../classPrefix}}{{@key}}:"\\{{this}}";
+  {{/each}}
+}
+
 {{baseSelector}} {
   line-height: 1;
+  display:inline-block;
 }
 
 {{baseSelector}}:before {
@@ -17,6 +24,6 @@
 
 {{#each codepoints}}
 .{{../classPrefix}}{{@key}}:before {
-  content: "\\{{this}}";
+  content: var(--{{../classPrefix}}{{@key}});
 }
 {{/each}}

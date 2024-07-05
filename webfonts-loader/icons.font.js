@@ -7,7 +7,7 @@ module.exports = {
   'classPrefix': 'sk-',
   'baseSelector': '.sk-icon',
   'types': ['woff2'],
-  'fixedWidth': true,
+  'fixedWidth': false,
   'fileName': 'app.[fontname].[ext]',
   'embed':true
 };
