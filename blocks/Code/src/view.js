@@ -28,6 +28,9 @@ hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
       const button = document.createElement('button');
       button.classList.add('btn','copy_clipboard');
       button.innerHTML = '<i class="sk-icon sk-copy"></i>';
+      button.dataset.originalIcon = button.innerHTML;
+      button.dataset.timeoutId = '';
+
       button.addEventListener('click', () => {
         const code = pre.querySelector('code').innerText;
         copyToClipboard(code, button);
@@ -46,14 +49,21 @@ hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
     document.body.removeChild(textarea);
 
     // change icon 2 seconds
-    const originalIcon = button.innerHTML;
+    const originalIcon = button.dataset.originalIcon;
     button.innerHTML = '<i class="sk-icon sk-check"></i>';
     button.classList.add('active');
 
-    setTimeout(() => {
+    if (button.dataset.timeoutId) {
+      clearTimeout(button.dataset.timeoutId);
+    }
+
+    const timeoutId = setTimeout(() => {
       button.innerHTML = originalIcon;
       button.classList.remove('active');
+      button.dataset.timeoutId = '';
     }, 2000);
+
+    button.dataset.timeoutId = timeoutId;
   }
 
 })();
