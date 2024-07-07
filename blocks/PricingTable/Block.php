@@ -31,6 +31,11 @@ class Block extends BlockAbstract
                 'file' => 'editor.css',
                 'dependencies' => [],
             ]
+            ],
+            'style' => [
+                'file' => 'style.css',
+                'dependencies' => [],
+            ]
         ];
 
     /**

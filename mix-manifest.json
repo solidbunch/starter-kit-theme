@@ -31,7 +31,7 @@
     "/blocks/Code/build/index.js": "/blocks/Code/build/index.js",
     "/blocks/Button/build/index.js": "/blocks/Button/build/index.js",
     "/blocks/Code/build/style.css": "/blocks/Code/build/style.css",
-    "/blocks/PricingTable/build/editor.css": "/blocks/PricingTable/build/editor.css",
+    "/blocks/PricingTable/build/style.css": "/blocks/PricingTable/build/style.css",
     "/blocks/Row/build/editor.css": "/blocks/Row/build/editor.css",
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
@@ -43,5 +43,6 @@
     "/blocks/Navigation/build/editor.css": "/blocks/Navigation/build/editor.css",
     "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
     "/blocks/News/build/editor.css": "/blocks/News/build/editor.css",
-    "/blocks/News/build/style.css": "/blocks/News/build/style.css"
+    "/blocks/News/build/style.css": "/blocks/News/build/style.css",
+    "/blocks/PricingTable/build/editor.css": "/blocks/PricingTable/build/editor.css"
 }
