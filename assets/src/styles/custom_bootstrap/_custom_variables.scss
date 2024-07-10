@@ -89,10 +89,6 @@ $link-hover-decoration: null;
 //$navbar-light-hover-color:  $secondary;
 
 // scss-docs-start headings-variables
-$headings-font-family: null;
-$headings-font-style: null;
-$headings-font-weight: 500;
-$headings-line-height: 1.2;
 $headings-color: $gray-900;
 
 // Accordion
@@ -104,6 +100,7 @@ $accordion-button-active-bg: $gray-200;
 
 // scss-docs-start font-variables
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;
+
 //navbar
 $navbar-light-hover-color: $primary;
 $navbar-light-active-color: $primary;
