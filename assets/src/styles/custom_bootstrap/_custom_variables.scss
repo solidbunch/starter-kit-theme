@@ -45,16 +45,16 @@ $gray-900: #212529;
 $black: #000;
 
 // Tint and shade percentage is set to 20% by default
-$primary-light: tint-color($primary, 20%);
-$primary-dark: shade-color($primary, 20%);
+// $primary-light: tint-color($primary, 20%);
+// $primary-dark: shade-color($primary, 20%);
 
-$secondary-light: tint-color($secondary, 20%);
-$secondary-dark: shade-color($secondary, 20%);
+// $secondary-light: tint-color($secondary, 20%);
+// $secondary-dark: shade-color($secondary, 20%);
 
 $border-radius: 0;
 
-$light: $gray-100;
-$dark: $gray-900;
+// $light: $gray-100;
+// $dark: $gray-900;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
@@ -67,11 +67,11 @@ $min-contrast-ratio: 2;
 $body-color: $gray-900;
 $body-bg: $gray-100;
 
-$body-secondary-color: rgba($body-color, .75);
-$body-secondary-bg: $gray-200;
+// $body-secondary-color: rgba($body-color, .75);
+// $body-secondary-bg: $gray-200;
 
-$body-tertiary-color: rgba($body-color, .5);
-$body-tertiary-bg: $gray-100;
+// $body-tertiary-color: rgba($body-color, .5);
+// $body-tertiary-bg: $gray-100;
 
 $body-emphasis-color: $gray-900;
 
@@ -82,14 +82,14 @@ $body-emphasis-color: $gray-900;
 $link-color: $body-color;
 $link-decoration: underline;
 $link-shade-percentage: 20%;
-$link-hover-color: $primary-dark;
+$link-hover-color: shade-color($primary, 20%);
 $link-hover-decoration: null;
 
 //$nav-link-hover-color: $secondary;
 //$navbar-light-hover-color:  $secondary;
 
 // scss-docs-start headings-variables
-$headings-color: $gray-900;
+// $headings-color: $gray-900;  !!!!!!default its "INHERIT"(from body color)!!!!!!
 
 // Accordion
 $accordion-button-bg: $white;
