@@ -1,21 +1,24 @@
 import metadata from '../block.json';
+import variables from '../../../assets/build/variables.json';
 
 const {registerBlockType} = wp.blocks;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl, TextControl, CheckboxControl, RadioControl} = wp.components;
 
 const defaultLink = "#";
-const colorOptions = [
-  {label: 'btn-primary', value: 'btn-primary'},
-  {label: 'btn-secondary', value: 'btn-secondary'},
-  {label: 'btn-success', value: 'btn-success'},
-  {label: 'btn-danger', value: 'btn-danger'},
-  {label: 'btn-warning', value: 'btn-warning'},
-  {label: 'btn-info', value: 'btn-info'},
-  {label: 'btn-light', value: 'btn-light'},
-  {label: 'btn-link', value: 'btn-link'},
-  {label: 'btn-outline-secondary', value: 'btn-outline-secondary'},
-];
+
+// Функция для генерации colorOptions на основе theme-color
+const generateColorOptions = (themeColors) => {
+  const colorOptions = [];
+  Object.keys(themeColors).forEach(key => {
+    colorOptions.push({label: `btn-${key}`, value: `btn-${key}`});
+    colorOptions.push({label: `btn-outline-${key}`, value: `btn-outline-${key}`});
+  });
+  return colorOptions;
+};
+
+const colorOptions = generateColorOptions(variables["theme-color"]);
+
 const sizeOptions = [
   {label: 'btn-lg', value: 'btn-lg'},
   {label: 'btn-sm', value: 'btn-sm'},
