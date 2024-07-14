@@ -5,9 +5,7 @@ const mix = require('laravel-mix');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const createJsonVariables = require('./webpack/createJsonVariables');
-const fs = require('fs');
 const path = require('path');
-const {log} = require('console');
 const customScssVariablesPath = path.join(__dirname, 'assets/src/styles/custom_bootstrap', '_custom_variables.scss');
 const customJsonVariablesPath = path.join(__dirname, 'assets/build', 'variables.json');
 /**
@@ -21,7 +19,7 @@ mix.options({
 
 mix.disableNotifications();
 
-createJsonVariables(customScssVariablesPath, customJsonVariablesPath);
+// createJsonVariables(customScssVariablesPath, customJsonVariablesPath);
 
 function applyFontRule(fontPath) {
   mix.js(`webfonts-loader/${fontPath}.font.js`, `assets/build/fonts/${fontPath}`)
@@ -100,6 +98,14 @@ if (!mix.inProduction()) {
 
   mix.webpackConfig({
     devtool: 'inline-source-map', // or 'source-map'
+    /*
+    * Watcher runs on dev mode only
+    */
+    watchOptions: {
+      ignored: /node_modules|.*\/build\//, // Ignore node_modules, build directories, and all except specified directories
+      aggregateTimeout: 1, // Delay before rebuilding after changes are detected
+      poll: 1 // Interval for polling for file changes
+    },
     plugins: [
       /**
        *Remove assets files(css, js) from build folders
