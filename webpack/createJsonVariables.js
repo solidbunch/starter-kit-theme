@@ -1,5 +1,3 @@
-// webpack/createJsonVariables.js
-
 const fs = require('fs');
 
 // Функция для парсинга SCSS файла
@@ -8,39 +6,32 @@ function parseScss(filePath) {
   const lines = data.split('\n');
   const jsonObject = {};
   let currentBlockName = null;
-  let isObject = false;
   let currentObject = {};
 
   lines.forEach(line => {
     line = line.trim();
 
     // Обработка начала блока
-    if (line.startsWith('// scss-start')) {
-      const blockInfo = line.replace('// scss-start ', '').split('-');
-      currentBlockName = blockInfo.slice(0, -1).join('-');
-      isObject = blockInfo[blockInfo.length - 1] === 'object';
-      currentObject = isObject ? {} : {};
+    if (/^\/\/\s*start\s*/i.test(line)) {
+      currentBlockName = line.replace(/^\/\/\s*start\s*/i, '').trim();
+      currentObject = {};
     }
 
     // Обработка конца блока
-    if (line.startsWith('// scss-end')) {
+    if (/^\/\/\s*end\s*/i.test(line)) {
       jsonObject[currentBlockName] = currentObject;
       currentBlockName = null;
       currentObject = {};
-      isObject = false;
     }
 
     // Обработка переменных и объектов
     if (currentBlockName && !line.startsWith('//')) {
-      if (isObject) {
-        const [key, value] = line.split(':').map(item => item.trim());
-        if (key && value && !/^[()]+$/.test(value)) {
-          currentObject[key.replace(/[$"]/g, '')] = value.replace(/[,;]/g, '');
-        }
-      } else {
-        const [key, value] = line.split(':').map(item => item.trim());
-        if (key && value) {
-          currentObject[key.replace('$', '')] = value.replace(';', '');
+      const [key, value] = line.split(':').map(item => item.trim());
+      if (key && value) {
+        const cleanKey = key.replace(/[$"]/g, '');
+        const cleanValue = value.replace(/[,;]/g, '');
+        if (cleanValue !== '(' && cleanValue !== ')') {
+          currentObject[cleanKey] = cleanValue;
         }
       }
     }
