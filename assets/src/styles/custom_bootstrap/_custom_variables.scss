@@ -1,20 +1,21 @@
 // scss-start theme-color-variables
 $primary: #f7944e;
-$secondary: #6eb477;
-$success: #198754;
-$info: #0dcaf0;
-$warning: #ffc107;
-$danger: #dc3545;
+// $secondary: #6eb477;
+// $success: #198754;
+// $info: #0dcaf0;
+// $warning: #ffc107;
+// $danger: #dc3545;
 // scss-end theme-color-variables
 
-// Custom grid breakpoints
-// $grid-breakpoints: (
-// 	xs: 0,
-// 	sm: 480px,
-// 	md: 768px,
-// 	lg: 1024px,
-// 	xxl: 2000px
-// );
+// scss-start grid-breakpoints-object
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xxl: 2000px
+);
+// scss-end grid-breakpoints-object
 
 // Default container widths
 // $container-max-widths: (
