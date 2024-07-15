@@ -1,11 +1,37 @@
-//start theme-color
 $primary: #f7944e;
 $secondary: #6eb477;
 $success: #198754;
 $info: #0dcaf0;
 $warning: #ffc107;
 $danger: #dc3545;
-// end theme-color
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+$light: $gray-100;
+$dark: $gray-900;
+//start theme-colors
+$theme-colors: (
+  "secondary": $secondary,
+  "primary": $primary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "test":pink
+);
+//end  theme-colors
 
 // start grid-breakpoints
 $grid-breakpoints: (
@@ -33,18 +59,6 @@ $container-max-widths: (
 //end container-max-widths
 
 // scss-docs-start gray-color-variables
-$white: #fff;
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black: #000;
-
 // Tint and shade percentage is set to 20% by default
 // $primary-light: tint-color($primary, 20%);
 // $primary-dark: shade-color($primary, 20%);
@@ -53,9 +67,6 @@ $black: #000;
 // $secondary-dark: shade-color($secondary, 20%);
 
 $border-radius: 0;
-
-// $light: $gray-100;
-// $dark: $gray-900;
 
 // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
 // See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast

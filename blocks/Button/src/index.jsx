@@ -7,7 +7,7 @@ const {PanelBody, SelectControl, TextControl, CheckboxControl, RadioControl} = w
 
 const defaultLink = "#";
 
-// Функция для генерации colorOptions на основе theme-color
+// Function to generate colorOptions based on theme-color
 const generateColorOptions = (themeColors) => {
   const colorOptions = [];
   Object.keys(themeColors).forEach(key => {
@@ -17,7 +17,8 @@ const generateColorOptions = (themeColors) => {
   return colorOptions;
 };
 
-const colorOptions = generateColorOptions(variables["theme-color"]);
+const colorOptions = generateColorOptions(variables["theme-colors"]);
+const defaultColorOption = colorOptions.length > 0 ? colorOptions[0].value : '';
 
 const sizeOptions = [
   {label: 'btn-lg', value: 'btn-lg'},
@@ -29,7 +30,7 @@ registerBlockType(
   {
     getEditWrapperProps(attributes) {
       const {defaultClass, buttonColor, buttonSize} = attributes.modification || {};
-      const blockClass = `${defaultClass || ''} ${buttonColor || 'btn-primary'} ${buttonSize || ''}`.trim();
+      const blockClass = `${defaultClass || ''} ${buttonColor || defaultColorOption} ${buttonSize || ''}`.trim();
 
       return {className: blockClass};
     },
@@ -103,7 +104,7 @@ registerBlockType(
             />
             <SelectControl
               label="Button Color"
-              value={attributes.modification.buttonColor || 'btn-primary'}
+              value={attributes.modification.buttonColor || defaultColorOption}
               options={colorOptions}
               onChange={(buttonColor) =>
                 setAttributes({
@@ -148,10 +149,9 @@ registerBlockType(
       const {className} = useBlockProps.save();
 
       const {defaultClass, buttonColor,buttonSize} = attributes.modification || {};
-      const blockClass = `${defaultClass || ''} ${buttonColor || 'btn-primary'} ${buttonSize || ''} ${className}`.trim();
+      const blockClass = `${defaultClass || ''} ${buttonColor || defaultColorOption} ${buttonSize || ''} ${className}`.trim();
       // Create a new object for the attributes, excluding the 'class' attribute if it's empty
       const blockProps = {};
-
       if (blockClass) {
         blockProps.className = blockClass;
       }
