@@ -1,3 +1,4 @@
+import variables from '../../../../../assets/build/variables.json';
 const {InspectorControls} = wp.blockEditor;
 const {PanelBody, RangeControl, CheckboxControl} = wp.components;
 
@@ -18,21 +19,18 @@ export default class BootstrapSpacers {
    */
   static addSpacerAttribute(settings, blockName) {
     // Check if the block is from the custom category
-    if (blockName.startsWith('starter-kit/')) {
+
+    if (blockName.startsWith('starter-kit/')) { 
       // Define your custom attribute
-      const spacerAttributes = {
+      const spacerAttributes = { 
         spacers: {
           type: 'object',
-          default: {
-            'xs': {},
-            'sm': {},
-            'md': {},
-            'lg': {},
-            'xl': {},
-            'xxl': {},
-          },
+          default: Object.keys(variables['grid-breakpoints'] || {}).reduce((acc, key) => {
+            acc[key] = {};
+            return acc;
+          }, {}),
         },
-      };
+      }; 
 
       // Merge the custom attribute with existing attributes
       settings.attributes = {
@@ -190,7 +188,6 @@ export default class BootstrapSpacers {
 
                   </div>
                 ))}
-
               </PanelBody>
             </InspectorControls>
           </>
