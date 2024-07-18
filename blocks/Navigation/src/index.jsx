@@ -2,7 +2,7 @@
  * Block dependencies
  */
 import metadata from '../block.json';
-
+import variables from '../../../assets/build/variables.json';
 /**
  * Internal block libraries
  */
@@ -11,6 +11,22 @@ const {InspectorControls, useBlockProps} = wp.blockEditor;
 const {PanelBody, SelectControl, Spinner} = wp.components;
 const {serverSideRender: ServerSideRender} = wp;
 const {useState, useEffect} = wp.element;
+
+const getExpandOptions = (breakpoints) => {
+  const options = [
+    {label: 'No responsive', value: 'navbar-expand'},
+    {label: 'Always expand', value: ''}
+  ];
+
+  Object.keys(breakpoints).forEach(key => { 
+    if (key !== 'xs') {
+      options.push({label: `${key.toUpperCase()} and under`, value: `navbar-expand-${key}`});
+    }
+  });
+
+  return options;
+};
+const expandOptions = getExpandOptions(variables['grid-breakpoints']);
 
 registerBlockType(
   metadata,
@@ -92,15 +108,7 @@ registerBlockType(
             <SelectControl
               label={`Expand menu:`}
               value={attributes.expand}
-              options={[
-                {label: 'No responsive', value: 'navbar-expand'},
-                {label: 'SM and under', value: 'navbar-expand-sm'},
-                {label: 'MD and under', value: 'navbar-expand-md'},
-                {label: 'LG and under', value: 'navbar-expand-lg'},
-                {label: 'XL and under', value: 'navbar-expand-xl'},
-                {label: 'XXL and under', value: 'navbar-expand-xxl'},
-                {label: 'Always expand', value: ''},
-              ]}
+              options={expandOptions}
               onChange={(expand) => setAttributes({expand})}
             />
           </PanelBody>
