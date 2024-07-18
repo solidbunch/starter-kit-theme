@@ -14,20 +14,23 @@
   "supports": {},
   "example": {},
   "attributes": {
+    "tagChoises": {
+      "type": "object",
+      "default": [
+        "section",
+        "div",
+        "main",
+        "article",
+        "aside",
+        "header",
+        "footer"
+      ]
+    },
     "modification": {
       "type": "object",
       "default": {
         "backgroundColor": {},
         "textColor": {},
-        "selector": [
-          "section",
-          "div",
-          "main",
-          "article",
-          "aside",
-          "header",
-          "footer"
-        ],
         "tagName": "section",
         "colorTheme": ""
       }

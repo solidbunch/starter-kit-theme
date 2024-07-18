@@ -61,7 +61,7 @@ registerBlockType(
       const dataBsThemeAttribute = attributes.modification.colorTheme
         ? {'data-bs-theme': attributes.modification.colorTheme}
         : {};
-      const selectorOptions = getSelectorOptions(attributes.modification.selector);
+      const selectorOptions = getSelectorOptions(attributes.tagChoises);
       const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Section styles">
