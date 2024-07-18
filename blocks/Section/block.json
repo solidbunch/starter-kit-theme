@@ -19,6 +19,15 @@
       "default": {
         "backgroundColor": {},
         "textColor": {},
+        "selector": [
+          "section",
+          "div",
+          "main",
+          "article",
+          "aside",
+          "header",
+          "footer"
+        ],
         "tagName": "section",
         "colorTheme": ""
       }

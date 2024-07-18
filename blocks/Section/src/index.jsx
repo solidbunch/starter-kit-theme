@@ -3,13 +3,39 @@
  */
 
 import metadata from '../block.json';
-
+import variables from '../../../assets/build/variables.json';
 /**
  * Internal block libraries
  */
 const {registerBlockType} = wp.blocks;
 const {InspectorControls, useBlockProps, InnerBlocks} = wp.blockEditor;
 const {PanelBody, SelectControl} = wp.components;
+
+const themeColors = variables['theme-colors'];
+
+const getSelectorOptions = (selectors) => {
+  const options = selectors.map(selector => ({
+    label: `<${selector}>`,
+    value: selector
+  }));
+  return options;
+};
+
+const getColorOptions = () => {
+  const options = [{label: 'Default', value: ''}];
+  Object.keys(themeColors).forEach(key => {
+    options.push({label: `text-${key}`, value: `text-${key}`});
+  });
+  return options;
+};
+
+const getBackgroundColorOptions = () => {
+  const options = [{label: 'Default', value: ''}];
+  Object.keys(themeColors).forEach(key => {
+    options.push({label: `bg-${key}`, value: `bg-${key}`});
+  });
+  return options;
+};
 
 function checkHasChildBlocks(clientId) {
   const {getBlockOrder} = wp.data.select('core/block-editor');
@@ -35,22 +61,14 @@ registerBlockType(
       const dataBsThemeAttribute = attributes.modification.colorTheme
         ? {'data-bs-theme': attributes.modification.colorTheme}
         : {};
-
+      const selectorOptions = getSelectorOptions(attributes.modification.selector);
       const renderControls = (
         <InspectorControls key="controls">
           <PanelBody title="Section styles">
             <SelectControl
               label="Select Tag"
-              value={attributes.modification.tagName || 'section'}
-              options={[
-                {label: '<section>', value: 'section'},
-                {label: '<div>', value: 'div'},
-                {label: '<main>', value: 'main'},
-                {label: '<article>', value: 'article'},
-                {label: '<aside>', value: 'aside'},
-                {label: '<header>', value: 'header'},
-                {label: '<footer>', value: 'footer'},
-              ]}
+              value={attributes.modification.tagName}
+              options={selectorOptions}
               onChange={(tagName) =>
                 setAttributes({
                   modification: {
@@ -80,15 +98,7 @@ registerBlockType(
             <SelectControl
               label="Background Color Class"
               value={attributes.modification.backgroundColor || ''}
-              options={[
-                {label: 'Not Selected', value: ''},
-                {label: 'bg-dark', value: 'bg-dark'},
-                {label: 'bg-black', value: 'bg-black'},
-                {label: 'bg-primary', value: 'bg-primary'},
-                {label: 'bg-secondary', value: 'bg-secondary'},
-                {label: 'bg-white', value: 'bg-white'},
-                {label: 'bg-light', value: 'bg-light'},
-              ]}
+              options={getBackgroundColorOptions()}
               onChange={(backgroundColor) =>
                 setAttributes({
                   modification: {
@@ -101,14 +111,7 @@ registerBlockType(
             <SelectControl
               label="Color Text Class"
               value={attributes.modification.textColor || ''}
-              options={[
-                {label: 'Default', value: ''},
-                {label: 'text-light', value: 'text-light'},
-                {label: 'text-dark', value: 'text-dark'},
-                {label: 'text-white', value: 'text-white'},
-                {label: 'text-black', value: 'text-black'},
-                {label: 'text-primary', value: 'text-primary'},
-              ]}
+              options={getColorOptions()}
               onChange={(textColor) =>
                 setAttributes({
                   modification: {
