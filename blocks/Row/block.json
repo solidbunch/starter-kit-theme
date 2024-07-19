@@ -19,16 +19,9 @@
       "type": "string",
       "default": "row"
     },
-    "properties": {
+    "aligmentProperties": {
       "type": "object",
-      "default": {
-        "xs": {},
-        "sm": {},
-        "md": {},
-        "lg": {},
-        "xl": {},
-        "xxl": {}
-      }
+      "default": {}
     },
     "justifyContent": {
       "type": "object",
