@@ -54,28 +54,7 @@
     },
     "srcSet": {
       "type": "object",
-      "default": {
-        "sm": {
-          "viewPort": 576,
-          "enabled": true
-        },
-        "md": {
-          "viewPort": 768,
-          "enabled": true
-        },
-        "lg": {
-          "viewPort": 992,
-          "enabled": true
-        },
-        "xl": {
-          "viewPort": 1200,
-          "enabled": true
-        },
-        "xxl": {
-          "viewPort": 1400,
-          "enabled": true
-        }
-      }
+      "default": {}
     }
   }
 }

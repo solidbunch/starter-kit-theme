@@ -24,16 +24,39 @@ export default class Edit {
    * @param {Object} props
    * @param {Object} metadata
    *
+   * @param {Object} variables
    * @return {JSX.Element}
    */
-  static renderControls(props, metadata) {
+  static renderControls(props, metadata, variables) {
 
     const {attributes, setAttributes} = props;
 
     const [priorityText, setPriorityText] = useState(Utils.getPriorityText(attributes.fetchPriority));
 
     const {createErrorNotice} = useDispatch(noticesStore);
+    
+    console.log(variables['grid-breakpoints']);
+    console.log(attributes);
+    
+    // Function to initialize size attributes based on grid-breakpoints
+    function initializeSrcSetfromVariables() {
+      const SrcSetfromVariables = {};
+      const breakpoints = variables['grid-breakpoints'];
 
+      Object.keys(breakpoints).forEach((breakpoint, index) => {
+        if (index !== 0) { 
+          SrcSetfromVariables[breakpoint] = {
+            "viewPort": breakpoints[breakpoint],
+            "enabled": true
+          };
+        }
+      });
+      return SrcSetfromVariables;
+    }
+    if (!attributes.srcSet || Object.keys(attributes.srcSet).length === 0) {
+      setAttributes({srcSet: initializeSrcSetfromVariables()});
+    }
+    
     return (
       <InspectorControls key="controls">
         <PanelBody title="Image Properties" className="image_container">
