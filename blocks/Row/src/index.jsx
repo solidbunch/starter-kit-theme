@@ -27,10 +27,12 @@ const initializeAligmentProperties = () => {
 function getClasses(attributes) {
   const {modification, aligmentProperties} = attributes;
   const classes = [modification]; // Начинаем с класса modification (row)
+  const breakpoints = Object.keys(gridBreakpoints);
+  const firstBreakpoint = breakpoints[0]; 
 
   Object.keys(aligmentProperties).forEach((breakpoint) => {
     const {justifyContent, alignItems} = aligmentProperties[breakpoint];
-    const breakpointSuffix = breakpoint === "xs" ? "" : `-${breakpoint}`;
+    const breakpointSuffix = breakpoint === firstBreakpoint ? "" : `-${breakpoint}`;
 
     if (justifyContent) {
       classes.push(`justify-content${breakpointSuffix}-${justifyContent}`);

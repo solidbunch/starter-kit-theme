@@ -21,16 +21,7 @@
   "attributes": {
     "size": {
       "type": "object",
-      "default": {
-        "xs": {
-          "mod": "default"
-        },
-        "sm": {},
-        "md": {},
-        "lg": {},
-        "xl": {},
-        "xxl": {}
-      }
+      "default": {}
     }
   }
 }

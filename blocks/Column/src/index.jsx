@@ -3,7 +3,7 @@
  */
 
 import metadata from '../block.json';
-
+import variables from '../../../assets/build/variables.json';
 /**
  * Internal block libraries
  */
@@ -18,13 +18,31 @@ function checkHasChildBlocks(clientId) {
   const {getBlockOrder} = wp.data.select('core/block-editor');
   return getBlockOrder(clientId).length > 0;
 }
+// Function to initialize size attributes based on grid-breakpoints
+function initializeSizeAttributes() {
+  const sizeAttributes = {};
+  const breakpoints = variables['grid-breakpoints'];
+
+  Object.keys(breakpoints).forEach((breakpoint, index) => {
+    if (index === 0) {
+      sizeAttributes[breakpoint] = {mod: "default"};
+    } else {
+      sizeAttributes[breakpoint] = {};
+    }
+  });
+
+  return sizeAttributes;
+}
 
 function generateSizeClasses(attributes) {
   const {size} = attributes;
   const classes = [];
+  const breakpoints = Object.keys(variables['grid-breakpoints']);
+  const firstBreakpoint = breakpoints[0]; // first breakpoint  in grid
+
   Object.keys(size).forEach((breakpoint) => {
     const {mod, valueRange} = size[breakpoint];
-    if (breakpoint === 'xs') {
+    if (breakpoint === firstBreakpoint) {
       if (mod === 'default') {
         classes.push('col');
       } else if (mod === 'auto') {
@@ -43,6 +61,14 @@ function generateSizeClasses(attributes) {
 
   return classes.join(' ');
 }
+//generate Select Options for custom width
+function generateSelectOptions(breakpoint, index, valueRange) {
+  return [
+    {label: index === 0 ? 'default (.col)' : `default (.col-${breakpoint})`, value: 'default'},
+    {label: index === 0 ? 'auto (.col-auto)' : `auto (.col-${breakpoint}-auto)`, value: 'auto'},
+    {label: index === 0 ? `custom (.col-${valueRange || 6})` : `custom (.col-${breakpoint}-${valueRange || 6})`, value: "custom"},
+  ];
+}
 
 registerBlockType(
   metadata,
@@ -54,6 +80,10 @@ registerBlockType(
     },
     edit: props => {
       const {attributes, setAttributes, clientId, className} = props;
+      // Initialize size attributes if not already initialized
+      if (!attributes.size || Object.keys(attributes.size).length === 0) {
+        setAttributes({size: initializeSizeAttributes()});
+      }
       const blockProps = useBlockProps({
         className: [className],
       });
@@ -62,9 +92,9 @@ registerBlockType(
         <InspectorControls key="settings">
           <PanelBody title="Column width" initialOpen={false}>
 
-            {Object.keys(attributes.size).map((breakpoint) => (
+            {Object.keys(attributes.size).map((breakpoint, index) => (
 
-              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod !== undefined && attributes.size[breakpoint].mod !== '' ? 'active' : ''}`}>
+              <div key={breakpoint} title={`Column settings - ${breakpoint}`} className={`box_breakpoint ${attributes.size[breakpoint].mod ? 'active' : ''}`}>
                 <CheckboxControl
                   label={`Enable ${breakpoint}`}
                   checked={
@@ -85,11 +115,7 @@ registerBlockType(
                     <SelectControl
                       label={`Size ${breakpoint}`}
                       value={attributes.size[breakpoint].mod}
-                      options={[
-                        {label: 'default', value: 'default'},
-                        {label: 'auto', value: 'auto'},
-                        {label: 'custom', value: "custom"},
-                      ]}
+                      options={generateSelectOptions(breakpoint, index, attributes.size[breakpoint].valueRange)}
                       onChange={(value) => {
                         const sizeObject = {...attributes.size};
 
