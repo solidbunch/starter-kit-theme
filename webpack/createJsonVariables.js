@@ -29,7 +29,15 @@ function parseScss(filePath) {
       const [key, value] = line.split(':').map(item => item.trim());
       if (key && value) {
         const cleanKey = key.replace(/[$"]/g, '');
-        const cleanValue = value.replace(/[,;]/g, '');
+        let cleanValue = value.replace(/[,;]/g, '');
+
+        // Convert px values and zero values to numbers
+        if (/^\d+px$/.test(cleanValue)) {
+          cleanValue = parseInt(cleanValue.replace('px', ''), 10);
+        } else if (cleanValue === '0') {
+          cleanValue = 0;
+        }
+
         if (cleanValue !== '(' && cleanValue !== ')') {
           currentObject[cleanKey] = cleanValue;
         }
