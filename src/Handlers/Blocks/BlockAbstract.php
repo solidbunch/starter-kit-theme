@@ -6,7 +6,9 @@ defined('ABSPATH') || exit;
 
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
+use StarterKit\App;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
@@ -90,13 +92,16 @@ abstract class BlockAbstract implements BlockInterface
      * @param string      $file
      * @param array       $data
      * @param string|null $base
+     * @param bool        $echo
      *
      * @return string
      *
+     * @throws ContainerExceptionInterface
      * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
-    public function loadBlockView(string $file = '', array $data = [], string $base = null, $echo = false): string
+    public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
     {
         if ($base === null) {
             $base = Config::get('blocksDir') . $this->blockName . '/' . Config::get('blocksViewDir');
@@ -215,7 +220,7 @@ abstract class BlockAbstract implements BlockInterface
             /**
              * Filter block asset dependencies
              */
-            $deps     = apply_filters(
+            $deps = apply_filters(
                 Config::get('hooksPrefix') . '/block_asset_dependencies',
                 $asset['dependencies'],
                 $this->blockName,
@@ -254,8 +259,9 @@ abstract class BlockAbstract implements BlockInterface
             }
 
             if (!in_array($type, ['editor_script', 'editor_style', 'script', 'view_script', 'style', 'view_style'])) {
-                // ToDo vvv add correct error logging
-                error_log("Unsupported asset type or context: $type");
+                /** @var LoggerInterface $logger */
+                $logger = App::container()->get(LoggerInterface::class);
+                $logger->warning("Unsupported asset type or context: $type");
             }
         }
     }
