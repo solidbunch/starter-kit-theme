@@ -93,8 +93,8 @@ class Hooks
         // Change excerpt dots
         add_filter('excerpt_more', [Handlers\Front::class, 'changeExcerptMore']);
         // GTM
-        add_action('wp_head', [Handlers\Front::class, 'addGTMHead']);
-        add_action('wp_footer', [Handlers\Front::class, 'addGTMBody']);
+        add_action('wp_head', [Handlers\Front::class, 'addGTMHead'], 1);
+        add_action('wp_body_open', [Handlers\Front::class, 'addGTMBody'], 1);
         // add Google Analytics code to head
         add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
 
