@@ -73,15 +73,14 @@ class Block extends BlockAbstract
         $locations = get_nav_menu_locations();
 
         // Get object id by location
-        $menuId = $locations[$attributes['menuLocation']] ?? '';
+        // Or get menuId if menuId attribute present
+        $menuIdByLocation = $locations[$attributes['menuLocation']] ?? '';
+        $menuId = !empty($attributes['menuId']) ? $attributes['menuId'] : $menuIdByLocation;
 
         // Check for no menus in location
         if (!empty($attributes['menuLocation']) && empty($menuId)) {
             return $this->loadBlockView('no-data', ['message' => __('No menu in selected location', 'starter-kit')]);
         }
-
-        // Or get menuId if menuId attribute present
-        $menuId = !empty($attributes['menuId']) ? $attributes['menuId'] : $menuId;
 
         // Check for menuId and handle the 'no menu selected' case
         if (empty($menuId)) {
