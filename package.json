@@ -2,7 +2,7 @@
   "name": "starter-kit-theme",
   "description": "WordPress starter theme with a modern development stack for launching projects faster and easily",
   "engines": {
-    "node": ">=18.0.0 <19",
+    "node": ">=18.0.0 <20",
     "npm": ">=9 <11"
   },
   "dependencies": {
