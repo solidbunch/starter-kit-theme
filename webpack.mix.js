@@ -22,7 +22,7 @@ function applyFontRule(fontPath) {
       module: {
         rules: [
           {
-            test: /webfonts-loader\/.*\.font\.js$/,
+            test: /webfonts-loader(\/|\\).*\.font\.js$/,
             use: [
               {loader: MiniCssExtractPlugin.loader},
               {
