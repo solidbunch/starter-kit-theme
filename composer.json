@@ -47,7 +47,7 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
-    "filp/whoops": "2.15.4",
+    "filp/whoops": "2.17.0",
     "phpcompatibility/phpcompatibility-wp": "2.1.4",
     "phpunit/phpunit": "10.5.3",
     "roave/security-advisories": "dev-latest",

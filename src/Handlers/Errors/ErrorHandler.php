@@ -11,6 +11,7 @@ use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 use Whoops\Util\Misc;
 use WP_Error;
+use StarterKit\Helper\Config;
 
 class ErrorHandler
 {
@@ -64,11 +65,14 @@ class ErrorHandler
      */
     public static function register(LoggerInterface $logger)
     {
-        if (static::hideErrors()) {
+        if (static::hideErrors() || ! static::isWhoopsEnabled()) {
             return;
         }
 
         $whoops = new Run();
+
+        $s_levels = E_STRICT | E_DEPRECATED | E_USER_DEPRECATED | E_WARNING | E_USER_WARNING | E_NOTICE | E_USER_NOTICE;
+        $whoops->silenceErrorsInPaths('@wp-content' . DIRECTORY_SEPARATOR . 'plugins@', $s_levels);
 
         $whoops->pushHandler(static::getPrettyHandler());
         $whoops->pushHandler(static::getAjaxHandler());
@@ -85,6 +89,12 @@ class ErrorHandler
         $whoops->register();
 
         ob_start(); // Don`t display WP markup before whoops.
+    }
+
+
+    private static function isWhoopsEnabled(): bool
+    {
+        return (bool) Config::get('enableWhoops');
     }
 
 
