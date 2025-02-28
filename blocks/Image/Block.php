@@ -182,7 +182,7 @@ class Block extends BlockAbstract
         $attrs
     ): string {
         try {
-            $img = Img::make($mainImageUrl, $imgAlt, $mainImageWidth, $mainImageHeight, [], [], $lazy);
+            $img = Img::make($mainImageUrl, $imgAlt, (int)$mainImageWidth, (int)$mainImageHeight, [], [], $lazy);
 
             foreach ($attrs as $attrName => $attrValue) {
                 $img->setAttr($attrName, $attrValue);
