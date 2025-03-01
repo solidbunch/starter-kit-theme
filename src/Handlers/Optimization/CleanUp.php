@@ -163,7 +163,6 @@ class CleanUp
             }
         }
 
-
         return $rules;
     }
 
