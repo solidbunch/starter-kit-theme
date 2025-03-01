@@ -32,10 +32,14 @@ if (PHP_VERSION_ID < 80100) {
 
         App::instance()->run($container);
     } catch (Throwable $throwable) {
-        try {
+        if ('production' === wp_get_environment_type()) {
+            try {
+                ErrorHandler::handleThrowable($throwable);
+            } catch (Throwable $e) {
+                error_log($e);
+            }
+        } else {
             ErrorHandler::handleThrowable($throwable);
-        } catch (Throwable $e) {
-            error_log($e);
         }
     }
 }

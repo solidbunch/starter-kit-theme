@@ -19,5 +19,6 @@ return [
         'isLocalEnvironment'   => 'local' === $environment_type,
         'isStagingEnvironment' => 'staging' === $environment_type,
         'isProdEnvironment'    => 'production' === $environment_type,
+        'enableWhoops'         => false,
     ],
 ];
