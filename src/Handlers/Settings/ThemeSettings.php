@@ -50,7 +50,7 @@ class ThemeSettings
             __('Site Settings', 'starter-kit') // desc
         );
 
-        $container->set_page_parent('options-general.php'); // id of the "Appearance" admin section
+        $container->set_page_parent('options-general.php'); // id of the "Settings" admin section
         $container->set_page_menu_title(__('Theme Settings'));
 
 
