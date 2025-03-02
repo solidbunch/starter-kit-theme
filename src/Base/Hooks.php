@@ -37,6 +37,7 @@ class Hooks
             'carbon_fields_theme_options_container_saved',
             [Handlers\Settings\ThemeSettings::class, 'updateFaviconFromThemeOptions']
         );
+        add_action('carbon_fields_register_fields', [Handlers\Settings\NewsSettings::class, 'make']);
 
         /************************************
          *         Gutenberg blocks
@@ -53,7 +54,6 @@ class Hooks
         add_action('init', [Handlers\PostTypes\News::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerCategoryTaxonomy'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerTagTaxonomy'], 5);
-        add_action('carbon_fields_register_fields', [Handlers\Settings\NewsSettings::class, 'make']);
         add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Pricing::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\DocPages::class, 'registerPostType'], 5);
@@ -61,22 +61,27 @@ class Hooks
         add_action('init', [Handlers\PostTypes\Services::class, 'registerPostType'], 5);
 
         /************************************
-         *         Taxonomies admin
-         ************************************/
-        add_action('restrict_manage_posts', [Handlers\AdminColumns::class, 'addNewsCategoryFilter'], 10, 2);
-
-        /************************************
-         *            Post Meta Fields
+         *            Meta Fields
          ************************************/
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\News::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Pricing::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
+
+        /************************************
+         *     Admin aria customizations
+         ************************************/
+        add_action('restrict_manage_posts', [Handlers\AdminColumns::class, 'addNewsCategoryFilter'], 10, 2);
         add_filter('manage_posts_columns', [Handlers\AdminColumns::class, 'addImgColumn']);
         add_filter('manage_posts_custom_column', [Handlers\AdminColumns::class, 'manageImgColumn'], 10, 2);
 
         /************************************
-         *            Front
+         *               Back
+         ************************************/
+        add_action('enqueue_block_editor_assets', [Handlers\Back::class, 'enqueueBlockEditorAssets']);
+
+        /************************************
+         *               Front
          ************************************/
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_filter(
@@ -97,11 +102,6 @@ class Hooks
         add_action('wp_body_open', [Handlers\Front::class, 'addGTMBody'], 1);
         // add Google Analytics code to head
         add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
-
-        /************************************
-         *               Back
-         ************************************/
-        add_action('enqueue_block_editor_assets', [Handlers\Back::class, 'enqueueBlockEditorAssets']);
 
         /************************************
          *       Security and CleanUp
