@@ -16,7 +16,6 @@ use StarterKit\Helper\NotFoundException;
  */
 class DocPage
 {
-
     public static function getKey()
     {
         return 'doc-page';

@@ -13,7 +13,6 @@ defined('ABSPATH') || exit;
  */
 class TeamMember
 {
-
     public static function getKey()
     {
         return 'team_member';

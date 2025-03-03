@@ -16,7 +16,6 @@ use StarterKit\Helper\NotFoundException;
  */
 class Pricing
 {
-
     public static function getKey()
     {
         return 'pricing';

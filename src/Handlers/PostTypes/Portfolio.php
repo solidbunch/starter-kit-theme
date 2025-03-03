@@ -13,7 +13,6 @@ use StarterKit\Helper\Config;
  */
 class Portfolio
 {
-
     public static function getKey()
     {
         return 'portfolio';

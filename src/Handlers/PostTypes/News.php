@@ -16,7 +16,6 @@ use StarterKit\Helper\NotFoundException;
  */
 class News
 {
-
     public static function getKey()
     {
         return 'news';
