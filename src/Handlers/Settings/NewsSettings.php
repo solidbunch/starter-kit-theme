@@ -26,7 +26,7 @@ class NewsSettings
 
         $container = Container::make(
             'theme_options',  // type
-            'casino_settings', // id
+            'news_settings', // id
             __('News Settings', 'starter-kit') // desc
         );
 
