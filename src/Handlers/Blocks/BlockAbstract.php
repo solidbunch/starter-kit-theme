@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StarterKit\App;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;

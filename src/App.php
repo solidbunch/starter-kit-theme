@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use StarterKit\Base\Hooks;
 use StarterKit\Handlers\CLI\CLI;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;

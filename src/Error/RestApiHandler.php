@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\Handlers\Errors;
+namespace StarterKit\Error;
 
 defined('ABSPATH') || exit;
 

@@ -90,10 +90,12 @@ npm run watch
    ├── Base/                    # Base theme functions
    │   └──Hooks.php             # Registering hooks
    │
+   ├── Error/                   # Theme additional error handlers, may be enable in config
+   ├── Exception/               # Theme additional exceptions
+   │
    ├── Handlers/                # Theme hook handlers, main functionality
    │   ├──Blocks/               # Blocks functionality
    │   ├──CLI/                  # WP CLI comands
-   │   ├──Errors/               # Error handlers
    │   ├──Meta/                 # Registering meta fields for post types, taxonomis, users etc. Runs by Base/Hooks
    │   ├──PostTypes/            # Registering custom post types with Taxonomies. Runs by Base/Hooks
    │   ├──Settings/             # Theme settings creation.

@@ -4,7 +4,7 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKitBlocks;

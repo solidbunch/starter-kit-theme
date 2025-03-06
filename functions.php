@@ -3,7 +3,7 @@
 defined('ABSPATH') || exit;
 
 use StarterKit\App;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use Psr\Container\ContainerInterface;
 
 /**

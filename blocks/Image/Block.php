@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
