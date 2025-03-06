@@ -9,7 +9,7 @@ use RuntimeException;
 use StarterKit\App;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
 
@@ -47,7 +47,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @param $blockName
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function __construct($blockName)
@@ -71,7 +71,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public function registerBlock(): void
     {
@@ -91,7 +91,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return string
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
@@ -192,7 +192,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function registerBlockAssets(): void

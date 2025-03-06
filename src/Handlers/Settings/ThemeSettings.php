@@ -8,7 +8,7 @@ use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use WPRI\ImgUtils;
 
@@ -34,7 +34,7 @@ class ThemeSettings
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function make(): void
     {

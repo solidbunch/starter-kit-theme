@@ -8,7 +8,7 @@ use Exception;
 use PHPMailer;
 use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 
 /**
@@ -23,7 +23,7 @@ class Front
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function enqueueCriticalAssets(): void
     {
@@ -70,7 +70,7 @@ class Front
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -88,7 +88,7 @@ class Front
      * @return void
      *
      * @throws ContainerExceptionInterface
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws NotFoundExceptionInterface
      */
     public static function enqueueThemeAssets(): void
@@ -100,7 +100,7 @@ class Front
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function loadFrontendJsData(): void
     {
@@ -120,7 +120,7 @@ class Front
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function addNoCacheHeaders(): void
     {

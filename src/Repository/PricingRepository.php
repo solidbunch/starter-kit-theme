@@ -5,7 +5,7 @@ namespace StarterKit\Repository;
 defined('ABSPATH') || exit;
 
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use StarterKit\Handlers\PostTypes;
 
@@ -28,7 +28,7 @@ class PricingRepository extends WpPostRepositoryAbstract
      *
      * @return array
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function getAllWithData(array $args): array
     {

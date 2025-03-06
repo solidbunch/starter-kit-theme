@@ -6,7 +6,7 @@ defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKitBlocks;
 use Throwable;
 
@@ -24,7 +24,7 @@ class Init
      *
      * @return array
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      *
      * @see https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
      */
@@ -46,7 +46,7 @@ class Init
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public static function loadBlocks(): void

@@ -26,10 +26,6 @@ class DocPage
      * Register post type
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
      */
     public static function registerPostType(): void
     {

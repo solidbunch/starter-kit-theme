@@ -5,6 +5,7 @@ namespace StarterKit\Helper;
 defined('ABSPATH') || exit;
 
 use StarterKit\App;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 
 /**
  * Theme configuration helper
@@ -21,7 +22,7 @@ class Config
      *
      * @return mixed
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function get(string $key): mixed
     {
@@ -30,7 +31,7 @@ class Config
         $config = App::container()->get('config');
 
         if (! isset($config[$parts[0]])) {
-            throw new NotFoundException("No entry found for '$key'");
+            throw new ConfigEntryNotFoundException("No entry found for '$key'");
         }
 
         $value = $config[array_shift($parts)];
@@ -39,7 +40,7 @@ class Config
             if (is_array($value) && isset($value[$part])) {
                 $value = $value[$part];
             } else {
-                throw new NotFoundException("No entry found for '$key'");
+                throw new ConfigEntryNotFoundException("No entry found for '$key'");
             }
         }
 

@@ -5,7 +5,7 @@ namespace StarterKit\Handlers\Security;
 defined('ABSPATH') || exit;
 
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use WP_REST_Request;
 use WP_REST_Server;
 
@@ -26,7 +26,7 @@ class RestApiFilter
      *
      * @return mixed $result
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function restApiWhitelistOnly(
         mixed $result,

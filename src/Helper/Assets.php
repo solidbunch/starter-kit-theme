@@ -2,7 +2,7 @@
 
 namespace StarterKit\Helper;
 
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 
 defined('ABSPATH') || exit;
 
@@ -26,7 +26,7 @@ class Assets
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function registerThemeScript(
         string $relativePath,
@@ -61,7 +61,7 @@ class Assets
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function registerThemeStyle(
         string $relativePath,

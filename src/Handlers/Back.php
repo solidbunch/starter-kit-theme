@@ -5,7 +5,7 @@ namespace StarterKit\Handlers;
 defined('ABSPATH') || exit;
 
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 
 /**
  * Back End handler
@@ -19,7 +19,7 @@ class Back
      *
      * @return void
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function enqueueBlockEditorAssets(): void
     {

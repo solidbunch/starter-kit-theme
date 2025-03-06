@@ -7,7 +7,7 @@ defined('ABSPATH') || exit;
 use Exception;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Handlers\Errors\ErrorHandler;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
 use WPRI\ResponsiveImages\Img;
@@ -63,7 +63,7 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
