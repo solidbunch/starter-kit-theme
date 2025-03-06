@@ -4,8 +4,6 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StarterKit\App;
@@ -49,9 +47,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @param $blockName
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
     public function __construct($blockName)
@@ -74,9 +70,8 @@ abstract class BlockAbstract implements BlockInterface
      * Add your server side render callback into $this->blockArgs
      *
      * @return void
+     *
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public function registerBlock(): void
     {
@@ -96,9 +91,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return string
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
     public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
@@ -199,9 +192,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
     public function registerBlockAssets(): void

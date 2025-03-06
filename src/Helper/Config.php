@@ -4,8 +4,6 @@ namespace StarterKit\Helper;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\App;
 
 /**
@@ -23,8 +21,6 @@ class Config
      *
      * @return mixed
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      * @throws NotFoundException
      */
     public static function get(string $key): mixed

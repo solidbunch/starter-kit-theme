@@ -4,8 +4,6 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
@@ -26,8 +24,6 @@ class Init
      *
      * @return array
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      * @throws NotFoundException
      *
      * @see https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
@@ -50,9 +46,7 @@ class Init
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
     public static function loadBlocks(): void

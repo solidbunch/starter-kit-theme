@@ -4,7 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\PostTypes;
 
 /**

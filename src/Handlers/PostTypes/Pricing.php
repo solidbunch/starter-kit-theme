@@ -4,11 +4,6 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
-
 /**
  * Post type class
  *
@@ -16,12 +11,12 @@ use StarterKit\Helper\NotFoundException;
  */
 class Pricing
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'pricing';
     }
 
-    public static function getRewriteSlug()
+    public static function getRewriteSlug(): string
     {
         return 'pricing';
     }
@@ -30,10 +25,6 @@ class Pricing
      * Register post type
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
      */
     public static function registerPostType(): void
     {

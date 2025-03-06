@@ -4,10 +4,7 @@ namespace StarterKitBlocks\Section;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\NotFoundException;
 
 /**
  * Block controller
@@ -37,15 +34,12 @@ class Block extends BlockAbstract
     public function registerBlockArgs(): void
     {
     }
+
     /**
      * Register rest api endpoints
      * Runs by abstract constructor
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {

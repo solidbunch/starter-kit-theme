@@ -4,8 +4,6 @@ namespace StarterKitBlocks\DocPagesNav;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Repository\DocPageRepository;

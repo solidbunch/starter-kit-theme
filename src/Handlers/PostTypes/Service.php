@@ -13,7 +13,7 @@ use StarterKit\Helper\Config;
  */
 class Service
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'service';
     }

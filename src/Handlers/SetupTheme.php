@@ -2,8 +2,6 @@
 
 namespace StarterKit\Handlers;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -74,9 +72,7 @@ class SetupTheme
      *
      * @return string
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function bigImageSizeThreshold($threshold): string
     {

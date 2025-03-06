@@ -4,8 +4,6 @@ namespace StarterKitBlocks\News;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\PostTypes;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
@@ -86,9 +84,7 @@ class Block extends BlockAbstract
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {
@@ -107,8 +103,6 @@ class Block extends BlockAbstract
      * @return WP_Error|WP_REST_Response|WP_HTTP_Response
      *
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
     {

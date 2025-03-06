@@ -4,10 +4,6 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 
 /**
  * Post type class
@@ -16,12 +12,12 @@ use StarterKit\Helper\NotFoundException;
  */
 class DocPage
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'doc-page';
     }
 
-    public static function getRewriteSlug()
+    public static function getRewriteSlug(): string
     {
         return 'doc';
     }

@@ -4,8 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -30,8 +28,6 @@ class PricingRepository extends WpPostRepositoryAbstract
      *
      * @return array
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      * @throws NotFoundException
      */
     public static function getAllWithData(array $args): array

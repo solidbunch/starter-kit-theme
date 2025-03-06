@@ -7,8 +7,6 @@ defined('ABSPATH') || exit;
 use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
@@ -37,8 +35,6 @@ class ThemeSettings
      * @return void
      *
      * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public static function make(): void
     {

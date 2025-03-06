@@ -4,8 +4,6 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 use WP_REST_Request;
@@ -28,9 +26,7 @@ class RestApiFilter
      *
      * @return mixed $result
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function restApiWhitelistOnly(
         mixed $result,

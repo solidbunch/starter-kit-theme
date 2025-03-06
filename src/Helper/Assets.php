@@ -2,8 +2,7 @@
 
 namespace StarterKit\Helper;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use StarterKit\Helper\NotFoundException;
 
 defined('ABSPATH') || exit;
 
@@ -27,9 +26,7 @@ class Assets
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function registerThemeScript(
         string $relativePath,
@@ -64,9 +61,7 @@ class Assets
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function registerThemeStyle(
         string $relativePath,

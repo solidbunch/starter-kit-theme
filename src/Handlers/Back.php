@@ -4,8 +4,6 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
 
@@ -21,8 +19,6 @@ class Back
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      * @throws NotFoundException
      */
     public static function enqueueBlockEditorAssets(): void

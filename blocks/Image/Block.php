@@ -5,8 +5,6 @@ namespace StarterKitBlocks\Image;
 defined('ABSPATH') || exit;
 
 use Exception;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Handlers\Errors\ErrorHandler;
 use StarterKit\Helper\NotFoundException;
@@ -304,10 +302,6 @@ class Block extends BlockAbstract
      * Runs by abstract constructor
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {

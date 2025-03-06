@@ -4,8 +4,6 @@ namespace StarterKitBlocks\Navigation;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
 use StarterKit\Helper\NotFoundException;
@@ -148,9 +146,7 @@ class Block extends BlockAbstract
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
      * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {

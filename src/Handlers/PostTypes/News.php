@@ -4,10 +4,6 @@ namespace StarterKit\Handlers\PostTypes;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 
 /**
  * Post type class
@@ -16,22 +12,22 @@ use StarterKit\Helper\NotFoundException;
  */
 class News
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'news';
     }
 
-    public static function getRewriteSlug()
+    public static function getRewriteSlug(): string
     {
         return 'news';
     }
 
-    public static function getCategoryKey()
+    public static function getCategoryKey(): string
     {
         return 'news-category';
     }
 
-    public static function getTagKey()
+    public static function getTagKey(): string
     {
         return 'news-tag';
     }
@@ -40,10 +36,6 @@ class News
      * Register post type
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
      */
     public static function registerPostType(): void
     {
