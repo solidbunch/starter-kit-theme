@@ -155,5 +155,4 @@ class Lang
 
         return $current_lang ? $delimiter . $current_lang : '';
     }
-
 }

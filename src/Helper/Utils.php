@@ -228,7 +228,7 @@ class Utils
      * @param mixed  $metaValue
      * @param bool   $usePrefix
      */
-    public static function set_post_meta_fw(
+    public static function setPostMetaFw(
         int $postId,
         string $metaKey,
         mixed $metaValue,
@@ -409,7 +409,7 @@ class Utils
      */
     public static function addPrefix(string $name, string $prefix = SK_PREFIX): string
     {
-        if ( ! $prefix) {
+        if (!$prefix) {
             return $name;
         }
 
