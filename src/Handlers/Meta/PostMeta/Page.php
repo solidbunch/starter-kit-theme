@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Helper\Config;
 use StarterKit\Repository\CarBrandRepository;
 
 /**
@@ -18,7 +17,7 @@ class Page
 {
     public static function make(): void
     {
-        $metaPrefix = Config::get('settingsPrefix') . 'page_';
+        $metaPrefix = SK_PREFIX . 'page_';
 
         $carBrands = CarBrandRepository::getCarBrands();
 

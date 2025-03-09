@@ -4,8 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Helper\Config;
-use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use StarterKit\Handlers\PostTypes;
 
@@ -27,14 +25,12 @@ class PricingRepository extends WpPostRepositoryAbstract
      * @param array $args
      *
      * @return array
-     *
-     * @throws ConfigEntryNotFoundException
      */
     public static function getAllWithData(array $args): array
     {
         $posts  = static::get($args);
         $values = [];
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\Pricing::getKey() . '_';
+        $metaPrefix = SK_PREFIX . static::getPostTypeKey() . '_';
 
         foreach ($posts as $post) {
             /** @var WP_Post $post */

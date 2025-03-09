@@ -38,7 +38,7 @@ class ThemeSettings
      */
     public static function make(): void
     {
-        $prefix = Config::get('settingsPrefix');
+        $prefix = SK_PREFIX;
 
         $container = Container::make(
             'theme_options',  // type

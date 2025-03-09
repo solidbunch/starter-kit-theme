@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\PostTypes;
 
 /**
@@ -18,7 +17,7 @@ class NewsCategory
 {
     public static function make(): void
     {
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\News::getCategoryKey() . '_';
+        $metaPrefix = SK_PREFIX . PostTypes\News::getCategoryKey() . '_';
 
         Container::make('term_meta', __('News Category Settings', 'starter-kit'))
                  ->where('term_taxonomy', '=', PostTypes\News::getCategoryKey())

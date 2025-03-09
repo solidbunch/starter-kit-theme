@@ -117,7 +117,7 @@ class Block extends BlockAbstract
         $requestedPage = $requestData['page'] ?? 1;
         //$nonce         = $requestData['nonce'];
 
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\News::getKey() . '_';
+        $metaPrefix = SK_PREFIX . PostTypes\News::getKey() . '_';
 
         $args = [];
 

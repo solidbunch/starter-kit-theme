@@ -4,6 +4,7 @@ namespace StarterKit;
 
 defined('ABSPATH') || exit;
 
+use StarterKit\Base\Constants;
 use StarterKit\Base\Hooks;
 use StarterKit\Handlers\CLI\CLI;
 use StarterKit\Error\ErrorHandler;
@@ -38,6 +39,9 @@ final class App extends AbstractSingleton
         $this->container = $container;
 
         ErrorHandler::register($container->get(LoggerInterface::class));
+
+        // Constants definition
+        Constants::define();
 
         // Main Hooks functionality
         Hooks::initHooks();

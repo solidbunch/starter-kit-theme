@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Helper\Config;
 use StarterKit\Repository\CarBrandRepository;
 use StarterKit\Repository\ServiceRepository;
 use StarterKit\Handlers\PostTypes;
@@ -20,7 +19,7 @@ class News
 {
     public static function make(): void
     {
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\News::getKey() . '_';
+        $metaPrefix = SK_PREFIX . PostTypes\News::getKey() . '_';
 
         $services = ServiceRepository::getAllList(['posts_per_page' => 1000]);
         asort($services);
