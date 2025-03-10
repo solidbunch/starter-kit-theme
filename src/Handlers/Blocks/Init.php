@@ -46,7 +46,6 @@ class Init
      *
      * @return void
      *
-     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public static function loadBlocks(): void
@@ -55,7 +54,7 @@ class Init
             return;
         }
 
-        $blocks = glob(Config::get('blocksDir') . '*', GLOB_ONLYDIR);
+        $blocks = glob(SK_BLOCKS_DIR . '*', GLOB_ONLYDIR);
 
         foreach ($blocks as $blockPath) {
             $blockName = basename($blockPath);

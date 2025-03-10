@@ -52,7 +52,7 @@ class RestApiFilter
         $allowedNamespaces = Config::get('security/RestApiNamespaceWhitelist');
 
         // Add current namespace to allowed list
-        $allowedNamespaces[] = Config::get('restApiNamespace');
+        $allowedNamespaces[] = SK_REST_API_NS;
 
 
         foreach ($allowedNamespaces as $allowedNamespace) {

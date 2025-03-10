@@ -8,8 +8,6 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StarterKit\App;
 use StarterKit\Error\ErrorHandler;
-use StarterKit\Helper\Config;
-use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use Throwable;
 
@@ -46,9 +44,6 @@ abstract class BlockAbstract implements BlockInterface
      * Runs on 'init' hook
      *
      * @param $blockName
-     *
-     * @throws ConfigEntryNotFoundException
-     * @throws Throwable
      */
     public function __construct($blockName)
     {
@@ -70,13 +65,11 @@ abstract class BlockAbstract implements BlockInterface
      * Add your server side render callback into $this->blockArgs
      *
      * @return void
-     *
-     * @throws ConfigEntryNotFoundException
      */
     public function registerBlock(): void
     {
         register_block_type_from_metadata(
-            Config::get('blocksDir') . $this->blockName,
+            SK_BLOCKS_DIR . $this->blockName,
             $this->blockArgs
         );
     }
@@ -91,13 +84,12 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @return string
      *
-     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
     {
         if ($base === null) {
-            $base = Config::get('blocksDir') . $this->blockName . '/' . Config::get('blocksViewDir');
+            $base = SK_BLOCKS_DIR . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
         }
 
         $viewFilePath = $base . $file . '.php';
@@ -191,14 +183,11 @@ abstract class BlockAbstract implements BlockInterface
      * Use $blockAssets property instead
      *
      * @return void
-     *
-     * @throws ConfigEntryNotFoundException
-     * @throws Throwable
      */
     public function registerBlockAssets(): void
     {
-        $blockUri = Config::get('blocksUri') . $this->blockName . '/build/';
-        $blockDir = Config::get('blocksDir') . $this->blockName . '/build/';
+        $blockUri = SK_BLOCKS_URI . $this->blockName . '/build/';
+        $blockDir = SK_BLOCKS_DIR . $this->blockName . '/build/';
 
         foreach ($this->blockAssets as $type => $asset) {
             if (empty($asset['file'])) {
@@ -212,7 +201,7 @@ abstract class BlockAbstract implements BlockInterface
              * Filter block asset dependencies
              */
             $deps = apply_filters(
-                Config::get('hooksPrefix') . '/block_asset_dependencies',
+                SK_HOOKS_PREFIX . '/block_asset_dependencies',
                 $asset['dependencies'],
                 $this->blockName,
                 $type

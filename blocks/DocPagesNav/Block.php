@@ -5,7 +5,6 @@ namespace StarterKitBlocks\DocPagesNav;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Repository\DocPageRepository;
 use Throwable;
 
@@ -57,7 +56,6 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
@@ -79,10 +77,6 @@ class Block extends BlockAbstract
      * Runs by abstract constructor
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws ConfigEntryNotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {

@@ -7,7 +7,6 @@ defined('ABSPATH') || exit;
 use StarterKit\Handlers\PostTypes;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
-use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Repository\NewsRepository;
 use Throwable;
 use WP_Error;
@@ -63,7 +62,6 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws ConfigEntryNotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
@@ -83,12 +81,10 @@ class Block extends BlockAbstract
      * Runs by Blocks Register Handler
      *
      * @return void
-     *
-     * @throws ConfigEntryNotFoundException
      */
     public function blockRestApiEndpoints(): void
     {
-        register_rest_route(Config::get('restApiNamespace'), '/news', [
+        register_rest_route(SK_REST_API_NS, '/news', [
             'methods' => 'GET,POST',
             'callback' => [$this, 'getNewsCallback'],
             'permission_callback' => '__return_true',
@@ -101,8 +97,6 @@ class Block extends BlockAbstract
      * @param WP_REST_Request $request
      *
      * @return WP_Error|WP_REST_Response|WP_HTTP_Response
-     *
-     * @throws ConfigEntryNotFoundException
      */
     public function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
     {
