@@ -4,10 +4,8 @@ namespace StarterKit\Handlers\Security;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use WP_REST_Request;
 use WP_REST_Server;
 
@@ -28,9 +26,7 @@ class RestApiFilter
      *
      * @return mixed $result
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @throws ConfigEntryNotFoundException
      */
     public static function restApiWhitelistOnly(
         mixed $result,
@@ -56,7 +52,7 @@ class RestApiFilter
         $allowedNamespaces = Config::get('security/RestApiNamespaceWhitelist');
 
         // Add current namespace to allowed list
-        $allowedNamespaces[] = Config::get('restApiNamespace');
+        $allowedNamespaces[] = SK_REST_API_NS;
 
 
         foreach ($allowedNamespaces as $allowedNamespace) {

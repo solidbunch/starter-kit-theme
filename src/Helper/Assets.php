@@ -2,9 +2,6 @@
 
 namespace StarterKit\Helper;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-
 defined('ABSPATH') || exit;
 
 /**
@@ -26,10 +23,6 @@ class Assets
      * @param array  $args         An array of additional script loading strategies.
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function registerThemeScript(
         string $relativePath,
@@ -46,9 +39,9 @@ class Assets
 
         wp_register_script(
             $handle ?: basename($relativePath, '.js') . '-script',
-            Config::get('assetsUri') . $relativePath,
+            SK_ASSETS_URI . $relativePath,
             $deps,
-            filemtime(Config::get('assetsDir') . $relativePath),
+            filemtime(SK_ASSETS_DIR . $relativePath),
             $args
         );
     }
@@ -63,10 +56,6 @@ class Assets
      * @param string $media        Media type
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function registerThemeStyle(
         string $relativePath,
@@ -76,9 +65,9 @@ class Assets
     ): void {
         wp_register_style(
             $handle ?: basename($relativePath, '.css') . '-style',
-            Config::get('assetsUri') . $relativePath,
+            SK_ASSETS_URI . $relativePath,
             $deps,
-            filemtime(Config::get('assetsDir') . $relativePath),
+            filemtime(SK_ASSETS_DIR . $relativePath),
             $media
         );
     }

@@ -4,12 +4,9 @@ namespace StarterKitBlocks\News;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\PostTypes;
 use StarterKit\Handlers\Blocks\BlockAbstract;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 use StarterKit\Repository\NewsRepository;
 use Throwable;
 use WP_Error;
@@ -65,7 +62,6 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws NotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
@@ -85,14 +81,10 @@ class Block extends BlockAbstract
      * Runs by Blocks Register Handler
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {
-        register_rest_route(Config::get('restApiNamespace'), '/news', [
+        register_rest_route(SK_REST_API_NS, '/news', [
             'methods' => 'GET,POST',
             'callback' => [$this, 'getNewsCallback'],
             'permission_callback' => '__return_true',
@@ -105,10 +97,6 @@ class Block extends BlockAbstract
      * @param WP_REST_Request $request
      *
      * @return WP_Error|WP_REST_Response|WP_HTTP_Response
-     *
-     * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public function getNewsCallback(WP_REST_Request $request): WP_Error|WP_REST_Response|WP_HTTP_Response
     {
@@ -123,7 +111,7 @@ class Block extends BlockAbstract
         $requestedPage = $requestData['page'] ?? 1;
         //$nonce         = $requestData['nonce'];
 
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\News::getKey() . '_';
+        $metaPrefix = SK_PREFIX . PostTypes\News::getKey() . '_';
 
         $args = [];
 

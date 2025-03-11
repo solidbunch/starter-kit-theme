@@ -4,7 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\PostTypes;
 
 /**
@@ -20,7 +19,7 @@ class NewsRepository extends WpPostRepositoryAbstract
     }
 
     /**
-     * @param  array  $args
+     * @param array $args
      *
      * @return array
      */
@@ -30,7 +29,7 @@ class NewsRepository extends WpPostRepositoryAbstract
     }
 
     /**
-     * @param  array  $args
+     * @param array $args
      *
      * @return array
      */
@@ -40,7 +39,7 @@ class NewsRepository extends WpPostRepositoryAbstract
     }
 
     /**
-     * @param  array  $args
+     * @param array $args
      *
      * @return array
      */
@@ -50,7 +49,7 @@ class NewsRepository extends WpPostRepositoryAbstract
     }
 
     /**
-     * @param  float  $impact
+     * @param float $impact
      *
      * @return array
      */

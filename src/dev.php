@@ -124,7 +124,7 @@ if (!function_exists('_var_dump')) {
 <pre class="_var_dump" style="text-align: left; font-family: \'Courier New\',serif;font-size: 12px;
 line-height: 20px;background: #efefef;border: 1px solid #777;border-radius: 5px;
 color: #333;padding: 10px;margin:0;overflow: auto;">';
-            highlight_string("<?php" . $data . "?>");
+            highlight_string("<?php " . $data . " ?>");
             echo '</pre>';
         }
         echo '<script>

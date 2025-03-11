@@ -2,10 +2,6 @@
 
 namespace StarterKit\Handlers\Blocks;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\NotFoundException;
-
 interface BlockInterface
 {
     /**
@@ -21,10 +17,6 @@ interface BlockInterface
      * Runs by abstract constructor
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void;
 }

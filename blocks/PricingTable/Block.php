@@ -5,7 +5,6 @@ namespace StarterKitBlocks\PricingTable;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\NotFoundException;
 use StarterKit\Repository\PricingRepository;
 use Throwable;
 
@@ -57,7 +56,6 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws NotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string

@@ -3,7 +3,7 @@
 namespace StarterKit\Handlers\Mail;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 
 defined('ABSPATH') || exit;
 

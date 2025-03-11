@@ -85,7 +85,7 @@ class Hooks
          ************************************/
         add_action('enqueue_block_assets', [Handlers\Front::class, 'enqueueCriticalAssets'], 2);
         add_filter(
-            Config::get('hooksPrefix') . '/block_asset_dependencies',
+            SK_HOOKS_PREFIX . '/block_asset_dependencies',
             [Handlers\Front::class, 'addThemeStyleDependencyToBlocks'],
             10,
             3

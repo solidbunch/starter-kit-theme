@@ -4,11 +4,9 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKitBlocks;
 use Throwable;
 
@@ -26,9 +24,7 @@ class Init
      *
      * @return array
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
+     * @throws ConfigEntryNotFoundException
      *
      * @see https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#managing-block-categories
      */
@@ -50,9 +46,6 @@ class Init
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      * @throws Throwable
      */
     public static function loadBlocks(): void
@@ -61,7 +54,7 @@ class Init
             return;
         }
 
-        $blocks = glob(Config::get('blocksDir') . '*', GLOB_ONLYDIR);
+        $blocks = glob(SK_BLOCKS_DIR . '*', GLOB_ONLYDIR);
 
         foreach ($blocks as $blockPath) {
             $blockName = basename($blockPath);

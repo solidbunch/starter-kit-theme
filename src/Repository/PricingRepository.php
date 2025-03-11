@@ -4,10 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 use StarterKit\Helper\Utils;
 use StarterKit\Handlers\PostTypes;
 
@@ -29,16 +25,12 @@ class PricingRepository extends WpPostRepositoryAbstract
      * @param array $args
      *
      * @return array
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
      */
     public static function getAllWithData(array $args): array
     {
         $posts  = static::get($args);
         $values = [];
-        $metaPrefix = Config::get('settingsPrefix') . PostTypes\Pricing::getKey() . '_';
+        $metaPrefix = SK_PREFIX . static::getPostTypeKey() . '_';
 
         foreach ($posts as $post) {
             /** @var WP_Post $post */

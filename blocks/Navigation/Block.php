@@ -4,11 +4,7 @@ namespace StarterKitBlocks\Navigation;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 use Throwable;
 
 /**
@@ -64,7 +60,6 @@ class Block extends BlockAbstract
      *
      * @return string
      *
-     * @throws NotFoundException
      * @throws Throwable
      */
     public function blockServerSideCallback(array $attributes, string $content, object $block): string
@@ -147,20 +142,16 @@ class Block extends BlockAbstract
      * Runs by abstract constructor
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public function blockRestApiEndpoints(): void
     {
-        register_rest_route(Config::get('restApiNamespace'), '/get-menu-locations', [
+        register_rest_route(SK_REST_API_NS, '/get-menu-locations', [
             'methods' => 'GET',
             'callback' => [$this, 'getMenuLocations'],
             'permission_callback' => [$this, 'getMenusPermissionCheck'],
         ]);
 
-        register_rest_route(Config::get('restApiNamespace'), '/get-menus', [
+        register_rest_route(SK_REST_API_NS, '/get-menus', [
             'methods' => 'GET',
             'callback' => [$this, 'getMenus'],
             'permission_callback' => [$this, 'getMenusPermissionCheck'],

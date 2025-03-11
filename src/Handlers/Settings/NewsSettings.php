@@ -6,7 +6,6 @@ defined('ABSPATH') || exit;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use StarterKit\Helper\Config;
 use StarterKit\Handlers\PostTypes;
 
 /**
@@ -23,7 +22,7 @@ class NewsSettings
      */
     public static function make(): void
     {
-        $prefix = Config::get('settingsPrefix');
+        $prefix = SK_PREFIX;
 
         $container = Container::make(
             'theme_options',  // type

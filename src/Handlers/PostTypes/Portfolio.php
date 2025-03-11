@@ -13,12 +13,12 @@ use StarterKit\Helper\Config;
  */
 class Portfolio
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'portfolio';
     }
 
-    public static function getRewriteSlug()
+    public static function getRewriteSlug(): string
     {
         return 'portfolio';
     }

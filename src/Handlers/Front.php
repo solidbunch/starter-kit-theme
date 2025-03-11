@@ -6,11 +6,9 @@ defined('ABSPATH') || exit;
 
 use Exception;
 use PHPMailer;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Assets;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 
 /**
@@ -24,24 +22,20 @@ class Front
      * Load critical assets before blocks assets
      *
      * @return void
-     *
-     * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public static function enqueueCriticalAssets(): void
     {
         $style = 'build/styles/theme.css';
 
-        $styleUri  = Config::get('assetsUri') . $style;
-        $stylePath = Config::get('assetsDir') . $style;
+        $styleUri  = SK_ASSETS_URI . $style;
+        $stylePath = SK_ASSETS_DIR . $style;
 
         wp_enqueue_style('theme-main-style', $styleUri, [], filemtime($stylePath));
 
         $style = 'build/fonts/icons/icons.font.css';
 
-        $styleUri = Config::get('assetsUri') . $style;
-        $stylePath = Config::get('assetsDir') . $style;
+        $styleUri  = SK_ASSETS_URI . $style;
+        $stylePath = SK_ASSETS_DIR . $style;
 
         wp_enqueue_style('icons-font-style', $styleUri, [], filemtime($stylePath));
     }
@@ -73,10 +67,6 @@ class Front
      * Load Bootstrap modules
      *
      * @return void
-     *
-     * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
      */
     public static function enqueueBootstrap(): void
     {
@@ -90,10 +80,6 @@ class Front
      * Load regular theme assets after blocks assets
      *
      * @return void
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function enqueueThemeAssets(): void
     {
@@ -103,9 +89,6 @@ class Front
      * Load additional JS data variables
      *
      * @return void
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
      */
     public static function loadFrontendJsData(): void
     {
@@ -113,7 +96,7 @@ class Front
         wp_enqueue_script('front-vars');
         $frontendData = [
             'restApiUrl'    => get_rest_url(),
-            'restNamespace' => Config::get('restApiNamespace'),
+            'restNamespace' => SK_REST_API_NS,
             'restNonce'     => wp_create_nonce('theme_rest_nonce'),
         ];
 
@@ -125,9 +108,7 @@ class Front
      *
      * @return void
      *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundException
-     * @throws NotFoundExceptionInterface
+     * @throws ConfigEntryNotFoundException
      */
     public static function addNoCacheHeaders(): void
     {

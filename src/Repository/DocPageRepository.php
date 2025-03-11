@@ -4,10 +4,6 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
 use StarterKit\Handlers\PostTypes;
 
 /**
@@ -17,11 +13,6 @@ use StarterKit\Handlers\PostTypes;
  */
 class DocPageRepository extends WpPostRepositoryAbstract
 {
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
-     */
     public static function getPostTypeKey(): string
     {
         return PostTypes\DocPage::getKey();
@@ -33,10 +24,6 @@ class DocPageRepository extends WpPostRepositoryAbstract
      * @param array $args
      *
      * @return array
-     *
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws NotFoundException
      */
     public static function getAllHierarchicallyWithLinks(array $args): array
     {

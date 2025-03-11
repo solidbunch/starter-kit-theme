@@ -13,12 +13,12 @@ defined('ABSPATH') || exit;
  */
 class TeamMember
 {
-    public static function getKey()
+    public static function getKey(): string
     {
         return 'team_member';
     }
 
-    public static function getRewriteSlug()
+    public static function getRewriteSlug(): string
     {
         return 'team-member';
     }
