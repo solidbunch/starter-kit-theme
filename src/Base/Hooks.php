@@ -97,11 +97,13 @@ class Hooks
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
         // Change excerpt dots
         add_filter('excerpt_more', [Handlers\Front::class, 'changeExcerptMore']);
-        // GTM
-        add_action('wp_head', [Handlers\Front::class, 'addGTMHead'], 1);
-        add_action('wp_body_open', [Handlers\Front::class, 'addGTMBody'], 1);
-        // add Google Analytics code to head
-        add_action('wp_head', [Handlers\Front::class, 'addAnalyticsHead']);
+        // Add GTM code
+        add_action('wp_head', [Handlers\Analytics::class, 'addGTMHead'], 1);
+        add_action('wp_body_open', [Handlers\Analytics::class, 'addGTMBody'], 1);
+        // Add Google Analytics code to head
+        add_action('wp_head', [Handlers\Analytics::class, 'addAnalyticsHead']);
+        // Add Google site verification code to head
+        add_action('wp_head', [Handlers\Analytics::class, 'addGoogleSiteVerification']);
 
         /************************************
          *       Security and CleanUp
