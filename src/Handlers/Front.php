@@ -144,64 +144,6 @@ class Front
     }
 
     /**
-     * Load Google Tag Manager code
-     *
-     * @return void
-     */
-    public static function addGTMHead(): void
-    {
-        $tag_manager_code = Utils::getOption('tag_manager_code', '');
-
-        if (empty($tag_manager_code)) {
-            return;
-        }
-
-        ?>
-        <script>(function(w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-                var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', '<?php echo $tag_manager_code; ?>');
-        </script>
-        <?php
-    }
-
-    public static function addGTMBody(): void
-    {
-        $tag_manager_code = Utils::getOption('tag_manager_code', '');
-
-        if (empty($tag_manager_code)) {
-            return;
-        }
-
-        ?>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=<?php
-            echo $tag_manager_code; ?>" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-        </noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        <?php
-    }
-
-    /**
-     * add Google Analytics code to head
-     *
-     * @return void
-     */
-    public static function addAnalyticsHead(): void
-    {
-        $analytics_code = Utils::getOption('analytics_code', '');
-
-        if (!empty($analytics_code)) {
-            View::load('/template-parts/analytics/analytics', ['analytics_code' => $analytics_code]);
-        }
-    }
-
-    /**
      * Change excerpt More text
      *
      * @param $more
