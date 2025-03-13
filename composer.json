@@ -39,7 +39,7 @@
   },
   "require": {
     "php": ">=8.1",
-    "htmlburger/carbon-fields": "3.6.2",
+    "htmlburger/carbon-fields": "3.6.5",
     "laminas/laminas-config-aggregator": "1.14.0",
     "monolog/monolog": "3.5.0",
     "php-di/php-di": "7.0.6",

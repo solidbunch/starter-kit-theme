@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6659a7e1a6c9e10b26b8564e368988a4",
+    "content-hash": "608f5849338c0fd4c49a82c2156255c8",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -57,16 +57,16 @@
         },
         {
             "name": "htmlburger/carbon-fields",
-            "version": "v3.6.2",
+            "version": "v3.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "ecf71b45389a06c25f0fb2bc12b29eae1dff70e7"
+                "reference": "b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/ecf71b45389a06c25f0fb2bc12b29eae1dff70e7",
-                "reference": "ecf71b45389a06c25f0fb2bc12b29eae1dff70e7",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9",
+                "reference": "b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "issues": "https://github.com/htmlburger/carbon-fields/issues",
                 "source": "https://github.com/htmlburger/carbon-fields"
             },
-            "time": "2023-11-13T14:58:28+00:00"
+            "time": "2024-07-31T08:17:38+00:00"
         },
         {
             "name": "laminas/laminas-config-aggregator",

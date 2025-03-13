@@ -40,11 +40,8 @@ class RestApiFilter
         $referer = $_SERVER['HTTP_REFERER'] ?? '';
         $route   = $request->get_route();
 
-        // Allow access for editors and administrators only from the admin panel
-        if (
-            (current_user_can('editor') || current_user_can('administrator')) &&
-            str_starts_with($referer, site_url('/') . 'wp-admin/')
-        ) {
+        // Allow access for editors and administrators only
+        if (current_user_can('edit_posts')) {
             return $result;
         }
 
