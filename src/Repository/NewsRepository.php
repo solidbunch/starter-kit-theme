@@ -13,40 +13,66 @@ use StarterKit\Handlers\PostTypes;
  */
 class NewsRepository extends WpPostRepositoryAbstract
 {
+    /**
+     * Gets the key of the post type for this repository
+     *
+     * @return string
+     */
     public static function getPostTypeKey(): string
     {
         return PostTypes\News::getKey();
     }
 
-    /**
-     * @param array $args
-     *
-     * @return array
-     */
-    public static function getRecentNews(array $args): array
-    {
-        return [];
-    }
 
     /**
-     * @param array $args
+     * Gets recent News
      *
-     * @return array
+     * @param int   $limit
+     * @param bool  $withThumbnailOnly
+     * @param array $exclude
+     *
+     * @return WP_Post[]
      */
-    public static function getRelatedNews(array $args): array
+    public static function getRecentNews(int $limit, bool $withThumbnailOnly = false, array $exclude = []): array
     {
-        return [];
+        return static::getRecentPosts($limit, $withThumbnailOnly, $exclude);
     }
 
+
     /**
-     * @param array $args
+     * Gets related News
      *
-     * @return array
+     * @param int    $primaryPostId
+     * @param int    $limit
+     * @param string $taxonomy
+     * @param bool   $withThumbnailOnly
+     *
+     * @return WP_Post[]
      */
-    public static function getRandomNews(array $args): array
-    {
-        return [];
+    public static function getRelatedNews(
+        int $primaryPostId,
+        int $limit,
+        string $taxonomy = 'category',
+        bool $withThumbnailOnly = false
+    ): array {
+        return static::getRelatedPosts($primaryPostId, $limit, $taxonomy, $withThumbnailOnly);
     }
+
+
+    /**
+     * Gets random News
+     *
+     * @param int   $limit
+     * @param bool  $withThumbnailOnly
+     * @param array $exclude
+     *
+     * @return WP_Post[]
+     */
+    public static function getRandomNews(int $limit, bool $withThumbnailOnly = false, array $exclude = []): array
+    {
+        return static::getRandomPosts($limit, $withThumbnailOnly, $exclude);
+    }
+
 
     /**
      * @param float $impact

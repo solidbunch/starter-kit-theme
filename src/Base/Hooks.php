@@ -67,6 +67,7 @@ class Hooks
         add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Pricing::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
+        add_action('carbon_fields_register_fields', [Handlers\Meta\UserMeta\UserMeta::class, 'make']);
 
         /************************************
          *     Admin aria customizations
