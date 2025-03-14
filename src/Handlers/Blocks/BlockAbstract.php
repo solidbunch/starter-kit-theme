@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use RuntimeException;
 use StarterKit\App;
 use StarterKit\Error\ErrorHandler;
+use StarterKit\Helper\Logger;
 use StarterKit\Helper\Utils;
 use Throwable;
 
@@ -197,12 +198,14 @@ abstract class BlockAbstract implements BlockInterface
             $filePath = $blockDir . $asset['file'];
             $fileUri  = $blockUri . $asset['file'];
 
+            $dependencies = empty($asset['dependencies']) ? [] : $asset['dependencies'];
+
             /**
              * Filter block asset dependencies
              */
             $deps = apply_filters(
                 SK_HOOKS_PREFIX . '/block_asset_dependencies',
-                $asset['dependencies'],
+                $dependencies,
                 $this->blockName,
                 $type
             );
@@ -239,9 +242,7 @@ abstract class BlockAbstract implements BlockInterface
             }
 
             if (!in_array($type, ['editor_script', 'editor_style', 'script', 'view_script', 'style', 'view_style'])) {
-                /** @var LoggerInterface $logger */
-                $logger = App::container()->get(LoggerInterface::class);
-                $logger->warning("Unsupported asset type or context: $type");
+                Logger::warning("Unsupported asset type or context: $type");
             }
         }
     }

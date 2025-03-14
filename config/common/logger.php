@@ -34,7 +34,7 @@ return [
 
     'config' => [
         'logger' => [
-            'file'   => null,
+            'file'   => '/var/log/wordpress/starter-kit.log',
             'stderr' => true, // server error log
         ],
     ],
