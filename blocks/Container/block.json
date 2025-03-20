@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/container",
-  "title": "Container",
+  "title": "Container (SK)",
   "category": "starter-kit",
   "icon": "skb skb-container",
   "description": "Bootstrap Centered Container",

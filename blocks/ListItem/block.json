@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/list-item",
-  "title": "List Item Single",
+  "title": "List Item Single (SK)",
   "category": "starter-kit",
   "parent": [
     "starter-kit/list"

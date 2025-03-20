@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/paragraph",
-  "title": "Paragraph",
+  "title": "Paragraph (SK)",
   "category": "starter-kit",
   "icon": "skb skb-paragraph",
   "description": "A custom paragraph block with text alignment.",

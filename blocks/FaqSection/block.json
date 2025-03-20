@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/faq-section",
-  "title": "Faq Section",
+  "title": "Faq Section (SK)",
   "category": "starter-kit",
   "icon": "skb skb-faq",
   "description": "Faq parent block",
