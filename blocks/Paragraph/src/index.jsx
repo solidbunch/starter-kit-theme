@@ -7,9 +7,9 @@ registerBlockType(
   metadata,
   {
     edit: props => {
-      const {attributes, setAttributes, className} = props;
+      const {attributes, setAttributes, className, onReplace, mergeBlocks, onRemove} = props;
       const {content, alignment} = attributes;
-      
+
       const blockProps = useBlockProps({
         className: [className],
       });
@@ -21,7 +21,7 @@ registerBlockType(
       const onChangeAlignment = (newAlignment) => {
         setAttributes({alignment: newAlignment});
       };
-      
+
       const renderOutput = (
         <>
           <BlockControls>
@@ -33,14 +33,18 @@ registerBlockType(
           <RichText
             {...blockProps}
             tagName="p"
+            identifier="content"
             value={content}
             onChange={onChangeContent}
+            onMerge={ mergeBlocks }
+            onReplace={ onReplace }
+            onRemove={ onRemove }
             style={{textAlign: alignment}}
             placeholder="Type / to choose a block"
           />
         </>
       );
-      
+
       return [
         renderOutput,
       ];
@@ -49,8 +53,9 @@ registerBlockType(
     save: (props) => {
       const {attributes} = props;
       const {content, alignment} = attributes;
-      const {className} = useBlockProps.save();
-      
+      const blockProps = useBlockProps.save();
+      const {className} = blockProps;
+
       let alignmentClass;
       switch (alignment) {
       case 'left':
@@ -65,9 +70,8 @@ registerBlockType(
       default:
         alignmentClass = '';
       }
-      
+
       const blockClass = `${alignmentClass} ${className}`.trim();
-      const blockProps = {};
 
       if (blockClass) {
         blockProps.className = blockClass;

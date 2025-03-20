@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/list-section",
-  "title": "List Section",
+  "title": "List Section (SK)",
   "category": "starter-kit",
   "icon": "skb skb-list-section",
   "description": "List parent block",

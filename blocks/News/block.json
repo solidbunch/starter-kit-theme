@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/news",
-  "title": "News",
+  "title": "News (SK)",
   "category": "starter-kit",
   "icon": "skb skb-news",
   "description": "Show News post type",

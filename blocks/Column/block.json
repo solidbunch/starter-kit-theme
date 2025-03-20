@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/column",
-  "title": "Column",
+  "title": "Column (SK)",
   "category": "starter-kit",
   "parent": [
     "starter-kit/row"

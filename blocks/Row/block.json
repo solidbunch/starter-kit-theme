@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/row",
-  "title": "Row",
+  "title": "Row (SK)",
   "category": "starter-kit",
   "icon": "skb skb-row",
   "description": "Bootstrap parent block for columns",
