@@ -5,13 +5,14 @@ use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use StarterKit\Helper\Utils;
 
 return [
     LoggerInterface::class => function (ContainerInterface $container) {
         $config = $container->get('config');
         $configLogger = $config['logger'];
 
-        $level = $config['isDebug'] ? Logger::DEBUG : Logger::INFO;
+        $level = Utils::isDebug() ? Logger::DEBUG : Logger::INFO;
 
         $formatter = new LineFormatter(
             LineFormatter::SIMPLE_FORMAT,

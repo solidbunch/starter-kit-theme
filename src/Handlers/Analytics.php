@@ -22,7 +22,7 @@ class Analytics
      */
     private static function getGTMCode(): string
     {
-        if (wp_get_environment_type() === 'production') {
+        if (Utils::isProdEnvironment()) {
             return (string)Utils::getOption('gtm_code', '');
         } else {
             $gtm_dev_ext = Utils::getOption('gtm_dev_ext', '');
@@ -42,7 +42,7 @@ class Analytics
      */
     private static function getGTMDevExt(): string
     {
-        if (wp_get_environment_type() === 'production') {
+        if (Utils::isProdEnvironment()) {
             return '';
         }
 
@@ -114,7 +114,7 @@ class Analytics
     {
         $analytics_code = Utils::getOption('ga_code', '');
 
-        if (empty($analytics_code) || wp_get_environment_type() !== 'production') {
+        if (empty($analytics_code) || !Utils::isProdEnvironment()) {
             return;
         }
         ?>
@@ -144,7 +144,7 @@ class Analytics
     {
         $gsv_code = Utils::getOption('gsv_code', '');
 
-        if (empty($gsv_code) || wp_get_environment_type() !== 'production') {
+        if (empty($gsv_code) || !Utils::isProdEnvironment()) {
             return;
         }
         ?>
