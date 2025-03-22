@@ -12,6 +12,7 @@ use Whoops\Run;
 use Whoops\Util\Misc;
 use WP_Error;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\Utils;
 
 class ErrorHandler
 {
@@ -29,7 +30,7 @@ class ErrorHandler
 
         error_log($error_message);
 
-        if (static::hideErrors()) {
+        if (Utils::isHideErrorsMode()) {
             return;
         }
 
@@ -65,7 +66,7 @@ class ErrorHandler
      */
     public static function register(LoggerInterface $logger)
     {
-        if (static::hideErrors() || ! static::isWhoopsEnabled()) {
+        if (Utils::isHideErrorsMode() || ! static::isWhoopsEnabled()) {
             return;
         }
 
@@ -95,30 +96,6 @@ class ErrorHandler
     private static function isWhoopsEnabled(): bool
     {
         return (bool) Config::get('enableWhoops');
-    }
-
-
-    private static function hideErrors(): bool
-    {
-        return !static::isDebug() || !static::isDebugDisplay() || static::isProdEnvironment();
-    }
-
-
-    private static function isDebug(): bool
-    {
-        return defined('WP_DEBUG') && WP_DEBUG;
-    }
-
-
-    private static function isDebugDisplay(): bool
-    {
-        return defined('WP_DEBUG_DISPLAY') && WP_DEBUG_DISPLAY;
-    }
-
-
-    private static function isProdEnvironment(): bool
-    {
-        return 'production' === wp_get_environment_type();
     }
 
 

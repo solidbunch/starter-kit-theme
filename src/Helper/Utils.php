@@ -432,6 +432,92 @@ class Utils
 
 
     /**
+     * Determines whether the debug mode is enabled.
+     *
+     * @return bool
+     */
+    public static function isDebug(): bool
+    {
+        return defined('WP_DEBUG') && WP_DEBUG;
+    }
+
+
+    /**
+     * Determines whether the debug display mode is enabled.
+     *
+     * @return bool
+     */
+    public static function isDebugDisplay(): bool
+    {
+        return defined('WP_DEBUG_DISPLAY') && WP_DEBUG_DISPLAY;
+    }
+
+
+    /**
+     * Determines whether the debug logging mode is enabled.
+     *
+     * @return bool
+     */
+    public static function isDebugLog(): bool
+    {
+        return defined('WP_DEBUG_LOG') && WP_DEBUG_LOG;
+    }
+
+
+    /**
+     * Determines whether the current environment type is 'development'.
+     *
+     * @return bool
+     */
+    public static function isDevEnvironment(): bool
+    {
+        return 'development' === wp_get_environment_type();
+    }
+
+
+    /**
+     * Determines whether the current environment type is 'local'.
+     *
+     * @return bool
+     */
+    public static function isLocalEnvironment(): bool
+    {
+        return 'local' === wp_get_environment_type();
+    }
+
+
+    /**
+     * Determines whether the current environment type is 'staging'.
+     *
+     * @return bool
+     */
+    public static function isStagingEnvironment(): bool
+    {
+        return 'staging' === wp_get_environment_type();
+    }
+
+    /**
+     * Determines whether the current environment type is 'production'.
+     *
+     * @return bool
+     */
+    public static function isProdEnvironment(): bool
+    {
+        return 'production' === wp_get_environment_type();
+    }
+
+    /**
+     * Determines whether we need to hide errors.
+     *
+     * @return bool
+     */
+    public static function isHideErrorsMode(): bool
+    {
+        return !static::isDebug() || !static::isDebugDisplay() || static::isProdEnvironment();
+    }
+
+
+    /**
      * Determines whether the current request is a WP_CLI request.
      *
      * @return bool True if it's a WP_CLI request, false otherwise.
