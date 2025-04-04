@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
-  "name": "starter-kit/doc-pages-nav",
+  "name": "starter-kit/doc-page-nav",
   "title": "Doc Pages Navigation (SK)",
   "category": "starter-kit",
-  "icon": "skb skb-doc-pages-nav",
+  "icon": "skb skb-doc-page-nav",
   "description": "Bootstrap Documentation Page Navigation panel",
   "keywords": [
     "Doc Page",

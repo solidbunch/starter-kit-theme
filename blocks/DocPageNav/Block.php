@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKitBlocks\DocPagesNav;
+namespace StarterKitBlocks\DocPageNav;
 
 defined('ABSPATH') || exit;
 
