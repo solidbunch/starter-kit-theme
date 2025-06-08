@@ -1,4 +1,5 @@
 import metadata from '../block.json';
+import transforms from './transforms';
 
 const {registerBlockType} = wp.blocks;
 const {useBlockProps, RichText, AlignmentToolbar, BlockControls, HeadingLevelDropdown} = wp.blockEditor;
@@ -21,7 +22,7 @@ registerBlockType(
       const onChangeAlignment = (newAlignment) => {
         setAttributes({alignment: newAlignment});
       };
-      
+
       const renderOutput = (
         <>
           <BlockControls group="block">
@@ -42,7 +43,7 @@ registerBlockType(
             value={content}
             onChange={onChangeContent}
             style={{textAlign: alignment}}
-            placeholder="Type / to choose a block"
+            placeholder="Heading"
           />
         </>
       );
@@ -86,5 +87,6 @@ registerBlockType(
         </TagName>
       );
     },
+    transforms,
   }
 );

@@ -39,7 +39,7 @@ registerBlockType(
               value={content}
               onChange={onChangeContent}
               style={{textAlign: alignment}}
-              placeholder="Type / to choose a block"
+              placeholder="Write code..."
             />
           </pre>
         </>

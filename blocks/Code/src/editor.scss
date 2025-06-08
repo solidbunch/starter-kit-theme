@@ -1,9 +1,12 @@
+@import "../../../assets/src/styles/utils/bootstrap_utils";
 
 .editor-styles-wrapper {
   pre.sk-block-code {
     textarea {
       padding: 16px;
       border-radius: 4px;
+      background-color: $gray-200;
+      display: flex;
     }
   }
 }

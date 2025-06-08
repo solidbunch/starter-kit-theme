@@ -1,3 +1,24 @@
+/**
+ * Transforms for the starter-kit/code block.
+ *
+ * This module defines how the custom code block can be:
+ * - Created from various block types or raw input (`from`)
+ * - Converted into other block types (`to`)
+ *
+ * FROM:
+ * - Typing triple backticks (```), like in Markdown, creates a code block.
+ * - Paragraph blocks are converted into code blocks, preserving plain text.
+ * - HTML blocks are converted into code blocks with rich text content.
+ * - Raw <pre><code>...</code></pre> HTML is detected and transformed into a code block.
+ *
+ * TO:
+ * - Code blocks can be converted back into paragraphs, retaining their content as plain text.
+ *
+ */
+
+/**
+ * WordPress dependencies
+ */
 const {createBlock} = wp.blocks;
 const {create, toHTMLString} = wp.richText;
 

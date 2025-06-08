@@ -21,7 +21,8 @@ pre.sk-block-code {
   border: 1px solid $gray-400;
 
   code {
-    padding: 16px;
+    display: block;
+    padding: 16px !important;
     background-color: $gray-200;
     border-radius: 4px;
 
