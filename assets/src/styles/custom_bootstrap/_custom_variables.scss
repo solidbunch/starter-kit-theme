@@ -117,6 +117,12 @@ $input-placeholder-color: $gray-500;
 $input-bg: $white;
 $input-border-color: $gray-300;
 // $input-border-radius: 6px;
-//code
-$kbd-color: $black;
-$kbd-bg: $white;
+
+// Code
+
+$code-color:                        $body-color;
+
+$kbd-color:                         $black;
+$kbd-bg:                            $white;
+
+$pre-color:                         null;
