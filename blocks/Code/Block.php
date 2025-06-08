@@ -28,6 +28,10 @@ class Block extends BlockAbstract
                 'file' => 'view.js',
                 'dependencies' => [],
             ],
+            'editor_style' => [
+                'file' => 'editor.css',
+                'dependencies' => [],
+            ],
             'style' => [
                 'file' => 'style.css',
                 'dependencies' => [],

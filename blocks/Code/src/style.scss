@@ -15,27 +15,22 @@ kbd {
   }
 }
 
-code {
-  background-color: $gray-200;
-  border-radius: 4px;
-  padding: 4px 8px;
-
-  .highlight &,
-  pre & {
-    background-color: transparent;
-    display: block;
-    padding: 4px;
-  }
-}
-
-pre {
+pre.sk-block-code {
   border-radius: 4px;
   position: relative;
   border: 1px solid $gray-400;
 
   code {
-    padding: 16px !important;
-    // background-color: $gray-200 !important;
+    padding: 16px;
+    background-color: $gray-200;
+    border-radius: 4px;
+
+    .highlight &,
+    pre & {
+      background-color: transparent;
+      display: block;
+      padding: 4px;
+    }
   }
 
   .copy_clipboard {

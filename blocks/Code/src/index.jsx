@@ -1,8 +1,10 @@
 import metadata from '../block.json';
+import transforms from './transforms';
+
 const {registerBlockType} = wp.blocks;
 const {useBlockProps, PlainText, AlignmentToolbar, BlockControls} = wp.blockEditor;
 
-import transforms from './transforms';
+const blockCustomClass = 'sk-block-code';
 
 registerBlockType(
   metadata,
@@ -12,7 +14,7 @@ registerBlockType(
       const {content, alignment} = attributes;
 
       const blockProps = useBlockProps({
-        className: [className],
+        className: [className, blockCustomClass],
       });
 
       function onChangeContent(newContent) {
@@ -49,31 +51,24 @@ registerBlockType(
     },
 
     save: (props) => {
-      const {attributes} = props;
+      const {attributes, className} = props;
       const {content, alignment} = attributes;
-      const {className} = useBlockProps.save();
 
-      let alignmentClass;
-      switch (alignment) {
-      case 'left':
-        alignmentClass = 'text-start';
-        break;
-      case 'right':
-        alignmentClass = 'text-end';
-        break;
-      case 'center':
-        alignmentClass = 'text-center';
-        break;
-      default:
-        alignmentClass = '';
-      }
+      const classes = [
+        blockCustomClass, //  Custom class for the block
+        className, // Class from the block editor
+        {
+          left: 'text-start',
+          right: 'text-end',
+          center: 'text-center',
+        }[alignment] || '',
+      ]
+        .filter(Boolean)
+        .join(' ');
 
-      const blockClass = `${alignmentClass} ${className}`.trim();
-      const blockProps = {};
-
-      if (blockClass) {
-        blockProps.className = blockClass;
-      }
+      const blockProps = useBlockProps.save({
+        className: classes,
+      });
 
       return (
         <pre {...blockProps}>
@@ -84,5 +79,5 @@ registerBlockType(
       );
     },
     transforms,
-  }
+  },
 );

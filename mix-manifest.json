@@ -37,6 +37,7 @@
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
     "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
+    "/blocks/Code/build/editor.css": "/blocks/Code/build/editor.css",
     "/blocks/DocPageNav/build/editor.css": "/blocks/DocPageNav/build/editor.css",
     "/blocks/FaqSection/build/style.css": "/blocks/FaqSection/build/style.css",
     "/blocks/Image/build/editor.css": "/blocks/Image/build/editor.css",
