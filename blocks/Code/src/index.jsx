@@ -2,13 +2,15 @@ import metadata from '../block.json';
 const {registerBlockType} = wp.blocks;
 const {useBlockProps, PlainText, AlignmentToolbar, BlockControls} = wp.blockEditor;
 
+import transforms from './transforms';
+
 registerBlockType(
   metadata,
   {
     edit: props => {
       const {attributes, setAttributes, className} = props;
       const {content, alignment} = attributes;
-      
+
       const blockProps = useBlockProps({
         className: [className],
       });
@@ -20,7 +22,7 @@ registerBlockType(
       const onChangeAlignment = (newAlignment) => {
         setAttributes({alignment: newAlignment});
       };
-      
+
       const renderOutput = (
         <>
           <BlockControls>
@@ -40,7 +42,7 @@ registerBlockType(
           </pre>
         </>
       );
-      
+
       return [
         renderOutput,
       ];
@@ -50,7 +52,7 @@ registerBlockType(
       const {attributes} = props;
       const {content, alignment} = attributes;
       const {className} = useBlockProps.save();
-      
+
       let alignmentClass;
       switch (alignment) {
       case 'left':
@@ -65,7 +67,7 @@ registerBlockType(
       default:
         alignmentClass = '';
       }
-      
+
       const blockClass = `${alignmentClass} ${className}`.trim();
       const blockProps = {};
 
@@ -81,5 +83,6 @@ registerBlockType(
         </pre>
       );
     },
+    transforms,
   }
 );

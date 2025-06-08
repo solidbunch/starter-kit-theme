@@ -4,8 +4,8 @@ return [
     'config' => [
         'optimization' => [
             'cleanWpHead'                => true,
-            'disableDefaultBlocks'       => true,
-            'disableDefaultBlocksStyles' => true,
+            'disableDefaultBlocks'       => false,
+            'disableDefaultBlocksStyles' => false,
             'cleanBodyClass'             => true,
             'removeAssetsAttributes'     => true,
             'disableComments'            => true,
