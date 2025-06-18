@@ -23,6 +23,9 @@ languages.forEach(({value}) => {
   hljs.registerLanguage(value, languageModules[value]);
 });
 
+// Add 'auto' AFTER registration
+languages.unshift({label: 'auto', value: 'auto'});
+
 module.exports = {
   hljs,
   languages,

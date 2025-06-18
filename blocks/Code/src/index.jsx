@@ -1,18 +1,11 @@
 import metadata from '../block.json';
 import transforms from './transforms';
-import {hljs, languages} from './modules/languages';
+import {languages} from './modules/languages';
 
 const {registerBlockType} = wp.blocks;
-const {
-  useBlockProps,
-  PlainText,
-  AlignmentToolbar,
-  BlockControls,
-  InspectorControls,
-} = wp.blockEditor;
+const {useBlockProps, PlainText, AlignmentToolbar, BlockControls, InspectorControls} = wp.blockEditor;
 
 const {PanelBody, SelectControl} = wp.components;
-const {useEffect} = wp.element;
 
 const blockCustomClass = 'sk-block-code';
 
@@ -36,25 +29,6 @@ registerBlockType(metadata, {
     function onChangeLanguage(newLang) {
       setAttributes({language: newLang});
     }
-
-    useEffect(() => {
-      // Highlight the code when content or language changes
-      if (hljs) {
-        const codeElement = document.querySelector(`.${blockCustomClass} code`);
-        if (codeElement) {
-          // If the language is specified, we use the standard highlight
-          if (language && language !== 'auto') {
-            hljs.highlightElement(codeElement);
-          } else {
-            // auto + fallback
-            const result = hljs.highlightAuto(codeElement.textContent);
-            codeElement.innerHTML = result.value;
-            codeElement.classList.add('hljs', `language-${result.language}`);
-          }
-        }
-      }
-
-    }, [content, language]);
 
     return (
       <>
@@ -107,9 +81,10 @@ registerBlockType(metadata, {
       className: classes,
     });
 
+    // If the language is specified, we use the standard highlight, if not, we use the auto highlight
     return (
       <pre {...blockProps}>
-        <code className={`language-${language}`}>
+        <code className={language !== 'auto' ? `language-${language}` : undefined}>
           {content}
         </code>
       </pre>

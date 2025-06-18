@@ -27,7 +27,7 @@
     },
     "language": {
       "type": "string",
-      "default": "plaintext"
+      "default": "auto"
     }
   }
 }
