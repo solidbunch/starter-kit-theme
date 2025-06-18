@@ -1,4 +1,4 @@
-import BlockEvents from './Handlers/BlockEvents';
+//import BlockEvents from './Handlers/BlockEvents';
 
 export default class Events {
 
