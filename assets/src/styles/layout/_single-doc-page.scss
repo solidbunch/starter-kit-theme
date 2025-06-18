@@ -31,6 +31,12 @@
         height: calc(100vh - var(--header-height) - var(--admin-bar-height));
       }
     }
+
+    .doc-menu {
+      li {
+        line-height: 1.7;
+      }
+    }
   }
 }
 
