@@ -17,6 +17,7 @@ const colorOptions = [
   {label: 'btn-outline-secondary', value: 'btn-outline-secondary'},
 ];
 const sizeOptions = [
+  {label: 'default', value: ''},
   {label: 'btn-lg', value: 'btn-lg'},
   {label: 'btn-sm', value: 'btn-sm'},
 ];
@@ -127,7 +128,7 @@ registerBlockType(
           </PanelBody>
         </InspectorControls>
       );
-      
+
       const renderOutput = (
         <attributes.modification.tagName {...blockProps} key="blockControls">
           { attributes.modification.buttonText }
@@ -154,13 +155,13 @@ registerBlockType(
       }
       let targetValue = null;
       let relValue = null;
-    
+
       if (attributes.modification.tagName === 'a' && attributes.modification.openInNewTab === true) {
         targetValue = '_blank';
         relValue = 'noopener noreferrer';
       }
       return (
-       
+
         <attributes.modification.tagName {...blockProps} key="blockControls"
           href={attributes.modification.tagName === 'a' ? (attributes.modification.linkUrl || defaultLink) : null}
           target={targetValue}

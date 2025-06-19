@@ -51,7 +51,13 @@ $primary-dark: shade-color($primary, 20%);
 $secondary-light: tint-color($secondary, 20%);
 $secondary-dark: shade-color($secondary, 20%);
 
+// scss-docs-start border-radius-variables
 $border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+$border-radius-xl: 0;
+$border-radius-xxl: 0;
+$border-radius-pill: 0;
 
 $light: $gray-100;
 $dark: $gray-900;
