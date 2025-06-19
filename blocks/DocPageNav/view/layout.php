@@ -28,7 +28,7 @@ $data = $data ?? [];
          tabindex="-1" id="offcanvasDocs"
          aria-labelledby="offcanvasDocsLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDocsLabel"><?php esc_html_e('Docs:', 'starter-kit'); ?></h5>
+            <h5 class="offcanvas-title" id="offcanvasDocsLabel"><?php esc_html_e('Documentation:', 'starter-kit'); ?></h5>
             <button type="button" class="btn-close ms-auto"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
@@ -37,7 +37,7 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-            <div class="py-2 px-lg-5">
+            <div class="py-2 ps-lg-4 pe-lg-1">
                     <?php if (!empty($data['docPages'][0])) { ?>
                         <ul class="doc-menu list-unstyled">
                             <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>

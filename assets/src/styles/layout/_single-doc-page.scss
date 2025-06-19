@@ -34,7 +34,12 @@
 
     .doc-menu {
       li {
-        line-height: 1.7;
+        line-height: 2;
+
+        a {
+          font-size: 0.9rem;
+          text-decoration: none;
+        }
       }
     }
   }
@@ -91,5 +96,18 @@
 body.single-doc-page {
   .nav-link.doc-page-main {
     color: var(--bs-navbar-active-color);
+  }
+}
+
+.wp-block-post-navigation-link {
+  padding: 12px 16px;
+
+  a {
+    color: $gray-700;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+    }
   }
 }
