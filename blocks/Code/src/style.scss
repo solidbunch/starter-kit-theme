@@ -22,7 +22,7 @@ pre.sk-block-code {
 
   code {
     display: block;
-    padding: 16px !important;
+    padding: 16px 42px 16px 16px !important;
     background-color: $gray-200;
     border-radius: 4px;
 
@@ -38,6 +38,7 @@ pre.sk-block-code {
     position: absolute;
     top: 0;
     right: 0;
+    background-color: $gray-200 !important;
 
     &:focus,
     &:active {
@@ -45,7 +46,6 @@ pre.sk-block-code {
     }
 
     &.active {
-      background: none;
       border-color: transparent;
 
       i,
