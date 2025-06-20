@@ -21,7 +21,7 @@ const blockMainCssClass = 'accordion';
 registerBlockType(
   blockMetadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {className} = props;
       const blockProps = useBlockProps( {
         className: [blockMainCssClass, className]

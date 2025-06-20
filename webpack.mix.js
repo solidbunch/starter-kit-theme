@@ -111,6 +111,11 @@ if (!mix.inProduction()) {
          * No files will be tracked, browser reloads after assets was build.
          */
         files: [],
+        /**
+         * Debug mode
+         */
+        //logLevel: 'debug',
+        //logPrefix: 'Browsersync',
       }),
       /**
        * Code QA

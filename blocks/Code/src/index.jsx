@@ -1,85 +1,97 @@
 import metadata from '../block.json';
+import transforms from './transforms';
+import {languages} from './modules/languages';
+
 const {registerBlockType} = wp.blocks;
-const {useBlockProps, PlainText, AlignmentToolbar, BlockControls} = wp.blockEditor;
+const {useBlockProps, PlainText, AlignmentToolbar, BlockControls, InspectorControls} = wp.blockEditor;
+
+const {PanelBody, SelectControl} = wp.components;
+
+const blockCustomClass = 'sk-block-code';
 
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, className} = props;
-      const {content, alignment} = attributes;
-      
+      const {content, alignment, language} = attributes;
+
       const blockProps = useBlockProps({
-        className: [className],
+        className: [className, blockCustomClass],
       });
 
       function onChangeContent(newContent) {
         setAttributes({content: newContent});
       }
 
-      const onChangeAlignment = (newAlignment) => {
+      function onChangeAlignment(newAlignment) {
         setAttributes({alignment: newAlignment});
-      };
-      
-      const renderOutput = (
+      }
+
+      function onChangeLanguage(newLang) {
+        setAttributes({language: newLang});
+      }
+
+      return (
         <>
+          <InspectorControls>
+            <PanelBody title="Code Language">
+              <SelectControl
+                label="Language"
+                value={language}
+                options={languages}
+                onChange={onChangeLanguage}
+              />
+            </PanelBody>
+          </InspectorControls>
+
           <BlockControls>
-            <AlignmentToolbar
-              value={alignment}
-              onChange={onChangeAlignment}
-            />
+            <AlignmentToolbar value={alignment} onChange={onChangeAlignment}/>
           </BlockControls>
+
           <pre {...blockProps}>
             <PlainText
               tagName="code"
+              className={`language-${language}`}
               value={content}
               onChange={onChangeContent}
               style={{textAlign: alignment}}
-              placeholder="Type / to choose a block"
+              placeholder="Write code..."
             />
           </pre>
         </>
       );
-      
-      return [
-        renderOutput,
-      ];
     },
 
     save: (props) => {
-      const {attributes} = props;
-      const {content, alignment} = attributes;
-      const {className} = useBlockProps.save();
-      
-      let alignmentClass;
-      switch (alignment) {
-      case 'left':
-        alignmentClass = 'text-start';
-        break;
-      case 'right':
-        alignmentClass = 'text-end';
-        break;
-      case 'center':
-        alignmentClass = 'text-center';
-        break;
-      default:
-        alignmentClass = '';
-      }
-      
-      const blockClass = `${alignmentClass} ${className}`.trim();
-      const blockProps = {};
+      const {attributes, className} = props;
+      const {content, alignment, language} = attributes;
 
-      if (blockClass) {
-        blockProps.className = blockClass;
-      }
+      const classes = [
+        blockCustomClass,
+        className,
+        {
+          left: 'text-start',
+          right: 'text-end',
+          center: 'text-center',
+        }[alignment] || '',
+      ]
+        .filter(Boolean)
+        .join(' ');
 
+      const blockProps = useBlockProps.save({
+        className: classes,
+      });
+
+      // If the language is specified, we use the standard highlight, if not, we use the auto highlight
       return (
         <pre {...blockProps}>
-          <code>
+          <code className={language !== 'auto' ? `language-${language}` : undefined}>
             {content}
           </code>
         </pre>
       );
     },
-  }
-);
+
+    transforms,
+  });

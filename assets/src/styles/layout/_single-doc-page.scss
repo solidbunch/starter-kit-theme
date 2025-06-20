@@ -31,6 +31,27 @@
         height: calc(100vh - var(--header-height) - var(--admin-bar-height));
       }
     }
+
+    .doc-menu {
+      li {
+        line-height: 2;
+
+        a {
+          font-size: 0.9rem;
+          text-decoration: none;
+
+          &:hover {
+            color: $black;
+            font-weight: bolder;
+          }
+
+          &.active {
+            color: $secondary;
+            font-weight: bolder;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -58,7 +79,7 @@
   }
 }
 
-.single-doc-pages {
+.single-doc-page {
   @include media-breakpoint-down(lg) {
     header.header {
       position: static;
@@ -82,8 +103,21 @@
 }
 
 // When inner doc pages open, the main page link should be active
-body.single-doc-pages {
+body.single-doc-page {
   .nav-link.doc-page-main {
     color: var(--bs-navbar-active-color);
+  }
+}
+
+.wp-block-post-navigation-link {
+  padding: 12px 16px;
+
+  a {
+    color: $gray-700;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+    }
   }
 }

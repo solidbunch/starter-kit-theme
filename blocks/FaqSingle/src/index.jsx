@@ -22,7 +22,7 @@ const blockMainCssClass = 'accordion-item';
 registerBlockType(
   blockMetadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, className, setAttributes, clientId} = props;
 
       const {accordionItemId} = attributes;
@@ -91,7 +91,7 @@ registerBlockType(
         renderOutput
       ];
     }, // end edit
-    save: props => {
+    save: (props) => {
       const {attributes} = props;
       const {accordionItemId} = attributes;
 

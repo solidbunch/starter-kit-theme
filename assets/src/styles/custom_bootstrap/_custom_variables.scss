@@ -51,7 +51,13 @@ $primary-dark: shade-color($primary, 20%);
 $secondary-light: tint-color($secondary, 20%);
 $secondary-dark: shade-color($secondary, 20%);
 
+// scss-docs-start border-radius-variables
 $border-radius: 0;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+$border-radius-xl: 0;
+$border-radius-xxl: 0;
+$border-radius-pill: 0;
 
 $light: $gray-100;
 $dark: $gray-900;
@@ -89,6 +95,7 @@ $link-hover-decoration: null;
 //$navbar-light-hover-color:  $secondary;
 
 // scss-docs-start headings-variables
+$headings-margin-bottom: 1rem;
 $headings-font-family: null;
 $headings-font-style: null;
 $headings-font-weight: 500;
@@ -104,7 +111,9 @@ $accordion-button-active-bg: $gray-200;
 
 // scss-docs-start font-variables
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;
+
 //navbar
+$navbar-toggler-focus-width: 0.03rem;
 $navbar-light-hover-color: $primary;
 $navbar-light-active-color: $primary;
 $navbar-light-color: $gray-900;
@@ -117,6 +126,15 @@ $input-placeholder-color: $gray-500;
 $input-bg: $white;
 $input-border-color: $gray-300;
 // $input-border-radius: 6px;
-//code
-$kbd-color: $black;
-$kbd-bg: $white;
+
+// Offcanvas
+
+// scss-docs-start offcanvas-variables
+$offcanvas-padding-y: 2rem;
+$offcanvas-padding-x: 2rem;
+
+// Code
+$code-color:                        $body-color;
+$kbd-color:                         $black;
+$kbd-bg:                            $white;
+$pre-color:                         null;

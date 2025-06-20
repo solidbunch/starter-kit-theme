@@ -13,7 +13,7 @@ const {serverSideRender: ServerSideRender} = wp;
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],

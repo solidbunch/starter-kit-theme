@@ -1,8 +1,8 @@
 @import "utils/bootstrap_utils";
 
-html :where(.wp-block) {
-  margin-bottom: unset;
-  margin-top: unset;
+html :where(.wp-block):not(p.wp-block-paragraph) {
+  //margin-bottom: unset;
+  //margin-top: unset;
   max-width: unset;
 }
 

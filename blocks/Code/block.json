@@ -24,6 +24,10 @@
     "alignment": {
       "type": "string",
       "default": ""
+    },
+    "language": {
+      "type": "string",
+      "default": "auto"
     }
   }
 }

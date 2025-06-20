@@ -1,0 +1,16 @@
+@import "../utils/bootstrap_utils";
+
+code:not(pre code) {
+  background-color: $gray-200;
+  border: 1px solid $gray-400;
+  border-radius: 4px;
+  padding: .1em .3em;
+  font-size: 85%;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: $gray-600;
+  border-left: .25em solid $gray-300;
+  font-size: 93%;
+}

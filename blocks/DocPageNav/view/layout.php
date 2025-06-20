@@ -28,7 +28,9 @@ $data = $data ?? [];
          tabindex="-1" id="offcanvasDocs"
          aria-labelledby="offcanvasDocsLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDocsLabel"><?php esc_html_e('Docs:', 'starter-kit'); ?></h5>
+            <h5 class="offcanvas-title" id="offcanvasDocsLabel">
+                <?php esc_html_e('Documentation:', 'starter-kit'); ?>
+            </h5>
             <button type="button" class="btn-close ms-auto"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
@@ -37,17 +39,15 @@ $data = $data ?? [];
         </div>
         <div class="offcanvas-body">
             <div class="offcanvas_content">
-            <div class="py-2 px-lg-3">
+            <div class="py-2 ps-lg-4 pe-lg-1">
                     <?php if (!empty($data['docPages'][0])) { ?>
-                        <ul class="list-unstyled">
+                        <ul class="doc-menu list-unstyled">
                             <?php foreach ($data['docPages'][0] as $docPageId => $docPage) { ?>
                                 <li>
-                                    <h5 class="mb-0">
-                                        <a href="<?php echo $docPage['link'] ?? ''; ?>"
-                                            <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
-                                            <?php echo $docPage['title'] ?? ''; ?>
-                                        </a>
-                                    </h5>
+                                    <a href="<?php echo $docPage['link'] ?? ''; ?>"
+                                        <?php echo (get_the_ID() == $docPageId) ? 'class="active"' : ''; ?>>
+                                        <?php echo $docPage['title'] ?? ''; ?>
+                                    </a>
                                     <?php if (!empty($data['docPages'][$docPageId])) {
                                         $this->loadBlockView(
                                             'child-nav',
