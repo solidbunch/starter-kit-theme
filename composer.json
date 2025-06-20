@@ -30,9 +30,13 @@
     }
   ],
   "keywords": [
+    "solidbunch",
     "wordpress",
     "starter",
-    "theme"
+    "theme",
+    "starter-kit",
+    "boilerplate",
+    "environment"
   ],
   "support": {
     "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
