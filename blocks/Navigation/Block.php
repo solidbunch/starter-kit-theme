@@ -112,6 +112,14 @@ class Block extends BlockAbstract
             // Remove empty classes
             $item->classes = array_filter($item->classes);
 
+            if (self::isAnchor($item->url)) {
+                $item->classes = array_filter(
+                    $item->classes,
+                    fn($class) => !preg_match('#^current[-_]#', $class)
+                );
+                $item->current = false; // Reset current state for anchors
+            }
+
             // Update item classes
             if (!empty($item->current)) {
                 $item->classes[] = 'active';
@@ -204,6 +212,14 @@ class Block extends BlockAbstract
         }
 
         return $menus;
+    }
+
+    public static function isAnchor($url): bool
+    {
+        $parsed = wp_parse_url($url);
+        return isset($parsed['fragment']) &&
+            (!isset($parsed['path']) || in_array($parsed['path'], ['', '/'], true)) &&
+            (!isset($parsed['host']) || $parsed['host'] === $_SERVER['HTTP_HOST']);
     }
 
     /**
