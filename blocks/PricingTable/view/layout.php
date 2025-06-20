@@ -13,7 +13,7 @@ $data = $data ?? [];
 // pt-4 pb-4 pt-sm-5 pb-sm-5
 ?>
 <div class="container pricing_section<?php echo !empty($data['blockClass']) ? ' ' . $data['blockClass'] : ''; ?>">
-    <div class="row">
+    <div class="row justify-content-center">
         <?php foreach ($data['pricingPackages'] as $postID => $pricingPackage) { ?>
             <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4">
                 <div class="card h-100 border-2 bg-white border-<?php echo $pricingPackage['border_color']; ?>">

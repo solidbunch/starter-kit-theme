@@ -39,6 +39,16 @@
         a {
           font-size: 0.9rem;
           text-decoration: none;
+
+          &:hover {
+            color: $black;
+            font-weight: bolder;
+          }
+
+          &.active {
+            color: $secondary;
+            font-weight: bolder;
+          }
         }
       }
     }
