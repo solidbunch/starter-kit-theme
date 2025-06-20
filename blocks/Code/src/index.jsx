@@ -14,7 +14,7 @@ registerBlockType(
   {
     edit: (props) => {
       const {attributes, setAttributes, className} = props;
-      const {content, alignment, language = 'javascript'} = attributes;
+      const {content, alignment, language} = attributes;
 
       const blockProps = useBlockProps({
         className: [className, blockCustomClass],
