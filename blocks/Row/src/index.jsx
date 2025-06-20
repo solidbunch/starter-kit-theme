@@ -39,7 +39,7 @@ registerBlockType(
 
       return {className: getClasses(attributes)};
     },
-    edit: props => {
+    edit: (props) => {
 
       const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
@@ -151,7 +151,7 @@ registerBlockType(
       ];
     },
 
-    save: props => {
+    save: (props) => {
       const {attributes} = props;
 
       const blockProps = useBlockProps.save({

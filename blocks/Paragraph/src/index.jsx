@@ -6,7 +6,7 @@ const {useBlockProps, RichText, AlignmentToolbar, BlockControls} = wp.blockEdito
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, className, onReplace, mergeBlocks, onRemove} = props;
       const {content, alignment} = attributes;
 

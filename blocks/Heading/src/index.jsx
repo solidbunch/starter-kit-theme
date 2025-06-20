@@ -7,7 +7,7 @@ const {useBlockProps, RichText, AlignmentToolbar, BlockControls, HeadingLevelDro
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, className} = props;
       const {content, alignment, level} = attributes;
       const tagName = 'h' + level;

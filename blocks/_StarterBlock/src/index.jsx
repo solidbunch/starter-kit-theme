@@ -18,7 +18,7 @@ const blockMainCssClass = 'starter-block';
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes} = props;
       const {className} = props;
 
@@ -84,7 +84,7 @@ registerBlockType(
       ];
     },
 
-    save: props => {
+    save: (props) => {
       const {attributes} = props;
 
       return (
