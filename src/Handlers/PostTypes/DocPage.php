@@ -19,7 +19,7 @@ class DocPage
 
     public static function getRewriteSlug(): string
     {
-        return 'doc';
+        return 'docs';
     }
 
     /**
