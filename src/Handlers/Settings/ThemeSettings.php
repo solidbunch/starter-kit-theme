@@ -7,10 +7,8 @@ defined('ABSPATH') || exit;
 use Carbon_Fields\Carbon_Fields;
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Utils;
 use WPRI\ImgUtils;
 
@@ -36,13 +34,11 @@ class ThemeSettings
      *
      * @return void
      *
-     * @throws NotFoundException
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
+     * @throws ConfigEntryNotFoundException
      */
     public static function make(): void
     {
-        $prefix = Config::get('settingsPrefix');
+        $prefix = SK_PREFIX;
 
         $container = Container::make(
             'theme_options',  // type
@@ -50,7 +46,7 @@ class ThemeSettings
             __('Site Settings', 'starter-kit') // desc
         );
 
-        $container->set_page_parent('options-general.php'); // id of the "Appearance" admin section
+        $container->set_page_parent('options-general.php'); // id of the "Settings" admin section
         $container->set_page_menu_title(__('Theme Settings'));
 
 
@@ -69,21 +65,45 @@ class ThemeSettings
             [
                 Field::make('separator', $prefix . 'sep_analytics_google', __('Google', 'starter-kit')),
 
-                Field::make('text', $prefix . 'tag_manager_code', __('Tag Manager Code', 'starter-kit'))
+                Field::make('text', $prefix . 'gtm_code', __('Tag Manager Code (GTM)', 'starter-kit'))
                      ->set_attribute('placeholder', 'GTM-XXXXXXX')
                      ->set_width(50),
 
-                Field::make('text', $prefix . 'analytics_code', __('Analytics Code', 'starter-kit'))
-                     ->set_attribute('placeholder', 'UA-XXXXXXXXX-X')
+                Field::make(
+                    'text',
+                    $prefix . 'gtm_dev_ext',
+                    __('GTM URL Extension for Non-Production Environment', 'starter-kit')
+                )
+                     ->set_attribute('placeholder', '&gtm_auth=xxx&gtm_preview=env-xx&gtm_cookies_win=x,')
                      ->set_help_text(
-                         __(
-                             "For a better speed performance, " .
-                             "please insert the analytics code through the tag manager." .
-                             "Turn on google Analytics Scripts Local Load option",
-                             'starter-kit'
+                         sprintf(
+                             'Works only on <b>Non-Production </b> Environment. Now is <b>%s</b>',
+                             wp_get_environment_type()
                          )
                      )
                      ->set_width(50),
+
+                Field::make('text', $prefix . 'ga_code', __('Google Analytics Code', 'starter-kit'))
+                     ->set_attribute('placeholder', 'G-XXXXXXXXXX')
+                     ->set_help_text(
+                         'For a better speed performance, please insert the analytics code through the ' .
+                         '<b>tag manager</b>. ' .
+                         sprintf(
+                             'Works only on <b>production</b> environment. Now is <b>%s</b>',
+                             wp_get_environment_type()
+                         )
+                     )
+                     ->set_width(100),
+
+                Field::make('text', $prefix . 'gsv_code', __('Google site verification Code', 'starter-kit'))
+                     ->set_attribute('placeholder', '')
+                     ->set_help_text(
+                         sprintf(
+                             'Works only on <b>production</b> environment. Now is <b>%s</b>',
+                             wp_get_environment_type()
+                         )
+                     )
+                     ->set_width(100),
             ]
         );
 
@@ -114,7 +134,7 @@ class ThemeSettings
                              function ($value) { return !in_array($value, ['thumbnail', 'medium'], true); }
                          )
                      )
-                    ->set_width(50),
+                     ->set_width(50),
 
                 Field::make(
                     'text',

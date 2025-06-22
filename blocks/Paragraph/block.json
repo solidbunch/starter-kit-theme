@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/paragraph",
-  "title": "Paragraph",
+  "title": "Paragraph (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-paragraph",
+  "icon": "skb skb-paragraph",
   "description": "A custom paragraph block with text alignment.",
   "keywords": [
     "Paragraph",
@@ -23,8 +23,7 @@
     },
     "alignment": {
       "type": "string",
-      "default": "none"
+      "default": ""
     }
-  },
-  "editorScript": "file:build/index.js"
+  }
 }

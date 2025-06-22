@@ -4,7 +4,7 @@ namespace StarterKit\Repository;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Helper\Config;
+use StarterKit\Handlers\PostTypes;
 
 /**
  * Repository for post type objects
@@ -13,43 +13,69 @@ use StarterKit\Helper\Config;
  */
 class NewsRepository extends WpPostRepositoryAbstract
 {
-    public static function getPostTypeID(): string
-    {
-        return Config::get('postTypes/NewsID');
-    }
-
     /**
-     * @param  array  $args
+     * Gets the key of the post type for this repository
      *
-     * @return array
+     * @return string
      */
-    public static function getRecentNews(array $args): array
+    public static function getPostTypeKey(): string
     {
-        return [];
+        return PostTypes\News::getKey();
     }
 
+
     /**
-     * @param  array  $args
+     * Gets recent News
      *
-     * @return array
-     */
-    public static function getRelatedNews(array $args): array
-    {
-        return [];
-    }
-
-    /**
-     * @param  array  $args
+     * @param int   $limit
+     * @param bool  $withThumbnailOnly
+     * @param array $exclude
      *
-     * @return array
+     * @return WP_Post[]
      */
-    public static function getRandomNews(array $args): array
+    public static function getRecentNews(int $limit, bool $withThumbnailOnly = false, array $exclude = []): array
     {
-        return [];
+        return static::getRecentPosts($limit, $withThumbnailOnly, $exclude);
     }
 
+
     /**
-     * @param  float  $impact
+     * Gets related News
+     *
+     * @param int    $primaryPostId
+     * @param int    $limit
+     * @param string $taxonomy
+     * @param bool   $withThumbnailOnly
+     *
+     * @return WP_Post[]
+     */
+    public static function getRelatedNews(
+        int $primaryPostId,
+        int $limit,
+        string $taxonomy = 'category',
+        bool $withThumbnailOnly = false
+    ): array {
+        return static::getRelatedPosts($primaryPostId, $limit, $taxonomy, $withThumbnailOnly);
+    }
+
+
+    /**
+     * Gets random News
+     *
+     * @param int   $limit
+     * @param bool  $withThumbnailOnly
+     * @param array $exclude
+     *
+     * @return WP_Post[]
+     */
+    public static function getRandomNews(int $limit, bool $withThumbnailOnly = false, array $exclude = []): array
+    {
+        return static::getRandomPosts($limit, $withThumbnailOnly, $exclude);
+    }
+
+
+    /**
+     * @param float $impact
      *
      * @return array
      */

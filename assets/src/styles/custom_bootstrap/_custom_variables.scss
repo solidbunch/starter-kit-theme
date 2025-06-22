@@ -1,5 +1,13 @@
 // Bootstrap custom variables
 
+// scss-docs-start theme-color-variables
+$primary: #f7944e;
+$secondary: #6eb477;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+
 // Custom grid breakpoints
 // $grid-breakpoints: (
 // 	xs: 0,
@@ -36,10 +44,6 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black: #000;
 
-// scss-docs-start theme-color-variables
-$primary: #f7944e;
-$secondary: #6eb477;
-
 // Tint and shade percentage is set to 20% by default
 $primary-light: tint-color($primary, 20%);
 $primary-dark: shade-color($primary, 20%);
@@ -47,12 +51,13 @@ $primary-dark: shade-color($primary, 20%);
 $secondary-light: tint-color($secondary, 20%);
 $secondary-dark: shade-color($secondary, 20%);
 
+// scss-docs-start border-radius-variables
 $border-radius: 0;
-
-$success: #198754;
-$info: #0dcaf0;
-$warning: #ffc107;
-$danger: #dc3545;
+$border-radius-sm: 0;
+$border-radius-lg: 0;
+$border-radius-xl: 0;
+$border-radius-xxl: 0;
+$border-radius-pill: 0;
 
 $light: $gray-100;
 $dark: $gray-900;
@@ -90,6 +95,7 @@ $link-hover-decoration: null;
 //$navbar-light-hover-color:  $secondary;
 
 // scss-docs-start headings-variables
+$headings-margin-bottom: 1rem;
 $headings-font-family: null;
 $headings-font-style: null;
 $headings-font-weight: 500;
@@ -105,3 +111,30 @@ $accordion-button-active-bg: $gray-200;
 
 // scss-docs-start font-variables
 $font-family-sans-serif: 'Roboto', system-ui, -apple-system, sans-serif;
+
+//navbar
+$navbar-toggler-focus-width: 0.03rem;
+$navbar-light-hover-color: $primary;
+$navbar-light-active-color: $primary;
+$navbar-light-color: $gray-900;
+//for dark theme nav-bar
+$navbar-dark-color: $gray-100;
+
+//forms
+$input-focus-box-shadow: none;
+$input-placeholder-color: $gray-500;
+$input-bg: $white;
+$input-border-color: $gray-300;
+// $input-border-radius: 6px;
+
+// Offcanvas
+
+// scss-docs-start offcanvas-variables
+$offcanvas-padding-y: 2rem;
+$offcanvas-padding-x: 2rem;
+
+// Code
+$code-color:                        $body-color;
+$kbd-color:                         $black;
+$kbd-bg:                            $white;
+$pre-color:                         null;

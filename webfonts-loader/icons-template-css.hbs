@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "{{fontName}}";
+  font-display: swap;
+  src: {{{src}}};
+}
+
+:root{
+  {{#each codepoints}}
+  --{{../classPrefix}}{{@key}}:"\\{{this}}";
+  {{/each}}
+}
+
+{{baseSelector}} {
+  line-height: 1;
+  display:inline-block;
+}
+
+{{baseSelector}}:before {
+  font-family: {{fontName}} !important;
+  font-style: normal;
+  font-weight: normal !important;
+  vertical-align: middle;
+}
+
+{{#each codepoints}}
+.{{../classPrefix}}{{@key}}:before {
+  content: var(--{{../classPrefix}}{{@key}});
+}
+{{/each}}

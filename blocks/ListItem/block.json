@@ -1,12 +1,12 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/list-item",
-  "title": "List Item Single",
+  "title": "List Item Single (SK)",
   "category": "starter-kit",
   "parent": [
     "starter-kit/list"
   ],
-  "icon": "sk sk-listitem",
+  "icon": "skb skb-list-item",
   "description": "List Item child block.",
   "keywords": [
     "list"
@@ -27,6 +27,5 @@
       "source": "html",
       "default": ""
     }
-  },
-  "editorScript": "file:build/index.js"
+  }
 }

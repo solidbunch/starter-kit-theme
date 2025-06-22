@@ -57,4 +57,3 @@ vendor
 #=============================================================#
 assets/build/*
 blocks/**/build/*
-!blocks/**/build/*asset.php

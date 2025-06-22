@@ -1,15 +1,15 @@
 import metadata from '../block.json';
+import transforms from './transforms';
 
 const {registerBlockType} = wp.blocks;
-const {useBlockProps, RichText, AlignmentToolbar,BlockControls,HeadingLevelDropdown} = wp.blockEditor;
+const {useBlockProps, RichText, AlignmentToolbar, BlockControls, HeadingLevelDropdown} = wp.blockEditor;
 
 registerBlockType(
   metadata,
   {
-
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, className} = props;
-      const {content, alignment,level} = attributes;
+      const {content, alignment, level} = attributes;
       const tagName = 'h' + level;
       const blockProps = useBlockProps({
         className: [className],
@@ -20,30 +20,16 @@ registerBlockType(
       }
 
       const onChangeAlignment = (newAlignment) => {
-        let customAlignment;
-        switch (newAlignment) {
-        case 'left':
-          customAlignment = 'start';
-          break;
-        case 'right':
-          customAlignment = 'end';
-          break;
-        case 'center':
-          customAlignment = 'center';
-          break;
-        default:
-          customAlignment = null; 
-        }
-        setAttributes({alignment: newAlignment, customAlignment});
+        setAttributes({alignment: newAlignment});
       };
-      
+
       const renderOutput = (
         <>
           <BlockControls group="block">
             <HeadingLevelDropdown
-              value={ level }
-              onChange={ ( newLevel ) =>
-                setAttributes( {level: newLevel} )
+              value={level}
+              onChange={(newLevel) =>
+                setAttributes({level: newLevel})
               }
             />
             <AlignmentToolbar
@@ -57,11 +43,11 @@ registerBlockType(
             value={content}
             onChange={onChangeContent}
             style={{textAlign: alignment}}
-            placeholder="Type / to choose a block"
+            placeholder="Heading"
           />
         </>
       );
-      
+
       return [
         renderOutput,
       ];
@@ -69,21 +55,38 @@ registerBlockType(
 
     save: (props) => {
       const {attributes} = props;
-      const {content, customAlignment,level} = attributes;
+      const {content, alignment, level} = attributes;
       const TagName = 'h' + level;
       const {className} = useBlockProps.save();
-      const blockClass = `${customAlignment ? `text-${customAlignment}` : ""} ${className}`.trim();
-      // Create a new object for the attributes, excluding the 'class' attribute if it's empty
+
+      let alignmentClass;
+      switch (alignment) {
+      case 'left':
+        alignmentClass = 'text-start';
+        break;
+      case 'right':
+        alignmentClass = 'text-end';
+        break;
+      case 'center':
+        alignmentClass = 'text-center';
+        break;
+      default:
+        alignmentClass = '';
+      }
+
+      const blockClass = `${alignmentClass} ${className}`.trim();
       const blockProps = {};
 
       if (blockClass) {
         blockProps.className = blockClass;
       }
+
       return (
         <TagName {...blockProps}>
-          <RichText.Content value={ content } />
+          <RichText.Content value={content} />
         </TagName>
       );
     },
-  },
+    transforms,
+  }
 );

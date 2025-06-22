@@ -3,7 +3,7 @@
   "name": "starter-kit/starter-block",
   "title": "Starter Block",
   "category": "starter-kit",
-  "icon": "sk sk-starter",
+  "icon": "skb skb-starter",
   "description": "Just simple blank block. Copy, rename and edit settings",
   "keywords": [
     "Starter",
@@ -39,9 +39,5 @@
       "selector": "div",
       "attribute": "data-align"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  }
 }

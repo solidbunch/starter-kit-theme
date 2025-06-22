@@ -1,12 +1,12 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/column",
-  "title": "Column",
+  "title": "Column (SK)",
   "category": "starter-kit",
   "parent": [
     "starter-kit/row"
   ],
-  "icon": "sk sk-column",
+  "icon": "skb skb-column",
   "description": "Bootstrap column",
   "keywords": [
     "Column",
@@ -32,8 +32,5 @@
         "xxl": {}
       }
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

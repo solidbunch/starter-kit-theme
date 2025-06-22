@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/row",
-  "title": "Row",
+  "title": "Row (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-row",
+  "icon": "skb skb-row",
   "description": "Bootstrap parent block for columns",
   "keywords": [
     "Row",
@@ -51,8 +51,5 @@
         "stretch"
       ]
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
-  "style": ""
+  }
 }

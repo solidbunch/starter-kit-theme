@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/image",
-  "title": "Image",
+  "title": "Image (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-image",
+  "icon": "skb skb-image",
   "description": "Image",
   "keywords": [
     "Image",
@@ -77,8 +77,5 @@
         }
       }
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  }
 }

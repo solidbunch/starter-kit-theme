@@ -4,8 +4,6 @@ namespace StarterKit\Handlers;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Helper\Config;
-
 /**
  * Back End handler
  *
@@ -20,25 +18,25 @@ class Back
      */
     public static function enqueueBlockEditorAssets(): void
     {
-        $style = Config::get('assetsUri') . 'build/styles/editor.css';
+        $style = 'build/styles/editor.css';
 
-        $styleUri  = get_template_directory_uri() . $style;
-        $stylePath = get_template_directory() . $style;
+        $styleUri  = SK_ASSETS_URI . $style;
+        $stylePath = SK_ASSETS_DIR . $style;
 
         wp_enqueue_style('theme-editor-style', $styleUri, [], filemtime($stylePath));
 
-        $editorScript = Config::get('assetsUri') . 'build/js/editor.js';
+        $editorScript = 'build/js/editor.js';
 
-        $editorScriptUri  = get_template_directory_uri() . $editorScript;
-        $editorScriptPath = get_template_directory() . $editorScript;
+        $editorScriptUri  = SK_ASSETS_URI . $editorScript;
+        $editorScriptPath = SK_ASSETS_DIR . $editorScript;
 
         wp_enqueue_script('theme-editor-script', $editorScriptUri, [], filemtime($editorScriptPath), true);
 
 
-        $style = Config::get('assetsUri') . 'build/fonts/block-icons/block-icons.font.css';
+        $style = 'build/fonts/block-icons/block-icons.font.css';
 
-        $styleUri = get_template_directory_uri() . $style;
-        $stylePath = get_template_directory() . $style;
+        $styleUri  = SK_ASSETS_URI . $style;
+        $stylePath = SK_ASSETS_DIR . $style;
 
         wp_enqueue_style('block-icons-style', $styleUri, [], filemtime($stylePath));
     }

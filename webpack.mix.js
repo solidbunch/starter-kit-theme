@@ -15,32 +15,30 @@ mix.options({
 
 mix.disableNotifications();
 
-mix.js('webfonts-loader/block-icons.font.js', 'assets/build/fonts/block-icons')
-  .webpackConfig({
-    devtool: false,
-    module: {
-      rules: [
-        {
-          test: /webfonts-loader\/.*\.font\.js$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                url: false,
-                sourceMap: false,
+function applyFontRule(fontPath) {
+  mix.js(`webfonts-loader/${fontPath}.font.js`, `assets/build/fonts/${fontPath}`)
+    .webpackConfig({
+      devtool: false,
+      module: {
+        rules: [
+          {
+            test: /webfonts-loader(\/|\\).*\.font\.js$/,
+            use: [
+              {loader: MiniCssExtractPlugin.loader},
+              {
+                loader: 'css-loader',
+                options: {url: false, sourceMap: false},
               },
-            },
-            {
-              loader: 'webfonts-loader'
-            },
-          ],
-        },
-      ],
-    }
-  });
+              {loader: 'webfonts-loader'},
+            ],
+          },
+        ],
+      },
+    });
+}
+
+applyFontRule('block-icons');
+applyFontRule('icons');
 
 /**
  * Setup options for dev mode
@@ -113,6 +111,11 @@ if (!mix.inProduction()) {
          * No files will be tracked, browser reloads after assets was build.
          */
         files: [],
+        /**
+         * Debug mode
+         */
+        //logLevel: 'debug',
+        //logPrefix: 'Browsersync',
       }),
       /**
        * Code QA
@@ -174,7 +177,7 @@ if (!mix.inProduction()) {
  * Example, '_StarterBlock' - should not be registered
  */
 const allAssets = glob.sync(
-  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx}}')
+  '{assets/src/styles/!(_)*.scss,assets/src/js/*.{js,jsx},assets/src/js/bootstrap/*.{js,jsx}}')
   .concat(
     glob.sync('{blocks/!(_)**/src/!(_)*.scss,blocks/!(_)**/src/*.{js,jsx}}'));
 

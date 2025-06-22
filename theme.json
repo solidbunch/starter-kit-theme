@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "customTemplates": [
+    {
+      "name": "page-with-hero",
+      "title": "Page with Hero"
+    },
+    {
+      "name": "page-without-title",
+      "title": "Page without Title"
+    },
+    {
+      "name": "single-doc-page",
+      "title": "Single Doc Page",
+      "postTypes": ["doc-page"]
+    }
+  ]
+}

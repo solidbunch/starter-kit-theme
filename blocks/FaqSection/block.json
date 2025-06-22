@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/faq-section",
-  "title": "Faq Section",
+  "title": "Faq Section (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-faq",
+  "icon": "skb skb-faq",
   "description": "Faq parent block",
   "keywords": [
     "FAQ",
@@ -14,9 +14,5 @@
   "textdomain": "",
   "styles": [],
   "supports": {},
-  "example": {},
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "",
-  "style": "file:build/style.css"
+  "example": {}
 }

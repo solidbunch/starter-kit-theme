@@ -30,16 +30,20 @@
     }
   ],
   "keywords": [
+    "solidbunch",
     "wordpress",
     "starter",
-    "theme"
+    "theme",
+    "starter-kit",
+    "boilerplate",
+    "environment"
   ],
   "support": {
     "issues": "https://github.com/solidbunch/starter-kit-theme/issues"
   },
   "require": {
     "php": ">=8.1",
-    "htmlburger/carbon-fields": "3.6.2",
+    "htmlburger/carbon-fields": "3.6.5",
     "laminas/laminas-config-aggregator": "1.14.0",
     "monolog/monolog": "3.5.0",
     "php-di/php-di": "7.0.6",
@@ -47,7 +51,7 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "1.0.0",
-    "filp/whoops": "2.15.4",
+    "filp/whoops": "2.17.0",
     "phpcompatibility/phpcompatibility-wp": "2.1.4",
     "phpunit/phpunit": "10.5.3",
     "roave/security-advisories": "dev-latest",

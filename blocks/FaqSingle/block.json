@@ -1,12 +1,12 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/faq-single",
-  "title": "Faq Single",
+  "title": "Faq Single (SK)",
   "category": "starter-kit",
   "parent": [
     "starter-kit/faq-section"
   ],
-  "icon": "sk sk-news",
+  "icon": "skb skb-news",
   "description": "Single faq child block.",
   "keywords": [
     "FAQ",
@@ -44,8 +44,5 @@
       "source": "html",
       "selector": ".__answer-text"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

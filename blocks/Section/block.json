@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/section",
-  "title": "Section",
+  "title": "Section (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-section",
+  "icon": "skb skb-section",
   "description": "Section",
   "keywords": [
     "Section",
@@ -23,6 +23,5 @@
         "colorTheme": ""
       }
     }
-  },
-  "editorScript": "file:build/index.js"
+  }
 }
