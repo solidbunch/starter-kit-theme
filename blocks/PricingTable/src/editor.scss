@@ -1,0 +1,10 @@
+.editor-styles-wrapper {
+  .pricing_section {
+    a,
+    button {
+      pointer-events: none;
+
+      /* Disable click events on links */
+    }
+  }
+}

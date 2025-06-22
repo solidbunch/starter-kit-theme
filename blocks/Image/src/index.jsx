@@ -10,7 +10,7 @@ const {registerBlockType} = wp.blocks;
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
 
       return [
         Edit.renderControls(props, metadata),

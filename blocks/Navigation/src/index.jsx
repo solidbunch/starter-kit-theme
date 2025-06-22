@@ -15,7 +15,7 @@ const {useState, useEffect} = wp.element;
 registerBlockType(
   metadata,
   {
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, className} = props;
       const blockProps = useBlockProps({
         className: [className],

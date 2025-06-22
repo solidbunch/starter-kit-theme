@@ -1,0 +1,123 @@
+//doc page
+.section_doc {
+  .sidebar {
+    --header-height: 96px;
+    --admin-bar-height: 32px;
+    --size: 300px;
+
+    position: sticky;
+    background: $body-bg;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+
+    .doc_offcanvas {
+      top: 0;
+
+      .admin-bar & {
+        top: calc(var(--admin-bar-height));
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      top: calc(var(--header-height));
+      height: calc(100vh - var(--header-height));
+      left: 0;
+      max-width: var(--size);
+      flex: 0 0 var(--size);
+      overflow-y: auto;
+      box-shadow: none;
+
+      .admin-bar & {
+        top: calc(var(--header-height) + var(--admin-bar-height));
+        height: calc(100vh - var(--header-height) - var(--admin-bar-height));
+      }
+    }
+
+    .doc-menu {
+      li {
+        line-height: 2;
+
+        a {
+          font-size: 0.9rem;
+          text-decoration: none;
+
+          &:hover {
+            color: $black;
+            font-weight: bolder;
+          }
+
+          &.active {
+            color: $secondary;
+            font-weight: bolder;
+          }
+        }
+      }
+    }
+  }
+}
+
+.list_doc {
+  li {
+    a {
+      padding: 3px 8px;
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 2px;
+      font-size: 14px;
+
+      &:hover,
+      &.active,
+      &.current {
+        color: $primary;
+      }
+
+      &.active,
+      &.current {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.single-doc-page {
+  @include media-breakpoint-down(lg) {
+    header.header {
+      position: static;
+      z-index: inherit !important;
+    }
+
+    .section_doc .sidebar {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      top: 0;
+      z-index: 7;
+    }
+
+    &.admin-bar {
+      .section_doc .sidebar {
+        top: calc(var(--admin-bar-height));
+        background: $body-bg;
+      }
+    }
+  }
+}
+
+// When inner doc pages open, the main page link should be active
+body.single-doc-page {
+  .nav-link.doc-page-main {
+    color: var(--bs-navbar-active-color);
+  }
+}
+
+.wp-block-post-navigation-link {
+  padding: 12px 16px;
+
+  a {
+    color: $gray-700;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}

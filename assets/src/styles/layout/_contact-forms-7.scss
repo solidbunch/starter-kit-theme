@@ -1,0 +1,170 @@
+//contact form 7
+//spinner
+.wpcf7-spinner {
+  visibility: hidden;
+  display: block;
+  background-color: #23282d;
+  opacity: 0.75;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 100%;
+  padding: 0;
+  position: relative;
+
+  @extend .my-3, .mx-auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: #fbfbfc;
+    top: 4px;
+    left: 4px;
+    width: 6px;
+    height: 6px;
+    border: none;
+    border-radius: 100%;
+    transform-origin: 8px 8px;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+// style alert
+.wpcf7 {
+  .screen-reader-response {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    padding: 0;
+    margin: 0;
+  }
+
+  form {
+    .wpcf7-response-output {
+      @extend .alert, .alert-info;
+      @extend .my-3, .mx-auto;
+      @extend .text-center;
+
+      max-width: 700px;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity .5s linear;
+    }
+
+    .btn[type="submit"] {
+      .spinner-border {
+        visibility: hidden;
+
+        @extend .me-2;
+
+        margin-left: calc((1rem + (.2em * 2)) * -1);
+        opacity: 0;
+        transition: visibility 0s, opacity .3s linear;
+      }
+    }
+
+    &.spam {
+      .wpcf7-response-output {
+        @extend .alert-warning;
+      }
+    }
+
+    &.invalid,
+    &.unaccepted,
+    &.payment-required {
+      .wpcf7-response-output {
+        @extend .alert-warning;
+      }
+    }
+
+    &.failed,
+    &.aborted {
+      .wpcf7-response-output {
+        @extend .alert-danger;
+      }
+    }
+
+    &.sent {
+      .wpcf7-response-output {
+        @extend .alert-success;
+      }
+    }
+
+    &.init,
+    &.resetting,
+    &.submitting {
+      .wpcf7-response-output {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+    // spinner
+    &.submitting {
+      .wpcf7-spinner {
+        visibility: visible;
+      }
+
+      .btn[type="submit"] {
+        .spinner-border {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.wpcf7-form-control-wrap {
+  position: relative;
+  display: block;
+
+  &:has(>.wpcf7-not-valid-tip) {
+    .form-control {
+      border-color: $danger;
+    }
+  }
+
+  .wpcf7-not-valid-tip {
+    @extend .invalid-tooltip;
+
+    display: block;
+  }
+}
+// animation
+
+@media (prefers-reduced-motion: reduce) {
+  .wpcf7-spinner::before {
+    animation-name: blink;
+    animation-duration: 2000ms;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

@@ -32,14 +32,3 @@ header.header .row {
     }
   }
 }
-
-[data-bs-theme="light"] {
-  .navbar {
-    --bs-navbar-active-color: var(--bs-primary);
-    --bs-navbar-hover-color: var(--bs-primary);
-  }
-
-  .navbar-nav {
-    --bs-nav-link-color: var(--bs-gray-900);
-  }
-}

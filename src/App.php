@@ -4,9 +4,10 @@ namespace StarterKit;
 
 defined('ABSPATH') || exit;
 
+use StarterKit\Base\Constants;
 use StarterKit\Base\Hooks;
 use StarterKit\Handlers\CLI\CLI;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -38,6 +39,9 @@ final class App extends AbstractSingleton
         $this->container = $container;
 
         ErrorHandler::register($container->get(LoggerInterface::class));
+
+        // Constants definition
+        Constants::define();
 
         // Main Hooks functionality
         Hooks::initHooks();

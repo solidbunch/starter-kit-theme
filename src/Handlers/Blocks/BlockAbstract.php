@@ -4,10 +4,12 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
+use Psr\Log\LoggerInterface;
 use RuntimeException;
-use StarterKit\Handlers\Errors\ErrorHandler;
-use StarterKit\Helper\Config;
-use StarterKit\Helper\NotFoundException;
+use StarterKit\App;
+use StarterKit\Error\ErrorHandler;
+use StarterKit\Helper\Logger;
+use StarterKit\Helper\Utils;
 use Throwable;
 
 /**
@@ -15,29 +17,87 @@ use Throwable;
  *
  * @package    Starter Kit
  */
-abstract class BlockAbstract
+abstract class BlockAbstract implements BlockInterface
 {
+    /**
+     * Block name defined in Register class, usually block directory name
+     *
+     * @var string
+     */
+    protected string $blockName;
+
+    /**
+     * Additional block metadata. Place server side render callback here
+     *
+     * @var array
+     */
+    protected array $blockArgs = [];
+
+    /**
+     * Block assets for editor and frontend
+     *
+     * @var array
+     */
+    protected array $blockAssets = [];
+
+    /**
+     * BlockAbstract constructor.
+     * Runs on 'init' hook
+     *
+     * @param $blockName
+     */
+    public function __construct($blockName)
+    {
+        $this->blockName = $blockName;
+
+        // We should register block assets before block registration
+        $this->registerBlockAssets();
+
+        // We should add necessary block arguments before block registration
+        $this->registerBlockArgs();
+
+        $this->registerBlock();
+
+        add_action('rest_api_init', [$this, 'blockRestApiEndpoints']);
+    }
+
+    /**
+     * Register block with metadata from block.json
+     * Add your server side render callback into $this->blockArgs
+     *
+     * @return void
+     */
+    public function registerBlock(): void
+    {
+        register_block_type_from_metadata(
+            SK_BLOCKS_DIR . $this->blockName,
+            $this->blockArgs
+        );
+    }
+
     /**
      * Load block view
      *
      * @param string      $file
      * @param array       $data
      * @param string|null $base
+     * @param bool        $echo
      *
      * @return string
      *
-     * @throws NotFoundException
      * @throws Throwable
      */
-    public static function loadBlockView(string $file = '', array $data = [], string $base = null): string
+    public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
     {
         if ($base === null) {
-            $base = Config::get('blocksDir') . self::getCurrentBlockName() . '/' . Config::get('blocksViewDir');
+            $base = SK_BLOCKS_DIR . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
         }
 
         $viewFilePath = $base . $file . '.php';
 
-        ob_start();
+        if (!$echo) {
+            ob_start();
+        }
 
         try {
             if (file_exists($viewFilePath)) {
@@ -49,30 +109,23 @@ abstract class BlockAbstract
             ErrorHandler::handleThrowable($throwable);
         }
 
-        return ob_get_clean();
-    }
+        if (!$echo) {
+            return ob_get_clean();
+        }
 
-    /**
-     * Generate block name from class name
-     * StarterKitBlocks\BlockName\BlockName
-     *
-     * @return string
-     */
-    public static function getCurrentBlockName(): string
-    {
-        $blockNamespace = explode('\\', static::class);
-
-        return array_slice($blockNamespace, -2, 1)[0] ?? '';
+        return '';
     }
 
     /**
      * Generating block classes including spacers
+     * Used in block server side render callback
+     * Same as js function BootstrapSpacers.generateClasses
      *
      * @param array $attributes
      *
      * @return string
      */
-    public static function generateBlockClasses(array $attributes): string
+    public function generateBlockClasses(array $attributes): string
     {
         $blockClasses = [];
 
@@ -80,7 +133,7 @@ abstract class BlockAbstract
             $blockClasses[] = $attributes['className'];
         }
 
-        $blockClasses = array_merge($blockClasses, self::generateSpacersClasses($attributes['spacers'] ?? []));
+        $blockClasses = array_merge($blockClasses, $this->generateSpacersClasses($attributes['spacers'] ?? []));
 
         return esc_attr(implode(' ', $blockClasses));
     }
@@ -92,22 +145,105 @@ abstract class BlockAbstract
      *
      * @return array
      */
-    public static function generateSpacersClasses(array $spacers): array
+    public function generateSpacersClasses(array $spacers): array
     {
-        $spacerClasses = [];
-        // ToDo store grid variables in one place - maybe scss
-        $numberOfGrid = 5;
+        if (Utils::isRestApiRequest() || (is_admin() && !wp_doing_ajax())) {
+            return [];
+        }
 
+        $spacerClasses = [];
+        $numberOfGrid  = 5; // Equivalent to BootstrapSpacers.numberOfGrid in JS
+
+        // Iterate over the values of the spacers array
         foreach ($spacers as $item) {
-            if (isset($item['valueRange'])) {
+            if (isset($item['valueRange']) && is_array($item['valueRange'])) {
+                // Iterate over the keys of valueRange
                 foreach ($item['valueRange'] as $key => $value) {
-                    $modifiedValue   = ($value === ($numberOfGrid + 1)) ? 'auto' : $value;
+                    // Modify the value if it equals numberOfGrid + 1
+                    $modifiedValue = ($value >= ($numberOfGrid + 1)) ? 'auto' : $value;
+                    // Generate the class, excluding the '-xs' prefix
                     $modifiedClass   = str_replace('-xs', '', "$key-$modifiedValue");
                     $spacerClasses[] = $modifiedClass;
                 }
             }
         }
 
+        // Return an array containing all classes
         return $spacerClasses;
+    }
+
+
+    /**
+     * Register block editor and front assets
+     * Functionality moved from default function because there is no ability to use dependencies
+     * No need to add to block.json:
+     *   "editorScript": "",
+     *   "viewScript": "",
+     *   "editorStyle": "",
+     *   "style": ""
+     * Use $blockAssets property instead
+     *
+     * @return void
+     */
+    public function registerBlockAssets(): void
+    {
+        $blockUri = SK_BLOCKS_URI . $this->blockName . '/build/';
+        $blockDir = SK_BLOCKS_DIR . $this->blockName . '/build/';
+
+        foreach ($this->blockAssets as $type => $asset) {
+            if (empty($asset['file'])) {
+                continue;
+            }
+
+            $filePath = $blockDir . $asset['file'];
+            $fileUri  = $blockUri . $asset['file'];
+
+            $dependencies = empty($asset['dependencies']) ? [] : $asset['dependencies'];
+
+            /**
+             * Filter block asset dependencies
+             */
+            $deps = apply_filters(
+                SK_HOOKS_PREFIX . '/block_asset_dependencies',
+                $dependencies,
+                $this->blockName,
+                $type
+            );
+
+            $ver = filemtime($filePath);
+
+            // Default for scripts
+            $args = [
+                'strategy' => !is_admin() ? 'defer' : '',
+                'in_footer' => true,
+            ];
+            // Default for styles
+            $media = 'all';
+
+            // Prepare handle based on type
+            $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-'
+                . basename($asset['file'], strstr($asset['file'], '.')) . '-';
+
+            $handle = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
+
+            // Check environment and type for proper registration
+            if (
+                (is_admin() && in_array($type, ['editor_script', 'script', 'editor_style', 'style'])) ||
+                (!is_admin() && in_array($type, ['script', 'view_script', 'style', 'view_style']))
+            ) {
+                if (str_contains($type, 'script')) {
+                    wp_register_script($handle, $fileUri, $deps, $ver, $args);
+                } else {
+                    wp_register_style($handle, $fileUri, $deps, $ver, $media);
+                }
+
+                // Store registered handles for use in block registration
+                $this->blockArgs[$type . '_handles'][] = $handle;
+            }
+
+            if (!in_array($type, ['editor_script', 'editor_style', 'script', 'view_script', 'style', 'view_style'])) {
+                Logger::warning("Unsupported asset type or context: $type");
+            }
+        }
     }
 }

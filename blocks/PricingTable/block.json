@@ -1,0 +1,16 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/pricing-table",
+  "title": "Pricing Table (SK)",
+  "category": "starter-kit",
+  "icon": "skb skb-pricing-table",
+  "description": "Bootstrap Pricing Table",
+  "keywords": [
+    "PricingTable",
+    "Bootstrap"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {}
+}

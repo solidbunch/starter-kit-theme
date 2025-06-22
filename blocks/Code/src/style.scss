@@ -1,0 +1,68 @@
+@import '~highlight.js/styles/atom-one-light.min.css';
+@import "../../../assets/src/styles/utils/bootstrap_utils";
+
+//code
+kbd {
+  box-shadow: 0 2px 0 1px $gray-400;
+  border: 1px solid $gray-400;
+  position: relative;
+  cursor: default;
+  top: -1px;
+
+  &:hover {
+    box-shadow: 0 1px 0 0.5px $gray-400;
+    top: 1px;
+  }
+}
+
+pre.sk-block-code {
+  border-radius: 4px;
+  position: relative;
+  border: 1px solid $gray-400;
+
+  code {
+    display: block;
+    padding: 16px 42px 16px 16px !important;
+    background-color: $gray-200;
+    border-radius: 4px;
+
+    .highlight &,
+    pre & {
+      background-color: transparent;
+      display: block;
+      padding: 4px;
+    }
+  }
+
+  .copy_clipboard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $gray-200 !important;
+
+    &:focus,
+    &:active {
+      border-color: transparent !important;
+    }
+
+    &.active {
+      border-color: transparent;
+
+      i,
+      &:hover i {
+        color: $success;
+      }
+    }
+
+    &:hover {
+      i {
+        color: $primary;
+      }
+    }
+
+    i {
+      color: $gray-600;
+      font-size: 16px;
+    }
+  }
+}

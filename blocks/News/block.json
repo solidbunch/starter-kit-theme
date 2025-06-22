@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/news",
-  "title": "News",
+  "title": "News (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-news",
+  "icon": "skb skb-news",
   "description": "Show News post type",
   "keywords": [
     "News",
@@ -18,9 +18,5 @@
       "type": "string",
       "default": ""
     }
-  },
-  "editorScript": "file:build/index.js",
-  "viewScript": "",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  }
 }

@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/container",
-  "title": "Container",
+  "title": "Container (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-container",
+  "icon": "skb skb-container",
   "description": "Bootstrap Centered Container",
   "keywords": [
     "Container",
@@ -19,8 +19,5 @@
       "type": "string",
       "default": "container"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "editorStyle": "",
-  "style": ""
+  }
 }

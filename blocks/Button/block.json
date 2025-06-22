@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/button",
-  "title": "Button",
+  "title": "Button (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-button",
+  "icon": "skb skb-button",
   "description": "Button",
   "keywords": [
     "Button",
@@ -22,6 +22,5 @@
         "defaultClass": "btn"
       }
     }
-  },
-  "editorScript": "file:build/index.js"
+  }
 }

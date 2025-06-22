@@ -1,9 +1,9 @@
 {
   "apiVersion": 3,
   "name": "starter-kit/navigation",
-  "title": "Navigation",
+  "title": "Navigation (SK)",
   "category": "starter-kit",
-  "icon": "sk sk-navigaton",
+  "icon": "skb skb-navigation",
   "description": "Bootstrap navigation",
   "keywords": [
     "Navigation",
@@ -26,9 +26,5 @@
       "type": "string",
       "default": "navbar-expand"
     }
-  },
-  "editorScript": "file:build/index.js",
-  "viewScript": "file:build/view.js",
-  "editorStyle": "file:build/editor.css",
-  "style": "file:build/style.css"
+  }
 }

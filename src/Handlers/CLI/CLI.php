@@ -5,7 +5,7 @@ namespace StarterKit\Handlers\CLI;
 defined('ABSPATH') || exit;
 
 use StarterKit\Helper\Utils;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use Throwable;
 use WP_CLI;
 

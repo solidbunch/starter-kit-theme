@@ -1,0 +1,21 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/list-section",
+  "title": "List Section (SK)",
+  "category": "starter-kit",
+  "icon": "skb skb-list-section",
+  "description": "List parent block",
+  "keywords": [
+    "List"
+  ],
+  "textdomain": "",
+  "styles": [],
+  "supports": {},
+  "example": {},
+  "attributes": {
+    "listType": {
+      "type": "string",
+      "default": "ul"
+    }
+  }
+}

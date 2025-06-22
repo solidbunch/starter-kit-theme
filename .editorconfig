@@ -17,8 +17,12 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
-[*.php]
+[*.{php,py,conf,conf.template,tf,ini,sql,env,sh}]
+indent_size = 4
+
+[Dockerfile]
 indent_size = 4
 
 [*.md]
 trim_trailing_whitespace = false
+

@@ -12,7 +12,7 @@ $data = $data ?? [];
 
 ?>
 
-<div class="news-block">
+<div class="news-block<?php echo !empty($data['blockClass']) ? ' ' . $data['blockClass'] : ''; ?>">
     <?php echo $data['newsData'] ?? ''; ?>
     <div><?php echo $data['newsCategory'] ?? ''; ?></div>
 </div>

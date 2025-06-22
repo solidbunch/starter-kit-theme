@@ -3,7 +3,7 @@
 defined('ABSPATH') || exit;
 
 use StarterKit\App;
-use StarterKit\Handlers\Errors\ErrorHandler;
+use StarterKit\Error\ErrorHandler;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -12,14 +12,12 @@ use Psr\Container\ContainerInterface;
  * @package    Starter Kit
  */
 
-if (PHP_VERSION_ID < 80100) {
-    $activeTheme        = wp_get_theme();
-    $requiredPhpVersion = $activeTheme->get('RequiresPHP');
+$activeTheme        = wp_get_theme();
+$requiredPhpVersion = $activeTheme->get('RequiresPHP');
 
+if ($requiredPhpVersion && version_compare(PHP_VERSION, $requiredPhpVersion, '<')) {
     error_log(sprintf(__('Theme requires at least PHP %s (You are using PHP %s) '), $requiredPhpVersion, PHP_VERSION));
-    if (!is_admin()) {
-        wp_die(__('Theme requires a higher PHP Version. Please check the Logs for more details.'));
-    }
+    wp_die(__('Theme requires a higher PHP Version. Please check the Logs for more details.'));
 } else {
     try {
         // helper debug functions for developers
@@ -32,10 +30,14 @@ if (PHP_VERSION_ID < 80100) {
 
         App::instance()->run($container);
     } catch (Throwable $throwable) {
-        try {
+        if ('production' === wp_get_environment_type()) {
+            try {
+                ErrorHandler::handleThrowable($throwable);
+            } catch (Throwable $e) {
+                error_log($e);
+            }
+        } else {
             ErrorHandler::handleThrowable($throwable);
-        } catch (Throwable $e) {
-            error_log($e);
         }
     }
 }

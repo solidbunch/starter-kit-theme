@@ -22,7 +22,7 @@ registerBlockType(
       const blockClass = attributes.modification;
       return {className: blockClass};
     },
-    edit: props => {
+    edit: (props) => {
       const {attributes, setAttributes, clientId, className} = props;
       const blockProps = useBlockProps({
         className: [className],
@@ -61,7 +61,7 @@ registerBlockType(
         renderOutput,
       ];
     },
-    save: props => {
+    save: (props) => {
       const {attributes} = props;
 
       const blockClass = attributes.modification;
