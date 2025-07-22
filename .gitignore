@@ -24,9 +24,10 @@ ehthumbs.db
 
 
 #===================================#
-#    Log, map files, secret .env    #
+#      Log, map files, cache        #
 #===================================#
 *.log
+*.log.*
 error_log
 access_log
 .sass-cache
@@ -57,3 +58,10 @@ vendor
 #=============================================================#
 assets/build/*
 blocks/**/build/*
+
+
+# ===================================#
+#          Miscellaneous             #
+# ===================================#
+!**/.gitkeep
+
