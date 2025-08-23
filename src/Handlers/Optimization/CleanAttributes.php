@@ -44,7 +44,6 @@ class CleanAttributes
             'page-template-default',
             'no-customize-support',
             'wp-custom-logo',
-            'wp-embed-responsive',
         ];
 
         // Add post/page slug if not present
