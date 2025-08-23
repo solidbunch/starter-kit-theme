@@ -90,7 +90,10 @@ class CleanUp
         add_filter('rewrite_rules_array', [self::class, 'removeEmbedFromRewrites']);
         remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
         add_filter('embed_oembed_discover', '__return_false');
-        remove_action('rest_api_init', 'wp_oembed_register_route');
+
+        // Disable REST API endpoint for oEmbed if we disabling default Gutenberg blocks (Embeds blocks group)
+        //remove_action('rest_api_init', 'wp_oembed_register_route');
+
         remove_filter('pre_oembed_result', 'wp_filter_pre_oembed_result', 10);
         add_action('init', [self::class, 'disableEmbedQuery'], 9999);
 
