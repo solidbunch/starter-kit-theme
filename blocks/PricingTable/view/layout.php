@@ -31,13 +31,22 @@ $data = $data ?? [];
                         </div>
                         <div class="footer col-auto">
                             <h5 class="text-center mb-4"><?php echo $pricingPackage['price'] ?? ''; ?></h5>
+                            <?php
+                            // Create checkout URL with package info
+                            $packageSlug = sanitize_title($pricingPackage['title']);
+                            $price = $pricingPackage['price'];
+                            $checkoutUrl = add_query_arg([
+                                'package' => $packageSlug,
+                                'price' => $price
+                            ], home_url('/checkout'));
+                            ?>
                             <a
-                                href="<?php echo $pricingPackage['button_link'] ?? '';?>"
+                                href="<?php echo esc_url($checkoutUrl); ?>"
                                 class="w-100 py-3 btn btn-<?php
                                 echo $pricingPackage['button_style'] ? $pricingPackage['button_style'] . '-' : '';
                                 echo $pricingPackage['button_color'] ?? 'primary'; ?>"
                             >
-                                <?php echo $pricingPackage['button_text'] ?? ''; ?>
+                                <?php echo $pricingPackage['button_text'] ?? 'Choose Plan'; ?>
                             </a>
                         </div>
                     </div>
@@ -46,3 +55,4 @@ $data = $data ?? [];
         <?php } ?>
     </div>
 </div>
+
