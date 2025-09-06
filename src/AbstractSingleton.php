@@ -8,16 +8,24 @@ namespace StarterKit;
 abstract class AbstractSingleton
 {
     /**
+     * Array of instances of singleton classes
+     *
+     * @var array
+     */
+    private static array $instances = [];
+
+    /**
      * Call this method to get singleton
      */
-    public static function instance(): bool|static
+    public static function instance(): static
     {
-        static $instance = false;
-        if ($instance === false) {
-            $instance = new static();
+        $class = static::class;
+
+        if (!isset(self::$instances[$class])) {
+            self::$instances[$class] = new static();
         }
 
-        return $instance;
+        return self::$instances[$class];
     }
 
     /**
