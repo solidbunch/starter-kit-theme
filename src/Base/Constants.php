@@ -29,6 +29,7 @@ class Constants
         define('SK_ASSETS_URI', Config::get('assetsUri'));
         define('SK_BLOCKS_DIR', Config::get('blocksDir'));
         define('SK_BLOCKS_URI', Config::get('blocksUri'));
+        define('SK_BLOCKS_NS', Config::get('blocksNamespace'));
         define('SK_BLOCKS_VIEW_DIR', Config::get('blocksViewDir'));
     }
 }

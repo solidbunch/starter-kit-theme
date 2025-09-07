@@ -7,6 +7,7 @@ defined('ABSPATH') || exit;
 use StarterKit\Error\ErrorHandler;
 use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Config;
+use StarterKit\Helper\Logger;
 use StarterKitBlocks;
 use Throwable;
 
@@ -46,12 +47,13 @@ class Init
      *
      * @param string $blocksDir Custom blocks directory path
      * @param string $namespace Custom namespace for blocks
+     * @param string $blocksUri Custom blocks URI path
      *
      * @return void
      *
      * @throws Throwable
      */
-    public static function loadBlocks(string $blocksDir = '', string $namespace = ''): void
+    public static function loadBlocks(string $blocksDir = '', string $namespace = '', string $blocksUri = ''): void
     {
         if (!function_exists('register_block_type_from_metadata')) {
             return;
@@ -59,7 +61,21 @@ class Init
 
         // Use provided directory or default theme blocks directory
         $blocksDir = !empty($blocksDir) ? $blocksDir : SK_BLOCKS_DIR;
-        $namespace = !empty($namespace) ? $namespace : 'StarterKitBlocks';
+        $namespace = !empty($namespace) ? $namespace : SK_BLOCKS_NS;
+        $blocksUri = !empty($blocksUri) ? $blocksUri : SK_BLOCKS_URI;
+
+        if (!is_dir($blocksDir) || empty($namespace) || empty($blocksUri)) {
+            Logger::error('Blocks configuration is invalid', [
+                'blocksDir'        => $blocksDir,
+                'namespace'        => $namespace,
+                'blocksUri'        => $blocksUri,
+                'isDir'            => is_dir($blocksDir),
+                'isEmptyNamespace' => empty($namespace),
+                'isEmptyUri'       => empty($blocksUri),
+            ]);
+
+            return;
+        }
 
         $blocks = glob($blocksDir . '*', GLOB_ONLYDIR);
 
@@ -76,7 +92,7 @@ class Init
 
             // Instantiate the block class
             try {
-                new $Block($blockName);
+                new $Block($blockName, $blocksDir, $blocksUri);
             } catch (Throwable $throwable) {
                 ErrorHandler::handleThrowable($throwable);
             }

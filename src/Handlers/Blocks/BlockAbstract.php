@@ -4,9 +4,7 @@ namespace StarterKit\Handlers\Blocks;
 
 defined('ABSPATH') || exit;
 
-use Psr\Log\LoggerInterface;
 use RuntimeException;
-use StarterKit\App;
 use StarterKit\Error\ErrorHandler;
 use StarterKit\Helper\Logger;
 use StarterKit\Helper\Utils;
@@ -27,6 +25,20 @@ abstract class BlockAbstract implements BlockInterface
     protected string $blockName;
 
     /**
+     * Block directory path
+     *
+     * @var string
+     */
+    protected string $blockDir;
+
+    /**
+     * Block URI path
+     *
+     * @var string
+     */
+    protected string $blockUri;
+
+    /**
      * Additional block metadata. Place server side render callback here
      *
      * @var array
@@ -44,11 +56,15 @@ abstract class BlockAbstract implements BlockInterface
      * BlockAbstract constructor.
      * Runs on 'init' hook
      *
-     * @param $blockName
+     * @param string $blockName
+     * @param string $blockDir
+     * @param string $blockUri
      */
-    public function __construct($blockName)
+    public function __construct(string $blockName, string $blockDir = '', string $blockUri = '')
     {
         $this->blockName = $blockName;
+        $this->blockDir  = !!empty($blocksDir) ? $blockDir : SK_BLOCKS_DIR;
+        $this->blockUri  = !empty($blockUri) ? $blockUri : SK_BLOCKS_URI;
 
         // We should register block assets before block registration
         $this->registerBlockAssets();
@@ -70,7 +86,7 @@ abstract class BlockAbstract implements BlockInterface
     public function registerBlock(): void
     {
         register_block_type_from_metadata(
-            SK_BLOCKS_DIR . $this->blockName,
+            $this->blockDir . $this->blockName,
             $this->blockArgs
         );
     }
@@ -90,7 +106,7 @@ abstract class BlockAbstract implements BlockInterface
     public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
     {
         if ($base === null) {
-            $base = SK_BLOCKS_DIR . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
+            $base = $this->blockDir . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
         }
 
         $viewFilePath = $base . $file . '.php';
@@ -187,8 +203,8 @@ abstract class BlockAbstract implements BlockInterface
      */
     public function registerBlockAssets(): void
     {
-        $blockUri = SK_BLOCKS_URI . $this->blockName . '/build/';
-        $blockDir = SK_BLOCKS_DIR . $this->blockName . '/build/';
+        $blockUri = $this->blockUri . $this->blockName . '/build/';
+        $blockDir = $this->blockDir . $this->blockName . '/build/';
 
         foreach ($this->blockAssets as $type => $asset) {
             if (empty($asset['file'])) {
@@ -214,7 +230,7 @@ abstract class BlockAbstract implements BlockInterface
 
             // Default for scripts
             $args = [
-                'strategy' => !is_admin() ? 'defer' : '',
+                'strategy'  => !is_admin() ? 'defer' : '',
                 'in_footer' => true,
             ];
             // Default for styles
@@ -222,7 +238,7 @@ abstract class BlockAbstract implements BlockInterface
 
             // Prepare handle based on type
             $base_handle = 'block-' . Utils::camelToKebab($this->blockName) . '-'
-                . basename($asset['file'], strstr($asset['file'], '.')) . '-';
+                           . basename($asset['file'], strstr($asset['file'], '.')) . '-';
 
             $handle = $base_handle . (str_contains($type, 'script') ? 'script' : 'style');
 
