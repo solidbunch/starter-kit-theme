@@ -53,7 +53,6 @@ class Hooks
         add_action('init', [Handlers\PostTypes\News::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerCategoryTaxonomy'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerTagTaxonomy'], 5);
-        add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\TeamMember::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Service::class, 'registerPostType'], 5);
 

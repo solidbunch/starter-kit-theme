@@ -5,8 +5,8 @@ namespace StarterKit\Handlers\Blocks;
 defined('ABSPATH') || exit;
 
 use StarterKit\Error\ErrorHandler;
-use StarterKit\Helper\Config;
 use StarterKit\Exception\ConfigEntryNotFoundException;
+use StarterKit\Helper\Config;
 use StarterKitBlocks;
 use Throwable;
 
@@ -44,17 +44,24 @@ class Init
     /**
      * Register all blocks in blocks directory
      *
+     * @param string $blocksDir Custom blocks directory path
+     * @param string $namespace Custom namespace for blocks
+     *
      * @return void
      *
      * @throws Throwable
      */
-    public static function loadBlocks(): void
+    public static function loadBlocks(string $blocksDir = '', string $namespace = ''): void
     {
         if (!function_exists('register_block_type_from_metadata')) {
             return;
         }
 
-        $blocks = glob(SK_BLOCKS_DIR . '*', GLOB_ONLYDIR);
+        // Use provided directory or default theme blocks directory
+        $blocksDir = !empty($blocksDir) ? $blocksDir : SK_BLOCKS_DIR;
+        $namespace = !empty($namespace) ? $namespace : 'StarterKitBlocks';
+
+        $blocks = glob($blocksDir . '*', GLOB_ONLYDIR);
 
         foreach ($blocks as $blockPath) {
             $blockName = basename($blockPath);
@@ -65,7 +72,7 @@ class Init
             }
 
             // Assuming each block has a BlockRenderer class in the appropriate namespace
-            $Block = 'StarterKitBlocks\\' . $blockName . '\\Block';
+            $Block = $namespace . '\\' . $blockName . '\\Block';
 
             // Instantiate the block class
             try {
@@ -79,13 +86,13 @@ class Init
     public static function addSpacerAttributeToBlocks($args): array
     {
         $args['attributes']['spacers'] = [
-            'type' => 'object',
+            'type'    => 'object',
             'default' => [
-                'xs' => [],
-                'sm' => [],
-                'md' => [],
-                'lg' => [],
-                'xl' => [],
+                'xs'  => [],
+                'sm'  => [],
+                'md'  => [],
+                'lg'  => [],
+                'xl'  => [],
                 'xxl' => [],
             ],
         ];
