@@ -4,6 +4,7 @@ namespace StarterKit\Base;
 
 defined('ABSPATH') || exit;
 
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Config;
 
 /**
@@ -16,7 +17,7 @@ class Constants
     /**
      * Defines main constants for the theme.
      *
-     * @throws \StarterKit\Exception\ConfigEntryNotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function define(): void
     {
