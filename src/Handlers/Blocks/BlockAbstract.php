@@ -29,14 +29,14 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @var string
      */
-    protected string $blockDir;
+    protected string $blocksDir;
 
     /**
      * Block URI path
      *
      * @var string
      */
-    protected string $blockUri;
+    protected string $blocksUri;
 
     /**
      * Additional block metadata. Place server side render callback here
@@ -57,14 +57,14 @@ abstract class BlockAbstract implements BlockInterface
      * Runs on 'init' hook
      *
      * @param string $blockName
-     * @param string $blockDir
-     * @param string $blockUri
+     * @param string $blocksDir
+     * @param string $blocksUri
      */
-    public function __construct(string $blockName, string $blockDir = '', string $blockUri = '')
+    public function __construct(string $blockName, string $blocksDir = '', string $blocksUri = '')
     {
         $this->blockName = $blockName;
-        $this->blockDir  = !!empty($blocksDir) ? $blockDir : SK_BLOCKS_DIR;
-        $this->blockUri  = !empty($blockUri) ? $blockUri : SK_BLOCKS_URI;
+        $this->blocksDir  = !!empty($blocksDir) ? $blocksDir : SK_BLOCKS_DIR;
+        $this->blocksUri  = !empty($blocksUri) ? $blocksUri : SK_BLOCKS_URI;
 
         // We should register block assets before block registration
         $this->registerBlockAssets();
@@ -86,7 +86,7 @@ abstract class BlockAbstract implements BlockInterface
     public function registerBlock(): void
     {
         register_block_type_from_metadata(
-            $this->blockDir . $this->blockName,
+            $this->blocksDir . $this->blockName,
             $this->blockArgs
         );
     }
@@ -106,7 +106,7 @@ abstract class BlockAbstract implements BlockInterface
     public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
     {
         if ($base === null) {
-            $base = $this->blockDir . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
+            $base = $this->blocksDir . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
         }
 
         $viewFilePath = $base . $file . '.php';
@@ -203,16 +203,16 @@ abstract class BlockAbstract implements BlockInterface
      */
     public function registerBlockAssets(): void
     {
-        $blockUri = $this->blockUri . $this->blockName . '/build/';
-        $blockDir = $this->blockDir . $this->blockName . '/build/';
+        $blocksUri = $this->blocksUri . $this->blockName . '/build/';
+        $blocksDir = $this->blocksDir . $this->blockName . '/build/';
 
         foreach ($this->blockAssets as $type => $asset) {
             if (empty($asset['file'])) {
                 continue;
             }
 
-            $filePath = $blockDir . $asset['file'];
-            $fileUri  = $blockUri . $asset['file'];
+            $filePath = $blocksDir . $asset['file'];
+            $fileUri  = $blocksUri . $asset['file'];
 
             $dependencies = empty($asset['dependencies']) ? [] : $asset['dependencies'];
 
