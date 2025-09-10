@@ -63,8 +63,8 @@ abstract class BlockAbstract implements BlockInterface
     public function __construct(string $blockName, string $blocksDir = '', string $blocksUri = '')
     {
         $this->blockName = $blockName;
-        $this->blocksDir  = !!empty($blocksDir) ? $blocksDir : SK_BLOCKS_DIR;
-        $this->blocksUri  = !empty($blocksUri) ? $blocksUri : SK_BLOCKS_URI;
+        $this->blocksDir = !empty($blocksDir) ? $blocksDir : SK_BLOCKS_DIR;
+        $this->blocksUri = !empty($blocksUri) ? $blocksUri : SK_BLOCKS_URI;
 
         // We should register block assets before block registration
         $this->registerBlockAssets();
