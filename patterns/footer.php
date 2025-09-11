@@ -10,9 +10,9 @@
 
 ?>
 
-<!-- wp:starter-kit/section {"modification":{"backgroundColor":"","textColor":"",
+<!-- wp:starter-kit/section {"modification":{"backgroundColor":"","textColor":"text-light",
 "tagName":"footer","colorTheme":"dark"},"className":"footer"} -->
-<footer data-bs-theme="dark" class="footer">
+<footer data-bs-theme="dark" class="text-light footer">
     <!-- wp:starter-kit/container {"spacers":{"xs":{"valueRange":{"pt-xs":3,"pb-xs":3}},"sm":[],"md":[],"lg":[],"xl":[],
     "xxl":[]}} -->
     <div class="container pt-3 pb-3">
@@ -44,9 +44,9 @@
             "lg":{"mod":"auto"},"xl":[],"xxl":[]},
             "className":"d-flex align-items-center  justify-content-center  flex-wrap"} -->
             <div class="col-12 col-lg-auto d-flex align-items-center justify-content-center flex-wrap">
-                <!-- wp:starter-kit/paragraph {"className":"mb-0"} -->
-                <p class="mb-0"><a href="mailto:contact@starter-kit.io">contact@starter-kit.io</a></p>
-                <!-- /wp:starter-kit/paragraph -->
+                <!-- wp:paragraph {"align":"right","fontSize":"small", "className":"mb-0"} -->
+                <p class="has-text-align-right mb-0 has-small-font-size">Developed by Solidbunch</p>
+                <!-- /wp:paragraph -->
 
                 <!-- wp:starter-kit/image {"link":{"addLink":true,"targetBlank":true,
                 "href":"https://github.com/solidbunch/starter-kit-foundation"},
