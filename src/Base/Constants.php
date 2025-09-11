@@ -4,6 +4,7 @@ namespace StarterKit\Base;
 
 defined('ABSPATH') || exit;
 
+use StarterKit\Exception\ConfigEntryNotFoundException;
 use StarterKit\Helper\Config;
 
 /**
@@ -16,7 +17,7 @@ class Constants
     /**
      * Defines main constants for the theme.
      *
-     * @throws \StarterKit\Exception\ConfigEntryNotFoundException
+     * @throws ConfigEntryNotFoundException
      */
     public static function define(): void
     {
@@ -28,6 +29,7 @@ class Constants
         define('SK_ASSETS_URI', Config::get('assetsUri'));
         define('SK_BLOCKS_DIR', Config::get('blocksDir'));
         define('SK_BLOCKS_URI', Config::get('blocksUri'));
+        define('SK_BLOCKS_NS', Config::get('blocksNamespace'));
         define('SK_BLOCKS_VIEW_DIR', Config::get('blocksViewDir'));
     }
 }

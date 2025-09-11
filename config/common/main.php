@@ -14,6 +14,7 @@ return [
         'blocksDir'           => get_stylesheet_directory() . '/blocks/',
         'blocksUri'           => get_stylesheet_directory_uri() . '/blocks/',
         'blocksIcons'         => '',
+        'blocksNamespace'     => 'StarterKitBlocks',
         'blocksCategorySlug'  => 'starter-kit',
         'blocksCategoryTitle' => 'StarterKit Blocks',
         'blocksViewDir'       => 'view/',
