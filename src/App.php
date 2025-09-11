@@ -4,12 +4,12 @@ namespace StarterKit;
 
 defined('ABSPATH') || exit;
 
-use StarterKit\Base\Constants;
-use StarterKit\Base\Hooks;
-use StarterKit\Handlers\CLI\CLI;
-use StarterKit\Error\ErrorHandler;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use StarterKit\Base\Constants;
+use StarterKit\Base\Hooks;
+use StarterKit\Error\ErrorHandler;
+use StarterKit\Handlers\CLI\CLI;
 use Throwable;
 
 /**

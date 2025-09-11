@@ -5,7 +5,6 @@ namespace StarterKit\Base;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers;
-use StarterKit\Helper\Config;
 use StarterKitBlocks;
 
 /**
@@ -54,9 +53,6 @@ class Hooks
         add_action('init', [Handlers\PostTypes\News::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerCategoryTaxonomy'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerTagTaxonomy'], 5);
-        add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
-        add_action('init', [Handlers\PostTypes\Pricing::class, 'registerPostType'], 5);
-        add_action('init', [Handlers\PostTypes\DocPage::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\TeamMember::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Service::class, 'registerPostType'], 5);
 
@@ -65,7 +61,6 @@ class Hooks
          ************************************/
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\News::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
-        add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Pricing::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\UserMeta\UserMeta::class, 'make']);
 
