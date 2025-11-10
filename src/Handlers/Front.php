@@ -25,11 +25,6 @@ class Front
      */
     public static function preloadFonts(): void
     {
-        // Only run on the frontend and not in admin or feed requests
-        if (is_admin() || is_feed() || is_robots()) {
-            return;
-        }
-
         $fonts = [
             'fonts/roboto/roboto-v30-latin-regular.woff2',
             'fonts/roboto/roboto-v30-latin-500.woff2',
