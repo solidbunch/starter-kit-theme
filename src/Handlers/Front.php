@@ -35,7 +35,10 @@ class Front
             $path = SK_ASSETS_DIR . $relativePath;
             $ver  = file_exists($path) ? filemtime($path) : null;
             $hrefWithVer = $ver ? add_query_arg('ver', $ver, $href) : $href;
-            echo '<link rel="preload" href="' . esc_url($hrefWithVer) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+            printf(
+                '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin="anonymous">' . "\n",
+                esc_url($hrefWithVer)
+            );
         }
     }
 
