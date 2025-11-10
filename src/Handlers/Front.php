@@ -19,6 +19,32 @@ use StarterKit\Helper\Utils;
 class Front
 {
     /**
+     * Preload critical webfonts to reduce FOIT/FOUT and layout shift
+     *
+     * @return void
+     */
+    public static function preloadFonts(): void
+    {
+        // Only run on the frontend and not in admin or feed requests
+        if (is_admin() || is_feed() || is_robots()) {
+            return;
+        }
+
+        $fonts = [
+            'fonts/roboto/roboto-v30-latin-regular.woff2',
+            'fonts/roboto/roboto-v30-latin-500.woff2',
+        ];
+
+        foreach ($fonts as $relativePath) {
+            $href = SK_ASSETS_URI . $relativePath;
+            $path = SK_ASSETS_DIR . $relativePath;
+            $ver  = file_exists($path) ? filemtime($path) : null;
+            $hrefWithVer = $ver ? add_query_arg('ver', $ver, $href) : $href;
+            echo '<link rel="preload" href="' . esc_url($hrefWithVer) . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+        }
+    }
+
+    /**
      * Load critical assets before blocks assets
      *
      * @return void
