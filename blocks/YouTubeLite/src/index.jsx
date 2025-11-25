@@ -3,7 +3,7 @@ import metadata from '../block.json';
 const {registerBlockType} = wp.blocks;
 const {__} = wp.i18n;
 const {TextControl, PanelBody} = wp.components;
-const {InspectorControls, useBlockProps} = wp.blockEditor || wp.editor;
+const {InspectorControls, useBlockProps} = wp.blockEditor;
 
 function extractId(input) {
   if (!input) return '';
@@ -23,8 +23,9 @@ function extractId(input) {
 
 const PlaySvg = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="68" height="48" viewBox="0 0 68 48">
-    <path d="M66.52 7.74a8 8 0 0 0-5.63-5.66C56.7.67 34 .67 34 .67s-22.7 0-26.89 1.41A8 8 0 0 0 1.48 7.74 84.3 84.3 0 0 0 .07 24a84.3 84.3 0 0 0 1.41 16.26 8 8 0 0 0 5.63 5.66C11.3 47.33 34 47.33 34 47.33s22.7 0 26.89-1.41a8 8 0 0 0 5.63-5.66A84.3 84.3 0 0 0 67.93 24a84.3 84.3 0 0 0-1.41-16.26z" fill="#212121" fillOpacity=".8" />
-    <path d="M45 24 27 14v20" fill="#fff" />
+    <path fill="#f03"
+      d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26"/>
+    <path fill="#fff" d="M45 24 27 14v20"/>
   </svg>
 );
 
@@ -86,41 +87,20 @@ registerBlockType(
             {...blockProps}
             role="button"
             aria-label={title}
-            style={{
-              position: 'relative',
-              display: 'block',
-              width: '100%',
-              backgroundColor: '#000',
-              overflow: 'hidden',
-              aspectRatio: aspectRatio || '16/9',
-              cursor: 'pointer',
-            }}
           >
             {thumbnail ? (
               <img
                 src={thumbnail}
                 alt={title}
-                style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8)'}}
               />
             ) : (
-              <div style={{color: '#fff', padding: '1rem'}}>{__('Paste a YouTube URL', 'starter-kit')}</div>
+              <div className="yt-lite__placeholder">
+                {__('Paste a YouTube URL', 'starter-kit')}
+              </div>
             )}
             <div
               className="yt-lite__play"
               aria-hidden="true"
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%,-50%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '68px',
-                height: '48px',
-                borderRadius: '10px',
-                background: 'rgba(0,0,0,.6)',
-              }}
             >
               <PlaySvg />
             </div>
@@ -128,22 +108,36 @@ registerBlockType(
         </>
       );
     },
-    save: ({attributes}) => {
-      const {videoId, title, poster, params, aspectRatio} = attributes;
+    save: (props) => {
+      const {attributes} = props;
+      const {videoId, title, poster, params} = attributes;
       const thumbnail = poster || (videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '');
+
+      const {className} = useBlockProps.save();
+      const blockClass = ['yt-lite', className].filter(Boolean).join(' ').trim();
+
+      const blockProps = {
+        className: blockClass,
+        'data-video-id': videoId || '',
+        'data-params': params || 'rel=0',
+        role: 'button',
+        'aria-label': title || 'YouTube video',
+      };
+
       return (
-        <div
-          className="yt-lite"
-          data-video-id={videoId || ''}
-          data-params={params || 'rel=0'}
-          role="button"
-          aria-label={title || 'YouTube video'}
-          style={{position: 'relative', display: 'block', width: '100%', backgroundColor: '#000', overflow: 'hidden', aspectRatio: aspectRatio || '16/9', cursor: 'pointer'}}
-        >
+        <div {...blockProps}>
           {thumbnail ? (
-            <img src={thumbnail} alt={title || 'YouTube video'} loading="lazy" decoding="async" style={{width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.8)'}} />
+            <img
+              src={thumbnail}
+              alt={title || 'YouTube video'}
+              loading="lazy"
+              decoding="async"
+            />
           ) : null}
-          <div className="yt-lite__play" aria-hidden="true" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '68px', height: '48px', borderRadius: '10px', background: 'rgba(0,0,0,.6)'}}>
+          <div
+            className="yt-lite__play"
+            aria-hidden="true"
+          >
             <PlaySvg />
           </div>
         </div>
