@@ -1,0 +1,45 @@
+{
+  "apiVersion": 3,
+  "name": "starter-kit/youtube-lite",
+  "title": "YouTube Lite (SK)",
+  "category": "starter-kit",
+  "icon": "skb skb-youtube-lite",
+  "description": "Privacy-friendly YouTube embed that loads the iframe only on click.",
+  "keywords": ["youtube", "video", "privacy", "lite"],
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "url": {
+      "type": "string",
+      "default": ""
+    },
+    "videoId": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "YouTube video"
+    },
+    "poster": {
+      "type": "string",
+      "default": ""
+    },
+    "params": {
+      "type": "string",
+      "default": "rel=0"
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "16/9"
+    }
+  }
+}
+
+
+
+
+
+
