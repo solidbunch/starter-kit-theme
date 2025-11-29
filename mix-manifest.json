@@ -9,6 +9,8 @@
     "/assets/build/js/bootstrap/dropdown.js": "/assets/build/js/bootstrap/dropdown.js",
     "/assets/build/js/bootstrap/collapse.js": "/assets/build/js/bootstrap/collapse.js",
     "/assets/build/js/bootstrap/alert.js": "/assets/build/js/bootstrap/alert.js",
+    "/blocks/YouTubeLite/build/view.js": "/blocks/YouTubeLite/build/view.js",
+    "/blocks/YouTubeLite/build/index.js": "/blocks/YouTubeLite/build/index.js",
     "/blocks/Section/build/index.js": "/blocks/Section/build/index.js",
     "/blocks/Row/build/index.js": "/blocks/Row/build/index.js",
     "/blocks/Paragraph/build/index.js": "/blocks/Paragraph/build/index.js",
@@ -30,8 +32,8 @@
     "/blocks/Code/build/index.js": "/blocks/Code/build/index.js",
     "/blocks/Button/build/index.js": "/blocks/Button/build/index.js",
     "/blocks/Code/build/style.css": "/blocks/Code/build/style.css",
-    "/blocks/News/build/style.css": "/blocks/News/build/style.css",
-    "/blocks/Row/build/editor.css": "/blocks/Row/build/editor.css",
+    "/blocks/YouTubeLite/build/editor.css": "/blocks/YouTubeLite/build/editor.css",
+    "/blocks/YouTubeLite/build/style.css": "/blocks/YouTubeLite/build/style.css",
     "/assets/build/styles/admin.css": "/assets/build/styles/admin.css",
     "/assets/build/styles/editor.css": "/assets/build/styles/editor.css",
     "/assets/build/styles/theme.css": "/assets/build/styles/theme.css",
@@ -41,5 +43,7 @@
     "/blocks/Image/build/style.css": "/blocks/Image/build/style.css",
     "/blocks/Navigation/build/editor.css": "/blocks/Navigation/build/editor.css",
     "/blocks/Navigation/build/style.css": "/blocks/Navigation/build/style.css",
-    "/blocks/News/build/editor.css": "/blocks/News/build/editor.css"
+    "/blocks/News/build/editor.css": "/blocks/News/build/editor.css",
+    "/blocks/News/build/style.css": "/blocks/News/build/style.css",
+    "/blocks/Row/build/editor.css": "/blocks/Row/build/editor.css"
 }
