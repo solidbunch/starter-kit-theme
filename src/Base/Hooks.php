@@ -91,6 +91,8 @@ class Hooks
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
+        // Preload critical fonts to avoid layout shift on load
+        add_action('wp_head', [Handlers\Front::class, 'preloadFonts'], 0);
         // Change excerpt dots
         add_filter('excerpt_more', [Handlers\Front::class, 'changeExcerptMore']);
         // Add GTM code
