@@ -25,19 +25,18 @@ class Front
      */
     public static function preloadFonts(): void
     {
-        $fonts = [
-            'fonts/roboto/roboto-v30-latin-regular.woff2',
-            'fonts/roboto/roboto-v30-latin-500.woff2',
-        ];
+        $fonts = Config::get('frontend/preloadFonts');
+
+        if (empty($fonts) || ! is_array($fonts)) {
+            return;
+        }
 
         foreach ($fonts as $relativePath) {
             $href = SK_ASSETS_URI . $relativePath;
-            $path = SK_ASSETS_DIR . $relativePath;
-            $ver  = file_exists($path) ? filemtime($path) : null;
-            $hrefWithVer = $ver ? add_query_arg('ver', $ver, $href) : $href;
+
             printf(
                 '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin="anonymous">' . "\n",
-                esc_url($hrefWithVer)
+                esc_url($href)
             );
         }
     }
