@@ -124,11 +124,12 @@ registerBlockType(metadata, {
 });
 ```
 
-## Full-page CF-backed block
+## Full-page CF-backed block (template block)
 
 The "fill in fields, get a complete section" pattern — a dynamic block whose data comes from Carbon
 Fields on the current post. Instead of building nested blocks in the editor, register CF fields and
-let one block render the whole section:
+let one block render the whole section. This is the **hybrid FSE approach**: one block = one page
+template. Admin fills CF fields, PHP renders the entire page content.
 
 ```php
 // 1. CF container in Meta/PostMeta/ (hook in Hooks.php on carbon_fields_register_fields):
@@ -145,21 +146,108 @@ Container::make('post_meta', __('Page Content', 'starter-kit'))
             ]),
     ]);
 
-// 2. Dynamic block reads CF meta in the callback (always via Utils):
+// 2. Dynamic block reads CF meta in the callback:
 public function blockServerSideCallback(array $attributes, string $content, object $block): string {
-    $postId     = get_the_ID();
+    // ⚠️ NEVER use get_the_ID() alone — returns 0/false in REST API context (ServerSideRender)
+    $postId     = (int)($block->context['postId'] ?? get_the_ID());
     $metaPrefix = SK_PREFIX . 'page_';
     return $this->loadBlockView('layout', [
-        'heroTitle'  => Utils::getPostMeta($postId, $metaPrefix . 'hero_title'),
-        'heroImage'  => Utils::getPostMeta($postId, $metaPrefix . 'hero_image'),
-        'sections'   => Utils::getPostMetaFw($postId, $metaPrefix . 'sections') ?: [],  // Fw for complex
+        'heroTitle'  => (string)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_title', ''),
+        'heroImageId'=> (int)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_image'),
+        'sections'   => Utils::getPostMetaFw($postId, $metaPrefix . 'sections') ?: [],
         'blockClass' => $this->generateBlockClasses($attributes),
     ]);
 }
-// 3. view/layout.php renders the full section from CF data. Editor JSX = just ServerSideRender.
+// 3. view/layout.php renders the full section from CF data.
 ```
 
 Admin fills CF fields in the post editor → one block renders the whole page section.
+
+## ⚠️ Dynamic block + post meta: CRITICAL GOTCHAS
+
+These cause silent failures (empty block in editor) and are easy to miss:
+
+### 1. `usesContext` is REQUIRED in block.json
+Dynamic blocks that read post meta MUST declare usesContext — without it `$block->context['postId']`
+is always empty:
+
+```json
+{
+  "usesContext": ["postId", "postType"]
+}
+```
+
+### 2. `get_the_ID()` returns 0 in REST context
+WordPress's REST block renderer does NOT set up the global `$post`. Always read from block context:
+
+```php
+// ❌ WRONG — returns 0 or false when rendered via ServerSideRender REST call
+$postId = get_the_ID();
+
+// ✅ CORRECT — block context is populated by WP when usesContext is set
+$postId = (int)($block->context['postId'] ?? get_the_ID());
+```
+
+### 3. ServerSideRender `urlQueryArgs` must use `post_id` (underscore, not camelCase)
+WP REST block renderer maps `post_id` query param → block context. camelCase `postId` is silently
+ignored:
+
+```jsx
+// ❌ WRONG — WP REST API ignores this, block gets postId=0
+urlQueryArgs={{postId: postId}}
+
+// ✅ CORRECT — WP reads ?post_id=X and populates context["postId"]
+urlQueryArgs={{post_id: postId}}
+```
+
+### 4. Editor JSX must fetch current post ID with `useSelect`
+`ServerSideRender` runs in the editor context where there is no global post. Get the ID explicitly:
+
+```jsx
+const {registerBlockType} = wp.blocks;
+const {useBlockProps}     = wp.blockEditor;
+const {serverSideRender: ServerSideRender} = wp;
+const {useSelect}         = wp.data;
+
+registerBlockType(metadata, {
+    edit: (props) => {
+        const blockProps = useBlockProps({className: ['my-block-editor']});
+        // ✅ must use useSelect — no other way to get postId in editor
+        const postId = useSelect((select) => select('core/editor').getCurrentPostId());
+
+        return (
+            <div {...blockProps}>
+                <ServerSideRender
+                    block={metadata.name}
+                    attributes={props.attributes}
+                    urlQueryArgs={{post_id: postId}}  // ← underscore, not camelCase
+                />
+            </div>
+        );
+    },
+    save: () => null,  // always null for dynamic blocks
+});
+```
+
+### 5. Debugging an empty block
+If the block renders nothing, check in order:
+```bash
+# 1. Is the block registered?
+wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block"));'
+
+# 2. Does the render callback actually return HTML?
+wp eval '
+  do_action("carbon_fields_register_fields");
+  $blockType = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
+  $block = new WP_Block(
+    ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
+    ["postId"=>YOUR_POST_ID,"postType"=>"page"]
+  );
+  $cb = $blockType->render_callback;
+  echo call_user_func($cb, [], "", $block);
+'
+# Note: render_block($block->parsed_block) does NOT pass context — use render_callback directly
+```
 
 ## IMPORTANT
 
