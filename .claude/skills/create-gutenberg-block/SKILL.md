@@ -13,23 +13,63 @@ description: >
 
 # Creating a Gutenberg block in starter-kit-theme
 
-This is the **procedure** — decide, scaffold, wire, build, verify. For the *why* behind each
-gotcha (REST-context `postId`, `usesContext`, asset registration internals, static vs dynamic vs
-full-page-CF-backed block anatomy with full code examples) read
-`web/wp-content/themes/starter-kit-theme/blocks/CLAUDE.md` first — it auto-loads whenever you
-touch a file under `blocks/`, so it's already there once you start. Don't re-derive concepts this
-skill assumes you already read there; this file is about *doing the steps in order*, not
-re-explaining them.
+This is the **procedure** — decide, scaffold, wire, build, verify. Full code examples (`Block.php`
+skeleton, both `index.jsx` patterns, `view/layout.php`) and the *why* behind each gotcha
+(REST-context `postId`, `usesContext`, asset registration internals) live in
+`web/wp-content/themes/starter-kit-theme/blocks/CLAUDE.md` — this skill doesn't duplicate them.
+
+**Read `blocks/CLAUDE.md` explicitly before step 2** — don't just assume it's already loaded. It
+auto-loads on-demand when Claude *reads a file* under `blocks/`, but scaffolding via `cp -r` in
+step 1 doesn't trigger that on its own; open `blocks/_StarterBlock/Block.php` (or any existing
+block) as your first real action so the gotchas and code patterns are actually in context before
+you write anything.
+
+Two more theme docs matter here, not just `blocks/CLAUDE.md`:
+
+- `conventions.md` — the `Helper\Utils` plain-vs-`*Fw` accessor split (step 3)
+- `content-types.md` — how Carbon Fields containers actually get registered (step 6), and how
+  `templates/`/`parts/`/`patterns/` are just block markup — a new block isn't "live" on the site
+  until it's placed inside one of those (step 8)
+
+## This is still a real WordPress Gutenberg block — don't lose sight of that
+
+Everything above is theme-specific wiring, not a replacement for the actual WordPress block API.
+`block.json`, `attributes`, `supports`, static vs. dynamic rendering, `RichText`/`InnerBlocks`/
+`InspectorControls`, server-side rendering, block variations — all of that is **standard
+WordPress**, documented in the official Block Editor Handbook, and this theme doesn't reinvent any
+of it. What the theme changes is narrower than it might look:
+
+| Standard WP concept                                             | How it actually works in this theme                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `register_block_type()` / `register_block_type_from_metadata()` | Called for you by `BlockAbstract::registerBlock()` — you never call it directly, you set `$this->blockArgs` and let the base class do it                                                                                                                                                                                                                                                       |
+| `import { RichText } from '@wordpress/block-editor'`            | **Never** — this theme has no `@wordpress/*` npm packages. Same component, reached as `wp.blockEditor.RichText` (global). Every `@wordpress/*` package has a `wp.*` global equivalent — `@wordpress/blocks` → `wp.blocks`, `@wordpress/data` → `wp.data`, `@wordpress/components` → `wp.components`, `@wordpress/element` → `wp.element`. The APIs are identical, only the access path differs |
+| `editorScript`/`style`/`viewScript` in `block.json`             | Left empty here — asset registration goes through `$blockAssets` in `Block.php` instead (see `blocks/CLAUDE.md`)                                                                                                                                                                                                                                                                               |
+| `render_callback`                                               | Same WP concept, wired the same way (`register_block_type_from_metadata()`'s `$args['render_callback']`) — just assigned via `$this->blockArgs['render_callback']` instead of passed inline                                                                                                                                                                                                    |
+
+So when you need to know *what a WordPress concept does* (what `usesContext` means, what
+`supports.spacing` enables, how block variations work, what a `save()` function's contract is),
+the official docs are the right source — read them normally, no theme-specific translation needed
+for the concept itself:
+
+- [Block Editor Handbook](https://developer.wordpress.org/block-editor/) — the full API surface
+- [block.json reference](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/) — every field, what it does
+- [Block attributes](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/), [Block supports](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/)
+- [Dynamic blocks / server-side rendering](https://developer.wordpress.org/block-editor/getting-started/fundamentals/data-format/#dynamic-blocks)
+- [Component reference](https://developer.wordpress.org/block-editor/reference-guides/components/) (`RichText`, `InnerBlocks`, `InspectorControls`, ...) — remember to mentally translate `@wordpress/x` → `wp.x` per the table above
+
+Only translate *where* to reach an API (theme wrapper vs. raw WP function, `wp.*` global vs. npm
+import) — never translate *what* the API does. When theme docs and this skill are silent on a
+detail, that's a signal to check the handbook, not to guess.
 
 All paths below are relative to `web/wp-content/themes/starter-kit-theme/` unless stated otherwise.
 
 ## 0. Decide the block type first
 
-| Type | Pick when | `save()` in `index.jsx` | `view/` folder |
-| --- | --- | --- | --- |
-| Static | Pure layout/markup, content baked into post HTML | real JSX | none |
-| Dynamic | Needs DB/meta/CPT data at render time | `() => null` | yes |
-| Full-page CF-backed | One block renders an entire page section from Carbon Fields meta on the post | `() => null` | yes |
+| Type                | Pick when                                                                    | `save()` in `index.jsx` | `view/` folder |
+| ------------------- | ---------------------------------------------------------------------------- | ----------------------- | -------------- |
+| Static              | Pure layout/markup, content baked into post HTML                             | real JSX                | none           |
+| Dynamic             | Needs DB/meta/CPT data at render time                                        | `() => null`            | yes            |
+| Full-page CF-backed | One block renders an entire page section from Carbon Fields meta on the post | `() => null`            | yes            |
 
 Getting this wrong is the single biggest source of wasted work — a static block can't read post
 meta, and a dynamic block that's missing `usesContext`/context handling renders silently empty
@@ -95,7 +135,22 @@ Add it grouped with the other `carbon_fields_register_fields` lines in `initHook
 **only** manual registration step in the whole flow — the block itself is picked up automatically
 by `Init::loadBlocks()` because it has a `block.json`; never add a block to `Hooks.php`.
 
-## 8. Build
+If the block is meant to replace a still-enabled core block for editors (e.g. a custom
+`starter-kit/heading` should be picked over `core/heading`), add the core block's name to
+`gutenberg/disableRedundantBlocks` in `config/common/gutenberg.php` — otherwise both show up in the
+inserter and nothing stops someone from picking the wrong one.
+
+## 8. Place the block somewhere it actually renders
+
+A scaffolded, registered block isn't "done" until it's used. For a block meant to appear on every
+page of a given type, add it to the relevant file in `templates/`/`parts/`/`patterns/` — these are
+just Gutenberg block markup with a WP-recognized file location (see `content-types.md`), so add a
+`<!-- wp:starter-kit/my-block /-->`-style comment (with real attributes) where the block should
+appear, the same way existing blocks are wired into e.g. `patterns/header.php`. For a block meant
+to be used ad hoc by editors composing arbitrary pages, this step is unnecessary — it just needs to
+show up in the block inserter, which registration alone already handles.
+
+## 9. Build
 
 ```bash
 npm run dev     # fast, unminified — use while iterating
@@ -105,7 +160,7 @@ npm run prod    # before calling it done
 Nothing needs to be told *which* block to compile — `webpack.mix.js` globs every
 `blocks/!(_)**/src/*` automatically.
 
-## 9. Verify
+## 10. Verify
 
 WP-CLI only exists inside the `php` container, run from the **foundation root**, not the theme
 dir:
@@ -186,7 +241,7 @@ reference site's own class names verbatim — you're rebuilding the layout, not 
 
 ### Phase 5 — build and verify
 
-Same as steps 8–9 above, plus a visual check that the rendered block actually resembles the
+Same as steps 9–10 above, plus a visual check that the rendered block actually resembles the
 reference site at both desktop and mobile widths (this theme is Bootstrap 5 grid-based — see
 `blocks/CLAUDE.md`'s "IMPORTANT" section for the class conventions to reuse rather than hand-roll
 new responsive CSS).
