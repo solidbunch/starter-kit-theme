@@ -7,13 +7,13 @@ Auto-discovered: `Init::loadBlocks()` scans `blocks/*`, skips folders starting w
 
 ## TWO block types — choose before writing code
 
-|                         | Static block (default — most blocks)                 | Dynamic block (PHP render)                   |
-| ----------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| Use when                | Pure markup/layout; content saved into post HTML     | Needs DB data, post meta, runtime content    |
-| `registerBlockArgs()`   | empty                                                | sets `render_callback`                       |
-| `save()` in `index.jsx` | real JSX (`RichText.Content`, `InnerBlocks.Content`) | `() => null`                                 |
-| `view/` folder          | none                                                 | PHP templates (`layout.php`, ...)            |
-| Examples                | Section, Heading, Button, Row, FaqSection            | News, PricingTable                           |
+|                         | Static block (default — most blocks)                 | Dynamic block (PHP render)                |
+| ----------------------- | ---------------------------------------------------- | ----------------------------------------- |
+| Use when                | Pure markup/layout; content saved into post HTML     | Needs DB data, post meta, runtime content |
+| `registerBlockArgs()`   | empty                                                | sets `render_callback`                    |
+| `save()` in `index.jsx` | real JSX (`RichText.Content`, `InnerBlocks.Content`) | `() => null`                              |
+| `view/` folder          | none                                                 | PHP templates (`layout.php`, ...)         |
+| Examples                | Section, Heading, Button, Row, FaqSection            | News, PricingTable                        |
 
 ## Folder structure
 
@@ -168,6 +168,7 @@ Admin fills CF fields in the post editor → one block renders the whole page se
 These cause silent failures (empty block in editor) and are easy to miss:
 
 ### 1. `usesContext` is REQUIRED in block.json
+
 Dynamic blocks that read post meta MUST declare usesContext — without it `$block->context['postId']`
 is always empty:
 
@@ -178,6 +179,7 @@ is always empty:
 ```
 
 ### 2. `get_the_ID()` returns 0 in REST context
+
 WordPress's REST block renderer does NOT set up the global `$post`. Always read from block context:
 
 ```php
@@ -189,6 +191,7 @@ $postId = (int)($block->context['postId'] ?? get_the_ID());
 ```
 
 ### 3. ServerSideRender `urlQueryArgs` must use `post_id` (underscore, not camelCase)
+
 WP REST block renderer maps `post_id` query param → block context. camelCase `postId` is silently
 ignored:
 
@@ -201,6 +204,7 @@ urlQueryArgs={{post_id: postId}}
 ```
 
 ### 4. Editor JSX must fetch current post ID with `useSelect`
+
 `ServerSideRender` runs in the editor context where there is no global post. Get the ID explicitly:
 
 ```jsx
@@ -230,22 +234,32 @@ registerBlockType(metadata, {
 ```
 
 ### 5. Debugging an empty block
-If the block renders nothing, check in order:
-```bash
-# 1. Is the block registered?
-wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block"));'
 
-# 2. Does the render callback actually return HTML?
-wp eval '
-  do_action("carbon_fields_register_fields");
-  $blockType = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
-  $block = new WP_Block(
-    ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
-    ["postId"=>YOUR_POST_ID,"postType"=>"page"]
-  );
-  $cb = $blockType->render_callback;
-  echo call_user_func($cb, [], "", $block);
-'
+If the block renders nothing, check in order. Run from the foundation root — there's no bare `wp`
+on the host, WP-CLI only exists inside the `php` container:
+
+```bash
+# Every wp-cli call below runs like this:
+#   docker compose exec php su -c "wp <command>" www-data
+# 1. Is the block registered?
+docker compose exec php su -c "wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered(\"starter-kit/my-block\"));'" www-data
+
+# 2. Does the render callback actually return HTML? Quoting this inline gets messy through
+# `docker compose exec` + `su -c`, so write it to a file on the host and eval-file it from inside
+# the container — `docker-compose.yml` bind-mounts `./web/wp-content` to `/srv/web/wp-content`,
+# so anything written under the theme dir on the host is immediately visible in the container:
+cat > blocks/debug-block.php <<'PHP'
+do_action("carbon_fields_register_fields");
+$blockType = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
+$block = new WP_Block(
+  ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
+  ["postId"=>YOUR_POST_ID,"postType"=>"page"]
+);
+$cb = $blockType->render_callback;
+echo call_user_func($cb, [], "", $block);
+PHP
+docker compose exec php su -c "wp eval-file /srv/web/wp-content/themes/starter-kit-theme/blocks/debug-block.php" www-data
+rm blocks/debug-block.php   # scratch file — delete it, never commit it
 # Note: render_block($block->parsed_block) does NOT pass context — use render_callback directly
 ```
 
