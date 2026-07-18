@@ -16,9 +16,6 @@ class follow the same two-step shape for their own containers.
 - `complex` fields (repeatable field groups, e.g. `News`'s `related_data`) nest `Field::make()`
   calls inside `->add_fields('group_name', label, [...])` — copy the existing pattern rather than
   hand-rolling repeater logic.
-- **Full-page CF-backed block** (a dynamic Gutenberg block whose content is entirely driven by CF
-  fields on the current post — "fill in fields, get a complete section") is documented in full,
-  with the REST-context `postId` gotchas, in `blocks/CLAUDE.md` — read that before building one.
 
 ## `templates/`, `parts/`, `patterns/` — three different FSE roles, all block markup
 

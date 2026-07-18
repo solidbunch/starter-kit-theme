@@ -32,12 +32,10 @@ block is a self-contained unit under `blocks/<Name>/`: a `block.json` (registrat
 `Block.php` (PHP side — asset registration, optional server-render callback) + `src/index.jsx`
 (editor UI + how it saves into post content). Two kinds exist — **static** (content baked into
 post HTML at save time, e.g. `Section`, `Heading`, `Button`) and **dynamic** (PHP renders it fresh
-on every request from DB/meta data, e.g. `News`) — plus a **full-page CF-backed** variant (one
-dynamic block whose entire content comes from Carbon Fields meta on the current post, letting an
-admin "fill in fields" instead of composing nested blocks). All of this — the type decision,
-folder shape, `Block.php` skeleton, and a set of REST-context gotchas that cause silently-empty
-dynamic blocks — is in the nested `blocks/CLAUDE.md`, which loads on demand when a file under
-`blocks/` is read (no `@import` needed here). Read it in full before writing any block code.
+on every request from DB/meta data, e.g. `News`). All of this — the type decision, folder shape,
+`Block.php` skeleton, and a set of REST-context gotchas that cause silently-empty dynamic blocks —
+is in the nested `blocks/CLAUDE.md`, which loads on demand when a file under `blocks/` is read (no
+`@import` needed here). Read it in full before writing any block code.
 
 ## Structure
 
