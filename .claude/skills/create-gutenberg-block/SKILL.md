@@ -179,10 +179,8 @@ failing silently in the editor is a different failure mode than the PHP callback
 broken, and the wp-cli check above only rules out the second one.
 
 **Before calling the block done**, check `blocks/MyBlock/` doesn't have a leftover `build/` with no
-matching `block.json`/`Block.php`/`src/` — that exact situation already happened once in this repo
-(`blocks/PageContent/` is orphaned build output with no source, from an earlier test run that was
-never cleaned up) and it's easy to leave behind if a build runs before the PHP/JSX source is
-actually saved, or if a block gets renamed/abandoned mid-work.
+matching `block.json`/`Block.php`/`src/` — easy to leave behind if a build runs before the PHP/JSX
+source is saved, or if a block gets renamed/abandoned mid-work.
 
 ---
 

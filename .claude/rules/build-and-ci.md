@@ -50,9 +50,7 @@ composer lintfix    # phpcbf --standard=phpcs.xml  (auto-fixable subset only)
 ```
 
 `phpcs.xml` excludes `vendor/`, `vendor-custom/`, `node_modules/`, `.git/`, `.github/`. Its
-`testVersion="8.1"` is stale (see the note in the theme's root `CLAUDE.md`) — PHPCompatibilityWP
-will flag PHP 8.4-only syntax as incompatible even though `composer.json` requires `>=8.4`; treat
-those specific warnings as expected noise, not a reason to downgrade real code to 8.1 syntax.
+`testVersion="8.4-"` (open-ended range) matches `composer.json`'s `>=8.4` floor.
 
 ## Tests (`phpunit.xml`, `tests/`)
 
@@ -71,9 +69,10 @@ Runs on every push except `master`/`develop` (i.e. feature branches), plus manua
 `workflow_dispatch`. Three sequential jobs, each depending on the previous via cache handoff
 (`actions/cache` keyed by `github.run_number`, not restored across separate runs):
 `php-code-sniffer` (`composer update` + `composer lint`) → `stylelint` (`npm run install-dev` +
-`npm run lint:style`) → `eslint` (`npm run lint:js`). Pinned to `PHP_VERSION: '8.1'` /
-`NODE_VERSION: '18'` — same stale-8.1 drift as `phpcs.xml`, not a separate issue. This workflow
-only lints; it does not run `composer tests` / PHPUnit and does not build/deploy — deployment is
+`npm run lint:style`) → `eslint` (`npm run lint:js`). Runs `PHP_VERSION: '8.4'` / `NODE_VERSION: '18'`
+— matches `composer.json`'s `>=8.4` floor, same as `phpcs.xml` and `README.MD` (see `conventions.md`
+/ the theme's root `CLAUDE.md` — no PHP-version drift left anywhere in this repo as of this pass).
+This workflow only lints; it does not run `composer tests` / PHPUnit and does not build/deploy — deployment is
 entirely the foundation's CI (`ci.md` in the foundation root rules), which pulls this theme in via
 Composer VCS (stable tag normally, `dev-develop` in the `dev` environment via
 `composer run switch-theme-dev`).

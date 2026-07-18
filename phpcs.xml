@@ -12,7 +12,7 @@
   -->
 
   <!-- PHP version uses at PHPCompatibility -->
-  <config name="testVersion" value="8.1"/>
+  <config name="testVersion" value="8.4-"/>
 
   <!--
   #############################################################################

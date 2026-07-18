@@ -2,13 +2,13 @@
 
 FSE (Full Site Editing) WordPress theme, **separate VCS repo** (`github.com/solidbunch/starter-kit-theme`,
 source-installed via Composer VCS repository into the foundation at
-`web/wp-content/themes/starter-kit-theme/`, current local checkout on `develop`). PSR-4 autoload:
-`StarterKit\` → `src/`, `StarterKitBlocks\` → `blocks/`, `StarterKitTests\` → `tests/`.
+`web/wp-content/themes/starter-kit-theme/`; the dev environment tracks `dev-develop` via the
+CI-only `composer run switch-theme-dev` script — see root `CLAUDE.md`'s "Intentional Quirks"). PSR-4
+autoload: `StarterKit\` → `src/`, `StarterKitBlocks\` → `blocks/`, `StarterKitTests\` → `tests/`.
 
-Requires `php: >=8.4` (`composer.json`) — same as the foundation. **Known doc drift:** `README.MD`
-("PHP 8.1"), `phpcs.xml` (`testVersion="8.1"`), and `.github/workflows/workflow-code-qa.yml`
-(`PHP_VERSION: '8.1'`) all still say 8.1. Stale, not a second real requirement — don't use 8.1-only
-syntax and don't "fix" these as a side effect of unrelated work; report it if you touch that area.
+Requires `php: >=8.4` (`composer.json`) — same as the foundation, matched by `README.MD` and
+`phpcs.xml`'s `testVersion="8.4-"` (open-ended range, PHPCompatibilityWP's recommended format for
+"this version and above" rather than pinning a single patch version).
 
 ## Topic files (loaded via `@import`, not auto-discovered)
 
@@ -38,14 +38,6 @@ admin "fill in fields" instead of composing nested blocks). All of this — the 
 folder shape, `Block.php` skeleton, and a set of REST-context gotchas that cause silently-empty
 dynamic blocks — is in the nested `blocks/CLAUDE.md`, which loads on demand when a file under
 `blocks/` is read (no `@import` needed here). Read it in full before writing any block code.
-
-**Known stale artifact:** `blocks/PageContent/` has only a `build/` folder — no `block.json`, no
-`Block.php`, no `src/`. It's leftover compiled output from an example run of a (currently deleted,
-uncommitted) `/make-template-block` command with `PageContent` as the example block name — see the
-theme's git history / working-tree state. `Init::loadBlocks()` skips any folder without
-`block.json`, so it isn't registered and isn't a real block — don't build on it or treat it as a
-template; it's safe to delete `blocks/PageContent/` if you want to clean it up, but that's a
-separate decision from documenting the theme.
 
 ## Structure
 
