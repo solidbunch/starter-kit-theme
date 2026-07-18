@@ -124,45 +124,6 @@ registerBlockType(metadata, {
 });
 ```
 
-## Full-page CF-backed block (template block)
-
-The "fill in fields, get a complete section" pattern — a dynamic block whose data comes from Carbon
-Fields on the current post. Instead of building nested blocks in the editor, register CF fields and
-let one block render the whole section. This is the **hybrid FSE approach**: one block = one page
-template. Admin fills CF fields, PHP renders the entire page content.
-
-```php
-// 1. CF container in Meta/PostMeta/ (hook in Hooks.php on carbon_fields_register_fields):
-$metaPrefix = SK_PREFIX . 'page_';
-Container::make('post_meta', __('Page Content', 'starter-kit'))
-    ->where('post_type', '=', 'page')
-    ->add_fields([
-        Field::make('text',    $metaPrefix . 'hero_title', __('Hero Title', 'starter-kit')),
-        Field::make('image',   $metaPrefix . 'hero_image', __('Hero Image', 'starter-kit')),
-        Field::make('complex', $metaPrefix . 'sections',   __('Sections', 'starter-kit'))
-            ->add_fields('section', __('Section', 'starter-kit'), [
-                Field::make('text',      'title',   __('Title', 'starter-kit')),
-                Field::make('rich_text', 'content', __('Content', 'starter-kit')),
-            ]),
-    ]);
-
-// 2. Dynamic block reads CF meta in the callback:
-public function blockServerSideCallback(array $attributes, string $content, object $block): string {
-    // ⚠️ NEVER use get_the_ID() alone — returns 0/false in REST API context (ServerSideRender)
-    $postId     = (int)($block->context['postId'] ?? get_the_ID());
-    $metaPrefix = SK_PREFIX . 'page_';
-    return $this->loadBlockView('layout', [
-        'heroTitle'  => (string)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_title', ''),
-        'heroImageId'=> (int)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_image'),
-        'sections'   => Utils::getPostMetaFw($postId, $metaPrefix . 'sections') ?: [],
-        'blockClass' => $this->generateBlockClasses($attributes),
-    ]);
-}
-// 3. view/layout.php renders the full section from CF data.
-```
-
-Admin fills CF fields in the post editor → one block renders the whole page section.
-
 ## ⚠️ Dynamic block + post meta: CRITICAL GOTCHAS
 
 These cause silent failures (empty block in editor) and are easy to miss:

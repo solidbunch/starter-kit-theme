@@ -134,7 +134,7 @@ Give it this target shape explicitly so it doesn't have to re-derive it:
   `BlockEditorSupport` handler to the existing tables.
 - **Do NOT touch** `blocks/CLAUDE.md` or the `create-gutenberg-block` skill beyond one added note
   in `blocks/CLAUDE.md` that the theme is no longer FSE and blocks now serve opt-in block-editor
-  post types plus the CF-backed pattern (not FSE template composition).
+  post types (not FSE template composition).
 
 ## 9. Report
 
