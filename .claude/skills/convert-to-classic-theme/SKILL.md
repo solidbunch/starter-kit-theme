@@ -1,7 +1,7 @@
 ---
 name: convert-to-classic-theme
 description: >
-  Removes FSE (Full Site Editing) from starter-kit-theme and restores a classic PHP-template
+  Removes FSE (Full Site Editing) from this theme and restores a classic PHP-template
   render layer (header.php/footer.php/page.php/single.php/archive.php + template-parts/), while
   KEEPING the entire Gutenberg block system (blocks/*, Init::loadBlocks()) and making the block
   editor a per-post-type opt-in instead of theme-wide. Use for "convert this theme to classic",
@@ -11,7 +11,7 @@ description: >
   domain/prefixes/namespace), which is `wp clone-theme` / `bootstrap-project` territory.
 ---
 
-# Convert starter-kit-theme from FSE to classic templates (blocks retained)
+# Convert this theme from FSE to classic templates (blocks retained)
 
 **What this does NOT do**: it never removes, edits, or reorganizes `blocks/*`,
 `Handlers\Blocks\Init::loadBlocks()`, the webpack block glob, `blocks/CLAUDE.md`, or the
@@ -25,15 +25,18 @@ are two independent things sharing one underlying technology. This conversion re
 and keeps the latter — the theme's custom blocks remain useful editorial components wherever the
 block editor stays enabled, they're just no longer how pages are assembled site-wide.
 
-All paths below are relative to `web/wp-content/themes/starter-kit-theme/` unless stated
-otherwise. This is a **destructive, irreversible** operation on the theme's working tree (except
-via `git`) — follow the confirmation gate in step 2 exactly, do not skip it.
+All paths below are relative to the theme's own root directory — `web/wp-content/themes/starter-kit-theme/`
+by default, but this is only the stock slug: if the project forked/renamed the theme (`wp
+clone-theme`, or `bootstrap-project` repointing it), substitute the actual folder name under
+`web/wp-content/themes/` everywhere below, including in the shell commands. This is a
+**destructive, irreversible** operation on the theme's working tree (except via `git`) — follow
+the confirmation gate in step 2 exactly, do not skip it.
 
 ## 0. Preflight
 
-1. Confirm this is actually the FSE `starter-kit-theme` (has `templates/*.html` and `theme.json`
-   with a `customTemplates` array) — refuse if it looks already converted (no `templates/` dir).
-2. Check the theme's own git status (`git -C web/wp-content/themes/starter-kit-theme status
+1. Confirm this is actually an FSE theme (has `templates/*.html` and `theme.json` with a
+   `customTemplates` array) — refuse if it looks already converted (no `templates/` dir).
+2. Check the theme's own git status (`git -C web/wp-content/themes/<theme-folder> status
    --porcelain`, run from the foundation root). **Refuse to proceed on a dirty tree** unless the
    user explicitly asks you to create a dedicated branch first (`git checkout -b
    convert-to-classic-theme`) — either way, there must be a clean point to `git checkout .`

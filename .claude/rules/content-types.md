@@ -16,6 +16,10 @@ class follow the same two-step shape for their own containers.
 - `complex` fields (repeatable field groups, e.g. `News`'s `related_data`) nest `Field::make()`
   calls inside `->add_fields('group_name', label, [...])` — copy the existing pattern rather than
   hand-rolling repeater logic.
+- For the full list of field types (`Field::make()`), their options, and `Container` contexts
+  (`post_meta`, `term_meta`, `theme_options`, ...) — official docs: https://docs.carbonfields.net/.
+  What's documented here is only this theme's own integration mechanics (registration hook,
+  key prefixes, access via `Helper\Utils`), not the Carbon Fields API surface itself.
 
 ## `templates/`, `parts/`, `patterns/` — three different FSE roles, all block markup
 

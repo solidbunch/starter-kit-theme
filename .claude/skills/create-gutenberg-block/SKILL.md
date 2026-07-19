@@ -1,19 +1,19 @@
 ---
 name: create-gutenberg-block
 description: >
-  Build a new Gutenberg block for the starter-kit-theme (StarterKit Foundation). Use this skill
+  Build a new Gutenberg block for this theme (StarterKit Foundation). Use this skill
   for ANY request to create, add, scaffold, or build a block in this theme — "make a block",
   "add a block for X", "create a CF/Carbon Fields block", "add a dynamic block that shows the
   latest news". Always consult this before writing any block code — it sequences the steps in the
   right order.
 ---
 
-# Creating a Gutenberg block in starter-kit-theme
+# Creating a Gutenberg block in this theme
 
 This is the **procedure** — decide, scaffold, wire, build, verify. Full code examples (`Block.php`
 skeleton, both `index.jsx` patterns, `view/layout.php`) and the *why* behind each gotcha
-(REST-context `postId`, `usesContext`, asset registration internals) live in
-`web/wp-content/themes/starter-kit-theme/blocks/CLAUDE.md` — this skill doesn't duplicate them.
+(REST-context `postId`, `usesContext`, asset registration internals) live in this theme's own
+`blocks/CLAUDE.md` — this skill doesn't duplicate them.
 
 **Read `blocks/CLAUDE.md` explicitly before step 2** — don't just assume it's already loaded. It
 auto-loads on-demand when Claude *reads a file* under `blocks/`, but scaffolding via `cp -r` in
@@ -58,7 +58,10 @@ Only translate *where* to reach an API (theme wrapper vs. raw WP function, `wp.*
 import) — never translate *what* the API does. When theme docs and this skill are silent on a
 detail, that's a signal to check the handbook, not to guess.
 
-All paths below are relative to `web/wp-content/themes/starter-kit-theme/` unless stated otherwise.
+All paths below are relative to the theme's own root directory — `web/wp-content/themes/starter-kit-theme/`
+by default, but this is only the stock slug: if the project forked/renamed the theme (`wp
+clone-theme`, or `bootstrap-project` repointing it), substitute the actual folder name under
+`web/wp-content/themes/` everywhere below, including in the shell commands.
 
 ## 0. Decide the block type first
 
@@ -74,7 +77,7 @@ meta, and a dynamic block that's missing `usesContext`/context handling renders 
 ## 1. Scaffold from the starter block
 
 ```bash
-cd web/wp-content/themes/starter-kit-theme
+cd web/wp-content/themes/<theme-folder>
 cp -r blocks/_StarterBlock blocks/MyBlock   # PascalCase folder name = the block's identity
 ```
 
