@@ -25,10 +25,7 @@ are two independent things sharing one underlying technology. This conversion re
 and keeps the latter — the theme's custom blocks remain useful editorial components wherever the
 block editor stays enabled, they're just no longer how pages are assembled site-wide.
 
-All paths below are relative to the theme's own root directory — `web/wp-content/themes/starter-kit-theme/`
-by default, but this is only the stock slug: if the project forked/renamed the theme (`wp
-clone-theme`, or `bootstrap-project` repointing it), substitute the actual folder name under
-`web/wp-content/themes/` everywhere below, including in the shell commands. This is a
+All paths below are relative to this theme's own root directory (`web/wp-content/themes/<theme-folder>/`). This is a
 **destructive, irreversible** operation on the theme's working tree (except via `git`) — follow
 the confirmation gate in step 2 exactly, do not skip it.
 

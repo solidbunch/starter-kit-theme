@@ -242,7 +242,7 @@ $block = new WP_Block(
 $cb = $blockType->render_callback;
 echo call_user_func($cb, [], "", $block);
 PHP
-docker compose exec php su -c "wp eval-file /srv/web/wp-content/themes/starter-kit-theme/blocks/debug-block.php" www-data
+docker compose exec php su -c "wp eval-file /srv/web/wp-content/themes/<theme-folder>/blocks/debug-block.php" www-data
 rm blocks/debug-block.php   # scratch file — delete it, never commit it
 # Note: render_block($block->parsed_block) does NOT pass context — use render_callback directly
 ```

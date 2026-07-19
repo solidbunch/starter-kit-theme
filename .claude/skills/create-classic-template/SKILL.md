@@ -1,5 +1,5 @@
 ---
-name: html-handoff-to-classic-template
+name: create-classic-template
 description: >
   Turns a static HTML/CSS design handoff (a designer-delivered standalone mockup — a blog, a
   landing page, a category/search/listing page, anything with its own <style> block and no CMS
@@ -23,10 +23,7 @@ the wheel — a new flexible-content mechanism next to the existing `PageBuilder
 `Helper\Utils`. Every step below exists to make reuse the path of least resistance, not an
 afterthought.
 
-All paths below are relative to the theme's own root directory — `web/wp-content/themes/starter-kit-theme/`
-by default, but this is only the stock slug: if the project forked/renamed the theme (`wp
-clone-theme`, or `bootstrap-project` repointing it), substitute the actual folder name under
-`web/wp-content/themes/` everywhere below, including in the shell commands.
+All paths below are relative to this theme's own root directory (`web/wp-content/themes/<theme-folder>/`).
 
 ## 0. Preflight
 

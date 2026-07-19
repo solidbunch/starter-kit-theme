@@ -1,10 +1,10 @@
 # Starter Kit Theme
 
-FSE (Full Site Editing) WordPress theme, **separate VCS repo** (`github.com/solidbunch/starter-kit-theme`,
-source-installed via Composer VCS repository into the foundation at
-`web/wp-content/themes/starter-kit-theme/`; the dev environment tracks `dev-develop` via the
-CI-only `composer run switch-theme-dev` script — see root `CLAUDE.md`'s "Intentional Quirks"). PSR-4
-autoload: `StarterKit\` → `src/`, `StarterKitBlocks\` → `blocks/`, `StarterKitTests\` → `tests/`.
+FSE (Full Site Editing) WordPress theme, **separate VCS repo**, source-installed via Composer VCS
+repository into the foundation under `web/wp-content/themes/` (the dev environment tracks
+`dev-develop` via the CI-only `composer run switch-theme-dev` script — see root `CLAUDE.md`'s
+"Intentional Quirks"). PSR-4 autoload: `StarterKit\` → `src/`, `StarterKitBlocks\` → `blocks/`,
+`StarterKitTests\` → `tests/`.
 
 Requires `php: >=8.4` (`composer.json`) — same as the foundation, matched by `README.MD` and
 `phpcs.xml`'s `testVersion="8.4-"` (open-ended range, PHPCompatibilityWP's recommended format for
