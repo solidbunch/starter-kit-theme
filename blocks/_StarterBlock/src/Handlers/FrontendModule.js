@@ -1,33 +1,30 @@
 /**
- * Block front class
+ * Frontend behavior for one block instance. This class-per-instance pattern is the same one
+ * Image's editor JS (src/js/Edit.jsx + Handlers/Model/Helper) scales up to a full MVC split —
+ * start simple here, split further only if the block's frontend logic actually grows.
  */
 export default class FrontendModule {
 
   /**
-   * Constructor
-   *
    * @param {Element} starterBlock
    */
   constructor(starterBlock) {
     this.starterBlock = starterBlock;
-    this.someThingInner = starterBlock.querySelector(".some-class");
+    this.icon = starterBlock.querySelector('.starter-block__icon');
 
-    // eslint-disable-next-line no-console
-    console.log('StarterBlock FrontendModule loaded');
-
-    this.doSomething(this.someThingInner);
-
+    this.bindEvents();
   }
 
-  doSomething(someThingInner) {
-    const self = this;
+  bindEvents() {
+    if (!this.icon) {
+      return;
+    }
 
-    // Using 'self' to access the class instance inside the event listener
-    // eslint-disable-next-line no-console
-    console.log(self.starterBlock);
-    // eslint-disable-next-line no-console
-    console.log('StarterBlock FrontendModule Something happened' + someThingInner);
-    // Do something
+    this.icon.addEventListener('click', () => this.onIconClick());
+  }
+
+  onIconClick() {
+    this.starterBlock.classList.toggle('starter-block--active');
   }
 
 }
