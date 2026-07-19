@@ -58,6 +58,24 @@ class Block extends BlockAbstract {
 Asset types: `editor_script`/`editor_style` (admin only), `style`/`script` (both contexts),
 `view_script`/`view_style` (frontend only). `editor_script` is always required.
 
+**Assets are never declared in `block.json`** — leave `editorScript`/`style`/etc. empty there.
+`$blockAssets` is the whole mechanism: `registerBlockAssets()` (called from the constructor, before
+`registerBlock()`) turns each entry into a `wp_register_script()`/`wp_register_style()` call with
+real dependency arrays, computes the handle from the block name + filename, and versions by
+`filemtime()`. This exists specifically because `block.json`'s own `editorScript`/`style` fields
+can't express script dependencies — `$blockAssets`'s `dependencies` array (also filterable via
+`starter_kit/block_asset_dependencies`) is the only way to wire e.g. `wp-i18n`/`wp-element` deps
+per block. Frontend scripts are registered with `'strategy' => 'defer', 'in_footer' => true`
+(admin/editor scripts get neither).
+
+This deliberately avoids WordPress's own standard alternative — the `@wordpress/scripts` /
+`dependency-extraction-webpack-plugin` generated `*.asset.php` file, manually `include`-d and fed
+into `wp_register_script()`. That pattern is a known opaque/fragile spot in the WP ecosystem (no
+visibility into what gets extracted, breaks under webpack's `runtimeChunk: 'single'`, JS-only
+cache-busting hash misses CSS-only changes) — serious enough that WordPress's own `@wordpress/build`
+tooling (2026) replaces it with convention-based auto-registration. `$blockAssets` sidesteps all of
+that with an explicit, readable PHP array instead of a generated black box.
+
 ## Static block — the default
 
 `registerBlockArgs()` empty. `index.jsx` has a real `save()`; output is stored in post HTML, no PHP
@@ -226,7 +244,12 @@ rm blocks/debug-block.php   # scratch file — delete it, never commit it
 
 ## IMPORTANT
 
-- Use global `wp.*` — NEVER `@wordpress/` npm imports (not in the bundle config).
+- Use global `wp.*` — NEVER `@wordpress/` npm imports: they aren't in this theme's bundle config
+  (Laravel Mix, no `@wordpress/scripts`/dependency-extraction-webpack-plugin), and WordPress core
+  already loads these packages as `wp.*` on every admin page — importing them from npm would
+  bundle a second copy of React/element/etc. into each block's compiled JS instead of reusing the
+  one WP already loaded (this is the same reasoning behind WP core's own externals mechanism, see
+  the [Dependency Extraction Webpack Plugin docs](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/)).
 - Style with Bootstrap 5 classes (`bg-dark`, `text-center`, `col-lg-4`, ...) — the theme is Bootstrap-based.
 - Block settings usually live under an object attribute (e.g. `attributes.modification`), not flat keys
   — copy the nearest existing block.
