@@ -58,10 +58,7 @@ Only translate *where* to reach an API (theme wrapper vs. raw WP function, `wp.*
 import) — never translate *what* the API does. When theme docs and this skill are silent on a
 detail, that's a signal to check the handbook, not to guess.
 
-All paths below are relative to the theme's own root directory — `web/wp-content/themes/starter-kit-theme/`
-by default, but this is only the stock slug: if the project forked/renamed the theme (`wp
-clone-theme`, or `bootstrap-project` repointing it), substitute the actual folder name under
-`web/wp-content/themes/` everywhere below, including in the shell commands.
+All paths below are relative to this theme's own root directory (`web/wp-content/themes/<theme-folder>/`).
 
 ## 0. Decide the block type first
 
