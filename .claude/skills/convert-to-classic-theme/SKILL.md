@@ -47,12 +47,25 @@ Batch these (`AskUserQuestion`), default sensibly, don't ask what's obvious:
    `stubs/classic-theme/CONVERT.md`'s post-type table for why `page` defaults off and
    `service`/`team_member` can't be turned on regardless — `show_in_rest => false` at
    registration is a separate, earlier core gate this skill's filter cannot override).
-2. **Beyond the minimal template set** (header/footer/index/page) — does the project need
-   `single.php`, `archive.php`, `home.php`, `front-page.php`, `404.php`, or `search.php` now?
-   WordPress's own template hierarchy already falls back to `index.php` for any of these that
-   don't exist, so **default: none** — scaffold only what's explicitly asked for, following the
-   same view-layer pattern as the shipped files.
-3. **`theme.json`**: keep it settings-only (palette/spacing for the block editor) with just
+2. **Which pages need their own dedicated template?** The classic WordPress template hierarchy —
+   not a Carbon Fields builder — is the default, primary mechanism for per-page layout in this
+   theme (see `CONVERT.md`'s "Emit (optional — per-page templates)" section). Ask which concrete
+   pages the project actually has (About Us, Contact, front page, ...) and scaffold one classic
+   template per page that needs distinct layout — slug-based `page-{slug}.php` when the page maps
+   1:1 to a fixed slug, or a `Template Name:` header-comment template when the same layout should
+   be assignable to more than one page. **Default: `front-page.php` only** if the project has a
+   static front page configured; every other page starts on the shared `page.php` and gets its own
+   template only when asked.
+3. **Beyond the page-template set above** — does the project need `single.php`, `archive.php`,
+   `home.php`, `404.php`, or `search.php` now? WordPress's own template hierarchy already falls
+   back to `index.php` for any of these that don't exist, so **default: none** — scaffold only
+   what's explicitly asked for, following the same view-layer pattern as the shipped files.
+4. **Carbon Fields "Page Sections" flexible-content builder — add it as an optional extra?**
+   This is an add-on layered *on top of* the classic per-page templates above, not the default way
+   pages get built. **Default: no.** Only emit `optional/page-builder/` (see `CONVERT.md`) if the
+   user explicitly wants a builder-driven flexible-content page type (selectable per-page via its
+   `Template Name: Flexible Content` header comment) alongside the classic templates.
+5. **`theme.json`**: keep it settings-only (palette/spacing for the block editor) with just
    `customTemplates` stripped, or does the user want to add real palette values now? Default:
    strip only, don't design a palette in this pass.
 
@@ -66,13 +79,23 @@ explicitly so the user isn't left assuming this is a bigger change than it is.
 
 ## 3. Emit the scaffold
 
-Copy every file listed under "Emit" in `stubs/classic-theme/CONVERT.md` from the theme's
+Copy every file listed under "Emit (always)" in `stubs/classic-theme/CONVERT.md` from the theme's
 `stubs/classic-theme/` directory into the theme root, preserving relative paths
 (`stubs/classic-theme/page.php` → `<theme-root>/page.php`,
-`stubs/classic-theme/src/Handlers/...` → `<theme-root>/src/Handlers/...`, etc.). If step 1 asked
-for extra templates beyond the base set, scaffold those now too, following the same patterns as
-the shipped files (view layer only, calling into the existing `Utils`/`Config`/`Repository`
-classes — never a parallel bootstrap).
+`stubs/classic-theme/src/Handlers/...` → `<theme-root>/src/Handlers/...`, etc.). Then, per the
+step-1 answers:
+
+- **Per-page templates** ("Emit (optional — per-page templates)" in `CONVERT.md`) — scaffold
+  exactly the pages asked for (`front-page.php`, a slug-based `page-{slug}.php`, or a
+  `Template Name:` template), following the same view-layer pattern as `page.php`/`front-page.php`
+  (calling into the existing `Utils`/`Config`/`Repository` classes — never a parallel bootstrap).
+- **Page Builder add-on** ("Emit (optional — Page Builder add-on)" in `CONVERT.md`) — only if step
+  1 asked for it: copy `stubs/classic-theme/optional/page-builder/*` into the theme root, flattening
+  the `optional/page-builder/` prefix (e.g. `optional/page-builder/page-flexible-content.php` →
+  `<theme-root>/page-flexible-content.php`, `optional/page-builder/template-parts/sections/*` →
+  `<theme-root>/template-parts/sections/*`).
+- Any other extra template from step 1's question 3 — same view-layer pattern as the shipped
+  files.
 
 ## 4. Apply the edits
 
@@ -89,10 +112,11 @@ classes — never a parallel bootstrap).
    `stubs/classic-theme/config/gutenberg.snippet.php`, using the step-1 allowlist answer instead
    of the snippet's default if the user changed it. Every other key in the file is unchanged.
    Apply this **before** step 4 so the filter never runs against a config missing the key.
-4. `src/Base/Hooks.php` — add the two lines from `stubs/classic-theme/Hooks.snippet.php`, grouped
-   with their respective existing sections (`carbon_fields_register_fields` lines for the
-   PageBuilder registration; the Gutenberg-blocks section for the `use_block_editor_for_post_type`
-   filter). Do not remove or reorder any existing line in this file.
+4. `src/Base/Hooks.php` — add `stubs/classic-theme/Hooks.snippet.php`'s
+   `use_block_editor_for_post_type` filter line always, grouped with the existing Gutenberg-blocks
+   section. Add its `carbon_fields_register_fields`/`PageBuilder::class` line **only** if step 1's
+   Page Builder question was answered yes, grouped with the existing
+   `carbon_fields_register_fields` lines. Do not remove or reorder any existing line in this file.
 
 ## 5. Delete the FSE files
 
@@ -129,11 +153,16 @@ If any of these fail, fix it before moving on — don't hand a broken conversion
 Invoke the `project-brief` skill to rewrite the theme's own docs for the now-classic project.
 Give it this target shape explicitly so it doesn't have to re-derive it:
 
-- **New rule** `.claude/rules/classic-theme.md`: classic template hierarchy + `template-parts/`
-  convention; the CF "Page Sections" page-builder and its exact data contract (see
-  `src/Handlers/Meta/PostMeta/PageBuilder.php`'s docblock); the `blockEditorPostTypes` allowlist
-  mechanism and which post types use blocks vs. Carbon Fields; explicit statement that templates
-  are a view layer over the unchanged `App`/`Hooks`/DI bootstrap; that asset enqueue is unchanged.
+- **New rule** `.claude/rules/classic-theme.md`: classic template hierarchy is the primary,
+  default mechanism for page-specific layout — `page-{slug}.php` / `Template Name:` templates +
+  the `template-parts/` convention; document exactly which per-page templates this conversion
+  scaffolded and why. If the Page Builder add-on was emitted, document it clearly as an **optional
+  extra** (its `Template Name: Flexible Content` template, the CF "Page Sections" data contract —
+  see `src/Handlers/Meta/PostMeta/PageBuilder.php`'s docblock — and that it coexists with, not
+  replaces, the classic per-page templates). Also cover the `blockEditorPostTypes` allowlist
+  mechanism and which post types use blocks vs. classic templates; explicit statement that
+  templates are a view layer over the unchanged `App`/`Hooks`/DI bootstrap; that asset enqueue is
+  unchanged.
 - **Edit root `CLAUDE.md`**: "FSE theme" → "classic PHP-template theme; Gutenberg blocks retained
   for opt-in post types"; `Structure` table: `templates/*.php` (not `.html`), add
   `template-parts/`, drop the `parts/`/`patterns/` rows, note `theme.json` is now settings-only.
@@ -150,9 +179,18 @@ Give it this target shape explicitly so it doesn't have to re-derive it:
 List every changed/deleted/added file with its full path. Then give this browser-verification
 checklist to the user (or hand it to `qa-analyst`/`acceptance-tester`):
 
-- A `page` builds through the CF Page Builder (classic editor + CF metaboxes, no block editor),
-  each section type renders on the front end **with its actual field values** (title, image,
-  button) — an empty section shell means the `$args['section']` unpack regressed.
+- A `page` with no dedicated template builds through the shared `page.php` (classic editor, title
+  + `the_content()`, no block editor, no builder).
+- If a slug-based (`page-{slug}.php`) or `Template Name:` per-page template was scaffolded, the
+  page it targets actually resolves to that template (not silently falling back to `page.php`) and
+  renders its intended layout.
+- If a static front page is configured (Settings → Reading), it renders through `front-page.php`,
+  not `index.php`'s post feed.
+- If the Page Builder add-on was emitted: a page assigned the `Flexible Content` template builds
+  through the CF Page Builder (classic editor + CF metaboxes), each section type renders on the
+  front end **with its actual field values** (title, image, button) — an empty section shell means
+  the `$args['section']` unpack regressed — and pages *without* that template still render through
+  plain `page.php`, confirming the builder is additive, not the default path.
 - A `post`/`news` opens in the **block editor**, composes with the theme's own blocks, and those
   blocks render on the front end via `index.php`'s loop → `the_content()`.
 - The Featured Image metabox appears in the editor and `the_post_thumbnail()` renders on the front
