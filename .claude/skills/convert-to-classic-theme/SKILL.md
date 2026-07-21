@@ -107,13 +107,22 @@ composer lint    # PSR-12 — fix any fallout in the newly emitted files
 npm run prod     # confirm the build still compiles cleanly
 ```
 
-## 7. Architect structural pass
+## 7. Structural sanity check
 
-Run the `architect` agent to sanity-check the result: no parallel bootstrap was introduced,
-`blocks/*` is untouched, the per-post-type block-editor gate matches the step-1 answers, asset
-enqueue in `Hooks.php`/`Front.php` was **not** touched (it fires on every front-end request
-already, not FSE-gated — refactoring it would be a regression, not a fix), and
-`theme.json`/`gutenberg.php` edits are exactly what was asked for.
+Before handing off to `project-brief`, verify the conversion didn't introduce a regression —
+check this yourself, no subagent needed:
+
+- No parallel bootstrap was introduced (still one `App::instance()->run()` entrypoint, no second
+  init path added for the classic templates).
+- `blocks/*` is untouched: `git diff --stat -- blocks/` shows nothing.
+- The per-post-type block-editor gate (`blockEditorPostTypes`) matches exactly what step 1's
+  answers specified — no post type added or dropped beyond what was asked.
+- Asset enqueue in `Hooks.php`/`Front.php` was **not** touched — it fires on every front-end
+  request already, not FSE-gated, so editing it here would be a regression, not a fix.
+- `theme.json`/`gutenberg.php` edits are exactly what was asked for — nothing beyond the scoped
+  change.
+
+If any of these fail, fix it before moving on — don't hand a broken conversion to `project-brief`.
 
 ## 8. Hand off to project-brief
 
