@@ -46,7 +46,7 @@ concern):
 | --- | --- | --- |
 | `main.php` | `config` (top-level, no group prefix) | `themeSlug`, `themeNamespace`, `hooksPrefix` (`starter_kit`), `settingsPrefix` (`skt_`), `restApiNamespace` (`skt/v1`), `assetsDir`/`assetsUri`, `blocksDir`/`blocksUri`/`blocksNamespace`/`blocksViewDir` |
 | `debug.php` | `enableWhoops` (top-level) | Whoops on/off — see below |
-| `gutenberg.php` | `gutenberg/*` | `disableRedundantBlocks` (list of core block names, e.g. `core/image`, `core/heading`, `core/group`), `disableAllDefaultBlocks`, `disableDefaultBlocksStyles` — consumed by `Handlers\Blocks\DisableDefaultBlocks` |
+| `gutenberg.php` | `gutenberg/*` | `disableRedundantBlocks` (list of core block names, e.g. `core/image`, `core/heading`, `core/group`), `disableAllDefaultBlocks`, `disableDefaultBlocksStyles` — consumed by `Handlers\Blocks\DisableDefaultBlocks`; `disableGutenbergForPostTypes` (denylist, default `[]`) — consumed by `Handlers\Blocks\BlockEditorSupport::filterPostType()` (`use_block_editor_for_post_type` filter). Only meaningful for native post types (`post`, `page`) that have no `register_post_type()` call of their own — custom post types decide this at registration (`show_in_rest`/`supports`) instead |
 | `security.php` | `security/*` | `restrictRestApiToWhitelistOnly`, `RestApiNamespaceWhitelist` (e.g. `contact-form-7`, `carbon-fields`) — consumed by `Handlers\Security\RestApiFilter` |
 | `optimization.php` | `optimization/*` | `cleanWpHead`, `cleanBodyClass`, `removeAssetsAttributes`, `disableComments`, `addNoCacheHeaders` |
 | `media.php` | `media/bigImageSizeThreshold` | Overrides WP's big-image scaling threshold — `Handlers\SetupTheme::bigImageSizeThreshold()` |
