@@ -71,6 +71,13 @@ Getting this wrong is the single biggest source of wasted work — a static bloc
 meta, and a dynamic block that's missing `usesContext`/context handling renders silently empty
 (see `blocks/CLAUDE.md`'s gotcha list before writing `Block.php`).
 
+If a dynamic block needs its own data source — not just reading meta off the current post, but a
+whole entity with its own storage, reused elsewhere, or with its own sub-data (`News` is exactly
+this: the block renders news items backed by the `news` CPT) — that storage doesn't get built here.
+Hand off to `.claude/skills/create-post-type/SKILL.md` first to register the CPT (+ repository, +
+Carbon Fields meta), then come back here and write the block against the resulting `Repository`
+method.
+
 ## 1. Scaffold from the starter block
 
 ```bash
