@@ -4,8 +4,8 @@
  * Page Sections part: "text"
  *
  * @var array $args Template args from get_template_part(); `$args['section']` is the row from the
- *                   CF "Page Sections" flexible-content field — see
- *                   src/Handlers/Meta/PostMeta/PageBuilder.php for the field/data contract.
+ *                   "Page sections" complex field inside `src/Handlers/Meta/PostMeta/
+ *                   PageExampleMeta.php`, read via `Repository\PageExampleRepository::getPageSections()`.
  */
 
 defined('ABSPATH') || exit;
