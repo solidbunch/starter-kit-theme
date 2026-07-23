@@ -2,6 +2,13 @@
 
 Scope: remove FSE, keep Gutenberg/blocks. Never touch `blocks/*`.
 
+## Control-structure style: braces, not alternative syntax
+
+Every `.php` file in this scaffold (and every template generated from it via
+`create-classic-template`) uses `if (...) { ?>` / `<?php }` — never WordPress's alternative syntax
+(`if (...) : ... endif;`, `foreach (...) : ... endforeach;`, etc.). Match the existing files here,
+don't reintroduce `endif`/`endforeach`/`endwhile`/`endfor`/`endswitch`.
+
 ## Two kinds of file in this scaffold directory — don't confuse them
 
 This directory mirrors the theme's own structure exactly — `stubs/classic-theme/<path>` is always

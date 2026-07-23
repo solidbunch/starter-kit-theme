@@ -24,26 +24,26 @@ $buttonUrl  = $section['button_url'] ?? '';
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
-                <?php if ($title) : ?>
+                <?php if ($title) { ?>
                     <h1><?php echo esc_html($title); ?></h1>
-                <?php endif; ?>
+                <?php } ?>
 
-                <?php if ($subtitle) : ?>
+                <?php if ($subtitle) { ?>
                     <p class="lead"><?php echo esc_html($subtitle); ?></p>
-                <?php endif; ?>
+                <?php } ?>
 
-                <?php if ($buttonText && $buttonUrl) : ?>
+                <?php if ($buttonText && $buttonUrl) { ?>
                     <a href="<?php echo esc_url($buttonUrl); ?>" class="btn btn-primary">
                         <?php echo esc_html($buttonText); ?>
                     </a>
-                <?php endif; ?>
+                <?php } ?>
             </div>
 
-            <?php if ($image) : ?>
+            <?php if ($image) { ?>
                 <div class="col-12 col-lg-6">
                     <?php echo wp_get_attachment_image((int) $image, 'large', false, ['class' => 'img-fluid']); ?>
                 </div>
-            <?php endif; ?>
+            <?php } ?>
         </div>
     </div>
 </section>
