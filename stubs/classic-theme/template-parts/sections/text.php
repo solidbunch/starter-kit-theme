@@ -19,12 +19,12 @@ $content = $section['content'] ?? '';
 ?>
 <section class="text-section py-5">
     <div class="container">
-        <?php if ($heading) : ?>
+        <?php if ($heading) { ?>
             <h2><?php echo esc_html($heading); ?></h2>
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($content) : ?>
+        <?php if ($content) { ?>
             <div class="entry-content"><?php echo wp_kses_post($content); ?></div>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </section>

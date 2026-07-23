@@ -20,18 +20,18 @@ $subtitle = $args['subtitle'] ?? '';
 ?>
 <section class="section-page-hero">
     <div class="container py-5">
-        <?php if (function_exists('yoast_breadcrumb')) : ?>
+        <?php if (function_exists('yoast_breadcrumb')) { ?>
             <div class="page-hero-breadcrumbs">
                 <?php yoast_breadcrumb('<nav class="breadcrumbs">', '</nav>'); ?>
             </div>
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($title) : ?>
+        <?php if ($title) { ?>
             <h1 class="page-hero-title"><?php echo esc_html($title); ?></h1>
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($subtitle) : ?>
+        <?php if ($subtitle) { ?>
             <div class="page-hero-subtitle"><?php echo wp_kses_post($subtitle); ?></div>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </section>

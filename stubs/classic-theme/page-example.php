@@ -30,16 +30,16 @@ $sections = PageExampleRepository::getPageSections($postId);
 
 <?php get_template_part('template-parts/page-hero', '', $heroArgs); ?>
 
-<?php if ($intro) : ?>
+<?php if ($intro) { ?>
     <section class="section-page-intro">
         <div class="container py-5">
             <div class="entry-content"><?php echo wp_kses_post($intro); ?></div>
         </div>
     </section>
-<?php endif; ?>
+<?php } ?>
 
 <?php
-foreach ($sections as $section) :
+foreach ($sections as $section) {
     $type = $section['_type'] ?? '';
 
     if ($type === '' || !locate_template("template-parts/sections/{$type}.php")) {
@@ -47,7 +47,7 @@ foreach ($sections as $section) :
     }
 
     get_template_part("template-parts/sections/{$type}", '', ['section' => $section]);
-endforeach;
+}
 ?>
 
 <?php

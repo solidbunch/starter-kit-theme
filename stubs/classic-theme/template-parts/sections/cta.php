@@ -20,14 +20,14 @@ $buttonUrl  = $section['button_url'] ?? '';
 ?>
 <section class="cta py-5 text-center">
     <div class="container">
-        <?php if ($heading) : ?>
+        <?php if ($heading) { ?>
             <h2><?php echo esc_html($heading); ?></h2>
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($buttonText && $buttonUrl) : ?>
+        <?php if ($buttonText && $buttonUrl) { ?>
             <a href="<?php echo esc_url($buttonUrl); ?>" class="btn btn-primary btn-lg">
                 <?php echo esc_html($buttonText); ?>
             </a>
-        <?php endif; ?>
+        <?php } ?>
     </div>
 </section>
