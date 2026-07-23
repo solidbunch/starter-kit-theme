@@ -22,7 +22,7 @@ use StarterKit\Helper\Config;
  */
 class BlockEditorSupport
 {
-    public static function filterPType(bool $useBlockEditor, string $postType): bool
+    public static function filterPostType(bool $useBlockEditor, string $postType): bool
     {
         if (str_starts_with($postType, 'wp_')) {
             return $useBlockEditor;
