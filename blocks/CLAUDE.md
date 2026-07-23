@@ -4,16 +4,21 @@ Blocks live in the theme's `blocks/` directory, namespace `StarterKitBlocks\`.
 Auto-discovered: `Init::loadBlocks()` scans `blocks/*`, skips folders starting with `_` or missing
 `block.json`, instantiates `StarterKitBlocks\{BlockName}\Block`. Start a new block by copying
 `blocks/_StarterBlock/`. PHP patterns (handlers, Utils, security): see the theme `CLAUDE.md`.
+`blocks/_*/` is listed under `composer.json`'s `autoload.exclude-from-classmap` — an
+underscore-prefixed folder never matches its PSR-4 namespace (e.g. `StarterKitBlocks\StarterBlock`
+in `_StarterBlock/`), a real mismatch Composer would otherwise warn about on every `dump-autoload`.
+The pattern covers every folder the loader's underscore-skip convention covers; this is the fix,
+not a workaround to remove.
 
 ## TWO block types — choose before writing code
 
-|                         | Static block (default — most blocks)                 | Dynamic block (PHP render)                   |
-| ----------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| Use when                | Pure markup/layout; content saved into post HTML     | Needs DB data, post meta, runtime content    |
-| `registerBlockArgs()`   | empty                                                | sets `render_callback`                       |
-| `save()` in `index.jsx` | real JSX (`RichText.Content`, `InnerBlocks.Content`) | `() => null`                                 |
-| `view/` folder          | none                                                 | PHP templates (`layout.php`, ...)            |
-| Examples                | Section, Heading, Button, Row, FaqSection            | News, PricingTable                           |
+|                         | Static block (default — most blocks)                 | Dynamic block (PHP render)                |
+| ----------------------- | ---------------------------------------------------- | ----------------------------------------- |
+| Use when                | Pure markup/layout; content saved into post HTML     | Needs DB data, post meta, runtime content |
+| `registerBlockArgs()`   | empty                                                | sets `render_callback`                    |
+| `save()` in `index.jsx` | real JSX (`RichText.Content`, `InnerBlocks.Content`) | `() => null`                              |
+| `view/` folder          | none                                                 | PHP templates (`layout.php`, ...)         |
+| Examples                | Section, Heading, Button, Row, FaqSection            | News, PricingTable                        |
 
 ## Folder structure
 
@@ -57,6 +62,24 @@ class Block extends BlockAbstract {
 
 Asset types: `editor_script`/`editor_style` (admin only), `style`/`script` (both contexts),
 `view_script`/`view_style` (frontend only). `editor_script` is always required.
+
+**Assets are never declared in `block.json`** — leave `editorScript`/`style`/etc. empty there.
+`$blockAssets` is the whole mechanism: `registerBlockAssets()` (called from the constructor, before
+`registerBlock()`) turns each entry into a `wp_register_script()`/`wp_register_style()` call with
+real dependency arrays, computes the handle from the block name + filename, and versions by
+`filemtime()`. This exists specifically because `block.json`'s own `editorScript`/`style` fields
+can't express script dependencies — `$blockAssets`'s `dependencies` array (also filterable via
+`starter_kit/block_asset_dependencies`) is the only way to wire e.g. `wp-i18n`/`wp-element` deps
+per block. Frontend scripts are registered with `'strategy' => 'defer', 'in_footer' => true`
+(admin/editor scripts get neither).
+
+This deliberately avoids WordPress's own standard alternative — the `@wordpress/scripts` /
+`dependency-extraction-webpack-plugin` generated `*.asset.php` file, manually `include`-d and fed
+into `wp_register_script()`. That pattern is a known opaque/fragile spot in the WP ecosystem (no
+visibility into what gets extracted, breaks under webpack's `runtimeChunk: 'single'`, JS-only
+cache-busting hash misses CSS-only changes) — serious enough that WordPress's own `@wordpress/build`
+tooling (2026) replaces it with convention-based auto-registration. `$blockAssets` sidesteps all of
+that with an explicit, readable PHP array instead of a generated black box.
 
 ## Static block — the default
 
@@ -124,50 +147,12 @@ registerBlockType(metadata, {
 });
 ```
 
-## Full-page CF-backed block (template block)
-
-The "fill in fields, get a complete section" pattern — a dynamic block whose data comes from Carbon
-Fields on the current post. Instead of building nested blocks in the editor, register CF fields and
-let one block render the whole section. This is the **hybrid FSE approach**: one block = one page
-template. Admin fills CF fields, PHP renders the entire page content.
-
-```php
-// 1. CF container in Meta/PostMeta/ (hook in Hooks.php on carbon_fields_register_fields):
-$metaPrefix = SK_PREFIX . 'page_';
-Container::make('post_meta', __('Page Content', 'starter-kit'))
-    ->where('post_type', '=', 'page')
-    ->add_fields([
-        Field::make('text',    $metaPrefix . 'hero_title', __('Hero Title', 'starter-kit')),
-        Field::make('image',   $metaPrefix . 'hero_image', __('Hero Image', 'starter-kit')),
-        Field::make('complex', $metaPrefix . 'sections',   __('Sections', 'starter-kit'))
-            ->add_fields('section', __('Section', 'starter-kit'), [
-                Field::make('text',      'title',   __('Title', 'starter-kit')),
-                Field::make('rich_text', 'content', __('Content', 'starter-kit')),
-            ]),
-    ]);
-
-// 2. Dynamic block reads CF meta in the callback:
-public function blockServerSideCallback(array $attributes, string $content, object $block): string {
-    // ⚠️ NEVER use get_the_ID() alone — returns 0/false in REST API context (ServerSideRender)
-    $postId     = (int)($block->context['postId'] ?? get_the_ID());
-    $metaPrefix = SK_PREFIX . 'page_';
-    return $this->loadBlockView('layout', [
-        'heroTitle'  => (string)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_title', ''),
-        'heroImageId'=> (int)Utils::getPostMetaFw($postId, $metaPrefix . 'hero_image'),
-        'sections'   => Utils::getPostMetaFw($postId, $metaPrefix . 'sections') ?: [],
-        'blockClass' => $this->generateBlockClasses($attributes),
-    ]);
-}
-// 3. view/layout.php renders the full section from CF data.
-```
-
-Admin fills CF fields in the post editor → one block renders the whole page section.
-
 ## ⚠️ Dynamic block + post meta: CRITICAL GOTCHAS
 
 These cause silent failures (empty block in editor) and are easy to miss:
 
 ### 1. `usesContext` is REQUIRED in block.json
+
 Dynamic blocks that read post meta MUST declare usesContext — without it `$block->context['postId']`
 is always empty:
 
@@ -178,6 +163,7 @@ is always empty:
 ```
 
 ### 2. `get_the_ID()` returns 0 in REST context
+
 WordPress's REST block renderer does NOT set up the global `$post`. Always read from block context:
 
 ```php
@@ -189,6 +175,7 @@ $postId = (int)($block->context['postId'] ?? get_the_ID());
 ```
 
 ### 3. ServerSideRender `urlQueryArgs` must use `post_id` (underscore, not camelCase)
+
 WP REST block renderer maps `post_id` query param → block context. camelCase `postId` is silently
 ignored:
 
@@ -201,6 +188,7 @@ urlQueryArgs={{post_id: postId}}
 ```
 
 ### 4. Editor JSX must fetch current post ID with `useSelect`
+
 `ServerSideRender` runs in the editor context where there is no global post. Get the ID explicitly:
 
 ```jsx
@@ -230,28 +218,43 @@ registerBlockType(metadata, {
 ```
 
 ### 5. Debugging an empty block
-If the block renders nothing, check in order:
-```bash
-# 1. Is the block registered?
-wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block"));'
 
-# 2. Does the render callback actually return HTML?
-wp eval '
-  do_action("carbon_fields_register_fields");
-  $blockType = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
-  $block = new WP_Block(
-    ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
-    ["postId"=>YOUR_POST_ID,"postType"=>"page"]
-  );
-  $cb = $blockType->render_callback;
-  echo call_user_func($cb, [], "", $block);
-'
+If the block renders nothing, check in order. Run from the foundation root — there's no bare `wp`
+on the host, WP-CLI only exists inside the `php` container:
+
+```bash
+# Every wp-cli call below runs like this:
+#   docker compose exec php su -c "wp <command>" www-data
+# 1. Is the block registered?
+docker compose exec php su -c "wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered(\"starter-kit/my-block\"));'" www-data
+
+# 2. Does the render callback actually return HTML? Quoting this inline gets messy through
+# `docker compose exec` + `su -c`, so write it to a file on the host and eval-file it from inside
+# the container — `docker-compose.yml` bind-mounts `./web/wp-content` to `/srv/web/wp-content`,
+# so anything written under the theme dir on the host is immediately visible in the container:
+cat > blocks/debug-block.php <<'PHP'
+do_action("carbon_fields_register_fields");
+$blockType = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
+$block = new WP_Block(
+  ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
+  ["postId"=>YOUR_POST_ID,"postType"=>"page"]
+);
+$cb = $blockType->render_callback;
+echo call_user_func($cb, [], "", $block);
+PHP
+docker compose exec php su -c "wp eval-file /srv/web/wp-content/themes/<theme-folder>/blocks/debug-block.php" www-data
+rm blocks/debug-block.php   # scratch file — delete it, never commit it
 # Note: render_block($block->parsed_block) does NOT pass context — use render_callback directly
 ```
 
 ## IMPORTANT
 
-- Use global `wp.*` — NEVER `@wordpress/` npm imports (not in the bundle config).
+- Use global `wp.*` — NEVER `@wordpress/` npm imports: they aren't in this theme's bundle config
+  (Laravel Mix, no `@wordpress/scripts`/dependency-extraction-webpack-plugin), and WordPress core
+  already loads these packages as `wp.*` on every admin page — importing them from npm would
+  bundle a second copy of React/element/etc. into each block's compiled JS instead of reusing the
+  one WP already loaded (this is the same reasoning behind WP core's own externals mechanism, see
+  the [Dependency Extraction Webpack Plugin docs](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/)).
 - Style with Bootstrap 5 classes (`bg-dark`, `text-center`, `col-lg-4`, ...) — the theme is Bootstrap-based.
 - Block settings usually live under an object attribute (e.g. `attributes.modification`), not flat keys
   — copy the nearest existing block.

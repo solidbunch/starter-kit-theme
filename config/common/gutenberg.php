@@ -15,6 +15,7 @@ return [
             ],
             'disableAllDefaultBlocks'           => false,
             'disableDefaultBlocksStyles'        => false,
+            'disableGutenbergForPostTypes'      => [],
         ],
     ],
 ];

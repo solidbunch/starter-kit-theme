@@ -20,7 +20,7 @@
 
 ## Requirements
 
-- [PHP](https://secure.php.net/manual/en/install.php) 8.1
+- [PHP](https://secure.php.net/manual/en/install.php) 8.4
 - [WordPress](https://wordpress.org/) 6.1
 - [Composer](https://getcomposer.org/) 2.6
 - [Node.js](http://nodejs.org/) 18
