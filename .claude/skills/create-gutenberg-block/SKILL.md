@@ -1,553 +1,186 @@
 ---
 name: create-gutenberg-block
 description: >
-  Create Gutenberg blocks for the starter-kit-theme project (StarterKit Foundation).
-  Use this skill for ANY request to create, add, or build a block — including "make a block",
-  "add a CF block", "create a page template block", "replicate a site as a block", or when the
-  user runs /make-template-block. Always apply before writing any block code — contains critical
-  gotchas that cause empty blocks without this skill.
+  Build a new Gutenberg block for this theme (StarterKit Foundation). Use this skill
+  for ANY request to create, add, scaffold, or build a block in this theme — "make a block",
+  "add a block for X", "create a CF/Carbon Fields block", "add a dynamic block that shows the
+  latest news". Always consult this before writing any block code — it sequences the steps in the
+  right order.
 ---
 
-# StarterKit Foundation — Gutenberg Block Creation
+# Creating a Gutenberg block in this theme
 
-## Project paths (absolute, use these)
+This is the **procedure** — decide, scaffold, wire, build, verify. Full code examples (`Block.php`
+skeleton, both `index.jsx` patterns, `view/layout.php`) and the *why* behind each gotcha
+(REST-context `postId`, `usesContext`, asset registration internals) live in this theme's own
+`blocks/CLAUDE.md` — this skill doesn't duplicate them.
 
-| What | Path |
-|------|------|
-| Theme root | `web/wp-content/themes/starter-kit-theme/` |
-| Blocks | `web/wp-content/themes/starter-kit-theme/blocks/` |
-| Starter template | `blocks/_StarterBlock/` — copy this, never edit it |
-| CF meta handlers | `web/wp-content/themes/starter-kit-theme/src/Handlers/Meta/PostMeta/` |
-| Hook registry | `web/wp-content/themes/starter-kit-theme/src/Base/Hooks.php` |
-| WP-CLI | `docker compose exec php wp --allow-root --path=/srv/web` |
-| Build | `cd web/wp-content/themes/starter-kit-theme && npm run production` |
-| Lint | `cd web/wp-content/themes/starter-kit-theme && npm run lint` |
+**Read `blocks/CLAUDE.md` explicitly before step 2** — don't just assume it's already loaded. It
+auto-loads on-demand when Claude *reads a file* under `blocks/`, but scaffolding via `cp -r` in
+step 1 doesn't trigger that on its own; open `blocks/_StarterBlock/Block.php` (or any existing
+block) as your first real action so the gotchas and code patterns are actually in context before
+you write anything.
 
-**`SK_PREFIX = 'skt_'`** — always present as a PHP constant, never hardcode the string.
+Two more theme docs matter here, not just `blocks/CLAUDE.md`:
 
----
+- `conventions.md` — the `Helper\Utils` plain-vs-`*Fw` accessor split (step 3)
+- `content-types.md` — how Carbon Fields containers actually get registered (step 6), and how
+  `templates/`/`parts/`/`patterns/` are just block markup — a new block isn't "live" on the site
+  until it's placed inside one of those (step 8)
 
-## Block types — decide first
+## This is still a real WordPress Gutenberg block — don't lose sight of that
 
-| Type | Use when | `save()` | `view/` folder |
-|------|----------|----------|----------------|
-| **Static** | Pure layout, content in post HTML, no DB | real JSX | no |
-| **Dynamic** | Reads post meta, CPT queries, runtime data | `() => null` | yes, `layout.php` |
-| **Template block** | One block = full page, content from CF fields | `() => null` | yes + `assets/` |
+Everything above is theme-specific wiring, not a replacement for the actual WordPress block API.
+`block.json`, `attributes`, `supports`, static vs. dynamic rendering, `RichText`/`InnerBlocks`/
+`InspectorControls`, server-side rendering, block variations — all of that is **standard
+WordPress**, documented in the official Block Editor Handbook, and this theme doesn't reinvent any
+of it. What the theme changes is narrower than it might look:
 
----
+| Standard WP concept                                             | How it actually works in this theme                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `register_block_type()` / `register_block_type_from_metadata()` | Called for you by `BlockAbstract::registerBlock()` — you never call it directly, you set `$this->blockArgs` and let the base class do it                                                                                                                                                                                                                                                       |
+| `import { RichText } from '@wordpress/block-editor'`            | **Never** — this theme has no `@wordpress/*` npm packages. Same component, reached as `wp.blockEditor.RichText` (global). Every `@wordpress/*` package has a `wp.*` global equivalent — `@wordpress/blocks` → `wp.blocks`, `@wordpress/data` → `wp.data`, `@wordpress/components` → `wp.components`, `@wordpress/element` → `wp.element`. The APIs are identical, only the access path differs |
+| `editorScript`/`style`/`viewScript` in `block.json`             | Left empty here — asset registration goes through `$blockAssets` in `Block.php` instead (see `blocks/CLAUDE.md`)                                                                                                                                                                                                                                                                               |
+| `render_callback`                                               | Same WP concept, wired the same way (`register_block_type_from_metadata()`'s `$args['render_callback']`) — just assigned via `$this->blockArgs['render_callback']` instead of passed inline                                                                                                                                                                                                    |
 
-## ⚠️ CRITICAL GOTCHAS — dynamic blocks with post meta
+So when you need to know *what a WordPress concept does* (what `usesContext` means, what
+`supports.spacing` enables, how block variations work, what a `save()` function's contract is),
+the official docs are the right source — read them normally, no theme-specific translation needed
+for the concept itself:
 
-These cause **silent failures** (block renders empty in editor). No errors, just blank output.
+- [Block Editor Handbook](https://developer.wordpress.org/block-editor/) — the full API surface
+- [block.json reference](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/) — every field, what it does
+- [Block attributes](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/), [Block supports](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/)
+- [Dynamic blocks / server-side rendering](https://developer.wordpress.org/block-editor/getting-started/fundamentals/data-format/#dynamic-blocks)
+- [Component reference](https://developer.wordpress.org/block-editor/reference-guides/components/) (`RichText`, `InnerBlocks`, `InspectorControls`, ...) — remember to mentally translate `@wordpress/x` → `wp.x` per the table above
 
-### 1. block.json — `usesContext` is mandatory
+Only translate *where* to reach an API (theme wrapper vs. raw WP function, `wp.*` global vs. npm
+import) — never translate *what* the API does. When theme docs and this skill are silent on a
+detail, that's a signal to check the handbook, not to guess.
 
-Without this, `$block->context['postId']` is always `null` → CF reads from post 0 → empty.
+All paths below are relative to this theme's own root directory (`web/wp-content/themes/<theme-folder>/`).
 
-```json
-{
-  "usesContext": ["postId", "postType"]
-}
-```
+## 0. Decide the block type first
 
-### 2. Block.php — never use `get_the_ID()` alone
+| Type    | Pick when                                          | `save()` in `index.jsx` | `view/` folder |
+| ------- | --------------------------------------------------- | ----------------------- | -------------- |
+| Static  | Pure layout/markup, content baked into post HTML   | real JSX                | none           |
+| Dynamic | Needs DB/meta/CPT data at render time              | `() => null`            | yes            |
 
-```php
-// ❌ WRONG — REST API context has no global $post, returns 0
-$postId = get_the_ID();
+Getting this wrong is the single biggest source of wasted work — a static block can't read post
+meta, and a dynamic block that's missing `usesContext`/context handling renders silently empty
+(see `blocks/CLAUDE.md`'s gotcha list before writing `Block.php`).
 
-// ✅ CORRECT — always prefer block context
-$postId = (int)($block->context['postId'] ?? get_the_ID());
-```
+If a dynamic block needs its own data source — not just reading meta off the current post, but a
+whole entity with its own storage, reused elsewhere, or with its own sub-data (`News` is exactly
+this: the block renders news items backed by the `news` CPT) — that storage doesn't get built here.
+Hand off to `.claude/skills/create-post-type/SKILL.md` first to register the CPT (+ repository, +
+Carbon Fields meta), then come back here and write the block against the resulting `Repository`
+method.
 
-### 3. index.jsx — `urlQueryArgs` key is `post_id` (underscore, not camelCase)
-
-```jsx
-// ❌ WRONG — WP REST silently ignores this, block gets postId=0
-urlQueryArgs={{postId: postId}}
-
-// ✅ CORRECT — WP reads ?post_id=X → populates context["postId"]
-urlQueryArgs={{post_id: postId}}
-```
-
-### 4. index.jsx — get postId via `useSelect`, not a global
-
-```jsx
-const {useSelect} = wp.data;
-const postId = useSelect((select) => select('core/editor').getCurrentPostId());
-```
-
-### 5. Debugging an empty block — use render_callback directly
-
-`render_block($block->parsed_block)` does NOT pass context. Always test like this:
+## 1. Scaffold from the starter block
 
 ```bash
-docker compose exec php wp --allow-root --path=/srv/web eval '
-  do_action("carbon_fields_register_fields");
-  $bt = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
-  $b  = new WP_Block(
-    ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
-    ["postId"=>PAGE_ID,"postType"=>"page"]
-  );
-  echo strlen(call_user_func($bt->render_callback, [], "", $b)) . " chars\n";
-  echo substr(call_user_func($bt->render_callback, [], "", $b), 0, 500);
-'
+cd web/wp-content/themes/<theme-folder>
+cp -r blocks/_StarterBlock blocks/MyBlock   # PascalCase folder name = the block's identity
 ```
 
----
+Never edit `_StarterBlock` itself — it's the copy source, excluded from both the PHP autoloader
+and the webpack glob because of its leading underscore.
 
-## Step-by-step: create any block
+## 2. `block.json`
 
-### 1. Create block folder (copy from _StarterBlock)
+Minimum required fields: `apiVersion: 3`, `name: "starter-kit/my-block"`, `category: "starter-kit"`.
+Add `"usesContext": ["postId", "postType"]` **only** for dynamic blocks that read post
+meta — omit it entirely for static blocks (an unused `usesContext` isn't harmful, but it signals
+"this reads context" to the next person reading the file, so keep it accurate).
 
-```bash
-THEME="web/wp-content/themes/starter-kit-theme"
-cp -r "$THEME/blocks/_StarterBlock" "$THEME/blocks/MyBlock"
-```
+## 3. `Block.php`
 
-Folder name = PascalCase. Folders starting with `_` are skipped by auto-discovery.
+Namespace **must** match the folder name exactly: `namespace StarterKitBlocks\MyBlock;` for
+`blocks/MyBlock/`. Extend `BlockAbstract`, declare `$blockAssets` for whatever `src/` files you'll
+have (`editor_script` is always required; `style`/`editor_style`/`view_script` are optional — see
+`blocks/CLAUDE.md` for the exact asset-type semantics). Static blocks leave
+`registerBlockArgs()` empty; dynamic blocks set `$this->blockArgs['render_callback']`.
 
-### 2. block.json — minimum required fields
+If the block reads Carbon Fields meta, read it with `Utils::getPostMetaFw()` — **not**
+`get_post_meta()` or `carbon_get_post_meta()` directly (see the theme's `conventions.md` for why
+the two prefixes/accessor families exist and are not interchangeable).
 
-```json
-{
-  "apiVersion": 3,
-  "name": "starter-kit/my-block",
-  "title": "My Block (SK)",
-  "category": "starter-kit",
-  "icon": "skb skb-section",
-  "description": "Short description",
-  "keywords": ["My", "Block"],
-  "textdomain": "",
-  "styles": [],
-  "supports": {},
-  "usesContext": ["postId", "postType"],
-  "example": {},
-  "attributes": {}
-}
-```
+## 4. `src/index.jsx`
 
-For **static blocks**: remove `usesContext` (not needed).
-For **dynamic/template blocks**: keep `usesContext` — mandatory.
+Static → real `edit`/`save` with `RichText`/`InnerBlocks`. Dynamic → `edit` renders
+`<ServerSideRender>`, `save: () => null`. Both patterns, plus the exact `useSelect`/`urlQueryArgs`
+gotchas for getting `postId` correctly, are in `blocks/CLAUDE.md` — copy from there or from the
+nearest existing block of the same type (`Section`/`Heading` for static, `News` for dynamic) rather
+than writing either from scratch.
 
-### 3. Block.php — namespace matches folder name exactly
+## 5. `view/layout.php` (dynamic blocks only)
 
-```php
-<?php
+Receives `$data` from the render callback. Escape everything on the way out: `esc_html()`,
+`esc_url()`, `esc_attr()`, `wp_kses_post()` for anything that went through a rich-text/WYSIWYG
+field. No raw `echo $data['whatever']` for user-editable content.
 
-namespace StarterKitBlocks\MyBlock;  // ← must match folder name
+## 6. Carbon Fields meta (only if the block reads Carbon Fields data)
 
-defined('ABSPATH') || exit;
+Add a handler class under `src/Handlers/Meta/PostMeta/` (or `TaxonomyMeta`/`UserMeta` as
+appropriate) with a static `make()` that builds a `Container::make('post_meta', ...)`. Prefix every
+field key with `SK_PREFIX` (`$p = SK_PREFIX . 'my_block_';`). This class does nothing by itself —
+CF containers only register on the `carbon_fields_register_fields` hook, so:
 
-use StarterKit\Handlers\Blocks\BlockAbstract;
-use StarterKit\Helper\Utils;
-use Throwable;
-
-class Block extends BlockAbstract
-{
-    protected array $blockAssets = [
-        'editor_script' => [
-            'file'         => 'index.js',
-            'dependencies' => ['wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor'],
-        ],
-        'editor_style'  => ['file' => 'editor.css', 'dependencies' => []],
-        'style'         => ['file' => 'style.css',  'dependencies' => []],
-        // 'view_script' => ['file' => 'view.js',   'dependencies' => []],  // frontend JS only
-    ];
-
-    // ── STATIC BLOCK: leave empty ──
-    // ── DYNAMIC BLOCK: set render_callback ──
-    public function registerBlockArgs(): void
-    {
-        $this->blockArgs['render_callback'] = [$this, 'blockServerSideCallback'];
-    }
-
-    /**
-     * @throws Throwable
-     */
-    public function blockServerSideCallback(array $attributes, string $content, object $block): string
-    {
-        $postId    = (int)($block->context['postId'] ?? get_the_ID()); // never just get_the_ID()
-        $p         = SK_PREFIX . 'page_';                              // SK_PREFIX = 'skt_'
-        $assetsUrl = get_template_directory_uri() . '/blocks/MyBlock/assets/';
-
-        return $this->loadBlockView('layout', [
-            'title'      => (string)Utils::getPostMetaFw($postId, $p . 'title', ''),
-            'items'      => Utils::getPostMetaFw($postId, $p . 'items') ?: [],
-            'assetsUrl'  => $assetsUrl,
-            'blockClass' => $this->generateBlockClasses($attributes),
-        ]);
-    }
-
-    public function blockRestApiEndpoints(): void {}
-}
-```
-
-`Utils::getPostMetaFw()` — **always** use this for CF fields (auto-prefixes, handles complex fields).
-`Utils::getPostMeta()` — for plain WP meta only.
-Never call `carbon_get_post_meta()` or `get_post_meta()` directly.
-
-### 4. src/index.jsx — two patterns
-
-**Static block:**
-```jsx
-import metadata from '../block.json';
-const {registerBlockType}                           = wp.blocks;
-const {useBlockProps, RichText, InnerBlocks,
-       InspectorControls}                           = wp.blockEditor;
-const {PanelBody, SelectControl, CheckboxControl}   = wp.components;
-
-registerBlockType(metadata, {
-    edit: ({attributes, setAttributes}) => {
-        const blockProps = useBlockProps({className: ['my-block']});
-        return (
-            <div {...blockProps}>
-                <RichText tagName="h2"
-                          value={attributes.title}
-                          onChange={(title) => setAttributes({title})} />
-                <InnerBlocks />
-            </div>
-        );
-    },
-    save: ({attributes}) => (
-        <div className="my-block">
-            <RichText.Content tagName="h2" value={attributes.title} />
-            <InnerBlocks.Content />
-        </div>
-    ),
-});
-```
-
-**Dynamic / Template block:**
-```jsx
-import metadata from '../block.json';
-const {registerBlockType}                  = wp.blocks;
-const {useBlockProps}                      = wp.blockEditor;
-const {serverSideRender: ServerSideRender} = wp;
-const {useSelect}                          = wp.data;
-
-registerBlockType(metadata, {
-    edit: (props) => {
-        const blockProps = useBlockProps({className: ['my-block-editor']});
-        const postId = useSelect((select) => select('core/editor').getCurrentPostId());
-
-        return (
-            <div {...blockProps}>
-                <ServerSideRender
-                    block={metadata.name}
-                    attributes={props.attributes}
-                    urlQueryArgs={{post_id: postId}}
-                />
-            </div>
-        );
-    },
-    save: () => null,
-});
-```
-
-Never import from `@wordpress/` — always use global `wp.*`.
-
-### 5. view/layout.php — template for dynamic blocks
-
-```php
-<?php
-/**
- * My Block template
- * @var $data array
- */
-defined('ABSPATH') || exit;
-
-$data       = $data ?? [];
-$title      = esc_html($data['title'] ?? '');
-$items      = $data['items'] ?? [];
-$blockClass = esc_attr($data['blockClass'] ?? '');
-$assetsUrl  = esc_url($data['assetsUrl'] ?? '');
-?>
-<div class="my-block<?php echo $blockClass ? ' ' . $blockClass : ''; ?>">
-    <?php if ($title) : ?>
-        <h2 class="my-block__title"><?php echo $title; ?></h2>
-    <?php endif; ?>
-    <?php foreach ($items as $item) : ?>
-        <div class="my-block__item"><?php echo esc_html($item['text'] ?? ''); ?></div>
-    <?php endforeach; ?>
-</div>
-```
-
-Escape everything: `esc_html()`, `esc_url()`, `esc_attr()`, `wp_kses_post()` for rich text.
-
-### 6. CF meta handler — src/Handlers/Meta/PostMeta/MyBlock.php
-
-```php
-<?php
-
-namespace StarterKit\Handlers\Meta\PostMeta;
-
-defined('ABSPATH') || exit;
-
-use Carbon_Fields\Container;
-use Carbon_Fields\Field;
-
-class MyBlock
-{
-    public static function make(): void
-    {
-        $p = SK_PREFIX . 'page_';  // results in 'skt_page_'
-
-        Container::make('post_meta', __('My Block', 'starter-kit'))
-                 ->where('post_type', '=', 'page')
-                 ->set_priority('default')
-                 ->add_fields([
-
-                     // Use separator fields to visually group sections in the admin
-                     Field::make('separator', $p . 'sep_hero', __('Hero Section', 'starter-kit')),
-
-                     Field::make('text', $p . 'title', __('Title', 'starter-kit'))
-                          ->set_default_value('Default Title'),
-
-                     Field::make('image', $p . 'image', __('Image', 'starter-kit')),
-
-                     Field::make('complex', $p . 'items', __('Items', 'starter-kit'))
-                          ->set_collapsed(true)
-                          ->setup_labels([
-                              'plural_name'   => __('Items', 'starter-kit'),
-                              'singular_name' => __('Item', 'starter-kit'),
-                          ])
-                          ->add_fields([
-                              Field::make('text',     'title', __('Title', 'starter-kit')),
-                              Field::make('textarea', 'text',  __('Text', 'starter-kit')),
-                              Field::make('image',    'image', __('Image', 'starter-kit'))->set_width(30),
-                          ]),
-
-                 ]);
-    }
-}
-```
-
-**CF field gotchas (from theme CLAUDE.md):**
-- `checkbox` → returns `'yes'` / `''`, NOT `true`/`false`
-- `complex` (repeater) → always returns `array[]`, read with `Utils::getPostMetaFw()`
-- `relationship` is deprecated → use `association`
-- `select` options: `['value' => 'Label']`
-- `->set_width(30)` makes field take 30% of the row width
-- `->set_default_value()` shows value immediately without admin filling anything
-
-### 7. Register CF hook — src/Base/Hooks.php
-
-Add ONE line in `initHooks()`, grouped with other CF hooks (around line 62-65):
+## 7. Register the CF hook — one line in `src/Base/Hooks.php`
 
 ```php
 add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\MyBlock::class, 'make']);
 ```
 
-Block registration is **automatic** — `Init::loadBlocks()` discovers `blocks/MyBlock/` at runtime.
-Never register blocks manually in Hooks.php.
+Add it grouped with the other `carbon_fields_register_fields` lines in `initHooks()`. This is the
+**only** manual registration step in the whole flow — the block itself is picked up automatically
+by `Init::loadBlocks()` because it has a `block.json`; never add a block to `Hooks.php`.
 
-### 8. Build
+If the block is meant to replace a still-enabled core block for editors (e.g. a custom
+`starter-kit/heading` should be picked over `core/heading`), add the core block's name to
+`gutenberg/disableRedundantBlocks` in `config/common/gutenberg.php` — otherwise both show up in the
+inserter and nothing stops someone from picking the wrong one.
 
-```bash
-cd web/wp-content/themes/starter-kit-theme
-npm run production   # or: npm run development / npm run watch
-```
+## 8. Place the block somewhere it actually renders
 
----
+A scaffolded, registered block isn't "done" until it's used. For a block meant to appear on every
+page of a given type, add it to the relevant file in `templates/`/`parts/`/`patterns/` — these are
+just Gutenberg block markup with a WP-recognized file location (see `content-types.md`), so add a
+`<!-- wp:starter-kit/my-block /-->`-style comment (with real attributes) where the block should
+appear, the same way existing blocks are wired into e.g. `patterns/header.php`. For a block meant
+to be used ad hoc by editors composing arbitrary pages, this step is unnecessary — it just needs to
+show up in the block inserter, which registration alone already handles.
 
-## Template block from URL reference — full workflow
-
-When the user gives a URL and says "replicate this", "make a block like this site":
-
-### Phase 1: Download and parse
-
-```bash
-# Download HTML
-curl -s -L "https://example.com/" \
-  -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" \
-  -o /tmp/ref.html && wc -c /tmp/ref.html
-
-# Find and download the page-specific CSS (usually the largest .css file)
-grep -o 'href="[^"]*\.css[^"]*"' /tmp/ref.html
-curl -s "https://..." -o /tmp/ref.css && wc -c /tmp/ref.css
-```
-
-### Phase 2: Extract design system
-
-```python
-import re
-
-with open('/tmp/ref.html') as f: html = f.read()
-with open('/tmp/ref.css') as f:  css  = f.read()
-
-# === Design tokens ===
-colors = set(re.findall(r'(?:background-color|color):\s*(#[0-9a-fA-F]{3,8}|rgba?\([^)]+\))', html + css))
-fonts  = re.findall(r'@font-face\{[^}]+\}', css)
-print("Colors:", sorted(colors))
-print("Fonts:", fonts[:3])
-
-# === Page sections (Tilda sites use div id="recXXX") ===
-rec_starts = [(m.start(), m.group(1)) for m in re.finditer(r'<div id="(rec\d+)"', html)]
-for i, (start, sid) in enumerate(rec_starts):
-    end   = rec_starts[i+1][0] if i+1 < len(rec_starts) else len(html)
-    chunk = html[start:end]
-    bgs   = re.findall(r'background-color:(#[0-9a-fA-F]{3,8}|rgba?\([^)]+\))', chunk[:3000])
-    clean = re.sub(r'<(?:style|script)[^>]*>.*?</(?:style|script)>', '', chunk, flags=re.DOTALL)
-    text  = re.sub(r'<[^>]+>', ' ', clean)
-    text  = re.sub(r'\s+', ' ', text).strip()[:250]
-    print(f"\nSECTION {i+1} ({sid}) | BG: {bgs[:2]}\n  {text}")
-
-# === Extract all text content per section (tn-atom for Tilda) ===
-for i, (start, sid) in enumerate(rec_starts):
-    end   = rec_starts[i+1][0] if i+1 < len(rec_starts) else len(html)
-    chunk = html[start:end]
-    clean = re.sub(r'<style[^>]*>.*?</style>', '', chunk, flags=re.DOTALL)
-    atoms = re.findall(r"<div class='tn-atom'[^>]*field='[^']*'>(.*?)</div>", clean, re.DOTALL)
-    texts = [re.sub(r'<[^>]+>', '', a).strip() for a in atoms if re.sub(r'<[^>]+>', '', a).strip()]
-
-    # Catalog items (Tilda t778 block = product grid)
-    titles = re.findall(r'class="t778__title[^"]*"[^>]*>(.*?)</div>', clean, re.DOTALL)
-    descrs = re.findall(r'class="t778__descr[^"]*"[^>]*>(.*?)</div>\s*<div class="t778__price', clean, re.DOTALL)
-    if titles:
-        for t, d in zip(titles, descrs):
-            tc = re.sub(r'<[^>]+>', '', t).strip()
-            items = re.findall(r'<li[^>]*>(.*?)</li>', d, re.DOTALL)
-            print(f"\n  MODULE: {tc}")
-            for item in items: print(f"    • {re.sub('<[^>]+>','',item).strip()}")
-    for t in texts:
-        if len(t) > 3: print(f"  TEXT: {t[:100]}")
-
-    # YouTube embeds
-    yt = re.findall(r'data-youtubeid="([^"]+)"', chunk)
-    if yt: print(f"  YOUTUBE: {yt}")
-```
-
-### Phase 3: Download all assets
+## 9. Build
 
 ```bash
-ASSETS="web/wp-content/themes/starter-kit-theme/blocks/MyBlock/assets"
-mkdir -p "$ASSETS"
+npm run dev     # fast, unminified — use while iterating
+npm run prod    # before calling it done
 ```
 
-```python
-# Get all downloadable URLs
-imgs  = re.findall(r"data-original='(https://[^']+(?:\.png|\.jpg|\.svg|\.webp))'", html)
-imgs += re.findall(r"background-image:url\('(https://[^']+)'\)", html + css)
-woffs = re.findall(r"url\('(https://[^']+\.woff2?)'\)", css)
+Nothing needs to be told *which* block to compile — `webpack.mix.js` globs every
+`blocks/!(_)**/src/*` automatically.
 
-for url in sorted(set(imgs + woffs)):
-    fname = url.split('/')[-1].split('?')[0]
-    print(f"curl -s '{url}' -o {ASSETS}/{fname}")
-```
+## 10. Verify
 
-Then run the printed curl commands. Reference them in PHP as:
-```php
-$assetsUrl = get_template_directory_uri() . '/blocks/MyBlock/assets/';
-// e.g. $assetsUrl . 'hero-bg.svg'
-```
-
-### Phase 4: Map sections → CF fields
-
-Each visual section on the site → a `separator` + group of CF fields.
-Repeating items (modules, reviews, pricing cards) → `complex` (repeater) field.
-YouTube reviews → `complex` with `youtube_id` text field.
-
-**Always set `->set_default_value()` with real content from the site** so the block renders
-correctly with zero admin input. Admin can override via CF, but defaults show the real design.
-
-### Phase 5: view/layout.php — hardcode real content as fallback
-
-```php
-// Use CF data or fall back to real content scraped from the reference site
-$modulesData = !empty($modules) ? $modules : [
-    ['title' => 'Real Module 0 Title',   'items' => "Topic 1\nTopic 2\nTopic 3"],
-    ['title' => 'Real Module 1 Title',   'items' => "Topic A\nTopic B"],
-    // ... all content from the reference site
-];
-// This means the block looks right immediately, even before admin fills any CF fields
-```
-
-### Phase 6: style.scss — replicate the site's design system
-
-```scss
-.block-name {
-  --color-bg:     #000000;    // extracted from site CSS
-  --color-accent: #d3a634;    // gold
-  --color-cta:    #ff8562;    // orange button
-  --font-main:    'FontName', Arial, sans-serif;
-
-  // Load downloaded fonts
-  @font-face {
-    font-family: 'FontName';
-    src: url('../assets/font-bold.woff') format('woff');
-    font-weight: 700;
-    font-display: swap;
-  }
-
-  // Mirror the site's section structure
-  background-color: var(--color-bg);
-
-  &__hero { background-color: var(--color-bg); min-height: 100vh; ... }
-  &__section-name { background-color: ...; padding: ...; }
-}
-```
-
----
-
-## Verify before declaring done
+WP-CLI only exists inside the `php` container, run from the **foundation root**, not the theme
+dir:
 
 ```bash
-# 1. Build succeeds
-cd web/wp-content/themes/starter-kit-theme && npm run production
+# Is it registered at all?
+docker compose exec php su -c "wp eval 'var_dump(WP_Block_Type_Registry::get_instance()->get_registered(\"starter-kit/my-block\"));'" www-data
 
-# 2. Block is registered
-docker compose exec php wp --allow-root --path=/srv/web eval \
-  'var_dump(WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block") !== null);'
-
-# 3. CF container has all fields
-docker compose exec php wp --allow-root --path=/srv/web eval '
-  do_action("carbon_fields_register_fields");
-  foreach (\Carbon_Fields\Carbon_Fields::resolve("container_repository")->get_containers() as $c) {
-    if ($c instanceof \Carbon_Fields\Container\Post_Meta_Container)
-      echo $c->get_id() . ": " . count($c->get_fields()) . " fields\n";
-  }
-'
-
-# 4. Block renders real HTML with a page postId
-docker compose exec php wp --allow-root --path=/srv/web eval '
-  do_action("carbon_fields_register_fields");
-  $bt  = WP_Block_Type_Registry::get_instance()->get_registered("starter-kit/my-block");
-  $b   = new WP_Block(
-    ["blockName"=>"starter-kit/my-block","attrs"=>[],"innerBlocks"=>[],"innerHTML"=>"","innerContent"=>[]],
-    ["postId"=>PAGE_ID,"postType"=>"page"]
-  );
-  $out = call_user_func($bt->render_callback, [], "", $b);
-  echo strlen($out) . " chars\n";
-  // Check key sections present
-  foreach (["expected-class", "Expected Text"] as $check)
-    echo (str_contains($out, $check) ? "✓" : "✗") . " $check\n";
-'
+# For dynamic blocks: does the render callback actually return HTML for a real post?
+# See blocks/CLAUDE.md § "Debugging an empty block" for the eval-file recipe — quoting a
+# multi-line PHP snippet through docker exec + su -c is not worth fighting with inline.
 ```
 
----
+Then open the block in the editor and confirm it's not blank there either — `ServerSideRender`
+failing silently in the editor is a different failure mode than the PHP callback itself being
+broken, and the wp-cli check above only rules out the second one.
 
-## Where to find CF fields in the admin
-
-Meta fields are **below the block editor** on the page edit screen.
-
-If hidden: click `⋮` (top right of editor) → **Preferences** → **Panels** → enable the container.
-
-Conditions for meta boxes to appear:
-- Container's `->where('post_type', '=', 'page')` matches the post type being edited
-- CF is booted (`ThemeSettings::boot()` runs on `after_setup_theme` via Hooks.php)
-- The `carbon_fields_register_fields` hook ran (verify with WP-CLI check above)
-
----
-
-## Hard rules for this project
-
-- `wp.*` globals only — never `import from '@wordpress/...'`
-- Hooks only in `src/Base/Hooks.php` → `initHooks()`
-- CF meta only via `Utils::getPostMetaFw()` / `Utils::getPostMeta()`
-- Block auto-discovered — never register in Hooks.php manually
-- All PHP PSR-12, typed properties, return types on public methods
-- Never `get_the_ID()` alone in dynamic block callbacks
-- Always `urlQueryArgs={{post_id: postId}}` in ServerSideRender (underscore)
-- Always `"usesContext": ["postId", "postType"]` in block.json for CF-reading blocks
+**Before calling the block done**, check `blocks/MyBlock/` doesn't have a leftover `build/` with no
+matching `block.json`/`Block.php`/`src/` — easy to leave behind if a build runs before the PHP/JSX
+source is saved, or if a block gets renamed/abandoned mid-work.

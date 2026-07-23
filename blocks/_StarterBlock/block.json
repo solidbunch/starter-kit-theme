@@ -4,7 +4,7 @@
   "title": "Starter Block",
   "category": "starter-kit",
   "icon": "skb skb-starter",
-  "description": "Just simple blank block. Copy, rename and edit settings",
+  "description": "Boilerplate block — copy this folder, rename it, trim what you don't need. See blocks/CLAUDE.md for the full authoring guide, including the dynamic (PHP-rendered) variant.",
   "keywords": [
     "Starter",
     "Blank",
@@ -12,32 +12,34 @@
   ],
   "textdomain": "",
   "styles": [],
-  "supports": {},
+  "supports": {
+    "align": ["wide", "full"]
+  },
   "example": {},
   "attributes": {
-    "attribute1": {
-      "type": "string",
-      "default": ""
-    },
-    "attribute2": {
-      "type": "string",
-      "source": "text",
-      "selector": ".some-class1"
-    },
-    "attribute3": {
-      "type": "boolean",
-      "default": false
-    },
-    "attribute4": {
+    "heading": {
       "type": "string",
       "source": "html",
-      "selector": "h4"
+      "selector": "h4.starter-block__heading"
     },
-    "attribute5": {
+    "badgeLabel": {
+      "type": "string",
+      "source": "text",
+      "selector": ".starter-block__badge"
+    },
+    "iconClass": {
       "type": "string",
       "source": "attribute",
-      "selector": "div",
-      "attribute": "data-align"
+      "selector": ".starter-block__icon",
+      "attribute": "data-icon"
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "variant": {
+      "type": "string",
+      "default": "value1"
     }
   }
 }

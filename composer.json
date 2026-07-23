@@ -84,7 +84,10 @@
     "psr-4": {
       "StarterKit\\": "src/",
       "StarterKitBlocks\\": "blocks/"
-    }
+    },
+    "exclude-from-classmap": [
+      "blocks/_*/"
+    ]
   },
   "autoload-dev": {
     "psr-4": {

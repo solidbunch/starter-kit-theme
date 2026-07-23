@@ -12,7 +12,7 @@
   -->
 
   <!-- PHP version uses at PHPCompatibility -->
-  <config name="testVersion" value="8.1"/>
+  <config name="testVersion" value="8.4-"/>
 
   <!--
   #############################################################################
@@ -49,6 +49,10 @@
   <exclude-pattern>*/node_modules/*</exclude-pattern>
   <exclude-pattern>.git/*</exclude-pattern>
   <exclude-pattern>.github/*</exclude-pattern>
+  <!-- Snippet fragments are merge instructions, not standalone files: top-level side effects, no
+       namespace/ABSPATH guard, never loaded as-is. The rest of stubs/ is real PHP copied verbatim
+       into the theme root during conversion, so it stays linted (must pass composer lint). -->
+  <exclude-pattern>*/stubs/*.snippet.php</exclude-pattern>
 
   <!--
   #############################################################################

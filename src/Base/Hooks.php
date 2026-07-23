@@ -46,6 +46,12 @@ class Hooks
         add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
         add_filter('register_block_type_args', [Handlers\Blocks\Init::class, 'addSpacerAttributeToBlocks']);
         add_action('init', [Handlers\Blocks\DisableDefaultBlocks::class, 'init']);
+        add_filter(
+            'use_block_editor_for_post_type',
+            [Handlers\Blocks\BlockEditorSupport::class, 'filterPostType'],
+            10,
+            2
+        );
 
         /************************************
          *     PostTypes with Taxonomies
