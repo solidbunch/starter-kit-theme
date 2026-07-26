@@ -19,6 +19,29 @@ use StarterKit\Helper\Utils;
 class Front
 {
     /**
+     * Preload critical webfonts to reduce FOIT/FOUT and layout shift
+     *
+     * @return void
+     */
+    public static function preloadFonts(): void
+    {
+        $fonts = Config::get('frontend/preloadFonts');
+
+        if (empty($fonts) || ! is_array($fonts)) {
+            return;
+        }
+
+        foreach ($fonts as $relativePath) {
+            $href = SK_ASSETS_URI . $relativePath;
+
+            printf(
+                '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin="anonymous">' . "\n",
+                esc_url($href)
+            );
+        }
+    }
+
+    /**
      * Load critical assets before blocks assets
      *
      * @return void

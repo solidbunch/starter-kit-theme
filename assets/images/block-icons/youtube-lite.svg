@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Rounded rectangle similar to YouTube logo -->
+  <rect x="48" y="112" width="416" height="288" rx="72" ry="72" />
+  <!-- Play triangle -->
+  <path d="M224 192v128l128-64-128-64z" />
+</svg>

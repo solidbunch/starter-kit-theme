@@ -1,2 +1,22 @@
-// Front Block Styles
-// Will load also in the editor
+// Frontend + editor styles (optional). Loads in both contexts — delete this file and the
+// matching 'style' entry in Block.php's $blockAssets if the block only needs Bootstrap classes.
+
+.starter-block {
+  &__icon {
+    display: inline-block;
+
+    // our display rule beats the UA's [hidden] { display: none } — restore it
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+  }
+
+  // toggled by FrontendModule on icon click
+  &--active {
+    opacity: 0.6;
+  }
+}

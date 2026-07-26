@@ -5,7 +5,6 @@ namespace StarterKit\Base;
 defined('ABSPATH') || exit;
 
 use StarterKit\Handlers;
-use StarterKit\Helper\Config;
 use StarterKitBlocks;
 
 /**
@@ -47,6 +46,12 @@ class Hooks
         add_filter('render_block', [Handlers\Blocks\BlockRenderHacks::class, 'templatePartWrapperHack'], 10, 2);
         add_filter('register_block_type_args', [Handlers\Blocks\Init::class, 'addSpacerAttributeToBlocks']);
         add_action('init', [Handlers\Blocks\DisableDefaultBlocks::class, 'init']);
+        add_filter(
+            'use_block_editor_for_post_type',
+            [Handlers\Blocks\BlockEditorSupport::class, 'filterPostType'],
+            10,
+            2
+        );
 
         /************************************
          *     PostTypes with Taxonomies
@@ -54,9 +59,6 @@ class Hooks
         add_action('init', [Handlers\PostTypes\News::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerCategoryTaxonomy'], 5);
         add_action('init', [Handlers\PostTypes\News::class, 'registerTagTaxonomy'], 5);
-        add_action('init', [Handlers\PostTypes\Portfolio::class, 'registerPostType'], 5);
-        add_action('init', [Handlers\PostTypes\Pricing::class, 'registerPostType'], 5);
-        add_action('init', [Handlers\PostTypes\DocPage::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\TeamMember::class, 'registerPostType'], 5);
         add_action('init', [Handlers\PostTypes\Service::class, 'registerPostType'], 5);
 
@@ -65,7 +67,6 @@ class Hooks
          ************************************/
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\News::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\TaxonomyMeta\NewsCategory::class, 'make']);
-        add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Pricing::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\PostMeta\Page::class, 'make']);
         add_action('carbon_fields_register_fields', [Handlers\Meta\UserMeta\UserMeta::class, 'make']);
 
@@ -96,6 +97,8 @@ class Hooks
         add_action('wp_enqueue_scripts', [Handlers\Front::class, 'loadFrontendJsData']);
         add_action('style_loader_src', [Handlers\Front::class, 'addFileTimeVerToStyles'], 20, 2);
         add_action('send_headers', [Handlers\Front::class, 'addNoCacheHeaders']);
+        // Preload critical fonts to avoid layout shift on load
+        add_action('wp_head', [Handlers\Front::class, 'preloadFonts'], 0);
         // Change excerpt dots
         add_filter('excerpt_more', [Handlers\Front::class, 'changeExcerptMore']);
         // Add GTM code
