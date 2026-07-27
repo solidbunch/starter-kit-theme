@@ -188,6 +188,11 @@ Give it this target shape explicitly so it doesn't have to re-derive it:
   `template-parts/`, drop the `parts/`/`patterns/` rows, note `theme.json` is now settings-only.
 - **Edit `.claude/rules/content-types.md`**: replace the "FSE markup folders" section with the
   classic-template + per-post-type block-editor description; keep the Carbon Fields section as-is.
+- **Edit `README.MD`**: same "FSE theme" → "classic PHP-template theme; Gutenberg blocks retained
+  for opt-in post types" swap as `CLAUDE.md`, wherever the public-facing summary/description
+  mentions FSE (top intro line, `## Blocks` overview if it references FSE template composition);
+  `## Structure` tree: `templates/*.php`/`template-parts/` instead of the FSE folders, same as the
+  `CLAUDE.md` edit above.
 - **`architecture.md`**: `disableGutenbergForPostTypes`/`BlockEditorSupport` are already documented
   in the config table (added once, permanently, independent of this skill) — nothing to add here
   unless the row itself is missing.

@@ -1,13 +1,14 @@
 # Starter Kit theme
+
 <!--suppress HtmlDeprecatedAttribute -->
 
 <p align="center">
 
-  <a href="LICENSE.md">
+<a href="LICENSE.md">
     <img alt="GitHub" src="https://img.shields.io/github/license/solidbunch/starter-kit-theme">
   </a>
 
-  <a href="https://github.com/solidbunch/starter-kit-theme/releases">
+<a href="https://github.com/solidbunch/starter-kit-theme/releases">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/solidbunch/starter-kit-theme?color=blueviolet">
   </a>
 
@@ -17,6 +18,13 @@
 <strong>WordPress starter theme with a modern development stack for launching projects faster and easily.</strong>
 
 </p>
+
+### [Website](https://starter-kit.io) | [Documentation](https://starter-kit.io/docs/overview/)
+
+Custom FSE (Full Site Editing) block theme: PSR-4/PSR-12 PHP, Carbon Fields, self-contained
+Gutenberg blocks, SCSS + Bootstrap 5. Normally used as the application layer of
+[StarterKit Foundation](https://github.com/solidbunch/starter-kit-foundation) (Docker + IaC +
+CI/CD), but installs standalone too, see below.
 
 ## Requirements
 
@@ -62,6 +70,7 @@ npm install
 npm run replaceNames
 ```
 -->
+
 ### Build commands
 
 - Build minified assets for production:
@@ -119,6 +128,7 @@ npm run watch
    ├── App.php                  # Application Singleton. Entrypoint
    └── dev.php                  # Some developers functions for debug, logging, etc
 
+── blocks/                      # Gutenberg blocks, self-contained (own PHP, templates, styles, assets)
 ── assets/                      # Theme assets
    ├── build/                   # The compiled assets
    ├── fonts/
@@ -141,15 +151,29 @@ npm run watch
 ── webpack.mix.js
 ── .editorconfig
 ── .gitignore
-
 ```
 
 ## Blocks
 
 ### Overview
 
- Gutenberg Blocks in the `blocks/` folder are loaded with the autoloader. That is, you can simply create a folder of a new block with the necessary files and this blocks will be automatically available.
+Gutenberg Blocks in the `blocks/` folder are loaded with the autoloader, create a new block folder
+with the necessary files and it becomes automatically available, nothing to register by hand.
 
-Use `StarterBlock` as an example to create new blocks.
+Each block is a fully self-contained, reusable unit: its own `Block.php`, templates, styles and
+assets, independent of the theme. Blocks come in two kinds, **static** (content saved into post
+HTML) and **dynamic** (PHP-rendered on every request from DB/meta data).
 
- <!-- Each shortcode has its view files, its assets directory, which contains its own, individual css, js, images, fonts, etc. (these attachments need to be connected via wp_enqueue_style and wp_enqueue_script in the shortcode.php file, they are not automatically connected). This is necessary to ensure that shortcode shortcuts are loaded only when the shortcode is active and that you can transfer the shortcodes by simply copying the shortcode folder. -->
+Use `_StarterBlock` as an example to create new blocks. Full guide: [blocks/CLAUDE.md](blocks/CLAUDE.md).
+
+## Documentation
+
+- [CLAUDE.md](CLAUDE.md) - architecture, DI container, config system, conventions
+- [blocks/CLAUDE.md](blocks/CLAUDE.md) - block authoring guide (static vs dynamic, folder shape, gotchas)
+- [.claude/skills/](.claude/skills/) - guided workflows: new CPT, new block, FSE → classic conversion
+- [StarterKit docs](https://starter-kit.io/docs/overview/) - Foundation-level setup, environments, CI/CD
+
+## Stay Connected
+
+- Participate on [GitHub Discussions](https://github.com/solidbunch/starter-kit-theme/discussions)
+- Connect via [LinkedIn](https://www.linkedin.com/company/solidbunch)
