@@ -53,6 +53,8 @@
        namespace/ABSPATH guard, never loaded as-is. The rest of stubs/ is real PHP copied verbatim
        into the theme root during conversion, so it stays linted (must pass composer lint). -->
   <exclude-pattern>*/stubs/*.snippet.php</exclude-pattern>
+  <!-- Custom sniff tooling, not theme code - not scanned against theme style rules. -->
+  <exclude-pattern>*/.phpcs/*</exclude-pattern>
 
   <!--
   #############################################################################
@@ -71,5 +73,9 @@
 
   <!-- Use PHPCompatibilityWP standard -->
   <rule ref="PHPCompatibilityWP"/>
+
+  <!-- Disallow alternative (colon) control-structure syntax (if/endif, foreach/endforeach, ...)
+       - required by stubs/classic-theme/CONVERT.md's brace-syntax rule for classic templates. -->
+  <rule ref="./.phpcs/StarterKitStandard/Sniffs/ControlStructures/DisallowAlternativeSyntaxSniff.php"/>
 
 </ruleset>
