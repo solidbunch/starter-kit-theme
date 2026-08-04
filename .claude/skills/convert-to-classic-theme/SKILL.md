@@ -5,8 +5,7 @@ description: >
   render layer (header.php/footer.php/page.php/single.php/archive.php + template-parts/), while
   KEEPING the entire Gutenberg block system (blocks/*, Init::loadBlocks()) and making the block
   editor a per-post-type opt-in instead of theme-wide. Use for "convert this theme to classic",
-  "remove FSE, keep blocks", "switch to PHP templates", or Russian "убери ФСЕ, оставь блоки",
-  "переведи тему на классические темплейты". Not for removing Gutenberg/blocks entirely — that is
+  "remove FSE, keep blocks", "switch to PHP templates". Not for removing Gutenberg/blocks entirely — that is
   explicitly out of scope, see below — and not for renaming the theme's identity (text
   domain/prefixes/namespace), which is `wp clone-theme` / `bootstrap-project` territory.
 ---
