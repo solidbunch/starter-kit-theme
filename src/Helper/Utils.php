@@ -80,7 +80,7 @@ class Utils
         string $optionName,
         mixed $value,
         bool $usePrefix = true,
-        bool $autoload = null
+        ?bool $autoload = null
     ): void {
         $prefix     = _SK_PREFIX;
         $optionName = $usePrefix ? self::addPrefix($optionName, $prefix) : $optionName;

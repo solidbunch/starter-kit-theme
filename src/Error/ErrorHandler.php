@@ -72,7 +72,7 @@ class ErrorHandler
 
         $whoops = new Run();
 
-        $s_levels = E_STRICT | E_DEPRECATED | E_USER_DEPRECATED | E_WARNING | E_USER_WARNING | E_NOTICE | E_USER_NOTICE;
+        $s_levels = E_DEPRECATED | E_USER_DEPRECATED | E_WARNING | E_USER_WARNING | E_NOTICE | E_USER_NOTICE;
         $whoops->silenceErrorsInPaths('@wp-content' . DIRECTORY_SEPARATOR . 'plugins@', $s_levels);
 
         $whoops->pushHandler(static::getPrettyHandler());

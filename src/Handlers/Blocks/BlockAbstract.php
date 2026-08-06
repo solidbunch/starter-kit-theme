@@ -103,7 +103,7 @@ abstract class BlockAbstract implements BlockInterface
      *
      * @throws Throwable
      */
-    public function loadBlockView(string $file = '', array $data = [], string $base = null, bool $echo = false): string
+    public function loadBlockView(string $file = '', array $data = [], ?string $base = null, bool $echo = false): string
     {
         if ($base === null) {
             $base = $this->blocksDir . $this->blockName . '/' . SK_BLOCKS_VIEW_DIR;
