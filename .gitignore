@@ -57,3 +57,16 @@ vendor
 #=============================================================#
 assets/build/*
 blocks/**/build/*
+
+
+# ===================================#
+#          Claude Code               #
+# ===================================#
+# Keep shared AI instructions tracked (root CLAUDE.md, .claude/rules/, .claude/skills/);
+# ignore machine-local runtime artifacts.
+.claude/worktrees/
+.claude/plans/
+.claude/backlog/
+.claude/notes/
+.claude/settings.local.json
+CLAUDE.local.md

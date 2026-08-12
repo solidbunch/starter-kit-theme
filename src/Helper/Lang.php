@@ -109,7 +109,7 @@ class Lang
         int $obj_id,
         string $type,
         bool $origin_if_missing = false,
-        string $lang = null
+        ?string $lang = null
     ): ?int {
         return apply_filters('wpml_object_id', $obj_id, $type, $origin_if_missing, $lang);
     }
