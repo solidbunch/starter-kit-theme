@@ -4,17 +4,26 @@ const blockTemplate = [['starter-kit/list-item']];
 
 const {registerBlockType} = wp.blocks;
 const {InspectorControls, InnerBlocks, useBlockProps, BlockControls} = wp.blockEditor;
-const {ToolbarGroup, ToolbarButton} = wp.components;
+const {ToolbarGroup, ToolbarButton, PanelBody, TextControl} = wp.components;
+
+const getListStartAttribute = (listType, start) =>
+  listType === 'ol' && Number.isInteger(start) && start !== 1 ? start : undefined;
 
 registerBlockType(blockMetadata, {
   edit: props => {
     const {className, attributes, setAttributes} = props;
-    const {listType} = attributes;
+    const {listType, start} = attributes;
 
-    const blockProps = useBlockProps({className});
+    const startAttr = getListStartAttribute(listType, start);
+    const blockProps = useBlockProps({className, ...(startAttr !== undefined ? {start: startAttr} : {})});
 
     const onChangeListType = (type) => {
       setAttributes({listType: type});
+    };
+
+    const onChangeStart = (value) => {
+      const parsed = Number(value);
+      setAttributes({start: value !== '' && Number.isInteger(parsed) ? parsed : undefined});
     };
 
     const renderControls = (
@@ -25,6 +34,16 @@ registerBlockType(blockMetadata, {
               <p className='text-center mb-0'>{listType === 'ol' ? 'Ordered List' : 'Unordered List'}</p>
             </div>
           </div>
+          {listType === 'ol' && (
+            <PanelBody title="Ordered List Settings">
+              <TextControl
+                label="Start value"
+                type="number"
+                value={start ?? ''}
+                onChange={onChangeStart}
+              />
+            </PanelBody>
+          )}
         </InspectorControls>
         <BlockControls key="blockControls">
           <ToolbarGroup>
@@ -59,10 +78,15 @@ registerBlockType(blockMetadata, {
     ];
   },
   save: ({attributes}) => {
-    const {listType} = attributes;
+    const {listType, start} = attributes;
     const TagName = listType === 'ul' ? 'ul' : 'ol';
     const {className} = useBlockProps.save();
     const blockProps = className ? {className} : {};
+
+    const startAttr = getListStartAttribute(listType, start);
+    if (startAttr !== undefined) {
+      blockProps.start = startAttr;
+    }
 
     return (
       <TagName {...blockProps}>

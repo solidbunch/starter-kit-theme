@@ -16,6 +16,9 @@
     "listType": {
       "type": "string",
       "default": "ul"
+    },
+    "start": {
+      "type": "integer"
     }
   }
 }
