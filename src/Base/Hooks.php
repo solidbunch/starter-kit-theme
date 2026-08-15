@@ -108,7 +108,8 @@ class Hooks
         add_action('wp_head', [Handlers\Analytics::class, 'addAnalyticsHead']);
         // Add Google site verification code to head
         add_action('wp_head', [Handlers\Analytics::class, 'addGoogleSiteVerification']);
-
+        // Anti-spam
+        add_action('phpmailer_init', [Handlers\Front::class, 'antispamForm']);
         /************************************
          *       Security and CleanUp
          ************************************/
