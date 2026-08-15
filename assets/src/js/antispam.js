@@ -5,7 +5,7 @@ window.themeAntispam = {
   /**
    * Constructor
    */
-  initialize: function() {
+  initialize(){
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => this.setupFormsAntispam());
@@ -17,7 +17,7 @@ window.themeAntispam = {
   /**
    * Setup Antispam Field
    */
-  setupFormsAntispam: function() {
+  setupFormsAntispam(){
     // Select all forms on the page
     const forms = document.querySelectorAll('form');
 
@@ -45,6 +45,7 @@ window.themeAntispam = {
           form.addEventListener('keydown', insert, {once: true});
 
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.warn('Antispam error:', e);
         }
       }
