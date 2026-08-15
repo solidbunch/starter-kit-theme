@@ -5,6 +5,7 @@
     "/assets/build/fonts/icons/icons.font.js": "/assets/build/fonts/icons/icons.font.js",
     "/assets/build/js/editor.js": "/assets/build/js/editor.js",
     "/assets/build/js/app.js": "/assets/build/js/app.js",
+    "/assets/build/js/antispam.js": "/assets/build/js/antispam.js",
     "/assets/build/js/bootstrap/offcanvas.js": "/assets/build/js/bootstrap/offcanvas.js",
     "/assets/build/js/bootstrap/dropdown.js": "/assets/build/js/bootstrap/dropdown.js",
     "/assets/build/js/bootstrap/collapse.js": "/assets/build/js/bootstrap/collapse.js",
