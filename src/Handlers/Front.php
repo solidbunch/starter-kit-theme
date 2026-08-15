@@ -106,6 +106,23 @@ class Front
      */
     public static function enqueueThemeAssets(): void
     {
+        /*wp_enqueue_script(
+            'theme-common-script',
+            SK_ASSETS_URI . 'build/js/app.js',
+            [],
+            filemtime(SK_ASSETS_DIR . 'build/js/app.js'),
+            ['strategy' => 'defer', 'in_footer' => true]
+        );*/
+
+        if (self::antispamEnabled() === 1) {
+            wp_enqueue_script(
+                'theme-antispam',
+                SK_ASSETS_URI . 'build/js/antispam.js',
+                [],
+                filemtime(SK_ASSETS_DIR . 'build/js/antispam.js'),
+                ['strategy' => 'defer', 'in_footer' => true]
+            );
+        }
     }
 
     /**
@@ -184,22 +201,35 @@ class Front
      * @return null|PHPMailer
      * @throws Exception
      */
-    public static function antispamForm(PHPMailer $phpmailer): null|PHPMailer
+    public static function antispamForm($phpmailer)
     {
-        if (self::antispam_enabled() !== 1) {
+        if (self::antispamEnabled() !== 1) {
             return null;
         }
 
         $date_utc = new \DateTime("now", new \DateTimeZone("UTC"));
 
-        $code = ($date_utc->format('H') + 1) * $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
+        $code = /* ($date_utc->format('H') + 1) * */
+            $date_utc->format('d') * $date_utc->format('m') * $date_utc->format('Y');
 
         if (!empty($_POST) && !empty($_POST['as_code']) && $_POST['as_code'] == $code) {
             return null;
         }
 
-        $phpmailer->clearAllRecipients();
+        if (method_exists($phpmailer, 'clearAllRecipients')) {
+            $phpmailer->clearAllRecipients();
+        }
 
         return $phpmailer;
+    }
+
+    /**
+     * Checks if anti-spam enabled in theme options
+     *
+     * @return int
+     */
+    public static function antispamEnabled()
+    {
+        return (int)Utils::getOption('forms_antispam', 0);
     }
 }
