@@ -46,6 +46,18 @@ All paths below are relative to this theme's own root directory (`web/wp-content
    (e.g. a blog's home/category/article/search states) — read all of them before step 1, not one
    at a time, since components repeat across pages and you want to spot that before designing
    anything.
+4. **If the handoff is a live external reference URL instead of a provided static file** (the user
+   says "make it like example.com", not "here's the exported HTML"), a screenshot is not a
+   handoff — pull the full page structure (accessibility snapshot / DOM tree, e.g. Playwright's
+   `browser_snapshot`) before classifying anything in step 2. A screenshot only shows what fits in
+   one viewport at a glance and reads as "a hero and some cards"; the actual accessibility tree
+   reveals the real section count, order, and headings (a stats block, a tabs+tags block, a
+   2-card block — whatever is actually there) that a screenshot-only pass reliably under-builds.
+   This has concretely happened: a first pass built from a screenshot alone shipped 5 of 9 real
+   sections. Confirm the section list with the user (step 2's classification table) before writing
+   any code, and if the user's phrasing implies close 1:1 fidelity ("as reference", "like this
+   site") rather than loose inspiration, ask which one they mean — don't default to "inspired by"
+   on your own judgment when the phrasing is ambiguous.
 
 ## 1. Inventory pass — mandatory, before any design work
 
@@ -158,7 +170,17 @@ reason to reach for it over a plain dedicated template.
   call — this theme's own docs (`content-types.md`) deliberately don't duplicate the field
   catalogue, they point to this same URL for exactly this reason. A field type invented from memory
   that happens not to exist fails silently or throws deep in Carbon Fields' internals — always
-  worse to debug than spending thirty seconds confirming the real signature first.
+  worse to debug than spending thirty seconds confirming the real signature first. This applies
+  just as much to `set_header_template()` on a `complex` field (the admin-UI row label for each
+  repeatable entry, e.g. `News.php`'s `related_data` field): it's an Underscore.js template, not
+  Mustache — output a value with `<%- field_name %>`, gate with `<% if (field_name) { %>...<% } %>`.
+  `{{ field_name }}` is not valid syntax here and silently prints the literal string `{{ field_name
+  }}` in every row header instead of throwing — copy an existing working `set_header_template()`
+  call (e.g. `News.php`) verbatim rather than reconstructing the tag syntax from memory, and if you
+  do write new complex-field sub-fields, actually open the admin edit screen and look at the
+  rendered row headers before calling the field done — this exact mistake has shipped silently
+  because the container "worked" (fields saved and read back fine) while every row header showed
+  raw template tags to the editor.
 - Prefix every new field key with `SK_PREFIX` (`skt_`), matching every existing container.
 
 ## 4. Generate templates and partials
@@ -228,6 +250,15 @@ Give this checklist to the user (or hand it to `qa-analyst`/`acceptance-tester`)
 - Every new Carbon Fields field (branch A, A2, and D) is actually editable in wp-admin, and the
   front end reflects the real value entered — not an empty section/field, which usually means the
   `$args['section']`/meta-key unpack is wrong.
+- Every new `complex` field's row headers, in the actual rendered wp-admin edit screen (not just
+  the PHP source), show real interpolated values — not literal `{{ field_name }}` text. Fields can
+  save and read back correctly while a `set_header_template()` typo still breaks only the admin UI
+  label; the front-end/lint/build checks above won't catch this, only looking at the rendered
+  screen will.
+- This template's front-end render was verified by an independent read-only pass (`acceptance-tester`
+  or equivalent), not only by the agent that wrote the code — see the project's own
+  `design-verification.md`: self-assessment of your own rendered output is the exact failure mode
+  that rule exists to prevent, and it applies here just as much as to any other layout change.
 - A repo-wide grep for `get_post_meta(`, `update_post_meta(`, `get_option(`, `update_option(`,
   `carbon_get_`, `carbon_set_` inside the files this skill just generated returns nothing — every
   read/write went through `Helper\Utils`.
