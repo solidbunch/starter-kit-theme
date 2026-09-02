@@ -61,6 +61,14 @@ class RestApiFilter
          */
         $allowedNamespaces = apply_filters(SK_HOOKS_PREFIX . '/rest_api_namespace_whitelist', $allowedNamespaces);
 
+        // This is a security control: never trust the filter's return value. A non-array would break
+        // the loop below, and an empty string would normalise to '/' and whitelist every REST route.
+        $allowedNamespaces = array_filter(
+            (array) $allowedNamespaces,
+            static function ($namespace): bool {
+                return is_string($namespace) && $namespace !== '';
+            }
+        );
 
         foreach ($allowedNamespaces as $allowedNamespace) {
             if ($allowedNamespace[0] !== '/') {
