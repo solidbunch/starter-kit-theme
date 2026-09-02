@@ -1,0 +1,40 @@
+name: Verify Release Tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  verify-tag:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Detect and Validate Tag Format
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+
+          echo "Resolved tag: $TAG"
+
+          if [[ ! "$TAG" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error title=Invalid tag format::'$TAG' is not a valid semver tag (expected e.g. 1.2.3 or v1.2.3)."
+            exit 1
+          fi
+
+          echo "TAG_NAME=$TAG" >> $GITHUB_ENV
+
+      - name: Verify style.css version matches tag
+        run: |
+          HEADER_VERSION=$(grep -m1 -E '^Version:' style.css | sed -E 's/^Version:[[:space:]]*//; s/[[:space:]]*$//')
+          TAG_VERSION="${TAG_NAME#v}"
+
+          echo "Header version: $HEADER_VERSION"
+          echo "Tag version:    $TAG_VERSION"
+
+          if [ "$HEADER_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error title=Theme header/tag version mismatch::style.css declares 'Version: $HEADER_VERSION' but the release tag is $TAG_VERSION. Bump the theme header before tagging -- WP admin and 'wp theme list' report the header, not the tag."
+            exit 1
+          fi
