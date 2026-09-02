@@ -32,7 +32,7 @@ Stylelint 16+ syntax, the installed CLI won't understand it.
 
 Besides blocks and icon fonts, Mix also compiles the theme-wide bundle from `assets/src/`:
 `styles/theme.scss` (frontend, split into `layout/` partials — `_header`, `_footer`, `_type`,
-`_fonts`, `_contact-forms-7`, `_single-doc-page` — plus `utils/` mixins/functions/placeholders and
+`_fonts`, `_contact-forms-7` — plus `utils/` mixins/functions/placeholders and
 a `custom_bootstrap/` override layer for Bootstrap's Sass maps/variables) and separately
 `styles/editor.scss` / `styles/admin.scss`; `js/app.js` (frontend) and `js/editor.js` (block
 editor), each pulling in `js/FrontComponents/` or `js/EditorComponents/` respectively —
