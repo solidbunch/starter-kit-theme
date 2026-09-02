@@ -51,6 +51,16 @@ class RestApiFilter
         // Add current namespace to allowed list
         $allowedNamespaces[] = SK_REST_API_NS;
 
+        /**
+         * Extend the REST API namespace whitelist.
+         *
+         * Lets a plugin register its own REST namespace for anonymous front-end access without
+         * reusing SK_REST_API_NS (the theme's own namespace) or hardcoding a dependency on it.
+         *
+         * @param string[] $allowedNamespaces
+         */
+        $allowedNamespaces = apply_filters(SK_HOOKS_PREFIX . '/rest_api_namespace_whitelist', $allowedNamespaces);
+
 
         foreach ($allowedNamespaces as $allowedNamespace) {
             if ($allowedNamespace[0] !== '/') {
