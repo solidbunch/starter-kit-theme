@@ -73,8 +73,8 @@ real dependency arrays, computes the handle from the block name + filename, and 
 `filemtime()`. This exists specifically because `block.json`'s own `editorScript`/`style` fields
 can't express script dependencies — `$blockAssets`'s `dependencies` array (also filterable via
 `starter_kit/block_asset_dependencies`) is the only way to wire e.g. `wp-i18n`/`wp-element` deps
-per block. Frontend scripts are registered with `'strategy' => 'defer', 'in_footer' => true`
-(admin/editor scripts get neither).
+per block. Every script (frontend and admin/editor) is registered with `'in_footer' => true`;
+only `strategy` differs — `'defer'` on the frontend, `''` (none) in the admin/editor.
 
 This deliberately avoids WordPress's own standard alternative — the `@wordpress/scripts` /
 `dependency-extraction-webpack-plugin` generated `*.asset.php` file, manually `include`-d and fed
