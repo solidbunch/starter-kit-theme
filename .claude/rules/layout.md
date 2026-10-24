@@ -1,8 +1,8 @@
 # Layout — Bootstrap grid, containers, and the page-assembly contract
 
-Everything here is verified against this repo. It exists because the same three layout bugs were
-each shipped once and only caught by measuring the rendered box in a browser, never by looking at
-a screenshot.
+Everything here is verified against this repo. The `wp:post-content`-without-container gap and the
+`<h1>` duplication below are both bugs that actually shipped once here and were only caught by
+measuring the rendered box in a browser, never by looking at a screenshot.
 
 ## Bootstrap 5.3.2, partially imported — know what's actually available
 
@@ -56,7 +56,8 @@ Consequence: **the page content itself is responsible for its own container.** I
 content and remove its outermost `starter-kit/container`, the remaining paragraphs and buttons go
 flush against the left edge of the viewport with zero padding. This has happened; it is not a
 theoretical risk. Either keep a `starter-kit/container` as the content's outermost block, or use a
-block that renders its own (see the addon's `CLAUDE.md` "Layout" section for which ones do).
+block that renders its own — check whatever added the block (this theme's own `blocks/`, or a
+plugin's) for whether its root element already includes one.
 
 ## `<h1>` comes from the template — don't type a second one into the content
 
@@ -74,22 +75,21 @@ template that didn't render the title. Two ways out, pick per page:
 
 Whenever you create or copy a page's content, check which of the two cases it is before saving.
 
-## The double width squeeze — the bug pattern to check for by name
+## The double width squeeze — a mechanical risk of this grid, not (yet) a shipped bug here
 
-A Bootstrap column takes a **percentage of its parent**. If an ancestor already caps width, the
-two constraints multiply, and the result renders perfectly well at a fraction of its intended
-size. The real case in this project: the addon's `.checkout-block` carries `max-width: 600px`
-(`starter-kit-addon/assets/src/styles/_checkout.scss`), and a `col-lg-6` was nested inside it —
-50% of an already-reduced 600px minus padding and gutters gave a **272px** card where ~568px was
-intended. Nothing about the screenshot said "272"; a `getBoundingClientRect()` did.
+A Bootstrap column takes a **percentage of its parent**, not of the viewport. Since `.container`
+here is capped at 1280px (see above), any `col-*` inside it already renders as a fraction of
+1280px — and nesting a second `max-width`-carrying ancestor (another `.container`, or any custom
+class from this theme's own SCSS) inside the first multiplies the two caps instead of adding
+width. The grid-blocks table above matters here: more than one block can end up emitting
+`div.container` on the same page, so "did I nest a container" isn't always obvious just from the
+block names shown in the editor.
 
-Before adding a `col-*` anywhere, answer both:
+Before adding a `col-*` anywhere in this theme's own templates/patterns:
 
-1. Does any ancestor class carry a `max-width` in SCSS? Grep for it — in this repo the live
-   examples are `.checkout-block` (600px) and `.pricing_section` (1440px, declared twice — in
-   `assets/src/styles/_pricing.scss` and `blocks/PricingTable/src/style.scss`), both in the addon.
-2. Is the ancestor already a `.container` or an element that renders one itself? Nesting a
-   container inside a container is the same failure with a different cause.
+1. Does any ancestor carry a `max-width` — Bootstrap's own `.container`, or a custom one in this
+   theme's SCSS? Grep for it.
+2. Is the ancestor already a `.container`, or a block from the table above that renders one?
 
 If the answer to either is yes, use `col-12` (or no column at all) and let the constraining
 ancestor do the sizing.
@@ -102,9 +102,9 @@ tooling and read the numbers:
 
 ```js
 // width actually rendered
-document.querySelector('.checkout-block .card').getBoundingClientRect()
+document.querySelector('.your-target').getBoundingClientRect()
 // the constraint that produced it
-getComputedStyle(document.querySelector('.checkout-block')).maxWidth
+getComputedStyle(document.querySelector('.your-target').parentElement).maxWidth
 // anything hanging off the left edge
 [...document.querySelectorAll('main *')]
   .filter(el => el.getBoundingClientRect().left <= 0)

@@ -9,11 +9,6 @@
     {
       "name": "page-without-title",
       "title": "Page without Title"
-    },
-    {
-      "name": "single-doc-page",
-      "title": "Single Doc Page",
-      "postTypes": ["doc-page"]
     }
   ]
 }

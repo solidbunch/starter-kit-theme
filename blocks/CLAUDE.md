@@ -4,6 +4,9 @@ Blocks live in the theme's `blocks/` directory, namespace `StarterKitBlocks\`.
 Auto-discovered: `Init::loadBlocks()` scans `blocks/*`, skips folders starting with `_` or missing
 `block.json`, instantiates `StarterKitBlocks\{BlockName}\Block`. Start a new block by copying
 `blocks/_StarterBlock/`. PHP patterns (handlers, Utils, security): see the theme `CLAUDE.md`.
+`Init::loadBlocks()`'s real signature is `loadBlocks(string $blocksDir = '', string $namespace =
+'', string $blocksUri = '')` — treat it as a public method with real parameters, not a no-arg
+internal helper, when changing its signature or behavior.
 `blocks/_*/` is listed under `composer.json`'s `autoload.exclude-from-classmap` — an
 underscore-prefixed folder never matches its PSR-4 namespace (e.g. `StarterKitBlocks\StarterBlock`
 in `_StarterBlock/`), a real mismatch Composer would otherwise warn about on every `dump-autoload`.
@@ -18,7 +21,7 @@ not a workaround to remove.
 | `registerBlockArgs()`   | empty                                                | sets `render_callback`                    |
 | `save()` in `index.jsx` | real JSX (`RichText.Content`, `InnerBlocks.Content`) | `() => null`                              |
 | `view/` folder          | none                                                 | PHP templates (`layout.php`, ...)         |
-| Examples                | Section, Heading, Button, Row, FaqSection            | News, PricingTable                        |
+| Examples                | Section, Heading, Button, Row, FaqSection            | News, Navigation, Image                   |
 
 ## Folder structure
 
@@ -70,8 +73,8 @@ real dependency arrays, computes the handle from the block name + filename, and 
 `filemtime()`. This exists specifically because `block.json`'s own `editorScript`/`style` fields
 can't express script dependencies — `$blockAssets`'s `dependencies` array (also filterable via
 `starter_kit/block_asset_dependencies`) is the only way to wire e.g. `wp-i18n`/`wp-element` deps
-per block. Frontend scripts are registered with `'strategy' => 'defer', 'in_footer' => true`
-(admin/editor scripts get neither).
+per block. Every script (frontend and admin/editor) is registered with `'in_footer' => true`;
+only `strategy` differs — `'defer'` on the frontend, `''` (none) in the admin/editor.
 
 This deliberately avoids WordPress's own standard alternative — the `@wordpress/scripts` /
 `dependency-extraction-webpack-plugin` generated `*.asset.php` file, manually `include`-d and fed

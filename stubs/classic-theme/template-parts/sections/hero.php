@@ -6,6 +6,10 @@
  * @var array $args Template args from get_template_part(); `$args['section']` is the row from the
  *                   "Page sections" complex field inside `src/Handlers/Meta/PostMeta/
  *                   PageExampleMeta.php`, read via `Repository\PageExampleRepository::getPageSections()`.
+ *
+ * Heading is <h2>, not <h1> — page-example.php already renders the page's own <h1> via the fixed
+ * hero (template-parts/page-hero.php) before dispatching to any builder sections. A builder "hero"
+ * row is a secondary in-body section, same as the "text"/"cta" types below it, not the page title.
  */
 
 defined('ABSPATH') || exit;
@@ -25,7 +29,7 @@ $buttonUrl  = $section['button_url'] ?? '';
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <?php if ($title) { ?>
-                    <h1><?php echo esc_html($title); ?></h1>
+                    <h2><?php echo esc_html($title); ?></h2>
                 <?php } ?>
 
                 <?php if ($subtitle) { ?>

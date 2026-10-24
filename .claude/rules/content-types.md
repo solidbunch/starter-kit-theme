@@ -29,9 +29,7 @@ folders:
 
 - **`templates/*.html`** — full page templates (`front-page.html`, `page.html`, `single.html`,
   `404.html`, ...). `page-with-hero.html` / `page-without-title.html` are registered as
-  **custom templates** selectable in the editor via `theme.json`'s `customTemplates` (which also
-  restricts one, `single-doc-page`, to a specific `postTypes` — the `doc-page` CPT, if/when it
-  exists — check it's actually registered before assuming the template applies).
+  **custom templates** selectable in the editor via `theme.json`'s `customTemplates`.
 - **`parts/*.html`** — template parts referenced from templates (`header.html`, `footer.html`),
   pure block markup, no PHP header comment.
 - **`patterns/*.php`** — reusable block patterns, each a `.php` file whose **PHP-comment block**
