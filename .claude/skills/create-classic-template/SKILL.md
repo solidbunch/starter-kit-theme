@@ -1,21 +1,22 @@
 ---
 name: create-classic-template
 description: >
-  Turns a static HTML/CSS design handoff (a designer-delivered standalone mockup — a blog, a
-  landing page, a category/search/listing page, anything with its own <style> block and no CMS
-  wiring) into classic PHP templates for this theme, reusing everything the theme already
-  has: existing Gutenberg blocks, existing Repository query methods, and — one dedicated classic
-  template per page (`page-{slug}.php` / `Template Name:`) with plain/fixed Carbon Fields by
-  default, extended with a flexible builder `complex` field on the same container only when a page
-  genuinely needs editor-managed section reordering. Use this for "turn this HTML into a WordPress
-  template", "build this mockup into the theme",
-  "here's the handoff, make it a page/blog/category template". Always consult this before
-  hand-writing a new PHP template from a static mockup — it sequences the reuse-inventory step that
-  prevents reinventing what the theme already solved. Requires the theme to already be classic
-  (post `convert-to-classic-theme`) — if it's still FSE, this skill refuses and points there first.
+  Turns any design handoff — a static HTML/CSS mockup, a live external reference site/URL, a
+  Figma file, or plain screenshots/exported images — into classic PHP templates for this theme,
+  reusing everything the theme already has: existing Gutenberg blocks, existing Repository query
+  methods, and — one dedicated classic template per page (`page-{slug}.php` / `Template Name:`)
+  with plain/fixed Carbon Fields by default, extended with a flexible builder `complex` field on
+  the same container only when a page genuinely needs editor-managed section reordering. Use this
+  for "turn this HTML into a WordPress template", "build this mockup into the theme", "make this
+  page like <url>", "build this Figma design into the theme", "here's the handoff, make it a
+  page/blog/category template". Always consult this before hand-writing a new PHP template from
+  any of these sources — it sequences the reuse-inventory step that prevents reinventing what the
+  theme already solved, and the handoff-type-specific extraction step that prevents under-building
+  from an incomplete read of the source. Requires the theme to already be classic (post
+  `convert-to-classic-theme`) — if it's still FSE, this skill refuses and points there first.
 ---
 
-# Turning an HTML handoff into classic templates
+# Turning a design handoff into classic templates
 
 **What this does NOT do**: it never builds a new Gutenberg block (that's `create-gutenberg-block`'s
 job), and never converts FSE to classic (that's `convert-to-classic-theme`'s job — this skill only
@@ -42,10 +43,46 @@ All paths below are relative to this theme's own root directory (`web/wp-content
 2. Confirm the theme's own git tree is clean (`git -C web/wp-content/themes/<theme-folder>
    status --porcelain`, run from the foundation root) — same reasoning as `convert-to-classic-theme`:
    there must be a clean point to return to.
-3. Confirm the handoff file(s) exist and are readable. A handoff is usually more than one page
-   (e.g. a blog's home/category/article/search states) — read all of them before step 1, not one
-   at a time, since components repeat across pages and you want to spot that before designing
-   anything.
+3. If the handoff is a static file, confirm it exists and is readable — a handoff is usually more
+   than one page (e.g. a blog's home/category/article/search states), so read all of them before
+   step 1, not one at a time, since components repeat across pages and you want to spot that
+   before designing anything. If the handoff has no file at all (a live URL, a Figma link,
+   screenshots), skip this check and go straight to items 4/5 below for how to extract it instead.
+4. **If the handoff is a live external reference URL instead of a provided static file** (the user
+   says "make it like example.com", not "here's the exported HTML"), a screenshot is not a
+   handoff — pull the full page structure (accessibility snapshot / DOM tree, e.g. Playwright's
+   `browser_snapshot`) before classifying anything in step 2. A screenshot only shows what fits in
+   one viewport at a glance and reads as "a hero and some cards"; the actual accessibility tree
+   reveals the real section count, order, and headings (a stats block, a tabs+tags block, a
+   2-card block — whatever is actually there) that a screenshot-only pass reliably under-builds.
+   This has concretely happened: a first pass built from a screenshot alone shipped 5 of 9 real
+   sections. Confirm the section list with the user (step 2's classification table) before writing
+   any code, and if the user's phrasing implies close 1:1 fidelity ("as reference", "like this
+   site") rather than loose inspiration, ask which one they mean — don't default to "inspired by"
+   on your own judgment when the phrasing is ambiguous.
+5. **If the handoff is a Figma file, a screenshot, or another design-tool export** — the right
+   extraction method depends on exactly what's provided, and the three don't give equivalent
+   precision. Ask which one it actually is before assuming:
+   - **A reachable Figma link** — open it in the browser and read values from Figma's own
+     Inspect/Dev Mode panel (select each frame/layer for its real `font-size`/`font-weight`/
+     `line-height`, color, spacing, border-radius) instead of eyeballing the canvas. This gives
+     real design tokens, same reliability as reading a live site's computed styles — prefer it
+     over a screenshot whenever the link is actually reachable and inspectable.
+   - **Screenshots / exported images only, no live link** — no exact values exist, only what's
+     visually estimable (relative proportions, an approximate color read off the image, rough
+     spacing ratios). Say so explicitly before building ("measured from a screenshot, not exact
+     design tokens") rather than presenting guessed pixel values as if they came from the design
+     file — the same "never guess, verify" discipline as the Carbon Fields API note in step 3.
+   - **Exported HTML/CSS from Figma** — this is just a static handoff file; follow the normal
+     preflight item 3 / step 1 flow (read it directly, it's real markup) — but Figma's own CSS
+     export is usually absolute-positioned pixel soup, not semantic layout. Translate the actual
+     layout *intent* (which things sit in a row, which stack, actual spacing rhythm) into this
+     theme's Bootstrap grid — read `.claude/rules/layout.md` first for the actual grid blocks
+     (`starter-kit/container`/`row`/`column`), the 1280px container cap, and the nested-container
+     width-squeeze pitfall; step 4's own CSS bullet below only covers token mapping, not grid
+     structure — don't transcribe Figma's raw absolute positioning as-is.
+   Whichever source it is, the same rule as point 4 applies: build the full section inventory
+   before classifying anything, and confirm the fidelity level the user actually wants.
 
 ## 1. Inventory pass — mandatory, before any design work
 
@@ -73,8 +110,10 @@ already exists three files away.
   hierarchy picks it up for that slug automatically, no registration needed) or a
   `Template Name:` header-comment template selectable in Page Attributes. For most handoff pages
   (About Us, Contact, a landing page, the front page) this is what you build — a new PHP template
-  with the handoff's markup translated directly into it (reusing blocks/repositories per the rest
-  of this inventory), not a flexible-content mechanism. **The template itself never reads Carbon
+  built from whatever the handoff actually gave you — literal markup translated directly for a
+  static HTML file, or hand-authored PHP/HTML matching the extracted structure for a live-URL,
+  Figma, or screenshot handoff (reusing blocks/repositories per the rest of this inventory), not a
+  flexible-content mechanism. **The template itself never reads Carbon
   Fields data directly** — see the dedicated Repository requirement in branch A below,
   `WpPostRepositoryAbstract::getOne()`'s own docblock ("Mainly used in repository of one page")
   already anticipates this exact shape.
@@ -158,7 +197,17 @@ reason to reach for it over a plain dedicated template.
   call — this theme's own docs (`content-types.md`) deliberately don't duplicate the field
   catalogue, they point to this same URL for exactly this reason. A field type invented from memory
   that happens not to exist fails silently or throws deep in Carbon Fields' internals — always
-  worse to debug than spending thirty seconds confirming the real signature first.
+  worse to debug than spending thirty seconds confirming the real signature first. This applies
+  just as much to `set_header_template()` on a `complex` field (the admin-UI row label for each
+  repeatable entry, e.g. `News.php`'s `related_data` field): it's an Underscore.js template, not
+  Mustache — output a value with `<%- field_name %>`, gate with `<% if (field_name) { %>...<% } %>`.
+  `{{ field_name }}` is not valid syntax here and silently prints the literal string `{{ field_name
+  }}` in every row header instead of throwing — copy an existing working `set_header_template()`
+  call (e.g. `News.php`) verbatim rather than reconstructing the tag syntax from memory, and if you
+  do write new complex-field sub-fields, actually open the admin edit screen and look at the
+  rendered row headers before calling the field done — this exact mistake has shipped silently
+  because the container "worked" (fields saved and read back fine) while every row header showed
+  raw template tags to the editor.
 - Prefix every new field key with `SK_PREFIX` (`skt_`), matching every existing container.
 
 ## 4. Generate templates and partials
@@ -228,6 +277,23 @@ Give this checklist to the user (or hand it to `qa-analyst`/`acceptance-tester`)
 - Every new Carbon Fields field (branch A, A2, and D) is actually editable in wp-admin, and the
   front end reflects the real value entered — not an empty section/field, which usually means the
   `$args['section']`/meta-key unpack is wrong.
+- Every new `complex` field's row headers, in the actual rendered wp-admin edit screen (not just
+  the PHP source), show real interpolated values — not literal `{{ field_name }}` text. Fields can
+  save and read back correctly while a `set_header_template()` typo still breaks only the admin UI
+  label; the front-end/lint/build checks above won't catch this, only looking at the rendered
+  screen will.
+- This template's front-end render was verified by an independent read-only pass (`acceptance-tester`
+  or equivalent), not only by the agent that wrote the code. The foundation root's
+  `.claude/rules/design-verification.md` states this discipline, but its `paths:` scope
+  (`web/wp-content/themes/**/blocks/**`, `.../templates/**`, `.../parts/**`, `.../patterns/**`,
+  `.../assets/src/styles/**`, and the unanchored `**/*.scss`) never matches this skill's own PHP
+  output (`page-{slug}.php`, `template-parts/*.php`) — those alone won't trigger auto-load. It
+  *will* auto-load if you also touch a `.scss` file in the same turn (the unanchored glob catches
+  any stylesheet), so don't rely on that as your signal either — open the rule by path and apply
+  it deliberately regardless of what happened to auto-load. It states plainly that self-assessment
+  of your own rendered output is the exact failure mode independent verification exists to
+  prevent, and that applies here just as much as to any layout change the file's own `paths:` glob
+  happens to match.
 - A repo-wide grep for `get_post_meta(`, `update_post_meta(`, `get_option(`, `update_option(`,
   `carbon_get_`, `carbon_set_` inside the files this skill just generated returns nothing — every
   read/write went through `Helper\Utils`.

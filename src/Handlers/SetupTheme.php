@@ -80,4 +80,18 @@ class SetupTheme
 
         return $thresholdNew ?? $threshold;
     }
+
+    /**
+     * Filters the list of WordPress mime types and file extensions.
+     *
+     * @param string[] $mimeTypes Mime types keyed by the file extension regex corresponding to those types.
+     *
+     * @return string[] Filtered list of WordPress mime types.
+     */
+    public static function addCustomMimeTypes($mimeTypes)
+    {
+        $mimeTypes['svg'] = 'image/svg+xml';
+
+        return $mimeTypes;
+    }
 }

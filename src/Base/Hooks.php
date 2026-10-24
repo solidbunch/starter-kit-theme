@@ -26,6 +26,7 @@ class Hooks
         // filter image sizes
         add_filter('intermediate_image_sizes', [Handlers\SetupTheme::class, 'filterImageSizes']);
         add_filter('big_image_size_threshold', [Handlers\SetupTheme::class, 'bigImageSizeThreshold']);
+        add_filter('mime_types', [Handlers\SetupTheme::class, 'addCustomMimeTypes']);
 
         /************************************
          *          Theme Settings

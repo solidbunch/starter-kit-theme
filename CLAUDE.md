@@ -20,6 +20,7 @@ This repo's own `.claude/rules/` is **not** at the *project* root (the root is
 @.claude/rules/conventions.md
 @.claude/rules/content-types.md
 @.claude/rules/build-and-ci.md
+@.claude/rules/layout.md
 
 ## What "blocks" means here
 
